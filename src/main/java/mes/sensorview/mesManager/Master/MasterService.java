@@ -69,9 +69,8 @@ public class MasterService extends ReturnFunction {
 
     }
     //
-    public Message sysMsgDelete(List<SYSMsg> checkList){
-        Page p = new Page();
-        p.setKeyword(deleteMsg(checkList));
+    public Message sysMsgDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysMsgDelete(p);
     }
 
@@ -96,10 +95,9 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysBoardAdd(sbv);
     }
 
-    public Message sysBoardDelete(List<SYSBoard> checkList,HttpServletRequest req){
-            Page p = new Page();
+    public Message sysBoardDelete(Page p,HttpServletRequest req){
             p.setSite_code(getSiteCode(req).getSite_code());
-            p.setKeyword(deleteBoard(checkList));
+            p.setKeyword(p.getKeyword());
         return masterMapper.sysBoardDelete(p);
     }
 
@@ -125,10 +123,9 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysProdLineAdd(spv);
     }
 
-    public Message sysProdLineDelete(List<SYSProdLine> checkList, HttpServletRequest req){
-        Page p = new Page();
+    public Message sysProdLineDelete(Page p, HttpServletRequest req){
         p.setSite_code(getSiteCode(req).getSite_code());
-        p.setKeyword(deleteProdLine(checkList));
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysProdLineDelete(p);
     }
 
@@ -154,10 +151,8 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysCargoAdd(scv);
     }
 
-    public Message sysCargoDelete(List<SYSCargo> checkList){
-        Page p = new Page();
-        String keyword= "";
-        p.setKeyword(deleteCargo(checkList));
+    public Message sysCargoDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysCargoDelete(p);
     }
 }
