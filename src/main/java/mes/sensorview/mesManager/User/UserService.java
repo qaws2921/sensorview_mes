@@ -72,8 +72,8 @@ public class UserService extends ReturnFunction {
     }
 
     public Message sysUserAdd(SYSUser suv , HttpServletRequest req){
-        suv.setUpdate_user(getSessionData(req).getSite_code());
-        suv.setSite_code(getSessionData(req).getUser_code());
+        suv.setUpdate_user(getSessionData(req).getUser_code());
+        suv.setSite_code(getSessionData(req).getSite_code());
         return userMapper.sysUserAdd(suv);
     }
 
