@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AuthService {
+public class AuthService extends AuthFunction{
 
     @Autowired
     private AuthMapper authMapper;
-    private AuthFunction authFunction;
 
     public List<Auth> authMainSelect(HttpServletRequest req) throws Exception {
         Session session = (Session) req.getSession().getAttribute("userData");
@@ -33,7 +32,7 @@ public class AuthService {
         Session session = (Session) req.getSession().getAttribute("userData");
         session.setKeyword(keyword);
         List<Auth> avList =  authMapper.authSubSelect(session);
-        return authFunction.gb_list(avList);
+        return gb_list(avList);
     }
 
     /**
@@ -52,7 +51,7 @@ public class AuthService {
             allSubList.add(authMapper.authSubSelect(session));
             allSubList2.add(authMapper.authSubSelect(session));
         }
-        return authFunction.authAllSubSelect(allSubList,allSubList2);
+        return  authAllSubSelect(allSubList,allSubList2);
     }
 
 
@@ -87,5 +86,5 @@ public class AuthService {
         p.setSite_code(session.getSite_code());
         return authMapper.menuAuth(p);
     }
-    
+
 }
