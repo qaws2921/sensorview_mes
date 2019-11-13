@@ -4,7 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
-import mes.sensorview.Mapper.User.UserMapper;
+import mes.sensorview.Mapper.Authority.User.UserMapper;
 import mes.sensorview.mesManager.User.DTO.SYSDept;
 import mes.sensorview.mesManager.User.DTO.SYSUser;
 import mes.sensorview.mesManager.User.DTO.SYSUserSupp;

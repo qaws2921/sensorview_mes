@@ -1,7 +1,6 @@
 package mes.sensorview.Common.Interceptor;
 
-import mes.sensorview.Mapper.Auth.AuthMapper;
-import mes.sensorview.Mapper.User.UserMapper;
+import mes.sensorview.Mapper.Authority.User.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

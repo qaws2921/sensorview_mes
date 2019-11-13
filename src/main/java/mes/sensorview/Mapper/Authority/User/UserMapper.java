@@ -1,4 +1,4 @@
-package mes.sensorview.Mapper.User;
+package mes.sensorview.Mapper.Authority.User;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
