@@ -7,6 +7,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuth;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +53,7 @@ public class AuthorityRestController {
     }
 
     @RequestMapping(value="/sysAuthProgramAdd" , method = RequestMethod.POST)
-    public Message sysAuthProgramAdd(HttpServletRequest req, List<SYSAuthProgram> checkList){
+    public Message sysAuthProgramAdd(HttpServletRequest req,@RequestBody List<SYSAuthProgram> checkList){
         return authorityService.sysAuthProgramAdd(req,checkList);
     }
 }

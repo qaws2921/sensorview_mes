@@ -403,7 +403,7 @@ function select_make(i, select_tag) {
                 option = $("<option></option>").text(data[j][select_tag[i].textName]).val(data[j][select_tag[i].valueName]);
                 $(select_tag[i].tag).append(option);
             }
-            $(select_tag[i].tag).select2().trigger();
+            $(select_tag[i].tag).select2();
 
         }
     });
@@ -644,11 +644,11 @@ function cell(cellvalue, options, rowObject) {
 
     } else {
         if (rowObject.level === 1) {
-            return '<img src="/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
+            return '<img src="/ui-component/assets/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
         } else if (rowObject.level === 2) {
-            return '	<img src="/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
+            return '	<img src="/ui-component/assets/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
         } else if (rowObject.level === 3) {
-            return '		<img src="/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
+            return '		<img src="/ui-component/assets/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
         }
 
     }
