@@ -26,7 +26,7 @@ public class UserRestController {
         Session data = userMapper.loginAction(s);
         HashMap<String, Object> map = new HashMap<>();
         map.put("msg", "");
-        if(ObjectUtils.isEmpty(data))
+        if(data.getUser_code().equals(""))
         {
             map.put("msg", "아이디나 비밀번호를 확인하세요.");
             return map;
