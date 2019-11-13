@@ -11,4 +11,10 @@ public class HomeController {
     {
         return "login";
     }
+
+
+    @RequestMapping(value="/")
+    public String main(){
+        return "main";
+    }
 }

@@ -24,50 +24,50 @@
     <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="shortcut icon" href="/static/ui-component/imagesNew/icon/icon2.png">
-    <link rel="stylesheet" href="/static/ui-component/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/bootstrap-datepicker3.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/ui.jqgrid.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/fonts.googleapis.com.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/import.css" />
+    <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon2.png">
+    <link rel="stylesheet" href="/ui-component/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/ui.jqgrid.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="/ui-component/assets/css/import.css" />
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
     <![endif]-->
-    <link rel="stylesheet" href="/static/ui-component/assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="/static/ui-component/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/ui-component/assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
     <![endif]-->
-    <script src="/static/ui-component/assets/js/ace-extra.min.js"></script>
+    <script src="/ui-component/assets/js/ace-extra.min.js"></script>
     <!--[if lte IE 8]>
     <script src="/assets/js/html5shiv.min.js"></script>
     <script src="/assets/js/respond.min.js"></script>
     <![endif]-->
     <!--[if !IE]> -->
-    <script src="/static/ui-component/assets/js/jquery-2.1.4.min.js"></script>
+    <script src="/ui-component/assets/js/jquery-2.1.4.min.js"></script>
     <!-- <![endif]-->
 
     <!--[if IE]>
     <script src="/assets/js/jquery-1.11.3.min.js"></script>
     <![endif]-->
     <script type="text/javascript">
-        if('ontouchstart' in document.documentElement) document.write("<script src='/static/ui-component/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+        if('ontouchstart' in document.documentElement) document.write("<script src='/ui-component/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
     </script>
-    <script src="/static/ui-component/assets/js/jquery-ui.min.js"></script>
-    <script src="/static/ui-component/assets/js/bootstrap.min.js"></script>
-    <script src="/static/ui-component/assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="/static/ui-component/assets/js/bootstrap-datepicker.kr.js"></script>
+    <script src="/ui-component/assets/js/jquery-ui.min.js"></script>
+    <script src="/ui-component/assets/js/bootstrap.min.js"></script>
+    <script src="/ui-component/assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="/ui-component/assets/js/bootstrap-datepicker.kr.js"></script>
     <!-- <script src="/assets/js/jquery.jqGrid.min.js"></script> -->
-    <script src="/static/ui-component/assets/js/jquery.jqGrid.min.js"></script>
-    <script src="/static/ui-component/assets/js/jszip.min.js"></script>
-    <script src="/static/ui-component/jqGrid/js/i18n/grid.locale-kr.js"></script>
-    <script src="/static/ui-component/assets/js/ace-elements.min.js"></script>
-    <script src="/static/ui-component/assets/js/ace.min.js"></script>
-    <script src="/mes/header/header2.js"></script>
+    <script src="/ui-component/assets/js/jquery.jqGrid.min.js"></script>
+    <script src="/ui-component/assets/js/jszip.min.js"></script>
+    <script src="/ui-component/jqGrid/js/i18n/grid.locale-kr.js"></script>
+    <script src="/ui-component/assets/js/ace-elements.min.js"></script>
+    <script src="/ui-component/assets/js/ace.min.js"></script>
+    <script src="/data-component/header/header2.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 

@@ -29,7 +29,18 @@ public class Handler extends HandlerInterceptorAdapter {
      **/
     @Override
     public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler)throws IOException {
+        System.out.println(request.getServletPath());
         HttpSession session = request.getSession();
+
+        Session lv = new Session();
+        lv.setUser_code("ADMIN");
+        lv.setUser_name("관리자");
+        lv.setSite_code("S0001");
+        lv.setDept_code("D1000");
+        lv.setDuty_code("1000");
+
+        request.getSession().setAttribute("userData", lv);
+
         Session userData = (Session) session.getAttribute("userData");
 
         try {

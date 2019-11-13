@@ -26,7 +26,7 @@ function wrapWindowByMask2() {
     var loadingImg = '';
 
     loadingImg += "<div id='loadingImg' style='position:absolute; left:"+ (maskWidth2-45) +"px;top:40%; display:none; z-index:10000;'>";
-    loadingImg += " <img src='/imagesNew/loding/loading13.gif' style='max-width: 90px; max-height: 90px;'/>";
+    loadingImg += " <img src='/ui-component/imagesNew/loding/loading13.gif' style='max-width: 90px; max-height: 90px;'/>";
     loadingImg += "</div>";
 
     //화면에 레이어 추가

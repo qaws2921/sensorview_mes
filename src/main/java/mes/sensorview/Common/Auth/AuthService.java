@@ -18,7 +18,7 @@ public class AuthService extends AuthFunction{
     @Autowired
     private AuthMapper authMapper;
 
-    public List<Auth> authMainSelect(HttpServletRequest req) throws Exception {
+    public List<Auth> authMainSelect(HttpServletRequest req) {
         Session session = (Session) req.getSession().getAttribute("userData");
         return authMapper.authMainSelect(session);
     }
@@ -28,7 +28,7 @@ public class AuthService extends AuthFunction{
      * @생성자 : 김종효
      * @생성일 : 2019-10-16
      * */
-    public List<?> authSubSelect(HttpServletRequest req, String keyword) throws Exception {
+    public List<?> authSubSelect(HttpServletRequest req, String keyword) {
         Session session = (Session) req.getSession().getAttribute("userData");
         session.setKeyword(keyword);
         List<Auth> avList =  authMapper.authSubSelect(session);
@@ -40,7 +40,7 @@ public class AuthService extends AuthFunction{
      * @생성자 : 김종효
      * @생성일 : 2019-10-16
      * */
-    public List<?> authAllSubSelect(HttpServletRequest req) throws Exception {
+    public List<?> authAllSubSelect(HttpServletRequest req) {
         Session session = (Session) req.getSession().getAttribute("userData");
         List<Auth> avList = authMapper.authMainSelect(session);
         ArrayList<List<Auth>> allSubList = new ArrayList<>();
@@ -61,7 +61,7 @@ public class AuthService extends AuthFunction{
      * @생성자 : 김종효
      * @생성일 : 2019-10-21
      * */
-    public void model_menu_setting(HttpServletRequest req, String page_name, String top_menu_name, String under_name) throws Exception {
+    public void model_menu_setting(HttpServletRequest req, String page_name, String top_menu_name, String under_name) {
         req.setAttribute("page_name",page_name);
         req.setAttribute("top_active",under_name);
         req.setAttribute("under_active",page_name);
@@ -75,12 +75,12 @@ public class AuthService extends AuthFunction{
      * @생성자 : 김종효
      * @생성일 : 2019-10-21
      * */
-    public void model_menu_setting(HttpServletRequest req) throws Exception {
+    public void model_menu_setting(HttpServletRequest req){
         req.setAttribute("main_list",authMainSelect(req));
         req.setAttribute("allSub_list",authAllSubSelect(req));
     }
 
-    public SysAuthProgram menuAuth(HttpServletRequest req, Page p) throws Exception {
+    public SysAuthProgram menuAuth(HttpServletRequest req, Page p){
         Session session = (Session) req.getSession().getAttribute("userData");
         p.setUser_code(session.getUser_code());
         p.setSite_code(session.getSite_code());
