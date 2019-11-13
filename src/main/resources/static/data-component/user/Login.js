@@ -22,8 +22,8 @@ $( ".btn-login" ).on('click', function(e) {
             method: "POST",
             dataType: "json",
             success : function (result) {
-                if(result.user_code == ''){
-                    alert(result.message);
+                if(result.msg == ''){
+                    alert(result.msg);
                     return false;
                 }else{
                     location.href ='/ProductManagement/PmDefault/sysCar';
