@@ -1,20 +1,17 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
-<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
-<!--<mapper namespace="sysUserSupp">-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.User.UserMapper">
 
-<!--    <select id="sysUserSuppGet"-->
-<!--    	resultType="mes.manager.UserManegement.VO.SYSUserSuppVO">-->
-<!--        	EXEC SP_SYS_USER_SUPP_GET #{site_code}, #{page},#{rows},''-->
-<!--    </select>-->
-<!--    -->
-<!--    <select id="sysUserSuppAdd"-->
-<!--    	resultType="mes.common.ResultVO">-->
-<!--    	EXEC SP_SYS_USER_SUPP_ADD #{user_code},#{user_name},#{auth_code},#{tel_no},#{email},#{use_yn},#{update_user},#{keyword}-->
-<!--    </select>-->
-<!--    <select id="sysUserSuppDelete"-->
-<!--    	resultType="mes.common.ResultVO">-->
-<!--    	EXEC SP_SYS_USER_SUPP_DEL #{keyword}-->
-<!--    </select>-->
-<!--</mapper>-->
+    <select id="sysUserSuppGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUserSupp">
+        	EXEC SP_SYS_USER_SUPP_GET #{site_code}, #{page},#{rows},''
+    </select>
+
+    <select id="sysUserSuppAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_USER_SUPP_ADD #{user_code},#{user_name},#{auth_code},#{tel_no},#{email},#{use_yn},#{update_user},#{keyword}
+    </select>
+    <select id="sysUserSuppDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_USER_SUPP_DEL #{keyword}
+    </select>
+</mapper>
 
 

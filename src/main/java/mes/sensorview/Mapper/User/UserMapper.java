@@ -11,18 +11,13 @@ import java.util.List;
 
 public interface UserMapper {
     Session loginAction(Session session);
-
     List<SYSDept> sysDeptGet(Page p);
-
     Message sysDeptAdd(SYSDept sdv);
-
     List<SYSUser> sysUserGet(Page p);
-
     List<SYSDept> sysDeptAllGet(Page p);
-
     Message sysUserAdd(SYSUser suv);
-
     List<SYSUserSupp> sysUserSuppGet(Page p);
-
     Message sysUserSuppAdd(SYSUserSupp susv);
+    Message sysUserDelete(Page p);
+    Message sysUserSuppDelete(Page p);
 }

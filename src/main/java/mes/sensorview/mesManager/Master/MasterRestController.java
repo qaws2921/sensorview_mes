@@ -42,7 +42,6 @@ public class MasterRestController {
 
     @RequestMapping(value="/sysMsgGet", method = RequestMethod.POST)
     public RESTful sysMsg(Page p){
-
         return masterService.sysMsgGet(p);
     }
 

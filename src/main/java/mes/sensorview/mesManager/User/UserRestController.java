@@ -37,8 +37,8 @@ public class UserRestController {
     }
 
     @RequestMapping(value="/sysDeptDelete" , method = RequestMethod.POST)
-    public Message sysDeptDelete(List<SYSDept> checkList, HttpServletRequest req){
-        return userService.sysDeptDelete(checkList,req);
+    public Message sysDeptDelete(Page p){
+        return userService.sysDeptDelete(p);
     }
 
 
@@ -53,23 +53,23 @@ public class UserRestController {
     }
 
     @RequestMapping(value="/sysUserDelete" , method = RequestMethod.POST)
-    public  Message sysUserDelete(List<SYSUser> checkList){
-        return userService.sysUserDelete(checkList);
+    public  Message sysUserDelete(Page p){
+        return userService.sysUserDelete(p);
     }
 
     @RequestMapping(value="/sysUserSuppGet" , method = RequestMethod.POST)
-    public RESTful sysUserSuppGet(Page p){
-        return userService.sysUserSuppGet(p);
+    public RESTful sysUserSuppGet(Page p , HttpServletRequest req){
+        return userService.sysUserSuppGet(p, req);
     }
 
     @RequestMapping(value="/sysUserSuppAdd" , method = RequestMethod.POST)
-    public  Message sysUserSuppAdd(SYSUserSupp susv){
-        return userService.sysUserSuppAdd(susv);
+    public  Message sysUserSuppAdd(SYSUserSupp susv , HttpServletRequest req){
+        return userService.sysUserSuppAdd(susv, req);
     }
 
     @RequestMapping(value="/sysUserSuppDelete" , method = RequestMethod.POST)
-    public  Message sysUserSuppDelete(List<SYSUserSupp> checkList){
-        return userService.sysUserSuppDelete(checkList);
+    public  Message sysUserSuppDelete(Page p){
+        return userService.sysUserSuppDelete(p);
     }
 
 }

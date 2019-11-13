@@ -43,20 +43,9 @@ public class UserService extends ReturnFunction {
         return userMapper.sysDeptAdd(sdv);
     }
 
-    public Message sysDeptDelete(List<SYSDept> checkList, HttpServletRequest req){
-        
-        Page p = new Page();
-        String keyword= "";
-        for (int i = 0; i < checkList.size(); i++) {
-            if (i == 0) {
-                keyword = checkList.get(i).getDept_code();
-            }else {
-                keyword = keyword+","+ checkList.get(i).getDept_code();
-            }
-        }
-        p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(keyword);
-        return userMapper.sysDeptDelete(p);
+    public Message sysDeptDelete(Page p){
+        p.setKeyword(p.getKeyword());
+        return userMapper.sysUserDelete(p);
     }
 
     public RESTful sysUserGet(Page p , HttpServletRequest req){
@@ -86,21 +75,8 @@ public class UserService extends ReturnFunction {
         return userMapper.sysUserAdd(suv);
     }
 
-    public Message sysUserDelete(List<SYSUser> checkList){
-        Page p = new Page();
-        String keyword = "";
-        int index = 0;
-        for (SYSUser list : checkList) {
-            System.out.println(list.getUser_code());
-            if (index == 0) {
-                keyword = list.getUser_code();
-            }else{
-                keyword = keyword+","+list.getUser_code();
-            }
-            ++index;
-        }
-
-        p.setKeyword(keyword);
+    public Message sysUserDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return userMapper.sysUserDelete(p);
     }
 
@@ -129,21 +105,8 @@ public class UserService extends ReturnFunction {
         return userMapper.sysUserSuppAdd(susv);
     }
     
-    public Message sysUserSuppDelete(List<SYSUserSupp> checkList){
-        Page p = new Page();
-        String keyword = "";
-        int index = 0;
-        for (SYSUserSupp list : checkList) {
-            System.out.println(list.getUser_code());
-            if (index == 0) {
-                keyword = list.getUser_code();
-            }else{
-                keyword = keyword+","+list.getUser_code();
-            }
-            ++index;
-        }
-
-        p.setKeyword(keyword);
+    public Message sysUserSuppDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return userMapper.sysUserSuppDelete(p);
     }
 }

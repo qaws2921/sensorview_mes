@@ -31,11 +31,17 @@ public class Handler extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         log.info(request.getServletPath());
+
         HttpSession session = request.getSession();
         Session userData = (Session) session.getAttribute("userData");
-        try {
-            if (ObjectUtils.isEmpty(userData)) {
+        String ajax = "";
+        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+            ajax = "ajax";
+            log.info(ajax);
+        }
 
+        try {
+            if (ObjectUtils.isEmpty(userData) || ajax.equals("ajax")) {
                 response.setContentType("text/html; charset=UTF-8");
                 PrintWriter out = response.getWriter();
                 out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
