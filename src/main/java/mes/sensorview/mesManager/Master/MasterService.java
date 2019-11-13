@@ -30,7 +30,7 @@ public class MasterService extends ReturnFunction {
     public RESTful sysCommonGet(HttpServletRequest req, Page p) {
         int count=0;
         RESTful resTful = new RESTful();
-        p.setSite_code(getSessionData(req).getSite_code());
+        p.setSite_code(getSiteCode(req).getSite_code());
         List<SYSCommon> rows = masterMapper.sysCommonGet(p);
 
         if(rows.size() != 0) {
@@ -44,7 +44,7 @@ public class MasterService extends ReturnFunction {
     }
     
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
-        p.setSite_code(getSessionData(req).getSite_code());
+        p.setSite_code(getSiteCode(req).getSite_code());
         return masterMapper.sysCommonDutyGet(p);
     }
 
@@ -64,14 +64,13 @@ public class MasterService extends ReturnFunction {
     }
     
     public Message sysMsgAdd(HttpServletRequest req, SYSMsg smv){
-        smv.setUser_code(getSessionData(req).getUser_code());
+        smv.setUser_code(getSiteCode(req).getUser_code());
         return masterMapper.sysMsgAdd(smv);
 
     }
     //
-    public Message sysMsgDelete(List<SYSMsg> checkList){
-        Page p = new Page();
-        p.setKeyword(deleteMsg(checkList));
+    public Message sysMsgDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysMsgDelete(p);
     }
 
@@ -79,7 +78,7 @@ public class MasterService extends ReturnFunction {
     public RESTful sysBoardGet(Page p, HttpServletRequest req){
         int count=0;
         RESTful resTful = new RESTful();
-        p.setSite_code(getSessionData(req).getSite_code());
+        p.setSite_code(getSiteCode(req).getSite_code());
         List<SYSBoard> rows = masterMapper.sysBoardGet(p);
         if(rows.size() != 0) {
             count = rows.get(0).getRec_count();
@@ -91,22 +90,21 @@ public class MasterService extends ReturnFunction {
     }
     
     public Message sysBoardAdd(HttpServletRequest req, SYSBoard sbv){
-        sbv.setSite_code(getSessionData(req).getSite_code());
-        sbv.setUser_code(getSessionData(req).getUser_code());
+        sbv.setSite_code(getSiteCode(req).getSite_code());
+        sbv.setUser_code(getSiteCode(req).getUser_code());
         return masterMapper.sysBoardAdd(sbv);
     }
 
-    public Message sysBoardDelete(List<SYSBoard> checkList,HttpServletRequest req){
-            Page p = new Page();
-            p.setSite_code(getSessionData(req).getSite_code());
-            p.setKeyword(deleteBoard(checkList));
+    public Message sysBoardDelete(Page p,HttpServletRequest req){
+            p.setSite_code(getSiteCode(req).getSite_code());
+            p.setKeyword(p.getKeyword());
         return masterMapper.sysBoardDelete(p);
     }
 
     public RESTful sysProdLineGet(Page p, HttpServletRequest req){
         int count=0;
         RESTful resTful = new RESTful();
-        p.setSite_code(getSessionData(req).getSite_code());
+        p.setSite_code(getSiteCode(req).getSite_code());
         List<SYSProdLine> rows = masterMapper.sysProdLineGet(p);
 
         if(rows.size() != 0) {
@@ -120,22 +118,21 @@ public class MasterService extends ReturnFunction {
     }
 
     public Message sysProdLineAdd(HttpServletRequest req, SYSProdLine spv){
-        spv.setSite_code(getSessionData(req).getSite_code());
-        spv.setUser_code(getSessionData(req).getUser_code());
+        spv.setSite_code(getSiteCode(req).getSite_code());
+        spv.setUser_code(getSiteCode(req).getUser_code());
         return masterMapper.sysProdLineAdd(spv);
     }
 
-    public Message sysProdLineDelete(List<SYSProdLine> checkList, HttpServletRequest req){
-        Page p = new Page();
-        p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(deleteProdLine(checkList));
+    public Message sysProdLineDelete(Page p, HttpServletRequest req){
+        p.setSite_code(getSiteCode(req).getSite_code());
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysProdLineDelete(p);
     }
 
     public RESTful sysCargoGet(Page p, HttpServletRequest req){
         int count=0;
         RESTful resTful = new RESTful();
-        p.setSite_code(getSessionData(req).getSite_code());
+        p.setSite_code(getSiteCode(req).getSite_code());
         List<SYSCargo> rows = masterMapper.sysCargoGet(p);
 
         if(rows.size() != 0) {
@@ -149,15 +146,13 @@ public class MasterService extends ReturnFunction {
     }
 
     public Message sysCargoAdd(HttpServletRequest req, SYSCargo scv){
-        scv.setSite_code(getSessionData(req).getSite_code());
-        scv.setUser_code(getSessionData(req).getUser_code());
+        scv.setSite_code(getSiteCode(req).getSite_code());
+        scv.setUser_code(getSiteCode(req).getUser_code());
         return masterMapper.sysCargoAdd(scv);
     }
 
-    public Message sysCargoDelete(List<SYSCargo> checkList){
-        Page p = new Page();
-        String keyword= "";
-        p.setKeyword(deleteCargo(checkList));
+    public Message sysCargoDelete(Page p){
+        p.setKeyword(p.getKeyword());
         return masterMapper.sysCargoDelete(p);
     }
 }

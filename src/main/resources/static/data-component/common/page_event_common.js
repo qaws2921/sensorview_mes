@@ -189,40 +189,24 @@ function modal_edit(object, data) {
 function delete_ajax(object) {
 
     var jqgrid_name = object.jqGrid_object[0].main_name;
-    var delete_url = object.deleteUrl;
-    var code_name = object.deleteCode;
-    var get_url = object.getUrl;
+    var delete_url = object.deleteUrl;;
 
 
     var ids = $(jqgrid_name).getGridParam('selarrrow');
-    var ids2 = [];
-    var id_object = {};
-    var code = ids.join(",");
-    if (code === '') {
+
+    if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         if (confirm("삭제하겠습니까?")) {
             wrapWindowByMask2();
-            for (var i = 0; i < ids.length; i++) {
-                for (var j = 0; j < code_name.length; j++) {
-                    if (j === 0) {
-                        id_object[code_name[j]] = ids[i]
-                    } else if (j === 1) {
-                        id_object[code_name[j]] = condition_objact.keyword;
-                    }
-                }
-                ids2.push(id_object);
-                id_object = {};
-            }
+            var code = ids.join(",");
             callback(function () {
-
                 $.ajax({
                     url: delete_url,
-                    data: JSON.stringify(ids2),
+                    data: {keyword:code},
                     type: 'POST',
                     async: true,
                     dataType: "json",
-                    contentType: 'application/json',
                     success: function (data) {
                         if (data.result === 'NG') {
                             alert(data.message);

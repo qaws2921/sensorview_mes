@@ -19,53 +19,6 @@ public class ReturnFunction {
     {
         return (Session) req.getSession().getAttribute("userData");
     }
-    public  String deleteMsg(List<SYSMsg> checkList)
-    {
-        String keyword = "";
-        for (int i = 0; i < checkList.size(); i++) {
-            if (i == 0) {
-                keyword = checkList.get(i).getMsg_code();
-            }else {
-                keyword = keyword+","+ checkList.get(i).getMsg_code();
-            }
-        }
-        return keyword;
-    }
-    // 게싶ㄴ
-    public  String deleteBoard(List<SYSBoard> checkList)
-    {
-        String keyword = "";
-        for (int i = 0; i < checkList.size(); i++) {
-            if (i == 0) {
-                keyword = checkList.get(i).getBoard_code();
-            }else {
-                keyword = keyword+","+ checkList.get(i).getBoard_code();
-            }
-        }
-        return keyword;
-    }
-    public  String deleteProdLine(List<SYSProdLine> checkList)
-    {
-        String keyword = "";
-        for (int i = 0; i < checkList.size(); i++) {
-            if (i == 0) {
-                keyword = checkList.get(i).getLine_code();
-            }else {
-                keyword = keyword+","+ checkList.get(i).getLine_code();
-            }
-        }
-        return keyword;
-    }
-    public  String deleteCargo(List<SYSCargo> checkList)
-    {
-        String keyword = "";
-        for (int i = 0; i < checkList.size(); i++) {
-            if (i == 0) {
-                keyword = checkList.get(i).getCargo_code();
-            }else {
-                keyword = keyword+","+ checkList.get(i).getCargo_code();
-            }
-        }
-        return keyword;
-    }
+
+    
 }
