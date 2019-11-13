@@ -25,4 +25,12 @@ public class MasterController {
     public String sysCargo(){
         return "mesManager/Master/sysCargo";
     }
+    @RequestMapping(value="/sysCommon")
+    public String sysCommon() throws Exception{
+        return "manager/MasterManegement/sysCommon.tiles1";
+    }
+    @RequestMapping(value="/sysSupp")
+    public String sysSupp() throws Exception{
+        return "manager/MasterManegement/sysSupp.tiles1";
+    }
 }

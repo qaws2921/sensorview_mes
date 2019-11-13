@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.Authority.Master.MasterMapper">
+    <select id="sysBoardGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSBoard">
+        	EXEC SP_SYS_BOARD_GET #{site_code}, #{page}, #{rows}, ''
+    </select>
+    <select id="sysBoardAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_BOARD_ADD #{site_code},#{board_code},#{board_en},#{board_kr},#{board_auth},#{files},#{file_size},#{use_yn},#{user_code},#{keyword}
+    </select>
+    <select id="sysBoardDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_BOARD_DEL #{site_code},#{keyword}
+    </select>
+</mapper>
+
+

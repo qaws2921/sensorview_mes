@@ -3,7 +3,7 @@ package mes.sensorview.Mapper.Auth;
 import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Interceptor.Session;
-import mes.sensorview.mesManager.Authority.SysAuthProgram;
+import mes.sensorview.mesManager.Authority.DTO.SysAuthProgram;
 
 import java.util.List;
 

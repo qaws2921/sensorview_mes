@@ -22,45 +22,38 @@ public class Handler extends HandlerInterceptorAdapter {
 
     @Autowired
     private AuthService authService;
+
     /**
      * @DESC : 로그인 세션 확인 preHandle
      * @생성자 : 김재일
      * @생성일 : 2019-11-06
      **/
     @Override
-    public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler)throws IOException {
-        System.out.println(request.getServletPath());
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        log.info(request.getServletPath());
         HttpSession session = request.getSession();
-
-        Session lv = new Session();
-        lv.setUser_code("ADMIN");
-        lv.setUser_name("관리자");
-        lv.setSite_code("S0001");
-        lv.setDept_code("D1000");
-        lv.setDuty_code("1000");
-
-        request.getSession().setAttribute("userData", lv);
-
         Session userData = (Session) session.getAttribute("userData");
-
         try {
-            if(ObjectUtils.isEmpty(userData)){
+            if (ObjectUtils.isEmpty(userData)) {
+
                 response.setContentType("text/html; charset=UTF-8");
                 PrintWriter out = response.getWriter();
-                out.println("<script>alert('세션이 만료되어 로그인페이지로 이동합니다.'); location.href='/login';</script>");
+                out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
                 out.flush();
                 return false;
-            }else {
+            } else {
+                session.setMaxInactiveInterval(30 * 60);
                 /**
                  * @desc : 권한별 멘뉴 구성
                  * @생성자 : 김종효
                  * @생성일 : 2019-10-21
                  * */
-                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
+                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") || request.getServletPath().equals("/error")) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
-                }else {
+                } else {
+                    log.info("sssss");
                     ArrayList<List<Auth>> authAllSubSelect = (ArrayList<List<Auth>>) authService.authAllSubSelect(request); // 권한에 맞는 전체 리스트
-                    request.setAttribute("allSub_list",authAllSubSelect);
+                    request.setAttribute("allSub_list", authAllSubSelect);
                     Auth av1 = null;
                     boolean check = true;
                     boolean check2 = true;
@@ -73,20 +66,20 @@ public class Handler extends HandlerInterceptorAdapter {
                             if (request.getServletPath().substring(1).equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
                                 av1 = authAllSubSelect.get(index).get(index2);
                                 check2 = false;
-                                check =false;
+                                check = false;
                             }
 
-                            if (authAllSubSelect.get(index).size() == index2+1) {
+                            if (authAllSubSelect.get(index).size() == index2 + 1) {
                                 check2 = false;
                             }
                             ++index2;
                         }
                         check2 = true;
-                        index2 = 0 ;
+                        index2 = 0;
                         ++index;
                     }
                     String under_name = av1.getParent_menu_code();
-                    authService.model_menu_setting( request, request.getServletPath().substring(1), under_name.substring(0, under_name.length()-1), under_name);
+                    authService.model_menu_setting(request, request.getServletPath().substring(1), under_name.substring(0, under_name.length() - 1), under_name);
                 }
             }
         } catch (Exception e) {
@@ -97,21 +90,12 @@ public class Handler extends HandlerInterceptorAdapter {
 
     @Override
     public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HttpSession session = request.getSession();
-        Session userData = (Session) session.getAttribute("userData");
-        if (ObjectUtils.isEmpty(userData)) {
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
-            out.flush();
-        } else {
-            session.setMaxInactiveInterval(30 * 60);
-        }
+        log.info("afterConcurrentHandlingStarted call......");
     }
-
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
     }
+
 }

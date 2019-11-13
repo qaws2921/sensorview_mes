@@ -1,4 +1,4 @@
-package mes.sensorview.mesManager.Authority;
+package mes.sensorview.mesManager.Authority.DTO;
 
 import lombok.Data;
 

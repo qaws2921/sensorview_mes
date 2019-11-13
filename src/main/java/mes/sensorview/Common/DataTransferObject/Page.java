@@ -6,8 +6,8 @@ import lombok.Data;
 public class Page {
     private int page_num;
     private int total_num;
-    private double page;
-    private double rows;
+    private int page;
+    private int rows;
     private String keyword;
     private String keyword2;
     private String keyword3;
