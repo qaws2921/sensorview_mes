@@ -15,7 +15,7 @@ public class ReturnFunction {
         int result = (int)Math.ceil((double)records/(double)rows);
         return result;
     }
-    public Session getSiteCode(HttpServletRequest req)
+    public Session getSessionData(HttpServletRequest req)
     {
         return (Session) req.getSession().getAttribute("userData");
     }

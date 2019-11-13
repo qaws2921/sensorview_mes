@@ -37,7 +37,6 @@ public class MasterRestController {
      * */
     @RequestMapping(value="/sysCommonGet", method = RequestMethod.POST)
     public RESTful sysCommonGet(HttpServletRequest req, Page p){
-
         return masterService.sysCommonGet(req, p);
     }
 
