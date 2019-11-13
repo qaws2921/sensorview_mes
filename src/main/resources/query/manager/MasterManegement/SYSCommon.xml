@@ -1,0 +1,24 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="sysCommon">-->
+
+<!--    <select id="sysCommonGet"-->
+<!--    	resultType="mes.manager.MasterManegement.VO.ParameterVO">-->
+<!--        	EXEC SP_SYS_COMMON_GET #{site_code}, #{page_num},#{total_num},#{keyword}-->
+<!--    </select>-->
+<!--    -->
+<!--        <select id="sysCommonGroupGet"-->
+<!--    	resultType="mes.manager.MasterManegement.VO.ParameterVO">-->
+<!--        	EXEC SP_SYS_COMMON_GROUP_GET #{site_code}-->
+<!--    </select>-->
+<!--    -->
+<!--    -->
+<!--    <select id="sysCommonDutyGet"-->
+<!--    	resultType="mes.manager.MasterManegement.VO.SYSCommonVO">-->
+<!--        	SELECT * from sys_common_cd-->
+<!--        	WHERE SITE_CODE = #{site_code} AND CODE_TYPE = 'DUTY'-->
+<!--    </select>-->
+<!--    -->
+<!--</mapper>-->
+
+

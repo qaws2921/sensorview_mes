@@ -5,6 +5,15 @@
 <!DOCTYPE html>
 <tiles:insertAttribute name="header"/>
 <html>
-<tiles:insertAttribute name="body"/>
+<body class="no-skin">
+<tiles:insertAttribute name="helpDesk"/>
+<tiles:insertAttribute name="mid"/>
+<div class="main-container ace-save-state" id="main-container">
+    <tiles:insertAttribute name="lnb"/>
+    <div class="main-content">
+        <tiles:insertAttribute name="body"/>
+    </div>
+</div>
 <tiles:insertAttribute name="footer"/>
+</body>
 </html>

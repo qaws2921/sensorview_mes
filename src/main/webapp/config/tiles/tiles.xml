@@ -7,56 +7,27 @@
 
     <!--  base layout [s]  -->
     <definition name="layout" template="/views/base.jsp">
-        <put-attribute name="header" value="/views/component/header.jsp" />
-        <put-attribute name="helpDesk" value="/views/component/top-nav.jsp" />
-        <put-attribute name="mid" value="/views/component/mid-nav.jsp" />
-        <put-attribute name="lnb"   value="/views/component/sidebar2.jsp" />
+        <put-attribute name="header" value="/views/components/header.jsp" />
+        <put-attribute name="helpDesk" value="/views/components/navbar/top-nav.jsp" />
+        <put-attribute name="mid" value="/views/components/navbar/mid-nav.jsp" />
+        <put-attribute name="lnb"   value="/views/components/navbar/left-nav.jsp" />
         <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/views/component/footer.jsp" />
+        <put-attribute name="footer" value="/views/components/footer.jsp" />
     </definition>
     <!--  base layout [e]  -->
 
     <!--  body content [s]  -->
-    <definition name="*/*/*.new" extends="layout">
-        <put-attribute name="lnb"   value="/views/component/sidebar.jsp" />
-        <put-attribute name="body" value="/views/{1}/{2}/{3}.jsp" />
+    <definition name="*/*/*" extends="layout">
+        <put-attribute name="lnb"   value="/views/components/navbar/left-nav.jsp" />
+        <put-attribute name="body" value="/views/body/{1}/{2}/{3}.jsp" />
     </definition>
-    <definition name="*/*/*/*.new" extends="layout">
-        <put-attribute name="lnb"   value="/views/component/sidebar.jsp" />
-        <put-attribute name="body" value="/views/{1}/{2}/{3}/{4}.jsp" />
+    <definition name="*/*/*/*" extends="layout">
+        <put-attribute name="lnb"   value="/views/components/navbar/left-nav.jsp" />
+        <put-attribute name="body" value="/views/body/{1}/{2}/{3}/{4}.jsp" />
     </definition>
     <!--  body content [e]  -->
 
-    <definition name=".base" template="/views/NewFile.jsp">
-        <put-attribute name="head" value="/views/includeArea.jsp" />
-        <put-attribute name="gnb" value="/views/include/header.jsp" />
-        <put-attribute name="lnb"   value="/views/include/main_menu.jsp" />
-        <put-attribute name="body" value="/views/include/main.jsp" />
-    </definition>
-
-    <definition name="*/*/*.tiles1"  extends=".base">
-        <put-attribute name="lnb"   value="/views/include/admin_menu.jsp" />
-        <put-attribute name="body" value="/views/{1}/{2}/{3}.jsp" />
-    </definition>
-
-    <definition name="*/*/*/*.tiles2"  extends=".base">
-        <put-attribute name="lnb"   value="/views/include/admin_menu.jsp" />
-        <put-attribute name="body" value="/views/{1}/{2}/{3}/{4}.jsp" />
-    </definition>
-
-    <definition name="login"  template="/views/login/login.jsp"/>
+    <definition name="login"  template="/views/body/login/login.jsp"/>
     <definition name="main"  extends="layout"/>
-    <definition name="login"  template="/views/sensorview/login/login.jsp"/>
 
-    <!-- mes tiles -->
-    <definition name=".mes" template="/views/tiles/tilesBase.jsp">
-        <put-attribute name="gnb" value="/views/tiles/tilesHeader.jsp" />
-        <put-attribute name="lnb"   value="/views/tiles/tilesLeft.jsp" />
-        <put-attribute name="main" value="/views/tiles/tilesMain.jsp" />
-    </definition>
-
-    <definition name="*/*/*.mes"  extends=".mes">
-        <put-attribute name="gnb"   value="/views/tiles/tilesHeader.jsp" />
-        <put-attribute name="main" value="/views/menu/{1}/{2}/{3}.jsp" />
-    </definition>
 </tiles-definitions>

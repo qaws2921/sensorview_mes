@@ -1,0 +1,24 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="sysUser">-->
+<!--    <select id="sysUserSelectList" -->
+<!--    	resultType="mes.manager.UserManegement.VO.SYSUserVO">-->
+<!--        	SELECT * from sys_user_cd-->
+<!--    </select>-->
+<!--    <select id="sysUserGet"-->
+<!--    	resultType="mes.manager.UserManegement.VO.SYSUserVO">-->
+<!--        	EXEC SP_SYS_USER_GET #{site_code}, #{page}, #{rows}, '', #{keyword}-->
+<!--    </select>-->
+<!--    -->
+<!--     <select id="sysUserAdd"-->
+<!--    	resultType="mes.common.ResultVO">-->
+<!--    	EXEC SP_SYS_USER_ADD #{user_code},#{user_name},#{site_code},#{dept_code},#{duty_code},#{auth_code},#{tel_no},#{email},#{use_yn},#{update_user},#{keyword}-->
+<!--    </select>-->
+<!--    -->
+<!--    <select id="sysUserDelete"-->
+<!--    	resultType="mes.common.ResultVO">-->
+<!--    	EXEC SP_SYS_USER_DEL #{keyword}-->
+<!--    </select>-->
+<!--</mapper>-->
+
+
