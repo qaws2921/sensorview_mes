@@ -1,11 +1,9 @@
-package mes.sensorview.Mapper.Authority.Master;
+package mes.sensorview.Mapper.mesManager.Master;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
-import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
  public interface MasterMapper {

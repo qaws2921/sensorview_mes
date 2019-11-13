@@ -1,10 +1,11 @@
 package mes.sensorview.Common.Auth;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Function.AuthFunction;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.Mapper.Auth.AuthMapper;
-import mes.sensorview.mesManager.Authority.DTO.SysAuthProgram;
+import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,7 +81,7 @@ public class AuthService extends AuthFunction{
         req.setAttribute("allSub_list",authAllSubSelect(req));
     }
 
-    public SysAuthProgram menuAuth(HttpServletRequest req, Page p){
+    public SYSAuthProgram menuAuth(HttpServletRequest req, Page p){
         Session session = (Session) req.getSession().getAttribute("userData");
         p.setUser_code(session.getUser_code());
         p.setSite_code(session.getSite_code());

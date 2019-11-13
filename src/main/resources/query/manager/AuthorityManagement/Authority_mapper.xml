@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.mesManager.Authority.AuthorityMapper">
+    <select id="sysAuthGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuth">
+        	EXEC SP_SYS_AUTH_GROUP_GET #{site_code}, #{page},#{rows},''
+    </select>
+
+    <select id="sysAuthAU" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        	EXEC SP_SYS_AUTH_GROUP_ADD #{site_code}, #{auth_code},#{auth_name},#{user_code},#{keyword}
+    </select>
+
+
+    <select id="sysAuthDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        	EXEC SP_SYS_AUTH_GROUP_DEL #{site_code}, #{keyword}
+    </select>
+
+    <select id="sysAuthAllGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuth">
+        	SELECT * FROM SYS_AUTH_CD WHERE SITE_CODE = #{site_code}
+    </select>
+
+    <select id="menuAllGet" resultType="mes.sensorview.Common.Auth.Auth">
+        	EXEC SP_SYS_MENU_TREE_GET ''
+    </select>
+
+    <select id="sysAuthProgramGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram">
+        	EXEC SP_SYS_AUTH_PROGRAM_GET #{site_code},#{keyword},#{keyword2}
+    </select>
+
+    <select id="sysAuthProgramAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        	EXEC SP_SYS_AUTH_PROGRAM_ADD #{site_code},#{keyword},#{keyword2}
+    </select>
+</mapper>
+
+

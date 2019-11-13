@@ -1,6 +1,6 @@
 package mes.sensorview.mesManager.User;
 
-import mes.sensorview.Mapper.Authority.User.UserMapper;
+import mes.sensorview.Mapper.mesManager.User.UserMapper;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
@@ -39,14 +39,15 @@ public class UserService extends ReturnFunction {
     }
 
     public Message sysDeptAdd(SYSDept sdv , HttpServletRequest req){
-        sdv.setUser_code(getSessionData(req).getSite_code());
-        sdv.setSite_code(getSessionData(req).getUser_code());
+        sdv.setUser_code(getSessionData(req).getUser_code());
+        sdv.setSite_code(getSessionData(req).getSite_code());
         return userMapper.sysDeptAdd(sdv);
     }
 
-    public Message sysDeptDelete(Page p){
+    public Message sysDeptDelete(Page p, HttpServletRequest req){
+        p.setSite_code(getSessionData(req).getSite_code());
         p.setKeyword(p.getKeyword());
-        return userMapper.sysUserDelete(p);
+        return userMapper.sysDeptDelete(p);
     }
 
     public RESTful sysUserGet(Page p , HttpServletRequest req){

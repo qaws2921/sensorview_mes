@@ -3,7 +3,7 @@ package mes.sensorview.mesManager.Authority.DTO;
 import lombok.Data;
 
 @Data
-public class SysAuthProgram {
+public class SYSAuthProgram {
     private String auth_code;
     private String menu_code;
     private String menu_name;

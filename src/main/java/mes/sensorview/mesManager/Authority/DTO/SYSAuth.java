@@ -3,7 +3,7 @@ package mes.sensorview.mesManager.Authority.DTO;
 import lombok.Data;
 
 @Data
-public class SysAuth {
+public class SYSAuth {
     private String site_code;
     private String auth_code;
     private String auth_name;
@@ -12,4 +12,5 @@ public class SysAuth {
     private String create_date;
     private String update_date;
     private int rec_count;
+    private String keyword;
 }

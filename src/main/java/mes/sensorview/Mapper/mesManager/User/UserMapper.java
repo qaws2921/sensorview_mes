@@ -1,4 +1,4 @@
-package mes.sensorview.Mapper.Authority.User;
+package mes.sensorview.Mapper.mesManager.User;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
@@ -19,5 +19,6 @@ public interface UserMapper {
     List<SYSUserSupp> sysUserSuppGet(Page p);
     Message sysUserSuppAdd(SYSUserSupp susv);
     Message sysUserDelete(Page p);
+    Message sysDeptDelete(Page p);
     Message sysUserSuppDelete(Page p);
 }
