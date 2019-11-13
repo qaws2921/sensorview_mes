@@ -29,7 +29,7 @@ public class SensorviewApplication extends SpringBootServletInitializer {
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:query/*/*/*_mapper.xml");
+        Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:query/**/*_mapper.xml");
         sessionFactory.setMapperLocations(res);
         return sessionFactory.getObject();
     }
