@@ -22,11 +22,11 @@ $( ".btn-login" ).on('click', function(e) {
             method: "POST",
             dataType: "json",
             success : function (result) {
-                if(result.msg == ''){
-                    alert(result.msg);
+                if(result.user_code == ""){
+                    alert(result.message);
                     return false;
                 }else{
-                    location.href ='/ProductManagement/PmDefault/sysCar';
+                    location.href ='/';
                 }
             }
         });
