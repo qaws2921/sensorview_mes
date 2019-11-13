@@ -1,10 +1,11 @@
 package mes.sensorview.mesManager.User;
 
+import mes.sensorview.Mapper.Authority.User.UserMapper;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
-import mes.sensorview.Mapper.Authority.User.UserMapper;
+import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.User.DTO.SYSDept;
 import mes.sensorview.mesManager.User.DTO.SYSUser;
 import mes.sensorview.mesManager.User.DTO.SYSUserSupp;
@@ -108,5 +109,9 @@ public class UserService extends ReturnFunction {
     public Message sysUserSuppDelete(Page p){
         p.setKeyword(p.getKeyword());
         return userMapper.sysUserSuppDelete(p);
+    }
+
+    public Session loginAction(Session s) {
+        return userMapper.loginAction(s);
     }
 }

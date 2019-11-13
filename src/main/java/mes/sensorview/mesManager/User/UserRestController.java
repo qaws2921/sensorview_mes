@@ -3,6 +3,7 @@ package mes.sensorview.mesManager.User;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.User.DTO.SYSDept;
 import mes.sensorview.mesManager.User.DTO.SYSUser;
 import mes.sensorview.mesManager.User.DTO.SYSUserSupp;
@@ -10,16 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
+@SessionAttributes("userData")
 public class UserRestController {
 
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/loginAction")
+    public Session loginAction(Session s, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Session data = userService.loginAction(s);
+        session.setAttribute("userData",data);
+        return data;
+    }
 
     @RequestMapping(value="/sysDeptGet" , method = RequestMethod.POST)
     public RESTful sysDeptGet(Page p , HttpServletRequest req){
