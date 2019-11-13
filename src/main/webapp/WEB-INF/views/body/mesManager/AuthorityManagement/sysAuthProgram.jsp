@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/mes/common/page_event_common.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/mes/common/basic_pom.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/page_event_common.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/basic_pom.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
 

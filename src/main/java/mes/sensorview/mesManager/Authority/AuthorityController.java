@@ -11,7 +11,10 @@ public class AuthorityController {
 	public String sysAuthList() {
 		return "mesManager/AuthorityManagement/sysAuth";
     }
-    
 
+    @RequestMapping(value="/sysAuthProgram")
+    public String sysAuthProgram() throws Exception {
+        return "mesManager/AuthorityManagement/sysAuthProgram";
+    }
     
 }
