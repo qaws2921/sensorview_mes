@@ -41,13 +41,14 @@ public class Handler extends HandlerInterceptorAdapter {
         }
 
         try {
-            if (ObjectUtils.isEmpty(userData) || ajax.equals("ajax")) {
+            if (ObjectUtils.isEmpty(userData) ) {
                 response.setContentType("text/html; charset=UTF-8");
                 PrintWriter out = response.getWriter();
                 out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
                 out.flush();
-                return false;
-            } else {
+            }else if(ajax.equals("ajax")) {
+
+            }else {
                 session.setMaxInactiveInterval(30 * 60);
                 /**
                  * @desc : 권한별 멘뉴 구성
