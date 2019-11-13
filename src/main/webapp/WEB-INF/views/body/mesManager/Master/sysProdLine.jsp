@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/mes/common/page_event_common.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/mes/common/basic_pom.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/page_event_common.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/basic_pom.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
-
 function object_send() {
 	var object = {
         	page_event:page_event1,
@@ -13,29 +12,27 @@ function object_send() {
                         jqGrid_function:jqGrid_basic,
 						main_name : '#mes_grid',
 						page_name : '#mes_grid_pager',
-					 	colNames:['메세지코드','메세지명1','메세지명2','메세지명3','메세지명4','등록자','등록일'],
-				        colModel:[
-				            {name:'msg_code',index:'msg_code',key: true,sortable: false,width:220 },
-				            {name:'msg_name1',index:'msg_name1',sortable: false,width:220},
-				            {name:'msg_name2',index:'msg_name2',sortable: false,width:220},
-				            {name:'msg_name3',index:'msg_name3',sortable: false,width:220},
-				            {name:'msg_name4',index:'msg_name4',sortable: false,width:220},
-				            {name:'user_name',index:'user_name',sortable: false,width:220},
-				            {name:'update_date',index:'update_date',formatter:formmatter_date,sortable: false,width:220},
+						colNames : ['부서코드','부서','라인코드','라인명','등록자','등록일'],
+						colModel : [
+				            {name:'dept_code',index:'dept_code',hidden:true,sortable: false,width:380},
+				            {name:'dept_name',index:'dept_name',sortable: false,width:380},
+				            {name:'line_code',index:'line_code',key: true ,sortable: false,width:380},
+				            {name:'line_name',index:'line_name',sortable: false,width:380},
+				            {name:'user_name',index:'user_name',sortable: false,width:380},
+				            {name:'update_date',index:'update_date',formatter:formmatter_date,sortable: false,width:380},
 				        ],
 				        height : 550,    
 						jqGrid_top_tag:".table-responsive",
-						caption: "메세지관리 | MES"
+						caption: "라인정보 | MES"
 					}],
 					modal_name:["#addDialog"],
 					modal_column : {
-						msg_code:"메세지코드를 입력해주세요", // 모달 name : '이름'
-						msg_name1:"메세지명1을 입력해주세요",	// 모달 name : '이름'
-						
+						dept_code:"부서를 선택해주세요", // 모달 name : '이름'
+						line_code:"라인코드를 입력해주세요",	// 모달 name : '이름'
+						line_name:"라인이름을 입력해주세요"	// 모달 name : '이름'
 					},
 					modal_class:".modal_value",
 					modal_size:[{
-						modal: true,  
 						width: 'auto',
 					      height: 'auto',
 					      autoOpen: false,
@@ -58,12 +55,15 @@ function object_send() {
 				                }
 				            ]
 					}],
-					readonly : ['msg_code'],
-					getUrl:"/sysMsgGet",
-					auUrl:"/sysMsgAdd",
-					deleteUrl:"/sysMsgDelete",
-					deleteCode:["msg_code"],
+					readonly : ['line_code'],
+					getUrl:"/sysProdLineGet",
+					auUrl:"/sysProdLineAdd",
+					deleteUrl:"/sysProdLineDelete",
+					deleteCode:["line_code"],
 					cud_check:'I',
+					select_tag:[
+						{tag:"#dept_select",url:"/sysDeptAllGet",valueName:"dept_code",textName:"dept_name"}	
+					],
 			
 				}
 	return object;
@@ -75,7 +75,7 @@ function object_send() {
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <div class="col-lg-12 ">
                     <span class="sp-title">
-                        메세지관리
+                        라인정보
                         <small class="sp-small">
                             <i class="ace-icon fa fa-angle-double-right"></i>
                             Manufacturing Execution System
@@ -86,7 +86,7 @@ function object_send() {
                         <i class="ace-icon fa fa-angle-double-right"></i>
               마스터관리
                         <i class="ace-icon fa fa-angle-double-right"></i>
-                        메세지관리
+                        라인정보
                     </span>
                 </div>
             </div>
@@ -124,42 +124,33 @@ function object_send() {
             </div>
         </div>
     
-    <div id="addDialog" title="메세지관리" style="display: none">
+    <div id="addDialog" title="라인정보" style="display: none">
         <div class="profile-user-info profile-user-info-striped">
             <div class="profile-info-row">
-                <div class="profile-info-name"> 메세지코드 </div>
+                <div class="profile-info-name"> 부서 </div>
                 <div class="profile-info-value">
-                    <input type="text" name="msg_code" class="form-control modal_value">
+                    <select name="dept_code" class="form-control modal_value"  id="dept_select">
+                   		<option value="">선택안함</option>
+                   	</select>
                 </div>
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 메세지명1 </div>
+                <div class="profile-info-name"> 라인코드 </div>
 
                 <div class="profile-info-value">
-                    <input type="text" name="msg_name1" class="form-control modal_value">
+                    <input type="text" name="line_code" class="form-control modal_value">
                 </div>
                
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 메세지명2 </div>
+                <div class="profile-info-name"> 라인명 </div>
                 <div class="profile-info-value">
-                    <input type="text" name="msg_name2" class="form-control modal_value">
+                    <input type="text" name="line_name" class="form-control modal_value">
                 </div>
             </div>
-            <div class="profile-info-row">
-                <div class="profile-info-name"> 메세지명3 </div>
-                <div class="profile-info-value">
-                    <input type="text" name="msg_name3" class="form-control modal_value">
-                </div>
-            </div>
-            <div class="profile-info-row">
-                <div class="profile-info-name"> 메세지명4 </div>
-                <div class="profile-info-value">
-                    <input type="text" name="msg_name4" class="form-control modal_value">
-                </div>
-            </div>
+            
         </div>
     </div>
 

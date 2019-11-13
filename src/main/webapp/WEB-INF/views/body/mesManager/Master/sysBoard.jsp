@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/mes/common/page_event_common.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/mes/common/basic_pom.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/page_event_common.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/common/basic_pom.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
 function object_send() {
@@ -12,28 +12,38 @@ function object_send() {
                         jqGrid_function:jqGrid_basic,
 						main_name : '#mes_grid',
 						page_name : '#mes_grid_pager',
-						colNames : ['부서코드','부서','라인코드','라인명','등록자','등록일'],
-						colModel : [
-				            {name:'dept_code',index:'dept_code',hidden:true,sortable: false,width:380},
-				            {name:'dept_name',index:'dept_name',sortable: false,width:380},
-				            {name:'line_code',index:'line_code',key: true ,sortable: false,width:380},
-				            {name:'line_name',index:'line_name',sortable: false,width:380},
-				            {name:'user_name',index:'user_name',sortable: false,width:380},
-				            {name:'update_date',index:'update_date',formatter:formmatter_date,sortable: false,width:380},
+						colNames:['게시판코드','영문명','한글','권한','권한코드','최대파일','파일크기(MB)','사용유무','등록자','등록일'],
+				        colModel:[
+				            {name:'board_code',index:'board_code',key: true ,sortable: false,width:170},
+				            {name:'board_en',index:'board_en',sortable: false,width:170},
+				            {name:'board_kr',index:'board_kr',sortable: false,width:170},
+				            {name:'board_auth_name',index:'board_auth_name',sortable: false,width:170},
+				            {name:'board_auth',index:'board_auth',sortable: false,hidden:true, width:170},
+				            {name:'files',index:'files',sortable: false,width:170},
+				            {name:'file_size',index:'file_size',sortable: false,width:170},
+				            {name:'use_yn',index:'use_yn',sortable: false,width:170},
+				            {name:'user_name',index:'user_name',sortable: false,width:170},
+				            {name:'update_date',index:'update_date',formatter:formmatter_date,sortable: false,width:170}
 				        ],
 				        height : 550,    
 						jqGrid_top_tag:".table-responsive",
-						caption: "라인정보 | MES"
+						caption: "게시판관리 | MES"
 					}],
 					modal_name:["#addDialog"],
 					modal_column : {
-						dept_code:"부서를 선택해주세요", // 모달 name : '이름'
-						line_code:"라인코드를 입력해주세요",	// 모달 name : '이름'
-						line_name:"라인이름을 입력해주세요"	// 모달 name : '이름'
+						board_code:"게시판코드를 입력해주세요", // 모달 name : '이름'
+						board_en:"영문명을 입력해주세요", // 모달 name : '이름'
+						board_kr:"한글명을 입력해주세요", // 모달 name : '이름'
+						board_auth:"권한을 선택해주세요", // 모달 name : '이름'
+						files:"최대파일수를 입력해주세요", // 모달 name : '이름'
+						file_size:"최대파일크기를 입력해주세요", // 모달 name : '이름'
+						use_yn:"사용유무를 선택해주세요"
+						
+						
 					},
 					modal_class:".modal_value",
 					modal_size:[{
-						width: 'auto',
+						 width: 'auto',
 					      height: 'auto',
 					      autoOpen: false,
 					      resizable:false,
@@ -55,15 +65,12 @@ function object_send() {
 				                }
 				            ]
 					}],
-					readonly : ['line_code'],
-					getUrl:"/sysProdLineGet",
-					auUrl:"/sysProdLineAdd",
-					deleteUrl:"/sysProdLineDelete",
-					deleteCode:["line_code"],
+					readonly : ['board_code'],
+					getUrl:"/sysBoardGet",
+					auUrl:"/sysBoardAdd",
+					deleteUrl:"/sysBoardDelete",
+					deleteCode:["board_code"],
 					cud_check:'I',
-					select_tag:[
-						{tag:"#dept_select",url:"/sysDeptAllGet",valueName:"dept_code",textName:"dept_name"}	
-					],
 			
 				}
 	return object;
@@ -75,7 +82,7 @@ function object_send() {
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <div class="col-lg-12 ">
                     <span class="sp-title">
-                        라인정보
+                        게시판관리
                         <small class="sp-small">
                             <i class="ace-icon fa fa-angle-double-right"></i>
                             Manufacturing Execution System
@@ -86,7 +93,7 @@ function object_send() {
                         <i class="ace-icon fa fa-angle-double-right"></i>
               마스터관리
                         <i class="ace-icon fa fa-angle-double-right"></i>
-                        라인정보
+                        게시판관리
                     </span>
                 </div>
             </div>
@@ -124,33 +131,62 @@ function object_send() {
             </div>
         </div>
     
-    <div id="addDialog" title="라인정보" style="display: none">
+    <div id="addDialog" title="게시판관리" style="display: none">
         <div class="profile-user-info profile-user-info-striped">
             <div class="profile-info-row">
-                <div class="profile-info-name"> 부서 </div>
+                <div class="profile-info-name"> 게시판코드 </div>
                 <div class="profile-info-value">
-                    <select name="dept_code" class="form-control modal_value"  id="dept_select">
-                   		<option value="">선택안함</option>
-                   	</select>
+                    <input type="text" name="board_code" class="form-control modal_value">
                 </div>
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 라인코드 </div>
+                <div class="profile-info-name"> 영문명 </div>
 
                 <div class="profile-info-value">
-                    <input type="text" name="line_code" class="form-control modal_value">
+                    <input type="text" name="board_en" class="form-control modal_value">
                 </div>
                
             </div>
 
             <div class="profile-info-row">
-                <div class="profile-info-name"> 라인명 </div>
+                <div class="profile-info-name"> 한글명 </div>
                 <div class="profile-info-value">
-                    <input type="text" name="line_name" class="form-control modal_value">
+                    <input type="text" name="board_kr" class="form-control modal_value">
                 </div>
             </div>
-            
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 권한 </div>
+                <div class="profile-info-value">
+                    <select name="board_auth" class="form-control modal_value">
+                   		<option value="">선택안함</option>
+                   		<option value="1">당사</option>
+                   		<option value="2">전체</option>
+                   	</select>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 최대파일수 </div>
+                <div class="profile-info-value">
+                    <input type="text" name="files" class="form-control modal_value">
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 최대파일크기(MB) </div>
+                <div class="profile-info-value">
+                    <input type="text" name="file_size" class="form-control modal_value">
+                </div>
+            </div>
+           <div class="profile-info-row">
+                <div class="profile-info-name"> 사용유무 </div>
+                <div class="profile-info-value">
+                     <select name="use_yn" class="form-control modal_value">
+                   		<option value="">선택안함</option>
+                   		<option value="Y">Y</option>
+                   		<option value="N">N</option>
+                   	</select>
+                </div>
+            </div>
         </div>
     </div>
 
