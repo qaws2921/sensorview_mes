@@ -74,7 +74,7 @@ function modal_edits(class_name,readonly,data) {
 
 
 function select_makes(tag,url,value,text) {
-	receive_data(url,null).then(function (data) {
+	ccn_ajax(url,null).then(function (data) {
 		var option = null 
 		for (var j = 0; j < data.length; j++) {
 			option = $("<option></option>").text(data[j][text]).val(data[j][value]);
@@ -94,7 +94,7 @@ function jqGrid_resizes(main_name,top_name) {
 }
 
 
-function receive_data(url,data){
+function ccn_ajax(url,data){
 	return new Promise(function (resolve, reject) {
 		$.ajax({
 	        url: url,

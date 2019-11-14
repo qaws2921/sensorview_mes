@@ -36,17 +36,14 @@ $(document).ready(function() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function get_btn(page) {
-	if (main_data.check === 'I') {
-		
 		main_data.send_data = value_return(".condition_main");
 		
 		main_data.send_data_post = main_data.send_data;
 		
 		$("#mes_grid").setGridParam({ url: '/sysUserGet' ,datatype: "json", page: page,postData:main_data.send_data}).trigger("reloadGrid");
-	}else {
-		
-		$("#mes_grid").setGridParam({ url: '/sysUserGet' ,datatype: "json", page: page,postData:main_data.send_data_post}).trigger("reloadGrid");		
-	}
+}
+function get_btn_post(page) {
+	$("#mes_grid").setGridParam({ url: '/sysUserGet' ,datatype: "json", page: page,postData:main_data.send_data_post}).trigger("reloadGrid");
 }
 
 function add_btn() {
@@ -59,19 +56,18 @@ function add_btn() {
 }
 
 
-function jqgrid_db_btn(jqgrid_data){
+function update_btn(jqgrid_data){
 	
 	modal_reset(".modal_value",[]);
 	
 	main_data.check='U';
 
 	jqgrid_data.dept_code = main_data.send_data_post.keyword;
-	
-	receive_data('/sysUserOneGet',jqgrid_data).then(function (data) {
+
+	ccn_ajax('/sysUserOneGet',jqgrid_data).then(function (data) {
 		modal_edits('.modal_value',main_data.readonly,data); // response 값 출력
+		$("#addDialog").dialog('open');
 	});
-	
-	$("#addDialog").dialog('open');
 }
 
 
@@ -84,11 +80,11 @@ function delete_btn() {
 	    	if (confirm("삭제하겠습니까?")){
 	    		main_data.check='D';
 	    		wrapWindowByMask2();
-	    		receive_data("/sysUserDelete",{keyword:ids.join(",")}).then(function (data){
+				ccn_ajax("/sysUserDelete",{keyword:ids.join(",")}).then(function (data){
 	    			if (data.result === 'NG'){
     					alert(data.message);
     				}else {
-    					get_btn($("#mes_grid").getGridParam('page'));
+						get_btn_post($("#mes_grid").getGridParam('page'));
     				}
     				closeWindowByMask();
 	    		}).catch(function (err) {
@@ -142,8 +138,8 @@ function jqGrid_main() {
             return (cm[i].name === 'cb');
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-        	 var data = $('#mes_grid').jqGrid('getRowData', rowid); 
-        	jqgrid_db_btn(data);
+        	 var data = $('#mes_grid').jqGrid('getRowData', rowid);
+			update_btn(data);
 
         }
     }).navGrid("#mes_grid_pager", { search: false, add: false, edit: false, del: false});
