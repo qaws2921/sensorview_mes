@@ -12,7 +12,7 @@
         <div class="col-lg-2">
             <a href="/static" class="navbar-brand">
 
-                <img src="/ui-component/imagesNew/logo/le2.png" width="180px">
+                <img src="/ui-component/imagesNew/logo/logo.png" width="180px">
             </a>
         </div>
         <div class="col-lg-10">
