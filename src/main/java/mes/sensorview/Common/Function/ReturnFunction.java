@@ -37,7 +37,7 @@ public class ReturnFunction {
                 }
             }
 
-            resTful.setTotal(CalcTotalPage(p.getRows(),count));
+            resTful.setTotal(CalcTotalPage(count,p.getRows()));
             resTful.setRows(rows);
             resTful.setPage(p.getPage());
             return resTful;
