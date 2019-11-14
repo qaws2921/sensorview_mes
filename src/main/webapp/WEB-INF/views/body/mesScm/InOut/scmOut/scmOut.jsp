@@ -514,12 +514,12 @@
                 {name: 'packnum', index: 'packnum', width: 60},
             ],
             width: 521,
-            height: 300,
+            height: 315,
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector5,
             loadComplete : function() {
-                const table = this;
+                var table = this;
                 setTimeout(function(){
                     updatePagerIcons(table);
                 }, 0);

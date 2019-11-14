@@ -142,6 +142,7 @@
         var parent_column = $(grid_selector).closest('[class*="col-"]');
 
         var grid_selector2 = "#SuppSearchGrid";
+        var pager_selector2 = "#SuppSearchGridPager";
 
         $(window).on('resize.jqGrid', function () {
             $(grid_selector).jqGrid( 'setGridWidth', parent_column.width());
@@ -209,9 +210,10 @@
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
             width : 750,
-            height: 250,
+            height: 230,
             // 디폴트 조회 개수 : 100
             rowNum: 100,
+            pager: pager_selector2,
             // 단위 별 조회 개수
             // pager 세팅
             // jqGrid load 시 실행 함수 = setTimeout

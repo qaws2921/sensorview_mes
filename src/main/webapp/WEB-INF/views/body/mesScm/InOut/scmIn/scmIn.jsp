@@ -282,6 +282,7 @@
         var parent_column4 = $(grid_selector4).closest('[class*="col-"]');
 
         var grid_selector5 = "#SuppSearchGrid";
+        var pager_selector5 = "#SuppSearchGridPager";
         var parent_column5 = $(grid_selector5).closest('[class*="col-"]');
 
 
@@ -472,11 +473,12 @@
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
             width : 750,
-            height: 250,
+            height: 230,
             // 디폴트 조회 개수 : 100
             rowNum: 100,
             // 단위 별 조회 개수
             // pager 세팅
+            pager: pager_selector5,
             // jqGrid load 시 실행 함수 = setTimeout
             // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
             // 호출되는 함수는 pager icon 함수
