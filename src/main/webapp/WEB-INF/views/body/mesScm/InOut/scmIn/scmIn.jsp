@@ -313,7 +313,7 @@
             rowList:[100,200,300,500,1000],
             pager: pager_selector,
             loadComplete : function() {
-                const table = this;
+                var table = this;
                 setTimeout(function(){
                     updatePagerIcons(table);
                 }, 0);
@@ -343,7 +343,7 @@
             rowList:[100,200,300,500,1000],
             pager: pager_selector2,
             loadComplete : function() {
-                const table = this;
+                var table = this;
                 setTimeout(function(){
                     updatePagerIcons(table);
                 }, 0);
@@ -381,7 +381,7 @@
             // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
             // 호출되는 함수는 pager icon 함수
             loadComplete : function() {
-                const table = this;
+                var table = this;
                 setTimeout(function(){
                     updatePagerIcons(table);
                 }, 0);
@@ -418,7 +418,7 @@
             // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
             // 호출되는 함수는 pager icon 함수
             loadComplete : function() {
-                const table = this;
+                var table = this;
                 setTimeout(function(){
                     updatePagerIcons(table);
                 }, 0);
@@ -458,7 +458,7 @@
 
         // pager 아이콘 생성 함수
         function updatePagerIcons(table) {
-            const replace =
+            var replace =
                 {
                     'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
                     'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
@@ -466,8 +466,8 @@
                     'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
                 };
             $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-                const icon = $(this);
-                const $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
 
                 if($class in replace) icon.attr('class', 'ui-icon '+replace[$class]);
             })
