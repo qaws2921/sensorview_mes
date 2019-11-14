@@ -51,19 +51,9 @@ public class UserService extends ReturnFunction {
     }
 
     public RESTful sysUserGet(Page p , HttpServletRequest req){
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
-
         List<SYSUser> rows = userMapper.sysUserGet(p);
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return resTfulReurn(rows , p);
     }
 
     public List<SYSDept> sysDeptAllGet(Page p , HttpServletRequest req){
