@@ -43,10 +43,14 @@ public class Handler extends HandlerInterceptorAdapter {
                 PrintWriter out = response.getWriter();
                 out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
                 out.flush();
-            }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) || request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
-                log.info("아무일도 없음");
+                return false;
+            }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
+                log.info("비동기 통신");
+                session.setMaxInactiveInterval(1 * 20);
+            }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
+                log.info("에러");
             }else {
-                session.setMaxInactiveInterval(30 * 60);
+                session.setMaxInactiveInterval(1 * 20);
                 /**
                  * @desc : 권한별 멘뉴 구성
                  * @생성자 : 김종효
