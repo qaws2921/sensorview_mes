@@ -108,162 +108,8 @@
     </div>
 </div>
 
-<div id="scmIn-add-dialog" class="hide" title="자재반출 추가">
-    <div class="col-lg-12">
-        <div class="col-lg-5 padding0" id="content1">
-            <table class="table wt-100">
-                <tbody>
-                <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">업체</td>
-                    <td class="wt-px-150">
-                          <span class="input-icon input-icon-right">
-                          <input type="text" class="form-control h-25" value="" id="SuppSearch-i-Main">
-                          <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
-                          </span>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
-                    <td class="wt-px-150 h-25">
-                        <select class="form-control">
-                            <option>그룹1</option>
-                            <option>그룹2</option>
-                            <option>그룹3</option>
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="clearfix">
-                <div class="pull-left tableTools-container">
-                    <div class="dt-buttons btn-overlap btn-group">
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                            <span>
-                                <i class="fa fa-search bigger-110 blue"></i>
-                                <span>조회</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <table id="scmStockRetLeftGrid"></table>
-                    <div id="scmStockRetLeftGridPager"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-1 padding0 mid-arrow-r">
-            <div class="dt-buttons btn-overlap btn-group">
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                        <span>
-                            <i class="fa fa-arrow-right bigger-110 blue"></i>
-                        </span>
-                </a>
-                <br><br>
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                        <span>
-                            <i class="fa fa-arrow-left bigger-110 pink"></i>
-                        </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-6 padding0" id="content2">
-            <table class="table wt-100">
-                <tbody>
-                <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">반출일자</td>
-                    <td class="wt-px-150">
-                        <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker3" class="form-control h-25">
-                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
-                        </div>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
-                    <td>
-                        <input type="text" class="form-control h-25"/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="clearfix">
-                <div class="pull-left tableTools-container">
-                    <div class="dt-buttons btn-overlap btn-group">
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
-                            <span>
-                                <i class="fa fa-plus bigger-110 blue"></i>
-                                <span>저장</span>
-                            </span>
-                        </a>
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn">
-                            <span>
-                            	 <i class="fa fa-times bigger-110 blue"></i>
-                                <span>취소</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <table id="scmStockRetRightGrid"></table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="supp-search-dialog" class="hide" title="업체조회">
-    <div class="col-lg-12">
-        <div class="col-lg-12 padding0">
-            <table class="table wt-100">
-                <tbody>
-                <tr>
-                    <td class="wt-px-100">
-                        <select class="form-control h-25">
-                            <option value="">업체명</option>
-                            <option value="">업체코드</option>
-                        </select>
-                    </td>
-                    <td class="wt-px-200">
-                        <input type="text" class="form-control h-25">
-                    </td>
-                    <td>
-                        <div class="dt-buttons btn-overlap btn-group">
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
-			                        <span>
-			                            <i class="fa fa-search bigger-110 blue"></i>
-			                            <span>조회</span>
-			                        </span>
-                            </a>
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
-			                        <span>
-			                            <i class="fa fa-check bigger-110 blue"></i>
-			                            <span>선택</span>
-			                        </span>
-                            </a>
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn2">
-			                        <span>
-			                            <i class="fa fa-times bigger-110 blue"></i>
-			                            <span>취소</span>
-			                        </span>
-                            </a>
-                        </div>
-                    </td>
-
-                </tr>
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <table id="SuppSearchGrid"></table>
-                    <div id="SuppSearchGridPager"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%@include file="scmStockRet_modal1.jsp"%>
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
 
 
 <script>
@@ -324,34 +170,36 @@
          * @생성일 : 2019-10-30
          * @생성자 : 김재일
          * **/
-        $( "#showDialog" ).on('click', function(e) {
-            e.preventDefault();
-            $('#scmIn-add-dialog').removeClass('hide').dialog({
-                modal: true,
-                width: 1300,
-                height: 600
-            });
+        $('#scmStockRet-add-dialog').dialog({
+            autoOpen:false,
+            modal: true,
+            width: 1300,
+            height: 600
         });
 
+        $( "#showDialog" ).on('click', function(e) {
+            e.preventDefault();
+            $('#scmStockRet-add-dialog').dialog('open');
+            //var text=$('.ui-dialog').attr('style');
+            //console.log(text);
+        });
+
+        $( "#supp-search-dialog" ).dialog({
+            autoOpen:false,
+            modal: true,
+            width: 800,
+            height: 470,
+            number:2
+        });
 
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
-
-            var dialog = $( "#supp-search-dialog" ).removeClass('hide').dialog({
-                modal: true,
-                width: 800,
-                height: 470,
-            });
+            $( "#supp-search-dialog" ).dialog('open');
         });
 
         $("#SuppSearch-i-Main").on('click', function(e) {
             e.preventDefault();
-
-            var dialog = $( "#supp-search-dialog" ).removeClass('hide').dialog({
-                modal: true,
-                width: 800,
-                height: 470
-            });
+            $( "#supp-search-dialog" ).dialog('open');
         });
 
         /**
