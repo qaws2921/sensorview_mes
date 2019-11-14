@@ -1,11 +1,13 @@
 package mes.sensorview.Common.Function;
 
+import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,6 +94,36 @@ public class ReturnFunction {
         }
         p.setKeyword2(keyword2);
         return p;
+    }
+
+    public Auth authMenu(HttpServletRequest req,ArrayList<List<Auth>> authAllSubSelect)
+    {
+        Auth av1 = null;
+        boolean check = true;
+        boolean check2 = true;
+
+        int index = 0;
+        int index2 = 0;
+
+        while (check) { // 반복해서 체크
+            while (check2) {
+                if (req.getServletPath().substring(1).equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
+                    av1 = authAllSubSelect.get(index).get(index2);
+                    check2 = false;
+                    check = false;
+                    return av1;
+                }
+
+                if (authAllSubSelect.get(index).size() == index2 + 1) {
+                    check2 = false;
+                }
+                ++index2;
+            }
+            check2 = true;
+            index2 = 0;
+            ++index;
+        }
+        return null;
     }
 
 }

@@ -116,7 +116,7 @@ function selectBox() {
 
 function jqGrid_main() {
     $("#mes_grid").jqGrid({
-        datatype: "json",
+        datatype: "local",
         mtype: 'POST',
         colNames: ['사용자코드', '사용자명', '부서', '직책', '권한', '전화번호', '이메일', '사용유무', '최근로그인', '수정일'],
         colModel: [

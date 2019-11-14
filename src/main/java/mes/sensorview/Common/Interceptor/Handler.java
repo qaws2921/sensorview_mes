@@ -3,6 +3,7 @@ package mes.sensorview.Common.Interceptor;
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.Auth.AuthService;
+import mes.sensorview.Common.Function.ReturnFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -34,11 +35,7 @@ public class Handler extends HandlerInterceptorAdapter {
 
         HttpSession session = request.getSession();
         Session userData = (Session) session.getAttribute("userData");
-        String ajax = "";
-        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-            ajax = "ajax";
-            log.info(ajax);
-        }
+
 
         try {
             if (ObjectUtils.isEmpty(userData) ) {
@@ -46,8 +43,8 @@ public class Handler extends HandlerInterceptorAdapter {
                 PrintWriter out = response.getWriter();
                 out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
                 out.flush();
-            }else if(ajax.equals("ajax")) {
-
+            }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) || request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
+                log.info("아무일도 없음");
             }else {
                 session.setMaxInactiveInterval(30 * 60);
                 /**
@@ -55,36 +52,15 @@ public class Handler extends HandlerInterceptorAdapter {
                  * @생성자 : 김종효
                  * @생성일 : 2019-10-21
                  * */
-                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") || request.getServletPath().equals("/error")) { // left 메뉴가 없을시
+                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
-                    log.info("sssss");
+                    log.info("페이지이동");
                     ArrayList<List<Auth>> authAllSubSelect = (ArrayList<List<Auth>>) authService.authAllSubSelect(request); // 권한에 맞는 전체 리스트
+                    ReturnFunction returnFunction = new ReturnFunction();
+
                     request.setAttribute("allSub_list", authAllSubSelect);
-                    Auth av1 = null;
-                    boolean check = true;
-                    boolean check2 = true;
-
-                    int index = 0;
-                    int index2 = 0;
-
-                    while (check) { // 반복해서 체크
-                        while (check2) {
-                            if (request.getServletPath().substring(1).equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
-                                av1 = authAllSubSelect.get(index).get(index2);
-                                check2 = false;
-                                check = false;
-                            }
-
-                            if (authAllSubSelect.get(index).size() == index2 + 1) {
-                                check2 = false;
-                            }
-                            ++index2;
-                        }
-                        check2 = true;
-                        index2 = 0;
-                        ++index;
-                    }
+                    Auth av1 = returnFunction.authMenu(request,authAllSubSelect);
                     String under_name = av1.getParent_menu_code();
                     authService.model_menu_setting(request, request.getServletPath().substring(1), under_name.substring(0, under_name.length() - 1), under_name);
                 }
