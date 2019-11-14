@@ -3,26 +3,45 @@ package mes.sensorview.Common.Function;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Interceptor.Session;
-import mes.sensorview.mesManager.Master.DTO.SYSBoard;
-import mes.sensorview.mesManager.Master.DTO.SYSCargo;
-import mes.sensorview.mesManager.Master.DTO.SYSMsg;
-import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
-
+import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
 import java.util.List;
 
+/**
+ * <javadoc>
+ * 호출 시 전달 받은 매개변수로
+ * 계산하여 리턴하는 함수를 모아둔 클래스.
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+**/
 public class ReturnFunction {
+    /**
+     * jqGrid 호출 시 페이지 블록처리를 위한 계산함수.
+     * @param   records
+     * @param   rows
+     **/
     public int CalcTotalPage(int records, int rows)
     {
-        int result = (int)Math.ceil((double)records/(double)rows);
-        return result;
+        return (int)Math.ceil((double)records/(double)rows);
     }
+    /**
+     * Session에서 유저 데이터를 수집하기 위한 함수.
+     * @param   req
+     * @see     javax.servlet.http.HttpServletRequest
+     **/
     public Session getSessionData(HttpServletRequest req)
     {
         return (Session) req.getSession().getAttribute("userData");
     }
-
+    /**
+     * ListData를 조회하는 함수.
+     * @param   rows
+     * @param   p
+     * @see     java.util.List
+     * @see     mes.sensorview.Common.DataTransferObject.Page
+     **/
     public RESTful getListData(List<?> rows , Page p)
     {
         int count=0;
@@ -46,4 +65,32 @@ public class ReturnFunction {
             return null;
         }
     }
+    /**
+     * 권한그룹별 프로그램 등록
+     * @param   req
+     * @param   checkList
+     * @see     javax.servlet.http.HttpServletRequest
+     * @see     java.util.List
+     * @see     mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram
+     **/
+    public Page setProgram(HttpServletRequest req, List<SYSAuthProgram> checkList)
+    {
+        Page p = new Page();
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setKeyword(checkList.get(0).getAuth_code());
+
+        String keyword2 = "";
+        int index = 0;
+        for (SYSAuthProgram svl : checkList) {
+            if (index == 0) {
+                keyword2 = svl.getMenu_code()+"/"+svl.getCheck_get()+"/"+svl.getCheck_add()+"/"+svl.getCheck_edit()+"/"+svl.getCheck_del();
+            }else{
+                keyword2 = keyword2+","+svl.getMenu_code()+"/"+svl.getCheck_get()+"/"+svl.getCheck_add()+"/"+svl.getCheck_edit()+"/"+svl.getCheck_del();
+            }
+            ++index;
+        }
+        p.setKeyword2(keyword2);
+        return p;
+    }
+
 }

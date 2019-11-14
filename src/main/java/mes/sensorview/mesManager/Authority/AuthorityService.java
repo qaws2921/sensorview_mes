@@ -54,14 +54,15 @@ public class AuthorityService extends ReturnFunction {
     public List<SYSAuthProgram> sysAuthProgramGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSAuthProgram> list=authorityMapper.sysAuthProgramGet(p);
+
         for (SYSAuthProgram sysAuthProgram : list) {
             if (sysAuthProgram.getLevel() == 1) {
                 sysAuthProgram.setLeaf(false);
                 sysAuthProgram.setExpanded(true);
-            }else if (sysAuthProgram.getLevel() == 2) {
+            } else if (sysAuthProgram.getLevel() == 2) {
                 sysAuthProgram.setLeaf(false);
                 sysAuthProgram.setExpanded(true);
-            }else {
+            } else {
                 sysAuthProgram.setLeaf(true);
                 sysAuthProgram.setExpanded(false);
             }
@@ -72,20 +73,7 @@ public class AuthorityService extends ReturnFunction {
 
     
     public Message sysAuthProgramAdd(HttpServletRequest req, List<SYSAuthProgram> checkList){
-        Page p = new Page();
-        p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(checkList.get(0).getAuth_code());
-        String keyword2 = "";
-        int index = 0;
-        for (SYSAuthProgram svl : checkList) {
-            if (index == 0) {
-                keyword2 = svl.getMenu_code()+"/"+svl.getCheck_get()+"/"+svl.getCheck_add()+"/"+svl.getCheck_edit()+"/"+svl.getCheck_del();
-            }else{
-                keyword2 = keyword2+","+svl.getMenu_code()+"/"+svl.getCheck_get()+"/"+svl.getCheck_add()+"/"+svl.getCheck_edit()+"/"+svl.getCheck_del();
-            }
-            ++index;
-        }
-        p.setKeyword2(keyword2);
+        Page p = setProgram(req,checkList);
         return authorityMapper.sysAuthProgramAdd(p);
     }
 }
