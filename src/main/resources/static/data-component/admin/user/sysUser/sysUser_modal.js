@@ -16,15 +16,15 @@ function addUdate_btn(){
 		if (confirm(text)) {
 			
 			modal_objact.keyword = main_data.check;
-			
-			receive_data("/sysUserAdd",modal_objact).then(function (data) {
+
+            ccn_ajax("/sysUserAdd",modal_objact).then(function (data) {
 				if (data.result === 'NG'){
                     alert(data.message);
                 } else {     
                 	if (main_data.check === "I") {
                 		get_btn(1);												
 					}else {
-						get_btn($("#mes_grid").getGridParam('page'));
+                        get_btn_post($("#mes_grid").getGridParam('page'));
 					}
                 }
                 $("#addDialog").dialog('close');
