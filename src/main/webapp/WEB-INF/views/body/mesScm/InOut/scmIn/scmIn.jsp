@@ -136,15 +136,45 @@
             ];
         var bottomGrid_data =
             [
-                {num:"P01-123112215",group:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
             ];
         var dialogLeftGrid_data =
             [
-
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
             ];
         var dialogRightGrid_data =
             [
-
+                {group:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",grade:"A",in_num:"86"}
             ];
         var suppGrid_data =
             [
@@ -308,7 +338,7 @@
                 {name: 'outdate', index: 'outdate', width: 60},
             ],
             viewrecords: true,
-            height: 150,
+            height: 180,
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector,
@@ -324,13 +354,12 @@
             data: bottomGrid_data,
             datatype: "local",
             caption: "입고등록 | MES",
-            colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
+            colNames: ['전표번호','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량'],
             colModel: [
                 {name: 'num', index: 'code', width: 60},
                 {name: 'group', index: 'name', width: 60},
                 {name: 'p_num', index: 'cargo', width: 60},
                 {name: 'p_name', index: 'location', width: 60},
-                {name: 'c_name', index: 'cargo', width: 60},
                 {name: 'standard', index: 'cargo', width: 60},
                 {name: 'unit', index: 'standard', width: 60},
                 {name: 'in_num', index: 'unit', width: 60},
@@ -338,7 +367,7 @@
                 {name: 'real_num', index: 'min', width: 60},
             ],
             viewrecords: true,
-            height: 200,
+            height: 210,
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector2,
@@ -351,7 +380,7 @@
         });
 
         $(grid_selector3).jqGrid({
-            data: bottomGrid_data,
+            data: dialogLeftGrid_data,
             datatype: "local",
             // 다중 select
             multiselect: true,
@@ -370,7 +399,7 @@
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
             width : 521,
-            height: 300,
+            height: 310,
             // 디폴트 조회 개수 : 100
             rowNum: 100,
             // 단위 별 조회 개수
@@ -389,7 +418,7 @@
         });
 
         $(grid_selector4).jqGrid({
-            data: bottomGrid_data,
+            data: dialogRightGrid_data,
             datatype: "local",
             // 다중 select
             multiselect: true,

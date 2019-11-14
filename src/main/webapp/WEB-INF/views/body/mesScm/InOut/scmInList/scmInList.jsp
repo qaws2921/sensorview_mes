@@ -123,14 +123,17 @@
             language: "kr"
         });
 
+        $( "#supp-search-dialog" ).dialog({
+            autoOpen:false,
+            modal: true,
+            width: 800,
+            height: 470,
+            number:2
+        });
+
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
-
-            var dialog = $( "#supp-search-dialog" ).removeClass('hide').dialog({
-                modal: true,
-                width: 800,
-                height: 470
-            });
+            $( "#supp-search-dialog" ).dialog('open');
         });
         $(".select2").select2();
 
@@ -237,7 +240,7 @@
 
         $(window).triggerHandler('resize.jqGrid');
 
-        $("#close_btn").on('click',function(e){
+        $("#close_btn2").on('click',function(e){
             e.preventDefault();
             $("#supp-search-dialog").dialog('close');
         });
