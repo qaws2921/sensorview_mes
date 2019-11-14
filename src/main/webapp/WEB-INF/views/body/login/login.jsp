@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon2.png">
+    <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon.png">
     <title>SENSORVIEW | LOGIN</title>
     <link rel="stylesheet" href="/ui-component/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/ui-component/assets/css/login.css" />
@@ -20,7 +20,7 @@
 <div class="login-container">
     <div class="login-header login-caret">
         <div class="login-content">
-            <img src="/ui-component/imagesNew/logo/le3.png">
+            <img src="/ui-component/imagesNew/logo/logo.png">
         </div>
     </div>
         <div class="login-form">

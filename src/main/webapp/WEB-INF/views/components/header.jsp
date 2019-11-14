@@ -7,7 +7,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Sensorview | MES</title>
+    <title>SENSORVIEW | MES</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0" />
@@ -24,7 +24,7 @@
     <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon2.png">
+    <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon.png">
     <link rel="stylesheet" href="/ui-component/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/ui-component/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/ui-component/assets/css/jquery-ui.min.css" />
