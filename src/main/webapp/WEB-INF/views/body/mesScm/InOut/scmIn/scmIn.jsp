@@ -114,6 +114,7 @@
 
 
     $(document).ready(function () {
+        suppModal_start();
         var topGrid_data =
             [
                 {indate:"2019-11-14",num:"P01-123112215",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
@@ -207,13 +208,13 @@
             //console.log(text);
         });
 
-        $( "#supp-search-dialog" ).dialog({
-            autoOpen:false,
-            modal: true,
-            width: 800,
-            height: 470,
-            number:2
-        });
+        // $( "#supp-search-dialog" ).dialog({
+        //     autoOpen:false,
+        //     modal: true,
+        //     width: 800,
+        //     height: 470,
+        //     number:2
+        // });
 
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
@@ -425,53 +426,53 @@
             }
         });
 
-        $(grid_selector5).jqGrid({
-            data: suppGrid_data,
-            datatype: "local",
-            // 다중 select
-            multiselect: true,
-            // 타이틀
-            caption: "업체조회 | MES",
-            colNames: ['업체코드','업체명','사업자번호','대표','주소'],
-            colModel: [
-                {name: 'suppcode', index: 'suppcode',width: 80},
-                {name: 'suppname', index: 'suppname',width: 80},
-                {name: 'suppum', index: 'suppum',width: 200},
-                {name: 'ceo', index: 'ceo',width: 80},
-                {name: 'address', index: 'address',width: 200},
-            ],
-            // 페이지 수 보기 (1 / 100) = true
-            // 높이 : 450px
-            width : 750,
-            height: 250,
-            // 디폴트 조회 개수 : 100
-            rowNum: 100,
-            // 단위 별 조회 개수
-            // pager 세팅
-            // jqGrid load 시 실행 함수 = setTimeout
-            // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
-            // 호출되는 함수는 pager icon 함수
-            loadComplete : function() {
-
-            }
-        });
+        // $(grid_selector5).jqGrid({
+        //     data: suppGrid_data,
+        //     datatype: "local",
+        //     // 다중 select
+        //     multiselect: true,
+        //     // 타이틀
+        //     caption: "업체조회 | MES",
+        //     colNames: ['업체코드','업체명','사업자번호','대표','주소'],
+        //     colModel: [
+        //         {name: 'suppcode', index: 'suppcode',width: 80},
+        //         {name: 'suppname', index: 'suppname',width: 80},
+        //         {name: 'suppum', index: 'suppum',width: 200},
+        //         {name: 'ceo', index: 'ceo',width: 80},
+        //         {name: 'address', index: 'address',width: 200},
+        //     ],
+        //     // 페이지 수 보기 (1 / 100) = true
+        //     // 높이 : 450px
+        //     width : 750,
+        //     height: 250,
+        //     // 디폴트 조회 개수 : 100
+        //     rowNum: 100,
+        //     // 단위 별 조회 개수
+        //     // pager 세팅
+        //     // jqGrid load 시 실행 함수 = setTimeout
+        //     // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
+        //     // 호출되는 함수는 pager icon 함수
+        //     loadComplete : function() {
+        //
+        //     }
+        // });
 
         // pager 아이콘 생성 함수
-        function updatePagerIcons(table) {
-            var replace =
-                {
-                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
-                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
-                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
-                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
-                };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-                var icon = $(this);
-                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-
-                if($class in replace) icon.attr('class', 'ui-icon '+replace[$class]);
-            })
-        }
+        // function updatePagerIcons(table) {
+        //     var replace =
+        //         {
+        //             'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+        //             'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+        //             'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+        //             'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+        //         };
+        //     $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+        //         var icon = $(this);
+        //         var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+        //
+        //         if($class in replace) icon.attr('class', 'ui-icon '+replace[$class]);
+        //     })
+        // }
 
         // 넓이 조절 함수
         $(window).triggerHandler('resize.jqGrid');
@@ -481,15 +482,15 @@
          * @생성일 : 2019-11-01
          * @생성자 : 김재일
          * **/
-        $("#close_btn").on('click',function(e){
-            e.preventDefault();
-            $("#scmIn-add-dialog").dialog('close');
-        });
-
-        $("#close_btn2").on('click',function(e){
-            e.preventDefault();
-            $("#supp-search-dialog").dialog('close');
-        });
+        // $("#close_btn").on('click',function(e){
+        //     e.preventDefault();
+        //     $("#scmIn-add-dialog").dialog('close');
+        // });
+        //
+        // $("#close_btn2").on('click',function(e){
+        //     e.preventDefault();
+        //     $("#supp-search-dialog").dialog('close');
+        // });
 
 
     });
