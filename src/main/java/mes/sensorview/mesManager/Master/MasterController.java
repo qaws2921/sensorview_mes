@@ -8,7 +8,7 @@ public class MasterController {
 
     @RequestMapping(value="/sysMsg")
     public String sysMsg(){
-        return "mesManager/Master/sysMsg";
+        return "mesManager/Master/sysMsg/sysMsg";
     }
 
     @RequestMapping(value="/sysBoard")
