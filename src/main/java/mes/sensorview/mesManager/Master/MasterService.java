@@ -27,19 +27,9 @@ public class MasterService extends ReturnFunction {
     }
     
     public RESTful sysCommonGet(HttpServletRequest req, Page p) {
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSCommon> rows = masterMapper.sysCommonGet(p);
-
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
     
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
@@ -48,18 +38,8 @@ public class MasterService extends ReturnFunction {
     }
 
     public RESTful sysMsgGet(Page p){
-        int count=0;
-        RESTful resTful = new RESTful();
         List<SYSMsg> rows = masterMapper.sysMsgGet(p);
-
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
     
     public Message sysMsgAdd(HttpServletRequest req, SYSMsg smv){
@@ -75,17 +55,9 @@ public class MasterService extends ReturnFunction {
 
     //
     public RESTful sysBoardGet(Page p, HttpServletRequest req){
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSBoard> rows = masterMapper.sysBoardGet(p);
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
     
     public Message sysBoardAdd(HttpServletRequest req, SYSBoard sbv){
@@ -101,19 +73,9 @@ public class MasterService extends ReturnFunction {
     }
 
     public RESTful sysProdLineGet(Page p, HttpServletRequest req){
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSProdLine> rows = masterMapper.sysProdLineGet(p);
-
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
 
     public Message sysProdLineAdd(HttpServletRequest req, SYSProdLine spv){
@@ -129,19 +91,9 @@ public class MasterService extends ReturnFunction {
     }
 
     public RESTful sysCargoGet(Page p, HttpServletRequest req){
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSCargo> rows = masterMapper.sysCargoGet(p);
-
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
 
     public Message sysCargoAdd(HttpServletRequest req, SYSCargo scv){
