@@ -46,11 +46,11 @@ public class Handler extends HandlerInterceptorAdapter {
                 return false;
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
                 log.info("비동기 통신");
-                session.setMaxInactiveInterval(1 * 20);
+                session.setMaxInactiveInterval(30 * 60);
             }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
                 log.info("에러");
             }else {
-                session.setMaxInactiveInterval(1 * 20);
+                session.setMaxInactiveInterval(30 * 60);
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
