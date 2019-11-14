@@ -114,6 +114,7 @@
 
 
     $(document).ready(function () {
+        suppModal_start();
         var topGrid_data =
             [
                 {indate:"2019-11-14",num:"P01-123112215",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
@@ -136,45 +137,15 @@
             ];
         var bottomGrid_data =
             [
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
-                {num:"P01-123112215",group:"PAX",p_num:"P0001",p_name:"P_AX01",c_name:"투비홀딩스",standard:"1P",unit:"KG",in_num:"86",bad_num:"1",real_num:"85"},
+                {num:"P01-123112215",group:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
             ];
         var dialogLeftGrid_data =
             [
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
-                {gruoup:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",package:"86",grade:"A"},
+
             ];
         var dialogRightGrid_data =
             [
-                {group:"PAX",num:"P0001",name:"P_AX01",standard:"1P",unit:"KG",grade:"A",in_num:"86"}
+
             ];
         var suppGrid_data =
             [
@@ -237,13 +208,13 @@
             //console.log(text);
         });
 
-        $( "#supp-search-dialog" ).dialog({
-            autoOpen:false,
-            modal: true,
-            width: 800,
-            height: 470,
-            number:2
-        });
+        // $( "#supp-search-dialog" ).dialog({
+        //     autoOpen:false,
+        //     modal: true,
+        //     width: 800,
+        //     height: 470,
+        //     number:2
+        // });
 
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
@@ -282,7 +253,6 @@
         var parent_column4 = $(grid_selector4).closest('[class*="col-"]');
 
         var grid_selector5 = "#SuppSearchGrid";
-        var pager_selector5 = "#SuppSearchGridPager";
         var parent_column5 = $(grid_selector5).closest('[class*="col-"]');
 
 
@@ -339,7 +309,7 @@
                 {name: 'outdate', index: 'outdate', width: 60},
             ],
             viewrecords: true,
-            height: 180,
+            height: 150,
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector,
@@ -355,12 +325,13 @@
             data: bottomGrid_data,
             datatype: "local",
             caption: "입고등록 | MES",
-            colNames: ['전표번호','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량'],
+            colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
             colModel: [
                 {name: 'num', index: 'code', width: 60},
                 {name: 'group', index: 'name', width: 60},
                 {name: 'p_num', index: 'cargo', width: 60},
                 {name: 'p_name', index: 'location', width: 60},
+                {name: 'c_name', index: 'cargo', width: 60},
                 {name: 'standard', index: 'cargo', width: 60},
                 {name: 'unit', index: 'standard', width: 60},
                 {name: 'in_num', index: 'unit', width: 60},
@@ -368,7 +339,7 @@
                 {name: 'real_num', index: 'min', width: 60},
             ],
             viewrecords: true,
-            height: 210,
+            height: 200,
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector2,
@@ -381,7 +352,7 @@
         });
 
         $(grid_selector3).jqGrid({
-            data: dialogLeftGrid_data,
+            data: bottomGrid_data,
             datatype: "local",
             // 다중 select
             multiselect: true,
@@ -400,7 +371,7 @@
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
             width : 521,
-            height: 310,
+            height: 300,
             // 디폴트 조회 개수 : 100
             rowNum: 100,
             // 단위 별 조회 개수
@@ -419,7 +390,7 @@
         });
 
         $(grid_selector4).jqGrid({
-            data: dialogRightGrid_data,
+            data: bottomGrid_data,
             datatype: "local",
             // 다중 select
             multiselect: true,
@@ -455,54 +426,53 @@
             }
         });
 
-        $(grid_selector5).jqGrid({
-            data: suppGrid_data,
-            datatype: "local",
-            // 다중 select
-            multiselect: true,
-            // 타이틀
-            caption: "업체조회 | MES",
-            colNames: ['업체코드','업체명','사업자번호','대표','주소'],
-            colModel: [
-                {name: 'suppcode', index: 'suppcode',width: 80},
-                {name: 'suppname', index: 'suppname',width: 80},
-                {name: 'suppum', index: 'suppum',width: 200},
-                {name: 'ceo', index: 'ceo',width: 80},
-                {name: 'address', index: 'address',width: 200},
-            ],
-            // 페이지 수 보기 (1 / 100) = true
-            // 높이 : 450px
-            width : 750,
-            height: 230,
-            // 디폴트 조회 개수 : 100
-            rowNum: 100,
-            // 단위 별 조회 개수
-            // pager 세팅
-            pager: pager_selector5,
-            // jqGrid load 시 실행 함수 = setTimeout
-            // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
-            // 호출되는 함수는 pager icon 함수
-            loadComplete : function() {
-
-            }
-        });
+        // $(grid_selector5).jqGrid({
+        //     data: suppGrid_data,
+        //     datatype: "local",
+        //     // 다중 select
+        //     multiselect: true,
+        //     // 타이틀
+        //     caption: "업체조회 | MES",
+        //     colNames: ['업체코드','업체명','사업자번호','대표','주소'],
+        //     colModel: [
+        //         {name: 'suppcode', index: 'suppcode',width: 80},
+        //         {name: 'suppname', index: 'suppname',width: 80},
+        //         {name: 'suppum', index: 'suppum',width: 200},
+        //         {name: 'ceo', index: 'ceo',width: 80},
+        //         {name: 'address', index: 'address',width: 200},
+        //     ],
+        //     // 페이지 수 보기 (1 / 100) = true
+        //     // 높이 : 450px
+        //     width : 750,
+        //     height: 250,
+        //     // 디폴트 조회 개수 : 100
+        //     rowNum: 100,
+        //     // 단위 별 조회 개수
+        //     // pager 세팅
+        //     // jqGrid load 시 실행 함수 = setTimeout
+        //     // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
+        //     // 호출되는 함수는 pager icon 함수
+        //     loadComplete : function() {
+        //
+        //     }
+        // });
 
         // pager 아이콘 생성 함수
-        function updatePagerIcons(table) {
-            var replace =
-                {
-                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
-                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
-                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
-                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
-                };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-                var icon = $(this);
-                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-
-                if($class in replace) icon.attr('class', 'ui-icon '+replace[$class]);
-            })
-        }
+        // function updatePagerIcons(table) {
+        //     var replace =
+        //         {
+        //             'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+        //             'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+        //             'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+        //             'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+        //         };
+        //     $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+        //         var icon = $(this);
+        //         var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+        //
+        //         if($class in replace) icon.attr('class', 'ui-icon '+replace[$class]);
+        //     })
+        // }
 
         // 넓이 조절 함수
         $(window).triggerHandler('resize.jqGrid');
@@ -512,15 +482,15 @@
          * @생성일 : 2019-11-01
          * @생성자 : 김재일
          * **/
-        $("#close_btn").on('click',function(e){
-            e.preventDefault();
-            $("#scmIn-add-dialog").dialog('close');
-        });
-
-        $("#close_btn2").on('click',function(e){
-            e.preventDefault();
-            $("#supp-search-dialog").dialog('close');
-        });
+        // $("#close_btn").on('click',function(e){
+        //     e.preventDefault();
+        //     $("#scmIn-add-dialog").dialog('close');
+        // });
+        //
+        // $("#close_btn2").on('click',function(e){
+        //     e.preventDefault();
+        //     $("#supp-search-dialog").dialog('close');
+        // });
 
 
     });
