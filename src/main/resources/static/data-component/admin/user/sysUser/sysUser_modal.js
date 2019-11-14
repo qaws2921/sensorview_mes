@@ -1,6 +1,6 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
-    selectBox_modal();
+    selectBox_modal1();
     modal_make1();
 }
 
@@ -8,7 +8,7 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn(){
 	var modal_objact = value_return(".modal_value");
-	if (effectiveness(modal_objact)) {
+	if (effectiveness1(modal_objact)) {
 		var text = '저장하겠습니까?';
 		if (main_data.check === "U") {
 			text = '수정하겠습니까?';
@@ -37,7 +37,7 @@ function addUdate_btn(){
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function effectiveness(modal_objact) { // 유효성 검사
+function effectiveness1(modal_objact) { // 유효성 검사
     if (modal_objact.user_code === ''){
         alert("사용자코드를 입력해주세요");
         return false;
@@ -93,7 +93,7 @@ function modal_make1() {
 	});	
 }
 
-function selectBox_modal() {
+function selectBox_modal1() {
 	select_makes("#dept_select2","/sysDeptAllGet","dept_code","dept_name");
 	select_makes("#duty_select","/sysCommonDutyGet","code_value","code_name1");
 	select_makes("#auth_select","/sysAuthAllGet","auth_code","auth_name");
