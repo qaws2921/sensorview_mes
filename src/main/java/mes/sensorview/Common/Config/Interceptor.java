@@ -7,10 +7,12 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @DESC : 인터셉터 Setting
- * @생성자 : 김재일
- * @생성일 : 2019-11-06
- * **/
+ * <javadoc>
+ * 인터셉터 세팅
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Configuration
 public class Interceptor implements WebMvcConfigurer {
 

@@ -17,6 +17,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <javadoc>
+ * Handler 세팅
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Slf4j
 @Component
 public class Handler extends HandlerInterceptorAdapter {
@@ -24,18 +31,10 @@ public class Handler extends HandlerInterceptorAdapter {
     @Autowired
     private AuthService authService;
 
-    /**
-     * @DESC : 로그인 세션 확인 preHandle
-     * @생성자 : 김재일
-     * @생성일 : 2019-11-06
-     **/
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        log.info(request.getServletPath());
-
         HttpSession session = request.getSession();
         Session userData = (Session) session.getAttribute("userData");
-
 
         try {
             if (ObjectUtils.isEmpty(userData) ) {
@@ -72,7 +71,6 @@ public class Handler extends HandlerInterceptorAdapter {
 
     @Override
     public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("afterConcurrentHandlingStarted call......");
     }
 
     @Override

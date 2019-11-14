@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <javadoc>
+ * 메뉴구성 service
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Service
 public class AuthService extends AuthFunction{
 
@@ -20,29 +27,18 @@ public class AuthService extends AuthFunction{
     private AuthMapper authMapper;
 
     public List<Auth> authMainSelect(HttpServletRequest req) {
-        Session session = (Session) req.getSession().getAttribute("userData");
-        return authMapper.authMainSelect(session);
+        return authMapper.authMainSelect(getSessionData(req));
     }
 
-    /**
-     * @desc : 왼쪽 메뉴 조회 상위 하위 분류 (keyword: 최상위 메뉴)
-     * @생성자 : 김종효
-     * @생성일 : 2019-10-16
-     * */
     public List<?> authSubSelect(HttpServletRequest req, String keyword) {
-        Session session = (Session) req.getSession().getAttribute("userData");
+        Session session = getSessionData(req);
         session.setKeyword(keyword);
         List<Auth> avList =  authMapper.authSubSelect(session);
         return gb_list(avList);
     }
 
-    /**
-     * @desc : 최상단의 하위 메뉴 조회
-     * @생성자 : 김종효
-     * @생성일 : 2019-10-16
-     * */
     public List<?> authAllSubSelect(HttpServletRequest req) {
-        Session session = (Session) req.getSession().getAttribute("userData");
+        Session session = getSessionData(req);
         List<Auth> avList = authMapper.authMainSelect(session);
         ArrayList<List<Auth>> allSubList = new ArrayList<>();
         ArrayList<List<Auth>> allSubList2 = new ArrayList<>();
@@ -55,13 +51,6 @@ public class AuthService extends AuthFunction{
         return  authAllSubSelect(allSubList,allSubList2);
     }
 
-
-
-    /**
-     * @desc : 권한 별 메뉴  구성
-     * @생성자 : 김종효
-     * @생성일 : 2019-10-21
-     * */
     public void model_menu_setting(HttpServletRequest req, String page_name, String top_menu_name, String under_name) {
         req.setAttribute("page_name",page_name);
         req.setAttribute("top_active",under_name);
@@ -71,20 +60,14 @@ public class AuthService extends AuthFunction{
         req.setAttribute("bestTop_name",top_menu_name);
     }
 
-    /**
-     * @desc : 권한 별 메뉴  구성
-     * @생성자 : 김종효
-     * @생성일 : 2019-10-21
-     * */
     public void model_menu_setting(HttpServletRequest req){
         req.setAttribute("main_list",authMainSelect(req));
         req.setAttribute("allSub_list",authAllSubSelect(req));
     }
 
     public SYSAuthProgram menuAuth(HttpServletRequest req, Page p){
-        Session session = (Session) req.getSession().getAttribute("userData");
-        p.setUser_code(session.getUser_code());
-        p.setSite_code(session.getSite_code());
+        p.setUser_code(getSessionData(req).getUser_code());
+        p.setSite_code(getSessionData(req).getSite_code());
         return authMapper.menuAuth(p);
     }
 

@@ -1,11 +1,18 @@
 package mes.sensorview.Common.Function;
 
 import mes.sensorview.Common.Auth.Auth;
+import mes.sensorview.Common.Interceptor.Session;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthFunction {
+
+    public Session getSessionData(HttpServletRequest req)
+    {
+        return (Session) req.getSession().getAttribute("userData");
+    }
 
     public ArrayList<List<Auth>> gb_list(List<Auth> rs)
     {

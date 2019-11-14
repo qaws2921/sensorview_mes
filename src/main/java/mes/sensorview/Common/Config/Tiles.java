@@ -6,6 +6,13 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+/**
+ * <javadoc>
+ * Tiles 세팅
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Configuration
 public class Tiles {
     @Bean

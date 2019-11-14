@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="navbar" class="navbar navbar-default ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
@@ -8,7 +8,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-
         <div class="col-lg-2">
             <a href="/static" class="navbar-brand">
 
@@ -27,9 +26,10 @@
 </div>
 
 <%-- 상단 아이콘 메뉴 --%>
-<div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
+<div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true"
+     data-sidebar-scroll="true" data-sidebar-hover="true">
     <ul class="nav nav-list of-hidden">
-        <li class="active open hover">
+        <li>
             <a href="/">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> MES </span>
@@ -51,7 +51,7 @@
                             <c:if test="${under_list2.level == 3 }">
                                 <a href='<c:out value="${under_list2.menu_code}"/>'>
                                     <i class="menu-icon fa fa-cog"></i>
-                                    <span class="menu-text"><c:out value="${main_list.menu_name}"/></span>
+                                    <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
 
                                 </a>
                                 <b class="arrow"></b>

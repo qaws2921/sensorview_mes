@@ -2,6 +2,13 @@ package mes.sensorview.Common.DataTransferObject;
 
 import lombok.Data;
 
+/**
+ * <javadoc>
+ * jqGrid에서 데이터를 받는 클래스
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Data
 public class Page {
     private int page_num;

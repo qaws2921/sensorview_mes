@@ -2,6 +2,13 @@ package mes.sensorview.Common.Interceptor;
 
 import lombok.Data;
 
+/**
+ * <javadoc>
+ * 세션에 담을 데이터 DTO
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @Data
 public class Session {
     private String user_code;
