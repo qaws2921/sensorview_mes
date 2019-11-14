@@ -40,6 +40,7 @@ public class ReturnFunction {
             resTful.setTotal(CalcTotalPage(count,p.getRows()));
             resTful.setRows(rows);
             resTful.setPage(p.getPage());
+            resTful.setRecords(count);
             return resTful;
         }catch (Exception e){
             e.printStackTrace();
