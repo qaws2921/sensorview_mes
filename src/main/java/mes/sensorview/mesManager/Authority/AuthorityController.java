@@ -9,12 +9,12 @@ public class AuthorityController {
 
     @RequestMapping(value = "/sysAuth")
     public String sysAuthList() {
-        return "mesManager/AuthorityManagement/sysAuth";
+        return "mesManager/AuthorityManagement/sysAuth/sysAuth";
     }
 
     @RequestMapping(value = "/sysAuthProgram")
     public String sysAuthProgram() {
-        return "mesManager/AuthorityManagement/sysAuthProgram";
+        return "mesManager/AuthorityManagement/sysAuthProgram/sysAuthProgram";
     }
 
 }

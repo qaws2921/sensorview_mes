@@ -8,19 +8,19 @@ public class UserController {
 
 	@RequestMapping(value="/sysDept")
 	public String sysDept(){
-		return "mesManager/User/sysDept";
+		return "mesManager/User/sysDept/sysDept";
 	}
 
 
 	@RequestMapping(value="/sysUser")
 	public String sysUser(){
-		return "mesManager/User/sysUser";
+		return "mesManager/User/sysUser/sysUser";
 	}
 	
 
 	@RequestMapping(value="/sysUserSupp")
 	public String sysUserSupp(){
-		return "mesManager/User/sysUserSupp";
+		return "mesManager/User/sysUserSupp/sysUserSupp";
 	}
 
 }

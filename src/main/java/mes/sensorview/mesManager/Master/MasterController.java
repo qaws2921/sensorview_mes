@@ -13,17 +13,17 @@ public class MasterController {
 
     @RequestMapping(value="/sysBoard")
     public String sysBoard(){
-        return "mesManager/Master/sysBoard";
+        return "mesManager/Master/sysBoard/sysBoard";
     }
 
     @RequestMapping(value="/sysProdLine")
     public String sysProdLine(){
-        return "mesManager/Master/sysProdLine";
+        return "mesManager/Master/sysProdLine/sysProdLine";
     }
 
     @RequestMapping(value="/sysCargo")
     public String sysCargo(){
-        return "mesManager/Master/sysCargo";
+        return "mesManager/Master/sysCargo/sysCargo";
     }
     @RequestMapping(value="/sysCommon")
     public String sysCommon() throws Exception{
