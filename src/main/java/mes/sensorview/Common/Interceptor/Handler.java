@@ -51,11 +51,6 @@ public class Handler extends HandlerInterceptorAdapter {
                 log.info("에러");
             }else {
                 session.setMaxInactiveInterval(1 * 20);
-                /**
-                 * @desc : 권한별 멘뉴 구성
-                 * @생성자 : 김종효
-                 * @생성일 : 2019-10-21
-                 * */
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
