@@ -40,7 +40,7 @@ function wrapWindowByMask2() {
     var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
     var loadingImg = '';
 
-    loadingImg += "<div id='loadingImg' style='position:absolute; left:50%; top:40%; display:none; z-index:10000;'>";
+    loadingImg += "<div id='loadingImg' style='position:absolute; left:50%; top:40%; display:none; z-index:10000; '>";
     loadingImg += " <img src='/images/loading.gif'/>";
     loadingImg += "</div>";
 
