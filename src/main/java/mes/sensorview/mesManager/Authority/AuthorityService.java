@@ -24,19 +24,9 @@ public class AuthorityService extends ReturnFunction {
     
     
     public RESTful sysAuthGet(HttpServletRequest req, Page p) {
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSAuth> rows = authorityMapper.sysAuthGet(p);
-
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
     public List<Auth> menuAllGet(){
         return authorityMapper.menuAllGet();

@@ -23,7 +23,7 @@ public class ReturnFunction {
         return (Session) req.getSession().getAttribute("userData");
     }
 
-    public RESTful resTfulReurn(List<?> rows , Page p)
+    public RESTful getListData(List<?> rows , Page p)
     {
         int count=0;
         RESTful resTful = new RESTful();
@@ -37,7 +37,7 @@ public class ReturnFunction {
                 }
             }
 
-            resTful.setTotal(CalcTotalPage(p.getPage(),count));
+            resTful.setTotal(CalcTotalPage(p.getRows(),count));
             resTful.setRows(rows);
             resTful.setPage(p.getPage());
             return resTful;

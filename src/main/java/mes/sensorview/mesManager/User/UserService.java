@@ -23,19 +23,9 @@ public class UserService extends ReturnFunction {
 
     
     public RESTful sysDeptGet(Page p , HttpServletRequest req){
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
-
         List<SYSDept> rows = userMapper.sysDeptGet(p);
-        int count=0;
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
 
     public Message sysDeptAdd(SYSDept sdv , HttpServletRequest req){
@@ -53,7 +43,7 @@ public class UserService extends ReturnFunction {
     public RESTful sysUserGet(Page p , HttpServletRequest req){
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSUser> rows = userMapper.sysUserGet(p);
-        return resTfulReurn(rows , p);
+        return getListData(rows , p);
     }
 
     public List<SYSDept> sysDeptAllGet(Page p , HttpServletRequest req){
@@ -74,19 +64,9 @@ public class UserService extends ReturnFunction {
 
     
     public RESTful sysUserSuppGet(Page p , HttpServletRequest req){
-        int count=0;
-        RESTful resTful = new RESTful();
         p.setSite_code(getSessionData(req).getSite_code());
-
         List<SYSUserSupp> rows = userMapper.sysUserSuppGet(p);
-        if(rows.size() != 0) {
-            count = rows.get(0).getRec_count();
-        }
-
-        resTful.setTotal(CalcTotalPage(p.getPage(),count));
-        resTful.setRows(rows);
-        resTful.setPage(p.getPage());
-        return resTful;
+        return getListData(rows , p);
     }
 
     

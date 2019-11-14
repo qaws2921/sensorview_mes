@@ -650,7 +650,6 @@ function cell(cellvalue, options, rowObject) {
         } else if (rowObject.level === 3) {
             return '		<img src="/ui-component/assets/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
         }
-
     }
 }
 
