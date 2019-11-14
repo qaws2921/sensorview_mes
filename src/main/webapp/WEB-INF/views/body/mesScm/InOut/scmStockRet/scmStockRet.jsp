@@ -12,24 +12,26 @@
     #SuppSearchGridPager #pg_SuppSearchGridPager table{
         table-layout:auto !important;
     }
+
 </style>
 
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
             <span class="sp-title">
-            	입고등록
-            	<small class="sp-small"><i class="ace-icon fa fa-angle-double-right"></i>
-            	Manufacturing Execution System
-            	</small>
+                자재반출
+                <small class="sp-small">
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    Manufacturing Execution System
+                </small>
             </span>
             <span style="float: right">
-            	자재관리
-            	<i class="ace-icon fa fa-angle-double-right"></i>
-             	입출고관리
-                <i class="ace-icon fa fa-angle-double-right"></i>
-                <b>입고등록</b>
-           </span>
+                        자재관리
+                       	<i class="ace-icon fa fa-angle-double-right"></i>
+             			입출고관리
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <b>자재반출</b>
+                    </span>
         </div>
     </div>
 
@@ -45,7 +47,9 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="t-align-c" style="width:25px !important;">~</td>
+                    <td class="t-align-c" style="width:25px !important;">
+                        ~
+                    </td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" id="datepicker2" class="form-control h-25"  value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd'/>">
@@ -68,46 +72,43 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                            <span>
-                            <i class="fa fa-search bigger-110 blue"></i>
-                            <span>조회</span>
-                            </span>
+                    <a  id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                <span>
+                                    <i class="fa fa-search bigger-110 blue"></i>
+                                    <span>조회</span>
+                                </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog">
-                            <span><i class="fa fa-plus bigger-110 blue"></i>
-                            <span>추가</span>
-                            </span>
+                                <span><i class="fa fa-plus bigger-110 blue"></i>
+                                    <span>추가</span>
+                                </span>
                     </a>
                     <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                        <span>
-                        <i class="fa fa-trash bigger-110 blue"></i>
-                        <span>삭제</span>
-                        </span>
+                                <span>
+                                    <i class="fa fa-trash bigger-110 blue"></i>
+                                    <span>삭제</span>
+                                </span>
                     </a>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-xs-12 table-responsive">
-                <table id="scmInTopGrid"></table>
-                <div id="scmInTopGridPager"></div>
+                <table id="scmStockRetTopGrid"></table>
+                <div id="scmStockRetTopGridPager"></div>
             </div>
         </div>
-
         <hr />
-
         <div class="row">
             <div class="col-xs-12 table-responsive">
-                <table id="scmInBottomGrid"></table>
-                <div id="scmInBottomGridPager"></div>
+                <table id="scmStockRetBottomGrid"></table>
+                <div id="scmStockRetBottomGridPager"></div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="scmIn-add-dialog" title="입고추가">
+<div id="scmIn-add-dialog" class="hide" title="자재반출 추가">
     <div class="col-lg-12">
         <div class="col-lg-5 padding0" id="content1">
             <table class="table wt-100">
@@ -122,7 +123,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
                     <td class="wt-px-150 h-25">
-                        <select class="form-control" id="p_group">
+                        <select class="form-control">
                             <option>그룹1</option>
                             <option>그룹2</option>
                             <option>그룹3</option>
@@ -147,8 +148,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <table id="scmInDialogLeftGrid"></table>
-                    <div id="scmInDialogLeftGridPager"></div>
+                    <table id="scmStockRetLeftGrid"></table>
+                    <div id="scmStockRetLeftGridPager"></div>
                 </div>
             </div>
         </div>
@@ -171,7 +172,7 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">입고일자</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">반출일자</td>
                     <td class="wt-px-150">
                         <div class="input-icon input-icon-right">
                             <input type="text" id="datepicker3" class="form-control h-25">
@@ -180,7 +181,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
                     <td>
-                        <input type="text" class="form-control h-25">
+                        <input type="text" class="form-control h-25"/>
                     </td>
                 </tr>
                 </tbody>
@@ -206,7 +207,58 @@
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <table id="scmInDialogRightGrid"></table>
+                    <table id="scmStockRetRightGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="supp-search-dialog" class="hide" title="업체조회">
+    <div class="col-lg-12">
+        <div class="col-lg-12 padding0">
+            <table class="table wt-100">
+                <tbody>
+                <tr>
+                    <td class="wt-px-100">
+                        <select class="form-control h-25">
+                            <option value="">업체명</option>
+                            <option value="">업체코드</option>
+                        </select>
+                    </td>
+                    <td class="wt-px-200">
+                        <input type="text" class="form-control h-25">
+                    </td>
+                    <td>
+                        <div class="dt-buttons btn-overlap btn-group">
+                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
+			                        <span>
+			                            <i class="fa fa-search bigger-110 blue"></i>
+			                            <span>조회</span>
+			                        </span>
+                            </a>
+                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
+			                        <span>
+			                            <i class="fa fa-check bigger-110 blue"></i>
+			                            <span>선택</span>
+			                        </span>
+                            </a>
+                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn2">
+			                        <span>
+			                            <i class="fa fa-times bigger-110 blue"></i>
+			                            <span>취소</span>
+			                        </span>
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="SuppSearchGrid"></table>
+                    <div id="SuppSearchGridPager"></div>
                 </div>
             </div>
         </div>
@@ -216,31 +268,13 @@
 
 <script>
 
-
     $(document).ready(function () {
         var topGrid_data =
             [
-                {indate:"2019-11-14",num:"P01-123112215",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112216",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112217",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112218",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112219",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112220",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112221",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112222",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112223",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112224",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112225",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112226",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112227",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112228",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112229",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112230",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-                {indate:"2019-11-14",num:"P01-123112231",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
             ];
         var bottomGrid_data =
             [
-                {num:"P01-123112215",group:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
+
             ];
         var dialogLeftGrid_data =
             [
@@ -272,67 +306,52 @@
                 {suppcode:"S0018",suppname:"협력사18",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
             ];
 
-
         $( "#datepicker").datepicker({
-            autoclose: true,
             format:'yyyy-mm-dd',
             language: "kr",
         });
         $( "#datepicker2").datepicker({
-            autoclose: true,
             format:'yyyy-mm-dd',
             language: "kr"
         });
         $( "#datepicker3").datepicker({
-            autoclose: true,
             format:'yyyy-mm-dd',
             language: "kr"
         }).datepicker('setDate','today');
 
-        $("#p_group").select2();
         /**
          * @DESC : jquery ui dialog
          * @생성일 : 2019-10-30
          * @생성자 : 김재일
          * **/
-        $('#scmIn-add-dialog').dialog({
-            autoOpen:false,
-            modal: true,
-            width: 1300,
-            height: 600,
-            number:1
-
-        });
-
         $( "#showDialog" ).on('click', function(e) {
             e.preventDefault();
-            $('#scmIn-add-dialog').dialog('open');
-            //var text=$('.ui-dialog').attr('style');
-            //console.log(text);
+            $('#scmIn-add-dialog').removeClass('hide').dialog({
+                modal: true,
+                width: 1300,
+                height: 600
+            });
         });
 
-        $( "#supp-search-dialog" ).dialog({
-            autoOpen:false,
-            modal: true,
-            width: 800,
-            height: 470,
-            number:2
-        });
 
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
-            $( "#supp-search-dialog" ).dialog('open');
-            //$('.ui-dialog').attr('style','z-index: 9999 !improtant');
-            //$('.ui-widget-overlay').attr('style','z-index:9998 !important');
-            //var text=$('.ui-dialog').attr('style');
-            //$('.ui-dialog').attr('style',text+' z-index:9999 !important');
+
+            var dialog = $( "#supp-search-dialog" ).removeClass('hide').dialog({
+                modal: true,
+                width: 800,
+                height: 470,
+            });
         });
 
         $("#SuppSearch-i-Main").on('click', function(e) {
             e.preventDefault();
-            $( "#supp-search-dialog" ).dialog('open');
-            //var text=$('.ui-dialog').attr('style');
-            //$('.ui-dialog').attr('style',text+' z-index:9999 !important');
+
+            var dialog = $( "#supp-search-dialog" ).removeClass('hide').dialog({
+                modal: true,
+                width: 800,
+                height: 470
+            });
         });
 
         /**
@@ -340,19 +359,19 @@
          * @생성일 : 2019-10-30
          * @생성자 : 김재일
          * **/
-        var grid_selector = "#scmInTopGrid";
-        var pager_selector = "#scmInTopGridPager";
+        var grid_selector = "#scmStockRetTopGrid";
+        var pager_selector = "#scmStockRetTopGridPager";
         var parent_column = $(grid_selector).closest('[class*="col-"]');
 
-        var grid_selector2 = "#scmInBottomGrid";
-        var pager_selector2 = "#scmInBottomGridPager";
+        var grid_selector2 = "#scmStockRetBottomGrid";
+        var pager_selector2 = "#scmStockRetBottomGridPager";
         var parent_column2 = $(grid_selector2).closest('[class*="col-"]');
 
-        var grid_selector3 = "#scmInDialogLeftGrid";
-        var pager_selector3 = "#scmInDialogLeftGridPager";
+        var grid_selector3 = "#scmStockRetLeftGrid";
+        var pager_selector3 = "#scmStockRetLeftGridPager";
         var parent_column3 = $(grid_selector3).closest('[class*="col-"]');
 
-        var grid_selector4 = "#scmInDialogRightGrid";
+        var grid_selector4 = "#scmStockRetRightGrid";
         var parent_column4 = $(grid_selector4).closest('[class*="col-"]');
 
         var grid_selector5 = "#SuppSearchGrid";
@@ -401,15 +420,14 @@
             // 다중 select
             multiselect: true,
             // 타이틀
-            caption: "입고등록 | MES",
-            colNames: ['입고일자','전표번호','업체','상태','처리자','출고일시'],
+            caption: "자재반출 | MES",
+            colNames: ['반고일자','전표번호','업체','처리자','반출일시'],
             colModel: [
-                {name: 'indate', index: 'indate', width: 60},
-                {name: 'num', index: 'num', width: 60},
+                {name: 'retdate', index: 'retdate', width: 60},
+                {name: 'rgnum', index: 'rgnum', width: 60},
                 {name: 'supp', index: 'supp', width: 60},
-                {name: 'state', index: 'state', width: 60},
                 {name: 'manager', index: 'manager', width: 60},
-                {name: 'outdate', index: 'outdate', width: 60},
+                {name: 'retdatetime', index: 'retdatetime', width: 60},
             ],
             viewrecords: true,
             height: 150,
@@ -427,19 +445,16 @@
         $(grid_selector2).jqGrid({
             data: bottomGrid_data,
             datatype: "local",
-            caption: "입고등록 | MES",
-            colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
+            caption: "자재반출 | MES",
+            colNames: ['전표번호','품목그룹','품번','품명','규격','단위','반출수량'],
             colModel: [
-                {name: 'num', index: 'code', width: 60},
-                {name: 'group', index: 'name', width: 60},
-                {name: 'p_num', index: 'cargo', width: 60},
-                {name: 'p_name', index: 'location', width: 60},
-                {name: 'c_name', index: 'cargo', width: 60},
-                {name: 'standard', index: 'cargo', width: 60},
-                {name: 'unit', index: 'standard', width: 60},
-                {name: 'in_num', index: 'unit', width: 60},
-                {name: 'bad_num', index: 'max', width: 60},
-                {name: 'real_num', index: 'min', width: 60},
+                {name: 'pgnum', index: 'pgnum', width: 60},
+                {name: 'group', index: 'group', width: 60},
+                {name: 'p_num', index: 'p_num', width: 60},
+                {name: 'p_name', index: 'p_name', width: 60},
+                {name: 'standard', index: 'standard', width: 60},
+                {name: 'unit', index: 'unit', width: 60},
+                {name: 'ret_num', index: 'ret_num', width: 60},
             ],
             viewrecords: true,
             height: 200,
@@ -460,16 +475,15 @@
             // 다중 select
             multiselect: true,
             // 타이틀
-            caption: "입고등록 | MES",
-            colNames: ['품목그룹','품번','품명','규격','단위','포장수량','검사등급'],
+            caption: "자재반출추가 | MES",
+            colNames: ['품목그룹','품번','품명','규격','단위','포장수량'],
             colModel: [
                 {name: 'gruoup', index: 'gruoup'},
                 {name: 'num', index: 'num'},
                 {name: 'name', index: 'name'},
                 {name: 'standard', index: 'standard'},
                 {name: 'unit', index: 'unit'},
-                {name: 'package', index: 'package'},
-                {name: 'grade', index: 'grade'},
+                {name: 'packagenum', index: 'packagenum'},
             ],
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
@@ -498,16 +512,15 @@
             // 다중 select
             multiselect: true,
             // 타이틀
-            caption: "입고등록 | MES",
-            colNames: ['품목그룹','품번','품명','규격','단위','검사등급','입고수량'],
+            caption: "자재반출추가 | MES",
+            colNames: ['품목그룹','품번','품명','규격','단위','반출수량'],
             colModel: [
                 {name: 'group', index: 'gruoup', width: 60},
                 {name: 'num', index: 'num', width: 60},
                 {name: 'name', index: 'name', width: 60},
                 {name: 'standard', index: 'standard', width: 60},
                 {name: 'unit', index: 'unit', width: 60},
-                {name: 'grade', index: 'grade', width: 60},
-                {name: 'in_num', index: 'in_num', width: 60},
+                {name: 'ret_num', index: 'ret_num', width: 60},
             ],
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
@@ -540,7 +553,7 @@
             colModel: [
                 {name: 'suppcode', index: 'suppcode',width: 80},
                 {name: 'suppname', index: 'suppname',width: 80},
-                {name: 'suppum', index: 'suppum',width: 200},
+                {name: 'suppum', index: 'suppnum',width: 200},
                 {name: 'ceo', index: 'ceo',width: 80},
                 {name: 'address', index: 'address',width: 200},
             ],
