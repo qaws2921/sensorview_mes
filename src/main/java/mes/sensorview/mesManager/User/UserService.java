@@ -115,4 +115,9 @@ public class UserService extends ReturnFunction {
     public Session loginAction(Session s) {
         return userMapper.loginAction(s);
     }
+
+    public SYSUser sysUserOneGet(HttpServletRequest req, SYSUser su) {
+        su.setSite_code(getSessionData(req).getSite_code());
+        return userMapper.sysUserOneGet(su);
+    }
 }

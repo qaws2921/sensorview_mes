@@ -21,4 +21,5 @@ public interface UserMapper {
     Message sysUserDelete(Page p);
     Message sysDeptDelete(Page p);
     Message sysUserSuppDelete(Page p);
+    SYSUser sysUserOneGet(SYSUser su);
 }

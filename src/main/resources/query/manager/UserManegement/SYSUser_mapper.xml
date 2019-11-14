@@ -15,6 +15,10 @@
     <select id="sysUserDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_USER_DEL #{keyword}
     </select>
+
+    <select id="sysUserOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUser">
+        	EXEC SP_SYS_USER_GET #{site_code},1,1,#{user_code},#{dept_code}
+    </select>
 </mapper>
 
 
