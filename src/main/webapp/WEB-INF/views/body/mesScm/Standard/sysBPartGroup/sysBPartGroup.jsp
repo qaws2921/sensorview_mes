@@ -28,7 +28,7 @@
                 <div class="dt-buttons btn-overlap btn-group">
                     <a id="get_btn"
                        class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
                                 <span>
                                     <i class="fa fa-search bigger-110 blue"></i>
                                     <span>조회</span>
@@ -36,14 +36,14 @@
                     </a>
                     <a id="add_btn"
                        class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" id="showDialog">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                                 <span><i class="fa fa-plus bigger-110 blue"></i>
                                     <span>추가</span>
                                 </span>
                     </a>
                     <a id="delete_btn"
                        class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
                                 <span>
                                     <i class="fa fa-trash bigger-110 blue"></i>
                                     <span>삭제</span>
@@ -60,6 +60,8 @@
         </div>
     </div>
 </div>
+
+<%--<%@inlcude file="sysBPartGroup_modal1.jsp" %>--%>
 
 <script>
     $(document).ready(function () {
@@ -116,8 +118,14 @@
                 if ($class in replace) icon.attr('class', 'ui-icon ' + replace[$class]);
             })
         }
-
         $(window).triggerHandler('resize.jqGrid');
+
+        function add_btn() {
+
+            $("#addDialog").dialog('open');
+        }
+
+        sysBPartGroupModal_start();
 
     })
 </script>
