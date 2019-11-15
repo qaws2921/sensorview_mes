@@ -13,7 +13,7 @@
         table-layout:auto !important;
     }
 </style>
-
+<input type="radio" onclick="return false;">
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
@@ -114,7 +114,7 @@
 
 
     $(document).ready(function () {
-        suppModal_start();
+
         var topGrid_data =
             [
                 {indate:"2019-11-14",num:"P01-123112215",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
@@ -219,6 +219,7 @@
         $("#SuppSearch-i").on('click', function(e) {
             e.preventDefault();
             $( "#supp-search-dialog" ).dialog('open');
+            jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
             //$('.ui-dialog').attr('style','z-index: 9999 !improtant');
             //$('.ui-widget-overlay').attr('style','z-index:9998 !important');
             //var text=$('.ui-dialog').attr('style');
@@ -228,6 +229,7 @@
         $("#SuppSearch-i-Main").on('click', function(e) {
             e.preventDefault();
             $( "#supp-search-dialog" ).dialog('open');
+            jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
             //var text=$('.ui-dialog').attr('style');
             //$('.ui-dialog').attr('style',text+' z-index:9999 !important');
         });
@@ -313,12 +315,7 @@
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector,
-            loadComplete : function() {
-                var table = this;
-                setTimeout(function(){
-                    updatePagerIcons(table);
-                }, 0);
-            }
+
         });
 
         $(grid_selector2).jqGrid({
@@ -343,12 +340,7 @@
             rowNum: 100,
             rowList:[100,200,300,500,1000],
             pager: pager_selector2,
-            loadComplete : function() {
-                var table = this;
-                setTimeout(function(){
-                    updatePagerIcons(table);
-                }, 0);
-            }
+
         });
 
         $(grid_selector3).jqGrid({
@@ -381,12 +373,7 @@
             // jqGrid load 시 실행 함수 = setTimeout
             // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
             // 호출되는 함수는 pager icon 함수
-            loadComplete : function() {
-                var table = this;
-                setTimeout(function(){
-                    updatePagerIcons(table);
-                }, 0);
-            }
+
         });
 
         $(grid_selector4).jqGrid({
@@ -418,12 +405,7 @@
             // jqGrid load 시 실행 함수 = setTimeout
             // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
             // 호출되는 함수는 pager icon 함수
-            loadComplete : function() {
-                var table = this;
-                setTimeout(function(){
-                    updatePagerIcons(table);
-                }, 0);
-            }
+
         });
 
         // $(grid_selector5).jqGrid({
@@ -475,7 +457,7 @@
         // }
 
         // 넓이 조절 함수
-        $(window).triggerHandler('resize.jqGrid');
+
 
         /**
          * @DESC : Jquery ui dialog
@@ -492,7 +474,9 @@
         //     $("#supp-search-dialog").dialog('close');
         // });
 
+        suppModal_start();
 
+        $(window).triggerHandler('resize.jqGrid');
     });
 </script>
 

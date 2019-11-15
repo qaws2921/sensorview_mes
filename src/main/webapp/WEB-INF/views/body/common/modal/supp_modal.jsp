@@ -42,7 +42,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-xs-12 rrr">
+                <div class="col-xs-12">
                     <table id="SuppSearchGrid"></table>
                     <div id="SuppSearchGridPager"></div>
                 </div>

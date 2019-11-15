@@ -1,9 +1,10 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function suppModal_start() {
+
     suppModal_make();
     suppModal_jqGrid();
     jqgridPagerIcons();
-    jqGrid_resizes("#SuppSearchGrid", ".rrr");
+    jqGridResize("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 
 
@@ -21,11 +22,13 @@ function suppModal_get_btn(page) {
 }
 
 function suppModal_check() {
-    if ($( "#supp-search-dialog" ).getGridParam( "selrow" )) {
-        var ids = $( "#supp-search-dialog" ).getGridParam( "selrow" );
-        var data = $('#supp-search-dialog').jqGrid('getRowData', ids);
+    if ($( "#SuppSearchGrid" ).getGridParam( "selrow" )) {
+        var ids = $( "#SuppSearchGrid" ).getGridParam( "selrow" );
+        var data = $('#SuppSearchGrid').jqGrid('getRowData', ids);
+        console.log(data.supp_code,data.supp_name);
         suppModal_bus(data.supp_code,data.supp_name);
-        $("#supp-search-dialog").dialog('close');
+
+        $("#SuppSearchGrid").dialog('close');
     }else {
         alert("선택하십시오");
     }
@@ -46,11 +49,17 @@ function suppModal_make() {
     $("#supp-search-dialog").dialog({
         autoOpen:false,
         modal: true,
-        width: 800,
-        height: 470,
-        resizable: false
+        width: 'auto',
+        height: 'auto',
+        resizable: false,
+        buttons: [
+            {
+                "class": "hide",
+            }
+        ]
 
     });
+
 }
 
 function suppModal_jqGrid() {
@@ -63,7 +72,7 @@ function suppModal_jqGrid() {
         colNames: ['','업체코드','업체명','사업자번호','대표','주소'],
         colModel: [
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
-                    return '<input type="radio" name="radio_' + option.gid + '" />';
+                    return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
             {name: 'supp_code', index: 'supp_code',width: 80},
             {name: 'supp_name', index: 'supp_name',width: 80},
@@ -73,7 +82,7 @@ function suppModal_jqGrid() {
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
-        width : 750,
+        width: 800,
         height: 250,
         // 디폴트 조회 개수 : 100
         rowNum: 100,
@@ -82,10 +91,12 @@ function suppModal_jqGrid() {
         rowList: [100, 200, 300, 400],
         viewrecords: true,
         beforeSelectRow: function (rowid, e) {
-
+            console.log("시작");
             var radio = $(e.target).closest('tr').find('input[type="radio"]');
-            $('input[name="radio_SuppSearchGrid"]').removeAttr("checked");
-            radio.attr('checked', 'checked');
+            $('input[name="radio_SuppSearchGrid"]').removeAttr("checked").trigger('change');
+
+            radio.prop('checked', true).trigger('change');
+            console.log("끝");
             return true; // allow row selection
         },
         // 단위 별 조회 개수
@@ -96,6 +107,7 @@ function suppModal_jqGrid() {
         loadComplete : function() {
 
         }
+
     });
 }
 /////////////////////////////////////////지울거////////////////////////////////

@@ -29,4 +29,5 @@ public class Tiles {
         tilesViewResolver.setViewClass(TilesView.class);
         return tilesViewResolver;
     }
+    
 }
