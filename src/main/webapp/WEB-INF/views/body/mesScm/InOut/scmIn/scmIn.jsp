@@ -139,35 +139,8 @@
             [
                 {num:"P01-123112215",group:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
             ];
-        var dialogLeftGrid_data =
-            [
 
-            ];
-        var dialogRightGrid_data =
-            [
 
-            ];
-        var suppGrid_data =
-            [
-                {suppcode:"S0001",suppname:"협력사1",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0002",suppname:"협력사2",suppum:"1482-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0003",suppname:"협력사3",suppum:"1522-20925429",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0004",suppname:"협력사4",suppum:"1582-21925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0005",suppname:"협력사5",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0006",suppname:"협력사6",suppum:"1582-22135829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0007",suppname:"협력사7",suppum:"1582-20885829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0008",suppname:"협력사8",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0009",suppname:"협력사9",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0010",suppname:"협력사10",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0011",suppname:"협력사11",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0012",suppname:"협력사12",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0013",suppname:"협력사13",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0014",suppname:"협력사14",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0015",suppname:"협력사15",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0016",suppname:"협력사16",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0017",suppname:"협력사17",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-                {suppcode:"S0018",suppname:"협력사18",suppum:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-            ];
 
 
         $( "#datepicker").datepicker({
@@ -180,11 +153,16 @@
             format:'yyyy-mm-dd',
             language: "kr"
         });
+      var ss =   new Date();
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+
+
         $( "#datepicker3").datepicker({
             autoclose: true,
             format:'yyyy-mm-dd',
             language: "kr"
-        }).datepicker('setDate','today');
+        }).datepicker('setDate',date);
 
         $("#p_group").select2();
         /**
@@ -290,6 +268,58 @@
 
 
         /**
+         * @DESC : jqGrid 생성
+         * @생성일 : 2019-10-30
+         * @생성자 : 김재일
+         * **/
+        $(grid_selector).jqGrid({
+            data: topGrid_data,
+            datatype: "local",
+            // 다중 select
+            multiselect: true,
+            // 타이틀
+            caption: "입고등록 | MES",
+            colNames: ['입고일자','전표번호','업체','상태','처리자','출고일시'],
+            colModel: [
+                {name: 'indate', index: 'indate', width: 60},
+                {name: 'num', index: 'num', width: 60},
+                {name: 'supp', index: 'supp', width: 60},
+                {name: 'state', index: 'state', width: 60},
+                {name: 'manager', index: 'manager', width: 60},
+                {name: 'outdate', index: 'outdate', width: 60},
+            ],
+            viewrecords: true,
+            height: 150,
+            rowNum: 100,
+            rowList:[100,200,300,500,1000],
+            pager: pager_selector,
+
+        });
+
+        $(grid_selector2).jqGrid({
+            data: bottomGrid_data,
+            datatype: "local",
+            caption: "입고등록 | MES",
+            colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
+            colModel: [
+                {name: 'num', index: 'code', width: 60},
+                {name: 'group', index: 'name', width: 60},
+                {name: 'p_num', index: 'cargo', width: 60},
+                {name: 'p_name', index: 'location', width: 60},
+                {name: 'c_name', index: 'cargo', width: 60},
+                {name: 'standard', index: 'cargo', width: 60},
+                {name: 'unit', index: 'standard', width: 60},
+                {name: 'in_num', index: 'unit', width: 60},
+                {name: 'bad_num', index: 'max', width: 60},
+                {name: 'real_num', index: 'min', width: 60},
+            ],
+            viewrecords: true,
+            height: 200,
+            rowNum: 100,
+            rowList:[100,200,300,500,1000],
+            pager: pager_selector2,
+
+        }); /**
          * @DESC : jqGrid 생성
          * @생성일 : 2019-10-30
          * @생성자 : 김재일

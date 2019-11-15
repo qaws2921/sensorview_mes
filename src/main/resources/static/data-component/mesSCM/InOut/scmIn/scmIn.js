@@ -23,12 +23,14 @@ var main_data = {
  * */
 $(document).ready(function () {
     jqGrid_main();
-    jqgridPagerIcons();
     jqGrid_resizes("#mes_grid", ".table-responsive");
-    selectBox();
-
+    datepickerInput();
     /*----모달----*/
     modal_start1();
+
+
+
+    jqgridPagerIcons();
 
 });
 
@@ -108,15 +110,17 @@ function delete_btn() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
-function selectBox() {
-    select_makes("#dept_select", "/sysDeptAllGet", "dept_code", "dept_name");
 
+function datepickerInput() {
+    datepicker_makes("#datepicker");
+    datepicker_makes("#datepicker2");
+    datepicker_makes("#datepicker3");
 }
 
 
 function jqGrid_main() {
     $("#scmInTopGrid").jqGrid({
-        data: topGrid_data,
+
         datatype: "local",
         // 다중 select
         multiselect: true,
@@ -140,7 +144,7 @@ function jqGrid_main() {
     });
 
     $('#scmInBottomGrid').jqGrid({
-        data: bottomGrid_data,
+
         datatype: "local",
         caption: "입고등록 | MES",
         colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
