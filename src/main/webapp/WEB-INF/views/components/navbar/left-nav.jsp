@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="sidebar" class="sidebar responsive ace-save-state">
-
-    <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
-        try{ace.settings.loadState('sidebar')}catch(e){}
-    </script>
     <script type="text/javascript">
         $(function() {
             var tagName = $('.menu-text1').text();
-            console.log($("#mid-nav").hasClass(tagName));
-            if($("#mid-nav").hasClass(tagName) == true){
+            var name = "#mid-nav " + tagName;
+            var tag = $("#mid-nav").find(tagName);
+
+            if(tag.selector == name){
                 $("#mid-nav").removeClass('active');
                 $("."+tagName).addClass('active');
             }
         });
+    </script>
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+        try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
     <ul class="nav nav-list">
         <li class="">
@@ -49,7 +50,5 @@
                 </c:if>
             </li>
         </c:forEach>
-
     </ul>
-
 </div>
