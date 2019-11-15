@@ -269,24 +269,6 @@
             $(grid_selector2).jqGrid( 'setGridWidth', parent_column2.width());
         })
 
-        // 리사이즈 세팅
-        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-                setTimeout(function() {
-                    $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-                }, 20);
-            }
-        })
-
-        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-                setTimeout(function() {
-                    $(grid_selector2).jqGrid( 'setGridWidth', parent_column2.width() );
-                }, 20);
-            }
-        })
-
-
         /**
          * @DESC : jqGrid 생성
          * @생성일 : 2019-10-30
