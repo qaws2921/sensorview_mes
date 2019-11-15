@@ -24,7 +24,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqgridPagerIcons();
-    jqGrid_resizes("#mes_grid", ".table-responsive");
+    jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
 
     /*----모달----*/

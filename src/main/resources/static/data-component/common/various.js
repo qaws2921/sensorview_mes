@@ -30,6 +30,17 @@ function formmatterDate(cellValue) { // 날짜 필터
 	   }
 }
 
+function jqGridResize(main_name, top_name) {
+	$(window).on('resize', function () {
+		$(main_name).setGridWidth($(top_name).width(), true);
+	}).trigger('resize');
+}
+function jqGridResize2(main_name, top_name) {
+
+		$(main_name).setGridWidth($(top_name).width(), true);
+
+}
+
 
 function modal_reset(class_name,readonly) {
 	$(class_name).each(function(i){
@@ -86,12 +97,6 @@ function select_makes(tag,url,value,text) {
 	});	
 }
 
-
-function jqGrid_resizes(main_name,top_name) {
-	$(window).bind('resize', function() {
-        $(main_name).setGridWidth($(top_name).width() , true);
-	}).trigger('resize');
-}
 
 
 function ccn_ajax(url,data){
