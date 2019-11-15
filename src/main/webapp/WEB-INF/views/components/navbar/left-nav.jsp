@@ -4,15 +4,23 @@
 
     <script type="text/javascript">
         try{ace.settings.loadState('main-container')}catch(e){}
+        try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
     <script type="text/javascript">
-        try{ace.settings.loadState('sidebar')}catch(e){}
+        $(function() {
+            var tagName = $('.menu-text1').text();
+            console.log($("#mid-nav").hasClass(tagName));
+            if($("#mid-nav").hasClass(tagName) == true){
+                $("#mid-nav").removeClass('active');
+                $("."+tagName).addClass('active');
+            }
+        });
     </script>
     <ul class="nav nav-list">
         <li class="">
             <a href="javascript:void(0)">
                 <i class="menu-icon fa fa-tachometer"></i>
-                <span class="menu-text1"> ${left_list[0][0].menu_name } </span>
+                <span class="menu-text1">${left_list[0][0].menu_name }</span>
             </a>
 
             <b class="arrow"></b>

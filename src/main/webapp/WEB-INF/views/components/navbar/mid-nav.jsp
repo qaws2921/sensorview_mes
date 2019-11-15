@@ -29,7 +29,7 @@
 <div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true"
      data-sidebar-scroll="true" data-sidebar-hover="true">
     <ul class="nav nav-list of-hidden">
-        <li>
+        <li class="hover">
             <a href="/">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> MES </span>
@@ -41,7 +41,7 @@
         <c:forEach var="main_list" items="${main_list}" varStatus="starus">
             <c:set var="doneLoop" value="false"/>
             <c:set var="doneLoop3" value="true"/>
-            <li class="hover">
+            <li id="mid-nav" class="hover <c:out value="${main_list.menu_name}"/>">
                 <c:forEach var="under_list2" items="${allSub_list[starus.index]}">
                     <c:if test="${doneLoop != true}">
                         <c:if test="${under_list2.level == 2 }">
@@ -52,7 +52,6 @@
                                 <a href='<c:out value="${under_list2.menu_code}"/>'>
                                     <i class="menu-icon fa fa-cog"></i>
                                     <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
-
                                 </a>
                                 <b class="arrow"></b>
                                 <c:set var="doneLoop" value="true"/>
