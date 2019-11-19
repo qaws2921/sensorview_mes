@@ -59,9 +59,9 @@ function object_send() {
 					addUrl:"/sysAuthProgramAdd",
 					condition_objact:{},
 					condition_class:".keyword",
-					select_tag:[{tag:"#code_group",url:"/menuAllGet",valueName:"menu_code",textName:"menu_name"}],
+					select_tag:[{tag:"#code_group",url:"/menuAllGet",valueName:"menu_code",textName:"menu_name"},{tag:"#site_group",url:null,valueName:null,textName:null}],
 					condition_column: {
-						keyword:"권한그룹몀을 선택해주세요"
+						keyword:"권한그룹명을 선택해주세요"
 					}			
 	}
 	return object;
@@ -91,32 +91,47 @@ function object_send() {
 
             <div class="page-content">
 			<div class="col-lg-12 padding0">
-                    <table class="table wt-100">
-                        <tbody>
-                        <tr>
-                            <td class="wt-px-100 t-align-c td-title padding-a-0">조회구분</td>
-                            <td>
-                                <select name="keyword2" class="form-control wt-px-125 keyword" id="code_group">
-                                    
-                                </select>
-                            </td>     
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="clearfix">
-                    <div class="pull-left tableTools-container">
-                        <div class="dt-buttons btn-overlap btn-group">
-                           
-                            <a id="add_btn" class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" id="showDialog">
+                <div class="row">
+                    <div class="col-md-4">
+                        <table class="table wt-100">
+                            <tbody>
+                            <tr>
+                                <td class="wt-px-100 t-align-c td-title padding-a-0">사이트조회</td>
+                                <td class="wt-px-200">
+                                    <select name="" class="form-control" id="site_group">
+
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-8">
+                        <table class="table wt-100">
+                            <tbody>
+                            <tr>
+                                <td class="wt-px-100 t-align-c td-title padding-a-0">업무조회</td>
+                                <td class="wt-px-200">
+                                    <select name="keyword2" class="form-control keyword" id="code_group">
+
+                                    </select>
+                                </td>
+                                <td class="t-align-c wt-px-50">
+                                    <a id="add_btn" class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" id="showDialog">
                                 <span><i class="fa fa-plus bigger-110 blue"></i>
                                     <span>저장</span>
                                 </span>
-                            </a>
-                            
-                        </div>
+                                    </a>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xs-12 table-responsive">
                         <div class="row">
