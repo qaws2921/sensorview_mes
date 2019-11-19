@@ -9,4 +9,7 @@ public class StandardController {
     public String sysBPartGroup() {
         return "mesScm/Standard/sysBPartGroup/sysBPartGroup";
     }
+
+    @RequestMapping(value = "/sysBPart")
+    public String sysBPart() { return "mesScm/Standard/sysBPart/sysBPart"; }
 }

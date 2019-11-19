@@ -5,16 +5,16 @@ function modal_start1() {
 function modal_make1() {
 
     $("#addDialog").dialog({
-        modal:true,
-        width:'auto',
-        height:'auto',
+        modal: true,
+        width: 'auto',
+        height: 'auto',
         autoOpen: false,
         resizable: false,
         buttons: [
             {
                 text: '저장',
                 'class': 'btn btn-primary btn-minier',
-                click: function() {
+                click: function () {
                     $(this).dialog('close');
                 }
             },
