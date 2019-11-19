@@ -17,7 +17,6 @@
                 colModel: [
                     {name: 'auth_code', index: 'auth_code', key: true, sortable: false, hidden: true},
                     {name: 'auth_name', index: 'auth_name', align: 'center', sortable: false},
-
                 ],
                 height: 550,
                 jqGrid_top_tag: ".test11",
