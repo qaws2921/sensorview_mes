@@ -1,10 +1,14 @@
 package mes.sensorview.Common.Function;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
+import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
+
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -17,10 +21,11 @@ import java.util.List;
  * @author      김재일
  * @version     1.0
  * @since       2019-11-14
-**/
+ **/
+@Slf4j
 public class ReturnFunction {
     /**
-     * jqGrid 호출 시 페이지 블록처리를 위한 계산함수.
+     * jqGrid 호출 시 페이지 블록처리를 위한 계산함수.r
      * @param   records
      * @param   rows
      **/
@@ -124,6 +129,29 @@ public class ReturnFunction {
             ++index;
         }
         return null;
+    }
+
+    public String MakeScmInCodeList(SCM_IN_SUB scmInSub)
+    {
+        String code_list = "";
+        String code1 = scmInSub.getPart_code();
+        String code2 = scmInSub.getOrder_qty();
+        String code3 = scmInSub.getBad_qty();
+        String code4 = scmInSub.getIn_qty();
+
+        String part_code[] = code1.split(",");
+        String order_qty[] = code2.split(",");
+        String bad_qty[] = code3.split(",");
+        String in_qty[] = code4.split(",");
+
+        // part_code order, bad, in의 길이가 다 다를수 있으므로 추후 예외처리해야됨
+        for(int i=0 ; i<part_code.length ; i++)
+        {
+           code_list += part_code[i]+"/"+order_qty[i]+"/"+bad_qty[i]+"/"+in_qty[i]+",";
+        }
+        // 마지막 문자 제거
+        code_list = code_list.substring(0, code_list.length()-1);
+        return code_list;
     }
 
 }

@@ -117,6 +117,14 @@ function ccn_ajax(url,data){
 	  });
 }
 
+function datepicker_makes(tag) {
+    $( tag ).datepicker({
+        autoclose: true,
+        format:'yyyy-mm-dd',
+        language: "kr",
+    });
+}
+
 
 
 

@@ -14,4 +14,5 @@ public class SCM_IN {
     private String remark;
     private String create_date;
     private String update_date;
+    private String code_list;
 }
