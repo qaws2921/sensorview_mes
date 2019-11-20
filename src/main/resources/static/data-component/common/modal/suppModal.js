@@ -28,7 +28,7 @@ function suppModal_check() {
         console.log(data.supp_code,data.supp_name);
         suppModal_bus(data.supp_code,data.supp_name);
 
-        $("#SuppSearchGrid").dialog('close');
+        $("#supp-search-dialog").dialog('close');
     }else {
         alert("선택하십시오");
     }
@@ -82,7 +82,7 @@ function suppModal_jqGrid() {
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
-        width: 800,
+        autowidth: true,
         height: 250,
         // 디폴트 조회 개수 : 100
         rowNum: 100,

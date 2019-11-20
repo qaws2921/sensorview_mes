@@ -10,9 +10,10 @@
  * */
 var main_data = {
     check: 'I',
+    supp_check:'A',
     send_data: {},
     send_data_post: {},
-    readonly: ['user_code']
+
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -23,12 +24,13 @@ var main_data = {
  * */
 $(document).ready(function () {
     jqGrid_main();
-    jqGrid_resizes("#mes_grid", ".table-responsive");
+    jqGridResize("#scmInTopGrid", $('#scmInTopGrid').closest('[class*="col-"]'));
+    jqGridResize("#scmInBottomGrid", $('#scmInBottomGrid').closest('[class*="col-"]'));
     datepickerInput();
     /*----모달----*/
     modal_start1();
 
-
+    suppModal_start();
 
     jqgridPagerIcons();
 
@@ -39,14 +41,13 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-
     main_data.send_data_post = main_data.send_data;
+    console.log(main_data.send_data_post);
 
-    $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
-        datatype: "json",
+    $("#scmInTopGrid").setGridParam({
+        datatype: "local",
         page: page,
-        postData: main_data.send_data
+        data: topGrid_data
     }).trigger("reloadGrid");
 }
 
@@ -59,15 +60,50 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
-function add_btn() {
-
-    modal_reset(".modal_value", main_data.readonly);
-
-    main_data.check = 'I';
-
-    $("#addDialog").dialog('open');
+function under_get(rowid) {
+    console.log(rowid);
+    $("#scmInBottomGrid").setGridParam({
+        datatype: "local",
+        data: bottomGrid_data
+    }).trigger("reloadGrid");
 }
 
+
+function add_btn() {
+    modal_reset(".modal_value", []);
+    $( "#scmInDialogLeftGrid" ).jqGrid('clearGridData');
+    $("#datepicker3").datepicker('setDate','today');
+    
+    main_data.check = 'I';
+
+    $("#scmIn-add-dialog").dialog('open');
+    jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
+    jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+}
+
+
+
+function supp_btn(what) {
+    main_data.supp_check = what;
+    $("#supp_modal_keyword").val("supp_name");
+    $("#supp_modal_keyword2").val("");
+
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+    $( "#supp-search-dialog" ).dialog('open');
+     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+}
+
+function suppModal_bus(code,name) {
+    if (main_data.supp_check === 'A'){
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    }else if(main_data.supp_check === 'B'){
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+    }
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+
+}
 
 function update_btn(jqgrid_data) {
 
@@ -112,9 +148,9 @@ function delete_btn() {
 
 
 function datepickerInput() {
-    datepicker_makes("#datepicker");
-    datepicker_makes("#datepicker2");
-    datepicker_makes("#datepicker3");
+    datepicker_makes("#datepicker",-1);
+    datepicker_makes("#datepicker2",0);
+
 }
 
 
@@ -129,17 +165,32 @@ function jqGrid_main() {
         colNames: ['입고일자','전표번호','업체','상태','처리자','출고일시'],
         colModel: [
             {name: 'indate', index: 'indate', width: 60},
-            {name: 'num', index: 'num', width: 60},
+            {name: 'num', index: 'num', key: true,width: 60},
             {name: 'supp', index: 'supp', width: 60},
             {name: 'state', index: 'state', width: 60},
             {name: 'manager', index: 'manager', width: 60},
             {name: 'outdate', index: 'outdate', width: 60},
         ],
+        autowidth: true,
         viewrecords: true,
         height: 150,
         rowNum: 100,
         rowList:[100,200,300,500,1000],
-        pager: '#scmInTopGridPager'
+        pager: '#scmInTopGridPager',
+        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
+        },
+        onCellSelect:function (rowid,icol,cellcontent,e) {
+            under_get(rowid);
+        },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
+
+        }
 
     });
 
@@ -160,6 +211,7 @@ function jqGrid_main() {
             {name: 'bad_num', index: 'max', width: 60},
             {name: 'real_num', index: 'min', width: 60},
         ],
+        autowidth: true,
         viewrecords: true,
         height: 200,
         rowNum: 100,
