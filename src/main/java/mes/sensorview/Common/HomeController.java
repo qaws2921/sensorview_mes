@@ -14,14 +14,15 @@ public class HomeController extends ReturnFunction {
     @RequestMapping("/login")
     public String home()
     {
+
         SCM_IN_SUB scmInSub = new SCM_IN_SUB();
-        scmInSub.setBad_qty("0,1,2,3,4");
-        scmInSub.setIn_qty("9,8,7,6,5");
-        scmInSub.setOrder_qty("0,0,0,0,0");
-        scmInSub.setPart_code("A,B,C,D,E");
+        scmInSub.setBad_qty("0$1$2$3$4");
+        scmInSub.setIn_qty("9$8$7$6$5");
+        scmInSub.setOrder_qty("0$0$0$0$0");
+        scmInSub.setPart_code("A$B$C$D$E");
         log.info(MakeScmInCodeList(scmInSub));
         return "login";
-    }
+}
 
 
     @RequestMapping(value="/")

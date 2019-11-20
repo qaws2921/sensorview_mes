@@ -19,7 +19,7 @@ public class MasterService extends ReturnFunction {
     @Autowired
     private MasterMapper masterMapper;
 
-    public List<Parameter> sysCommonGroupGet(HttpServletRequest req) {
+    public List<Master> sysCommonGroupGet(HttpServletRequest req) {
         Page p = new Page();
         Session lv = (Session) req.getSession().getAttribute("userData");
         p.setSite_code(lv.getSite_code());

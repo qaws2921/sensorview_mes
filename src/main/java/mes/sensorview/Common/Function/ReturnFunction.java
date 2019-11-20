@@ -134,15 +134,11 @@ public class ReturnFunction {
     public String MakeScmInCodeList(SCM_IN_SUB scmInSub)
     {
         String code_list = "";
-        String code1 = scmInSub.getPart_code();
-        String code2 = scmInSub.getOrder_qty();
-        String code3 = scmInSub.getBad_qty();
-        String code4 = scmInSub.getIn_qty();
 
-        String part_code[] = code1.split(",");
-        String order_qty[] = code2.split(",");
-        String bad_qty[] = code3.split(",");
-        String in_qty[] = code4.split(",");
+        String part_code[] = scmInSub.getPart_code().split("\\$");
+        String order_qty[] = scmInSub.getOrder_qty().split("\\$");
+        String bad_qty[] = scmInSub.getBad_qty().split("\\$");
+        String in_qty[] = scmInSub.getIn_qty().split("\\$");
 
         // part_code order, bad, in의 길이가 다 다를수 있으므로 추후 예외처리해야됨
         for(int i=0 ; i<part_code.length ; i++)

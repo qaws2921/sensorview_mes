@@ -2,11 +2,6 @@ package mes.sensorview.mesManager.Master.DTO;
 
 import lombok.Data;
 
-/**
- * @desc : SYSCommonVO
- * @생성자 : 이용환
- * @생성일 : 2019-10-16
- * */
 @Data
 public class SYSCommon {
 	
