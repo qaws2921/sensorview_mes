@@ -7,7 +7,7 @@ import mes.sensorview.mesManager.Master.DTO.*;
 import java.util.List;
 
  public interface MasterMapper {
-    List<Parameter> sysCommonGroupGet(Page p);
+    List<Master> sysCommonGroupGet(Page p);
     List<SYSCommon> sysCommonGet(Page p);
     List<SYSCommon> sysCommonDutyGet(Page p);
     List<SYSMsg> sysMsgGet(Page p);

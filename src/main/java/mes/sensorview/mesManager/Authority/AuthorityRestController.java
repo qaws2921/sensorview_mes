@@ -34,7 +34,6 @@ public class AuthorityRestController {
     @RequestMapping(value="/sysAuthDelete" , method = RequestMethod.POST)
     public Message sysAuthDelete(Page p , HttpServletRequest req){
         return authorityService.sysAuthDelete(p,req);
-
     }
 
     @RequestMapping(value="/menuAllGet" , method = RequestMethod.POST)

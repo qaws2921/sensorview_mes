@@ -20,7 +20,7 @@ public class MasterRestController {
 
 
     @RequestMapping(value="/sysCommonGroupGet", method = RequestMethod.POST)
-    public List<Parameter> sysCommonGroupGet(HttpServletRequest req){
+    public List<Master> sysCommonGroupGet(HttpServletRequest req){
 
         return masterService.sysCommonGroupGet(req);
     }

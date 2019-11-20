@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StandardController {
     @RequestMapping(value = "/sysBPartGroup")
     public String sysBPartGroup() {
-        return "mesManager/AuthorityManagement/sysAuth/sysAuth";
+        return "mesScm/Standard/sysBPartGroup/sysBPartGroup";
     }
+
+    @RequestMapping(value = "/sysBPart")
+    public String sysBPart() { return "mesScm/Standard/sysBPart/sysBPart"; }
 }
