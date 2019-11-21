@@ -6,6 +6,13 @@
 <div id="addDialog" title="자재그룹추가" style="display: none">
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
+            <div class="profile-info-name"> 구분</div>
+            <div class="profile-info-value">
+                <input type="text" name="" class="form-control modal_value">
+            </div>
+        </div>
+
+        <div class="profile-info-row">
             <div class="profile-info-name"> 그룹코드</div>
             <div class="profile-info-value">
                 <input type="text" name="group_code" class="form-control modal_value">
