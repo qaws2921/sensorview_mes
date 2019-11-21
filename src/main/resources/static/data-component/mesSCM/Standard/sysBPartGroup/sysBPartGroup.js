@@ -99,7 +99,7 @@ function delete_btn() {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
-    select_makes("#gubun_select", "/sysDeptAllGet", "dept_code", "dept_name");
+    select_makes("#gubun_select", "/getPartType", "part_type_code", "part_type_name");
 
 }
 

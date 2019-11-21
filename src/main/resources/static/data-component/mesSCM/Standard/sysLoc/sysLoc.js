@@ -27,9 +27,9 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
 
     main_data.send_data_post = main_data.send_data;
-
+    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysLocGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -38,7 +38,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysLocGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -111,7 +111,7 @@ function jqGrid_main() {
             {name: 'loc_code', index: 'loc_code', width: 60},
             {name: 'loc_name', index: 'loc_name', width: 60},
             {name: 'user_name', index: 'user_name', width: 60},
-            {name: 'update_date', index: 'update_date', width: 60},
+            {name: 'update_date', index: 'update_date', width: 60,formatter: formmatterDate,},
         ],
         caption: "로케이션관리 | MES",
         autowidth: true,
