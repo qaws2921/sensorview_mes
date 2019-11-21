@@ -30,15 +30,14 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         data: grid_data,
         datatype: "local",
-        colNames: ['그룹코드', '그룹명', '비고', '등록자', '수정일'],
+        colNames: ['위치코드', '위치명', '등록자', '등록일'],
         colModel: [
             {name: 'code', index: 'code', width: 60},
             {name: 'name', index: 'name', width: 60},
-            {name: 'remark', index: 'remark', width: 60},
             {name: 'manager', index: 'manager', width: 60},
-            {name: 'modified_date', index: 'modified_date', width: 60},
+            {name: 'create_date', index: 'create_date', width: 60},
         ],
-        caption: "자재그룹관리 | MES",
+        caption: "로케이션관리 | MES",
         autowidth: true,
         height: 550,
         pager: '#mes_grid_pager',

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPartGroup/sysBPartGroup.js"
+<script type="text/javascript" src="/data-component/mesSCM/Standard/sysLoc/sysLoc.js"
         charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
                 <span class="sp-title">
-                    자재그룹관리
+                    로케이션관리
                     <small class="sp-small">
                     <i class="ace-icon fa fa-angle-double-right"></i>
                     Manufacturing Execution System
@@ -19,7 +19,7 @@
                     <i class="ace-icon fa fa-angle-double-right"></i>
                     기준정보
                     <i class="ace-icon fa fa-angle-double-right"></i>
-                    <b>자재그룹관리</b>
+                    <b>로케이션관리</b>
                 </span>
         </div>
     </div>
@@ -78,8 +78,8 @@
     </div>
 </div>
 
-<%@include file="sysBPartGroup_modal1.jsp" %>
 
+<%@include file="sysLoc_modal1.jsp" %>
 
 
 

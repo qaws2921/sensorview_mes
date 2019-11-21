@@ -113,9 +113,7 @@
 <%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
 
 <script>
-
-
-    $(document).ready(function () {
+// $(document).ready(function () {
 //
 //        var topGrid_data =
 //            [
@@ -509,7 +507,7 @@
         // suppModal_start();
         //
         // $(window).triggerHandler('resize.jqGrid');
-    });
+    // });
 </script>
 
 
