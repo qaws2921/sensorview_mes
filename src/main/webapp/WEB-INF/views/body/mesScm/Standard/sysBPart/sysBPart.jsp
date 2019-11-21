@@ -20,7 +20,7 @@
                     기준정보
                     <i class="ace-icon fa fa-angle-double-right"></i>
                     <b>자재정보관리</b>
-                </span>
+            </span>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
-                    <td class="wt-px-200 t-align-c">
+                    <td class="wt-px-200">
                         <select name="keyword" class="form-control keyword condition_main" >
                             <option value="">전체</option>
                         </select>
@@ -46,6 +46,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
@@ -87,6 +88,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xs-12 table-responsive">
                 <table id="mes_grid"></table>
@@ -94,7 +96,8 @@
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
 <%@include file="sysBPart_modal1.jsp" %>
 <%@include file="sysBPart_modal2.jsp" %>

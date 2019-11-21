@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPart/sysBPart_modal2.js"
         charset="UTF-8"></script>
 
-<div id="uploadDialog" title="자재품목 엑셀업로드" style="display: none">
+<div id="uploadDialog" title="자재품목 엑셀업로드">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
