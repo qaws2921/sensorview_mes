@@ -2,6 +2,7 @@ package mes.sensorview.mesScm.Standard;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper;
@@ -53,5 +54,9 @@ public class StandardService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         p.setKeyword(p.getKeyword());
         return scmStandardMapper.sysLocDelete(p);
+    }
+
+    public PartType getPartType(HttpServletRequest req) {
+        return scmStandardMapper.getPartType(getSessionData(req).getSite_code());
     }
 }
