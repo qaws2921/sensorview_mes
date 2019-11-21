@@ -128,6 +128,21 @@ function datepicker_makes(tag,num) {
     }).datepicker('setDate',date);
 }
 
+
+function modalValuePush(name1,name2,name3) {
+
+		$(name2).val($(name1).val());
+		if ($(name1).val() === ""){
+			$(name3).val("");
+
+		} else {
+
+			$(name3).val($(name1 + " option:selected").text().trim());
+		}
+
+
+}
+
 function callback(cb) {
 	return  cb();
 }
