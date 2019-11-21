@@ -56,7 +56,7 @@ public class StandardService extends ReturnFunction {
         return scmStandardMapper.sysLocDelete(p);
     }
 
-    public PartType getPartType(HttpServletRequest req) {
+    public List<PartType> getPartType(HttpServletRequest req) {
         return scmStandardMapper.getPartType(getSessionData(req).getSite_code());
     }
 }

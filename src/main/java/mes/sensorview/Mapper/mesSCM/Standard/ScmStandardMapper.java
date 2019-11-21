@@ -14,5 +14,5 @@ public interface ScmStandardMapper {
     List<sysLoc> sysLocGet(Page p);
     Message sysLocAdd(sysLoc vo);
     Message sysLocDelete(Page p);
-    PartType getPartType(String site_code);
+    List<PartType> getPartType(String site_code);
 }

@@ -20,7 +20,7 @@ public class StandardRestController {
     private StandardService standardService;
 
     @RequestMapping(value = "/getPartType", method = RequestMethod.POST)
-    public PartType getPartType(HttpServletRequest req) {
+    public List<PartType> getPartType(HttpServletRequest req) {
         return standardService.getPartType(req);
     }
 
