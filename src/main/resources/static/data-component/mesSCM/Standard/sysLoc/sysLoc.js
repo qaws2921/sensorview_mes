@@ -78,7 +78,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysUserDelete", {keyword: ids.join(",")}).then(function (data) {
+            ccn_ajax("/sysLocDelete", {keyword: ids.join(",")}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -97,7 +97,7 @@ function delete_btn() {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
-    select_makes("#cargo_select", "/sysDeptAllGet", "dept_code", "dept_name");
+    select_makes("#cargo_select", "/sysCargoBAllGet", "cargo_code", "cargo_name");
 
 }
 
@@ -108,7 +108,7 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['위치코드', '위치명', '등록자', '등록일'],
         colModel: [
-            {name: 'loc_code', index: 'loc_code', width: 60},
+            {name: 'loc_code', index: 'loc_code', key:true, width: 60},
             {name: 'loc_name', index: 'loc_name', width: 60},
             {name: 'user_name', index: 'user_name', width: 60},
             {name: 'update_date', index: 'update_date', width: 60,formatter: formmatterDate,},

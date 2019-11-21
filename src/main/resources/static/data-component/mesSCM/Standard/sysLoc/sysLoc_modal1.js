@@ -17,7 +17,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysUserAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysLocAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {

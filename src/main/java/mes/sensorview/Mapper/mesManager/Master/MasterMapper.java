@@ -22,4 +22,6 @@ import java.util.List;
     List<SYSCargo> sysCargoGet(Page p);
     Message sysCargoAdd(SYSCargo scv);
     Message sysCargoDelete(Page p);
-}
+
+     List<SYSCargo> sysCargoBAllGet(Page p);
+ }
