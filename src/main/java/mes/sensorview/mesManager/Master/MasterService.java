@@ -106,4 +106,9 @@ public class MasterService extends ReturnFunction {
         p.setKeyword(p.getKeyword());
         return masterMapper.sysCargoDelete(p);
     }
+
+    public List<SYSCargo> sysCargoBAllGet(HttpServletRequest req,Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysCargoBAllGet(p);
+    }
 }

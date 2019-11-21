@@ -101,6 +101,10 @@ public class MasterRestController {
         return masterService.sysCargoGet(p,req);
     }
 
+    @RequestMapping(value="/sysCargoBAllGet", method = RequestMethod.POST)
+    public List<SYSCargo> sysCargoBAllGet(HttpServletRequest req,Page p){
+        return masterService.sysCargoBAllGet(req,p);
+    }
 
     @RequestMapping(value="/sysCargoAdd", method = RequestMethod.POST)
     public  Message sysCargoAdd(HttpServletRequest req,SYSCargo scv){
