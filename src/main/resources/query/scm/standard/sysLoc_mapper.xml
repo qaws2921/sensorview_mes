@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper">
+    <select id="sysLocGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
+        EXEC SP_SYS_LOC_GET #{site_code}, #{keyword},#{page}, #{rows}, ''
+    </select>
+    <select id="sysLocAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_LOC_ADD #{site_code},#{cargo_code},#{loc_code},#{loc_name},#{user_code},#{keyword}
+    </select>
+    <select id="sysLocDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_LOC_DEL #{site_code},#{keyword}
+    </select>
+</mapper>

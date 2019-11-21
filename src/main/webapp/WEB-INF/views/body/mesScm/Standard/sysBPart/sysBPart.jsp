@@ -51,7 +51,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1);">
                                 <span>
                                     <i class="fa fa-search bigger-110 blue"></i>
                                     <span>조회</span>
@@ -64,7 +64,7 @@
                                 </span>
                     </a>
                     <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn();">
                                 <span>
                                     <i class="fa fa-trash bigger-110 blue"></i>
                                     <span>삭제</span>
@@ -101,3 +101,4 @@
 </div>
 <%@include file="sysBPart_modal1.jsp" %>
 <%@include file="sysBPart_modal2.jsp" %>
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

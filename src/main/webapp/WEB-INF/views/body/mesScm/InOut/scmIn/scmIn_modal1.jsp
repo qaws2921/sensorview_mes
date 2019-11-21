@@ -68,13 +68,13 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">입고일자</td>
                     <td class="wt-px-150">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value">
+                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value2">
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
                     <td>
-                        <input type="text" name="bi" class="form-control h-25 modal_value">
+                        <input type="text" name="bi" class="form-control h-25 modal_value2">
                     </td>
                 </tr>
                 </tbody>
@@ -83,7 +83,7 @@
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="">
+                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="" onclick="add_modal1_btn();">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>저장</span>

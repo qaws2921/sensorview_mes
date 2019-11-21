@@ -40,14 +40,14 @@
         <div class="profile-info-row">
             <div class="profile-info-name">업체코드</div>
             <div class="profile-info-value">
-                <input type="text" name="" class="form-control modal_value">
+                <input type="text" name="" id="supp_code_main" class="form-control modal_value" readonly onclick="supp_btn();">
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name">업체명</div>
             <div class="profile-info-value">
-                <input type="text" name="" class="form-control modal_value">
+                <input type="text" name="" id="supp_name_main" class="form-control modal_value" readonly>
             </div>
         </div>
 

@@ -114,12 +114,15 @@ public class ReturnFunction {
             while (check2) {
                 if (req.getServletPath().substring(1).equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
                     av1 = authAllSubSelect.get(index).get(index2);
+                    log.info(req.getServletPath().substring(1)); // sysBPartGroup
+                    log.info(authAllSubSelect.get(index).get(index2).getMenu_code());
                     check2 = false;
                     check = false;
                     return av1;
                 }
 
                 if (authAllSubSelect.get(index).size() == index2 + 1) {
+                    log.info(authAllSubSelect.get(index).size()+" ");
                     check2 = false;
                 }
                 ++index2;

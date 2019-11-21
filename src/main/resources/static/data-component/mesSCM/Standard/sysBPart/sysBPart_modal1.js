@@ -5,7 +5,23 @@ function modal_start1() {
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function supp_btn() {
 
+    $("#supp_modal_keyword").val("supp_name");
+    $("#supp_modal_keyword2").val("");
+
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+    $( "#supp-search-dialog" ).dialog('open');
+    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+}
+
+function suppModal_bus(code,name) {
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+
+}
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function modal_make1() {
