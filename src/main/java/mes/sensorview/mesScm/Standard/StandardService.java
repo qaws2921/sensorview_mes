@@ -34,7 +34,6 @@ public class StandardService extends ReturnFunction {
 
     public Message sysBPartGroupDelete(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(p.getKeyword());
         return scmStandardMapper.sysBPartGroupDelete(p);
     }
 
@@ -63,5 +62,10 @@ public class StandardService extends ReturnFunction {
     public sysLoc sysLocOneGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return scmStandardMapper.sysLocOneGet(p);
+    }
+
+    public sysBPartGroup sysBPartGroupOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysBPartGroupOneGet(p);
     }
 }

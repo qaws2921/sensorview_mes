@@ -3,7 +3,7 @@ function suppModal_start() {
 
     suppModal_make();
     suppModal_jqGrid();
-    jqgridPagerIcons();
+
     jqGridResize("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 
@@ -12,12 +12,21 @@ function suppModal_start() {
 
 function suppModal_get_btn(page) {
     var supp_send_data = value_return(".suppModal_condition");
-    console.log(supp_send_data);
+    var data_go = {}
+    if (supp_send_data.keyword === 'supp_name'){
+        data_go = {keyword2 : supp_send_data.keyword3,keyword:""};
+    } else {
+        data_go = {keyword : supp_send_data.keyword3,keyword2:""};
+    }
+
+
+    console.log(data_go);
 
     $("#SuppSearchGrid").setGridParam({
-        datatype: "local",
+        url: '/sysSuppGet',
+        datatype: "json",
         page: page,
-        data: suppGrid_data
+        postData: data_go,
     }).trigger("reloadGrid");
 }
 
@@ -66,7 +75,7 @@ function suppModal_jqGrid() {
     $('#SuppSearchGrid').jqGrid({
         datatype: "local",
         // 다중 select
-
+        mtype: 'POST',
         // 타이틀
         caption: "업체조회 | MES",
         colNames: ['','업체코드','업체명','사업자번호','대표','주소'],
@@ -74,10 +83,10 @@ function suppModal_jqGrid() {
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
-            {name: 'supp_code', index: 'supp_code',width: 80},
+            {name: 'supp_code', index: 'supp_code', key:true,width: 80},
             {name: 'supp_name', index: 'supp_name',width: 80},
-            {name: 'supp_num', index: 'supp_num',width: 200},
-            {name: 'ceo', index: 'ceo',width: 80},
+            {name: 'supp_no', index: 'supp_no',width: 200},
+            {name: 'emp_name', index: 'emp_name',width: 80},
             {name: 'address', index: 'address',width: 200},
         ],
         // 페이지 수 보기 (1 / 100) = true
@@ -112,24 +121,3 @@ function suppModal_jqGrid() {
 }
 /////////////////////////////////////////지울거////////////////////////////////
 
-var suppGrid_data =
-    [
-        {supp_code:"S0001",supp_name:"협력사1",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0002",supp_name:"협력사2",supp_num:"1482-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0003",supp_name:"협력사3",supp_num:"1522-20925429",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0004",supp_name:"협력사4",supp_num:"1582-21925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0005",supp_name:"협력사5",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0006",supp_name:"협력사6",supp_num:"1582-22135829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0007",supp_name:"협력사7",supp_num:"1582-20885829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0008",supp_name:"협력사8",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0009",supp_name:"협력사9",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0010",supp_name:"협력사10",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0011",supp_name:"협력사11",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0012",supp_name:"협력사12",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0013",supp_name:"협력사13",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0014",supp_name:"협력사14",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0015",supp_name:"협력사15",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0016",supp_name:"협력사16",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0017",supp_name:"협력사17",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-        {supp_code:"S0018",supp_name:"협력사18",supp_num:"1582-20925829",ceo:"KIM",address:"서울특별시 강남구"},
-    ];
