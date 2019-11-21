@@ -1,9 +1,9 @@
-////////////////////////////시작 함수/////////////////////////////////////
-function modal_start1() {
-    modal_make1();
-    modal2_jqGrid();
-    jqgridPagerIcons();
+var modal2_data = [];
 
+////////////////////////////시작 함수/////////////////////////////////////
+function modal_start2() {
+    modal_make2();
+    modal2_jqGrid();
 }
 
 
@@ -11,7 +11,7 @@ function modal_start1() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function modal_make1() {
+function modal_make2() {
 
     $("#uploadDialog").dialog({
         autoOpen:false,
@@ -29,7 +29,7 @@ function modal_make1() {
 
 function modal2_jqGrid() {
     $('#modal2_grid').jqGrid({
-        data: grid_data,
+        data: modal2_data,
         datatype: 'local',
         caption: '자재품목 엑셀업로드 | MES',
         colNames: ['품목구분','품목코드','품목명','보관로케이션','업체명','규격','단위','L/T','검사기준','검사구분','재고최대','재고최소'],
@@ -54,11 +54,11 @@ function modal2_jqGrid() {
         rowList: [100, 200, 300, 400],
         viewrecords: true,
         multiselect: true,
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
-    }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
+        // beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
+        //     var $myGrid = $(this),
+        //         i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+        //         cm = $myGrid.jqGrid('getGridParam', 'colModel');
+        //     return (cm[i].name === 'cb');
+        // },
+    }).navGrid('#modal2_grid_pager', {search: false, add: false, edit: false, del: false});
 }

@@ -31,13 +31,13 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-200 t-align-c">
-                        <select name="keyword" class="form-control keyword condition_main" id="" >
+                        <select name="keyword" class="form-control keyword condition_main" id="">
                             <option value="">전체</option>
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목구분</td>
                     <td class="wt-px-200 t-align-c">
-                        <select name="keyword" class="form-control keyword condition_main" id="" >
+                        <select name="keyword" class="form-control keyword condition_main" id="">
                             <option value="">전체</option>
                         </select>
                     </td>
@@ -49,30 +49,36 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
                                 <span>
                                     <i class="fa fa-search bigger-110 blue"></i>
                                     <span>조회</span>
                                 </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                                 <span><i class="fa fa-plus bigger-110 blue"></i>
                                     <span>추가</span>
                                 </span>
                     </a>
-                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
                                 <span>
                                     <i class="fa fa-trash bigger-110 blue"></i>
                                     <span>삭제</span>
                                 </span>
                     </a>
-                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
                                 <span>
                                     <i class="fa fa-download bigger-110 blue"></i>
                                     <span>저장</span>
                                 </span>
                     </a>
-                    <a id="upload_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="upload_btn()">
+                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""
+                       onclick="upload_btn()">
                                 <span>
                                     <i class="fa fa-upload bigger-110 blue"></i>
                                     <span>엑셀 업로드</span>
@@ -81,7 +87,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-xs-12 table-responsive">
                 <table id="mes_grid"></table>
