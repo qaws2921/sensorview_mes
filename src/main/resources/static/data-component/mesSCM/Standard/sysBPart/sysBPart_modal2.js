@@ -4,6 +4,8 @@ var modal2_data = [];
 function modal_start2() {
     modal_make2();
     modal2_jqGrid();
+     jqGridResize('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
+
 }
 
 
@@ -16,8 +18,9 @@ function modal_make2() {
     $("#uploadDialog").dialog({
         autoOpen:false,
         modal: true,
-        width: 'auto',
-        height: 'auto',
+
+        width: 1300,
+        height: 600,
         resizable: false,
         buttons: [
             {
