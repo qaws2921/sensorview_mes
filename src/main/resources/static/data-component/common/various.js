@@ -117,12 +117,19 @@ function ccn_ajax(url,data){
 	  });
 }
 
-function datepicker_makes(tag) {
+function datepicker_makes(tag,num) {
+	var date = new Date();
+	date.setDate(date.getDate() + num);
+
     $( tag ).datepicker({
         autoclose: true,
         format:'yyyy-mm-dd',
         language: "kr",
-    });
+    }).datepicker('setDate',date);
+}
+
+function callback(cb) {
+	return  cb();
 }
 
 
