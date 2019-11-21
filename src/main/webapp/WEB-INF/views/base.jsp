@@ -3,19 +3,17 @@
 <%@ page session="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
-<%@ include file="/WEB-INF/views/components/header.jsp" %>
+<tiles:insertAttribute name="header"/>
 <html>
 <body class="no-skin">
-<%@ include file="/WEB-INF/views/components/header.jsp" %>
-<%@ include file="/WEB-INF/views/components/navbar/top-nav.jsp" %>
-<%@ include file="/WEB-INF/views/components/navbar/mid-nav.jsp" %>
+<tiles:insertAttribute name="helpDesk"/>
+<tiles:insertAttribute name="mid"/>
 <div class="main-container ace-save-state" id="main-container">
-    <%@ include file="/WEB-INF/views/components/navbar/left-nav.jsp" %>
+    <tiles:insertAttribute name="lnb"/>
     <div class="main-content">
-        <jsp:include page="/WEB-INF/views/body/${uri.dep1}/${uri.dep2}/${uri.dep3}/${uri.dep4}.jsp" />
+        <tiles:insertAttribute name="body"/>
     </div>
 </div>
-<%@ include file="/WEB-INF/views/components/footer.jsp" %>
-
+<tiles:insertAttribute name="footer"/>
 </body>
 </html>
