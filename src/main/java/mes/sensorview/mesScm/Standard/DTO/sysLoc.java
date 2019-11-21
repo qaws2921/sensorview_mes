@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class sysLoc {
     private String site_code;
+    private String cargo_name;
     private String cargo_code;
     private String loc_code;
     private String loc_name;

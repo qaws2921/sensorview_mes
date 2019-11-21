@@ -63,7 +63,7 @@ function update_btn(jqgrid_data) {
     send_data.keyword = jqgrid_data.loc_code;
 
 
-    ccn_ajax('/sysUserOneGet', send_data).then(function (data) {
+    ccn_ajax('/sysLocOneGet', send_data).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });

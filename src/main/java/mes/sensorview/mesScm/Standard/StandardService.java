@@ -59,4 +59,9 @@ public class StandardService extends ReturnFunction {
     public List<PartType> getPartType(HttpServletRequest req) {
         return scmStandardMapper.getPartType(getSessionData(req).getSite_code());
     }
+
+    public sysLoc sysLocOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysLocOneGet(p);
+    }
 }

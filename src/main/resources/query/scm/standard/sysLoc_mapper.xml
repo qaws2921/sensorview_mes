@@ -4,6 +4,11 @@
     <select id="sysLocGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
         EXEC SP_SYS_LOC_GET #{site_code},#{page}, #{rows}, '',#{keyword}
     </select>
+
+    <select id="sysLocOneGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
+        EXEC SP_SYS_LOC_GET #{site_code},1, 1, #{keyword},''
+    </select>
+
     <select id="sysLocAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_LOC_ADD #{site_code},#{cargo_code},#{loc_code},#{loc_name},#{user_code},#{keyword}
     </select>
