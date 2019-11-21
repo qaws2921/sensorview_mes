@@ -15,4 +15,7 @@ public class InventoryController {
 
     @RequestMapping(value ="/scmStockSumMonth")
     public String scmStockSumMonth() { return "mesScm/Inventory/scmStockSumMonth/scmStockSumMonth"; }
+
+    @RequestMapping(value ="/scmStockRevList")
+    public String scmStockRevList() { return "mesScm/Inventory/scmStockRevList/scmStockRevList"; }
 }
