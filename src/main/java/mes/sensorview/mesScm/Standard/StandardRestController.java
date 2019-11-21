@@ -2,6 +2,7 @@ package mes.sensorview.mesScm.Standard;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -17,6 +18,11 @@ import java.util.List;
 public class StandardRestController {
     @Autowired
     private StandardService standardService;
+
+    @RequestMapping(value = "/getPartType", method = RequestMethod.POST)
+    public PartType getPartType(HttpServletRequest req) {
+        return standardService.getPartType(req);
+    }
 
     @RequestMapping(value = "/sysBPartGroupGet", method = RequestMethod.POST)
     public RESTful sysBPartGroupGet(HttpServletRequest req, Page p) {
