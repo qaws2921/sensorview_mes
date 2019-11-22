@@ -67,9 +67,9 @@ function update_btn(jqgrid_data) {
 
     main_data.check = 'U';
 
-    jqgrid_data.dept_code = main_data.send_data_post.keyword;
+console.log(jqgrid_data.part_code);
 
-    ccn_ajax('/sysUserOneGet', jqgrid_data).then(function (data) {
+    ccn_ajax('/sysBPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });

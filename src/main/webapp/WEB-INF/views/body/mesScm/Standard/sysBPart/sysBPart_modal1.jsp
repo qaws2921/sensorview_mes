@@ -8,7 +8,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
             <div class="profile-info-value">
-                <select name="part_grp_code" id="partGrp_select2" class="form-control keyword wt-100">
+                <select name="part_grp_code" id="partGrp_select2" class="form-control keyword wt-100 modal_value">
 
                 </select>
             </div>
@@ -31,7 +31,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">보관로케이션</div>
             <div class="profile-info-value">
-                <select name="loc_code" id="loc_select" class="form-control keyword">
+                <select name="loc_code" id="loc_select" class="form-control keyword  modal_value">
 
                 </select>
             </div>
@@ -41,7 +41,7 @@
             <div class="profile-info-name">업체코드</div>
             <div class="profile-info-value">
                 <div class="input-icon input-icon-right">
-                    <input type="text" name="" id="supp_code_main" class="form-control modal_value" readonly onclick="supp_btn();">
+                    <input type="text" name="supp_code" id="supp_code_main" class="form-control modal_value" readonly onclick="supp_btn();">
                     <input type="hidden" name="supp_code" class="form-control h-25 condition_main">
                     <i class="ace-icon fa fa-search dark" style="top: -2px;"></i>
                 </div>
@@ -66,7 +66,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
-                <select name="unit_code" id="unit_select" class="form-control keyword">
+                <select name="unit_code" id="unit_select" class="form-control keyword modal_value">
 
                 </select>
             </div>
@@ -82,7 +82,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사기준</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword">
+                <select name="keyword" class="form-control keyword  modal_value">
                     <option>검사</option>
                     <option>무검사</option>
                 </select>
@@ -92,7 +92,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사구분</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword">
+                <select name="keyword" class="form-control keyword  modal_value">
                     <option>X</option>
                     <option>전수</option>
                     <option>샘플링</option>

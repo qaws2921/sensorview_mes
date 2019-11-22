@@ -1,7 +1,5 @@
 package mes.sensorview.Common.Excel;
 
-import lombok.extern.slf4j.Slf4j;
-import mes.sensorview.Common.Excel.Action.ExcelFunction;
 import mes.sensorview.Mapper.Auth.AuthMapper;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -15,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ExcelService extends ExcelFunction {
+public class ExcelService{
     @Autowired
     private AuthMapper authMapper;
 
@@ -77,7 +75,7 @@ public class ExcelService extends ExcelFunction {
 
             // 컨텐츠 타입과 파일명 지정
             response.setContentType("ms-vnd/excel;");
-            response.setHeader("Content-Disposition", "attachment;filename=sheet_"+getData()+".xls");
+            response.setHeader("Content-Disposition", "attachment;filename=sheet.xls");
 
             // 엑셀 출력
             workbook.write(response.getOutputStream());
