@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPart/sysBPart_modal1.js"
         charset="UTF-8"></script>
 
-<div id="addDialog" title="자재품목추가" style="display: none">
+<div id="addDialog" title="자재품목추가" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
@@ -40,7 +40,12 @@
         <div class="profile-info-row">
             <div class="profile-info-name">업체코드</div>
             <div class="profile-info-value">
-                <input type="text" name="" id="supp_code_main" class="form-control modal_value" readonly onclick="supp_btn();">
+                <div class="input-icon input-icon-right">
+                    <input type="text" name="" id="supp_code_main" class="form-control modal_value" readonly onclick="supp_btn();">
+                    <input type="hidden" name="supp_code" class="form-control h-25 condition_main">
+                    <i class="ace-icon fa fa-search dark" style="top: -2px;"></i>
+                </div>
+
             </div>
         </div>
 

@@ -18,6 +18,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid',$('#mes_grid').closest('[class*="col-"]'));
     selectBox();
+
     modal_start1();
 
     modal_start2();
@@ -31,7 +32,6 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-
     main_data.send_data_post = main_data.send_data;
     $("#mes_grid").setGridParam({
         url: '/sysBPartGet',
@@ -57,6 +57,7 @@ function add_btn() {
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
+
 }
 
 
@@ -107,7 +108,6 @@ function upload_btn() {
     $('#uploadDialog').dialog('open');
     jqGridResize2('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
 }
-
 
 ////////////////////////////호출 함수//////////////////////////////////
 
