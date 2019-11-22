@@ -8,8 +8,8 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 구분</div>
             <div class="profile-info-value">
-                <input type="text" name="gubun_name" id="gubun_name" class="form-control modal_value" readonly>
-                <input type="hidden" name="gubun" id="gubun" class="form-control modal_value">
+                <input type="text" name="part_type_name" id="part_type_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="part_type_code" id="part_type_code" class="form-control modal_value">
             </div>
         </div>
 

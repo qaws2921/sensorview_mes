@@ -17,4 +17,6 @@ public interface ScmStandardMapper {
     List<PartType> getPartType(String site_code);
 
     sysLoc sysLocOneGet(Page p);
+
+    sysBPartGroup sysBPartGroupOneGet(Page p);
 }

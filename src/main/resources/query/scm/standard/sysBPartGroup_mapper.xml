@@ -3,10 +3,13 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper">
     <select id="sysBPartGroupGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPartGroup">
-        	EXEC SP_SYS_BPART_GROUP_GET #{site_code}, #{keyword},#{page}, #{rows}, ''
+        	EXEC SP_SYS_BPART_GROUP_GET #{site_code},#{page}, #{rows}, #{keyword}, ''
+    </select>
+    <select id="sysBPartGroupOneGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPartGroup">
+        	EXEC SP_SYS_BPART_GROUP_GET #{site_code},1, 1, '', #{keyword}
     </select>
     <select id="sysBPartGroupAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_BPART_GROUP_ADD #{site_code},#{part_code},#{part_grp_code},#{part_grp_name},#{user_code},#{keyword}
+    	EXEC SP_SYS_BPART_GROUP_ADD #{site_code},#{part_type_code},#{part_grp_code},#{part_grp_name},#{remark},#{user_code},#{keyword}
     </select>
     <select id="sysBPartGroupDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_BPART_GROUP_DEL #{site_code},#{keyword}

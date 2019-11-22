@@ -27,4 +27,5 @@ public class Page {
     private String date;
     private String site_code;
     private String gb;
+
 }

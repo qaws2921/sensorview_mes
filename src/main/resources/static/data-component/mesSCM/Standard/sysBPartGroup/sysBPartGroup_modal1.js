@@ -7,7 +7,6 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
-    console.log(modal_objact);
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {
@@ -17,7 +16,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysUserAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysBPartGroupAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -64,7 +63,7 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    if (modal_objact.gubun === '') {
+    if (modal_objact.part_type_code === '') {
         alert("구분을 선택해주세요");
         return false;
     } else if (modal_objact.part_grp_code === '') {

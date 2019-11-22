@@ -29,12 +29,18 @@ public class StandardRestController {
         return standardService.sysBPartGroupGet(req, p);
     }
 
+    @RequestMapping(value = "/sysBPartGroupOneGet", method = RequestMethod.POST)
+    public sysBPartGroup sysBPartGroupOneGet(HttpServletRequest req, Page p) {
+        System.out.println(p.getKeyword());
+        return standardService.sysBPartGroupOneGet(req, p);
+    }
+
     @RequestMapping(value = "/sysBPartGroupAdd", method = RequestMethod.POST)
     public Message sysProdLineAdd(HttpServletRequest req, sysBPartGroup vo) {
         return standardService.sysBPartGroupAdd(req, vo);
     }
 
-    @RequestMapping(value = "/sysBPartGroupDelete")
+    @RequestMapping(value = "/sysBPartGroupDelete", method = RequestMethod.POST)
     public Message sysProdLineDelete(Page p, HttpServletRequest req) {
         return standardService.sysBPartGroupDelete(p, req);
 
@@ -55,7 +61,7 @@ public class StandardRestController {
         return standardService.sysLocAdd(req, vo);
     }
 
-    @RequestMapping(value = "/sysLocDelete")
+    @RequestMapping(value = "/sysLocDelete", method = RequestMethod.POST)
     public Message sysLocDelete(Page p, HttpServletRequest req) {
         return standardService.sysLocDelete(p, req);
 

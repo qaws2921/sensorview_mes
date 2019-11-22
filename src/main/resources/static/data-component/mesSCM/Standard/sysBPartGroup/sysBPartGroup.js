@@ -31,7 +31,7 @@ function get_btn(page) {
     main_data.send_data_post = main_data.send_data;
 
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysBPartGroupGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -40,7 +40,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysBPartGroupGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -50,7 +50,7 @@ function get_btn_post(page) {
 function add_btn() {
 
     modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#gubun_select","#gubun","#gubun_name");
+    modalValuePush("#gubun_select","#part_type_code","#part_type_name");
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
@@ -62,10 +62,8 @@ function update_btn(jqgrid_data) {
     modal_reset(".modal_value", []);
     main_data.check = 'U';
     var send_data = {};
-    send_data.keyword = jqgrid_data.part_group_code;
-
-
-    ccn_ajax('/sysUserOneGet', send_data).then(function (data) {
+    send_data.keyword = jqgrid_data.part_grp_code;
+    ccn_ajax('/sysBPartGroupOneGet', send_data).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
@@ -80,7 +78,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysUserDelete", {keyword: ids.join(",")}).then(function (data) {
+            ccn_ajax("/sysBPartGroupDelete", {keyword: ids.join(",")}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -110,11 +108,11 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['그룹코드', '그룹명', '비고', '등록자', '수정일'],
         colModel: [
-            {name: 'part_grp_code', index: 'part_grp_code', width: 60},
+            {name: 'part_grp_code', index: 'part_grp_code', key:true, width: 60},
             {name: 'part_grp_name', index: 'part_grp_name', width: 60},
             {name: 'remark', index: 'remark', width: 60},
             {name: 'user_name', index: 'user_name', width: 60},
-            {name: 'update_date', index: 'update_date', width: 60},
+            {name: 'update_date', index: 'update_date', width: 60,formatter: formmatterDate,},
         ],
         caption: "자재그룹관리 | MES",
         autowidth: true,

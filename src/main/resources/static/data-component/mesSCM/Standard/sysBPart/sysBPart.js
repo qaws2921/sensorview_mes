@@ -17,11 +17,12 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid',$('#mes_grid').closest('[class*="col-"]'));
-
+    selectBox();
     modal_start1();
 
     modal_start2();
     suppModal_start();
+
     jqgridPagerIcons();
 });
 
@@ -105,6 +106,12 @@ function upload_btn() {
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+
+function selectBox() {
+    select_makes("#gubun_select", "/getPartType", "part_type_code", "part_type_name");
+
+}
+
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({

@@ -13,7 +13,7 @@
                         </select>
                     </td>
                     <td class="wt-px-200">
-                        <input name="keyword2" type="text" class="form-control h-25 suppModal_condition" id="supp_modal_keyword2">
+                        <input name="keyword3" type="text" class="form-control h-25 suppModal_condition" id="supp_modal_keyword2">
                     </td>
                     <td>
                         <div class="dt-buttons btn-overlap btn-group">
