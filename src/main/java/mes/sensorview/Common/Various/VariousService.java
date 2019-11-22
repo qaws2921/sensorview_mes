@@ -36,7 +36,7 @@ public class VariousService extends ReturnFunction {
     }
 
     public List<SYSCommon> sysCommonUnitGet(Page p, HttpServletRequest req) {
-        //p.setSite_code(getSessionData(req).getSite_code());
-        return null;
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysCommonUnitGet(p);
     }
 }
