@@ -27,4 +27,5 @@ public class sysBPart {
     private String loc_name;
     private int rownum;
     private int rec_count;
+    private String keyword;
 }

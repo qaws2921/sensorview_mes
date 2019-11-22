@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['user_code']
+    readonly: ['part_code']
 };
 
 
