@@ -1,10 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<!doctype html>
-<html lang="ko">
-<head>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<script type="text/javascript" src="/data-component/mesSCM/Close/scmBPartClose/scmBPartClose.js"
+        charset="UTF-8"></script>
 
-</body>
-</html>
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <div class="col-lg-12 ">
+            <span class="sp-title">
+            	마감진행
+            	<small class="sp-small"><i class="ace-icon fa fa-angle-double-right"></i>
+            	Manufacturing Execution System
+            	</small>
+            </span>
+            <span style="float: right">
+            	자재관리
+            	<i class="ace-icon fa fa-angle-double-right"></i>
+             	매입마감
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                <b>마감진행</b>
+           </span>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="col-lg-12 padding0">
+            <table class="table wt-100">
+                <tbody>
+                <tr>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">마감일자</td>
+                    <td class="wt-px-200">
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main">
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                        </div>
+                    </td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">업체</td>
+                    <td class="wt-px-200">
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="supp_name" class="form-control h-25 condition_main" id="supp_name_main" onclick="supp_btn('A');">
+                            <input type="hidden" name="supp_code" class="form-control h-25 condition_main" id="supp_code_main">
+                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
+                        </div>
+                    </td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">비고</td>
+                    <td class="wt-px-200">
+                        <input type="text" class="form-control h-25 t-align-c" />
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix">
+            <div class="pull-left tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <a id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""   onclick="get_btn(1)">
+                            <span>
+                            <i class="fa fa-search bigger-110 blue"></i>
+                            <span>조회</span>
+                            </span>
+                    </a>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="add_btn();">
+                            <span><i class="fa fa-plus bigger-110 blue"></i>
+                            <span>마감처리</span>
+                            </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table id="mes_grid"></table>
+                <div id="mes_grid_pager"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

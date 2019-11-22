@@ -15,11 +15,14 @@ var main_data = {
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
+    selectBox();
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    selectBox();
+
     modal_start1();
     jqgridPagerIcons();
+
+
 });
 
 

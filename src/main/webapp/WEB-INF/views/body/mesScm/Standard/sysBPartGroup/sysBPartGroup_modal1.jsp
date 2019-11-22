@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPartGroup/sysBPartGroup_modal1.js"
         charset="UTF-8"></script>
 
-<div id="addDialog" title="자재그룹추가" >
+<div id="addDialog" title="자재그룹추가" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
             <div class="profile-info-name"> 구분</div>

@@ -66,4 +66,16 @@ public class StandardRestController {
         return standardService.sysLocDelete(p, req);
 
     }
+
+    @RequestMapping(value = "/sysBPartGet", method = RequestMethod.POST)
+    public RESTful sysBPartGet(HttpServletRequest req, Page p) {
+        return standardService.sysBPartGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysBPartDelete", method = RequestMethod.POST)
+    public Message sysBPartDelete(Page p, HttpServletRequest req) {
+        return standardService.sysBPartDelete(p, req);
+
+    }
+
 }

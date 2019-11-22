@@ -13,11 +13,18 @@ public class sysBPart {
     private String supp_code;
     private String spec;
     private String unit_code;
-    private String pack_qty;
-    private String max_qty;
-    private String min_qty;
-    private String qc_level;
+    private int pack_qty;
+    private int max_qty;
+    private int min_qty;
+    private int qc_level;
     private String user_code;
     private String create_date;
     private String update_date;
+    private String part_grp_name;
+    private String supp_name;
+    private String user_name;
+    private String unit_name;
+    private String loc_name;
+    private int rownum;
+    private int rec_count;
 }
