@@ -31,7 +31,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">보관로케이션</div>
             <div class="profile-info-value">
-                <select name="loc_code" id="loc_select" class="form-control keyword">
+                <select name="loc_code" id="loc_select" class="form-control keyword" style="width:100%">
 
                 </select>
             </div>

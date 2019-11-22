@@ -51,7 +51,7 @@ function modal2_jqGrid() {
             {name:'stock_minn',index: '',width: 50},
         ],
         width: 1200,
-        height: 250,
+        height: 300,
         pager: '#modal2_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 400],
