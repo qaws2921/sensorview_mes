@@ -33,9 +33,8 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
 
     main_data.send_data_post = main_data.send_data;
-
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysBPartGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -44,7 +43,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/sysBPartGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -84,7 +83,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysUserDelete", {keyword: ids.join(",")}).then(function (data) {
+            ccn_ajax("/sysBPartDelete", {keyword: ids.join(",")}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -99,6 +98,11 @@ function delete_btn() {
     }
 }
 
+function select_change1(value) {
+    select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:value},"Y");
+    select_makes_sub("#partGrp_select2","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:value},"N");
+}
+
 function upload_btn() {
     $('#uploadDialog').dialog('open');
     jqGridResize2('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
@@ -108,7 +112,10 @@ function upload_btn() {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
-    select_makes("#gubun_select", "/getPartType", "part_type_code", "part_type_name");
+    select_makes2("#gubun_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
+        select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"Y");
+        select_makes_sub("#partGrp_select2","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"N");
+    });
 
 }
 
@@ -119,20 +126,20 @@ function jqGrid_main() {
         datatype: "local",
         colNames: ['품목구분', '품목코드', '품목명', '보관로케이션', '업체명', '규격', '단위', 'L/T', '검사기준', '검사구분', '재고최대', '재고최소', '등록자', '수정일'],
         colModel: [
-            {name: 'p_category', index: 'p_category', width: 40},
-            {name: 'p_code', index: 'p_code', width: 40},
-            {name: 'p_name', index: 'p_name', width: 40},
-            {name: 'location', index: 'location', width: 40},
-            {name: 'c_name', index: 'c_name', width: 40},
-            {name: 'standard', index: 'standard', width: 40},
-            {name: 'unit', index: 'unit', width: 40},
+            {name: 'part_grp_name', index: 'part_grp_name', width: 40},
+            {name: 'part_code', index: 'part_code', key: true, width: 40},
+            {name: 'part_name', index: 'part_name', width: 40},
+            {name: 'loc_name', index: 'loc_name', width: 40},
+            {name: 'supp_name', index: 'supp_name', width: 40},
+            {name: 'spec', index: 'spec', width: 40},
+            {name: 'unit_name', index: 'unit_name', width: 40},
             {name: 'LT', index: 'LT', width: 40},
             {name: 'i_standard', index: 'i_standard', width: 40},
             {name: 'i_category', index: 'i_standard', width: 40},
-            {name: 'stock_max', index: 'stock_max', width: 40},
-            {name: 'stock_min', index: 'stock_min', width: 40},
-            {name: 'manager', index: 'manager', width: 40},
-            {name: 'modified_date', index: 'modified_date', width: 40},
+            {name: 'max_qty', index: 'stock_max', width: 40},
+            {name: 'min_qty', index: 'stock_min', width: 40},
+            {name: 'user_name', index: 'manager', width: 30},
+            {name: 'update_date', index: 'modified_date', width: 50,formatter: formmatterDate},
         ],
         caption: "자재정보관리 | MES",
         autowidth: true,

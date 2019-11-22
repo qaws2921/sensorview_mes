@@ -8,8 +8,8 @@
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword condition_main">
-                    <option>SPC Wire 양산</option>
+                <select name="keyword" id="partGrp_select2" class="form-control keyword wt-100">
+
                 </select>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">보관로케이션</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword condition_main">
+                <select name="keyword" class="form-control keyword">
                     <option>A-1</option>
                 </select>
             </div>
@@ -61,7 +61,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword condition_main">
+                <select name="keyword" class="form-control keyword">
                     <option>KG</option>
                 </select>
             </div>
@@ -77,7 +77,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사기준</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword condition_main">
+                <select name="keyword" class="form-control keyword">
                     <option>검사</option>
                     <option>무검사</option>
                 </select>
@@ -87,7 +87,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사구분</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword condition_main">
+                <select name="keyword" class="form-control keyword">
                     <option>X</option>
                     <option>전수</option>
                     <option>샘플링</option>

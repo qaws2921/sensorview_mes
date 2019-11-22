@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
-<div id="scmOut-add-dialog" title="자재출고 추가">
+<div id="scmOut-add-dialog" title="자재출고 추가" >
     <div class="col-lg-12">
         <div class="col-lg-5 padding0" id="content1">
             <table class="table wt-100">
