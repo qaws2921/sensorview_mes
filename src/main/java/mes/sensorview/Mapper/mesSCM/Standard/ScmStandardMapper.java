@@ -22,6 +22,6 @@ public interface ScmStandardMapper {
     sysBPartGroup sysBPartGroupOneGet(Page p);
 
     List<sysBPart> sysBPartGet(Page p);
-
     Message sysBPartDelete(Page p);
+    sysBPart sysBPartOneGet(Page p);
 }

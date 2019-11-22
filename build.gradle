@@ -40,7 +40,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-    }
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
+}
 
 test {
     useJUnitPlatform()

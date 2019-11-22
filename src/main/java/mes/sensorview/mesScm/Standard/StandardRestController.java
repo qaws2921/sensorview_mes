@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,10 @@ public class StandardRestController {
     public Message sysProdLineDelete(Page p, HttpServletRequest req) {
         return standardService.sysBPartGroupDelete(p, req);
 
+    }
+    @RequestMapping(value = "/sysBPartOneGet", method = RequestMethod.POST)
+    public sysBPart sysBPartOneGet(HttpServletRequest req, Page p) {
+        return standardService.sysBPartOneGet(req, p);
     }
 
     @RequestMapping(value = "/sysLocGet", method = RequestMethod.POST)
