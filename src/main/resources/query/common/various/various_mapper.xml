@@ -7,6 +7,10 @@
     <select id="sysBPartGroupSelectGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPartGroup">
 		EXEC [SP_SYS_BPART_GROUP_GET] #{site_code}, 1,1000,#{keyword},''
    </select>
+    <select id="sysLocAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
+		EXEC [SP_SYS_LOC_GET]  #{site_code},1,1000,'',''
+   </select>
+
 
 </mapper>
 
