@@ -28,6 +28,7 @@ function suppModal_bus(code, name) {
 
 function selectBox_modal1() {
     select_makes("#loc_select", "/sysLocAllGet", "loc_code", "loc_name");
+    select_makes("#unit_select", "/sysCommonUnitGet", "code_value", "code_name1");
 }
 
 function modal_make1() {

@@ -10,6 +10,9 @@
     <select id="sysLocAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
 		EXEC [SP_SYS_LOC_GET]  #{site_code},1,1000,'',''
    </select>
+    <select id="sysCommonUnitGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
+		EXEC [SP_SYS_COMMON_GET]  #{site_code},1,1000,'UNIT'
+   </select>
 
 
 </mapper>
