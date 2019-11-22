@@ -18,9 +18,10 @@ public class SYSCommon {
 	private String code_name8;
 	private String use_yn;
 	private String user_code;
+	private String user_name;
 	private String create_date;
 	private String update_date;
 	private int rownum;
 	private int rec_count;
-	
+	private String keyword;
 }

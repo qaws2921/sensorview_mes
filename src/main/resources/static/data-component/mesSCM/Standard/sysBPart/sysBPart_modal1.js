@@ -1,6 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 
@@ -24,6 +25,11 @@ function suppModal_bus(code, name) {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
+
+function selectBox_modal1() {
+    select_makes("#loc_select", "/sysLocAllGet", "loc_code", "loc_name");
+}
+
 function modal_make1() {
 
     $("#addDialog").dialog({
