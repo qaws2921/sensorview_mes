@@ -90,8 +90,36 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-
+    if (modal_objact.part_grp_code === '') {
+        alert("품목구분을 선택해주세요");
+        return false;
+    } else if (modal_objact.part_code === '') {
+        alert("품목코드를 입력해주세요");
+        return false;
+    } else if (modal_objact.part_name === '') {
+        alert("품목명을 입력해주세요");
+        return false;
+    } else if (modal_objact.loc_code === '') {
+        alert("보관로케이션을 선택해주세요");
+        return false;
+    }else if (modal_objact.supp_code === '') {
+        alert("업체를 선택해주세요");
+        return false;
+    }else if (modal_objact.spec === '') {
+        alert("규격을 입력해주세요");
+        return false;
+    }else if (modal_objact.unit_code === '') {
+        alert("단위를 선택해주세요");
+        return false;
+    }else if (modal_objact.max_qty === '') {
+        alert("재고최대를 입력해주세요");
+        return false;
+    }else if (modal_objact.min_qty === '') {
+        alert("재고최소를 입력해주세요");
+        return false;
+    }
+    else {
 
         return true;
-
+    }
 }
