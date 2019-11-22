@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class StandardRestController {
 
     }
 
+
     @RequestMapping(value = "/sysLocGet", method = RequestMethod.POST)
     public RESTful sysLocGet(HttpServletRequest req, Page p) {
         return standardService.sysLocGet(req, p);
@@ -66,12 +68,20 @@ public class StandardRestController {
         return standardService.sysLocDelete(p, req);
 
     }
+    @RequestMapping(value = "/sysBPartAdd", method = RequestMethod.POST)
+    public Message sysBPartAdd(HttpServletRequest req, sysBPart vo) {
+        return standardService.sysBPartAdd(req, vo);
+    }
 
     @RequestMapping(value = "/sysBPartGet", method = RequestMethod.POST)
     public RESTful sysBPartGet(HttpServletRequest req, Page p) {
         return standardService.sysBPartGet(req, p);
     }
 
+    @RequestMapping(value = "/sysBPartOneGet", method = RequestMethod.POST)
+    public sysBPart sysBPartOneGet(HttpServletRequest req, Page p) {
+        return standardService.sysBPartOneGet(req, p);
+    }
     @RequestMapping(value = "/sysBPartDelete", method = RequestMethod.POST)
     public Message sysBPartDelete(Page p, HttpServletRequest req) {
         return standardService.sysBPartDelete(p, req);

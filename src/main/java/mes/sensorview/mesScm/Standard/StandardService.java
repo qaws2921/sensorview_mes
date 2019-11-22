@@ -76,8 +76,20 @@ public class StandardService extends ReturnFunction {
         return getListData(rows , p);
     }
 
+    public sysBPart sysBPartOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        sysBPart rows = scmStandardMapper.sysBPartOneGet(p);
+        return rows;
+    }
+
     public Message sysBPartDelete(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return scmStandardMapper.sysBPartDelete(p);
+    }
+
+    public Message sysBPartAdd(HttpServletRequest req, sysBPart vo) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return scmStandardMapper.sysBPartAdd(vo);
     }
 }

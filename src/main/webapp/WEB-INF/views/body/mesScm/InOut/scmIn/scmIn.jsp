@@ -15,6 +15,9 @@
         table-layout:auto !important;
     }
 </style>
+<form name="excelForm" id="excelForm" method="POST" action="/excelDown">
+    <input type="submit" id="excelDown" value="EXCEL 다운"/>
+</form>
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
