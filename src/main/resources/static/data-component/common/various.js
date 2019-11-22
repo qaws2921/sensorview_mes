@@ -118,6 +118,8 @@ function select_makes_sub(tag,url,value,text,data,what) {
 	$(tag).empty();
 	if (what === "Y"){
 		$(tag).append($("<option></option>").text("전체").val(""));
+	}else if (what === 'N'){
+		$(tag).append($("<option></option>").text("선택안함").val(""));
 	}
 	ccn_ajax(url,data).then(function (data) {
 		var option = null

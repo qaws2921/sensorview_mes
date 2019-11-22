@@ -32,7 +32,7 @@
             <div class="profile-info-name">보관로케이션</div>
             <div class="profile-info-value">
                 <select name="loc_code" id="loc_select" class="form-control keyword  modal_value">
-
+                    <option value="">선택안함</option>
                 </select>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
                 <select name="unit_code" id="unit_select" class="form-control keyword modal_value">
-
+                    <option value="">선택안함</option>
                 </select>
             </div>
         </div>
