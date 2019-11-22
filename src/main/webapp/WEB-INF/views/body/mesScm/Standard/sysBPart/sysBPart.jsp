@@ -3,6 +3,11 @@
 <%@ page session="false" %>
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPart/sysBPart.js"
         charset="UTF-8"></script>
+<style>
+    #SuppSearchGridPager #pg_SuppSearchGridPager table{
+        table-layout:auto !important;
+    }
+</style>
 
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">

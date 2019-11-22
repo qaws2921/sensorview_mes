@@ -8,7 +8,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
             <div class="profile-info-value">
-                <select name="keyword" id="partGrp_select2" class="form-control keyword wt-100">
+                <select name="keyword" id="partGrp_select2" class="form-control keyword" style="width:100%">
 
                 </select>
             </div>
