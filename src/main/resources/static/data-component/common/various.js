@@ -98,6 +98,38 @@ function select_makes(tag,url,value,text) {
 }
 
 
+function select_makes2(tag,url,value,text) {
+	return new Promise(function (resolve, reject) {
+		ccn_ajax(url, null).then(function (data) {
+			var option = null
+			for (var j = 0; j < data.length; j++) {
+				option = $("<option></option>").text(data[j][text]).val(data[j][value]);
+				$(tag).append(option);
+			}
+			$(tag).select2();
+			resolve(data[0].part_type_code);
+		}).catch(function (err) {
+			console.error(err); // Error 출력
+		});
+	});
+}
+
+function select_makes_sub(tag,url,value,text,data,what) {
+	$(tag).empty();
+	if (what === "Y"){
+		$(tag).append($("<option></option>").text("전체").val(""));
+	}
+	ccn_ajax(url,data).then(function (data) {
+		var option = null
+		for (var j = 0; j < data.length; j++) {
+			option = $("<option></option>").text(data[j][text]).val(data[j][value]);
+			$(tag).append(option);
+		}
+		$(tag).select2();
+	}).catch(function (err) {
+		console.error(err); // Error 출력
+	});
+}
 
 function ccn_ajax(url,data){
 	return new Promise(function (resolve, reject) {
@@ -116,6 +148,24 @@ function ccn_ajax(url,data){
 	    });	
 	  });
 }
+function select_ajax(url,data){
+	return new Promise(function (resolve, reject) {
+		$.ajax({
+			url: url,
+			type: 'POST',
+			async: true,
+			dataType: "json",
+			data:data,
+			success: function (data2) {
+				resolve(data2);
+			},
+			error: function () {
+				reject(new Error("Request is failed"));
+			}
+		});
+	});
+}
+
 
 function datepicker_makes(tag,num) {
 	var date = new Date();
