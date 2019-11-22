@@ -79,3 +79,4 @@
     </div>
 </div>
 
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
