@@ -29,6 +29,7 @@ $(document).ready(function () {
     datepickerInput();
     /*----모달----*/
     modal_start1();
+    modal_start2();
 
     suppModal_start();
 
@@ -72,6 +73,9 @@ function under_get(rowid) {
 function add_btn() {
     modal_reset(".modal_value", []);
     $( "#scmInDialogLeftGrid" ).jqGrid('clearGridData');
+    $( "#scmInDialogRightGrid" ).jqGrid('clearGridData');
+    modal2_data.part_code = '';
+    modal2_data.sub_data = [];
     $("#datepicker3").datepicker('setDate','today');
     
     main_data.check = 'I';

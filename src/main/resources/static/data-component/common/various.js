@@ -200,6 +200,19 @@ function callback(cb) {
 }
 
 
-
+var findArrayIndex = function (array, predicateFunction) {
+	var length = array == null ? 0 : array.length;
+	if (!length) {
+		return -1;
+	}
+	var index = -1;
+	for (var i = 0; i < array.length; ++i) {
+		if(predicateFunction(array[i])) {
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
 
 

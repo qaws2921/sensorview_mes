@@ -34,7 +34,7 @@ function get_modal1_btn(page) {
 
 
 function right_modal1_btn() {
-    $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
+    // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
     var ids = $("#scmInDialogLeftGrid").getGridParam('selarrrow').slice();
 
     var ids2 = $("#scmInDialogRightGrid").jqGrid("getDataIDs");
@@ -77,6 +77,20 @@ function right_modal1_btn() {
 
 function left_modal1_btn() {
     var ids2 = $("#scmInDialogRightGrid").getGridParam('selarrrow').slice();
+    var idx;
+    ids2.forEach(function (id,j) {
+        modal2_data.sub_data.forEach(function (id2,i) {
+            if (id === id2.part_code){
+                idx = findArrayIndex(modal2_data.sub_data,function(item) {return item.part_code === id})
+                if (idx !== -1){
+                    modal2_data.sub_data.splice(idx, 1);
+                }
+            }
+        });
+
+    });
+
+
     for (var i = 0; i < ids2.length; i++) {
         $('#scmInDialogRightGrid').jqGrid('delRowData', ids2[i]);
     }
@@ -88,21 +102,23 @@ function add_modal1_btn() {
     var add_data = value_return(".modal_value2");
 
 
-    $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
+    // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
     var jdata = $("#scmInDialogRightGrid").getRowData();
     var list = [];
     var list2 = [];
     var list3 = [];
     var list4 = [];
+    var list5 = [];
     jdata.forEach(function (data, j) {
-        if (isNaN(data.in_pty) || data.in_pty === '') {
+        if (data.lot === '') {
             list.push(data.part_code);
-        } else if (isNaN(data.bad_pty) || data.bad_pty === '') {
+        } else if (data.qty === '') {
             list.push(data.part_code);
         } else {
             list2.push(data.part_code);
-            list3.push(data.in_pty);
-            list4.push(data.bad_pty);
+            list3.push(data.lot);
+            list4.push(data.qty);
+            list5.push(data.pack_qty);
         }
     });
     callback(function () {
@@ -110,12 +126,46 @@ function add_modal1_btn() {
             alert(list.join(", ") + "를 다시 확인해주세요");
         } else {
             add_data.part_code = list2.join(",");
-            add_data.in_pty = list3.join(",");
-            add_data.bad_pty = list4.join(",");
+            add_data.lot = list3.join(",");
+            add_data.qty = list4.join(",");
+            add_data.pack_qty = list5.join(",");
+
+            var code_list = [];
+            var code_list2 = [];
+            modal2_data.sub_data.forEach(function (s,i) {
+                list2.forEach(function (s2,i2) {
+                    if (s.part_code === s2){
+                        s.list.forEach(function (s3,k) {
+                            code_list.push(s3.lot+"$!"+s3.qty);
+                                console.log(s3.lot+"$!"+s3.qty);
+                            if (s.list.length === k+1){
+                                code_list2.push(code_list.join("$@"));
+                                console.log("끝");
+                                code_list = [];
+
+                            }
+                        });
+                    } ;
+                });
+            });
+
+            var code_list3 = code_list2.join("$#");
+            add_data.code_list = code_list3;
+
             console.log(add_data);
             alert("성공");
         }
     })
+}
+
+function modal2_modal_open(rowid) {
+    modal2_data.part_code = rowid;
+    modal_reset(".modal_value3", []);
+    var data = $('#scmInDialogRightGrid').jqGrid('getRowData', rowid);
+    if (data.lot !== ''){
+        modal2_edit(rowid);
+    }
+    $("#scmInAddDialog").dialog('open');
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -135,7 +185,7 @@ function jqGrid_modal1() {
             {name: 'part_name', index: 'part_name'},
             {name: 'standard', index: 'standard'},
             {name: 'unit', index: 'unit'},
-            {name: 'pty', index: 'pty'},
+            {name: 'qty', index: 'qty'},
             {name: 'grade', index: 'grade'},
         ],
         // 페이지 수 보기 (1 / 100) = true
@@ -161,73 +211,77 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사등급', '입고수량', '불량수량'],
+        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량','패킹수','수량등록'],
         colModel: [
-            {name: 'part_group_code', index: 'part_group_code', width: 60},
-            {name: 'part_code', key: true, index: 'part_code', width: 60},
-            {name: 'part_name', index: 'part_name', width: 60},
-            {name: 'standard', index: 'standard', width: 60},
-            {name: 'unit', index: 'unit', width: 60},
-            {name: 'grade', index: 'grade', width: 60},
-            {
-                name: 'in_pty', index: 'in_pty', width: 60, editable: true,
-                editoptions: {
+            {name: 'part_group_code', index: 'part_group_code', width: 60, sortable: false},
+            {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
+            {name: 'standard', index: 'standard', width: 60, sortable: false},
+            {name: 'unit', index: 'unit', width: 60, sortable: false},
+            {name: 'grade', index: 'grade', width: 60, sortable: false},
+            {name: 'lot', index: 'lot', width: 60, sortable: false},
+            {name: 'qty', index: 'qty', width: 60, sortable: false},
+            {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},
+            {name:'button',index:'button',width:60,formatter:qtyButton, sortable: false}
 
-                    dataEvents: [
-                        {
-                            type: 'focusout',
-                            fn: function (e) {
-                                var row = $(e.target).closest('tr.jqgrow');
-                                var rowid = row.attr('id');
-                                var value = e.target.value;
-                                if (isNaN(value)){
-                                    e.target.value = '';
-                                }
-                                if (rowid !== lastsel) {
-                                    $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
-                                }
-                                // if ($("#"+lastsel+"_in_pty").val() !== '' && $("#"+lastsel+"_bad_pty").val() !== '') {
-                                //     $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
-                                // }
-
-
-                            }
-                        }
-
-                    ]
-                }
-            },
-            {
-                name: 'bad_pty', index: 'bad_pty', width: 60, editable: true,
-                editoptions: {
-
-                    dataEvents: [
-                        {
-                            type: 'focusout',
-                            fn: function (e) {
-
-
-                                var row = $(e.target).closest('tr.jqgrow');
-                                var rowid = row.attr('id');
-                                var value = e.target.value;
-                                if (isNaN(value)){
-                                    e.target.value = '';
-                                }
-
-                                if (rowid !== lastsel) {
-                                    $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
-                                }
-                                // if ($("#"+lastsel+"_in_pty").val() !== '' && $("#"+lastsel+"_bad_pty").val() !== '') {
-                                //     $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
-                                // }
-
-
-                            }
-                        }
-
-                    ]
-                }
-            },
+            // {name: 'in_pty', index: 'in_pty', width: 60
+            //     editoptions: {
+            //
+            //         dataEvents: [
+            //             {
+            //                 type: 'focusout',
+            //                 fn: function (e) {
+            //                     var row = $(e.target).closest('tr.jqgrow');
+            //                     var rowid = row.attr('id');
+            //                     var value = e.target.value;
+            //                     if (isNaN(value)){
+            //                         e.target.value = '';
+            //                     }
+            //                     if (rowid !== lastsel) {
+            //                         $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
+            //                     }
+            //                     // if ($("#"+lastsel+"_in_pty").val() !== '' && $("#"+lastsel+"_bad_pty").val() !== '') {
+            //                     //     $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
+            //                     // }
+            //
+            //
+            //                 }
+            //             }
+            //
+            //         ]
+            //     }
+            // },
+            // {
+            //     name: 'bad_pty', index: 'bad_pty', width: 60, editable: true,
+            //     editoptions: {
+            //
+            //         dataEvents: [
+            //             {
+            //                 type: 'focusout',
+            //                 fn: function (e) {
+            //
+            //
+            //                     var row = $(e.target).closest('tr.jqgrow');
+            //                     var rowid = row.attr('id');
+            //                     var value = e.target.value;
+            //                     if (isNaN(value)){
+            //                         e.target.value = '';
+            //                     }
+            //
+            //                     if (rowid !== lastsel) {
+            //                         $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
+            //                     }
+            //                     // if ($("#"+lastsel+"_in_pty").val() !== '' && $("#"+lastsel+"_bad_pty").val() !== '') {
+            //                     //     $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
+            //                     // }
+            //
+            //
+            //                 }
+            //             }
+            //
+            //         ]
+            //     }
+            // },
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
@@ -241,57 +295,61 @@ function jqGrid_modal1() {
         // jqGrid load 시 실행 함수 = setTimeout
         // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
         // 호출되는 함수는 pager icon 함수
+        loadonce: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
-        afterEditCell: function (id, name, val, iRow, iCol) {
-            alert("sss");
-        },
-
 
         onCellSelect: function (rowid, icol, cellcontent, e) {
-            if (icol === 7 || icol === 8) {
-
-
-                if ($("#" + lastsel + "_in_pty").val()) {
-                    if (isNaN($("#" + lastsel + "_in_pty").val())) {
-                        alert("입고 수량은 숫자만 가능합니다.");
-                        return false;
-                    }
-                }
-
-                if ($("#" + lastsel + "_bad_pty").val()) {
-                    if (isNaN($("#" + lastsel + "_bad_pty").val())) {
-                        alert("불량 수량은 숫자만 가능합니다.");
-                        return false;
-                    }
-                }
-
-                if (rowid === lastsel) {
-                    $('#scmInDialogRightGrid').jqGrid('editRow', rowid, true);
-                }
-
-                if (rowid && rowid !== lastsel) {
-                    $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
-                    $('#scmInDialogRightGrid').jqGrid('editRow', rowid, {
-                        keys: false
-                    });
-                    lastsel = rowid;
-                    if(icol === 7){
-                        $("#" + lastsel + "_in_pty").focus();
-                    }else if(icol === 8){
-                        $("#" + lastsel + "_bad_pty").focus();
-                    }
-                }
-            }
+            // if (icol === 7 || icol === 8) {
+            //
+            //
+            //     if ($("#" + lastsel + "_in_pty").val()) {
+            //         if (isNaN($("#" + lastsel + "_in_pty").val())) {
+            //             alert("입고 수량은 숫자만 가능합니다.");
+            //             return false;
+            //         }
+            //     }
+            //
+            //     if ($("#" + lastsel + "_bad_pty").val()) {
+            //         if (isNaN($("#" + lastsel + "_bad_pty").val())) {
+            //             alert("불량 수량은 숫자만 가능합니다.");
+            //             return false;
+            //         }
+            //     }
+            //
+            //     if (rowid === lastsel) {
+            //         $('#scmInDialogRightGrid').jqGrid('editRow', rowid, true);
+            //     }
+            //
+            //     if (rowid && rowid !== lastsel) {
+            //         $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
+            //         $('#scmInDialogRightGrid').jqGrid('editRow', rowid, {
+            //             keys: false
+            //         });
+            //         lastsel = rowid;
+            //         if(icol === 7){
+            //             $("#" + lastsel + "_in_pty").focus();
+            //         }else if(icol === 8){
+            //             $("#" + lastsel + "_bad_pty").focus();
+            //         }
+            //     }
+            // }
         }
 
     });
 
 }
+
+
+function qtyButton (cellvalue, options, rowObject) {
+    return '<input type="button" onclick="modal2_modal_open(\''+rowObject.part_code+'\')" value="버튼"/>';
+};
+
+
 
 
 function modal_make1() {
