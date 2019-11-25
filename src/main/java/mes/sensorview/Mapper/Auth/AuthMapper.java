@@ -4,6 +4,7 @@ import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 
 import java.util.List;
 import java.util.Map;
@@ -13,5 +14,5 @@ public interface AuthMapper {
     SYSAuthProgram menuAuth(Page p);
     List<Auth> authMainSelect(Session session);
 
-    List<SYSAuthProgram> testDbList();
+    List<sysBPart> testDbList();
 }
