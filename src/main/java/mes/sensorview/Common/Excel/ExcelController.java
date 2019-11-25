@@ -15,4 +15,9 @@ public class ExcelController {
     public void ExcelDown(HttpServletResponse response){
         excelService.getExcelDown(response);
     }
+
+    @RequestMapping(value = "/excelDownTest", method = RequestMethod.GET)
+    public void excelDownTest(HttpServletResponse response){
+        excelService.selectExcelList(response);
+    }
 }
