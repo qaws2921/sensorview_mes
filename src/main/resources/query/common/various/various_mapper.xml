@@ -5,13 +5,13 @@
 		EXEC [SP_SYS_SUPP_GET]  #{page},#{rows},#{keyword},#{keyword2}
    </select>
     <select id="sysBPartGroupSelectGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPartGroup">
-		EXEC [SP_SYS_BPART_GROUP_GET] #{site_code}, 1,1000,#{keyword},''
+		EXEC [SP_SYS_BPART_GROUP_GET] #{site_code}, 0,0,#{keyword},''
    </select>
     <select id="sysLocAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysLoc">
-		EXEC [SP_SYS_LOC_GET]  #{site_code},1,1000,'',''
+		EXEC [SP_SYS_LOC_GET]  #{site_code},0,0,'',''
    </select>
     <select id="sysCommonUnitGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-		EXEC [SP_SYS_COMMON_GET]  #{site_code},1,1000,'UNIT'
+		EXEC [SP_SYS_COMMON_GET]  #{site_code},0,0,'UNIT'
    </select>
 
 
