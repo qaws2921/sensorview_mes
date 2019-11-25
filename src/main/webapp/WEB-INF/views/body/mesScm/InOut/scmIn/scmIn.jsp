@@ -113,6 +113,7 @@
 </div>
 
 <%@include file="scmIn_modal1.jsp"%>
+<%@include file="scmIn_modal2.jsp"%>
 <%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
 
 <script>

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MasterController {
+    @RequestMapping(value="/sysCommon")
+    public String sysCommon() { return "mesManager/Master/sysCommon/sysCommon"; }
 
     @RequestMapping(value="/sysMsg")
     public String sysMsg(){
@@ -25,10 +27,8 @@ public class MasterController {
     public String sysCargo(){
         return "mesManager/Master/sysCargo/sysCargo";
     }
-    @RequestMapping(value="/sysCommon")
-    public String sysCommon() throws Exception{
-        return "manager/MasterManegement/sysCommon.tiles1";
-    }
+
+
     @RequestMapping(value="/sysSupp")
     public String sysSupp() throws Exception{
         return "manager/MasterManegement/sysSupp.tiles1";
