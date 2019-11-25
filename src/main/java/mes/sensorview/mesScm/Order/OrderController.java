@@ -1,11 +1,10 @@
-package mes.sensorview.mesScm.Purchase;
+package mes.sensorview.mesScm.Order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PurchaseController {
-
+public class OrderController {
     @RequestMapping(value = "/scmReqOrder")
     public String scmReqOrder() { return "mesScm/Purchase/scmReqOrder/scmReqOrder"; }
 
