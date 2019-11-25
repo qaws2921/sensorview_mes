@@ -4,7 +4,7 @@ var modal2_data = [];
 function modal_start2() {
     modal_make2();
     modal2_jqGrid();
-     jqGridResize('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
+    jqGridResize2('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
 
 }
 
