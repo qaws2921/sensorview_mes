@@ -15,4 +15,6 @@ public interface AuthMapper {
     List<Auth> authMainSelect(Session session);
 
     List<sysBPart> testDbList();
+
+    void insertExcelTest(List<sysBPart> list);
 }

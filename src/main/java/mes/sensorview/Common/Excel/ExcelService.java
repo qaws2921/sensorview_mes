@@ -1,25 +1,40 @@
 package mes.sensorview.Common.Excel;
 
+import mes.sensorview.Common.Excel.Action.ExcelFunction;
+import mes.sensorview.Common.Excel.Util.ExcelRead;
+import mes.sensorview.Common.Excel.Util.ExcelReadOption;
 import mes.sensorview.Mapper.Auth.AuthMapper;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class ExcelService{
+public class ExcelService extends ExcelFunction {
     @Autowired
     private AuthMapper authMapper;
 
@@ -93,9 +108,7 @@ public class ExcelService{
 
     @Transactional
     public void selectExcelList(HttpServletResponse response) {
-
-        // 메모리에 100개의 행을 유지합니다. 행의 수가 넘으면 디스크에 적습니다.
-        Workbook workbook = new HSSFWorkbook();
+        SXSSFWorkbook workbook = new SXSSFWorkbook(100);
         Sheet sheet = workbook.createSheet("메뉴정보");
 
         List<sysBPart> list = authMapper.testDbList();
@@ -151,39 +164,58 @@ public class ExcelService{
             }
 
             response.setHeader("Set-Cookie", "fileDownload=true; path=/");
-            response.setHeader("Content-Disposition", String.format("attachment; filename=\"test.xls\""));
+            response.setHeader("Content-Disposition", String.format("attachment; filename=\"BPart_" + getData() + ".xlsx\""));
             workbook.write(response.getOutputStream());
 
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             response.setHeader("Set-Cookie", "fileDownload=false; path=/");
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            response.setHeader("Content-Type","text/html; charset=utf-8");
+            response.setHeader("Content-Type", "text/html; charset=utf-8");
 
             OutputStream out = null;
             try {
                 out = response.getOutputStream();
                 byte[] data = new String("fail..").getBytes();
                 out.write(data, 0, data.length);
-            } catch(Exception ignore) {
+            } catch (Exception ignore) {
                 ignore.printStackTrace();
             } finally {
-                if(out != null)
+                if (out != null)
                     try {
-                    out.close();
-                }
-                catch(Exception ignore) {
+                        out.close();
+                    } catch (Exception ignore) {
 
-                }
+                    }
             }
 
         } finally {
             try {
                 workbook.close();
-            }
-            catch(Exception ignore) {
+            } catch (Exception ignore) {
             }
         }
 
+    }
+
+
+    public void excelUpload(File destFile) throws Exception {
+        ExcelReadOption excelReadOption = new ExcelReadOption();
+        excelReadOption.setFilePath(destFile.getAbsolutePath());
+        excelReadOption.setOutputColumns("A", "B", "C", "D", "E", "F");
+        excelReadOption.setStartRow(2);
+
+
+        List<Map<String, String>> excelContent = ExcelRead.read(excelReadOption);
+
+        for (Map<String, String> article : excelContent) {
+            System.out.println(article.get("A"));
+            System.out.println(article.get("B"));
+            System.out.println(article.get("C"));
+            System.out.println(article.get("D"));
+            System.out.println(article.get("E"));
+            System.out.println(article.get("F"));
+
+        }
     }
 }

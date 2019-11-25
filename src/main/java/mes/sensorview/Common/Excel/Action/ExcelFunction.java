@@ -6,7 +6,7 @@ import java.util.Date;
 public class ExcelFunction {
     public String getData(){
         Date now = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddss");
         String date = format.format(now);
         return date;
     }

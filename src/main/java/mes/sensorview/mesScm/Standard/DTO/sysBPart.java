@@ -28,22 +28,4 @@ public class sysBPart {
     private int rownum;
     private int rec_count;
     private String keyword;
-
-    @Override
-    public String toString() {
-        return "sysBPart" +
-                "[" +
-                "site_code=" + site_code + ", part_grp_code=" + part_grp_code + ", " +
-                "part_code=" + part_code + ", part_name=" + part_name + ", " +
-                "cargo_code=" + cargo_code + ", loc_code=" + loc_code + ", " +
-                "supp_code=" + supp_code + ", spec=" + spec + ", " +
-                "unit_code=" + unit_code + ", " + "pack_qty=" + pack_qty + ", " +
-                "max_qty=" + max_qty + ", " + "min_qty=" + min_qty + ", " +
-                "qc_level=" + qc_level + ", " + "user_code=" + user_code + ", " +
-                "create_date=" + create_date + ", " + "update_date=" + update_date + ", " +
-                "part_grp_name=" + part_grp_name + ", " + "supp_name=" + supp_name + ", " +
-                "user_name=" + user_name + ", " + "unit_name=" + unit_name + ", " +
-                "loc_name=" + loc_name +
-                "]";
-    }
 }
