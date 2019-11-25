@@ -38,6 +38,7 @@ public class StandardRestController {
 
     @RequestMapping(value = "/sysBPartGroupAdd", method = RequestMethod.POST)
     public Message sysProdLineAdd(HttpServletRequest req, sysBPartGroup vo) {
+
         return standardService.sysBPartGroupAdd(req, vo);
     }
 

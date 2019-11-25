@@ -8,7 +8,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
             <div class="profile-info-value">
-                <select name="part_grp_code" id="partGrp_select2" class="form-control keyword wt-100 modal_value" style="width:100%">
+                <select name="part_grp_code" id="partGrp_select2" class="form-control keyword wt-100 modal_value">
 
                 </select>
             </div>
@@ -17,7 +17,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">품목코드</div>
             <div class="profile-info-value">
-                <input type="text" name="part_code" class="form-contzrol modal_value">
+                <input type="text" name="part_code" class="form-control modal_value">
             </div>
         </div>
 
@@ -31,7 +31,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">보관로케이션</div>
             <div class="profile-info-value">
-                <select name="loc_code" id="loc_select" class="form-control keyword  modal_value" style="width:100%">
+                <select name="loc_code" id="loc_select" class="form-control keyword  modal_value">
                     <option value="">선택안함</option>
                 </select>
             </div>
@@ -66,7 +66,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
-                <select name="unit_code" id="unit_select" class="form-control keyword modal_value" style="width:100%">
+                <select name="unit_code" id="unit_select" class="form-control keyword modal_value">
                     <option value="">선택안함</option>
                 </select>
             </div>
