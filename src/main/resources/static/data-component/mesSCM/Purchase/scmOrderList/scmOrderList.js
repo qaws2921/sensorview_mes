@@ -13,30 +13,20 @@ var main_data = {
 };
 
 var grid_data = [];
-var grid2_data = [];
 
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
-    jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     datepickerInput();
 
-    modal_start1();
     suppModal_start();
 
     jqgridPagerIcons();
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-
-function add_btn() {
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
-    jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
-
-}
 
 function supp_btn(what) {
     main_data.supp_check = what;
@@ -61,7 +51,6 @@ function suppModal_bus(code, name) {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
-
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
@@ -73,19 +62,27 @@ function jqGrid_main() {
         data: grid_data,
         datatype: 'local',
         multiselect: true,
-        caption: '발주등록 | MES',
-        colNames: ['발주일자', '전표번호', '업체', '상태', '등록자', '발주일자'],
+        caption: '발주현황 | MES',
+        colNames: ['입고일자', '입고번호', '업체명', '품목그룹', '품번', '품명', '규격', '단위', '상태', '발주수량', '입고수량', '미입고', '등록자', '등록일시'],
         colModel: [
-            {name: 'order_date', index: 'order_date', width: 60},
-            {name: 'order_no', index: 'order_no', width: 60},
-            {name: 'supp_code', index: 'supp_code', width: 60},
+            {name: 'in_date', index: 'in_date', width: 60},
+            {name: 'in_num', index: 'in_num', width: 60},
+            {name: 'supp_name', index: 'supp_name', width: 60},
+            {name: 'p_group', index: 'p_group', width: 60},
+            {name: 'p_num', index: 'p_num', width: 60},
+            {name: 'p_name', index: 'p_name', width: 60},
+            {name: 'standard', index: 'standard', width: 60},
+            {name: 'unit', index: 'unit', width: 60},
             {name: 'status', index: 'status', width: 60},
+            {name: 'order_no', index: 'order_no', width: 60},
+            {name: 'in_no', index: 'in_no', width: 60},
+            {name: 'unstock_no', index: 'unstock_no', width: 60},
             {name: 'user_code', index: 'user_code', width: 60},
-            {name: 'order_datetime', index: 'order_datetime', width: 60},
+            {name: 'create_date', index: 'create_date', width: 60},
         ],
         autowidth: true,
         viewrecords: true,
-        height: 200,
+        height: 500,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid_pager',
@@ -103,26 +100,5 @@ function jqGrid_main() {
             update_btn(data);
 
         }
-    });
-
-    $('#mes_grid2').jqGrid({
-        data: grid2_data,
-        datatype: 'local',
-        caption: '발주등록 | MES',
-        colNames: ['발주일자', '전표번호', '업체', '상태', '등록자', '발주일자'],
-        colModel: [
-            {name: 'order_date', index: 'order_date', width: 60},
-            {name: 'order_no', index: 'order_no', width: 60},
-            {name: 'supp_code', index: 'supp_code', width: 60},
-            {name: 'status', index: 'status', width: 60},
-            {name: 'user_code', index: 'user_code', width: 60},
-            {name: 'order_datetime', index: 'order_datetime', width: 60},
-        ],
-        autowidth: true,
-        viewrecords: true,
-        height: 200,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
-
     });
 }

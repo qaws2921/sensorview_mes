@@ -8,4 +8,7 @@ public class PurchaseController {
 
     @RequestMapping(value = "/scmOrder")
     public String scmOrder() { return "mesScm/Purchase/scmOrder/scmOrder"; }
+
+    @RequestMapping(value = "/scmOrderList")
+    public String scmOrderList() { return "mesScm/Purchase/scmOrderList/scmOrderList"; }
 }
