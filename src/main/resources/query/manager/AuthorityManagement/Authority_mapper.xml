@@ -15,7 +15,7 @@
     </select>
 
     <select id="sysAuthAllGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuth">
-        	SELECT * FROM SYS_AUTH_CD WHERE SITE_CODE = #{site_code}
+        	EXEC SP_SYS_AUTH_GROUP_GET #{site_code}, 0,0,''
     </select>
 
     <select id="menuAllGet" resultType="mes.sensorview.Common.Auth.Auth">
