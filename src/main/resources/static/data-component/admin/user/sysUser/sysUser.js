@@ -22,25 +22,25 @@ var main_data = {
  * @생성일 : 2019-11-12
  * */
 $(document).ready(function () {
-    jqGrid_main();
-    jqgridPagerIcons();
-    jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]'));
-    selectBox();
+    jqGrid_main(); // main 그리드 생성
+    jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]')); //그리드 리 사이즈
+    selectBox(); // select2 생성
 
     /*----모달----*/
-    modal_start1();
+    modal_start1(); // 모달1 시작 함수
+    jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
 
 });
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-
+// 조회 버튼
 function get_btn(page) {
-    main_data.send_data = value_return(".condition_main");
+    main_data.send_data = value_return(".condition_main"); // value_return 클래스명 넣으면 name에 맞게 객체 생성
 
-    main_data.send_data_post = main_data.send_data;
+    main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
 
-    $("#mes_grid").setGridParam({
+    $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/sysUserGet',
         datatype: "json",
         page: page,
@@ -48,8 +48,9 @@ function get_btn(page) {
     }).trigger("reloadGrid");
 }
 
+// 수정 삭제 시 호출 하는 조회
 function get_btn_post(page) {
-    $("#mes_grid").setGridParam({
+    $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/sysUserGet',
         datatype: "json",
         page: page,
@@ -57,33 +58,34 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
+// 추가 버튼
 function add_btn() {
 
-    modal_reset(".modal_value", main_data.readonly);
+    modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
-    main_data.check = 'I';
+    main_data.check = 'I'; // 저장인지 체크
 
-    $("#addDialog").dialog('open');
+    $("#addDialog").dialog('open'); // 모달 열기
 }
 
-
+// 그리는 더블 클릭 시 발동
 function update_btn(jqgrid_data) {
 
-    modal_reset(".modal_value", []);
+    modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
-    main_data.check = 'U';
+    main_data.check = 'U'; // 수정인지 체크
 
-    jqgrid_data.dept_code = main_data.send_data_post.keyword;
+    jqgrid_data.dept_code = main_data.send_data_post.keyword; // 저장한데이터 dept_code 를 넣어 서 진행
 
-    ccn_ajax('/sysUserOneGet', jqgrid_data).then(function (data) {
+    ccn_ajax('/sysUserOneGet', jqgrid_data).then(function (data) { // user의 하나 출력
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
 }
 
-
+// 삭제 버튼
 function delete_btn() {
-    var ids = $("#mes_grid").getGridParam('selarrrow');
+    var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
