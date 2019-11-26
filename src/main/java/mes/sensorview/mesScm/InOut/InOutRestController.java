@@ -24,13 +24,7 @@ public class InOutRestController {
 
     @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
     public RESTful scmInGet(HttpServletRequest req, Page p) {
-
         return inOutService.scmInGet(req, p);
-    }
-
-    @RequestMapping(value = "/scmInList", method = RequestMethod.POST)
-    public RESTful scmInList(HttpServletRequest req, Page p){
-        return inOutService.scmInList(req, p);
     }
 
     @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)
