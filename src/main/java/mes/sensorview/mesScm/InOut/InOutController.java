@@ -19,6 +19,9 @@ public class InOutController {
         return "mesScm/InOut/scmInList/scmInList";
     }
 
+    @RequestMapping(value = "/scmInLineList")
+    public String scmInLineList() { return "mesScm/InOut/scmInLineList/scmInLineList"; }
+
     @RequestMapping(value = "/scmOut")
     public String scmOut() {
         return "mesScm/InOut/scmOut/scmOut";

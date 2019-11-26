@@ -57,13 +57,27 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">출고일자</td>
-                    <td class="wt-px-150">
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
                             <input type="text" id="datepicker3" class="form-control h-25">
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
+                    <td class="wt-px-100">
+                        <select class="form-control">
+                            <option>압출</option>
+                            <option>테핑</option>
+                            <option>편조</option>
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">용도</td>
+                    <td class="wt-px-100">
+                        <select class="form-control">
+                            <option>양산</option>
+                            <option>개발</option>
+                        </select>
+                    </td>
                 </tr>
                 </tbody>
             </table>
