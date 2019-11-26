@@ -12,5 +12,4 @@ public interface AuthMapper {
     SYSAuthProgram menuAuth(Page p);
     List<Auth> authMainSelect(Session session);
     List<sysBPart> testDbList();
-    void insertExcelTest(List<sysBPart> list);
 }

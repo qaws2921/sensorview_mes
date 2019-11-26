@@ -38,21 +38,21 @@ public class InOutService extends ReturnFunction {
         return getListData(rows , p);
     }
 
-    public RESTful scmInLineList(HttpServletRequest req, Page p) {
+    public RESTful scmInLineGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_IN_LINE> rows = inOutMapper.scmInLineList(p);
+        List<SCM_IN_LINE> rows = inOutMapper.scmInLineGet(p);
         return getListData(rows , p);
     }
 
-    public RESTful scmStockRetList(HttpServletRequest req, Page p) {
+    public RESTful scmStockRetGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_STOCK_RET> rows = inOutMapper.scmStockRetList(p);
+        List<SCM_STOCK_RET> rows = inOutMapper.scmStockRetGet(p);
         return getListData(rows , p);
     }
 
-    public RESTful scmOutList(HttpServletRequest req, Page p) {
+    public RESTful scmOutGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_OUT> rows = inOutMapper.scmOutList(p);
+        List<SCM_OUT> rows = inOutMapper.scmOutGet(p);
         return getListData(rows , p);
     }
 }

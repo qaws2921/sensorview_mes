@@ -14,9 +14,9 @@ import java.util.List;
 public interface InOutMapper {
     Message scmInAdd(SCM_IN scmIn);
     List<SCM_IN> scmInList(Page p);
-    List<SCM_IN_LINE> scmInLineList(Page p);
-    List<SCM_STOCK_RET> scmStockRetList(Page p);
-    List<SCM_OUT> scmOutList(Page p);
+    List<SCM_IN_LINE> scmInLineGet(Page p);
+    List<SCM_STOCK_RET> scmStockRetGet(Page p);
+    List<SCM_OUT> scmOutGet(Page p);
 
     RESTful scmInGet(Page p);
 }
