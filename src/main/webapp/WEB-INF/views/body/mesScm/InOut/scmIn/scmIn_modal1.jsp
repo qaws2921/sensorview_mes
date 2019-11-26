@@ -87,7 +87,7 @@
                                 <span>저장</span>
                             </span>
                         </a>
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn">
+                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn" onclick="close_modal1_btn();">
                             <span>
                             	 <i class="fa fa-times bigger-110 blue"></i>
                                 <span>취소</span>

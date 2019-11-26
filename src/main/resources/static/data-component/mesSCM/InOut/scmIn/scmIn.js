@@ -10,10 +10,10 @@
  * */
 var main_data = {
     check: 'I',
-    supp_check:'A',
+    supp_check: 'A',
     send_data: {},
     send_data_post: {},
-    check2:'Y'
+    check2: 'Y'
 
 };
 
@@ -43,14 +43,11 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-
-
-    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g,'');
-    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g,'');
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data_post);
     $("#scmInTopGrid").setGridParam({
-        url:"/scmInGet",
+        url: "/scmInGet",
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -72,7 +69,7 @@ function under_get(rowid) {
         url: '/scmInSub1Get',
         datatype: "json",
         page: 1,
-        postData: {keyword:rowid}
+        postData: {keyword: rowid}
     }).trigger("reloadGrid");
 }
 
@@ -80,13 +77,13 @@ function under_get(rowid) {
 function add_btn() {
     modal_reset(".modal_value", []);
     modal_reset(".modal_value2", []);
-    $( "#scmInDialogLeftGrid" ).jqGrid('clearGridData');
-    $( "#scmInDialogRightGrid" ).jqGrid('clearGridData');
+    $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+    $("#scmInDialogRightGrid").jqGrid('clearGridData');
     modal2_data.part_code = '';
     modal2_data.sub_data = [];
 
-    $("#datepicker3").datepicker('setDate','today');
-    
+    $("#datepicker3").datepicker('setDate', 'today');
+
     main_data.check = 'I';
     main_data.check2 = 'Y';
 
@@ -101,32 +98,28 @@ function supp_btn(what) {
     $("#supp_modal_keyword").val("supp_name");
     $("#supp_modal_keyword2").val("");
 
-    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
-    $( "#supp-search-dialog" ).dialog('open');
-     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+    $("#supp-search-dialog").dialog('open');
+    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
-
-
-
-
 
 
 function delete_btn() {
     var ids = $("#scmInTopGrid").getGridParam('selarrrow');
-    var check='';
+    var check = '';
     var check2 = [];
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         ids.forEach(function (id) {
             check = $('#scmInTopGrid').jqGrid('getRowData', id).status;
-            if (check === '2'){
+            if (check === '2') {
                 check2.push(id);
             }
 
         })
-        if (check2.length > 0){
-            alert(check2.join(",")+" 전표가 입고 완료 되어있습니다.");
+        if (check2.length > 0) {
+            alert(check2.join(",") + " 전표가 입고 완료 되어있습니다.");
         } else {
             if (confirm("삭제하겠습니까?")) {
                 main_data.check = 'D';
@@ -148,39 +141,38 @@ function delete_btn() {
         $('#scmInTopGrid').jqGrid("resetSelection");
 
 
-
     }
 }
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function suppModal_bus(code,name) {
-    if (main_data.supp_check === 'A'){
+function suppModal_bus(code, name) {
+    if (main_data.supp_check === 'A') {
         $("#supp_name_main").val(name);
         $("#supp_code_main").val(code);
-    }else if(main_data.supp_check === 'B'){
+    } else if (main_data.supp_check === 'B') {
 
         $("#supp_name_modal").val(name);
         $("#supp_code_modal").val(code);
         modal2_data.part_code = '';
         modal2_data.sub_data = [];
-        $( "#scmInDialogRightGrid" ).jqGrid('clearGridData');
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
     }
-    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+    $("#SuppSearchGrid").jqGrid('clearGridData');
 }
+
 function suppModal_close_bus() {
-    if (main_data.supp_check === 'A'){
+    if (main_data.supp_check === 'A') {
         $("#supp_name_main").val("");
         $("#supp_code_main").val("");
     }
-    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+    $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 
 
-
 function datepickerInput() {
-    datepicker_makes("#datepicker",-1);
-    datepicker_makes("#datepicker2",0);
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
 
 }
 
@@ -193,13 +185,13 @@ function jqGrid_main() {
         multiselect: true,
         // 타이틀
         caption: "입고등록 | MES",
-        colNames: ['입고일자','전표번호','업체','상태','상태기준','처리자','출고일시'],
+        colNames: ['입고일자', '전표번호', '업체', '상태', '상태기준', '처리자', '출고일시'],
         colModel: [
-            {name: 'work_date', index: 'work_date', width: 60, sortable: false,formatter:formmatterDate2},
-            {name: 'in_no', index: 'in_no', key: true,width: 60, sortable: false},
+            {name: 'work_date', index: 'work_date', width: 60, sortable: false, formatter: formmatterDate2},
+            {name: 'in_no', index: 'in_no', key: true, width: 60, sortable: false},
             {name: 'supp_name', index: 'supp_name', width: 60, sortable: false},
             {name: 'status_name', index: 'status_name', width: 60, sortable: false},
-            {name: 'status', index: 'status', hidden:true, width: 60, sortable: false},
+            {name: 'status', index: 'status', hidden: true, width: 60, sortable: false},
             {name: 'user_name', index: 'user_name', width: 60, sortable: false},
             {name: 'out_date', index: 'out_date', width: 60, sortable: false},
         ],
@@ -207,7 +199,7 @@ function jqGrid_main() {
         viewrecords: true,
         height: 200,
         rowNum: 100,
-        rowList:[100,200,300,500,1000],
+        rowList: [100, 200, 300, 500, 1000],
         pager: '#scmInTopGridPager',
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
@@ -215,14 +207,14 @@ function jqGrid_main() {
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
-        onCellSelect:function (rowid,icol,cellcontent,e) {
+        onCellSelect: function (rowid, icol, cellcontent, e) {
             under_get(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#scmInTopGrid').jqGrid('getRowData', rowid);
-            if (data.status === '2'){
+            if (data.status === '2') {
                 main_data.check2 = 'N';
-            }else {
+            } else {
                 main_data.check2 = 'Y';
             }
             update_btn(rowid);
@@ -235,7 +227,7 @@ function jqGrid_main() {
         mtype: 'POST',
         datatype: "local",
         caption: "입고등록 | MES",
-        colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','lot','입고수량','패킹수'],
+        colNames: ['전표번호', '품목그룹', '품번', '품명', '업체명', '규격', '단위', 'lot', '입고수량', '패킹수'],
         colModel: [
             {name: 'in_no', index: 'in_no', width: 60, sortable: false},
             {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
@@ -252,7 +244,7 @@ function jqGrid_main() {
         viewrecords: true,
         height: 150,
         rowNum: 100,
-        rowList:[100,200,300,500,1000],
+        rowList: [100, 200, 300, 500, 1000],
         pager: '#scmInBottomGridPager'
 
     });
