@@ -6,7 +6,6 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
-import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 
 import javax.servlet.http.HttpServletRequest;
