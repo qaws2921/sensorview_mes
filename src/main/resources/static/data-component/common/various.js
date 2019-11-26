@@ -30,6 +30,19 @@ function formmatterDate(cellValue) { // 날짜 필터
 	   }
 }
 
+function formmatterDate2(cellValue) { // 날짜 필터
+	if (cellValue == null){
+		return '';
+	} else {
+		var y = cellValue.substring(0,4);
+		var m = cellValue.substring(4,6);
+		var d = cellValue.substring(6,8);
+		var date = y+"-"+m+"-"+d
+		return date;
+	}
+}
+
+
 function jqGridResize(main_name, top_name) {
 	$(window).on('resize', function () {
 		$(main_name).setGridWidth($(top_name).width(), true);
@@ -68,6 +81,21 @@ function value_return(class_name) {
 	});	
 		return modal_objact
 		
+}
+
+// 조회기간같은 날짜 선택값 리턴 받을때 받은 값이 '-'를 포함해서
+// -를 제거한 숫자만 넣어주기 위하여 사용
+function value_return2(class_name) {
+	var modal_objact = {};
+	var objectName = null;
+	var objectValue = null;
+	$(class_name).each(function(i){
+		objectName = $(this).attr("name");
+		objectValue = $(this).val().replace(/-/gi,"");
+		modal_objact[objectName] = objectValue;
+	});
+	return modal_objact
+
 }
 
 function modal_edits(class_name,readonly,data) {

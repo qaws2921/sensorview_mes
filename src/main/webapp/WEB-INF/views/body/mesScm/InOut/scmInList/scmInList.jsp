@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmInList/scmInList.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
@@ -52,7 +53,7 @@
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 condition_main"
                                    id="supp_name_main" onclick="supp_btn('A');">
-                            <input type="hidden" name="supp_code" class="form-control h-25 condition_main"
+                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"
                                    id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>

@@ -3,7 +3,10 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.InOut.InOutMapper">
     <select id="scmInGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN">
-        	EXEC SP_SCM_IN_GET2 #{site_code},#{page}, #{rows},#{start_date}, #{end_date}, #{keyword}
+        	EXEC SP_SCM_IN_GET2 #{site_code},#{page}, #{rows},#{start_date}, #{end_date}, #{keyword}, ''
+    </select>
+    <select id="scmInListGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN">
+        	EXEC SP_SCM_IN_GET2 #{site_code},#{page}, #{rows},#{start_date}, #{end_date}, #{keyword}, '2'
     </select>
     <select id="scmOutGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT">
         	EXEC SP_SCM_OUT_GET_SUM #{site_code},#{page}, #{rows},#{start_date}, #{end_date}, #{keyword}
