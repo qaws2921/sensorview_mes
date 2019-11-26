@@ -42,19 +42,23 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
+
+
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g,'');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g,'');
     main_data.send_data_post = main_data.send_data;
     console.log(main_data.send_data_post);
-
     $("#scmInTopGrid").setGridParam({
-        datatype: "local",
+        url:"/scmInGet",
+        datatype: "json",
         page: page,
-        data: topGrid_data
+        postData: main_data.send_data
     }).trigger("reloadGrid");
 }
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/sysUserGet',
+        url: '/scmInGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -160,7 +164,7 @@ function datepickerInput() {
 
 function jqGrid_main() {
     $("#scmInTopGrid").jqGrid({
-
+        mtype: 'POST',
         datatype: "local",
         // 다중 select
         multiselect: true,
@@ -168,12 +172,12 @@ function jqGrid_main() {
         caption: "입고등록 | MES",
         colNames: ['입고일자','전표번호','업체','상태','처리자','출고일시'],
         colModel: [
-            {name: 'indate', index: 'indate', width: 60},
-            {name: 'num', index: 'num', key: true,width: 60},
-            {name: 'supp', index: 'supp', width: 60},
-            {name: 'state', index: 'state', width: 60},
-            {name: 'manager', index: 'manager', width: 60},
-            {name: 'outdate', index: 'outdate', width: 60},
+            {name: 'work_date', index: 'work_date', width: 60},
+            {name: 'in_no', index: 'in_no', key: true,width: 60},
+            {name: 'supp_name', index: 'supp_name', width: 60},
+            {name: 'status_name', index: 'status_name', width: 60},
+            {name: 'user_name', index: 'user_name', width: 60},
+            {name: 'out_date', index: 'out_date', width: 60},
         ],
         autowidth: true,
         viewrecords: true,
@@ -228,26 +232,7 @@ function jqGrid_main() {
 
 
 ///////////////////////////////지울거//////////////////////////////////////////
-var topGrid_data =
-    [
-        {indate:"2019-11-14",num:"P01-123112215",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112216",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112217",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112218",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112219",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112220",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112221",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112222",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112223",supp:"투비시스템",state:"검사대기",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112224",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112225",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112226",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112227",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112228",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112229",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112230",supp:"투비시스템",state:"입고완료",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-        {indate:"2019-11-14",num:"P01-123112231",supp:"투비시스템",state:"입고",manager:"LEE",outdate:"2019-11-15 09:00:00"},
-    ];
+
 
 var bottomGrid_data =
     [

@@ -18,5 +18,5 @@ public interface InOutMapper {
     List<SCM_STOCK_RET> scmStockRetGet(Page p);
     List<SCM_OUT> scmOutGet(Page p);
 
-    RESTful scmInGet(Page p);
+    List<SCM_IN> scmInGet(Page p);
 }
