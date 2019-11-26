@@ -90,7 +90,6 @@ function add_btn() {
 }
 
 
-
 function supp_btn(what) {
     main_data.supp_check = what;
     $("#supp_modal_keyword").val("supp_name");
@@ -101,17 +100,7 @@ function supp_btn(what) {
      jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 
-function suppModal_bus(code,name) {
-    if (main_data.supp_check === 'A'){
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    }else if(main_data.supp_check === 'B'){
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-    }
-    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
 
-}
 
 function update_btn(jqgrid_data) {
 
@@ -153,6 +142,28 @@ function delete_btn() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function suppModal_bus(code,name) {
+    if (main_data.supp_check === 'A'){
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    }else if(main_data.supp_check === 'B'){
+
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        $( "#scmInDialogRightGrid" ).jqGrid('clearGridData');
+    }
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+}
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A'){
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
+}
+
 
 
 function datepickerInput() {
@@ -172,16 +183,16 @@ function jqGrid_main() {
         caption: "입고등록 | MES",
         colNames: ['입고일자','전표번호','업체','상태','처리자','출고일시'],
         colModel: [
-            {name: 'work_date', index: 'work_date', width: 60},
-            {name: 'in_no', index: 'in_no', key: true,width: 60},
-            {name: 'supp_name', index: 'supp_name', width: 60},
-            {name: 'status_name', index: 'status_name', width: 60},
-            {name: 'user_name', index: 'user_name', width: 60},
-            {name: 'out_date', index: 'out_date', width: 60},
+            {name: 'work_date', index: 'work_date', width: 60, sortable: false,formatter:formmatterDate2},
+            {name: 'in_no', index: 'in_no', key: true,width: 60, sortable: false},
+            {name: 'supp_name', index: 'supp_name', width: 60, sortable: false},
+            {name: 'status_name', index: 'status_name', width: 60, sortable: false},
+            {name: 'user_name', index: 'user_name', width: 60, sortable: false},
+            {name: 'out_date', index: 'out_date', width: 60, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,
-        height: 150,
+        height: 200,
         rowNum: 100,
         rowList:[100,200,300,500,1000],
         pager: '#scmInTopGridPager',
@@ -208,20 +219,20 @@ function jqGrid_main() {
         caption: "입고등록 | MES",
         colNames: ['전표번호','품목그룹','품번','품명','업체명','규격','단위','입고수량','불량수량','실입고수량'],
         colModel: [
-            {name: 'num', index: 'code', width: 60},
-            {name: 'group', index: 'name', width: 60},
-            {name: 'p_num', index: 'cargo', width: 60},
-            {name: 'p_name', index: 'location', width: 60},
-            {name: 'c_name', index: 'cargo', width: 60},
-            {name: 'standard', index: 'cargo', width: 60},
-            {name: 'unit', index: 'standard', width: 60},
-            {name: 'in_num', index: 'unit', width: 60},
-            {name: 'bad_num', index: 'max', width: 60},
-            {name: 'real_num', index: 'min', width: 60},
+            {name: 'num', index: 'code', width: 60, sortable: false},
+            {name: 'group', index: 'name', width: 60, sortable: false},
+            {name: 'p_num', index: 'cargo', width: 60, sortable: false},
+            {name: 'p_name', index: 'location', width: 60, sortable: false},
+            {name: 'c_name', index: 'cargo', width: 60, sortable: false},
+            {name: 'standard', index: 'cargo', width: 60, sortable: false},
+            {name: 'unit', index: 'standard', width: 60, sortable: false},
+            {name: 'in_num', index: 'unit', width: 60, sortable: false},
+            {name: 'bad_num', index: 'max', width: 60, sortable: false},
+            {name: 'real_num', index: 'min', width: 60, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,
-        height: 200,
+        height: 150,
         rowNum: 100,
         rowList:[100,200,300,500,1000],
         pager: '#scmInBottomGridPager'

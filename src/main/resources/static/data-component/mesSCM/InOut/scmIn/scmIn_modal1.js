@@ -10,26 +10,24 @@ function modal_start1() {
     jqGrid_modal1();
     jqGridResize("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
     jqGridResize("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
-
-
-    $(document).on("click","body",function() {
-
-        if (!$('input[id="'+lastsel+'_in_pty"]').length) {
-            $("#scmInDialogRightGrid").jqGrid('saveRow', lastsel,false,'clientArray');
-        }
-    });
-
+    selectBox_modal1();
 
 }
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function get_modal1_btn(page) {
-    $("#scmInDialogLeftGrid").setGridParam({
-        datatype: "local",
-        page: page,
-        data: bottomGrid_data2
-    }).trigger("reloadGrid");
+    if($("#supp_code_modal").val() === ''){
+        alert("업체를 선택하세요");
+    }else {
+        $("#scmInDialogLeftGrid").setGridParam({
+            url:"/sysBPartModalGet",
+            datatype: "json",
+            page: page,
+            postData: value_return(".modal_value")
+        }).trigger("reloadGrid");
+    }
+
 }
 
 
@@ -172,21 +170,24 @@ function modal2_modal_open(rowid) {
 
 function jqGrid_modal1() {
     $("#scmInDialogLeftGrid").jqGrid({
-
+        mtype: 'POST',
         datatype: "local",
         // 다중 select
         multiselect: true,
         // 타이틀
         caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '포장수량', '검사등급'],
+        colNames: ['품목그룹', '품번', '품명', '규격','단위', '포장수량', '검사등급'],
         colModel: [
-            {name: 'part_group_code', index: 'part_group_code'},
-            {name: 'part_code', key: true, index: 'part_code'},
-            {name: 'part_name', index: 'part_name'},
-            {name: 'standard', index: 'standard'},
-            {name: 'unit', index: 'unit'},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false},
+
+            {name: 'part_code', key: true, index: 'part_code', sortable: false},
+            {name: 'part_name', index: 'part_name', sortable: false},
+            {name: 'spec', index: 'spec' , sortable: false},
+            {name: 'unit_name', index: 'unit_name'},
+
             {name: 'qty', index: 'qty'},
-            {name: 'grade', index: 'grade'},
+            {name: 'i_standard_name', index: 'grade_name', sortable: false},
+
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
@@ -211,14 +212,17 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량','패킹수','수량등록'],
+        colNames: ['품목그룹', '품번', '품명', '규격','단위', '검사등급', 'lot_no', '입고수량','패킹수','수량등록'],
         colModel: [
-            {name: 'part_group_code', index: 'part_group_code', width: 60, sortable: false},
+            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+
             {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-            {name: 'standard', index: 'standard', width: 60, sortable: false},
-            {name: 'unit', index: 'unit', width: 60, sortable: false},
-            {name: 'grade', index: 'grade', width: 60, sortable: false},
+            {name: 'spec', index: 'spec', width: 60, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 60},
+
+            {name: 'i_standard_name', index: 'grade_name', width: 60, sortable: false},
+            
             {name: 'lot', index: 'lot', width: 60, sortable: false},
             {name: 'qty', index: 'qty', width: 60, sortable: false},
             {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},
@@ -346,7 +350,12 @@ function jqGrid_modal1() {
 
 
 function qtyButton (cellvalue, options, rowObject) {
-    return '<input type="button" onclick="modal2_modal_open(\''+rowObject.part_code+'\')" value="버튼"/>';
+    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="modal2_modal_open(\''+rowObject.part_code+'\')">\n' +
+        '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
+        '                            <span>추가</span>\n' +
+        '                            </span>\n' +
+        '                    </a>';
+
 };
 
 
@@ -362,94 +371,13 @@ function modal_make1() {
     });
 }
 
+function selectBox_modal1() {
+    select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name",{keyword:''},'Y');
+
+}
+
 function datepickerInput_modal1() {
     datepicker_makes("#datepicker3", 0);
 
 }
 
-// 지울거
-
-var bottomGrid_data2 =
-    [
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0001',
-            part_name: '품목1',
-            standard: '기준1',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0002',
-            part_name: '품목2',
-            standard: '기준2',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0003',
-            part_name: '품목3',
-            standard: '기준3',
-            unit: '60*60',
-            pty: 1,
-            grade: '무검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0004',
-            part_name: '품목4',
-            standard: '기준4',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0005',
-            part_name: '품목5',
-            standard: '기준5',
-            unit: '60*60',
-            pty: 1,
-            grade: '무검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0006',
-            part_name: '품목6',
-            standard: '기준6',
-            unit: '60*60',
-            pty: 1,
-            grade: '무검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0007',
-            part_name: '품목7',
-            standard: '기준7',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0008',
-            part_name: '품목8',
-            standard: '기준8',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-        {
-            part_group_code: 'P0001',
-            part_code: 'PC0009',
-            part_name: '품목9',
-            standard: '기준9',
-            unit: '60*60',
-            pty: 1,
-            grade: '검사'
-        },
-    ];

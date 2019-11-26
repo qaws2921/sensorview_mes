@@ -42,4 +42,10 @@ public class VariousRestController {
         return variousService.sysCommonUnitGet(p, req);
 
     }
+
+    @RequestMapping(value = "/sysBPartModalGet", method = RequestMethod.POST)
+    public RESTful sysBPartModalGet(Page p, HttpServletRequest req) {
+        return variousService.sysBPartModalGet(p, req);
+
+    }
 }

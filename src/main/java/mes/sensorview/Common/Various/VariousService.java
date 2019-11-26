@@ -6,6 +6,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class VariousService extends ReturnFunction {
     public List<SYSCommon> sysCommonUnitGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysCommonUnitGet(p);
+    }
+
+    public RESTful sysBPartModalGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<sysBPart> rows = variousMapper.sysBPartModalGet(p);
+        return getListData(rows , p);
     }
 }
