@@ -93,7 +93,9 @@ function modal_make2() {
                 text: '저장',
                 'class': 'btn btn-primary btn-minier',
                 click: function () {
-                    modal2_add_btn();
+                    if(main_data.check2 === 'Y') {
+                        modal2_add_btn();
+                    }
                 }
             },
             {
@@ -107,18 +109,3 @@ function modal_make2() {
     })
 }
 
-function effectiveness1(modal_objact) { // 유효성 검사
-    // if (modal_objact.part_type_code === '') {
-    //     alert("구분을 선택해주세요");
-    //     return false;
-    // } else if (modal_objact.part_grp_code === '') {
-    //     alert("그룹코드를 입력해주세요");
-    //     return false;
-    // } else if (modal_objact.part_grp_name === '') {
-    //     alert("그룸명 입력해주세요");
-    //     return false;
-    // } else {
-    //
-    //     return true;
-    // }
-}

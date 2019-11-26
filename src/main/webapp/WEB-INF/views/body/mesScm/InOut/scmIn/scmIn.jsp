@@ -15,9 +15,9 @@
         table-layout:auto !important;
     }
 </style>
-<form name="excelForm" id="excelForm" method="POST" action="/excelDown">
-    <input type="submit" id="excelDown" value="EXCEL 다운"/>
-</form>
+<%--<form name="excelForm" id="excelForm" method="POST" action="/excelDown">--%>
+<%--    <input type="submit" id="excelDown" value="EXCEL 다운"/>--%>
+<%--</form>--%>
 <div class="main-content-inner">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
@@ -59,7 +59,7 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">업체</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25 condition_main" id="supp_name_main" onclick="supp_btn('A');">
+                            <input type="text" name="supp_name" class="form-control h-25 condition_main" id="supp_name_main" readonly onclick="supp_btn('A');">
                             <input type="hidden" name="keyword" class="form-control h-25 condition_main" id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
@@ -84,7 +84,7 @@
                             <span>추가</span>
                             </span>
                     </a>
-                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn();">
                         <span>
                         <i class="fa fa-trash bigger-110 blue"></i>
                         <span>삭제</span>
