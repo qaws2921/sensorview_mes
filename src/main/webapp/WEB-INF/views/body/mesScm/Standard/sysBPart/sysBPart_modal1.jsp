@@ -82,9 +82,9 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사기준</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword  modal_value">
-                    <option>검사</option>
-                    <option>무검사</option>
+                <select name="i_standard" class="form-control keyword  modal_value">
+                    <option value="0">무검사</option>
+                    <option value="1">검사</option>
                 </select>
             </div>
         </div>
@@ -92,10 +92,11 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사구분</div>
             <div class="profile-info-value">
-                <select name="keyword" class="form-control keyword  modal_value">
-                    <option>X</option>
-                    <option>전수</option>
-                    <option>샘플링</option>
+                <select name="i_category" class="form-control keyword  modal_value">
+                    <option value="0">X</option>
+                    <option value="1">샘플링</option>
+                    <option value="2">전수</option>
+
                 </select>
             </div>
         </div>

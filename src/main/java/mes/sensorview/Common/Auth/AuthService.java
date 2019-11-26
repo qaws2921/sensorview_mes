@@ -1,6 +1,5 @@
 package mes.sensorview.Common.Auth;
 
-import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Function.AuthFunction;
 import mes.sensorview.Common.Interceptor.Session;
@@ -8,7 +7,6 @@ import mes.sensorview.Mapper.Auth.AuthMapper;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;

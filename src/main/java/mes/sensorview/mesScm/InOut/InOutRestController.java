@@ -22,6 +22,23 @@ public class InOutRestController {
         return inOutService.scmInAdd(req, scmIn);
     }
 
-    @RequestMapping(value = "/scmInListGet", method = RequestMethod.POST)
-    public RESTful scmInListGet(HttpServletRequest req, Page p) { return inOutService.scmInListGet(req, p); }
+    @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
+    public RESTful scmInGet(HttpServletRequest req, Page p) {
+        return inOutService.scmInGet(req, p);
+    }
+
+    @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)
+    public RESTful scmOutGet(HttpServletRequest req, Page p){
+        return inOutService.scmOutGet(req, p);
+    }
+
+    @RequestMapping(value = "/scmStockRetGet", method = RequestMethod.POST)
+    public RESTful scmStockRetGet(HttpServletRequest req, Page p){
+        return inOutService.scmStockRetGet(req, p);
+    }
+
+    @RequestMapping(value = "/scmInLineGet", method = RequestMethod.POST)
+    public RESTful scmInLineGet(HttpServletRequest req, Page p){
+        return inOutService.scmInLineGet(req, p);
+    }
 }

@@ -8,8 +8,10 @@ public class SCM_IN {
     private String in_no;
     private String work_date;
     private String supp_code;
+    private String supp_name;
     private String status;
     private String user_code;
+    private String user_name;
     private String close_yn;
     private String remark;
     private String create_date;

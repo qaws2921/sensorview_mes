@@ -1,4 +1,4 @@
 package mes.sensorview.mesScm.Inventory.DTO;
 
-public class scmStockRev {
+public class SCM_STOCK_REV_LIST {
 }
