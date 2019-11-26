@@ -10,6 +10,7 @@ public class SCM_IN {
     private String supp_code;
     private String supp_name;
     private String status;
+    private String status_name;
     private String user_code;
     private String user_name;
     private String close_yn;
@@ -17,4 +18,6 @@ public class SCM_IN {
     private String create_date;
     private String update_date;
     private String code_list;
+    private int rownum;
+    private int rec_count;
 }
