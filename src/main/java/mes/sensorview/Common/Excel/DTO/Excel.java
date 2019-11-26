@@ -17,19 +17,11 @@ public class Excel {
     private String row7;
     private String row8;
     private String row9;
-
-    public Excel(Row row) {
-        this(
-                row.getCell(0).getStringCellValue(),
-                row.getCell(1).getStringCellValue(),
-                row.getCell(2).getStringCellValue(),
-                row.getCell(3).getStringCellValue(),
-                row.getCell(4).getStringCellValue(),
-                row.getCell(5).getStringCellValue(),
-                row.getCell(6).getStringCellValue(),
-                row.getCell(7).getStringCellValue(),
-                row.getCell(8).getStringCellValue(),
-                row.getCell(9).getStringCellValue()
-        );
-    }
+    private String row10;
+    private String row11;
+    private String row12;
+    private String row13;
+    private String row14;
+    private String row15;
+    private String name;
 }
