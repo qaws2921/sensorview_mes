@@ -9,7 +9,7 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">업체</td>
                     <td class="wt-px-150">
                           <span class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25 modal_value modal_value2" value="" id="supp_name_modal" onclick="supp_btn('B');">
+                            <input type="text" name="supp_name" class="form-control h-25 modal_value modal_value2" value="" id="supp_name_modal" readonly onclick="supp_btn('B');">
                             <input type="hidden" name="keyword" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
@@ -66,18 +66,18 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">입고일자</td>
                     <td class="wt-px-150">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value2">
+                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value2" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
                     <td>
-                        <input type="text" name="bi" class="form-control h-25 modal_value2">
+                        <input type="text" name="keyword2" class="form-control h-25 modal_value2" id="remark">
                     </td>
                 </tr>
                 </tbody>
             </table>
-
+            <input type="hidden" name="keyword3" class="form-control h-25 modal_value2" id="in_no">
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">
@@ -87,7 +87,7 @@
                                 <span>저장</span>
                             </span>
                         </a>
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn">
+                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn" onclick="close_modal1_btn();">
                             <span>
                             	 <i class="fa fa-times bigger-110 blue"></i>
                                 <span>취소</span>

@@ -7,7 +7,22 @@ public class SCM_IN_SUB {
     private String site_code;
     private String in_no;
     private String part_code;
-    private String order_qty;
-    private String bad_qty;
-    private String in_qty;
+    private String qc_result;
+    private int qty;
+    private String lot;
+    private String pack_qty;
+    private String part_grp_name;
+    private String part_name;
+    private String i_standard_name;
+
+    private String spec;
+    private String unit_name;
+    private String work_date;
+    private String remark;
+    private String supp_code;
+    private String supp_name;
+    private int rownum;
+    private String sub;
+    private int rownum_page;
+    private int rec_count;
 }

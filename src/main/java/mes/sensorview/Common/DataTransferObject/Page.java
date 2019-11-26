@@ -21,11 +21,14 @@ public class Page {
     private String keyword4;
     private String keyword5;
     private String keyword6;
+    private String keyword7;
+    private String keyword8;
     private String start_date;
     private String end_date;
     private String user_code;
     private String date;
     private String site_code;
+    private String work_date;
     private String gb;
 
 }

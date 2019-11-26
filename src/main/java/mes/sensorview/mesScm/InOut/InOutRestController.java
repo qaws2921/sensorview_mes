@@ -3,13 +3,14 @@ package mes.sensorview.mesScm.InOut;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
-import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
+import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class InOutRestController {
@@ -18,8 +19,13 @@ public class InOutRestController {
     private InOutService inOutService;
 
     @RequestMapping(value = "/scmInAdd", method = RequestMethod.POST)
-    public Message scmInAdd(HttpServletRequest req, SCM_IN scmIn) {
-        return inOutService.scmInAdd(req, scmIn);
+    public Message scmInAdd(HttpServletRequest req, Page p) {
+        return inOutService.scmInAdd(req, p);
+    }
+
+    @RequestMapping(value = "/scmInDel", method = RequestMethod.POST)
+    public Message scmInDel(HttpServletRequest req, Page p) {
+        return inOutService.scmInDel(req, p);
     }
 
     @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
@@ -28,8 +34,16 @@ public class InOutRestController {
     }
 
     @RequestMapping(value = "/scmInListGet", method = RequestMethod.POST)
-    public RESTful scmInListGet(HttpServletRequest req, Page p) {
-        return inOutService.scmInListGet(req, p);
+    public RESTful scmInListGet(HttpServletRequest req, Page p) { return inOutService.scmInListGet(req, p); }
+
+    @RequestMapping(value = "/scmInSub1Get", method = RequestMethod.POST)
+    public RESTful scmInSub1Get(HttpServletRequest req, Page p) {
+        return inOutService.scmInSub1Get(req, p);
+    }
+
+    @RequestMapping(value = "/scmInSub2Get", method = RequestMethod.POST)
+    public List<SCM_IN_SUB> scmInSub2Get(HttpServletRequest req, Page p) {
+        return inOutService.scmInSub2Get(req, p);
     }
 
     @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)

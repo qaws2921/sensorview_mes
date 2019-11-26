@@ -6,7 +6,6 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
-import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 
 import javax.servlet.http.HttpServletRequest;
@@ -136,21 +135,21 @@ public class ReturnFunction {
 
     public String MakeScmInCodeList(SCM_IN_SUB scmInSub)
     {
-        String code_list = "";
-
-        String part_code[] = scmInSub.getPart_code().split("\\$");
-        String order_qty[] = scmInSub.getOrder_qty().split("\\$");
-        String bad_qty[] = scmInSub.getBad_qty().split("\\$");
-        String in_qty[] = scmInSub.getIn_qty().split("\\$");
-
-        // part_code order, bad, in의 길이가 다 다를수 있으므로 추후 예외처리해야됨
-        for(int i=0 ; i<part_code.length ; i++)
-        {
-           code_list += part_code[i]+"/"+order_qty[i]+"/"+bad_qty[i]+"/"+in_qty[i]+",";
-        }
-        // 마지막 문자 제거
-        code_list = code_list.substring(0, code_list.length()-1);
-        return code_list;
+//        String code_list = "";
+//
+//        String part_code[] = scmInSub.getPart_code().split("\\$");
+//        String order_qty[] = scmInSub.getOrder_qty().split("\\$");
+//        String bad_qty[] = scmInSub.getBad_qty().split("\\$");
+//        String in_qty[] = scmInSub.getIn_qty().split("\\$");
+//
+//        // part_code order, bad, in의 길이가 다 다를수 있으므로 추후 예외처리해야됨
+//        for(int i=0 ; i<part_code.length ; i++)
+//        {
+//           code_list += part_code[i]+"/"+order_qty[i]+"/"+bad_qty[i]+"/"+in_qty[i]+",";
+//        }
+//        // 마지막 문자 제거
+//        code_list = code_list.substring(0, code_list.length()-1);
+        return null;
     }
 
 }

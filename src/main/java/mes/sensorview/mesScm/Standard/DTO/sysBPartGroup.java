@@ -15,4 +15,6 @@ public class sysBPartGroup {
     private String part_type_code;
     private String part_type_name;
     private String keyword;
+    private int rownum;
+    private int rec_count;
 }

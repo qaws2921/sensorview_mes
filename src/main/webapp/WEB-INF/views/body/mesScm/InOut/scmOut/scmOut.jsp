@@ -1,10 +1,7 @@
-<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="now" value="<%=new java.util.Date()%>" />
-<c:set var="yesterday" value="<%=new java.util.Date(new Date().getTime()-60*60*24*1000)%>" />
 <style>
     #scmOutaddDialogLeftGridPager #pg_scmOutaddDialogLeftGridPager table{
         table-layout:auto !important;

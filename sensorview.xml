@@ -55,43 +55,79 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/javaws.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/plugin.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
-      <include name="lib/ant-javafx.jar"/>
-      <include name="lib/dt.jar"/>
-      <include name="lib/javafx-mx.jar"/>
-      <include name="lib/jconsole.jar"/>
-      <include name="lib/packager.jar"/>
-      <include name="lib/sa-jdi.jar"/>
-      <include name="lib/tools.jar"/>
+  <property name="jdk.bin.11" value="${jdk.home.11}/bin"/>
+  <path id="jdk.classpath.11">
+    <fileset dir="${jdk.home.11}">
+      <include name="../jbr!/java.base"/>
+      <include name="../jbr!/java.compiler"/>
+      <include name="../jbr!/java.datatransfer"/>
+      <include name="../jbr!/java.desktop"/>
+      <include name="../jbr!/java.instrument"/>
+      <include name="../jbr!/java.logging"/>
+      <include name="../jbr!/java.management"/>
+      <include name="../jbr!/java.management.rmi"/>
+      <include name="../jbr!/java.naming"/>
+      <include name="../jbr!/java.net.http"/>
+      <include name="../jbr!/java.prefs"/>
+      <include name="../jbr!/java.rmi"/>
+      <include name="../jbr!/java.scripting"/>
+      <include name="../jbr!/java.se"/>
+      <include name="../jbr!/java.security.jgss"/>
+      <include name="../jbr!/java.security.sasl"/>
+      <include name="../jbr!/java.smartcardio"/>
+      <include name="../jbr!/java.sql"/>
+      <include name="../jbr!/java.sql.rowset"/>
+      <include name="../jbr!/java.transaction.xa"/>
+      <include name="../jbr!/java.xml"/>
+      <include name="../jbr!/java.xml.crypto"/>
+      <include name="../jbr!/javafx.base"/>
+      <include name="../jbr!/javafx.controls"/>
+      <include name="../jbr!/javafx.fxml"/>
+      <include name="../jbr!/javafx.graphics"/>
+      <include name="../jbr!/javafx.media"/>
+      <include name="../jbr!/javafx.swing"/>
+      <include name="../jbr!/javafx.web"/>
+      <include name="../jbr!/jdk.accessibility"/>
+      <include name="../jbr!/jdk.aot"/>
+      <include name="../jbr!/jdk.attach"/>
+      <include name="../jbr!/jdk.charsets"/>
+      <include name="../jbr!/jdk.compiler"/>
+      <include name="../jbr!/jdk.crypto.cryptoki"/>
+      <include name="../jbr!/jdk.crypto.ec"/>
+      <include name="../jbr!/jdk.dynalink"/>
+      <include name="../jbr!/jdk.httpserver"/>
+      <include name="../jbr!/jdk.internal.ed"/>
+      <include name="../jbr!/jdk.internal.jvmstat"/>
+      <include name="../jbr!/jdk.internal.le"/>
+      <include name="../jbr!/jdk.internal.vm.ci"/>
+      <include name="../jbr!/jdk.internal.vm.compiler"/>
+      <include name="../jbr!/jdk.internal.vm.compiler.management"/>
+      <include name="../jbr!/jdk.jdi"/>
+      <include name="../jbr!/jdk.jdwp.agent"/>
+      <include name="../jbr!/jdk.jfr"/>
+      <include name="../jbr!/jdk.jsobject"/>
+      <include name="../jbr!/jdk.localedata"/>
+      <include name="../jbr!/jdk.management"/>
+      <include name="../jbr!/jdk.management.agent"/>
+      <include name="../jbr!/jdk.management.jfr"/>
+      <include name="../jbr!/jdk.naming.dns"/>
+      <include name="../jbr!/jdk.naming.rmi"/>
+      <include name="../jbr!/jdk.net"/>
+      <include name="../jbr!/jdk.pack"/>
+      <include name="../jbr!/jdk.scripting.nashorn"/>
+      <include name="../jbr!/jdk.scripting.nashorn.shell"/>
+      <include name="../jbr!/jdk.sctp"/>
+      <include name="../jbr!/jdk.security.auth"/>
+      <include name="../jbr!/jdk.security.jgss"/>
+      <include name="../jbr!/jdk.unsupported"/>
+      <include name="../jbr!/jdk.xml.dom"/>
+      <include name="../jbr!/jdk.zipfs"/>
     </fileset>
   </path>
   
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <property name="project.jdk.home" value="${jdk.home.11}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.11}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.11"/>
   
   
   <!-- Project Libraries -->
@@ -611,7 +647,7 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/module_sensorview.xml"/>
+  <import file="${basedir}/.idea/modules/module_sensorview.xml"/>
   
   <import file="${basedir}/.idea/modules/module_sensorview.main.xml"/>
   
@@ -668,17 +704,18 @@
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.servlet/jstl/1.2/74aca283cd4f4b4f3e425f5820cda58f44409547/jstl-1.2.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jstl-1.2.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.17/7d8c44407178b73246462842bf1e206e99c8e0a/poi-ooxml-3.17.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/poi-ooxml-3.17.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.poi/poi/3.17/ae92292a2043888b40d418da97dc0b669fde326/poi-3.17.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/poi-3.17.jar"/>
+    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/eu.bitwalker/UserAgentUtils/1.21/4fa48acc47c6e347c69f8bca0426106fbd5ebd3/UserAgentUtils-1.21.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/UserAgentUtils-1.21.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jdbc/2.2.1.RELEASE/3645190dc4e647d0ac1f453aaa8840246abb8888/spring-boot-starter-data-jdbc-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-data-jdbc-2.2.1.RELEASE.jar"/>
-    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/2.2.1.RELEASE/7bff398995dc4fa458441f4bf7673981dfedc6de/spring-boot-devtools-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-devtools-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-starter/2.1.0/d1a1b96573ade19ce0cd536e15565d216b05ff83/mybatis-spring-boot-starter-2.1.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/mybatis-spring-boot-starter-2.1.0.jar"/>
+    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/2.2.1.RELEASE/7bff398995dc4fa458441f4bf7673981dfedc6de/spring-boot-devtools-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-devtools-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.2.1.RELEASE/699ae6a7fcb65688f474763ea8233d6cdfa60959/spring-boot-starter-jdbc-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-jdbc-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web-services/2.2.1.RELEASE/e20923094d06038cb03f0adda91a035f905abe6f/spring-boot-starter-web-services-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-web-services-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/2.2.1.RELEASE/689213aca6e25e2aa9b377e61273aa3d31f30f60/spring-boot-starter-web-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-web-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.2.1.RELEASE/2d9f5ad8a76edcf3c610e0f825d9c01563a6900a/spring-boot-starter-json-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-json-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/2.2.1.RELEASE/ea5bd9055951afe28f64a96524bfd0bf0d362313/spring-boot-starter-validation-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-validation-2.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.2.1.RELEASE/5a4d687e6ffec805ce6320af7ca0b18798638200/spring-boot-starter-2.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-boot-starter-2.2.1.RELEASE.jar"/>
-    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.microsoft.sqlserver/mssql-jdbc/7.4.1.jre8/934e92cd5eac5f0edb0298f13693e49e76fdd917/mssql-jdbc-7.4.1.jre8.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/mssql-jdbc-7.4.1.jre8.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.29/46005eeee02e4458520c85d0bcf5001467b053c3/freemarker-2.3.29.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/freemarker-2.3.29.jar"/>
+    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.microsoft.sqlserver/mssql-jdbc/7.4.1.jre8/934e92cd5eac5f0edb0298f13693e49e76fdd917/mssql-jdbc-7.4.1.jre8.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/mssql-jdbc-7.4.1.jre8.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/5.2.1.RELEASE/22fedda999e1b443be19bc3fb7ec326a6e0caf05/spring-context-support-5.2.1.RELEASE.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/spring-context-support-5.2.1.RELEASE.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tiles/tiles-servlet/3.0.7/c1bc425edab2dc6fa504d50bfd6b2fa6229ac301/tiles-servlet-3.0.7.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/tiles-servlet-3.0.7.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tiles/tiles-template/3.0.7/225c145d639deb1abf2e89089d0c530c8853cd2b/tiles-template-3.0.7.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/tiles-template-3.0.7.jar"/>
@@ -724,8 +761,8 @@
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tiles/tiles-autotag-core-runtime/1.2/100bd3cae1a5debf9afb4ef5c8b36c508d06326/tiles-autotag-core-runtime-1.2.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/tiles-autotag-core-runtime-1.2.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-annotations-api/9.0.27/f79e5b8ce215dde53ba16cf73dc259c94a1d9c3d/tomcat-annotations-api-9.0.27.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/tomcat-annotations-api-9.0.27.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.xmlbeans/xmlbeans/2.6.0/29e80d2dd51f9dcdef8f9ffaee0d4dc1c9bbfc87/xmlbeans-2.6.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
-    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.10.0/ac9b5e4ec02f243c580113c0c58564d90432afaa/jackson-datatype-jdk8-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-datatype-jdk8-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.25/8b6e01ef661d8378ae6dd7b511a7f2a33fae1421/snakeyaml-1.25.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/snakeyaml-1.25.jar"/>
+    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.10.0/ac9b5e4ec02f243c580113c0c58564d90432afaa/jackson-datatype-jdk8-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-datatype-jdk8-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.10.0/946bcb4b3ba9facfb338b1d48c2606225205a70c/jackson-datatype-jsr310-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-datatype-jsr310-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-parameter-names/2.10.0/d7ae5421ab27486429aeb878b7e3937544d9324a/jackson-module-parameter-names-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-module-parameter-names-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.10.0/1127c9cf62f2bb3121a3a2a0a1351d251a602117/jackson-databind-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-databind-2.10.0.jar"/>
@@ -740,14 +777,13 @@
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/2.0/3dbd8a76683cd563583a2c78c356ad8b8acf38bf/commons-digester-2.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/commons-digester-2.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/stax/stax-api/1.0.1/49c100caf72d658aca8e58bd74a4ba90fa2b0d70/stax-api-1.0.1.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/stax-api-1.0.1.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.10.0/e01cfd93b80d6773b3f757c78e756c9755b47b81/jackson-annotations-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-annotations-2.10.0.jar"/>
-    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.10.0/4e2c5fa04648ec9772c63e2101c53af6504e624e/jackson-core-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-core-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/jakarta.jws/jakarta.jws-api/1.1.1/2fb6fbd7c39ab09565ad25af1ba7d5c3d43162c4/jakarta.jws-api-1.1.1.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jakarta.jws-api-1.1.1.jar"/>
+    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.10.0/4e2c5fa04648ec9772c63e2101c53af6504e624e/jackson-core-2.10.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jackson-core-2.10.0.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.4.1.Final/40fd4d696c55793e996d1ff3c475833f836c2498/jboss-logging-3.4.1.Final.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/jboss-logging-3.4.1.Final.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.5.1/3fe0bed568c62df5e89f4f174c101eab25345b6c/classmate-1.5.1.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/classmate-1.5.1.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.3/864344400c3d4d92dfeb0a305dc87d953677c03c/logback-core-1.2.3.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/logback-core-1.2.3.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.12.1/a55e6d987f50a515c9260b0451b4fa217dc539cb/log4j-api-2.12.1.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/log4j-api-2.12.1.jar"/>
     <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/c651d5103c649c12b20d53731643e5fffceb536/commons-beanutils-1.8.0.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
-    <copy file="${basedir}/../../.gradle/caches/modules-2/files-2.1/eu.bitwalker/UserAgentUtils/1.21/4fa48acc47c6e347c69f8bca0426106fbd5ebd3/UserAgentUtils-1.21.jar" tofile="${artifact.output.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)}/WEB-INF/lib/UserAgentUtils-1.21.jar"/>
   </target>
   
   <target name="build.all.artifacts" depends="artifact.gradle_:_mes_:_sensorview-0.0.1-snapshot.war, artifact.gradle_:_mes_:_sensorview-0.0.1-snapshot.war_(exploded)" description="Build all artifacts">

@@ -15,4 +15,6 @@ public class sysLoc {
     private String create_date;
     private String update_date;
     private String keyword;
+    private int rownum;
+    private int rec_count;
 }

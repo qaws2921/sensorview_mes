@@ -232,14 +232,13 @@
             multiselect: true,
             // 타이틀
             caption: "출고요청추가 | MES",
-            colNames: ['품목그룹','품번','품명','규격','단위','포장수량'],
+            colNames: ['품목그룹','품번','품명','규격','단위'],
             colModel: [
                 {name: 'gruoup', index: 'gruoup'},
                 {name: 'num', index: 'num'},
                 {name: 'name', index: 'name'},
                 {name: 'standard', index: 'standard'},
                 {name: 'unit', index: 'unit'},
-                {name: 'package', index: 'package'},
             ],
             // 페이지 수 보기 (1 / 100) = true
             // 높이 : 450px
