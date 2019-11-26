@@ -34,7 +34,6 @@ function suppModal_check() {
     if ($( "#SuppSearchGrid" ).getGridParam( "selrow" )) {
         var ids = $( "#SuppSearchGrid" ).getGridParam( "selrow" );
         var data = $('#SuppSearchGrid').jqGrid('getRowData', ids);
-        console.log(data.supp_code,data.supp_name);
         suppModal_bus(data.supp_code,data.supp_name);
 
         $("#supp-search-dialog").dialog('close');
@@ -46,7 +45,7 @@ function suppModal_check() {
 
 function suppModal_close() {
     $("#supp-search-dialog").dialog('close');
-
+    suppModal_close_bus();
 
 }
 
@@ -83,11 +82,11 @@ function suppModal_jqGrid() {
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
-            {name: 'supp_code', index: 'supp_code', key:true,width: 80},
-            {name: 'supp_name', index: 'supp_name',width: 80},
-            {name: 'supp_no', index: 'supp_no',width: 200},
-            {name: 'emp_name', index: 'emp_name',width: 80},
-            {name: 'address', index: 'address',width: 200},
+            {name: 'supp_code', index: 'supp_code', key:true,width: 80, sortable: false},
+            {name: 'supp_name', index: 'supp_name',width: 80, sortable: false},
+            {name: 'supp_no', index: 'supp_no',width: 200, sortable: false},
+            {name: 'emp_name', index: 'emp_name',width: 80, sortable: false},
+            {name: 'address', index: 'address',width: 200, sortable: false},
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
@@ -114,6 +113,12 @@ function suppModal_jqGrid() {
         // setTimeout함수는 함수 뒤 시간이 지나면 호출됨. 현재 : 0 (1000 = 1초)
         // 호출되는 함수는 pager icon 함수
         loadComplete : function() {
+
+        },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#SuppSearchGrid').jqGrid('getRowData', rowid);
+            suppModal_bus(data.supp_code,data.supp_name);
+            $("#supp-search-dialog").dialog('close');
 
         }
 

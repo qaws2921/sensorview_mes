@@ -9,17 +9,15 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">업체</td>
                     <td class="wt-px-150">
                           <span class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25 modal_value" value="" id="supp_name_modal" onclick="supp_btn('B');">
-                            <input type="hidden" name="supp_code" class="form-control h-25 modal_value" value="" id="Ssupp_code_modal">
+                            <input type="text" name="supp_name" class="form-control h-25 modal_value modal_value2" value="" id="supp_name_modal" onclick="supp_btn('B');">
+                            <input type="hidden" name="keyword" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
                     <td class="wt-px-150 h-25">
-                        <select name="part_code" class="form-control modal_value" id="p_group">
-                            <option value="">전체</option>
-                            <option>그룹2</option>
-                            <option>그룹3</option>
+                        <select name="keyword2" class="form-control modal_value" id="grp_select">
+
                         </select>
                     </td>
                     <td></td>
