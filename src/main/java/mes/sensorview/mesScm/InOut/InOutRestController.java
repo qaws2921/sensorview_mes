@@ -1,6 +1,8 @@
 package mes.sensorview.mesScm.InOut;
 
 import mes.sensorview.Common.DataTransferObject.Message;
+import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +20,11 @@ public class InOutRestController {
     @RequestMapping(value = "/scmInAdd", method = RequestMethod.POST)
     public Message scmInAdd(HttpServletRequest req, SCM_IN scmIn) {
         return inOutService.scmInAdd(req, scmIn);
+    }
+
+    @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
+    public RESTful scmInGet(HttpServletRequest req, Page p) {
+
+        return inOutService.scmInGet(req, p);
     }
 }

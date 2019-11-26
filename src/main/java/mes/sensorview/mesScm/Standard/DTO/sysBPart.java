@@ -28,4 +28,8 @@ public class sysBPart {
     private int rownum;
     private int rec_count;
     private String keyword;
+    private String i_standard;
+    private String i_standard_name;
+    private String i_category;
+    private String i_category_name;
 }
