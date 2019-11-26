@@ -29,7 +29,8 @@ public class InOutService extends ReturnFunction {
 
     public RESTful scmInGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        return inOutMapper.scmInGet(p);
+        List<SCM_IN> rows = inOutMapper.scmInGet(p);
+        return getListData(rows , p);
     }
 
     public RESTful scmInList(HttpServletRequest req, Page p) {
