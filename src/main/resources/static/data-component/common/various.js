@@ -70,6 +70,21 @@ function value_return(class_name) {
 		
 }
 
+// 조회기간같은 날짜 선택값 리턴 받을때 받은 값이 '-'를 포함해서
+// -를 제거한 숫자만 넣어주기 위하여 사용
+function value_return2(class_name) {
+	var modal_objact = {};
+	var objectName = null;
+	var objectValue = null;
+	$(class_name).each(function(i){
+		objectName = $(this).attr("name");
+		objectValue = $(this).val().replace(/-/gi,"");
+		modal_objact[objectName] = objectValue;
+	});
+	return modal_objact
+
+}
+
 function modal_edits(class_name,readonly,data) {
 	$(class_name).each(function(i){
 		for (var i = 0; i < readonly.length; i++) {

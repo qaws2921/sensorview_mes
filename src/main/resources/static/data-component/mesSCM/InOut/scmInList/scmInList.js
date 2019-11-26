@@ -9,12 +9,12 @@ var main_data = {
     supp_check:'A',
     send_data: {},
     send_data_post: {},
-
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
 
@@ -28,10 +28,9 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function get_btn(page) {
-    main_data.send_data = value_return(".condition_main");
+    main_data.send_data = value_return2(".condition_main");
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data_post);
-
+    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/scmInListGet',
         datatype: "json",
@@ -82,31 +81,31 @@ function datepickerInput() {
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
-        // 다중 select
-        multiselect: true,
-        // 타이틀
-        caption: "입고현황 | MES",
+        mtype: 'POST',
         colNames: ['입고일자','입고번호','업체명','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량','등록자','입고일시'],
         colModel: [
-            {name: 'indate', index: 'indate', width: 60},
-            {name: 'innum', index: 'innum', width: 60},
-            {name: 'suppname', index: 'suppname', width: 60},
-            {name: 'pgroup', index: 'pgroup', width: 60},
-            {name: 'pnum', index: 'pnum', width: 60},
-            {name: 'pname', index: 'pname', width: 60},
-            {name: 'standard', index: 'standard', width: 60},
-            {name: 'unit', index: 'unit', width: 60},
-            {name: 'incount', index: 'incount', width: 60},
-            {name: 'badcount', index: 'badcount', width: 60},
-            {name: 'realcount', index: 'realcount', width: 60},
-            {name: 'register', index: 'register', width: 60},
-            {name: 'indatetime', index: 'indatetime', width: 60},
+            {name: 'work_date', index: 'work_date',sortable:false, width: 60},
+            {name: 'in_no', index: 'in_no',sortable: false, key:true, width: 60},
+            {name: 'supp_name', index: 'supp_name',sortable: false, width: 60},
+            {name: 'supp_code', index: 'supp_code',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name',sortable: false, width: 60},
+            {name: '', index: '',sortable: false, width: 60},
         ],
-        viewrecords: true,
+        caption: "입고현황 | MES",
+        autowidth: true,
         height: 500,
-        rowNum: 100,
-        rowList:[100,200,300,500,1000],
         pager: '#mes_grid_pager',
+        rowList:[100,200,300,500,1000],
+        rowNum: 100,
+        viewrecords: true,
+        multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
@@ -114,12 +113,10 @@ function jqGrid_main() {
             return (cm[i].name === 'cb');
         },
         onCellSelect:function (rowid,icol,cellcontent,e) {
-            under_get(rowid);
+
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            update_btn(data);
-
         }
     });
 }
