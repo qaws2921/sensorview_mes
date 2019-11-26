@@ -1,4 +1,4 @@
 package mes.sensorview.mesScm.Order.DTO;
 
-public class scmOrderList {
+public class SCM_ORDER_LIST {
 }

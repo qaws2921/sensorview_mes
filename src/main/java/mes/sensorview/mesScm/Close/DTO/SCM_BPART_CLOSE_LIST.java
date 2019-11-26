@@ -1,4 +1,4 @@
 package mes.sensorview.mesScm.Close.DTO;
 
-public class scmBPartCloseList {
+public class SCM_BPART_CLOSE_LIST {
 }

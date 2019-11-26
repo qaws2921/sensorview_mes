@@ -1,9 +1,9 @@
-package mes.sensorview.mesScm.Order.DTO;
+package mes.sensorview.mesScm.InOut.DTO;
 
 import lombok.Data;
 
 @Data
-public class scmReqOrder {
+public class SCM_STOCK_RET {
     private String site_code;
     private String req_no;
     private String ord_no;
