@@ -98,7 +98,7 @@ function left_modal1_btn() {
 
 function add_modal1_btn() {
     var add_data = value_return(".modal_value2");
-
+    add_data.work_date = add_data.work_date.replace(/\-/g,'');
 
     // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
     var jdata = $("#scmInDialogRightGrid").getRowData();
@@ -123,10 +123,10 @@ function add_modal1_btn() {
         if (list.length > 0) {
             alert(list.join(", ") + "를 다시 확인해주세요");
         } else {
-            add_data.part_code = list2.join(",");
-            add_data.lot = list3.join(",");
-            add_data.qty = list4.join(",");
-            add_data.pack_qty = list5.join(",");
+            add_data.keyword4 = list2.join("&");
+            add_data.keyword5 = list3.join("&");
+            add_data.keyword6 = list4.join("&");
+            add_data.keyword7 = list5.join("&");
 
             var code_list = [];
             var code_list2 = [];
@@ -134,10 +134,10 @@ function add_modal1_btn() {
                 list2.forEach(function (s2,i2) {
                     if (s.part_code === s2){
                         s.list.forEach(function (s3,k) {
-                            code_list.push(s3.lot+"$!"+s3.qty);
-                                console.log(s3.lot+"$!"+s3.qty);
+                            code_list.push(s3.lot+"\\"+s3.qty);
+                                console.log(s3.lot+"\\"+s3.qty);
                             if (s.list.length === k+1){
-                                code_list2.push(code_list.join("$@"));
+                                code_list2.push(code_list.join("$"));
                                 console.log("끝");
                                 code_list = [];
 
@@ -147,10 +147,24 @@ function add_modal1_btn() {
                 });
             });
 
-            var code_list3 = code_list2.join("$#");
-            add_data.code_list = code_list3;
+            var code_list3 = code_list2.join("&");
+            add_data.keyword8 = code_list3;
+            add_data.keyword3 = main_data.in_no;
+            ccn_ajax("/scmInAdd", add_data).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    if (main_data.check === "I") {
+                        get_btn(1);
+                    } else {
+                        get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                    }
+                }
+                $("#scmIn-add-dialog").dialog('close');
+            }).catch(function (err) {
+                alert("저장실패");
+            });
 
-            console.log(add_data);
             alert("성공");
         }
     })
@@ -222,7 +236,7 @@ function jqGrid_modal1() {
             {name: 'unit_name', index: 'unit_name', width: 60},
 
             {name: 'i_standard_name', index: 'grade_name', width: 60, sortable: false},
-            
+
             {name: 'lot', index: 'lot', width: 60, sortable: false},
             {name: 'qty', index: 'qty', width: 60, sortable: false},
             {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},

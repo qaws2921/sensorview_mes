@@ -18,8 +18,8 @@ public class InOutRestController {
     private InOutService inOutService;
 
     @RequestMapping(value = "/scmInAdd", method = RequestMethod.POST)
-    public Message scmInAdd(HttpServletRequest req, SCM_IN scmIn) {
-        return inOutService.scmInAdd(req, scmIn);
+    public Message scmInAdd(HttpServletRequest req, Page p) {
+        return inOutService.scmInAdd(req, p);
     }
 
     @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)

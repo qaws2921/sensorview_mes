@@ -12,7 +12,7 @@ import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET;
 import java.util.List;
 
 public interface InOutMapper {
-    Message scmInAdd(SCM_IN scmIn);
+    Message scmInAdd(Page p);
     List<SCM_IN> scmInGet(Page p);
     List<SCM_OUT> scmOutGet(Page p);
     List<SCM_IN_LINE> scmInLineGet(Page p);

@@ -20,11 +20,11 @@ public class InOutService extends ReturnFunction {
     @Autowired
     private InOutMapper inOutMapper;
 
-    public Message scmInAdd(HttpServletRequest req, SCM_IN scmIn)
+    public Message scmInAdd(HttpServletRequest req, Page p)
     {
-        scmIn.setSite_code(getSessionData(req).getSite_code());
-        scmIn.setUser_code(getSessionData(req).getUser_code());
-        return inOutMapper.scmInAdd(scmIn);
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setUser_code(getSessionData(req).getUser_code());
+        return inOutMapper.scmInAdd(p);
     }
 
     public RESTful scmInGet(HttpServletRequest req, Page p) {

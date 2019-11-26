@@ -13,6 +13,7 @@ var main_data = {
     supp_check:'A',
     send_data: {},
     send_data_post: {},
+    in_no:''
 
 };
 

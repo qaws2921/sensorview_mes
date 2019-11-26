@@ -72,7 +72,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
                     <td>
-                        <input type="text" name="bi" class="form-control h-25 modal_value2">
+                        <input type="text" name="keyword2" class="form-control h-25 modal_value2">
                     </td>
                 </tr>
                 </tbody>
