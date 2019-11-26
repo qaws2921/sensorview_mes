@@ -1,4 +1,4 @@
 package mes.sensorview.mesScm.Inventory.DTO;
 
-public class scmStockSumDay {
+public class SCM_STOCK_LIST {
 }
