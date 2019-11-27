@@ -10,7 +10,8 @@
             var $preparingFileModal = $("#preparing-file-modal");
             $preparingFileModal.dialog({ modal: true });
             $("#progressbar").progressbar({value: false});
-            $.fileDownload("/excelDownTest", {
+            $.fileDownload ("/ExcelDownLoad", {
+                data : {"name":"sysBPart"},
                 successCallback: function (url) {
                     $preparingFileModal.dialog('close');
                 },

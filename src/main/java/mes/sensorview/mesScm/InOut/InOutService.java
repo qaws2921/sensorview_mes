@@ -5,7 +5,6 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.InOut.InOutMapper;
-import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_LINE;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT;
@@ -55,12 +54,6 @@ public class InOutService extends ReturnFunction {
     public RESTful scmInListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_IN> rows = inOutMapper.scmInListGet(p);
-        return getListData(rows , p);
-    }
-
-    public RESTful getLine(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        List<SYSProdLine> rows = inOutMapper.getLine(p);
         return getListData(rows , p);
     }
 }

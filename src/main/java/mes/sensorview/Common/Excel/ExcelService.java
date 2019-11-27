@@ -1,9 +1,14 @@
 package mes.sensorview.Common.Excel;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Excel.Action.ExcelFunction;
+import mes.sensorview.Common.Excel.DTO.Excel;
 import mes.sensorview.Common.Excel.Util.ExcelRead;
 import mes.sensorview.Common.Excel.Util.ExcelReadOption;
+import mes.sensorview.Common.Excel.Util.MakeBody;
+import mes.sensorview.Common.Excel.Util.MakeHeader;
 import mes.sensorview.Mapper.Auth.AuthMapper;
+import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import org.apache.ibatis.session.ResultContext;
@@ -29,145 +34,79 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class ExcelService extends ExcelFunction {
     @Autowired
-    private AuthMapper authMapper;
-
-    public void getExcelDown(HttpServletResponse response) {
-        List<sysBPart> list = authMapper.testDbList();
-
-        try {
-            Row row = null;
-            Cell cell = null;
-            int rowNo = 0;
-
-            Workbook workbook = new HSSFWorkbook();
-            Sheet sheet = workbook.createSheet("메뉴정보");
-
-            CellStyle headStyle = workbook.createCellStyle();
-            headStyle.setBorderTop(BorderStyle.THIN);
-            headStyle.setBorderBottom(BorderStyle.THIN);
-            headStyle.setBorderLeft(BorderStyle.THIN);
-            headStyle.setBorderRight(BorderStyle.THIN);
-
-            headStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.AQUA.getIndex());
-            headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-            headStyle.setAlignment(HorizontalAlignment.CENTER);
-
-            CellStyle bodyStyle = workbook.createCellStyle();
-
-            bodyStyle.setBorderTop(BorderStyle.THIN);
-            bodyStyle.setBorderBottom(BorderStyle.THIN);
-            bodyStyle.setBorderLeft(BorderStyle.THIN);
-            bodyStyle.setBorderRight(BorderStyle.THIN);
-
-            // 헤더 생성
-            row = sheet.createRow(rowNo++);
-            cell = row.createCell(0);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴이름");
-
-            cell = row.createCell(1);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴코드");
-
-            cell = row.createCell(2);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴코드");
-
-            for (sysBPart sysBPart : list) {
-                row = sheet.createRow(rowNo++);
-                cell = row.createCell(0);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getSite_code());
-                cell = row.createCell(1);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getPart_name());
-                cell = row.createCell(2);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getPart_code());
-            }
-
-            // 컨텐츠 타입과 파일명 지정
-            response.setContentType("ms-vnd/excel;");
-            response.setHeader("Content-Disposition", "attachment;filename=sheet.xls");
-
-            // 엑셀 출력
-            workbook.write(response.getOutputStream());
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private ExcelMapper excelMapper;
 
     @Transactional
-    public void selectExcelList(HttpServletResponse response) {
-        SXSSFWorkbook workbook = new SXSSFWorkbook(100);
-        Sheet sheet = workbook.createSheet("메뉴정보");
+    public void selectExcelList(HttpServletResponse response, Excel excel) {
+        SXSSFWorkbook sxssfWorkbook = new SXSSFWorkbook(100);
+        // Sheet Header 생성
+        MakeHeader makeHeader = new MakeHeader();
+        // Sheet Body 생성
+        MakeBody makeBody = new MakeBody();
 
-        List<sysBPart> list = authMapper.testDbList();
+        // 전역변수 선언
+        Row row = null;
+        Cell cell = null;
+        int rowNo = 0;
+        int BodyRowsNo = 0;
+        String menuName = null;
+        String excelName = null;
+
+        // head content [s]
+        CellStyle headStyle = sxssfWorkbook.createCellStyle();
+        headStyle.setBorderTop(BorderStyle.THIN);
+        headStyle.setBorderBottom(BorderStyle.THIN);
+        headStyle.setBorderLeft(BorderStyle.THIN);
+        headStyle.setBorderRight(BorderStyle.THIN);
+        headStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.AQUA.getIndex());
+        headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        headStyle.setAlignment(HorizontalAlignment.CENTER);
+        // head content [e]
+
+        // body content [s]
+        CellStyle bodyStyle = sxssfWorkbook.createCellStyle();
+        bodyStyle.setBorderTop(BorderStyle.THIN);
+        bodyStyle.setBorderBottom(BorderStyle.THIN);
+        bodyStyle.setBorderLeft(BorderStyle.THIN);
+        bodyStyle.setBorderRight(BorderStyle.THIN);
+        // body content [e]
 
         try {
-            Row row = null;
-            Cell cell = null;
-            int rowNo = 0;
-
-            CellStyle headStyle = workbook.createCellStyle();
-            headStyle.setBorderTop(BorderStyle.THIN);
-            headStyle.setBorderBottom(BorderStyle.THIN);
-            headStyle.setBorderLeft(BorderStyle.THIN);
-            headStyle.setBorderRight(BorderStyle.THIN);
-
-            headStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.AQUA.getIndex());
-            headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-            headStyle.setAlignment(HorizontalAlignment.CENTER);
-
-            CellStyle bodyStyle = workbook.createCellStyle();
-
-            bodyStyle.setBorderTop(BorderStyle.THIN);
-            bodyStyle.setBorderBottom(BorderStyle.THIN);
-            bodyStyle.setBorderLeft(BorderStyle.THIN);
-            bodyStyle.setBorderRight(BorderStyle.THIN);
-
-            // 헤더 생성
-            row = sheet.createRow(rowNo++);
-            cell = row.createCell(0);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴이름");
-
-            cell = row.createCell(1);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴코드");
-
-            cell = row.createCell(2);
-            cell.setCellStyle(headStyle);
-            cell.setCellValue("메뉴코드");
-
-            for (sysBPart sysBPart : list) {
+            if(excel.getName().equals("sysBPart")){
+                excelName = URLEncoder.encode("자재정보","UTF-8");
+                Sheet sheet = sxssfWorkbook.createSheet(excelName);
                 row = sheet.createRow(rowNo++);
-                cell = row.createCell(0);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getSite_code());
-                cell = row.createCell(1);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getPart_name());
-                cell = row.createCell(2);
-                cell.setCellStyle(bodyStyle);
-                cell.setCellValue("" + sysBPart.getPart_code());
+
+                int index = makeHeader.sysBPart_Header().length;
+                String[] data = makeHeader.sysBPart_Header();
+
+                for(int i=0; index > i; i++){
+                    cell = row.createCell(i);
+                    cell.setCellStyle(headStyle);
+                    cell.setCellValue(data[i]);
+                }
+                List<Object> rows = makeBody.sysBPart_Body();
+                log.info("size : "+rows.size());
+                log.info(rows.get(1).toString());
+                for (int i=0; rows.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    cell = row.createCell(i-1);
+                    cell.setCellStyle(bodyStyle);
+                    cell.setCellValue("" +  String.valueOf(rows.get(i - 1)));
+                }
             }
-
             response.setHeader("Set-Cookie", "fileDownload=true; path=/");
-            response.setHeader("Content-Disposition", String.format("attachment; filename=\"BPart_" + getData() + ".xlsx\""));
-            workbook.write(response.getOutputStream());
-
-
+            response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + excelName +"_"+ getData() + ".xlsx\""));
+            sxssfWorkbook.write(response.getOutputStream());
         } catch (Exception e) {
             response.setHeader("Set-Cookie", "fileDownload=false; path=/");
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -176,7 +115,7 @@ public class ExcelService extends ExcelFunction {
             OutputStream out = null;
             try {
                 out = response.getOutputStream();
-                byte[] data = new String("fail..").getBytes();
+                byte[] data = new String("Excel 생성 중 에러가 발생하였습니다.").getBytes();
                 out.write(data, 0, data.length);
             } catch (Exception ignore) {
                 ignore.printStackTrace();
@@ -191,7 +130,7 @@ public class ExcelService extends ExcelFunction {
 
         } finally {
             try {
-                workbook.close();
+                sxssfWorkbook.close();
             } catch (Exception ignore) {
             }
         }
@@ -219,3 +158,4 @@ public class ExcelService extends ExcelFunction {
         }
     }
 }
+

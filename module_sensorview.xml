@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_sensorview" default="compile.module.sensorview">
+  <dirname property="module.sensorview.basedir" file="${ant.file.module_sensorview}"/>
+  
+  <property name="module.jdk.home.sensorview" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.sensorview" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.sensorview" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.sensorview" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="sensorview.output.dir" value="${module.sensorview.basedir}/out/production/sensorview"/>
+  <property name="sensorview.testoutput.dir" value="${module.sensorview.basedir}/out/test/sensorview"/>
+  
+  <path id="sensorview.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="sensorview.module.production.classpath">
+    <path refid="${module.jdk.classpath.sensorview}"/>
+  </path>
+  
+  <path id="sensorview.runtime.production.module.classpath">
+    <pathelement location="${sensorview.output.dir}"/>
+  </path>
+  
+  <path id="sensorview.module.classpath">
+    <path refid="${module.jdk.classpath.sensorview}"/>
+    <pathelement location="${sensorview.output.dir}"/>
+  </path>
+  
+  <path id="sensorview.runtime.module.classpath">
+    <pathelement location="${sensorview.testoutput.dir}"/>
+    <pathelement location="${sensorview.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.sensorview">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.sensorview">
+    <patternset refid="excluded.from.module.sensorview"/>
+  </patternset>
+  
+  
+  <target name="compile.module.sensorview" depends="compile.module.sensorview.production,compile.module.sensorview.tests" description="Compile module sensorview"/>
+  
+  <target name="compile.module.sensorview.production" depends="register.custom.compilers" description="Compile module sensorview; production classes"/>
+  
+  <target name="compile.module.sensorview.tests" depends="register.custom.compilers,compile.module.sensorview.production" description="compile module sensorview; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.sensorview" description="cleanup module">
+    <delete dir="${sensorview.output.dir}"/>
+    <delete dir="${sensorview.testoutput.dir}"/>
+  </target>
+</project>

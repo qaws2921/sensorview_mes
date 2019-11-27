@@ -14,9 +14,6 @@
     <select id="loginAction" resultType="mes.sensorview.Common.Interceptor.Session">
         EXEC SP_SYS_LOGIN #{user_code} , #{user_pwd}
     </select>
-    <select id="testDbList" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
-        SELECT * FROM SYS_BPART_CD
-    </select>
 </mapper>
 
 
