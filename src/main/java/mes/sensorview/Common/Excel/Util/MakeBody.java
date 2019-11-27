@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
-import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORDER;
+import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +53,11 @@ public class MakeBody {
         return content;
     }
 
-    public List<List<Object>> scmReqOrder_Body(List<SCM_REQ_ORDER> list) {
+    public List<List<Object>> scmReqOrder_Body(List<SCM_REQ_ORD> list) {
         List<List<Object>> content = new ArrayList<>();
         try{
             if(list.size()!=0){
-                for(SCM_REQ_ORDER data : list){
+                for(SCM_REQ_ORD data : list){
                     obj = new ArrayList<>();
                     obj.add(data.getWork_date());
                     obj.add(data.getReq_no());

@@ -24,5 +24,6 @@ public class Excel {
     private String row14;
     private String row15;
     private String name;
+    private String site_code;
     private CommonsMultipartFile multipartFile;
 }
