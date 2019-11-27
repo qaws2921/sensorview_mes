@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -28,8 +30,8 @@ public class ExcelController {
     private ExcelService excelService;
 
     @RequestMapping(value = "/excel_download")
-    public void excel_download(HttpServletResponse response, Excel excel) throws IOException {
-        excelService.ExcelDownload(response, excel);
+    public void excel_download(HttpServletRequest req, HttpServletResponse response, Excel excel) throws IOException {
+        excelService.ExcelDownload(req, response, excel);
     }
 
 //    @RequestMapping(value = "/excelUp.do", method = RequestMethod.POST)

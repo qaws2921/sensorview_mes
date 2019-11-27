@@ -1,9 +1,11 @@
 package mes.sensorview.Common.Excel.Action;
 
+import mes.sensorview.Common.Interceptor.Session;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -102,5 +104,10 @@ public class ExcelFunction {
         bodyStyle.setBorderRight(BorderStyle.THIN);
         bodyStyle.setAlignment(HorizontalAlignment.CENTER);
         return bodyStyle;
+    }
+
+    public Session getSessionData(HttpServletRequest req)
+    {
+        return (Session) req.getSession().getAttribute("userData");
     }
 }
