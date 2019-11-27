@@ -87,6 +87,7 @@ function jqGrid_main() {
         autowidth: true,
         height: $(window).height() - 600,
         rowNum: 100,
+        pager: '#mes_grid2_pager',
         viewrecords: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
@@ -94,6 +95,7 @@ function jqGrid_main() {
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
+
     })
 }
 
