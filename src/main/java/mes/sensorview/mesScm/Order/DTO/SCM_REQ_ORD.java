@@ -3,7 +3,7 @@ package mes.sensorview.mesScm.Order.DTO;
 import lombok.Data;
 
 @Data
-public class SCM_REQ_ORDER {
+public class SCM_REQ_ORD {
     private String site_code;
     private String req_no;
     private String ord_no;

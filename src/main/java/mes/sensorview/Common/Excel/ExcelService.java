@@ -92,9 +92,9 @@ public class ExcelService extends ExcelFunction {
                     }
                 }
             }
-            response(response,sxssfWorkbook,excelName,0,null);
+            response(response,sxssfWorkbook,excelName,"ok",null);
         } catch (Exception e) {
-            response(response,sxssfWorkbook,excelName,1,null);
+            response(response,sxssfWorkbook,excelName,"fail",null);
         } finally {
             try {
                 sxssfWorkbook.close();
