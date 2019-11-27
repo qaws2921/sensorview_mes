@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmInLineList/scmInLineList.js" charset="UTF-8"></script>
 
@@ -60,15 +58,15 @@
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
                        tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
-                            <span>
-                            <i class="fa fa-search bigger-110 blue"></i>
+                        <span><i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
-                            </span>
+                        </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="add_btn();">
-                            <span><i class="fa fa-download bigger-110 blue"></i>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                        <span><i class="fa fa-download bigger-110 blue"></i>
                             <span>저장</span>
-                            </span>
+                        </span>
                     </a>
                 </div>
             </div>

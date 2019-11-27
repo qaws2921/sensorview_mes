@@ -30,4 +30,6 @@ public interface InOutMapper {
 
 
     Message scmOutOrderDel(SCM_OUT_ORD soo);
+
+    List<SCM_OUT_SUB> scmOutListGet(Page p);
 }

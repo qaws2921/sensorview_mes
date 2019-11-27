@@ -52,7 +52,6 @@ function datepickerInput() {
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-
         datatype: 'local',
         mtype: 'POST',
         colNames: ['일자', '접수번호', '수주번호', '수주처', 'End User', '납기일', '품목그룹', '품번', '품명', '규격', '단위', '수량'],
@@ -72,7 +71,7 @@ function jqGrid_main() {
         ],
         caption: '구매요청현황 | MES',
         autowidth: true,
-        height: 500,
+        height: $(window).height()-450,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
@@ -84,12 +83,10 @@ function jqGrid_main() {
             return (cm[i].name === 'cb');
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
-            under_get(rowid);
+
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            update_btn(data);
-
         }
     });
 }

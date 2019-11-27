@@ -48,6 +48,9 @@ public class InOutRestController {
     public List<SCM_IN_SUB> scmInSub2Get(HttpServletRequest req, Page p) {
         return inOutService.scmInSub2Get(req, p);
     }
+    @RequestMapping(value = "/scmOutListGet", method = RequestMethod.POST)
+    public RESTful scmOutListGet(HttpServletRequest req, Page p) { return inOutService.scmOutListGet(req, p); }
+
 
     @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)
     public RESTful scmOutGet(HttpServletRequest req, Page p){

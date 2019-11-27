@@ -56,12 +56,11 @@ function jqGrid_main() {
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
-        height: 150,
+        height: $(window).height() - 700,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         viewrecords: true,
-        multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
@@ -71,7 +70,7 @@ function jqGrid_main() {
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 
     $('#mes_grid2').jqGrid({
-        data: grid_data,
+        data: grid2_data,
         datatype: "local",
         colNames: ['입고번호', '품목그룹', '품번', '품명', '규격', '단위', '수량','바코드'],
         colModel: [
@@ -86,7 +85,7 @@ function jqGrid_main() {
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
-        height: 200,
+        height: $(window).height() - 600,
         rowNum: 100,
         viewrecords: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
