@@ -24,10 +24,10 @@ public class InOutRestController {
         return inOutService.scmInAdd(req, p);
     }
 
-//    @RequestMapping(value = "/scmInDel", method = RequestMethod.POST)
-//    public Message scmInDel(HttpServletRequest req, Page p) {
-//        return inOutService.scmInDel(req, p);
-//    }
+    @RequestMapping(value = "/scmInDel", method = RequestMethod.POST)
+    public Message scmInDel(HttpServletRequest req, Page p) {
+        return inOutService.scmInDel(req, p);
+    }
 
     @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
     public RESTful scmInGet(HttpServletRequest req, Page p) {
@@ -37,15 +37,15 @@ public class InOutRestController {
     @RequestMapping(value = "/scmInListGet", method = RequestMethod.POST)
     public RESTful scmInListGet(HttpServletRequest req, Page p) { return inOutService.scmInListGet(req, p); }
 
-//    @RequestMapping(value = "/scmInSub1Get", method = RequestMethod.POST)
-//    public RESTful scmInSub1Get(HttpServletRequest req, Page p) {
-//        return inOutService.scmInSub1Get(req, p);
-//    }
-//
-//    @RequestMapping(value = "/scmInSub2Get", method = RequestMethod.POST)
-//    public List<SCM_IN_SUB> scmInSub2Get(HttpServletRequest req, Page p) {
-//        return inOutService.scmInSub2Get(req, p);
-//    }
+    @RequestMapping(value = "/scmInSub1Get", method = RequestMethod.POST)
+    public RESTful scmInSub1Get(HttpServletRequest req, Page p) {
+        return inOutService.scmInSub1Get(req, p);
+    }
+
+    @RequestMapping(value = "/scmInSub2Get", method = RequestMethod.POST)
+    public List<SCM_IN_SUB> scmInSub2Get(HttpServletRequest req, Page p) {
+        return inOutService.scmInSub2Get(req, p);
+    }
 
     @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)
     public RESTful scmOutGet(HttpServletRequest req, Page p){

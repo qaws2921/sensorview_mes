@@ -13,4 +13,12 @@ public class SCM_OUT_ORD {
     private String out_no;
     private String create_date;
     private String update_date;
+    private String usage;
+    private String user_name;
+    private String line_name;
+    private int rownum;
+    private int rownum_page;
+    private String status_name;
+    private String usage_name;
+    private int rec_count;
 }
