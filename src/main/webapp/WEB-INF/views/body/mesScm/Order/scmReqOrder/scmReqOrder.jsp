@@ -105,11 +105,9 @@
             </div>
         </div>
 
-        <!-- 파일 생성중 보여질 진행막대를 포함하고 있는 다이얼로그 입니다. -->
-        <div title="엑셀 저장중...." id="preparing-file-modal" style="display: none;">
+        <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
             <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
         </div>
-        <!-- 에러발생시 보여질 메세지 다이얼로그 입니다. -->
         <div title="알림" id="error-modal" style="display: none;">
             <p>저장 실패. 관리자에게 문의하세요</p>
         </div>
