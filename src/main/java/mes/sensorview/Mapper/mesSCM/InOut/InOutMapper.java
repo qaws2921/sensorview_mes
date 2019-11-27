@@ -2,6 +2,7 @@ package mes.sensorview.Mapper.mesSCM.InOut;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.*;
 
@@ -23,4 +24,6 @@ public interface InOutMapper {
     Message scmInDel(Page p);
 
     List<SCM_OUT_ORD> scmOutOrderGet(Page p);
+
+    List<SCM_OUT_SUB> scmOutListGet(Page p);
 }

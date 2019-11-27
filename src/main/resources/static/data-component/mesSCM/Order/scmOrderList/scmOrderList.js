@@ -9,7 +9,6 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
-
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -73,7 +72,6 @@ function suppModal_bus(code, name) {
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
-
 }
 
 function jqGrid_main() {
@@ -82,24 +80,24 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['발주일자', '발주번호', '업체명', '품목그룹', '품번', '품명', '규격', '단위', '상태', '발주수량', '입고수량', '미입고', '등록자', '등록일시'],
         colModel: [
-            {name: 'work_date', index: 'work_date', width: 60},
-            {name: 'ord_no', index: 'ord_no', width: 60},
-            {name: 'supp_name', index: 'supp_name', width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60},
-            {name: 'part_code', index: 'part_code', width: 60},
-            {name: 'part_name', index: 'part_name', width: 60},
-            {name: 'spec', index: 'spec', width: 60},
-            {name: 'unit_name', index: 'unit_name', width: 60},
-            {name: 'status_name', index: 'status_name', width: 60},
-            {name: 'ord_qty', index: 'ord_qty', width: 60},
-            {name: 'qty', index: 'qty', width: 60},
-            {name: '', index: '', width: 60},
-            {name: 'user_name', index: 'user_code', width: 60},
-            {name: 'update_date', index: 'update_date', width: 60},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60},
+            {name: 'ord_no', index: 'ord_no', sortable: false, width: 80},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 40},
+            {name: 'status_name', index: 'status_name', sortable: false, width: 60},
+            {name: 'ord_qty', index: 'ord_qty', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_code', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 80},
         ],
         caption: '발주현황 | MES',
         autowidth: true,
-        height: 500,
+        height: $(window).height() - 450,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,

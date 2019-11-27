@@ -80,7 +80,8 @@ public class InOutService extends ReturnFunction {
 
     public RESTful scmOutListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        return inOutMapper.scmOutListGet(p);
+        List<SCM_OUT_SUB> rows = inOutMapper.scmOutListGet(p);
+        return getListData(rows, p);
     }
 
     public RESTful scmOutOrderGet(HttpServletRequest req, Page p) {
