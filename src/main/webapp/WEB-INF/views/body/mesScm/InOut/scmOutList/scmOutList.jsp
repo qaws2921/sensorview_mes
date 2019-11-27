@@ -33,7 +33,8 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker" class="form-control h-25" />
+                            <input type="text" name="start_date" id="datepicker"
+                                   class="form-control h-25 condition_main">
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -42,7 +43,8 @@
                     </td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker2" class="form-control h-25" />
+                            <input type="text" name="end_date" id="datepicker2"
+                                   class="form-control h-25 condition_main" />
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -55,7 +57,8 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a  id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                                 <span>
                                     <i class="fa fa-search bigger-110 blue"></i>
                                     <span>조회</span>
@@ -74,11 +77,14 @@
                 <table id="mes_grid"></table>
                 <div id="mes_grid_pager"></div>
             </div>
-            <hr />
+        </div>
+
+        <hr />
+
+        <div class="row">
             <div class="col-xs-12 table-responsive">
                 <table id="mes_grid2"></table>
             </div>
-
         </div>
     </div>
 </div>

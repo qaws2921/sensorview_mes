@@ -7,6 +7,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.InOut.InOutMapper;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.*;
+import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,9 +77,38 @@ public class InOutService extends ReturnFunction {
         return inOutMapper.getLine(p);
     }
 
+
+    public RESTful scmOutListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_OUT_SUB> rows = inOutMapper.scmOutListGet(p);
+        return getListData(rows, p);
+    }
+
     public RESTful scmOutOrderGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_OUT_ORD> rows = inOutMapper.scmOutOrderGet(p);
         return getListData(rows , p);
+    }
+
+    public Message scmOutOrderAdd(HttpServletRequest req, SCM_OUT_ORD soo) {
+        soo.setSite_code(getSessionData(req).getSite_code());
+        soo.setUser_code(getSessionData(req).getUser_code());
+        return inOutMapper.scmOutOrderAdd(soo);
+    }
+
+    public RESTful scmOutOrderSup1Get(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_OUT_ORD_SUB> rows = inOutMapper.scmOutOrderSup1Get(p);
+        return getListData(rows , p);
+    }
+
+    public List<SCM_OUT_ORD_SUB> scmOutOrderSup2Get(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return inOutMapper.scmOutOrderSup1Get(p);
+    }
+
+    public Message scmOutOrderDel(HttpServletRequest req, SCM_OUT_ORD soo) {
+        soo.setSite_code(getSessionData(req).getSite_code());
+        return inOutMapper.scmOutOrderDel(soo);
     }
 }

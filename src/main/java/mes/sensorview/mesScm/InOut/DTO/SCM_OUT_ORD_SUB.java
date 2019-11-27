@@ -8,4 +8,14 @@ public class SCM_OUT_ORD_SUB {
     private String ord_no;
     private String part_code;
     private String qty;
+    private String part_grp_name;
+    private String part_name;
+    private String spec;
+    private String unit_name;
+    private String work_date;
+    private String cargo_code_to;
+    private String usage;
+    private int rownum;
+    private int rownum_page;
+    private int rec_count;
 }

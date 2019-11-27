@@ -5,6 +5,8 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
+import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD;
+import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +48,9 @@ public class InOutRestController {
     public List<SCM_IN_SUB> scmInSub2Get(HttpServletRequest req, Page p) {
         return inOutService.scmInSub2Get(req, p);
     }
+    @RequestMapping(value = "/scmOutListGet", method = RequestMethod.POST)
+    public RESTful scmOutListGet(HttpServletRequest req, Page p) { return inOutService.scmOutListGet(req, p); }
+
 
     @RequestMapping(value = "/scmOutGet", method = RequestMethod.POST)
     public RESTful scmOutGet(HttpServletRequest req, Page p){
@@ -69,4 +74,24 @@ public class InOutRestController {
     public RESTful scmOutOrderGet(HttpServletRequest req, Page p) {
         return inOutService.scmOutOrderGet(req, p);
     }
+
+    @RequestMapping(value = "/scmOutOrderAdd", method = RequestMethod.POST)
+    public Message scmOutOrderAdd(HttpServletRequest req, SCM_OUT_ORD soo) {
+        return inOutService.scmOutOrderAdd(req, soo);
+    }
+
+    @RequestMapping(value = "/scmOutOrderSup1Get", method = RequestMethod.POST)
+    public RESTful scmOutOrderSup1Get(HttpServletRequest req, Page p) {
+        return inOutService.scmOutOrderSup1Get(req, p);
+    }
+
+    @RequestMapping(value = "/scmOutOrderSup2Get", method = RequestMethod.POST)
+    public List<SCM_OUT_ORD_SUB> scmOutOrderSup2Get(HttpServletRequest req, Page p) {
+        return inOutService.scmOutOrderSup2Get(req, p);
+    }
+    @RequestMapping(value = "/scmOutOrderDel", method = RequestMethod.POST)
+    public Message scmOutOrderDel(HttpServletRequest req, SCM_OUT_ORD soo) {
+        return inOutService.scmOutOrderDel(req, soo);
+    }
+
 }
