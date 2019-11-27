@@ -9,4 +9,16 @@
     <select id="scmOrderListGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB">
         EXEC SP_SCM_IN_ORD_SUB_DATE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
     </select>
+
+    <select id="scmOrderSubGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB">
+        EXEC SP_SCM_IN_ORD_SUB_DATE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
+    </select>
+
+    <select id="scmOrderAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_IN_ORD_ADD #{site_code},#{work_date}, #{keyword},#{keyword2}, #{keyword3}, #{keyword4}, #{keyword5}, #{keyword6}, #{keyword7}, #{keyword8}, #{user_code}
+    </select>
+
+    <select id="scmOrderDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        	EXEC SP_SCM_IN_ORD_DEL #{site_code},#{keyword}
+    </select>
 </mapper>

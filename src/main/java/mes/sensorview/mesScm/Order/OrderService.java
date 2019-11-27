@@ -1,5 +1,6 @@
 package mes.sensorview.mesScm.Order;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
@@ -32,6 +33,23 @@ public class OrderService extends ReturnFunction {
     public RESTful scmOrderListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_IN_ORD_SUB> rows = orderMapper.scmOrderListGet(p);
+        return getListData(rows , p);
+    }
+
+    public Message scmOrderAdd(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setUser_code(getSessionData(req).getUser_code());
+        return orderMapper.scmOrderAdd(p);
+    }
+
+    public Message scmOrderDel(HttpServletRequest req, Page p) {
+        p.setUser_code(getSessionData(req).getUser_code());
+        return orderMapper.scmOrderDel(p);
+    }
+
+    public RESTful scmOrderSubGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_IN_ORD_SUB> rows = orderMapper.scmOrderSubGet(p);
         return getListData(rows , p);
     }
 }
