@@ -21,4 +21,5 @@ public class SCM_OUT_ORD {
     private String status_name;
     private String usage_name;
     private int rec_count;
+    private String keyword;
 }

@@ -47,4 +47,17 @@
     <select id="scmOutOrderGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD">
         	EXEC SP_SCM_OUT_ORDER_GET #{site_code},#{page}, #{rows},#{start_date}, #{end_date},'',#{keyword}
     </select>
+
+    <select id="scmOutOrderAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_OUT_ORDER_ADD #{site_code},#{work_date}, #{cargo_code_to},#{usage}, #{ord_no}, #{keyword}, #{user_code}
+    </select>
+
+    <select id="scmOutOrderSup1Get" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD_SUB">
+        	EXEC SP_SCM_OUT_ORDER_SUB_GET #{site_code},#{page}, #{rows},#{keyword}
+    </select>
+
+    <select id="scmOutOrderDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_OUT_ORDER_DEL #{site_code},#{ord_no}
+    </select>
+
 </mapper>

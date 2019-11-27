@@ -1,5 +1,6 @@
 package mes.sensorview.mesScm.Order;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,21 @@ public class OrderRestController {
         return orderService.scmOrderGet(req, p);
     }
 
+    @RequestMapping(value = "/scmOrderSubGet", method = RequestMethod.POST)
+    public RESTful scmOrderSubGet(HttpServletRequest req, Page p){
+        return orderService.scmOrderSubGet(req, p);
+    }
+
     @RequestMapping(value = "/scmOrderListGet", method = RequestMethod.POST)
     public RESTful scmOrderListGet(HttpServletRequest req, Page p) { return orderService.scmOrderListGet(req, p); }
+
+    @RequestMapping(value = "/scmOrderAdd", method = RequestMethod.POST)
+    public Message scmInAdd(HttpServletRequest req, Page p) {
+        return orderService.scmOrderAdd(req, p);
+    }
+
+    @RequestMapping(value = "/scmOrderDel", method = RequestMethod.POST)
+    public Message scmInDel(HttpServletRequest req, Page p) {
+        return orderService.scmOrderDel(req, p);
+    }
 }

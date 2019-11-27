@@ -12,6 +12,15 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/** *
+ * <pre>
+ *     ExcelFunction
+ *     엑셀 생성 및 읽기 실행 시 호출되는 함수
+ * </pre>
+ * @author 김재일
+ * @since 2019-11-27
+ * @version 1.0
+ * **/
 public class ExcelFunction {
     /** *
      * <pre>
@@ -24,6 +33,7 @@ public class ExcelFunction {
         String date = format.format(now);
         return date;
     }
+
     /** *
      * <pre>
      *     output 세팅
@@ -35,14 +45,14 @@ public class ExcelFunction {
      * @param result            실행 구분자
      * @param out               OutputStream
      * **/
-    public void response(HttpServletResponse response, SXSSFWorkbook sxssfWorkbook, String excelName, int result, OutputStream out)throws IOException {
-        if (result == 0) {
+    public void response(HttpServletResponse response, SXSSFWorkbook sxssfWorkbook, String excelName, String result, OutputStream out)throws IOException {
+        if (result.equals("ok")) {
             response.setContentType("ms-vnd/excel");
             response.setHeader("Set-Cookie", "fileDownload=true; path=/");
             response.setHeader("Content-Disposition", "attachment;filename=" + excelName + "_" + getDate() + ".xlsx");
             sxssfWorkbook.write(response.getOutputStream());
             sxssfWorkbook.close();
-        } else if (result == 1) {
+        } else if (result.equals("fail")) {
             try {
                 out = response.getOutputStream();
                 byte[] data = new String("Excel 생성 중 에러가 발생하였습니다.").getBytes();

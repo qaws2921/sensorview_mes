@@ -120,3 +120,5 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
     background-color: #337ab7;
     border-color: #2e6da4;
 }
+.ui-progressbar .ui-progressbar-value {}
+.ui-progressbar {}

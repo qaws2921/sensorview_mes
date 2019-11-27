@@ -33,4 +33,45 @@ public class ExcelController {
     public void excel_download(HttpServletRequest req, HttpServletResponse response, Excel excel) throws IOException {
         excelService.ExcelDownload(req, response, excel);
     }
+
+//    @RequestMapping(value = "/excelUp.do", method = RequestMethod.POST)
+//    public void ExcelUp(HttpServletRequest req, HttpServletResponse rep){
+//        log.info("@@@@@@@@@@@@@@@ExcelUp START@@@@@@@@@@@@@@@");
+//
+//        Map returnObject = new HashMap();
+//
+//        try { // MultipartHttpServletRequest 생성
+//            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) req;
+//            Iterator iter = mhsr.getFileNames();
+//            MultipartFile mfile = null;
+//            String fieldName = "";
+//
+//            // 값이 나올때까지
+//            while (iter.hasNext()) {
+//                fieldName = iter.next().toString(); // 내용을 가져와서
+//                mfile = mhsr.getFile(fieldName);
+//                String origName;
+//                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면
+//
+//                returnObject.put("params", mhsr.getParameterMap());
+//
+//
+//                //위치 및 파일
+//                homeService.getExcelUpload("D:\\"+origName);
+//            }
+//
+//        } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }catch (IllegalStateException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//
+//        log.info("@@@@@@@@@@@@@@@ExcelUp END@@@@@@@@@@@@@@@");
+//
+//    }
+
+
 }
