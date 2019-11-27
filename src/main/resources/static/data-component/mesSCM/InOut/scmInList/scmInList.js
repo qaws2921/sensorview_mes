@@ -82,7 +82,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['입고일자','입고번호','업체명','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량','등록자','입고일시'],
+        colNames: ['입고일자','입고번호','업체명','품목그룹','품번','품명','규격','단위','입고수량','검사결과','MRB','상태','등록자','입고일시'],
         colModel: [
             {name: 'work_date', index: 'work_date',sortable:false, width: 60},
             {name: 'in_no', index: 'in_no',sortable: false, key:true, width: 60},
@@ -95,6 +95,7 @@ function jqGrid_main() {
             {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60},
+            {name: 'status', index: '',sortable: false, width: 60},
             {name: 'user_name', index: 'user_name',sortable: false, width: 60},
             {name: 'update_date', index: 'update_date',sortable: false, width: 60},
         ],
