@@ -21,4 +21,6 @@ public interface InOutMapper {
     List<SCM_IN_SUB> scmInSub1Get(Page p);
 
     Message scmInDel(Page p);
+
+    List<SCM_OUT_ORD> scmOutOrderGet(Page p);
 }

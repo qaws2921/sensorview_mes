@@ -29,7 +29,7 @@ $(document).ready(function () {
     jqGridResize("#scmOutOrderBottomGrid", $('#scmInBottomGrid').closest('[class*="col-"]'));
     datepickerInput();
     /*----모달----*/
-    //modal_start1();
+    modal_start1();
 
     jqgridPagerIcons();
 
@@ -43,8 +43,8 @@ function get_btn(page) {
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    $("#scmInTopGrid").setGridParam({
-        url: "/scmInGet",
+    $("#scmOutOrderTopGrid").setGridParam({
+        url: "/scmOutOrderGet",
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -74,31 +74,20 @@ function under_get(rowid) {
 function add_btn() {
     modal_reset(".modal_value", []);
     modal_reset(".modal_value2", []);
-    $("#scmInDialogLeftGrid").jqGrid('clearGridData');
-    $("#scmInDialogRightGrid").jqGrid('clearGridData');
-    modal2_data.part_code = '';
-    modal2_data.sub_data = [];
+    $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
+    $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
 
     $("#datepicker3").datepicker('setDate', 'today');
 
     main_data.check = 'I';
     main_data.check2 = 'Y';
 
-    $("#scmIn-add-dialog").dialog('open');
-    jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
-    jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+    $("#scmOutOrder-add-dialog").dialog('open');
+    jqGridResize2("#scmOutOrderDialogLeftGrid", $('#scmOutOrderDialogLeftGrid').closest('[class*="col-"]'));
+    jqGridResize2("#scmOutOrderDialogRightGrid", $('#scmOutOrderDialogRightGrid').closest('[class*="col-"]'));
 }
 
 
-function supp_btn(what) {
-    main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
-
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-    $("#supp-search-dialog").dialog('open');
-    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
-}
 
 
 function delete_btn() {
@@ -182,15 +171,14 @@ function jqGrid_main() {
         multiselect: true,
         // 타이틀
        caption: "출고요청 | MES",
-       colNames: ['출고일자','전표번호','처리구분','등록자','요청일시','처리자','출고일시'],
+       colNames: ['출고일자','전표번호','처리구분','등록자','등록일시'],
        colModel: [
-           {name: 'outedate', index: 'outedate'},
-           {name: 'rqno', index: 'rqno'},
-           {name: 'state', index: 'state'},
-           {name: 'register', index: 'register'},
-           {name: 'reqdate', index: 'reqdate'},
-           {name: 'manager', index: 'manager'},
-           {name: 'outdatetime', index: 'outdatetime'},
+           {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
+           {name: 'ord_no', index: 'ord_no', key: true, sortable: false},
+           {name: 'status_name', index: 'status_name', sortable: false},
+           {name: 'user_name', index: 'user_name', sortable: false},
+           {name: 'update_date', index: 'update_date',formatter: formmatterDate, sortable: false},
+
        ],
         autowidth: true,
         viewrecords: true,
