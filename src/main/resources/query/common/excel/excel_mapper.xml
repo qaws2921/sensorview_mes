@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mes.sensorview.Mapper.Excel.ExcelMapper">
     <select id="testDbList" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
-        SELECT * FROM SYS_BPART_CD
+        EXEC SP_SYS_BPART_GET 'S0001','1', '100','', 'B0001', '','C0001'
     </select>
 </mapper>
 

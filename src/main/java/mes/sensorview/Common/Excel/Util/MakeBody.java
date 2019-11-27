@@ -1,44 +1,51 @@
 package mes.sensorview.Common.Excel.Util;
 
 import lombok.extern.slf4j.Slf4j;
-import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/** *
+ * <pre>
+ *     MakeBody
+ *     셀 데이터를 생성하는 클래스
+ * </pre>
+ * @author 김재일
+ * @since 2019-11-27
+ * @version 1.0
+ * **/
 @Slf4j
 public class MakeBody {
+    // 전역변수 선언
+    List<Object> obj = null;
 
-    @Autowired
-    private ExcelMapper excelMapper;
-    public List<Object> sysBPart_Body(){
-        List<Object> obj = null;
-        List<sysBPart> list = excelMapper.testDbList();
-        log.info("d"+list.size());
-        log.info("msg : "+list.get(0));
-        log.info("msg : "+list.get(1));
-        if(list.size()!=0){
-            for(sysBPart data : list){
-                obj = new ArrayList<>();
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
+    // sysBPart 데이터 생성 함수
+    public List<List<Object>> sysBPart_Body(List<sysBPart> list){
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(sysBPart data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getLoc_name());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getPart_grp_code());
+                    obj.add(data.getI_standard_name());
+                    obj.add(data.getI_category_name());
+                    obj.add(data.getMax_qty());
+                    obj.add(data.getMin_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
             }
-        }else{
-            try {
-                obj = new ArrayList<>();
-                obj.add("목록 생성 실패");
-                log.info("목록 생성 실패");
-            }catch (Exception e){
-                log.info("error code : "+ e);
-            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
         }
-        return obj;
+        return content;
     }
 }
