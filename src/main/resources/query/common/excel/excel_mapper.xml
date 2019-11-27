@@ -4,6 +4,22 @@
     <select id="testDbList" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
         EXEC SP_SYS_BPART_GET 'S0001','1', '100','', 'B0001', '','C0001'
     </select>
+
+    <select id="scmReqOrderDbList" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORDER">
+        EXEC SP_SCM_REQ_ORD_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
+
+    <select id="scmOrderListDbList" resultType="mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB">
+        EXEC SP_SCM_IN_ORD_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+    </select>
+
+    <select id="scmInListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB">
+        EXEC SP_SCM_IN_SUB_DATE_GET #{site_code},0,0,#{row0}, #{row1}, #{row2}
+    </select>
+
+    <select id="scmOutListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB">
+       EXEC SP_SCM_OUT_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
 </mapper>
 
 
