@@ -67,4 +67,9 @@ public class InOutRestController {
 
     @RequestMapping(value = "/getLine", method = RequestMethod.POST)
     public List<SYSProdLine> getLine(HttpServletRequest req, Page p) { return inOutService.getLine(req, p); }
+
+    @RequestMapping(value = "/scmOutOrderGet", method = RequestMethod.POST)
+    public RESTful scmOutOrderGet(HttpServletRequest req, Page p) {
+        return inOutService.scmOutOrderGet(req, p);
+    }
 }

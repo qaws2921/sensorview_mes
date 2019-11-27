@@ -35,7 +35,7 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker" class="form-control h-25" value="<fmt:formatDate value='${yesterday}' pattern='yyyy-MM-dd'/>">
+                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" >
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -44,16 +44,16 @@
                     </td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker2" class="form-control h-25"  value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd'/>">
+                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main">
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">처리구분</td>
                     <td class="wt-px-200">
-                        <select class="form-control h-25" id="scmOutOrderSelect">
-                            <option>전체</option>
-                            <option>대기</option>
-                            <option>완료</option>
+                        <select name="keyword" class="form-control h-25 condition_main" id="scmOutOrderSelect">
+                            <option value="">전체</option>
+                            <option value="0">대기</option>
+                            <option value="1">완료</option>
                         </select>
                     </td>
                     <td></td>
@@ -65,13 +65,13 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a  id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                    <a  id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1);">
                                 <span>
                                     <i class="fa fa-search bigger-110 blue"></i>
                                     <span>조회</span>
                                 </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog">
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="add_btn();">
                                 <span><i class="fa fa-plus bigger-110 blue"></i>
                                     <span>추가</span>
                                 </span>

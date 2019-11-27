@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<script type="text/javascript" src="/data-component/mesSCM/inOut/scmOutOrder/scmOutOrder_modal1.js" charset="UTF-8"></script>
 <div id="scmOutOrder-add-dialog" class="hide" title="출고요청추가">
     <div class="col-lg-12">
         <div class="col-lg-5 padding0" id="content1">
