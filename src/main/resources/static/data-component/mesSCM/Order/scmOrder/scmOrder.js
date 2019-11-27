@@ -76,12 +76,12 @@ function jqGrid_main() {
         caption: '발주등록 | MES',
         colNames: ['발주일자', '전표번호', '업체', '상태', '등록자', '발주일자'],
         colModel: [
-            {name: 'order_date', index: 'order_date', width: 60},
-            {name: 'order_no', index: 'order_no', width: 60},
-            {name: 'supp_code', index: 'supp_code', width: 60},
-            {name: 'status', index: 'status', width: 60},
-            {name: 'user_code', index: 'user_code', width: 60},
-            {name: 'order_datetime', index: 'order_datetime', width: 60},
+            {name: 'order_date', index: 'order_date', sortable: false, width: 60},
+            {name: 'order_no', index: 'order_no', sortable: false, width: 60},
+            {name: 'supp_code', index: 'supp_code', sortable: false, width: 60},
+            {name: 'status', index: 'status',sortable: false , width: 60},
+            {name: 'user_code', index: 'user_code',sortable: false, width: 60},
+            {name: 'order_datetime', index: 'order_datetime',sortable: false, width: 60},
         ],
         autowidth: true,
         viewrecords: true,
@@ -123,6 +123,7 @@ function jqGrid_main() {
         height: 200,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
+        pager: '#mes_grid2_pager',
 
     });
 }

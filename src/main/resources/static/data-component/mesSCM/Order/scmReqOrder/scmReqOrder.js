@@ -56,7 +56,7 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['일자', '접수번호', '수주번호', '수주처', 'End User', '납기일', '품목그룹', '품번', '품명', '규격', '단위', '수량'],
         colModel: [
-            {name: 'work_date', index: 'work_date', sortable: false, width: 60},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'req_no', index: 'req_no', sortable: false, width: 80},
             {name: 'ord_no', index: 'ord_no', sortable: false, width: 80},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
