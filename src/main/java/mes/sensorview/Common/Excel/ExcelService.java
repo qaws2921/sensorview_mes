@@ -3,48 +3,50 @@ package mes.sensorview.Common.Excel;
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Excel.Action.ExcelFunction;
 import mes.sensorview.Common.Excel.DTO.Excel;
-import mes.sensorview.Common.Excel.Util.ExcelRead;
-import mes.sensorview.Common.Excel.Util.ExcelReadOption;
 import mes.sensorview.Common.Excel.Util.MakeBody;
 import mes.sensorview.Common.Excel.Util.MakeHeader;
-import mes.sensorview.Mapper.Auth.AuthMapper;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
-import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
-import org.apache.ibatis.session.ResultContext;
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+/** *
+ * <pre>
+ *     ExcelService
+ *     엑셀 업로드, 다운로드를 처리하는 서비스 클래스
+ * </pre>
+ * @author 김재일
+ * @since 2019-11-27
+ * @version 1.0
+ * @see mes.sensorview.Common.Excel.Action.ExcelFunction
+ * **/
 @Service
 @Slf4j
 public class ExcelService extends ExcelFunction {
     @Autowired
     private ExcelMapper excelMapper;
 
+    /** *
+     * <pre>
+     *     엑셀 시트 생성 함수
+     *     전달받은 파라미터를 응용하여 데이터 시트를 생성한다.
+     * </pre>
+     * @param response      SXSSFWorkBook
+     * @param excel         파라미터 DTO
+     * @throws IOException
+     * **/
     @Transactional
-    public void selectExcelList(HttpServletResponse response, Excel excel) throws IOException {
+    public void ExcelDownload(HttpServletResponse response, Excel excel) throws IOException {
+        // 생성자 선언
         SXSSFWorkbook sxssfWorkbook = new SXSSFWorkbook(100);
         MakeHeader makeHeader = new MakeHeader();
         MakeBody makeBody = new MakeBody();
@@ -58,11 +60,12 @@ public class ExcelService extends ExcelFunction {
         int v = 0;
 
         try {
+            // 파라미터 데이터로 해당 로직 처리
             if(excel.getName().equals("sysBPart")){
+                Sheet sheet = sxssfWorkbook.createSheet("자재정보");
+                excelName = URLEncoder.encode("자재정보","UTF-8");
                 List<sysBPart> list = excelMapper.testDbList();
                 List<List<Object>> rows = makeBody.sysBPart_Body(list);
-                excelName = URLEncoder.encode("자재정보","UTF-8");
-                Sheet sheet = sxssfWorkbook.createSheet(excelName);
                 int index = makeHeader.sysBPart_Header().length;
                 String[] data = makeHeader.sysBPart_Header();
 
@@ -102,8 +105,19 @@ public class ExcelService extends ExcelFunction {
             } catch (Exception ignore) {
             }
         }
-
     }
+
+    /** *
+     * <pre>
+     *     output 세팅
+     *     excel 확장자 및 파일 이름 설정한다.
+     * </pre>
+     * @param response          HttpServlet
+     * @param sxssfWorkbook     SXSSFWorkBook
+     * @param excelName         엑셀 파일 이름
+     * @param result            실행 구분자
+     * @param out               OutputStream
+     * **/
     public void response(HttpServletResponse response, SXSSFWorkbook sxssfWorkbook,String excelName, int result, OutputStream out)throws IOException{
         if(result == 0){
             response.setContentType("ms-vnd/excel");
@@ -131,6 +145,13 @@ public class ExcelService extends ExcelFunction {
         }
     }
 
+    /** *
+     * <pre>
+     *     Header Cell 스타일 세팅
+     *     생성된 Excel Header 부분 스타일을 지정한다.
+     * </pre>
+     * @param sxssfWorkbook     SXSSFWorkBook
+     * **/
     public CellStyle setHeadStyle(SXSSFWorkbook sxssfWorkbook){
         CellStyle headStyle = sxssfWorkbook.createCellStyle();
         headStyle.setBorderTop(BorderStyle.THIN);
@@ -143,6 +164,14 @@ public class ExcelService extends ExcelFunction {
         headStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         return headStyle;
     }
+
+    /** *
+     * <pre>
+     *     Body Cell 스타일 세팅
+     *     생성된 Excel Header 부분 스타일을 지정한다.
+     * </pre>
+     * @param sxssfWorkbook     SXSSFWorkBook
+     * **/
     public CellStyle setBodyStyle(SXSSFWorkbook sxssfWorkbook){
         CellStyle bodyStyle = sxssfWorkbook.createCellStyle();
         bodyStyle.setBorderTop(BorderStyle.THIN);
@@ -151,26 +180,6 @@ public class ExcelService extends ExcelFunction {
         bodyStyle.setBorderRight(BorderStyle.THIN);
         bodyStyle.setAlignment(HorizontalAlignment.CENTER);
         return bodyStyle;
-    }
-
-    public void excelUpload(File destFile) throws Exception {
-        ExcelReadOption excelReadOption = new ExcelReadOption();
-        excelReadOption.setFilePath(destFile.getAbsolutePath());
-        excelReadOption.setOutputColumns("A", "B", "C", "D", "E", "F");
-        excelReadOption.setStartRow(2);
-
-
-        List<Map<String, String>> excelContent = ExcelRead.read(excelReadOption);
-
-        for (Map<String, String> article : excelContent) {
-            System.out.println(article.get("A"));
-            System.out.println(article.get("B"));
-            System.out.println(article.get("C"));
-            System.out.println(article.get("D"));
-            System.out.println(article.get("E"));
-            System.out.println(article.get("F"));
-
-        }
     }
 }
 
