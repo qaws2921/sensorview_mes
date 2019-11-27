@@ -11,34 +11,33 @@ import java.util.List;
 @Slf4j
 public class MakeBody {
 
-    @Autowired
-    private ExcelMapper excelMapper;
-    public List<Object> sysBPart_Body(){
-        List<Object> obj = null;
-        List<sysBPart> list = excelMapper.testDbList();
-        log.info("d"+list.size());
-        log.info("msg : "+list.get(0));
-        log.info("msg : "+list.get(1));
-        if(list.size()!=0){
-            for(sysBPart data : list){
-                obj = new ArrayList<>();
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
-                obj.add(data.getPart_code());
+    List<Object> obj = null;
+    public List<List<Object>> sysBPart_Body(List<sysBPart> list){
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(sysBPart data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getLoc_name());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getPart_grp_code());
+                    obj.add(data.getI_standard_name());
+                    obj.add(data.getI_category_name());
+                    obj.add(data.getMax_qty());
+                    obj.add(data.getMin_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getPart_code());
+                    content.add(obj);
+                }
             }
-        }else{
-            try {
-                obj = new ArrayList<>();
-                obj.add("목록 생성 실패");
-                log.info("목록 생성 실패");
-            }catch (Exception e){
-                log.info("error code : "+ e);
-            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
         }
-        return obj;
+        return content;
     }
 }
