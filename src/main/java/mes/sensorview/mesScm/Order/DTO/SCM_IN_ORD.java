@@ -8,8 +8,11 @@ public class SCM_IN_ORD {
     private String ord_no;
     private String work_date;
     private String supp_code;
+    private String supp_name;
     private String status;
+    private String status_name;
     private String user_code;
+    private String user_name;
     private String create_date;
     private String update_date;
     private String view_amount;

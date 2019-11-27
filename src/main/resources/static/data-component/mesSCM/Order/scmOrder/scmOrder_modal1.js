@@ -4,16 +4,30 @@ var grid2_add_data=[];
 function modal_start1() {
     modal_make1();
     datepicker_modal1();
-
+    selectBox_modal1();
     jqGrid_modal1();
     jqGridResize("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
     jqGridResize("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
 
 }
 
+function get_modal1_btn(page) {
+    var data = value_return(".modal_value");
+    $("#mes_add_grid").setGridParam({
+        url: "/sysBPartModalGet",
+        datatype: "json",
+        page: page,
+        postData: data
+    }).trigger("reloadGrid");
+
+
+}
+
+
+
 function jqGrid_modal1() {
     $("#mes_add_grid").jqGrid({
-        data: grid_add_data,
+        mtype: 'POST',
         datatype: "local",
         // 다중 select
         multiselect: true,
@@ -21,12 +35,12 @@ function jqGrid_modal1() {
         caption: "발주추가 | MES",
         colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사기준'],
         colModel: [
-            {name: 'group', index: 'group'},
-            {name: 'num', index: 'num'},
-            {name: 'name', index: 'name'},
-            {name: 'standard', index: 'standard'},
-            {name: 'unit', index: 'unit'},
-            {name: 'i_standard', index: 'i_standard'},
+            {name: 'part_grp_name', index: 'part_grp_name'},
+            {name: 'part_code', index: 'part_code',key:true},
+            {name: 'part_name', index: 'part_name'},
+            {name: 'spec', index: 'spec'},
+            {name: 'unit_name', index: 'unit_name'},
+            {name: 'i_standard_name', index: 'i_standard_name'},
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
@@ -91,5 +105,10 @@ function modal_make1() {
 
 function datepicker_modal1() {
     datepicker_makes("#datepicker3", 0);
+
+}
+
+function selectBox_modal1() {
+    select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
 
 }

@@ -53,18 +53,18 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 condition_main"
-                                   id="supp_name_main" readonly onclick="supp_btn('A')">
-                            <input type="hidden" name="supp_code" class="form-control h-25 condition_main"
+                                   id="supp_name_main" onclick="supp_btn('A')" readonly>
+                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"
                                    id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">상태</td>
                     <td class="wt-px-200">
-                        <select class="form-control">
-                            <option>전체</option>
-                            <option>입고대기</option>
-                            <option>완료</option>
+                        <select name="keyword2" class="form-control condition_main">
+                            <option value="">전체</option>
+                            <option value="0">입고대기</option>
+                            <option value="1">완료</option>
                         </select>
                     </td>
                     <td></td>
@@ -77,7 +77,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1);">
                             <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
