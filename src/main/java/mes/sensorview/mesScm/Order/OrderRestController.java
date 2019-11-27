@@ -25,4 +25,6 @@ public class OrderRestController {
         return orderService.scmOrderGet(req, p);
     }
 
+    @RequestMapping(value = "/scmOrderListGet", method = RequestMethod.POST)
+    public RESTful scmOrderListGet(HttpServletRequest req, Page p) { return orderService.scmOrderListGet(req, p); }
 }

@@ -7,6 +7,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.InOut.InOutMapper;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.*;
+import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,7 @@ public class InOutService extends ReturnFunction {
 
     public RESTful scmInListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_IN> rows = inOutMapper.scmInListGet(p);
+        List<SCM_IN_SUB> rows = inOutMapper.scmInListGet(p);
         return getListData(rows , p);
     }
 
@@ -68,4 +69,6 @@ public class InOutService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return inOutMapper.getLine(p);
     }
+
+
 }

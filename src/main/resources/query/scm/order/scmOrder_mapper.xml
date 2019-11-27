@@ -5,4 +5,8 @@
     <select id="scmReqOrderGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORDER">
         EXEC SP_SCM_REQ_ORD_GET #{site_code},#{page},#{rows},#{start_date},#{end_date}
     </select>
+
+    <select id="scmOrderListGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB">
+        EXEC SP_SCM_IN_ORD_SUB_DATE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
+    </select>
 </mapper>
