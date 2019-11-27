@@ -28,7 +28,7 @@ $(document).ready(function () {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox(){
-    select_makes("#process_select", "/getLine", "line_code","line_name");
+    select_makes("#line_select", "/getLine", "line_code","line_name");
 }
 
 function jqGrid_main() {

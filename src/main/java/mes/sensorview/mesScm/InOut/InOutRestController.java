@@ -44,4 +44,6 @@ public class InOutRestController {
         return inOutService.scmInLineGet(req, p);
     }
 
+    @RequestMapping(value = "/getLine", method = RequestMethod.POST)
+    public RESTful getLine(HttpServletRequest req, Page p) { return inOutService.getLine(req, p); }
 }

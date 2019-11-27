@@ -47,5 +47,4 @@ public class InOutController {
         return "mesScm/InOut/scmStockRetList/scmStockRetList";
     }
 
-
 }

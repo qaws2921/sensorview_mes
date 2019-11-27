@@ -45,7 +45,7 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main" name="keyword" id="process_select" onchange="select_change1(this.value);" style="width:100%">
+                        <select class="form-control keyword condition_main" name="keyword" id="line_select" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
