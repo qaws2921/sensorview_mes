@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmInLineList/scmInLineList.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
@@ -43,9 +45,8 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select class="form-control">
-                            <option>전체</option>
-                            <option>공정1</option>
+                        <select class="form-control keyword condition_main" name="keyword" id="process_select" onchange="select_change1(this.value);" style="width:100%">
+                            <option value="">전체</option>
                         </select>
                     </td>
                     <td></td>

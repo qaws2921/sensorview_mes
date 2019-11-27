@@ -3,13 +3,17 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-
+var main_data = {
+    send_data: {},
+    send_data_post: {},
+};
 var grid_data = [];
 var grid2_data = [];
 
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
+    selectBox();
     jqGrid_main();
     jqgridPagerIcons();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
@@ -22,6 +26,10 @@ $(document).ready(function () {
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+
+function selectBox(){
+    select_makes("#process_select", "/getLine", "line_code","line_name");
+}
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({

@@ -56,4 +56,5 @@ public class InOutService extends ReturnFunction {
         List<SCM_IN> rows = inOutMapper.scmInListGet(p);
         return getListData(rows , p);
     }
+
 }

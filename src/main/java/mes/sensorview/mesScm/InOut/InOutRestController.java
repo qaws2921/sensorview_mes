@@ -43,4 +43,5 @@ public class InOutRestController {
     public RESTful scmInLineGet(HttpServletRequest req, Page p){
         return inOutService.scmInLineGet(req, p);
     }
+
 }
