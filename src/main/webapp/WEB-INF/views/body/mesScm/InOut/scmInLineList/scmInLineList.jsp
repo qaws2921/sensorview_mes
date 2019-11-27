@@ -58,7 +58,8 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""   onclick="get_btn(1)">
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                             <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
@@ -85,7 +86,6 @@
         <div class="row">
             <div class="col-xs-12 table-responsive">
                 <table id="mes_grid2"></table>
-                <div id="mes_grid2_pager"></div>
             </div>
         </div>
     </div>
