@@ -14,4 +14,19 @@ public class SCM_REQ_ORDER {
     private String out_no;
     private String create_date;
     private String update_date;
+
+    private String supp_name;
+    private String end_supp_name;
+    private String end_date;
+    private String part_name;
+    private String part_grp_name;
+    private String spec;
+    private String unit_name;
+
+    private int rownum;
+    private int rec_count;
+    private String keyword;
+
 }
+
+

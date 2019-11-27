@@ -46,4 +46,6 @@ public class VariousService extends ReturnFunction {
         List<sysBPart> rows = variousMapper.sysBPartModalGet(p);
         return getListData(rows , p);
     }
+
+
 }

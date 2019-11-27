@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<script type="text/javascript" src="/data-component/mesSCM/Purchase/scmOrder/scmOrder_modal1.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesSCM/Order/scmOrder/scmOrder_modal1.js" charset="UTF-8"></script>
 <div id="addDialog" title="발주추가" style="display: none">
     <div class="col-lg-12">
         <div class="col-lg-5 padding0" id="content1">
