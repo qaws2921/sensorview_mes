@@ -12,6 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/** *
+ * <pre>
+ *     ExcelService
+ *     엑셀 업로드, 다운로드를 처리하는 컨트롤러 클래스
+ * </pre>
+ * @author 김재일
+ * @since 2019-11-27
+ * @version 1.0
+ * **/
 @Controller
 @Slf4j
 public class ExcelController {
@@ -20,6 +29,6 @@ public class ExcelController {
 
     @RequestMapping(value = "/excel_download")
     public void excel_download(HttpServletResponse response, Excel excel) throws IOException {
-        excelService.selectExcelList(response, excel);
+        excelService.ExcelDownload(response, excel);
     }
 }
