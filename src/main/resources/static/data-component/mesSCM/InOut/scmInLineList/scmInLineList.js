@@ -61,7 +61,6 @@ function jqGrid_main() {
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         viewrecords: true,
-        multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
