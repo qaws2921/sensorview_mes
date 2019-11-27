@@ -7,22 +7,26 @@
     //<![CDATA[
     $(function() {
         $("#btn-excel").on("click", function () {
-            var $preparingFileModal = $("#preparing-file-modal");
-            $preparingFileModal.dialog({ modal: true });
-            $("#progressbar").progressbar({value: false});
-            $.fileDownload ("/excel_download", {
-                data : {"name":"scmReqOrder",
-                    "row0":$('#datepicker').val().replace(/-/gi,""),
-                    "row1": $('#datepicker2').val().replace(/-/gi,"")},
-                successCallback: function (url) {
-                    $preparingFileModal.dialog('close');
-                },
-                failCallback: function (responseHtml, url) {
-                    $preparingFileModal.dialog('close');
-                    $("#error-modal").dialog({ modal: true });
-                }
-            });
-            return false;
+            if (confirm("엑셀로 저장하시겠습니까?")) {
+                var $preparingFileModal = $("#preparing-file-modal");
+                $preparingFileModal.dialog({ modal: true });
+                $("#progressbar").progressbar({value: false});
+                $.fileDownload ("/excel_download", {
+                    data : {"name":"scmReqOrder",
+                        "row0":$('#datepicker').val().replace(/-/gi,""),
+                        "row1": $('#datepicker2').val().replace(/-/gi,"")},
+                    successCallback: function (url) {
+                        $preparingFileModal.dialog('close');
+                    },
+                    failCallback: function (responseHtml, url) {
+                        $preparingFileModal.dialog('close');
+                        $("#error-modal").dialog({ modal: true });
+                    }
+                });
+                return false;
+            }else{
+                alert('다운로드가 취소되었습니다.');
+            }
         });
 
     });
@@ -107,7 +111,7 @@
         </div>
         <!-- 에러발생시 보여질 메세지 다이얼로그 입니다. -->
         <div title="알림" id="error-modal" style="display: none;">
-            <p>엑셀파일 저장실패.</p>
+            <p>저장 실패. 관리자에게 문의하세요</p>
         </div>
     </div>
 </div>
