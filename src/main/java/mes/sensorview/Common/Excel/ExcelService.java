@@ -9,7 +9,7 @@ import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
-import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORDER;
+import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -105,7 +105,7 @@ public class ExcelService extends ExcelFunction {
 
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
-                List<SCM_REQ_ORDER> list = excelMapper.scmReqOrderDbList(excel);
+                List<SCM_REQ_ORD> list = excelMapper.scmReqOrderDbList(excel);
                 List<List<Object>> rows = makeBody.scmReqOrder_Body(list);
                 int index = makeHeader.scmReqOrder_Header().length;
                 String[] data = makeHeader.scmReqOrder_Header();
