@@ -5,7 +5,7 @@
         EXEC SP_SYS_BPART_GET 'S0001','1', '100','', 'B0001', '','C0001'
     </select>
 
-    <select id="scmReqOrderDbList" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORDER">
+    <select id="scmReqOrderDbList" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD">
         EXEC SP_SCM_REQ_ORD_GET #{site_code},0,0,#{row0},#{row1}
     </select>
 
