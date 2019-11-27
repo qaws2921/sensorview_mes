@@ -35,7 +35,7 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" >
+                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" readonly >
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -44,7 +44,7 @@
                     </td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main">
+                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -76,7 +76,7 @@
                                     <span>추가</span>
                                 </span>
                     </a>
-                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn();">
                                 <span>
                                     <i class="fa fa-trash bigger-110 blue"></i>
                                     <span>삭제</span>

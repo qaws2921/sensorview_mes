@@ -10,7 +10,6 @@
  * */
 var main_data = {
     check: 'I',
-    supp_check: 'A',
     send_data: {},
     send_data_post: {},
     check2: 'Y'
@@ -25,8 +24,8 @@ var main_data = {
  * */
 $(document).ready(function () {
     jqGrid_main();
-    jqGridResize("#scmOutOrderTopGrid", $('#scmInTopGrid').closest('[class*="col-"]'));
-    jqGridResize("#scmOutOrderBottomGrid", $('#scmInBottomGrid').closest('[class*="col-"]'));
+    jqGridResize("#scmOutOrderTopGrid", $('#scmOutOrderTopGrid').closest('[class*="col-"]'));
+    jqGridResize("#scmOutOrderBottomGrid", $('#scmOutOrderBottomGrid').closest('[class*="col-"]'));
     datepickerInput();
     /*----모달----*/
     modal_start1();
@@ -52,8 +51,8 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
-    $("#scmInTopGrid").setGridParam({
-        url: '/scmInGet',
+    $("#scmOutOrderTopGrid").setGridParam({
+        url: '/scmOutOrderGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -62,8 +61,8 @@ function get_btn_post(page) {
 
 function under_get(rowid) {
 
-    $("#scmInBottomGrid").setGridParam({
-        url: '/scmInSub1Get',
+    $("#scmOutOrderBottomGrid").setGridParam({
+        url: '/scmOutOrderSup1Get',
         datatype: "json",
         page: 1,
         postData: {keyword: rowid}
@@ -81,6 +80,9 @@ function add_btn() {
 
     main_data.check = 'I';
     main_data.check2 = 'Y';
+    $("#line_select option:eq(0)").prop("selected", true).trigger("change");
+    $("#usage_select option:eq(0)").prop("selected", true).trigger("change");
+
 
     $("#scmOutOrder-add-dialog").dialog('open');
     jqGridResize2("#scmOutOrderDialogLeftGrid", $('#scmOutOrderDialogLeftGrid').closest('[class*="col-"]'));
@@ -91,32 +93,32 @@ function add_btn() {
 
 
 function delete_btn() {
-    var ids = $("#scmInTopGrid").getGridParam('selarrrow');
+    var ids = $("#scmOutOrderTopGrid").getGridParam('selarrrow');
     var check = '';
     var check2 = [];
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         ids.forEach(function (id) {
-            check = $('#scmInTopGrid').jqGrid('getRowData', id).status;
-            if (check === '2') {
+            check = $('#scmOutOrderTopGrid').jqGrid('getRowData', id).status;
+            if (check === '1') {
                 check2.push(id);
             }
 
         })
         if (check2.length > 0) {
-            alert(check2.join(",") + " 전표가 입고 완료 되어있습니다.");
+            alert(check2.join(",") + " 전표가 출고 완료 되어있습니다.");
         } else {
             if (confirm("삭제하겠습니까?")) {
                 main_data.check = 'D';
                 wrapWindowByMask2();
-                ccn_ajax("/scmInDel", {keyword: ids.join("&")}).then(function (data) {
+                ccn_ajax("/scmOutOrderDel", {ord_no: ids.join("&")}).then(function (data) {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {
-                        get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                        get_btn_post($("#scmOutOrderTopGrid").getGridParam('page'));
                     }
-                    $('#scmInBottomGrid').jqGrid('clearGridData');
+                    $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
                     closeWindowByMask();
                 }).catch(function (err) {
                     closeWindowByMask();
@@ -124,7 +126,7 @@ function delete_btn() {
                 });
             }
         }
-        $('#scmInTopGrid').jqGrid("resetSelection");
+        $('#scmOutOrderTopGrid').jqGrid("resetSelection");
 
 
     }
@@ -132,29 +134,6 @@ function delete_btn() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function suppModal_bus(code, name) {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    } else if (main_data.supp_check === 'B') {
-
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-        modal2_data.part_code = '';
-        modal2_data.sub_data = [];
-        $("#scmInDialogRightGrid").jqGrid('clearGridData');
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-}
-
-function suppModal_close_bus() {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val("");
-        $("#supp_code_main").val("");
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-}
-
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -171,11 +150,12 @@ function jqGrid_main() {
         multiselect: true,
         // 타이틀
        caption: "출고요청 | MES",
-       colNames: ['출고일자','전표번호','처리구분','등록자','등록일시'],
+       colNames: ['출고일자','전표번호','처리구분','처리코드','등록자','등록일시'],
        colModel: [
            {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
            {name: 'ord_no', index: 'ord_no', key: true, sortable: false},
            {name: 'status_name', index: 'status_name', sortable: false},
+           {name: 'status', index: 'status',hidden:true, sortable: false},
            {name: 'user_name', index: 'user_name', sortable: false},
            {name: 'update_date', index: 'update_date',formatter: formmatterDate, sortable: false},
 
@@ -196,8 +176,8 @@ function jqGrid_main() {
             under_get(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#scmInTopGrid').jqGrid('getRowData', rowid);
-            if (data.status === '2') {
+            var data = $('#scmOutOrderTopGrid').jqGrid('getRowData', rowid);
+            if (data.status === '1') {
                 main_data.check2 = 'N';
             } else {
                 main_data.check2 = 'Y';
@@ -212,17 +192,17 @@ function jqGrid_main() {
         mtype: 'POST',
         datatype: "local",
         caption: "출고요청 | MES",
-       colNames: ['전표번호','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량'],
+       colNames: ['전표번호','품목그룹','품번','품명','규격','단위','요청수량','출고수량'],
        colModel: [
-           {name: 'rqno', index: 'rqno', width: 60},
-           {name: 'pgroup', index: 'pgroup', width: 60},
-           {name: 'pnum', index: 'pnum', width: 60},
-           {name: 'pname', index: 'pname', width: 60},
-           {name: 'standard', index: 'standard', width: 60},
-           {name: 'unit', index: 'unit', width: 60},
-           {name: 'innum', index: 'innum', width: 60},
-           {name: 'badnum', index: 'badnum', width: 60},
-           {name: 'realnum', index: 'realnum', width: 60},
+           {name: 'ord_no', index: 'ord_no', width: 60, sortable: false},
+           {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+           {name: 'part_code', index: 'part_code', width: 60, sortable: false},
+           {name: 'part_name', index: 'part_name', width: 60, sortable: false},
+           {name: 'spec', index: 'spec', width: 60, sortable: false},
+           {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
+           {name: 'qty', index: 'qty', width: 60, sortable: false},
+           {name: 'qty', index: 'qty', width: 60, sortable: false},
+
        ],
         autowidth: true,
         viewrecords: true,

@@ -23,4 +23,11 @@ public interface InOutMapper {
     Message scmInDel(Page p);
 
     List<SCM_OUT_ORD> scmOutOrderGet(Page p);
+
+    Message scmOutOrderAdd(SCM_OUT_ORD soo);
+
+    List<SCM_OUT_ORD_SUB> scmOutOrderSup1Get(Page p);
+
+
+    Message scmOutOrderDel(SCM_OUT_ORD soo);
 }
