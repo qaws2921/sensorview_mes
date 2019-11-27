@@ -158,79 +158,83 @@ function add_modal1_btn() {
 
         // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
         var jdata = $("#scmInDialogRightGrid").getRowData();
-        var list = [];
-        var list2 = [];
-        var list3 = [];
-        var list4 = [];
-        var list5 = [];
-        jdata.forEach(function (data, j) {
-            if (data.lot === '') {
-                list.push(data.part_code);
-            } else if (data.qty === '') {
-                list.push(data.part_code);
-            } else {
-                list2.push(data.part_code);
-                list3.push(data.lot);
-                list4.push(data.qty);
-                list5.push(data.pack_qty);
-            }
-        });
-        callback(function () {
-            if (list.length > 0) {
-                alert(list.join(", ") + "를 다시 확인해주세요");
-            } else {
-                var text = '저장하겠습니까?';
-                if (main_data.check === "U") {
-                    text = '수정하겠습니까?';
+        if (jdata.length > 0){
+            var list = [];
+            var list2 = [];
+            var list3 = [];
+            var list4 = [];
+            var list5 = [];
+            jdata.forEach(function (data, j) {
+                if (data.lot === '') {
+                    list.push(data.part_code);
+                } else if (data.qty === '') {
+                    list.push(data.part_code);
+                } else {
+                    list2.push(data.part_code);
+                    list3.push(data.lot);
+                    list4.push(data.qty);
+                    list5.push(data.pack_qty);
                 }
-                if (confirm(text)) {
-                    wrapWindowByMask2();
-                    add_data.keyword4 = list2.join("&");
-                    add_data.keyword5 = list3.join("&");
-                    add_data.keyword6 = list4.join("&");
-                    add_data.keyword7 = list5.join("&");
+            });
+            callback(function () {
+                if (list.length > 0) {
+                    alert(list.join(", ") + "를 다시 확인해주세요");
+                } else {
+                    var text = '저장하겠습니까?';
+                    if (main_data.check === "U") {
+                        text = '수정하겠습니까?';
+                    }
+                    if (confirm(text)) {
+                        wrapWindowByMask2();
+                        add_data.keyword4 = list2.join("&");
+                        add_data.keyword5 = list3.join("&");
+                        add_data.keyword6 = list4.join("&");
+                        add_data.keyword7 = list5.join("&");
 
-                    var code_list = [];
-                    var code_list2 = [];
-                    var idx;
+                        var code_list = [];
+                        var code_list2 = [];
+                        var idx;
 
-                    list2.forEach(function (s2, i2) {
-                        idx = findArrayIndex(modal2_data.sub_data, function (item) {
-                            return item.part_code === s2
+                        list2.forEach(function (s2, i2) {
+                            idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                                return item.part_code === s2
+                            });
+
+                            if (idx !== -1) {
+                                modal2_data.sub_data[idx].list.forEach(function (s3, k) {
+                                    code_list.push(s3.lot + "\\" + s3.qty);
+                                    if (modal2_data.sub_data[idx].list.length === k + 1) {
+                                        code_list2.push(code_list.join("$"));
+                                        code_list = [];
+                                    };
+                                });
+                            }
                         });
 
-                        if (idx !== -1) {
-                            modal2_data.sub_data[idx].list.forEach(function (s3, k) {
-                                code_list.push(s3.lot + "\\" + s3.qty);
-                                if (modal2_data.sub_data[idx].list.length === k + 1) {
-                                    code_list2.push(code_list.join("$"));
-                                    code_list = [];
-                                };
-                            });
-                        }
-                    });
-
-                    add_data.keyword8 = code_list2.join("&");
-                    ccn_ajax("/scmInAdd", add_data).then(function (data) {
-                        if (data.result === 'NG') {
-                            alert(data.message);
-                        } else {
-                            if (main_data.check === "I") {
-                                get_btn(1);
+                        add_data.keyword8 = code_list2.join("&");
+                        ccn_ajax("/scmInAdd", add_data).then(function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
                             } else {
-                                get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                                if (main_data.check === "I") {
+                                    get_btn(1);
+                                } else {
+                                    get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                                }
                             }
-                        }
-                        $('#scmInBottomGrid').jqGrid('clearGridData');
-                        closeWindowByMask();
-                        $("#scmIn-add-dialog").dialog('close');
-                    }).catch(function (err) {
-                        closeWindowByMask();
-                        alert("저장실패");
-                    });
+                            $('#scmInBottomGrid').jqGrid('clearGridData');
+                            closeWindowByMask();
+                            $("#scmIn-add-dialog").dialog('close');
+                        }).catch(function (err) {
+                            closeWindowByMask();
+                            alert("저장실패");
+                        });
+                    }
                 }
-            }
-        })
+            })
+        }else {
+            alert("저장 목록을 넣어주세요");
+        }
     }
 }
 
