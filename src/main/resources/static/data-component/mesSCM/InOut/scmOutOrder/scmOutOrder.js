@@ -1,0 +1,252 @@
+/**
+ * various.js 와 연동
+ */
+
+////////////////////////////데이터/////////////////////////////////////
+/**
+ * @desc : 사용자관리 main 데이터
+ * @생성자 : 김종효
+ * @생성일 : 2019-11-12
+ * */
+var main_data = {
+    check: 'I',
+    supp_check: 'A',
+    send_data: {},
+    send_data_post: {},
+    check2: 'Y'
+
+};
+
+////////////////////////////시작 함수/////////////////////////////////////
+/**
+ * @desc : 사용자관리 main 시작 함수
+ * @생성자 : 김종효
+ * @생성일 : 2019-11-12
+ * */
+$(document).ready(function () {
+    jqGrid_main();
+    jqGridResize("#scmOutOrderTopGrid", $('#scmInTopGrid').closest('[class*="col-"]'));
+    jqGridResize("#scmOutOrderBottomGrid", $('#scmInBottomGrid').closest('[class*="col-"]'));
+    datepickerInput();
+    /*----모달----*/
+    //modal_start1();
+
+    jqgridPagerIcons();
+
+});
+
+
+////////////////////////////클릭 함수/////////////////////////////////////
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#scmInTopGrid").setGridParam({
+        url: "/scmInGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+function get_btn_post(page) {
+    $("#scmInTopGrid").setGridParam({
+        url: '/scmInGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
+
+function under_get(rowid) {
+
+    $("#scmInBottomGrid").setGridParam({
+        url: '/scmInSub1Get',
+        datatype: "json",
+        page: 1,
+        postData: {keyword: rowid}
+    }).trigger("reloadGrid");
+}
+
+
+function add_btn() {
+    modal_reset(".modal_value", []);
+    modal_reset(".modal_value2", []);
+    $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+    $("#scmInDialogRightGrid").jqGrid('clearGridData');
+    modal2_data.part_code = '';
+    modal2_data.sub_data = [];
+
+    $("#datepicker3").datepicker('setDate', 'today');
+
+    main_data.check = 'I';
+    main_data.check2 = 'Y';
+
+    $("#scmIn-add-dialog").dialog('open');
+    jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
+    jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+}
+
+
+function supp_btn(what) {
+    main_data.supp_check = what;
+    $("#supp_modal_keyword").val("supp_name");
+    $("#supp_modal_keyword2").val("");
+
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+    $("#supp-search-dialog").dialog('open');
+    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+}
+
+
+function delete_btn() {
+    var ids = $("#scmInTopGrid").getGridParam('selarrrow');
+    var check = '';
+    var check2 = [];
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        ids.forEach(function (id) {
+            check = $('#scmInTopGrid').jqGrid('getRowData', id).status;
+            if (check === '2') {
+                check2.push(id);
+            }
+
+        })
+        if (check2.length > 0) {
+            alert(check2.join(",") + " 전표가 입고 완료 되어있습니다.");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/scmInDel", {keyword: ids.join("&")}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                    }
+                    $('#scmInBottomGrid').jqGrid('clearGridData');
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+        }
+        $('#scmInTopGrid').jqGrid("resetSelection");
+
+
+    }
+}
+
+
+////////////////////////////호출 함수/////////////////////////////////////
+function suppModal_bus(code, name) {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    } else if (main_data.supp_check === 'B') {
+
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
+
+function datepickerInput() {
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
+
+}
+
+
+function jqGrid_main() {
+    $("#scmOutOrderTopGrid").jqGrid({
+        mtype: 'POST',
+        datatype: "local",
+        // 다중 select
+        multiselect: true,
+        // 타이틀
+       caption: "출고요청 | MES",
+       colNames: ['출고일자','전표번호','처리구분','등록자','요청일시','처리자','출고일시'],
+       colModel: [
+           {name: 'outedate', index: 'outedate'},
+           {name: 'rqno', index: 'rqno'},
+           {name: 'state', index: 'state'},
+           {name: 'register', index: 'register'},
+           {name: 'reqdate', index: 'reqdate'},
+           {name: 'manager', index: 'manager'},
+           {name: 'outdatetime', index: 'outdatetime'},
+       ],
+        autowidth: true,
+        viewrecords: true,
+        height: 200,
+        rowNum: 100,
+        rowList: [100, 200, 300, 500, 1000],
+        pager: '#scmOutOrderTopGridPager',
+        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
+        },
+        onCellSelect: function (rowid, icol, cellcontent, e) {
+            under_get(rowid);
+        },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#scmInTopGrid').jqGrid('getRowData', rowid);
+            if (data.status === '2') {
+                main_data.check2 = 'N';
+            } else {
+                main_data.check2 = 'Y';
+            }
+            update_btn(rowid);
+
+        }
+
+    });
+
+    $('#scmOutOrderBottomGrid').jqGrid({
+        mtype: 'POST',
+        datatype: "local",
+        caption: "출고요청 | MES",
+       colNames: ['전표번호','품목그룹','품번','품명','규격','단위','입고수량','불량수량','실입고수량'],
+       colModel: [
+           {name: 'rqno', index: 'rqno', width: 60},
+           {name: 'pgroup', index: 'pgroup', width: 60},
+           {name: 'pnum', index: 'pnum', width: 60},
+           {name: 'pname', index: 'pname', width: 60},
+           {name: 'standard', index: 'standard', width: 60},
+           {name: 'unit', index: 'unit', width: 60},
+           {name: 'innum', index: 'innum', width: 60},
+           {name: 'badnum', index: 'badnum', width: 60},
+           {name: 'realnum', index: 'realnum', width: 60},
+       ],
+        autowidth: true,
+        viewrecords: true,
+        height: 150,
+        rowNum: 100,
+        rowList: [100, 200, 300, 500, 1000],
+        pager: '#scmOutOrderBottomGridPager'
+
+    });
+
+}
+
+
+
+
