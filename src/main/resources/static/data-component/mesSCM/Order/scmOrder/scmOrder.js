@@ -31,6 +31,28 @@ $(document).ready(function () {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/scmOrderGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({
+        url: '/scmOrderGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
+
 function add_btn() {
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
@@ -68,20 +90,29 @@ function datepickerInput() {
 
 }
 
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data: grid_data,
+        mtype: 'POST',
         datatype: 'local',
         multiselect: true,
         caption: '발주등록 | MES',
-        colNames: ['발주일자', '전표번호', '업체', '상태', '등록자', '발주일자'],
+        colNames: ['발주일자', '전표번호', '업체', '상태','상태코드', '등록자', '발주일자'],
         colModel: [
-            {name: 'order_date', index: 'order_date', width: 60},
-            {name: 'order_no', index: 'order_no', width: 60},
-            {name: 'supp_code', index: 'supp_code', width: 60},
-            {name: 'status', index: 'status', width: 60},
-            {name: 'user_code', index: 'user_code', width: 60},
-            {name: 'order_datetime', index: 'order_datetime', width: 60},
+            {name: 'work_date', index: 'work_date', width: 60,formatter: formmatterDate2, sortable: false},
+            {name: 'ord_no', index: 'ord_no', key: true, width: 60, sortable: false},
+            {name: 'supp_name', index: 'supp_name', width: 60, sortable: false},
+            {name: 'status_name', index: 'status_name', width: 60, sortable: false},
+            {name: 'status', index: 'status',hidden:true, width: 60, sortable: false},
+            {name: 'user_name', index: 'user_name', width: 60, sortable: false},
+            {name: 'update_date', index: 'update_date', width: 60,formatter: formmatterDate, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,
