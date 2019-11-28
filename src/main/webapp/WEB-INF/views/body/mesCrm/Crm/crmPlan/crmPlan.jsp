@@ -6,17 +6,17 @@
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <div class="col-lg-12 ">
             <span class="sp-title">
-            	발주등록
+            	계획관리
             	<small class="sp-small"><i class="ace-icon fa fa-angle-double-right"></i>
             	Manufacturing Execution System
             	</small>
             </span>
             <span style="float: right">
-            	자재관리
+            	영업관리
             	<i class="ace-icon fa fa-angle-double-right"></i>
-             	구매관리
+             	영업관리
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                <b>발주등록</b>
+                <b>계획관리</b>
            </span>
         </div>
     </div>
@@ -68,6 +68,12 @@
                        onclick="">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
+                            </span>
+                    </a>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
+                       onclick="">
+                            <span><i class="fa fa-plus bigger-110 blue"></i>
+                            <span>저장</span>
                             </span>
                     </a>
                 </div>
