@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mes.sensorview.Mapper.Excel.ExcelMapper">
     <select id="testDbList" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
-        EXEC SP_SYS_BPART_GET 'S0001','1', '100','', 'B0001', '','C0001'
+        EXEC SP_SYS_BPART_GET 'S0001',0, 0,'', 'B0001', '','C0001'
     </select>
 
     <select id="scmReqOrderDbList" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD">
@@ -19,6 +19,11 @@
 
     <select id="scmOutListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB">
        EXEC SP_SCM_OUT_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
+
+    <select id="sysBPartSetListData" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_BPART_ADD 'S0001',#{part_grp_code},#{part_code},#{part_name},'CS0001','B0001',
+    	#{spec},'U0001','0',#{max_qty},#{min_qty},#{qc_level},'ADMIN','0','0',''
     </select>
 </mapper>
 

@@ -1,18 +1,26 @@
 package mes.sensorview.Common.Excel;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.Excel.Action.ExcelFunction;
 import mes.sensorview.Common.Excel.DTO.Excel;
 import mes.sensorview.Common.Excel.Util.MakeBody;
 import mes.sensorview.Common.Excel.Util.MakeHeader;
+import mes.sensorview.Common.Excel.Util.Upload;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /** *
@@ -241,6 +250,32 @@ public class ExcelService extends ExcelFunction {
         }
     }
 
+    public List<sysBPart> ExcelUploadReader(Excel excel) throws IOException, InvalidFormatException {
+        OPCPackage opcPackage = OPCPackage.open(excel.getFiles().getInputStream());
+        XSSFWorkbook xssfWorkbook = new XSSFWorkbook(opcPackage);
+        Upload upload = new Upload();
+        XSSFRow row = null;
+        XSSFCell cell = null;
+        XSSFSheet sheet = null;
+        return upload.sysBPartListData(xssfWorkbook,sheet,row,cell);
+    }
 
+    public String excel_upload(Excel excel, HttpServletRequest req)  throws IOException, InvalidFormatException {
+        OPCPackage opcPackage = OPCPackage.open(excel.getFiles().getInputStream());
+        XSSFWorkbook xssfWorkbook = new XSSFWorkbook(opcPackage);
+        Upload upload = new Upload();
+        XSSFRow row = null;
+        XSSFCell cell = null;
+        XSSFSheet sheet = null;
+        List<sysBPart> list = upload.sysBPartSetListData(xssfWorkbook,sheet,row,cell, req);
+        try {
+            for(sysBPart vo: list){
+                excelMapper.sysBPartSetListData(vo);
+            }
+            return "업로드가 완료되었습니다.";
+        }catch (Exception e){
+            return "에러가 발생하였습니다. 중복된 키 값이 있는지 확인해주세요.";
+        }
+    }
 }
 

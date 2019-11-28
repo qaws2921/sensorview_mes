@@ -2,7 +2,7 @@ package mes.sensorview.Common.Excel.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @AllArgsConstructor
@@ -25,5 +25,5 @@ public class Excel {
     private String row15;
     private String name;
     private String site_code;
-    private CommonsMultipartFile multipartFile;
+    private MultipartFile files;
 }
