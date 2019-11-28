@@ -274,7 +274,7 @@ public class ExcelService extends ExcelFunction {
             }
             return "업로드가 완료되었습니다.";
         }catch (Exception e){
-            return "에러가 발생하였습니다. 중복된 키 값이 있는지 확인해주세요.";
+            return " 중복된 키 값이 포함되어있습니다. \n 엑셀 데이터를 확인 후 재업로드 해주세요.";
         }
     }
 }
