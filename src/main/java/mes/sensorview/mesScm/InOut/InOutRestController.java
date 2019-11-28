@@ -94,4 +94,10 @@ public class InOutRestController {
         return inOutService.scmOutOrderDel(req, soo);
     }
 
+
+    @RequestMapping(value ="/scmStockRetListGet",method = RequestMethod.POST)
+    public RESTful scmStockRetListGet(HttpServletRequest req,Page p){
+        return inOutService.scmStockRetListGet(req, p);
+    }
+
 }

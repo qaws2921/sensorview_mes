@@ -32,4 +32,6 @@ public interface InOutMapper {
     Message scmOutOrderDel(SCM_OUT_ORD soo);
 
     List<SCM_OUT_SUB> scmOutListGet(Page p);
+
+    List<SCM_STOCK_RET_SUB> scmStockRetListGet(Page p);
 }
