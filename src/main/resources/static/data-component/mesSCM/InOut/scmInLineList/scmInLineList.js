@@ -4,11 +4,10 @@
 
 ////////////////////////////데이터/////////////////////////////////////
 var main_data = {
+    check: 'I',
     send_data: {},
     send_data_post: {},
 };
-var grid_data = [];
-var grid2_data = [];
 
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -43,35 +42,45 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
+function under_get(rowid) {
+
+    $("#mes_grid2").setGridParam({
+        url: '/scmInLineSubListGet',
+        datatype: "json",
+        page: 1,
+        postData: {keyword: rowid}
+    }).trigger("reloadGrid");
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
 
-function selectBox(){
-    select_makes("#line_select", "/getLine", "line_code","line_name");
+function selectBox() {
+    select_makes("#line_select", "/getLine", "line_code", "line_name");
 }
 
 function datepickerInput() {
-    datepicker_makes("#datepicker",-1);
-    datepicker_makes("#datepicker2",0);
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
 
 }
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data: grid_data,
         datatype: "local",
-        colNames: ['입고일자', '입고번호', '공정명', '품목그룹','품번', '품명', '규격', '단위', '입고수량', '등록자', '입고일시'],
+        mtype: 'POST',
+        colNames: ['입고일자', '입고번호', '공정명', '품목그룹', '품번', '품명', '규격', '단위', '입고수량', '등록자', '입고일시'],
         colModel: [
-            {name: 'in_date', index: 'in_date', width: 60},
-            {name: 'in_no', index: 'in_num', width: 60},
-            {name: 'line_name', index: 'line_name', width: 60},
-            {name: 'p_group', index: 'p_group', width: 60},
-            {name: 'p_num', index: 'p_num', width: 60},
-            {name: 'p_name', index: 'p_name', width: 60},
-            {name: 'standard', index: 'standard', width: 60},
-            {name: 'unit', index: 'unit', width: 60},
-            {name: 'in_count', index: 'in_count', width: 60},
-            {name: 'manager', index: 'manager', width: 60},
-            {name: 'create_date', index: 'create_date', width: 60},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60},
+            {name: 'in_no', index: 'in_no',key:true, sortable: false, width: 60},
+            {name: 'line_name', index: 'line_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60},
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
@@ -80,41 +89,32 @@ function jqGrid_main() {
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         viewrecords: true,
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
+        onCellSelect: function (rowid, icol, cellcontent, e) {
+            under_get(rowid);
         },
-    }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
+    });
 
     $('#mes_grid2').jqGrid({
-        data: grid2_data,
+        mtype: 'POST',
         datatype: "local",
-        colNames: ['입고번호', '품목그룹', '품번', '품명', '규격', '단위', '수량','바코드'],
-        colModel: [
-            {name: 'in_no', index: 'in_no', width: 60},
-            {name: 'p_group', index: 'p_group', width: 60},
-            {name: 'p_num', index: 'p_num', width: 60},
-            {name: 'p_name', index: 'p_name', width: 60},
-            {name: 'standard', index: 'standard', width: 60},
-            {name: 'unit', index: 'unit', width: 60},
-            {name: 'count', index: 'count', width: 60},
-            {name: 'barcode', index: 'barcode', width: 60},
-        ],
         caption: "재입고현황 | MES",
+        colNames: ['입고번호', '품목그룹', '품번', '품명', '규격', '단위', '수량', '바코드'],
+        colModel: [
+            {name: 'in_no', index: 'in_no', sortable: false, width: 60},
+            {name: 'p_group', index: 'p_group', sortable: false, width: 60},
+            {name: 'p_num', index: 'p_num', sortable: false, width: 60},
+            {name: 'p_name', index: 'p_name', sortable: false, width: 60},
+            {name: 'standard', index: 'standard', sortable: false, width: 60},
+            {name: 'unit', index: 'unit', sortable: false, width: 60},
+            {name: 'count', index: 'count', sortable: false, width: 60},
+            {name: 'barcode', index: 'barcode', sortable: false, width: 60},
+        ],
         autowidth: true,
+        viewrecords: true,
         height: 200,
         rowNum: 100,
         pager: '#mes_grid2_pager',
-        viewrecords: true,
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
 
-    })
+    });
 }
 

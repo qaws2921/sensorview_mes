@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.Excel.DTO.Excel;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
+import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
@@ -19,4 +20,6 @@ public interface ExcelMapper {
     void sysBPartSetListData(sysBPart vo);
 
     List<SCM_STOCK_RET_SUB> scmStockRetListDbList(Excel excel);
+
+    List<SCM_REIN_SUB> scmInLineListDbList(Excel excel);
 }

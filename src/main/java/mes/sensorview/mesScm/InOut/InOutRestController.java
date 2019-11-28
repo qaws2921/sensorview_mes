@@ -105,4 +105,6 @@ public class InOutRestController {
         return inOutService.scmInLineListGet(req, p);
     }
 
+    @RequestMapping(value = "/scmInLineSubListGet", method = RequestMethod.POST)
+    public RESTful scmInLineSubListGet(HttpServletRequest req,Page p) { return inOutService.scmInLineSubListGet(req, p); }
 }

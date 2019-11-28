@@ -39,4 +39,9 @@ public class MakeHeader {
         String[] data= {"반출일자","반출번호","업체명","품목그룹","품번","품명","규격","단위","반출수량","등록자","반출일시"};
         return data;
     }
+
+    public String[] scmInLineList_Header() {
+        String[] data= {"입고일자","입고번호","공정명","품목그룹","품번","품명","규격","단위","입고수량","등록자","입고일시"};
+        return data;
+    }
 }

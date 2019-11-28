@@ -10,6 +10,7 @@ import mes.sensorview.Common.Excel.Util.Upload;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
+import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
@@ -251,6 +252,39 @@ public class ExcelService extends ExcelFunction {
                 List<List<Object>> rows = makeBody.scmStockRetList_Body(list);
                 int index = makeHeader.scmStockRetList_Header().length;
                 String[] data = makeHeader.scmStockRetList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("scmInLineList")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("재입고현황");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("재입고현황","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<SCM_REIN_SUB> list = excelMapper.scmInLineListDbList(excel);
+                List<List<Object>> rows = makeBody.scmInLineList_Body(list);
+                int index = makeHeader.scmInLineList_Header().length;
+                String[] data = makeHeader.scmInLineList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성

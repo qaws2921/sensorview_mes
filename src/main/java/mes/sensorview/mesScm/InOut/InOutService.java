@@ -122,4 +122,10 @@ public class InOutService extends ReturnFunction {
         List<SCM_REIN_SUB> rows = inOutMapper.scmInLineListGet(p);
         return getListData(rows,p);
     }
+
+    public RESTful scmInLineSubListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_REIN_BCR> rows = inOutMapper.scmInLineSubGet(p);
+        return getListData(rows,p);
+    }
 }

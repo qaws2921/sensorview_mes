@@ -29,6 +29,10 @@
     	EXEC SP_SYS_BPART_ADD 'S0001',#{part_grp_code},#{part_code},#{part_name},'CS0001','B0001',
     	#{spec},'U0001','0',#{max_qty},#{min_qty},#{qc_level},'ADMIN','0','0',''
     </select>
+
+    <select id="scmInLineListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB">
+        SP_SCM_REIN_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+    </select>
 </mapper>
 
 

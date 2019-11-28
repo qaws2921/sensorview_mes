@@ -34,4 +34,8 @@ public interface InOutMapper {
     List<SCM_OUT_SUB> scmOutListGet(Page p);
 
     List<SCM_STOCK_RET_SUB> scmStockRetListGet(Page p);
+
+    List<SCM_REIN_SUB> scmInLineListGet(Page p);
+
+    List<SCM_REIN_BCR> scmInLineSubGet(Page p);
 }
