@@ -72,7 +72,7 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['입고일자', '입고번호', '공정명', '품목그룹', '품번', '품명', '규격', '단위', '입고수량', '등록자', '입고일시'],
         colModel: [
-            {name: 'work_date', index: 'work_date', sortable: false, width: 60},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60,formatter: formmatterDate2 },
             {name: 'in_no', index: 'in_no',key:true, sortable: false, width: 60},
             {name: 'line_name', index: 'line_name', sortable: false, width: 60},
             {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
@@ -82,7 +82,7 @@ function jqGrid_main() {
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
