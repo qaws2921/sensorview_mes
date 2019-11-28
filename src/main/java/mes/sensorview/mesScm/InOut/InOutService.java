@@ -116,4 +116,10 @@ public class InOutService extends ReturnFunction {
         List<SCM_STOCK_RET_SUB> rows = inOutMapper.scmStockRetListGet(p);
         return  getListData(rows,p);
     }
+
+    public RESTful scmInLineListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_REIN_SUB> rows = inOutMapper.scmInLineListGet(p);
+        return getListData(rows,p);
+    }
 }

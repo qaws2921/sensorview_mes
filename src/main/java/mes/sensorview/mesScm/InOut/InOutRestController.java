@@ -100,4 +100,9 @@ public class InOutRestController {
         return inOutService.scmStockRetListGet(req, p);
     }
 
+    @RequestMapping(value = "/scmInLineListGet",method = RequestMethod.POST)
+    public RESTful scmInLineListGet(HttpServletRequest req,Page p){
+        return inOutService.scmInLineListGet(req, p);
+    }
+
 }

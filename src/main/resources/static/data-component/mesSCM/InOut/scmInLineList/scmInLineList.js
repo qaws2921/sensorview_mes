@@ -22,7 +22,26 @@ $(document).ready(function () {
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
+function get_btn(page) {
+    main_data.send_data = value_return2(".condition_main");
+    main_data.send_data_post = main_data.send_data;
+    console.log(main_data.send_data);
+    $("#mes_grid").setGridParam({
+        url: '/scmInLineListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
 
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({
+        url: '/scmInLineListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
 
 ////////////////////////////호출 함수//////////////////////////////////
 
