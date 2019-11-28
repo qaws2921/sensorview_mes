@@ -1,73 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysBPart/sysBPart_modal2.js"
         charset="UTF-8"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script>
-    $(function(){
-        var fileTarget = $('.filebox .upload-hidden');
-        fileTarget.on('change', function(){
-            if(window.FileReader){
-                var filename = $(this)[0].files[0].name;
-            } else {
-                var filename = $(this).val().split('/').pop().split('\\').pop();
-            }
-            $(this).siblings('.upload-name').val(filename);
-        });
-    });
-    function checkFileType(filePath) {
-        var fileFormat = filePath.split(".");
-        if (fileFormat.indexOf("xlsx") > -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function check() {
-        var file = $("#xlsUploads").val();
-        if (file == "" || file == null) {
-            alert("파일을 선택해주세요.");
-            return false;
-        } else if (!checkFileType(file)) {
-            alert("엑셀 파일만 업로드 가능합니다.");
-            return false;
-        }
-
-        if (confirm("업로드 하시겠습니까?")) {
-            var options = {
-                success : function(data) {
-                    alert(data[0].part_grp_name);
-                },
-                type : "POST"
-            };
-            $("#excelUploadForm").attr("action", "/excel_uploadReader").ajaxSubmit(options);
-
-        }
-    }
-
-    function uploadExcel() {
-        var file = $("#xlsUploads").val();
-        if (file == "" || file == null) {
-            alert("파일을 선택해주세요.");
-            return false;
-        } else if (!checkFileType(file)) {
-            alert("엑셀 파일만 업로드 가능합니다.");
-            return false;
-        }
-
-        if (confirm("저장 하시겠습니까?")) {
-            var options = {
-                success : function(data) {
-                    alert(data);
-                },
-                type : "POST"
-            };
-            $("#excelUploadForm").attr("action", "/excel_upload").ajaxSubmit(options);
-
-        }
-    }
-
-</script>
 <div id="uploadDialog" title="자재품목 엑셀업로드" >
     <div class="col-lg-12">
         <div class="col-lg-12 padding0">
