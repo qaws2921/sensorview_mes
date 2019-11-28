@@ -9,6 +9,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    check2 : 'Y'
 
 };
 
@@ -53,11 +54,84 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
+function under_get(rowid) {
+
+    $("#mes_grid2").setGridParam({
+        url: '/scmOrderSub1Get',
+        datatype: "json",
+        page: 1,
+        postData: {keyword: rowid}
+    }).trigger("reloadGrid");
+}
+
 function add_btn() {
+    modal_reset(".modal_value", []);
+    modal_reset(".modal_value2", []);
+    $("#mes_add_grid").jqGrid('clearGridData');
+    $("#mes_add_grid2").jqGrid('clearGridData');
+
+
+    $("#datepicker3").datepicker('setDate', 'today');
+
+    $("#view_select option:eq(0)").prop("selected", true).trigger("change");
+    $("select[name=t_payment] option:eq(0)").prop("selected", true).trigger("change");
+    $("select[name=t_delivery] option:eq(0)").prop("selected", true).trigger("change");
+    $("select[name=delivery] option:eq(0)").prop("selected", true).trigger("change");
+    $("input[name=attachment]:eq(0)").prop("checked", true).trigger("change");
+    $("select[name=shipping_addr] option:eq(0)").prop("selected", true).trigger("change");
+
+
+
+    main_data.check = 'I';
+    main_data.check2 = 'Y';
+
+
+
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
     jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
 
+}
+
+
+function delete_btn() {
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    var check = '';
+    var check2 = [];
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        ids.forEach(function (id) {
+            check = $('#mes_grid').jqGrid('getRowData', id).status;
+            if (check === '1') {
+                check2.push(id);
+            }
+
+        })
+        if (check2.length > 0) {
+            alert(check2.join(",") + " 전표가 완료 되어있습니다.");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/scmOrderDel", {ord_no: ids.join("&")}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    $('#mes_grid2').jqGrid('clearGridData');
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+        }
+        $('#mes_grid').jqGrid("resetSelection");
+
+
+    }
 }
 
 function supp_btn(what) {
@@ -77,6 +151,8 @@ function suppModal_bus(code, name) {
     } else if (main_data.supp_check === 'B') {
         $("#supp_name_modal").val(name);
         $("#supp_code_modal").val(code);
+        $("#mes_add_grid").jqGrid('clearGridData');
+        $("#mes_add_grid2").jqGrid('clearGridData');
     }
     $("#SuppSearchGrid").jqGrid('clearGridData');
 
@@ -131,29 +207,38 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            update_btn(data);
+            if (data.status === '1') {
+                main_data.check2 = 'N';
+            } else {
+                main_data.check2 = 'Y';
+            }
+            update_btn(rowid);
 
         }
     });
 
     $('#mes_grid2').jqGrid({
-        data: grid2_data,
+        mtype: 'POST',
         datatype: 'local',
         caption: '발주등록 | MES',
-        colNames: ['발주일자', '전표번호', '업체', '상태', '등록자', '발주일자'],
+        colNames: ['전표번호','품목그룹', '품번', '품명', '규격', '단위','발주수량','입고수량','미입고'],
         colModel: [
-            {name: 'order_date', index: 'order_date', width: 60},
-            {name: 'order_no', index: 'order_no', width: 60},
-            {name: 'supp_code', index: 'supp_code', width: 60},
-            {name: 'status', index: 'status', width: 60},
-            {name: 'user_code', index: 'user_code', width: 60},
-            {name: 'order_datetime', index: 'order_datetime', width: 60},
+            {name: 'ord_no', index: 'ord_no', width: 60, sortable: false},
+            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+            {name: 'part_code', index: 'part_code', width: 60,key:true, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
+            {name: 'spec', index: 'spec', width: 60, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
+            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,},
+            {name: 'qty', index: 'qty', width: 60, sortable: false,},
+            {name: 'qty', index: 'qty', width: 60, sortable: false,}
         ],
         autowidth: true,
         viewrecords: true,
         height: 200,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
+        pager: '#mes_grid2_pager'
 
     });
 }

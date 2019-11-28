@@ -10,8 +10,10 @@ public class SCM_IN_ORD_SUB {
     private String qc_result;
     private int ord_qty;
     private int qty;
+    private String end_date;
 
     private String work_date;
+    private String supp_code;
     private String supp_name;
     private String part_grp_name;
     private String part_name;
@@ -25,4 +27,13 @@ public class SCM_IN_ORD_SUB {
 
     private int rownum;
     private int rec_count;
+    private String i_standard_name;
+    private String view_amount;
+    private String t_payment;
+    private String t_delivery;
+    private String delivery;
+    private String attachment;
+    private String shipping_addr;
+    private String remark;
+    private String keyword;
 }

@@ -22,34 +22,41 @@ public class OrderService extends ReturnFunction {
     public RESTful scmReqOrderGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_REQ_ORD> rows = orderMapper.scmReqOrderGet(p);
-        return getListData(rows , p);
+        return getListData(rows, p);
     }
 
     public RESTful scmOrderGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_IN_ORD> rows = orderMapper.scmOrderGet(p);
-        return getListData(rows , p);
+        return getListData(rows, p);
     }
+
     public RESTful scmOrderListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_IN_ORD_SUB> rows = orderMapper.scmOrderListGet(p);
-        return getListData(rows , p);
+        return getListData(rows, p);
     }
 
-    public Message scmOrderAdd(HttpServletRequest req, Page p) {
+    public Message scmOrderAdd(HttpServletRequest req, SCM_IN_ORD sio) {
+        sio.setSite_code(getSessionData(req).getSite_code());
+        sio.setUser_code(getSessionData(req).getUser_code());
+        return orderMapper.scmOrderAdd(sio);
+    }
+
+    public Message scmOrderDel(HttpServletRequest req, SCM_IN_ORD sio) {
+        sio.setSite_code(getSessionData(req).getSite_code());
+        return orderMapper.scmOrderDel(sio);
+    }
+
+
+    public RESTful scmOrderSub1Get(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        p.setUser_code(getSessionData(req).getUser_code());
-        return orderMapper.scmOrderAdd(p);
+        List<SCM_IN_ORD_SUB> rows = orderMapper.scmOrderSub1Get(p);
+        return getListData(rows, p);
     }
 
-    public Message scmOrderDel(HttpServletRequest req, Page p) {
-        p.setUser_code(getSessionData(req).getUser_code());
-        return orderMapper.scmOrderDel(p);
-    }
-
-    public RESTful scmOrderSubGet(HttpServletRequest req, Page p) {
+    public List<SCM_IN_ORD_SUB> scmOrderSub2Get(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_IN_ORD_SUB> rows = orderMapper.scmOrderSubGet(p);
-        return getListData(rows , p);
+        return orderMapper.scmOrderSub1Get(p);
     }
 }
