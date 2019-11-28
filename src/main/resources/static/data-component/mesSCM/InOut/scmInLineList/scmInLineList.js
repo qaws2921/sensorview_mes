@@ -31,6 +31,7 @@ function get_btn(page) {
         page: page,
         postData: main_data.send_data
     }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function get_btn_post(page) {
@@ -40,6 +41,7 @@ function get_btn_post(page) {
         page: page,
         postData: main_data.send_data_post
     }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function under_get(rowid) {
@@ -101,13 +103,13 @@ function jqGrid_main() {
         colNames: ['입고번호', '품목그룹', '품번', '품명', '규격', '단위', '수량', '바코드'],
         colModel: [
             {name: 'in_no', index: 'in_no', sortable: false, width: 60},
-            {name: 'p_group', index: 'p_group', sortable: false, width: 60},
-            {name: 'p_num', index: 'p_num', sortable: false, width: 60},
-            {name: 'p_name', index: 'p_name', sortable: false, width: 60},
-            {name: 'standard', index: 'standard', sortable: false, width: 60},
-            {name: 'unit', index: 'unit', sortable: false, width: 60},
-            {name: 'count', index: 'count', sortable: false, width: 60},
-            {name: 'barcode', index: 'barcode', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 60},
+            {name: 'bcr_no', index: 'bcr_no', sortable: false, width: 60},
         ],
         autowidth: true,
         viewrecords: true,
