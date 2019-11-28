@@ -44,6 +44,7 @@ import java.util.List;
  * **/
 @Service
 @Slf4j
+@Transactional
 public class ExcelService extends ExcelFunction {
     @Autowired
     private ExcelMapper excelMapper;
@@ -57,7 +58,6 @@ public class ExcelService extends ExcelFunction {
      * @param excel         파라미터 DTO
      * @throws IOException
      * **/
-    @Transactional
     public void ExcelDownload(HttpServletRequest req, HttpServletResponse response, Excel excel) throws IOException {
         // 생성자 선언
         SXSSFWorkbook sxssfWorkbook = new SXSSFWorkbook(100);
