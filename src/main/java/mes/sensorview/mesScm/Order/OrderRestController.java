@@ -3,12 +3,16 @@ package mes.sensorview.mesScm.Order;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD_SUB;
+import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD;
+import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class OrderRestController {
@@ -26,21 +30,27 @@ public class OrderRestController {
         return orderService.scmOrderGet(req, p);
     }
 
-    @RequestMapping(value = "/scmOrderSubGet", method = RequestMethod.POST)
-    public RESTful scmOrderSubGet(HttpServletRequest req, Page p){
-        return orderService.scmOrderSubGet(req, p);
-    }
+
 
     @RequestMapping(value = "/scmOrderListGet", method = RequestMethod.POST)
     public RESTful scmOrderListGet(HttpServletRequest req, Page p) { return orderService.scmOrderListGet(req, p); }
 
     @RequestMapping(value = "/scmOrderAdd", method = RequestMethod.POST)
-    public Message scmInAdd(HttpServletRequest req, Page p) {
-        return orderService.scmOrderAdd(req, p);
+    public Message scmInAdd(HttpServletRequest req, SCM_IN_ORD sio) {
+        return orderService.scmOrderAdd(req, sio);
+    }
+
+    @RequestMapping(value = "/scmOrderSub1Get", method = RequestMethod.POST)
+    public RESTful scmOrderSub1Get(HttpServletRequest req, Page p){
+        return orderService.scmOrderSub1Get(req, p);
+    }
+    @RequestMapping(value = "/scmOrderSub2Get", method = RequestMethod.POST)
+    public List<SCM_IN_ORD_SUB> scmOrderSub2Get(HttpServletRequest req, Page p){
+        return orderService.scmOrderSub2Get(req, p);
     }
 
     @RequestMapping(value = "/scmOrderDel", method = RequestMethod.POST)
-    public Message scmInDel(HttpServletRequest req, Page p) {
-        return orderService.scmOrderDel(req, p);
+    public Message scmOrderDel(HttpServletRequest req, SCM_IN_ORD sio) {
+        return orderService.scmOrderDel(req, sio);
     }
 }

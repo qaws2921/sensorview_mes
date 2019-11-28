@@ -118,47 +118,51 @@ function add_modal1_btn() {
 
         // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
         var jdata = $("#scmOutOrderDialogRightGrid").getRowData();
-        var list = [];
-        var list2 = [];
+        if (jdata.length > 0) {
+            var list = [];
+            var list2 = [];
 
-        jdata.forEach(function (data, j) {
-            if (data.qty !== '') {
-                list.push(data.part_code + "$" + data.qty);
-            } else {
-                list2.push(data.part_code);
-            }
-        });
-        callback(function () {
-            if (list2.length > 0) {
-                alert(list2.join(", ") + "를 다시 확인해주세요");
-            } else {
-                var text = '저장하겠습니까?';
-                if (main_data.check === "U") {
-                    text = '수정하겠습니까?';
+            jdata.forEach(function (data, j) {
+                if (data.qty !== '') {
+                    list.push(data.part_code + "$" + data.qty);
+                } else {
+                    list2.push(data.part_code);
                 }
-                if (confirm(text)) {
-                    wrapWindowByMask2();
-                    add_data.keyword = list.join("&");
-                    ccn_ajax("/scmOutOrderAdd", add_data).then(function (data) {
-                        if (data.result === 'NG') {
-                            alert(data.message);
-                        } else {
-                            if (main_data.check === "I") {
-                                get_btn(1);
+            });
+            callback(function () {
+                if (list2.length > 0) {
+                    alert(list2.join(", ") + "를 다시 확인해주세요");
+                } else {
+                    var text = '저장하겠습니까?';
+                    if (main_data.check === "U") {
+                        text = '수정하겠습니까?';
+                    }
+                    if (confirm(text)) {
+                        wrapWindowByMask2();
+                        add_data.keyword = list.join("&");
+                        ccn_ajax("/scmOutOrderAdd", add_data).then(function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
                             } else {
-                                get_btn_post($("#scmOutOrderTopGrid").getGridParam('page'));
+                                if (main_data.check === "I") {
+                                    get_btn(1);
+                                } else {
+                                    get_btn_post($("#scmOutOrderTopGrid").getGridParam('page'));
+                                }
                             }
-                        }
-                        $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
-                        closeWindowByMask();
-                        $("#scmOutOrder-add-dialog").dialog('close');
-                    }).catch(function (err) {
-                        closeWindowByMask();
-                        alert("저장실패");
-                    });
+                            $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
+                            closeWindowByMask();
+                            $("#scmOutOrder-add-dialog").dialog('close');
+                        }).catch(function (err) {
+                            closeWindowByMask();
+                            alert("저장실패");
+                        });
+                    }
                 }
-            }
-        })
+            })
+        }else {
+            alert("저장 목록을 넣어주세요");
+        }
     }
 }
 

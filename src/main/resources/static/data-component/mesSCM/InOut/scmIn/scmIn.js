@@ -156,6 +156,7 @@ function suppModal_bus(code, name) {
         $("#supp_code_modal").val(code);
         modal2_data.part_code = '';
         modal2_data.sub_data = [];
+        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
         $("#scmInDialogRightGrid").jqGrid('clearGridData');
     }
     $("#SuppSearchGrid").jqGrid('clearGridData');

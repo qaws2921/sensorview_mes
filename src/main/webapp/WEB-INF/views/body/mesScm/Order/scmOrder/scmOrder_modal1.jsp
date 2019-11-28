@@ -10,7 +10,7 @@
                     <td class="wt-px-150 h-25">
                           <span class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value" value="" id="supp_name_modal" onclick="supp_btn('B');" readonly>
-                            <input type="hidden" name="keyword" class="form-control h-25 modal_value" value="" id="supp_code_modal">
+                            <input type="hidden" name="keyword" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
                     </td>
@@ -74,14 +74,16 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">금액표기</td>
                     <td class="wt-px-150 h-25">
-                       <select class="form-control">
-                           <option>표기안함</option>
+                       <select name="view_amount" class="form-control modal_value2" id="view_select">
+                           <option value="0">표기안함</option>
+                           <option value="1">표기</option>
                        </select>
                     </td>
                     <td></td>
                 </tr>
                 </tbody>
             </table>
+            <input type="hidden" name="ord_no" id="ord_no" class="form-control h-25 modal_value2">
 
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
@@ -111,49 +113,46 @@
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Payment</td>
                     <td class="wt-px-150">
-                        <select class="form-control">
-                            <option>T</option>
-                            <option>T in advance</option>
+                        <select name="t_payment" class="form-control modal_value2">
+                            <option value="0">T</option>
                         </select>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Delivery</td>
                     <td class="wt-px-150">
-                        <select class="form-control">
-                            <option>택배</option>
+                        <select name="t_delivery" class="form-control modal_value2">
+                            <option value="0">택배</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">Delivery</td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0 ">Delivery</td>
                     <td colspan="3">
-                        <select class="form-control">
-                            <option>전체</option>
-                            <option>입고대기</option>
-                            <option>완료</option>
+                        <select name="delivery" class="form-control modal_value2">
+                            <option value="0">전체</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Attachment</td>
                     <td colspan="3">
-                        <label><input type="checkbox"/>Test Report</label>
-                        <label><input type="checkbox"/>RoHS Report</label>
-                        <label><input type="checkbox"/>C.O.C</label>
-                        <label><input type="checkbox"/>Samples for Incoming Test</label>
+                        <label><input name="attachment" value="0" type="radio"  />Test Report</label>
+                        <label><input name="attachment" value="1" type="radio" />RoHS Report</label>
+                        <label><input name="attachment" value="2" type="radio" />C.O.C</label>
+                        <label><input name="attachment" value="3" type="radio" />Samples for Incoming Test</label>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Shipping Nomination</td>
                     <td colspan="3">
-                        <select class="form-control">
-                            <option>주소</option>
+                        <select name="shipping_addr" class="form-control modal_value2">
+                            <option value="0">주소</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">비고</td>
                     <td colspan="3">
-                       <input type="text" class="form-control"/>
+                       <input name="remark" type="text" class="form-control modal_value2"/>
                     </td>
                 </tr>
                 </tbody>
