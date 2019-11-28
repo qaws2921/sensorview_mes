@@ -24,7 +24,7 @@
     }
 
     function check() {
-        var file = $("#excelUploads").val();
+        var file = $("#xlsUploads").val();
         if (file == "" || file == null) {
             alert("파일을 선택해주세요.");
             return false;
@@ -36,12 +36,33 @@
         if (confirm("업로드 하시겠습니까?")) {
             var options = {
                 success : function(data) {
-                    alert("모든 데이터가 업로드 되었습니다.");
-
+                    alert(data[0].part_grp_name);
                 },
                 type : "POST"
             };
-            $("#excelUploadForm").ajaxSubmit(options);
+            $("#excelUploadForm").attr("action", "/excel_uploadReader").ajaxSubmit(options);
+
+        }
+    }
+
+    function uploadExcel() {
+        var file = $("#xlsUploads").val();
+        if (file == "" || file == null) {
+            alert("파일을 선택해주세요.");
+            return false;
+        } else if (!checkFileType(file)) {
+            alert("엑셀 파일만 업로드 가능합니다.");
+            return false;
+        }
+
+        if (confirm("저장 하시겠습니까?")) {
+            var options = {
+                success : function(data) {
+                    alert(data);
+                },
+                type : "POST"
+            };
+            $("#excelUploadForm").attr("action", "/excel_upload").ajaxSubmit(options);
 
         }
     }
@@ -56,13 +77,13 @@
                     <td class="wt-px-100 t-align-c td-title">
                         찾아보기
                     </td>
-                    <form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action= "/poiCheck">
+                    <form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action= "/excel_uploadReader">
                         <td class="filebox wt-50">
                             <input class="upload-name" value="파일선택" disabled="disabled">
-                            <label for="excelUploads" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold">
+                            <label for="xlsUploads" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold">
                                 파일찾기
                             </label>
-                            <input type="file" id="excelUploads" name="excelfile" class="upload-hidden">
+                            <input type="file" id="xlsUploads" name="files" class="upload-hidden">
                         </td>
                     </form>
                     <td></td>
@@ -79,7 +100,7 @@
                                             </span>
                         </a>
                         <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                           title="" onclick="">
+                           title="" onclick="uploadExcel()">
                                             <span>
                                                 <i class="fa fa-check bigger-110 blue"></i>
                                                 <span>적용</span>
