@@ -20,6 +20,10 @@
     <select id="scmOutListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB">
        EXEC SP_SCM_OUT_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1}
     </select>
+
+    <select id="scmStockRetListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB">
+       EXEC SP_SCM_STOCK_RET_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+    </select>
 </mapper>
 
 

@@ -34,4 +34,9 @@ public class MakeHeader {
         String[] data= {"출고일자","출고번호","공정명","품목그룹","품번","품명","규격","단위","출고수량","등록자","출고일시"};
         return data;
     }
+
+    public String[] scmStockRetList_Header() {
+        String[] data= {"반출일자","반출번호","업체명","품목그룹","품번","품명","규격","단위","반출수량","등록자","반출일시"};
+        return data;
+    }
 }
