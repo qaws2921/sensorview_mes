@@ -22,19 +22,24 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         data: grid_data,
         datatype: 'local',
-        caption: '계획관리 | MES',
-        colNames: ['제품코드', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량', '생산시기'],
+        caption: '실적현황 | MES',
+        colNames: ['접수일', '수주번호', '수주처', 'End User', '진행상태', '진행여부', '납기일', '지시구분', 'Part No','수량','단위','수축튜브','비고'],
         colModel: [
-            {name: 'code', index: 'code', sortable: false, width: 60},
-            {name: 'jan', index: 'jan', sortable: false, width: 60},
-            {name: 'feb', index: 'feb', sortable: false, width: 60},
-            {name: 'mar', index: 'mar', sortable: false, width: 60},
-            {name: 'sum', index: 'sum', sortable: false, width: 60},
-            {name: 'sumtotal', index: 'sumtotal', sortable: false, width: 60},
-            {name: 'dif', index: 'dif', sortable: false, width: 60},
-            {name: 'prod_no', index: 'prod_no', sortable: false, width: 60},
-            {name: 'prod_date', index: 'prod_date', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
         ],
+        multiselect: true,
         autowidth: true,
         viewrecords: true,
         height: 500,
@@ -54,11 +59,5 @@ function jqGrid_main() {
 
         }
     });
-    jQuery("#mes_grid").jqGrid('setGroupHeaders', {
-        useColSpanStyle: false,
-        groupHeaders: [
-            {startColumnName: 'jan', numberOfColumns: 5, titleText: '<center>1분기</center>'},
 
-        ]
-    });
 }

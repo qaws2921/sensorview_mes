@@ -72,7 +72,7 @@ function jqGrid_main() {
         ],
         caption: "출고현황 | MES",
         autowidth: true,
-        height: 200,
+        height: 180,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,

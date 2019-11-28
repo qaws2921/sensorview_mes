@@ -12,7 +12,13 @@ public class CrmController {
     }
 
     @RequestMapping(value = "/crmPlan")
-    public String CrmPlan() {
+    public String crmPlan() {
         return "mesCrm/Crm/crmPlan/crmPlan";
     }
+
+    @RequestMapping(value = "/crmWorkList")
+    public String crmWorkList() { return "mesCrm/Crm/crmWorkList/crmWorkList"; }
+
+    @RequestMapping(value = "/crmProdOrder")
+    public String crmProdOrder() { return "mesCrm/Crm/crmProdOrder/crmProdOrder"; }
 }
