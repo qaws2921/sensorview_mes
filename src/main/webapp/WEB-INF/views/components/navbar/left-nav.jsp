@@ -18,7 +18,7 @@
         try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
     <ul class="nav nav-list">
-        <li class="li_top">
+        <li class="li_top" style="display: none">
             <a>
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text1">${left_list[0][0].menu_name }</span>
