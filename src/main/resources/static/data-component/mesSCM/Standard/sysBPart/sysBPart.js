@@ -106,6 +106,8 @@ function select_change1(value) {
 
 function upload_btn() {
     $('#uploadDialog').dialog('open');
+    $("#modal2_grid").jqGrid('clearGridData');
+    $(".upload-name").val("");
     jqGridResize2('#modal2_grid',$('#modal2_grid').closest('[class*="col-"]'));
 }
 
