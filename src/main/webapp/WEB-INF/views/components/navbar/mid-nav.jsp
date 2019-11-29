@@ -2,29 +2,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="navbar" class="navbar navbar-default ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
-        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-            <span class="sr-only">사이드 메뉴</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <div class="col-lg-2">
+        <%--<button type="button" class="navbar-toggle menu-toggler" id="menu-toggler" data-target="#sidebar">--%>
+        <%--    <span class="sr-only">사이드 메뉴</span>--%>
+        <%--    <span class="icon-bar"></span>--%>
+        <%--    <span class="icon-bar"></span>--%>
+        <%--    <span class="icon-bar"></span>--%>
+        <%--</button>--%>
+        <div class="col-lg-12">
             <a href="/static" class="navbar-brand">
-
                 <img src="/ui-component/imagesNew/logo/logo.png" width="180px">
             </a>
-        </div>
-        <div class="col-lg-10">
-            <a href="/login" class="navbar-brand top_m">
-                <i class="fa fa-user"></i> ${sessionScope.userData.user_name}님 반갑습니다.
-                <br>
-                <button type="button" class="btn btn-minier btn-dark">정보수정</button>
-                <button type="button" class="btn btn-minier btn-dark">로그아웃</button>
-            </a>
+            <div class="form-group">
+                <a href="/login" class="navbar-brand top_m">
+                    <i class="fa fa-user"></i> ${sessionScope.userData.user_name}님 반갑습니다.
+                    <br>
+                    <button type="button" class="btn btn-minier btn-dark">정보수정</button>
+                    <button type="button" class="btn btn-minier btn-dark">로그아웃</button>
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
+<button type="button" class="navbar-toggle menu-toggler" id="menu-toggler" data-target="#sidebar">
+    <span class="sr-only">사이드 메뉴</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
 <%-- 상단 아이콘 메뉴 --%>
 <div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true"
      data-sidebar-scroll="true" data-sidebar-hover="true">

@@ -11,6 +11,7 @@
         <put-attribute name="helpDesk" value="/WEB-INF/views/components/navbar/top-nav.jsp" />
         <put-attribute name="mid" value="/WEB-INF/views/components/navbar/mid-nav.jsp" />
         <put-attribute name="lnb"   value="/WEB-INF/views/components/navbar/left-nav.jsp" />
+        <put-attribute name="st"   value="/WEB-INF/views/components/navbar/sub-title.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/components/footer.jsp" />
     </definition>

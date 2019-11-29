@@ -18,13 +18,11 @@
         try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
     <ul class="nav nav-list">
-        <li class="">
-            <a href="javascript:void(0)">
+        <li class="li_top">
+            <a>
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text1">${left_list[0][0].menu_name }</span>
             </a>
-
-            <b class="arrow"></b>
         </li>
         <c:forEach var="mainLeft_list" items="${left_list[0] }">
             <li class="${top_active == mainLeft_list.menu_code ? 'active open' : ''}">
@@ -32,7 +30,6 @@
                     <a href="javascript:void(0)" class="dropdown-toggle">
                         <i class="menu-icon fa fa-cog"></i>
                         <span class="menu-text"> ${mainLeft_list.menu_name} </span>
-
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>

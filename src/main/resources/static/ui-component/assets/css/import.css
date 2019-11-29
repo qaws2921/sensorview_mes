@@ -54,7 +54,7 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
 }
 
 .sp-title{font-size: 13px !important; font-weight: bold; color: #145a76 !important;}
-.sp-small{font-size: 11px !important; font-weight: 100 !important; color: #393939 !important;}
+.sp-small{font-size: 11px !important; font-weight: 500 !important; color: #393939 !important;}
 .table{margin-bottom: 10px !important;}
 
 /*메뉴바 스크롤*/
@@ -122,3 +122,20 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
 }
 .ui-progressbar .ui-progressbar-value {}
 .ui-progressbar {}
+.multi_table{border: 2px solid #79afce !important;}
+
+.multi_table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+    border-top: 1px dotted #b5b5b5 !important;
+}
+.li_top{
+    display: block;
+    height: 39px;
+    line-height: 17px;
+    padding-left: 7px;
+    text-shadow: none!important;
+    font-size: 13px;
+}
+.pd-4>tbody>tr>td{
+    padding:4px!important;
+}
