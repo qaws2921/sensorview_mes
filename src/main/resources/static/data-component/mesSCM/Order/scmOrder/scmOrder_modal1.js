@@ -199,7 +199,7 @@ function jqGrid_modal1() {
             {name: 'part_name', index: 'part_name', sortable: false},
             {name: 'spec', index: 'spec', sortable: false},
             {name: 'unit_name', index: 'unit_name', sortable: false},
-            {name: 'i_standard_name', index: 'i_standard_name', sortable: false},
+            {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
         ],
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
@@ -228,7 +228,7 @@ function jqGrid_modal1() {
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
-            {name: 'i_standard_name', index: 'i_standard_name', width: 60, sortable: false},
+            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
             {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false, editable: true,
                     editoptions: {
 
@@ -241,7 +241,7 @@ function jqGrid_modal1() {
                                     var value = e.target.value;
                                     if (isNaN(value)){
                                          alert("숫자만 입력가능합니다.");
-                                         e.target.value = '';
+                                        e.target.value = e.target.value.replace(/[^0-9]/g,'');
                                         $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
                                          return false;
                                     }
@@ -254,23 +254,27 @@ function jqGrid_modal1() {
                         ]
                     }
             },
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2, editable: true,
+            {name: 'end_date', index: 'end_date', width: 60, sortable: false, editable: true,
                 editoptions: {
-                    dataInit: function (element) {
-                        $(element).attr("readonly","readonly").datepicker({
-                            format: 'yyyymmdd',
-                            autoclose: true,
-                            language: "kr",
-                            widgetPositioning:{
-                                horizontal: 'auto',
-                                vertical: 'bottom'
-                            }
-                        }).on('changeDate', function(e) {
+
+                    dataEvents: [
+                        {
+                            type: 'focusout',
+                            fn: function (e) {
+                                var row = $(e.target).closest('tr.jqgrow');
+                                var rowid = row.attr('id');
+                                var value = e.target.value;
+                                if (isNaN(value)){
+                                    alert("숫자만 입력가능합니다.");
+                                    e.target.value = e.target.value.replace(/[^0-9]/g,'');
+                                    $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                                    return false;
+                                }
+
                                 $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
 
-                        });
-                    },
-                    dataEvents: [
+                            }
+                        }
 
                     ]
                 }

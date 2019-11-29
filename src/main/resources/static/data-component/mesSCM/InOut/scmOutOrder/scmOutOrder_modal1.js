@@ -222,7 +222,7 @@ function jqGrid_modal1() {
                                 var value = e.target.value;
                                 if (isNaN(value)) {
                                     alert("숫자만 입력 가능합니다.")
-                                    e.target.value = '';
+                                    e.target.value = e.target.value.replace(/[^0-9]/g,'');
                                     $('#scmOutOrderDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
                                     return false;
                                 } else {

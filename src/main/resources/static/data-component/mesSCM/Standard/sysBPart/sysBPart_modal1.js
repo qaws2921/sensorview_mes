@@ -55,10 +55,24 @@ function suppModal_bus(code, name) {
 
 }
 
+function select_change2(value) {
+    if (value === ''){
+        $("#loc_select").empty();
+        $("#loc_select").append($("<option></option>").text("선택안함").val(""));
+    } else {
+        select_makes_sub("#loc_select","/sysLocAll2Get","loc_code","loc_name",{keyword:value},"N");
+
+    }
+
+}
+
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function selectBox_modal1() {
-    select_makes("#loc_select", "/sysLocAllGet", "loc_code", "loc_name");
+    select_makes("#cargo_select", "/sysCargoBAllGet", "cargo_code", "cargo_name");
+    $("#loc_select").select2();
+    //select_makes("#loc_select", "/sysLocAllGet", "loc_code", "loc_name");
     select_makes("#unit_select", "/sysCommonUnitGet", "code_value", "code_name1");
 }
 

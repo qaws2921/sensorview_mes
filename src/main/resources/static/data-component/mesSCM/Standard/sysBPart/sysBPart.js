@@ -67,10 +67,12 @@ function update_btn(jqgrid_data) {
 
     main_data.check = 'U';
 
-console.log(jqgrid_data.part_code);
-
     ccn_ajax('/sysBPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+
+        setTimeout(function () {
+             $("#loc_select").val(data.loc_code).trigger("change");
+        },10);
         $("#addDialog").dialog('open');
     });
 }
@@ -126,18 +128,18 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        colNames: ['품목구분', '품목코드', '품목명', '보관로케이션', '업체명', '규격', '단위', 'L/T', '검사기준', '검사구분', '재고최대', '재고최소', '등록자', '수정일'],
+        colNames: ['품목구분', '품목코드', '품목명','창고', '보관로케이션', '업체명', '규격', '단위', 'L/T', '검사등급', '재고최대', '재고최소', '등록자', '수정일'],
         colModel: [
             {name: 'part_grp_name', index: 'part_grp_name', width: 40},
             {name: 'part_code', index: 'part_code', key: true, width: 40},
             {name: 'part_name', index: 'part_name', width: 40},
+            {name: 'cargo_name', index: 'cargo_name', width: 40},
             {name: 'loc_name', index: 'loc_name', width: 40},
             {name: 'supp_name', index: 'supp_name', width: 40},
             {name: 'spec', index: 'spec', width: 40},
             {name: 'unit_name', index: 'unit_name', width: 40},
             {name: 'LT', index: 'LT', width: 40},
-            {name: 'i_standard_name', index: 'i_standard_name', width: 40},
-            {name: 'i_category_name', index: 'i_standard_name', width: 40},
+            {name: 'qc_level_name', index: 'qc_level_name', width: 40},
             {name: 'max_qty', index: 'stock_max', width: 40},
             {name: 'min_qty', index: 'stock_min', width: 40},
             {name: 'user_name', index: 'manager', width: 30},

@@ -11,7 +11,7 @@ public class SCM_IN_ORD_SUB {
     private int ord_qty;
     private int qty;
     private String end_date;
-
+    private String qc_level_name;
     private String work_date;
     private String supp_code;
     private String supp_name;
