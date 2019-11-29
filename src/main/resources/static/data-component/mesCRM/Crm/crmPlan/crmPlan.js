@@ -5,15 +5,25 @@
 ////////////////////////////데이터/////////////////////////////////////
 var grid_data = [];
 
+var main_data = {
+    check: 'I',
+    send_data: {},
+    send_data_post: {},
+};
+
+
 ////////////////////////////시작 함수/////////////////////////////////
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
 
+    modal_start1();
     jqgridPagerIcons();
 });
 ////////////////////////////클릭 함수////////////////////////////////
-
+function add_btn() {
+    $("#addDialog").dialog('open');
+}
 
 ////////////////////////////호출 함수////////////////////////////////
 

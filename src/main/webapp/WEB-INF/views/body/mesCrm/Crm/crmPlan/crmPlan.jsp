@@ -65,7 +65,7 @@
                             </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
-                       onclick="">
+                       onclick="add_btn()">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
                             </span>

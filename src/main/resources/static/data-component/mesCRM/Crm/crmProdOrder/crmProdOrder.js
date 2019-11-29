@@ -22,7 +22,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         data: grid_data,
         datatype: 'local',
-        caption: '실적현황 | MES',
+        caption: '구매생산지시 | MES',
         colNames: ['접수일', '수주번호', '수주처', 'End User', '진행상태', '진행여부', '납기일', '지시상태', 'Part No','규격','수량','단위','수축튜브','비고'],
         colModel: [
             {name: '', index: '', sortable: false, width: 60},
