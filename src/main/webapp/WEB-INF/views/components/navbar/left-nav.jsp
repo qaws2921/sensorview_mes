@@ -24,28 +24,30 @@
                 <span class="menu-text1">${left_list[0][0].menu_name }</span>
             </a>
         </li>
-        <c:forEach var="mainLeft_list" items="${left_list[0] }">
-            <li class="${top_active == mainLeft_list.menu_code ? 'active open' : ''}">
-                <c:if test="${mainLeft_list.level != 1 }">
-                    <a href="javascript:void(0)" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-cog"></i>
-                        <span class="menu-text"> ${mainLeft_list.menu_name} </span>
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-                    <b class="arrow"></b>
+        <c:forEach var="mainLeft_list" items="${left_list[0] }" varStatus="status">
+            <c:if test="${status.index != 0 }">
+                <li class="${top_active == mainLeft_list.menu_code ? 'active open' : ''}">
+                    <c:if test="${mainLeft_list.level != 1 }">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-cog"></i>
+                            <span class="menu-text"> ${mainLeft_list.menu_name} </span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
 
-                    <ul class="submenu">
-                        <c:forEach var="subLeft_list" items="${left_list[1]}">
-                            <c:if test="${mainLeft_list.menu_code == subLeft_list.parent_menu_code }">
-                                <li class="${subLeft_list.menu_code } ${under_active == subLeft_list.menu_code ? 'active' : ''}" >
-                                    <a href="${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
-                                    <b class="arrow"></b>
-                                </li>
-                            </c:if>
-                        </c:forEach>
-                    </ul>
-                </c:if>
-            </li>
+                        <ul class="submenu">
+                            <c:forEach var="subLeft_list" items="${left_list[1]}">
+                                <c:if test="${mainLeft_list.menu_code == subLeft_list.parent_menu_code }">
+                                    <li class="${subLeft_list.menu_code } ${under_active == subLeft_list.menu_code ? 'active' : ''}" >
+                                        <a href="${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
+                                        <b class="arrow"></b>
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </li>
+            </c:if>
         </c:forEach>
     </ul>
 </div>
