@@ -43,6 +43,7 @@ function get_btn(page) {
         page: page,
         postData: main_data.send_data
     }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function get_btn_post(page) {
@@ -52,6 +53,7 @@ function get_btn_post(page) {
         page: page,
         postData: main_data.send_data_post
     }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function under_get(rowid) {
