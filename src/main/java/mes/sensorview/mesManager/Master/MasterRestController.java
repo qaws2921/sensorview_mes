@@ -18,13 +18,10 @@ public class MasterRestController {
     @Autowired
     private MasterService masterService;
 
-
-    @RequestMapping(value="/sysCommonGroupGet", method = RequestMethod.POST)
-    public List<Master> sysCommonGroupGet(HttpServletRequest req){
-
-        return masterService.sysCommonGroupGet(req);
+    @RequestMapping(value="/getCommonGroup", method = RequestMethod.POST)
+    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p){
+        return masterService.getCommonGroup(req, p);
     }
-
 
     @RequestMapping(value="/sysCommonGet", method = RequestMethod.POST)
     public RESTful sysCommonGet(HttpServletRequest req, Page p){

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ page session="false" %>
 <script type="text/javascript" src="/data-component/admin/master/sysCommon/sysCommon.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
@@ -30,7 +30,7 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">코드그룹</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="code_select" class="form-control keyword condition_main" style="width:100%" >
+                        <select name="keyword" id="group_select" class="form-control keyword condition_main" style="width:100%" >
                         </select>
                     </td>
                     <td></td>
@@ -42,7 +42,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                             <span>
                                 <i class="fa fa-search bigger-110 blue"></i>
                                 <span>조회</span>

@@ -19,13 +19,7 @@ public class MasterService extends ReturnFunction {
     @Autowired
     private MasterMapper masterMapper;
 
-    public List<Master> sysCommonGroupGet(HttpServletRequest req) {
-        Page p = new Page();
-        Session lv = (Session) req.getSession().getAttribute("userData");
-        p.setSite_code(lv.getSite_code());
-        return masterMapper.sysCommonGroupGet(p);
-    }
-    
+
     public RESTful sysCommonGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSCommon> rows = masterMapper.sysCommonGet(p);
@@ -110,5 +104,10 @@ public class MasterService extends ReturnFunction {
     public List<SYSCargo> sysCargoBAllGet(HttpServletRequest req,Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.sysCargoBAllGet(p);
+    }
+
+    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.getCommonGroup(p);
     }
 }
