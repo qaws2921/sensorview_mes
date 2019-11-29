@@ -92,4 +92,9 @@ public class StandardService extends ReturnFunction {
         vo.setUser_code(getSessionData(req).getUser_code());
         return scmStandardMapper.sysBPartAdd(vo);
     }
+
+    public List<sysLoc> sysLocAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysLocGet(p);
+    }
 }

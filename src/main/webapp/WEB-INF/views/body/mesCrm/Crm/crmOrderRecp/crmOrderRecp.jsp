@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="main-content-inner">
-
     <div class="page-content">
         <div class="col-lg-12">
             <div class="col-lg-6">

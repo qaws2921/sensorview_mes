@@ -3,7 +3,6 @@
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmPlan/crmPlan.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
@@ -48,7 +47,7 @@
                             </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
-                       onclick="add_btn()">
+                       onclick="">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
                             </span>

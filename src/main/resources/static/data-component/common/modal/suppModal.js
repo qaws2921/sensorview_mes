@@ -80,8 +80,8 @@ function suppModal_jqGrid() {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
             {name: 'supp_code', index: 'supp_code', key:true,width: 80, sortable: false},
-            {name: 'supp_name', index: 'supp_name',width: 80, sortable: false},
-            {name: 'supp_no', index: 'supp_no',width: 200, sortable: false},
+            {name: 'supp_name', index: 'supp_name',width: 200, sortable: false},
+            {name: 'supp_no', index: 'supp_no',width: 80, sortable: false},
             {name: 'emp_name', index: 'emp_name',width: 80, sortable: false},
             {name: 'address', index: 'address',width: 200, sortable: false},
         ],

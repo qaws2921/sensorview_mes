@@ -13,7 +13,7 @@ public class SCM_IN_SUB {
     private String pack_qty;
     private String part_grp_name;
     private String part_name;
-    private String i_standard_name;
+    private String qc_level_name;
 
     private String spec;
     private String unit_name;

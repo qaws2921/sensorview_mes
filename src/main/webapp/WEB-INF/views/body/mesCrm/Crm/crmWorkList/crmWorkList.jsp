@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmWorkList/crmWorkList.js" charset="UTF-8"></script>
-<style>
-    .pd-4>tbody>tr>td{
-        padding:4px!important;
-    }
-</style>
 <div class="main-content-inner">
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">

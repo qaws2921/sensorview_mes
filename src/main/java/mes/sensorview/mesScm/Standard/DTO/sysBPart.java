@@ -9,6 +9,7 @@ public class sysBPart {
     private String part_code = "";
     private String part_name = "";
     private String cargo_code = "";
+    private String cargo_name = "";
     private String loc_code = "";
     private String supp_code = "";
     private String spec = "";
@@ -32,4 +33,5 @@ public class sysBPart {
     private String i_standard_name = "";
     private String i_category = "";
     private String i_category_name = "";
+    private String qc_level_name = "";
 }

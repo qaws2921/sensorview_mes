@@ -54,6 +54,11 @@ public class StandardRestController {
         return standardService.sysLocGet(req, p);
     }
 
+    @RequestMapping(value = "/sysLocAll2Get", method = RequestMethod.POST)
+    public List<sysLoc> sysLocAllGet(HttpServletRequest req, Page p) {
+        return standardService.sysLocAllGet(req, p);
+    }
+
     @RequestMapping(value = "/sysLocOneGet", method = RequestMethod.POST)
     public sysLoc sysLocOneGet(HttpServletRequest req, Page p) {
         return standardService.sysLocOneGet(req, p);
