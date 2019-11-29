@@ -1,4 +1,4 @@
-var str = window.location.pathname.split("/").slice(1);
+var path = window.location.pathname.split("/").slice(1);
 var array =
     [
         // 관리자
@@ -53,7 +53,7 @@ $(function() {
 	setTimeout(function() {closeWindowByMask()  }, 300);
 	// 엑티브 메뉴 nav
     for(var i=0; array.length > i; i++){
-        if(array[i].code == str){
+        if(array[i].code == path){
             $('#sub-t-1').text(array[i].name);
             $('#sub-t-2').text(array[i].title);
             $('#sub-t-3').text(array[i].sub);
