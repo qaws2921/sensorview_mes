@@ -254,11 +254,11 @@ function jqGrid_modal1() {
                         ]
                     }
             },
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false, editable: true,
+            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2, editable: true,
                 editoptions: {
                     dataInit: function (element) {
                         $(element).attr("readonly","readonly").datepicker({
-                            format: 'yyyy-mm-dd',
+                            format: 'yyyymmdd',
                             autoclose: true,
                             language: "kr",
                             widgetPositioning:{
