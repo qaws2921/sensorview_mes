@@ -41,23 +41,6 @@
 </style>
 
 <div class="main-content-inner">
-    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-        <div class="col-lg-12 ">
-            <span class="sp-title">
-            	발주현황
-            	<small class="sp-small"><i class="ace-icon fa fa-angle-double-right"></i>
-            	Manufacturing Execution System
-            	</small>
-            </span>
-            <span style="float: right">
-            	자재관리
-            	<i class="ace-icon fa fa-angle-double-right"></i>
-             	구매관리
-                <i class="ace-icon fa fa-angle-double-right"></i>
-                <b>발주현황</b>
-           </span>
-        </div>
-    </div>
 
     <div class="page-content">
         <div class="col-lg-12 padding0">
