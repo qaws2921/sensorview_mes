@@ -1,5 +1,4 @@
-var pathname = window.location.pathname;
-var str = pathname.split("/").slice(1);
+var str = window.location.pathname.split("/").slice(1);
 var array =
     [
         // 관리자
