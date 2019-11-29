@@ -136,3 +136,6 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
     text-shadow: none!important;
     font-size: 13px;
 }
+.pd-4>tbody>tr>td{
+    padding:4px!important;
+}
