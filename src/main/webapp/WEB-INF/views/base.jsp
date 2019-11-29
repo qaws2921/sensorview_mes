@@ -11,6 +11,7 @@
 <div class="main-container ace-save-state" id="main-container">
     <tiles:insertAttribute name="lnb"/>
     <div class="main-content">
+        <tiles:insertAttribute name="st"/>
         <tiles:insertAttribute name="body"/>
     </div>
 </div>

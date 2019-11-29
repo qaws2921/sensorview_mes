@@ -112,25 +112,6 @@
 
 
 <div class="main-content-inner">
-    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-        <div class="col-lg-12 ">
-                    <span class="sp-title">
-                        권한그룹별 프로그램관리
-                        <small class="sp-small">
-                            <i class="ace-icon fa fa-angle-double-right"></i>
-                            Manufacturing Execution System
-                        </small>
-                    </span>
-            <span style="float: right">
-                        관리자
-                        <i class="ace-icon fa fa-angle-double-right"></i>
-                        권한관리
-                        <i class="ace-icon fa fa-angle-double-right"></i>
-                        권한그룹별 프로그램관리
-                    </span>
-        </div>
-    </div>
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <div class="row">

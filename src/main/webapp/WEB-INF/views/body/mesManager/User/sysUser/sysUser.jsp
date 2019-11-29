@@ -4,25 +4,6 @@
 <script type="text/javascript" src="/data-component/admin/user/sysUser/sysUser.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
-    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-        <div class="col-lg-12 ">
-                    <span class="sp-title">
-                        사용자관리
-                        <small class="sp-small">
-                            <i class="ace-icon fa fa-angle-double-right"></i>
-                            Manufacturing Execution System
-                        </small>
-                    </span>
-            <span style="float: right">
-                        관리자
-                        <i class="ace-icon fa fa-angle-double-right"></i>
-              사용자관리
-                        <i class="ace-icon fa fa-angle-double-right"></i>
-                        사용자관리
-                    </span>
-        </div>
-    </div>
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
