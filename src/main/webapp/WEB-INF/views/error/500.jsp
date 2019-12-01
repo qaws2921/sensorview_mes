@@ -79,13 +79,16 @@
     <div class="well center">
         <h1 class="grey lighter smaller">
             <span class="blue bigger-125">
-                <i class="ace-icon fa fa-sitemap"></i>
+                <i class="ace-icon fa fa-random"></i>
                 500 ERROR
             </span>
         </h1>
 
         <hr>
-        <h3 class="smaller">알 수 없는 오류가 발생하였습니다.</h3>
+        <h3 class="smaller">
+            <i class="ace-icon fa fa-wrench icon-animated-wrench bigger-125"></i>
+            해당 페이지는 내부 작업중입니다.
+        </h3>
         <div>
             <div class="space"></div>
             <h4 class="smaller">자세한 사항은 (주)투비시스템으로 문의 부탁드립니다.</h4>
