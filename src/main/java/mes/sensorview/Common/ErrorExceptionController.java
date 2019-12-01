@@ -30,18 +30,18 @@ public class ErrorExceptionController implements ErrorController {
         if(status.toString().equals("404"))
         {
             log.info("########## ErrorExceptionController ##########");
-            log.info("에러 구분 : " + status.toString());
+            log.info("에러 구분  : " + status.toString());
             log.info("에러 메세지 : " + httpStatus.getReasonPhrase());
-            log.info("발생일 : " +  new Date());
+            log.info("발생일     : " +  new Date());
             log.info("##############################################");
             return "error/404";
         }
         else
         {
             log.info("########## ErrorExceptionController ##########");
-            log.info("에러 구분 : " + status.toString());
+            log.info("에러 구분  : " + status.toString());
             log.info("에러 메세지 : " + httpStatus.getReasonPhrase());
-            log.info("발생일 : " +  new Date());
+            log.info("발생일     : " +  new Date());
             log.info("##############################################");
             return "error/500";
         }
