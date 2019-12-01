@@ -53,7 +53,7 @@
                         <div class="input-icon input-icon-right">
                             <input type="text" name="end_date" id="datepicker2"
                                    class="form-control h-25 condition_main" readonly>
-                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;" ></i>
                         </div>
                     </td>
                     <td></td>
