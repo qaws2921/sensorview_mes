@@ -24,4 +24,6 @@ public class SYSCommon {
 	private int rownum;
 	private int rec_count;
 	private String keyword;
+	private String group_code;
+	private String cn;
 }

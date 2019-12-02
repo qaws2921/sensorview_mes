@@ -9,7 +9,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly:[]
+    readonly:['code_type']
 }
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -29,9 +29,7 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/sysCommonGet',
         datatype: "json",
@@ -52,9 +50,51 @@ function get_btn_post(page) {
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
     modalValuePush("#group_select","#group_code","#group_name");
+    console.log($('#group_code').val());
+    console.log($('#group_name').val());
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
+}
+
+function update_btn(jqgrid_data) {
+
+    modal_reset(".modal_value", []);
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.keyword = jqgrid_data.code_type;
+    send_data.keyword2 = jqgrid_data.code_value;
+
+
+    ccn_ajax('/sysCommonOneGet', send_data).then(function (data) {
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        $('#group_name').val(data.cn);
+        $('#group_code').val(data.code_type);
+        $("#addDialog").dialog('open');
+    });
+}
+
+function delete_btn() {
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/sysCommonDelete", {keyword: ids.join(",")}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn_post($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
 }
 
 
@@ -69,10 +109,11 @@ function jqGrid_main() {
 
         datatype: "local",
         mtype: 'POST',
-        colNames: ['공통그룹', '코드', '명칭1', '명칭2', '명칭3', '명칭4', '명칭5', '명칭6', '명칭7', '명칭8', '사용유무', '등록자', '등록일'],
+        colNames: ['공통코드','공통그룹', '코드', '명칭1', '명칭2', '명칭3', '명칭4', '명칭5', '명칭6', '명칭7', '명칭8', '사용유무', '등록자', '등록일'],
         colModel: [
-            {name: 'code_type', index: 'code_type', width: 60},
-            {name: 'code_value', index: 'code_value', width: 60},
+            {name: 'code_type', index:'code_type',hidden:true},
+            {name: 'cn', index: 'cn', width: 60},
+            {name: 'code_value', index: 'code_value',key:true, width: 60},
             {name: 'code_name1', index: 'code_name1', width: 60},
             {name: 'code_name2', index: 'code_name2', width: 60},
             {name: 'code_name3', index: 'code_name3', width: 60},
@@ -101,7 +142,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

@@ -28,6 +28,20 @@ public class MasterRestController {
         return masterService.sysCommonGet(req, p);
     }
 
+    @RequestMapping(value="/sysCommonAdd", method = RequestMethod.POST)
+    public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
+        return masterService.sysCommonAdd(req, vo);
+    }
+
+    @RequestMapping(value="/sysCommonDelete", method = RequestMethod.POST)
+    public Message sysCommonDelete(HttpServletRequest req, Page p){
+        return masterService.sysCommonDelete(req,p);
+    }
+
+    @RequestMapping(value="/sysCommonOneGet", method = RequestMethod.POST)
+    public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p){
+        return masterService.sysCommonOneGet(req, p);
+    }
 
     @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){

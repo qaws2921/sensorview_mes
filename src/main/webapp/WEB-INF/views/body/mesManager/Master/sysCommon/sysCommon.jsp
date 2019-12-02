@@ -40,7 +40,7 @@
                     </a>
                     <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
                        title=""
-                       onclick="">
+                       onclick="delete_btn();">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
                                 <span>삭제</span>
