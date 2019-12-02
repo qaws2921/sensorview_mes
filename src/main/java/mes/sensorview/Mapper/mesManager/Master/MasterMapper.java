@@ -27,4 +27,10 @@ import java.util.List;
      List<SYSCargo> sysCargoBAllGet(Page p);
 
      List<SYSCommon> getCommonGroup(Page p);
+
+     Message sysCommonAdd(SYSCommon vo);
+
+     Message sysCommonDelete(Page p);
+
+     SYSCommon sysCommonOneGet(Page p);
  }

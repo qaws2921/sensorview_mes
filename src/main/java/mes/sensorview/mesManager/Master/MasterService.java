@@ -25,6 +25,7 @@ public class MasterService extends ReturnFunction {
         List<SYSCommon> rows = masterMapper.sysCommonGet(p);
         return getListData(rows , p);
     }
+
     
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
         p.setSite_code(getSessionData(req).getSite_code());
@@ -109,5 +110,22 @@ public class MasterService extends ReturnFunction {
     public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.getCommonGroup(p);
+    }
+
+    public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return masterMapper.sysCommonAdd(vo);
+    }
+
+    public Message sysCommonDelete(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setKeyword(p.getKeyword());
+        return masterMapper.sysCommonDelete(p);
+    }
+
+    public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysCommonOneGet(p);
     }
 }

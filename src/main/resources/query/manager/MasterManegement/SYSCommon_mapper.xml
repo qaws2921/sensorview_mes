@@ -3,16 +3,28 @@
 <mapper namespace="mes.sensorview.Mapper.mesManager.Master.MasterMapper">
 
     <select id="sysCommonDutyGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-        	SELECT * from sys_common_cd
-        	WHERE SITE_CODE = #{site_code} AND CODE_TYPE = 'DUTY'
+        SELECT * from sys_common_cd
+        WHERE SITE_CODE = #{site_code} AND CODE_TYPE = 'DUTY'
     </select>
 
     <select id="sysCommonGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-            EXEC SP_SYS_COMMON_GET #{site_code},#{page},#{rows},#{keyword},''
+        EXEC SP_SYS_COMMON_GET #{site_code},#{page},#{rows},#{keyword},''
     </select>
 
     <select id="getCommonGroup" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-            EXEC SP_SYS_COMMON_GROUP_GET #{site_code}
+        EXEC SP_SYS_COMMON_GROUP_GET #{site_code}
+    </select>
+
+    <select id="sysCommonAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_COMMON_ADD #{site_code},#{group_code},#{code_value},#{code_name1},#{code_name2},#{code_name3},#{code_name4},#{code_name5},#{code_name6},#{code_name7},#{code_name8},#{use_yn},#{user_code},#{keyword}
+    </select>
+
+    <select id="sysCommonDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_COMMON_DEL #{site_code},#{keyword}
+    </select>
+
+    <select id="sysCommonOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
+        EXEC SP_SYS_COMMON_GET #{site_code},1,1,#{keyword},#{keyword2}
     </select>
 </mapper>
 
