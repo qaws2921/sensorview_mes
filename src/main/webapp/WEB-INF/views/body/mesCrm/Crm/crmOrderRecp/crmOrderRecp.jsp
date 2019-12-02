@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script type="text/javascript" src="/data-component/mesCRM/Crm/crmOrderRecp/crmOrderRecp.js" charset="UTF-8"></script>
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12">
@@ -17,7 +17,7 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">진행상태</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="status1_select">
                                 <option>출하</option>
                                 <option>생산완료</option>
                                 <option>생산중</option>
@@ -26,7 +26,7 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">진행여부</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="status2_select">
                                 <option>접수</option>
                                 <option>취소</option>
                             </select>
@@ -58,15 +58,14 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">제품구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>완제품</option>
-                                <option>상품</option>
+                            <select class="form-control" id="part_type_select">
+
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">품목구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>전체</option>
+                            <select class="form-control" id="partGrp_select">
+
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">End User</td>
@@ -80,9 +79,8 @@
                                 type="radio" name="check" id="chk1">
                         </td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>제품1</option>
-                                <option>제품2</option>
+                            <select class="form-control" id="part_select">
+
                             </select>
                         </td>
                         <td colspan="4"></td>
@@ -96,9 +94,8 @@
                             <input type="text" class="form-control">
                         </td>
                         <td class="wt-px-100">
-                            <select class="form-control">
-                                <option>제품1</option>
-                                <option>제품2</option>
+                            <select class="form-control" id="part_select2">
+
                             </select>
                         </td>
                         <td class="wt-px-200">
@@ -112,9 +109,8 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">단위</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>단위1</option>
-                                <option>단위2</option>
+                            <select class="form-control" id="unit_select">
+
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">수량</td>
@@ -150,7 +146,7 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">영업구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="crm_type_select">
                                 <option>국내</option>
                                 <option>해외</option>
                             </select>
@@ -161,40 +157,38 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">배송방법</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>택배</option>
-                                <option>직접배송</option>
+                            <select class="form-control" id="delivery_select">
+
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">판매구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="sale_type_select">
                                 <option>판매</option>
                                 <option>샘플</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">유/무상</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="price_type_select">
                                 <option>유상</option>
                                 <option>무상</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">배송업체</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>대한통운</option>
-                                <option>택배사1</option>
-                                <option>택배사2</option>
+                            <select class="form-control" id="delivery_corp_select">
+
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">생산</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="prod_type_select">
+                                <option>내부</option>
                                 <option>외부</option>
                             </select>
                         </td>
@@ -204,7 +198,7 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">배송비부담</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
+                            <select class="form-control" id="delivery_price_select">
                                 <option>당사</option>
                                 <option>착불</option>
                             </select>

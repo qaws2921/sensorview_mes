@@ -16,6 +16,12 @@
     <select id="sysBPartModalGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
         	EXEC SP_SYS_BPART_GET #{site_code},#{page}, #{rows},'', #{keyword2}, '',#{keyword}
     </select>
+    <select id="sysBPartAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
+        	EXEC SP_SYS_BPART_GET #{site_code},#{page}, #{rows},#{keyword}, #{keyword2}, '',''
+    </select>
+    <select id="sysCommonAllGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
+        	EXEC SP_SYS_COMMON_GET #{site_code},#{page}, #{rows},#{keyword}, ''
+    </select>
 </mapper>
 
 

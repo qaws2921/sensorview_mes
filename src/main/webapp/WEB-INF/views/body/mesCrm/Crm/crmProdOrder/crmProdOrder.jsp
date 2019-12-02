@@ -11,7 +11,7 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="start_date" id="datepicker"
-                                   class="form-control h-25 condition_main">
+                                   class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -19,7 +19,7 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="end_date" id="datepicker2"
-                                   class="form-control h-25 condition_main">
+                                   class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -33,7 +33,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                             <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
@@ -64,76 +64,73 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">영업구분</td>
                             <td class="wt-px-150">
-                                <select class="form-control">
-                                    <option>국내</option>
-                                    <option>해외</option>
-                                </select>
+                                <input type="text" name="crm_type_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">담당자</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="user_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송방법</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="delivery_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송업체</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="delivery_corp_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송비부담</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="delivery_price_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">생산</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="prod_type_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">판매구분</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="sale_type_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">유/무상</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="price_type_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">샘플용도</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="sample" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">통화단위</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="currency_type" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">단가</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="unit_price" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">합계</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="price" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         </tbody>
@@ -148,31 +145,31 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">발주번호</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="supp_ord_no" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">결재방법</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="payment" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">담당자</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="supp_user_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">연락처</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="supp_tel_no" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송지</td>
                             <td class="wt-px-150">
-                                <input type="text" class="form-control">
+                                <input type="text" name="address" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         </tbody>
