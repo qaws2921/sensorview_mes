@@ -91,7 +91,7 @@ function jqGrid_main() {
             {name: 'status_name', index: 'status_name', sortable: false, width: 40},
             {name: 'ord_qty', index: 'ord_qty', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
+            {name: 'not_qty', index: 'not_qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_code', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
         ],

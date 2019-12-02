@@ -233,7 +233,7 @@ function jqGrid_main() {
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
             {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,},
             {name: 'qty', index: 'qty', width: 60, sortable: false,},
-            {name: 'qty', index: 'qty', width: 60, sortable: false,}
+            {name: 'not_qty', index: 'not_qty', width: 60, sortable: false,}
         ],
         autowidth: true,
         viewrecords: true,

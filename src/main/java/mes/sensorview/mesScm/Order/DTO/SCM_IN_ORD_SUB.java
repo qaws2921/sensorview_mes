@@ -24,7 +24,7 @@ public class SCM_IN_ORD_SUB {
     private String user_name;
     private String create_date;
     private String update_date;
-
+    private int not_qty;
     private int rownum;
     private int rec_count;
     private String i_standard_name;

@@ -42,6 +42,15 @@ function formmatterDate2(cellValue) { // 날짜 필터
 	}
 }
 
+function formatterDate3(cellValue) { // 날짜 필터
+	if (cellValue == null){
+		return '';
+	} else {
+
+		return cellValue+'일';
+	}
+}
+
 
 function jqGridResize(main_name, top_name) {
 	$(window).on('resize', function () {
