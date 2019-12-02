@@ -13,22 +13,22 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">수주번호</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" readonly>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">진행상태</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="status1_select">
-                                <option>출하</option>
-                                <option>생산완료</option>
-                                <option>생산중</option>
-                                <option>대기</option>
+                                <option value="0">대기</option>
+                                <option value="1">생산중</option>
+                                <option value="2">생산완료</option>
+                                <option value="3">출하</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">진행여부</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="status2_select">
-                                <option>접수</option>
-                                <option>취소</option>
+                                <option value="1">접수</option>
+                                <option value="2">취소</option>
                             </select>
                         </td>
                     </tr>
@@ -37,7 +37,7 @@
                         <td class="wt-px-200">
                             <div class="input-icon input-icon-right">
                                 <input type="text" name="start_date" id="datepicker"
-                                       class="form-control h-25 condition_main">
+                                       class="form-control h-25 condition_main" readonly>
                                 <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                             </div>
                         </td>
@@ -46,7 +46,7 @@
                         <td class="wt-px-200">
                             <div class="input-icon input-icon-right">
                                 <input type="text" name="end_date" id="datepicker2"
-                                       class="form-control h-25 condition_main">
+                                       class="form-control h-25 condition_main" readonly>
                                 <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                             </div>
                         </td>
@@ -58,13 +58,13 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">제품구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control" id="part_type_select">
+                            <select class="form-control" id="part_type_select" onchange="select_change1(this.value);">
 
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">품목구분</td>
                         <td class="wt-px-200">
-                            <select class="form-control" id="partGrp_select">
+                            <select class="form-control" id="partGrp_select" onchange="select_change2(this.value);">
 
                             </select>
                         </td>
@@ -76,7 +76,7 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">
                             <label for="chk1" class="td-title" style="font-size: 11px"> 단품 </label>&nbsp;<input
-                                type="radio" name="check" id="chk1">
+                                type="radio" name="check" value="1" id="chk1" checked onclick="radio1_btn();">
                         </td>
                         <td class="wt-px-200">
                             <select class="form-control" id="part_select">
@@ -88,10 +88,10 @@
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">
                             <label for="chk2" class="td-title" style="font-size: 11px"> 조립 </label>&nbsp;<input
-                                type="radio" name="check" id="chk2" checked>
+                                type="radio" name="check" id="chk2"  onclick="radio2_btn();">
                         </td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" name="connector1" class="form-control" readonly>
                         </td>
                         <td class="wt-px-100">
                             <select class="form-control" id="part_select2">
@@ -99,11 +99,11 @@
                             </select>
                         </td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" name="connector2" class="form-control" readonly>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">개별길이(M)</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" name="part_length" class="form-control" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -115,7 +115,7 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">수량</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" name="qty" class="form-control" onkeyup="sum_qty_keyup();">
                         </td>
                         <td></td>
                         <td></td>
@@ -147,8 +147,8 @@
                         <td class="wt-px-100 td-title t-align-c">영업구분</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="crm_type_select">
-                                <option>국내</option>
-                                <option>해외</option>
+                                <option value="1">국내</option>
+                                <option value="2">해외</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">담당자</td>
@@ -166,15 +166,15 @@
                         <td class="wt-px-100 td-title t-align-c">판매구분</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="sale_type_select">
-                                <option>판매</option>
-                                <option>샘플</option>
+                                <option value="1">판매</option>
+                                <option value="2">샘플</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">유/무상</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="price_type_select">
-                                <option>유상</option>
-                                <option>무상</option>
+                                <option value="1">유상</option>
+                                <option value="2">무상</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">배송업체</td>
@@ -188,8 +188,8 @@
                         <td class="wt-px-100 td-title t-align-c">생산</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="prod_type_select">
-                                <option>내부</option>
-                                <option>외부</option>
+                                <option value="1">내부</option>
+                                <option value="2">외부</option>
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">샘플용도</td>
@@ -199,26 +199,25 @@
                         <td class="wt-px-100 td-title t-align-c">배송비부담</td>
                         <td class="wt-px-200">
                             <select class="form-control" id="delivery_price_select">
-                                <option>당사</option>
-                                <option>착불</option>
+                                <option value="1">당사</option>
+                                <option value="2">착불</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td class="wt-px-100 td-title t-align-c">통화단위</td>
                         <td class="wt-px-200">
-                            <select class="form-control">
-                                <option>KRW</option>
-                                <option>EN</option>
+                            <select class="form-control" id="currency_select">
+
                             </select>
                         </td>
                         <td class="wt-px-100 td-title t-align-c">단가</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control">
+                            <input type="text" name="unit_price" class="form-control" onkeyup="sum_qty_keyup();">
                         </td>
                         <td class="wt-px-100 td-title t-align-c">합계</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" name="price" class="form-control" readonly>
                         </td>
                     </tr>
                     </tbody>
