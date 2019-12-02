@@ -37,6 +37,14 @@
     <select id="scmStockListDbList" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST">
         EXEC SP_SCM_STOCK_GET #{site_code}, 0, 0, '', ''
     </select>
+
+    <select id="scmStockSumDayListDbList" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY">
+        EXEC SP_SCM_STOCK_GET_DAY #{site_code},0,0,'','',''
+    </select>
+
+    <select id="scmStockSumMonthListDbList" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH">
+        EXEC SP_SCM_STOCK_GET_MONTH #{site_code},0,0,'','',''
+    </select>
 </mapper>
 
 

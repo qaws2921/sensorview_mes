@@ -13,6 +13,8 @@ import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB;
 import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST;
+import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY;
+import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -319,6 +321,72 @@ public class ExcelService extends ExcelFunction {
                 List<List<Object>> rows = makeBody.scmStockList_Body(list);
                 int index = makeHeader.scmStockList_Header().length;
                 String[] data = makeHeader.scmStockList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("scmStockSumDay")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("자재일원장");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("자재일원장","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<SCM_STOCK_SUM_DAY> list = excelMapper.scmStockSumDayListDbList(excel);
+                List<List<Object>> rows = makeBody.scmStockSumDayList_Body(list);
+                int index = makeHeader.scmStockSumDayList_Header().length;
+                String[] data = makeHeader.scmStockSumDayList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("scmStockSumMonth")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("자재월원장");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("자재월원장","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<SCM_STOCK_SUM_MONTH> list = excelMapper.scmStockSumMonthListDbList(excel);
+                List<List<Object>> rows = makeBody.scmStockSumMonthList_Body(list);
+                int index = makeHeader.scmStockSumMonthList_Header().length;
+                String[] data = makeHeader.scmStockSumMonthList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성

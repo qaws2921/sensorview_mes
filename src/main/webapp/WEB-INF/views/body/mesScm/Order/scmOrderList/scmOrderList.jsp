@@ -32,8 +32,9 @@
 
     });
     //]]>
-</script>
 
+</script>
+<div id="progressbar1" data-value="0"></div>
 <style>
     #SuppSearchGridPager #pg_SuppSearchGridPager table{
         table-layout:auto !important;

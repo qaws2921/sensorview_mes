@@ -7,6 +7,8 @@ import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB;
 import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST;
+import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY;
+import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -25,4 +27,8 @@ public interface ExcelMapper {
     List<SCM_REIN_SUB> scmInLineListDbList(Excel excel);
 
     List<SCM_STOCK_LIST> scmStockListDbList(Excel excel);
+
+    List<SCM_STOCK_SUM_DAY> scmStockSumDayListDbList(Excel excel);
+
+    List<SCM_STOCK_SUM_MONTH> scmStockSumMonthListDbList(Excel excel);
 }
