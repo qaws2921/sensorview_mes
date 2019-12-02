@@ -134,6 +134,18 @@ function select_makes(tag,url,value,text) {
 	});	
 }
 
+function select_data_makes(tag,url,value,text,data) {
+	ccn_ajax(url,data).then(function (data) {
+		var option = null
+		for (var j = 0; j < data.length; j++) {
+			option = $("<option></option>").text(data[j][text]).val(data[j][value]);
+			$(tag).append(option);
+		}
+		$(tag).select2();
+	}).catch(function (err) {
+		console.error(err); // Error 출력
+	});
+}
 
 function select_makes2(tag,url,value,text) {
 	return new Promise(function (resolve, reject) {
@@ -144,7 +156,23 @@ function select_makes2(tag,url,value,text) {
 				$(tag).append(option);
 			}
 			$(tag).select2();
-			resolve(data[0].part_type_code);
+			resolve(data[0][value]);
+		}).catch(function (err) {
+			console.error(err); // Error 출력
+		});
+	});
+}
+
+function select_makes3(tag,url,value,text,data) {
+	return new Promise(function (resolve, reject) {
+		ccn_ajax(url, data).then(function (data2) {
+			var option = null
+			for (var j = 0; j < data2.length; j++) {
+				option = $("<option></option>").text(data2[j][text]).val(data2[j][value]);
+				$(tag).append(option);
+			}
+			$(tag).select2();
+			resolve(data2[0][value]);
 		}).catch(function (err) {
 			console.error(err); // Error 출력
 		});

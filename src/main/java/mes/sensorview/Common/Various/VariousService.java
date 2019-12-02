@@ -48,4 +48,13 @@ public class VariousService extends ReturnFunction {
     }
 
 
+    public List<sysBPart> sysBPartAllGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysBPartAllGet(p);
+    }
+
+    public List<SYSCommon> sysCommonAllGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysCommonAllGet(p);
+    }
 }

@@ -3,6 +3,7 @@ package mes.sensorview.Common.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,18 @@ public class VariousRestController {
     @RequestMapping(value = "/sysBPartModalGet", method = RequestMethod.POST)
     public RESTful sysBPartModalGet(Page p, HttpServletRequest req) {
         return variousService.sysBPartModalGet(p, req);
+
+    }
+
+    @RequestMapping(value = "/sysBPartAllGet", method = RequestMethod.POST)
+    public List<sysBPart> sysBPartAllGet(Page p, HttpServletRequest req) {
+        return variousService.sysBPartAllGet(p, req);
+
+    }
+
+    @RequestMapping(value = "/sysCommonAllGet", method = RequestMethod.POST)
+    public List<SYSCommon> sysCommonAllGet(Page p, HttpServletRequest req) {
+        return variousService.sysCommonAllGet(p, req);
 
     }
 

@@ -20,4 +20,7 @@ public interface VariousMapper {
 
     List<sysBPart> sysBPartModalGet(Page p);
 
+    List<sysBPart> sysBPartAllGet(Page p);
+
+    List<SYSCommon> sysCommonAllGet(Page p);
 }
