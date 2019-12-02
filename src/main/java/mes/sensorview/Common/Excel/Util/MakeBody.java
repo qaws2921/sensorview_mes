@@ -5,6 +5,7 @@ import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB;
+import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -209,6 +210,30 @@ public class MakeBody {
                     obj.add(data.getQty());
                     obj.add(data.getUser_name());
                     obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> scmStockList_Body(List<SCM_STOCK_LIST> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(SCM_STOCK_LIST data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getPart_type_name());
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getMin_qty());
+                    obj.add(data.getMax_qty());
+                    obj.add(data.getQty());
                     content.add(obj);
                 }
             }

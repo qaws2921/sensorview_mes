@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.sensorview.Mapper.mesSCM.Inventory.InventoryMapper">
+    <select id="scmStockListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST">
+        EXEC SP_SCM_STOCK_GET #{site_code},#{page},#{rows},'',''
+    </select>
+
+
+</mapper>

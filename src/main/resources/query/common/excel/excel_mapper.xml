@@ -31,7 +31,11 @@
     </select>
 
     <select id="scmInLineListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB">
-        SP_SCM_REIN_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+        EXEC SP_SCM_REIN_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+    </select>
+
+    <select id="scmStockListDbList" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST">
+        EXEC SP_SCM_STOCK_GET #{site_code}, 0, 0, '', ''
     </select>
 </mapper>
 

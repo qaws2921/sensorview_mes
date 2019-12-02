@@ -6,10 +6,12 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesCrm.Crm.CrmMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import org.springframework.beans.factory.annotation.Autowired;
+import mes.sensorview.Common.DataTransferObject.Message;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 
 @Service
 public class CrmService extends ReturnFunction {
@@ -25,5 +27,11 @@ public class CrmService extends ReturnFunction {
     public CRM_ORD_RECP crmProdOrderOneGet(HttpServletRequest req, CRM_ORD_RECP cor) {
         cor.setSite_code(getSessionData(req).getSite_code());
         return crmMapper.crmProdOrderOneGet(cor);
+    }
+
+    public Message crmRecpAdd(HttpServletRequest req, CRM_ORD_RECP crmOrdRecp) {
+        crmOrdRecp.setSite_code(getSessionData(req).getSite_code());
+        crmOrdRecp.setUser_code(getSessionData(req).getUser_code());
+        return crmMapper.crmRecpAdd(crmOrdRecp);
     }
 }

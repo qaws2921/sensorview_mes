@@ -6,6 +6,11 @@
 
 var grid_data = [];
 
+var main_data = {
+    check: 'I',
+    send_data: {},
+    send_data_post: {},
+};
 
 ////////////////////////////시작 함수//////////////////////////////////
 
