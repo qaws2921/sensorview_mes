@@ -20,13 +20,12 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-200 t-align-c">
-                        <select name="keyword" class="form-control keyword condition_main">
-                            <option value="">전체</option>
+                        <select name="keyword" id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목구분</td>
                     <td class="wt-px-200 t-align-c">
-                        <select name="keyword" class="form-control keyword condition_main">
+                        <select name="keyword2" id="partGrp_select" class="form-control keyword condition_main" style="width: 100%">
                             <option value="">전체</option>
                         </select>
                     </td>

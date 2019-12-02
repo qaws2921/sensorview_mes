@@ -44,4 +44,9 @@ public class MakeHeader {
         String[] data= {"입고일자","입고번호","공정명","품목그룹","품번","품명","규격","단위","입고수량","등록자","입고일시"};
         return data;
     }
+
+    public String[] scmStockList_Header() {
+        String[] data= {"품목구분","품목코드","품목명","규격","단위","공급업체","적정재고(최소)","적정재고(최대)","재고량"};
+        return data;
+    }
 }
