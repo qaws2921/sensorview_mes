@@ -36,8 +36,8 @@
     <ul class="nav nav-list of-hidden">
         <li class="hover">
             <a href="/">
-                <i class="menu-icon fa fa-tachometer"></i>
-                <span class="menu-text"> MES </span>
+                <i class="menu-icon fa fa-home"></i>
+                <span class="menu-text"> HOME </span>
             </a>
             <b class="arrow"></b>
         </li>
