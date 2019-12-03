@@ -34,4 +34,12 @@ public class CrmRestController {
     public Message crmRecpAdd(HttpServletRequest req, CRM_ORD_RECP crmOrdRecp) {
         return crmService.crmRecpAdd(req, crmOrdRecp);
     }
+
+    @RequestMapping(value = "/crmWorkListGet", method = RequestMethod.POST)
+    public RESTful crmWorkListGet(HttpServletRequest req, Page p) { return crmService.crmWorkListGet(req, p); }
+
+    @RequestMapping(value = "/crmWorkListOneGet", method = RequestMethod.POST)
+    public CRM_ORD_RECP crmWorkListOneGet(HttpServletRequest req, CRM_ORD_RECP cor) {
+        return crmService.crmWorkListOneGet(req, cor);
+    }
 }

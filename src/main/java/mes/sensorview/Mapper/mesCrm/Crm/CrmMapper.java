@@ -14,4 +14,8 @@ public interface CrmMapper {
     CRM_ORD_RECP crmProdOrderOneGet(CRM_ORD_RECP cor);
 
     Message crmRecpAdd(CRM_ORD_RECP crmOrdRecp);
+
+    List<CRM_ORD_RECP> crmWorkListGet(Page p);
+
+    CRM_ORD_RECP crmWorkListOneGet(CRM_ORD_RECP cor);
 }

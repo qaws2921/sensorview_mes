@@ -45,6 +45,10 @@
     <select id="scmStockSumMonthListDbList" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH">
         EXEC SP_SCM_STOCK_GET_MONTH #{site_code},0,0,'','',''
     </select>
+
+    <select id="crmWorkListDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+        EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code},0,0,'20191126', '20191203' , '' ,'','','0',''
+    </select>
 </mapper>
 
 

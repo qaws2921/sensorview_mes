@@ -1,6 +1,7 @@
 package mes.sensorview.Common.Excel.Util;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -284,6 +285,34 @@ public class MakeBody {
                     obj.add(data.getIn_qty());
                     obj.add(data.getOut_qty());
                     obj.add(data.getQty());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> crmWorkList_Body(List<CRM_ORD_RECP> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(CRM_ORD_RECP data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getOrd_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getEnd_supp_name());
+                    obj.add(data.getStatus1_name());
+                    obj.add(data.getStatus2_name());
+                    obj.add(data.getEnd_date());
+                    obj.add(data.getStatus3_name());
+                    obj.add(data.getPart_no());
+                    obj.add(data.getQty());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getTube());
+                    obj.add(data.getRemark());
                     content.add(obj);
                 }
             }

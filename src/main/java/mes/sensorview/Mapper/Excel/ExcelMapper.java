@@ -2,6 +2,7 @@ package mes.sensorview.Mapper.Excel;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.Excel.DTO.Excel;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -31,4 +32,6 @@ public interface ExcelMapper {
     List<SCM_STOCK_SUM_DAY> scmStockSumDayListDbList(Excel excel);
 
     List<SCM_STOCK_SUM_MONTH> scmStockSumMonthListDbList(Excel excel);
+
+    List<CRM_ORD_RECP> crmWorkListDbList(Excel excel);
 }

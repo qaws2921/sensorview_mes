@@ -8,6 +8,7 @@ import mes.sensorview.Common.Excel.Util.MakeBody;
 import mes.sensorview.Common.Excel.Util.MakeHeader;
 import mes.sensorview.Common.Excel.Util.Upload;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -387,6 +388,39 @@ public class ExcelService extends ExcelFunction {
                 List<List<Object>> rows = makeBody.scmStockSumMonthList_Body(list);
                 int index = makeHeader.scmStockSumMonthList_Header().length;
                 String[] data = makeHeader.scmStockSumMonthList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("crmWorkList")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("실적현황");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("실적현황","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<CRM_ORD_RECP> list = excelMapper.crmWorkListDbList(excel);
+                List<List<Object>> rows = makeBody.crmWorkList_Body(list);
+                int index = makeHeader.crmWorkList_Header().length;
+                String[] data = makeHeader.crmWorkList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성
