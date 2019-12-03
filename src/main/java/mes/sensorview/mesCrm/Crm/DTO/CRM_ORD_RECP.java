@@ -2,8 +2,7 @@ package mes.sensorview.mesCrm.Crm.DTO;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Data
 public class CRM_ORD_RECP {

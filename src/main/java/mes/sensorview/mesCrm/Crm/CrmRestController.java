@@ -30,15 +30,16 @@ public class CrmRestController {
     }
 
     @RequestMapping(value = "/crmRecpAdd", method = RequestMethod.POST)
-    public String crmRecpAdd(@Valid CRM_ORD_RECP crmOrdRecp, BindingResult errors){
+    public String crmRecpAdd(@Valid CRM_ORD_RECP crmOrdRecp, BindingResult errors, HttpServletRequest req){
         String msg = null;
         if(errors.hasErrors()){
             for (ObjectError objectError : errors.getAllErrors()) {
-                msg = objectError.getDefaultMessage();
+                msg = objectError.getDefaultMessage() + "를 입력하세요.";
             }
             return msg;
         }else{
-            return crmService.crmRecpAdd(crmOrdRecp);
+            return "검증완료";
+//            return crmService.crmRecpAdd(crmOrdRecp, req);
         }
     }
 
