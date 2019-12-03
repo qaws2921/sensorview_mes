@@ -25,7 +25,7 @@
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">분기</td>
                     <td class="wt-px-200">
-                       <select class="form-control" onchange="bungi_change(this.value)">
+                       <select id="bungi_select" class="form-control" onchange="bungi_change(this.value)">
                            <option value="1">1분기</option>
                            <option value="2">2분기</option>
                            <option value="3">3분기</option>
@@ -52,15 +52,15 @@
                             <span>조회</span>
                             </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
-                       onclick="">
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
                             </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
                        onclick="">
-                            <span><i class="fa fa-plus bigger-110 blue"></i>
+                            <span><i class="fa fa-download bigger-110 blue"></i>
                             <span>저장</span>
                             </span>
                     </a>
