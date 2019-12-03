@@ -52,7 +52,10 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">수주처</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control"/>
+                            <span class="input-icon input-icon-right">
+                                <input type="text" class="form-control"/>
+                                <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -70,7 +73,10 @@
                         </td>
                         <td class="wt-px-100 td-title t-align-c">End User</td>
                         <td class="wt-px-200">
-                            <input type="text" class="form-control"/>
+                            <span class="input-icon input-icon-right">
+                                <input type="text" class="form-control"/>
+                                <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch2-Main"></i>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -276,3 +282,5 @@
         </div>
     </div>
 </div>
+
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

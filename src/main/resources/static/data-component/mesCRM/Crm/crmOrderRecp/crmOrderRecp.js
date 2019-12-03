@@ -3,15 +3,52 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-
+var main_data = {
+    supp_check:'A'
+}
 
 ////////////////////////////시작 함수/////////////////////////////////
 $(document).ready(function () {
     selectBox();
     datepickerInput();
+    suppModal_start();
 
 });
 ////////////////////////////클릭 함수////////////////////////////////
+function supp_btn(what) {
+    main_data.supp_check = what;
+    $("#supp_modal_keyword").val("supp_name");
+    $("#supp_modal_keyword2").val("");
+
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+    $("#supp-search-dialog").dialog('open');
+    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+}
+
+function suppModal_bus(code, name) {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    } else if (main_data.supp_check === 'B') {
+
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
 function radio1_btn() {
 
     $('input[name=connector1]').attr("readonly","readonly");
