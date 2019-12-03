@@ -8,6 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    readonly:[],
 };
 
 var testdata = [
@@ -50,6 +51,13 @@ $(document).ready(function () {
 });
 ////////////////////////////클릭 함수////////////////////////////////
 function add_btn() {
+    modal_reset(".modal_value", main_data.readonly);
+    modalValuePush("#bungi_select","#bungi_code","#bungi_name");
+    main_data.check = 'I';
+    console.log($('#bungi_select').val());
+    console.log($('#bungi_select').val());
+    console.log($('#bungi_select').val());
+
     $("#addDialog").dialog('open');
 }
 

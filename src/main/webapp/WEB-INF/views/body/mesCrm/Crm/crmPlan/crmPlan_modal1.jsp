@@ -8,14 +8,16 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 분기</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="bungi_name" id="bungi_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="bungi_code" id="bungi_code" class="form-control modal_value" />
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name"> 품목구분</div>
             <div class="profile-info-value">
-                <select class="form-control modal_value condition_main" id="gubun_select" onchange="select_change1(this.value);" style="width: 100%">
+                <select class="form-control condition_main modal_value" id="gubun_select" onchange="select_change1(this.value);" style="width: 100%">
+                    <option value="">선택안함</option>
                 </select>
             </div>
         </div>
@@ -23,7 +25,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 제품코드</div>
             <div class="profile-info-value">
-                <select id="partGrp_select" class="form-control keyword condition_main" style="width: 100%">
+                <select id="partGrp_select" class="form-control keyword condition_main modal_value" style="width: 100%">
                     <option value="">전체</option>
                 </select>
             </div>
