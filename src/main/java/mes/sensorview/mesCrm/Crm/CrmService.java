@@ -36,4 +36,16 @@ public class CrmService extends ReturnFunction {
         crmOrdRecp.setOrd_no("CRM" + random.nextInt(9999));
         return crmMapper.crmRecpAdd(crmOrdRecp).getMessage();
     }
+
+    public RESTful crmWorkListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<CRM_ORD_RECP> rows = crmMapper.crmWorkListGet(p);
+        return getListData(rows, p);
+    }
+
+    public CRM_ORD_RECP crmWorkListOneGet(HttpServletRequest req, CRM_ORD_RECP cor) {
+        cor.setSite_code(getSessionData(req).getSite_code());
+        return crmMapper.crmWorkListOneGet(cor);
+
+    }
 }

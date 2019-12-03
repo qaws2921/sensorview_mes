@@ -49,4 +49,19 @@ public class MakeHeader {
         String[] data= {"품목구분","품목코드","품목명","규격","단위","공급업체","적정재고(최소)","적정재고(최대)","재고량"};
         return data;
     }
+
+    public String[] scmStockSumDayList_Header() {
+        String[] data= {"품목그룹","품목코드","품목명","규격","단위","전일재고","금일입고","금일출고","재고"};
+        return data;
+    }
+
+    public String[] scmStockSumMonthList_Header() {
+        String[] data= {"품목그룹","품목코드","품목명","규격","단위","전월재고","금월입고","금월출고","재고"};
+        return data;
+    }
+
+    public String[] crmWorkList_Header() {
+        String[] data= {"접수일","수주번호","수주처","End User","진행상태","진행여부","납기일","지시구분","Part No","수량","단위","수축튜브","비고"};
+        return data;
+    }
 }

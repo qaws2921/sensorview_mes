@@ -13,4 +13,20 @@
     	#{prod_type}, #{sample},#{currency_type}, #{unit_price}, #{price},
     	#{supp_ord_no},#{payment},#{supp_user_name}, #{supp_tel_no}, 'I'
     </select>
+
+	<select id="crmProdOrderGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+		EXEC SP_CRM_ORD_RECP_GET #{site_code},#{page}, #{rows},#{start_date}, #{end_date}, ''
+    </select>
+
+	<select id="crmProdOrderOneGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+		EXEC SP_CRM_ORD_RECP_GET #{site_code},1, 1,'', '', #{ord_no}
+    </select>
+
+	<select id="crmWorkListGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+		EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{keyword2} , #{keyword} ,#{keyword3},#{keyword4},#{keyword5},''
+	</select>
+
+	<select id="crmWorkListOneGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+		EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code}, 1, 1, '', '' , '' ,'','','0',#{ord_no}
+	</select>
 </mapper>

@@ -33,7 +33,7 @@
     });
     //]]>
 </script>
-
+<div id="progressbar1" data-value="0"></div>
 <div class="main-content-inner">
 
     <div class="page-content">
