@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+import java.util.Random;
 
 
 @Service
@@ -30,10 +30,11 @@ public class CrmService extends ReturnFunction {
         return crmMapper.crmProdOrderOneGet(cor);
     }
 
-    public Message crmRecpAdd(HttpServletRequest req, CRM_ORD_RECP crmOrdRecp) {
-        crmOrdRecp.setSite_code(getSessionData(req).getSite_code());
-        crmOrdRecp.setUser_code(getSessionData(req).getUser_code());
-        return crmMapper.crmRecpAdd(crmOrdRecp);
+    public String crmRecpAdd(CRM_ORD_RECP crmOrdRecp) {
+        // test
+        Random random = new Random();
+        crmOrdRecp.setOrd_no("CRM" + random.nextInt(9999));
+        return crmMapper.crmRecpAdd(crmOrdRecp).getMessage();
     }
 
     public RESTful crmWorkListGet(HttpServletRequest req, Page p) {

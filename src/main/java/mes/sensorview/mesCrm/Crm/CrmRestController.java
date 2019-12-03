@@ -1,21 +1,20 @@
 package mes.sensorview.mesCrm.Crm;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import mes.sensorview.Common.DataTransferObject.Message;
-import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
+@Slf4j
 public class CrmRestController {
     @Autowired
     private CrmService crmService;
@@ -31,8 +30,16 @@ public class CrmRestController {
     }
 
     @RequestMapping(value = "/crmRecpAdd", method = RequestMethod.POST)
-    public Message crmRecpAdd(HttpServletRequest req, CRM_ORD_RECP crmOrdRecp) {
-        return crmService.crmRecpAdd(req, crmOrdRecp);
+    public String crmRecpAdd(@Valid CRM_ORD_RECP crmOrdRecp, BindingResult errors){
+        String msg = null;
+        if(errors.hasErrors()){
+            for (ObjectError objectError : errors.getAllErrors()) {
+                msg = objectError.getDefaultMessage();
+            }
+            return msg;
+        }else{
+            return crmService.crmRecpAdd(crmOrdRecp);
+        }
     }
 
     @RequestMapping(value = "/crmWorkListGet", method = RequestMethod.POST)
