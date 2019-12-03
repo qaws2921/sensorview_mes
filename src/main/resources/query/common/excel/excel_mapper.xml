@@ -47,7 +47,7 @@
     </select>
 
     <select id="crmWorkListDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
-        EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code},0,0,'20191126', '20191203' , '' ,'','','0',''
+        EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code},0,0,#{row0},#{row1},#{row2},#{row3},#{row4},#{row5},''
     </select>
 </mapper>
 

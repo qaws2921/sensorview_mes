@@ -12,7 +12,14 @@
                 $preparingFileModal.dialog({ modal: true });
                 $("#progressbar").progressbar({value: false});
                 $.fileDownload ("/excel_download", {
-                    data : {"name":"crmWorkList"},
+                    data : {"name": "crmWorkList",
+                        "row0": $('#datepicker').val().replace(/-/gi,""),
+                        "row1": $('#datepicker2').val().replace(/-/gi,""),
+                        "row2": $('#gubun_select').val(),
+                        "row3": $('#user_name').val(),
+                        "row4": $('#supp_code_main').val(),
+                        "row5": $('#status1_select').val(),
+                    },
                     successCallback: function (url) {
                         $preparingFileModal.dialog('close');
                     },
@@ -49,7 +56,7 @@
                     <td class="t-align-c" style="width:25px !important;">~</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="end_date" id="datepicker2"
+                            <input type="text" name="keyword2" id="datepicker2"
                                    class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
@@ -64,21 +71,21 @@
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">담당자</td>
                     <td class="wt-px-150">
-                       <input type="text" class="form-control condition_main">
+                       <input type="text" class="form-control condition_main" name="keyword3" id="user_name">
                     </td>
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">수주처</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control condition_main" id="supp_name_main" readonly onclick="supp_btn('A');">
-                            <input type="hidden" name="keyword" class="form-control condition_main" id="supp_code_main">
+                            <input type="hidden" name="keyword4" class="form-control condition_main" id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">진행상태</td>
                     <td class="wt-px-150">
-                        <select id="status1_select" class="form-control condition_main">
+                        <select id="status1_select" name="keyword5" class="form-control condition_main">
                             <option value="">전체</option>
                             <option value="0">대기</option>
                             <option value="1">작업지시</option>

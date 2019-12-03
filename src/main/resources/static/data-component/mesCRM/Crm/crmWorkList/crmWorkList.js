@@ -29,6 +29,7 @@ function get_btn(page) {
     modal_reset(".main_value", []);
     main_data.send_data = value_return2(".condition_main");
     main_data.send_data_post = main_data.send_data;
+    console.log(main_data);
     $("#mes_grid").setGridParam({
         url: "/crmWorkListGet",
         datatype: "json",
@@ -106,18 +107,18 @@ function jqGrid_main() {
         colNames: ['접수일', '수주번호', '수주처', 'End User', '진행상태', '진행여부', '납기일', '지시구분', 'Part No', '수량', '단위', '수축튜브', '비고'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'ord_no', index: 'ord_no', key: true, sortable: false, width: 60},
+            {name: 'ord_no', index: 'ord_no', key: true, sortable: false, width: 80},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
             {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
-            {name: 'status1_name', index: 'status1_name', sortable: false, width: 60},
-            {name: 'status2_name', index: 'status2_name', sortable: false, width: 60},
+            {name: 'status1_name', index: 'status1_name', sortable: false, width: 40},
+            {name: 'status2_name', index: 'status2_name', sortable: false, width: 40},
             {name: 'end_date', index: 'end_date', sortable: false, width: 60, formatter: formatterDate3},
             {name: 'status3_name', index: 'status3_name', sortable: false, width: 60},
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
-            {name: 'qty', index: 'qty', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 40},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'tube', index: 'tube', sortable: false, width: 60},
-            {name: 'remark', index: 'remark', sortable: false, width: 60},
+            {name: 'remark', index: 'remark', sortable: false, width: 80},
         ],
         multiselect: true,
         autowidth: true,
