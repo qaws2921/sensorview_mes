@@ -1,4 +1,4 @@
-package mes.sensorview.Mapper.mesCrm.Crm;
+package mes.sensorview.Mapper.mesCrm.CRM;
 
 
 import mes.sensorview.Common.DataTransferObject.Message;
