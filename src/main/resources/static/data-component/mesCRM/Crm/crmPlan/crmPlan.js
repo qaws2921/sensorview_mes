@@ -42,6 +42,7 @@ $(document).ready(function () {
     jqGrid_header();
     // jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
+    datepickerInput();
     modal_start1();
 
 
@@ -79,6 +80,18 @@ function bungi_change(value) {
 }
 
 ////////////////////////////호출 함수////////////////////////////////
+function datepickerInput() {
+    var date = new Date();
+    date.setDate(date.getDate());
+    console.log(date);
+    $('#datepicker').datepicker({
+        autoclose: true,
+        format:'yyyy'+'년',
+        language: "kr",
+        minViewMode: 'years',
+    }).datepicker('setDate',date);
+}
+
 function selectBox() {
     $('#bungi_select').select2();
 }

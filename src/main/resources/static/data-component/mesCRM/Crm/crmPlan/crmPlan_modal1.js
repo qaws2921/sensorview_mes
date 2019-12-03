@@ -1,7 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
-    selectBoxmodal();
+    selectBoxModal();
 
 }
 
@@ -12,7 +12,7 @@ function select_change1(value) {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function selectBoxmodal() {
+function selectBoxModal() {
     select_makes2("#gubun_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
         select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"Y");
     });
