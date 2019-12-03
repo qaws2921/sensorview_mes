@@ -33,19 +33,15 @@ function suppModal_bus(code, name) {
 
         $("#supp_name_modal").val(name);
         $("#supp_code_modal").val(code);
-        modal2_data.part_code = '';
-        modal2_data.sub_data = [];
-        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
-        $("#scmInDialogRightGrid").jqGrid('clearGridData');
     }
     $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 
 function suppModal_close_bus() {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val("");
-        $("#supp_code_main").val("");
-    }
+    // if (main_data.supp_check === 'A') {
+    //     $("#supp_name_main").val("");
+    //     $("#supp_code_main").val("");
+    // }
     $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 

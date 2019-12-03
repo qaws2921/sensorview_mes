@@ -53,7 +53,8 @@
                         <td class="wt-px-100 td-title t-align-c">수주처</td>
                         <td class="wt-px-200">
                             <span class="input-icon input-icon-right">
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" id="supp_name_main" onclick="supp_btn('A');" readonly/>
+                                <input type="hidden" class="form-control" id="supp_code_main"/>
                                 <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                             </span>
                         </td>
@@ -74,7 +75,8 @@
                         <td class="wt-px-100 td-title t-align-c">End User</td>
                         <td class="wt-px-200">
                             <span class="input-icon input-icon-right">
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" id="supp_name_modal" onclick="supp_btn('B');" readonly/>
+                                <input type="hidden" class="form-control" id="supp_code_modal"/>
                                 <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch2-Main"></i>
                             </span>
                         </td>
