@@ -2,9 +2,15 @@ package mes.sensorview.mesCrm.Crm.DTO;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Data
 public class CRM_ORD_RECP {
+    // Validation test
+    @NotNull(message = "사이트코드")
     private String site_code;
+
     private String ord_no;
     private String work_date;
     private String status1;
@@ -44,7 +50,7 @@ public class CRM_ORD_RECP {
     private int unit_price;
     private int price;
     private String supp_ord_no;
-    private int payment;
+    private String payment;
     private String supp_user_name;
     private String supp_tel_no;
     private String user_code;
