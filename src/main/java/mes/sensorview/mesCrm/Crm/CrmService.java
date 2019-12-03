@@ -30,10 +30,13 @@ public class CrmService extends ReturnFunction {
         return crmMapper.crmProdOrderOneGet(cor);
     }
 
-    public String crmRecpAdd(CRM_ORD_RECP crmOrdRecp) {
+    public String crmRecpAdd(CRM_ORD_RECP crmOrdRecp, HttpServletRequest req) {
         // test
         Random random = new Random();
         crmOrdRecp.setOrd_no("CRM" + random.nextInt(9999));
+
+        crmOrdRecp.setSite_code(getSessionData(req).getSite_code());
+        crmOrdRecp.setUser_code(getSessionData(req).getUser_code());
         return crmMapper.crmRecpAdd(crmOrdRecp).getMessage();
     }
 
@@ -46,6 +49,5 @@ public class CrmService extends ReturnFunction {
     public CRM_ORD_RECP crmWorkListOneGet(HttpServletRequest req, CRM_ORD_RECP cor) {
         cor.setSite_code(getSessionData(req).getSite_code());
         return crmMapper.crmWorkListOneGet(cor);
-
     }
 }
