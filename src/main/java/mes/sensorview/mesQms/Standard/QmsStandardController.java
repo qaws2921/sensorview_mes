@@ -8,4 +8,7 @@ public class QmsStandardController {
 
     @RequestMapping(value = "/qmsTestItem")
     public String qmsTestItem() { return "mesQms/Standard/qmsTestItem/qmsTestItem"; }
+
+    @RequestMapping(value = "/qmsTestStd")
+    public String qmsTestStd() { return "mesQms/Standard/qmsTestStd/qmsTestStd"; }
 }

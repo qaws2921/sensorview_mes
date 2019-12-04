@@ -46,7 +46,13 @@ var array =
         {code:"crmOrderRecp", title:'영업관리',sub:'영업관리',name:'수주정보관리'},
         {code:"crmPlan", title:'영업관리',sub:'영업관리',name:'계획관리'},
         {code:"crmWorkList", title:'영업관리',sub:'영업관리',name:'실적현황'},
-        {code:"crmProdOrder", title:'영업관리',sub:'영업관리',name:'구매 생산지시'}
+        {code:"crmProdOrder", title:'영업관리',sub:'영업관리',name:'구매 생산지시'},
+
+        //품질관리
+        {code:"qmsTestItem", title:'품질관리',sub:'기준정보',name:'검사항목관리'},
+        {code:"qmsTestStd", title:'품질관리',sub:'기준정보',name:'외경검사기준'},
+        {code:"qmsErrorType", title:'품질관리',sub:'기준정보',name:'공정별불량유형관리'},
+        
     ];
 $(function() {
 	wrapWindowByMask2();

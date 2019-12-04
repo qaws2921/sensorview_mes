@@ -53,7 +53,7 @@ function get_btn_post(page) {
 function add_btn() {
 
     modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#gubun_select","#part_type_code","#part_type_name");
+    modalValuePush("#gubun_select", "#part_type_code", "#part_type_name");
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
@@ -111,11 +111,11 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['그룹코드', '그룹명', '비고', '등록자', '수정일'],
         colModel: [
-            {name: 'part_grp_code', index: 'part_grp_code', key:true, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60},
-            {name: 'remark', index: 'remark', width: 60},
-            {name: 'user_name', index: 'user_name', width: 60},
-            {name: 'update_date', index: 'update_date', width: 60,formatter: formmatterDate,},
+            {name: 'part_grp_code', index: 'part_grp_code', key: true, sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'remark', index: 'remark', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
         ],
         caption: "자재그룹관리 | MES",
         autowidth: true,

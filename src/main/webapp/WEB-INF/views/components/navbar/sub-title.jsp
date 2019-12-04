@@ -13,7 +13,7 @@
             	<i class="ace-icon fa fa-angle-double-right"></i>
                 <span id="sub-t-3"></span>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                <span id="sub-t-4"></span>
+                <b><span id="sub-t-4"></span></b>
 
            </span>
     </div>
