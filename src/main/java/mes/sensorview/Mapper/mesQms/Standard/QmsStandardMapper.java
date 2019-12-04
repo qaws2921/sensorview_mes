@@ -1,9 +1,10 @@
 package mes.sensorview.Mapper.mesQms.Standard;
 
-import mes.sensorview.Common.DataTransferObject.PartType;
+import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 
 import java.util.List;
 
 public interface QmsStandardMapper {
-    List<PartType> getSPartType(String site_code);
+    List<sysBPartGroup> qmsBPartGroupGet(Page p);
 }

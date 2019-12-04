@@ -26,18 +26,21 @@ $(document).ready(function () {
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
+
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
     modalValuePush("#line_select","#line_code","#line_name");
-    modalValuePush("#gubun_select","#gubun_code","#gubun_name");
     main_data.check = 'I';
     $("#addDialog").dialog('open');
+    console.log($('#gubun_code').val());
+    console.log($('#gubun_name').val());
 }
+
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
     select_makes("#line_select", "/getLine", "line_code", "line_name");
-    select_makes("#gubun_select", "/getSPartType", "part_type_code", "part_type_name");
+    select_makes("#gubun_select", "/qmsBPartGroupGet", "part_grp_code", "part_grp_name");
 }
 
 function jqGrid_main() {
