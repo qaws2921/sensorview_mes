@@ -45,6 +45,7 @@ public class CRM_ORD_RECP {
     private String prod_type;
     private String sample;
     private String currency_type;
+    private String currency_type_name;
     private int unit_price;
     private int price;
     private String supp_ord_no;
