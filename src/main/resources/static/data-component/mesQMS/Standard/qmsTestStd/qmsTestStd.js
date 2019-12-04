@@ -30,6 +30,7 @@ $(document).ready(function () {
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
     modalValuePush("#line_select","#line_code","#line_name");
+    modalValuePush("#gubun_select","#gubun_code","#gubun_name");
     main_data.check = 'I';
     $("#addDialog").dialog('open');
     console.log($('#gubun_code').val());
