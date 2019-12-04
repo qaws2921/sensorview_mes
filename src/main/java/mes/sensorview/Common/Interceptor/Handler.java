@@ -53,16 +53,13 @@ public class Handler extends HandlerInterceptorAdapter {
                 out.flush();
                 return false;
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
-                log.info("비동기 통신");
                 session.setMaxInactiveInterval(30 * 60);
             }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
-                log.info("에러");
             }else {
                 session.setMaxInactiveInterval(30 * 60);
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
-                    log.info("페이지이동");
                     ArrayList<List<Auth>> authAllSubSelect = (ArrayList<List<Auth>>) authService.authAllSubSelect(request); // 권한에 맞는 전체 리스트
                     ReturnFunction returnFunction = new ReturnFunction();
 

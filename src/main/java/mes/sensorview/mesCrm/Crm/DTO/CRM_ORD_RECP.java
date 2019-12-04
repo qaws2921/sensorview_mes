@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 @Data
 public class CRM_ORD_RECP {
 
+    @NotNull
     private String site_code;
 
     private String ord_no;
