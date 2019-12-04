@@ -50,4 +50,10 @@ public class CrmService extends ReturnFunction {
         cor.setSite_code(getSessionData(req).getSite_code());
         return crmMapper.crmWorkListOneGet(cor);
     }
+
+    public Message crmOrderRecpAdd(CRM_ORD_RECP crmOrdRecp, HttpServletRequest req) {
+        crmOrdRecp.setSite_code(getSessionData(req).getSite_code());
+        crmOrdRecp.setUser_code(getSessionData(req).getUser_code());
+        return crmMapper.crmOrderRecpAdd(crmOrdRecp);
+    }
 }

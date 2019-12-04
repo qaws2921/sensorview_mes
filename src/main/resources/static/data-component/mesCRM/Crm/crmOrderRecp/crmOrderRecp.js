@@ -15,6 +15,47 @@ $(document).ready(function () {
 
 });
 ////////////////////////////클릭 함수////////////////////////////////
+
+function add_btn() {
+    var data = value_return(".main_value");
+    data.work_date = data.work_date.replace(/\-/g, '');
+    data.end_date =  data.end_date.replace(/\-/g, '');
+
+    if ($('input:checkbox[name="option1"]').is(":checked")) {
+        data.option1 = 'Y';
+    }
+    if ($('input:checkbox[name="option2"]').is(":checked")) {
+        data.option2 = 'Y';
+    }
+
+    if ($('input:checkbox[name="option3"]').is(":checked")) {
+        data.option3 = 'Y';
+    }
+
+    data.work_type =$('input[name="work_type"]:checked').val();
+
+    if (data.work_type === "1"){
+        data.connector1 ="";
+        data.connector2 ="";
+        data.part_length =0;
+    } else {
+        data.part_code = data.part_code2;
+    }
+if (effectiveness(data)){
+
+
+    ccn_ajax("/crmOrderRecpAdd", data).then(function (data2) {
+        if (data2.result === 'NG') {
+            alert(data2.message);
+        } else {
+            location.href="/crmOrderRecp";
+        }
+    }).catch(function (err) {
+        console.error(err); // Error 출력
+    });
+}
+}
+
 function supp_btn(what) {
     main_data.supp_check = what;
     $("#supp_modal_keyword").val("supp_name");
@@ -134,4 +175,75 @@ function selectBox() {
     select_data_makes('#delivery_corp_select','/sysCommonAllGet','code_value','code_name1',{keyword:'DELIVERY_CORP'});
     select_data_makes('#currency_select','/sysCommonAllGet','code_value','code_name1',{keyword:'CURRENCY_TYPE'});
     $("#part_select2").select2({disabled: true});
+}
+
+function effectiveness(data) {
+    if (data.supp_code === ''){
+        alert("수주업체를 선택해주세요");
+        return false;
+    } else if (data.end_supp_code === ''){
+        alert("End_User를 선택해주세요");
+        return false;
+    }else if (data.part_code === ''){
+        alert("품목코드를 선택해주세요");
+        return false;
+    }else if (data.part_code === ''){
+        alert("품목코드를 선택해주세요");
+        return false;
+    }
+
+    if (data.work_type === '1'){
+        if (data.part_code === '') {
+            alert("품목코드를 선택해주세요");
+            return false;
+        }
+    } else if (data.work_type === '2'){
+        if (data.connector1 === '') {
+            alert("커넥터1를 입력해주세요");
+            return false;
+        } else if (data.part_code === '') {
+            alert("품목코드를 선택해주세요");
+            return false;
+        } else if (data.connector2 === '') {
+            alert("커넥터2를 입력해주세요");
+            return false;
+        } else if (data.part_length === '') {
+            alert("길이를 입력해주세요");
+            return false;
+        }
+    }
+
+
+    if (data.qty === ''){
+        alert("수량을 입력해주세요");
+        return false;
+    } else if (data.sample === ''){
+        alert("샘플용도를 입력해주세요");
+        return false;
+    }else if (data.unit_price === ''){
+        alert("단가를 입력해주세요");
+        return false;
+    }else if (data.price === ''){
+        alert("수량과 단가를 다시 확인해주세요");
+        return false;
+    }else if (data.supp_ord_no === ''){
+        alert("발주번호를 입력해주세요");
+        return false;
+    }else if (data.payment === ''){
+        alert("결재방법을 입력해주세요");
+        return false;
+    }else if (data.supp_user_name === ''){
+        alert("고객담당자를 입력해주세요");
+        return false;
+    }else if (data.supp_tel_no === ''){
+        alert("연락처를 입력해주세요");
+        return false;
+    }else if (data.address === ''){
+        alert("배송지를 입력해주세요");
+        return false;
+    }else {
+        return true;
+    }
+
+    
 }

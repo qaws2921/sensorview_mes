@@ -1,6 +1,7 @@
 package mes.sensorview.mesCrm.Crm;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
@@ -41,6 +42,11 @@ public class CrmRestController {
             return "검증완료";
 //            return crmService.crmRecpAdd(crmOrdRecp, req);
         }
+    }
+
+    @RequestMapping(value = "/crmOrderRecpAdd", method = RequestMethod.POST)
+    public Message crmOrderRecpAdd(@Valid CRM_ORD_RECP crmOrdRecp, HttpServletRequest req){
+       return crmService.crmOrderRecpAdd(crmOrdRecp,req);
     }
 
     @RequestMapping(value = "/crmWorkListGet", method = RequestMethod.POST)
