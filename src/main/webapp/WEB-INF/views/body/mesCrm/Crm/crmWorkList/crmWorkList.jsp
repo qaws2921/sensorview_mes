@@ -194,7 +194,7 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">통화단위</td>
                             <td class="wt-px-150">
-                                <input type="text" name="currency_type" class="form-control main_value" readonly>
+                                <input type="text" name="currency_type_name" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         <tr>
