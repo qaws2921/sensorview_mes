@@ -11,14 +11,14 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">검사구분</td>
                     <td class="wt-px-200">
-                        <select id="check_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select id="check_select" name="keyword" class="form-control keyword condition_main" style="width: 100%">
                             <option value="1">수입검사</option>
                             <option value="2">출하검사</option>
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">코드그룹</td>
                     <td class="wt-px-200">
-                        <select id="code_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select id="code_select" name="keyword2" class="form-control keyword condition_main" style="width: 100%">
                             <option value="1">불량유형</option>
                             <option value="2">검사항목</option>
                         </select>
@@ -33,7 +33,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1);">
                         <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
@@ -46,7 +46,7 @@
                         </span>
                     </a>
                     <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn();">
                         <span>
                             <i class="fa fa-trash bigger-110 blue"></i>
                             <span>삭제</span>
