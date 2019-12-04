@@ -109,7 +109,7 @@ function jqGrid_main() {
         colModel: [
             {name: 'qc_group_name', index: 'qc_group_name', width: 50, sortable:false,},
             {name: 'qc_type_name', index: 'qc_type_name', width: 50, sortable:false,},
-            {name: 'qc_code', index: 'qc_code', width: 50, sortable:false,},
+            {name: 'qc_code', index: 'qc_code',key:true, width: 50, sortable:false,},
             {name: 'qc_name', index: 'qc_name', width: 50, sortable:false,},
             {name: '', index: '', width: 50, sortable:false,},
             {name: 'user_name', index: 'user_name', width: 50, sortable:false,},

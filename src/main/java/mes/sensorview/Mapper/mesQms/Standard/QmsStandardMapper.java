@@ -13,6 +13,6 @@ public interface QmsStandardMapper {
 
     Message getQcItemDel(Page p);
     SYS_QC_ITEM qmsQcItemOneGet(SYS_QC_ITEM sysQcItem);
-    RESTful qmsQcItemGet(Page p);
+    List<SYS_QC_ITEM> qmsQcItemGet(Page p);
     Message getQcItemAdd(SYS_QC_ITEM sysQcItem);
 }

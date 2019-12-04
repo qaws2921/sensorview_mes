@@ -33,7 +33,8 @@ public class QmsStandardService extends ReturnFunction {
     }
     public RESTful qmsQcItemGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
-        return qmsStandardMapper.qmsQcItemGet(p);
+        List<SYS_QC_ITEM> rows = qmsStandardMapper.qmsQcItemGet(p);
+        return getListData(rows , p);
     }
     public SYS_QC_ITEM qmsQcItemOneGet(SYS_QC_ITEM sysQcItem, HttpServletRequest req) {
         sysQcItem.setSite_code(getSessionData(req).getSite_code());
