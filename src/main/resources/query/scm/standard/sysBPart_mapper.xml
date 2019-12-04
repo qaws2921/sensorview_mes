@@ -3,7 +3,7 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper">
     <select id="sysBPartAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_BPART_ADD #{site_code},#{part_grp_code},#{part_code},#{part_name},#{cargo_code},#{loc_code},#{supp_code},
+    	EXEC SP_SYS_BPART_ADD #{site_code},#{part_type_code},#{part_grp_code},#{part_code},#{part_name},#{cargo_code},#{loc_code},#{supp_code},
     	#{spec},#{unit_code},#{pack_qty},#{max_qty},#{min_qty},#{qc_level},#{user_code},#{keyword}
     </select>
     <select id="sysBPartGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">

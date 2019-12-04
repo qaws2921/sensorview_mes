@@ -17,7 +17,7 @@ public class sysBPart {
     private int pack_qty = 0;
     private int max_qty = 0;
     private int min_qty = 0;
-    private int qc_level = 0;
+    private String qc_level;
     private String user_code = "";
     private String create_date = "";
     private String update_date = "";
@@ -34,4 +34,6 @@ public class sysBPart {
     private String i_category = "";
     private String i_category_name = "";
     private String qc_level_name = "";
+    private String part_type_code;
+    private String part_type_name;
 }
