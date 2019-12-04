@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mes.sensorview.Mapper.mesQms.Standard.QmsStandardMapper">
-    <select id="qmsBPartGroupGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPartGroup" >
-    	EXEC SP_SYS_BPART_GROUP_GET #{site_code},0,0,'',''
+    <select id="qmsTestStdGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_DIAMETER">
+        EXEC SP_SYS_QC_DAIMETER_GET #{site_code},#{page},#{rows},'L0100','B0001'
     </select>
 </mapper>

@@ -4,6 +4,10 @@ function modal_start1() {
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function select_change1(value) {
+    select_data_makes2('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:value,keyword:''});
+}
+
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
