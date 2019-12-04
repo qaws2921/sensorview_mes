@@ -103,7 +103,7 @@ function selectBox() {
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data: grid_data,
+        mtype: 'POST',
         datatype: "local",
         colNames: ['검사구분','코드그룹','검사코드','검사명','사용유무','등록자','수정일'],
         colModel: [

@@ -5,4 +5,17 @@
     <select id="getSPartType" resultType="mes.sensorview.Common.DataTransferObject.PartType">
     	EXEC SP_SYS_PART_TYPE_GET #{site_code},'S'
     </select>
+
+    <select id="qmsQcItemGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM">
+        	EXEC SP_SYS_QC_ITEM_GET #{site_code},#{page}, #{rows},#{keyword}, #{keyword2},''
+    </select>
+    <select id="qmsQcItemOneGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM">
+        	EXEC SP_SYS_QC_ITEM_GET #{site_code},1, 1,'', '',#{qc_code}
+    </select>
+    <select id="qmsQcItemAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_QC_ITEM_ADD #{site_code},#{qc_group}, #{qc_type},#{qc_code}, #{qc_name}, #{user_code}, #{keyword}
+    </select>
+    <select id="qmsQcItemDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_QC_ITEM_ADD #{site_code}, #{keyword}
+    </select>
 </mapper>
