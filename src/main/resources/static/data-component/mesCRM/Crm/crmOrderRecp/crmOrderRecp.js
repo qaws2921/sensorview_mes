@@ -42,17 +42,26 @@ function add_btn() {
         data.part_code = data.part_code2;
     }
 if (effectiveness(data)){
-
-
-    ccn_ajax("/crmOrderRecpAdd", data).then(function (data2) {
-        if (data2.result === 'NG') {
-            alert(data2.message);
-        } else {
-            location.href="/crmOrderRecp";
-        }
-    }).catch(function (err) {
-        console.error(err); // Error 출력
-    });
+    // if (confirm("저장 하시겠습니까?")) {
+    //             var options = {
+    //                 success : function(message) {
+    //                     alert(message);
+    //                 },
+    //                 type : "POST"
+    //             };
+    //             $("#crmRecp").ajaxSubmit(options);
+    // }
+    if (confirm("저장 하시겠습니까?")) {
+        ccn_ajax("/crmOrderRecpAdd", data).then(function (data2) {
+            if (data2.result === 'NG') {
+                alert(data2.message);
+            } else {
+                location.href="/crmOrderRecp";
+            }
+        }).catch(function (err) {
+            console.error(err); // Error 출력
+        });
+    }
 }
 }
 

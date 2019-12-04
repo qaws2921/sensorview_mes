@@ -5,6 +5,14 @@
 
 <div id="addDialog" title="자재품목추가" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
+    <div class="profile-info-row">
+        <div class="profile-info-name">품목타입</div>
+        <div class="profile-info-value">
+            <input type="text" name="part_type_name" id="part_type_name" class="form-control modal_value" readonly>
+            <input type="hidden" name="part_type_code" id="part_type_code" class="form-control modal_value">
+        </div>
+    </div>
+
         <div class="profile-info-row">
             <div class="profile-info-name">품목구분</div>
             <div class="profile-info-value">
@@ -101,14 +109,14 @@
         <div class="profile-info-row">
             <div class="profile-info-name">재고최대</div>
             <div class="profile-info-value">
-                <input type="text" name="max_qty" class="form-control modal_value">
+                <input type="text" name="max_qty" value="0" class="form-control modal_value">
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name">재고최소</div>
             <div class="profile-info-value">
-                <input type="text" name="min_qty" class="form-control modal_value">
+                <input type="text" name="min_qty" value="0" class="form-control modal_value">
             </div>
         </div>
 

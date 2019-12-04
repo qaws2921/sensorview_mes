@@ -53,7 +53,9 @@ function get_btn_post(page) {
 function add_btn() {
 
     modal_reset(".modal_value", main_data.readonly);
-
+    modalValuePush("#gubun_select","#part_type_code","#part_type_name");
+    $("input[name=max_qty]").val(0);
+    $("input[name=min_qty]").val(0);
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
@@ -116,7 +118,7 @@ function upload_btn() {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
-    select_makes2("#gubun_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
+    select_makes2("#gubun_select", "/sysPartTypeGet", "part_type_code", "part_type_name").then(function (data) {
         select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"Y");
         select_makes_sub("#partGrp_select2","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"N");
     });

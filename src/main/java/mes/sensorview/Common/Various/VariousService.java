@@ -1,6 +1,7 @@
 package mes.sensorview.Common.Various;
 
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
@@ -56,5 +57,13 @@ public class VariousService extends ReturnFunction {
     public List<SYSCommon> sysCommonAllGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysCommonAllGet(p);
+    }
+
+    public List<PartType> sysPartTypeGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        if (p.getKeyword() == null){
+            p.setKeyword("");
+        }
+        return variousMapper.sysPartTypeGet(p);
     }
 }

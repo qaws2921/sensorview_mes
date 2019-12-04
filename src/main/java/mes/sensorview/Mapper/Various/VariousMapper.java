@@ -1,6 +1,7 @@
 package mes.sensorview.Mapper.Various;
 
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -23,4 +24,6 @@ public interface VariousMapper {
     List<sysBPart> sysBPartAllGet(Page p);
 
     List<SYSCommon> sysCommonAllGet(Page p);
+
+    List<PartType> sysPartTypeGet(Page p);
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmOrderRecp/crmOrderRecp.js" charset="UTF-8"></script>
-<form method="POST" action="/crmRecpAdd" id="crmRecp">
+<form method="POST" action="/crmOrderRecpAdd" id="crmRecp">
 <%--    <input type="hidden" value="${userData.site_code}"name="site_code">--%>
 <%--    <input type="hidden" value="${userData.user_code}"name="user_code">--%>
     <div class="main-content-inner">
