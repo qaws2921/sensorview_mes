@@ -23,6 +23,8 @@ public class QmsStandardService extends ReturnFunction {
 
 
     public List<PartType> getSPartType(HttpServletRequest req) {
+//        String codeList = "A|B|C|$D|E&F|I|J|$K|L&N|M|O|$P|Q";
+//        MakeCodeList(codeList);
         return qmsStandardMapper.getSPartType(getSessionData(req).getSite_code());
     }
 

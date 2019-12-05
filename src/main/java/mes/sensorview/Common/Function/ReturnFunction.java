@@ -133,22 +133,19 @@ public class ReturnFunction {
         return null;
     }
 
-    public String MakeScmInCodeList(SCM_IN_SUB scmInSub)
+    public String MakeCodeList(String codeList)
     {
-//        String code_list = "";
-//
-//        String part_code[] = scmInSub.getPart_code().split("\\$");
-//        String order_qty[] = scmInSub.getOrder_qty().split("\\$");
-//        String bad_qty[] = scmInSub.getBad_qty().split("\\$");
-//        String in_qty[] = scmInSub.getIn_qty().split("\\$");
-//
-//        // part_code order, bad, in의 길이가 다 다를수 있으므로 추후 예외처리해야됨
-//        for(int i=0 ; i<part_code.length ; i++)
-//        {
-//           code_list += part_code[i]+"/"+order_qty[i]+"/"+bad_qty[i]+"/"+in_qty[i]+",";
-//        }
-//        // 마지막 문자 제거
-//        code_list = code_list.substring(0, code_list.length()-1);
+        codeList.trim();
+        String[] one = codeList.split("&");
+        String[] two = codeList.split("|");
+
+        // one = A|B|C|$D|E
+        for(int i=0 ; i<two.length ; i++)
+        {
+            if(two[i].contains("$")){
+
+            }
+        }
         return null;
     }
 
