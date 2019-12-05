@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class SYS_QC_ITEM
 {
-    @NotNull(message = "사이트코드")
     private String site_code;
     @NotNull(message = "검사그룹")
     private String qc_group;
