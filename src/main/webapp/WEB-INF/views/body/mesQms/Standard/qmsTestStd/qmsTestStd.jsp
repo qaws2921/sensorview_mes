@@ -11,12 +11,12 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select id="line_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select name="keyword" id="line_select" class="form-control keyword condition_main" style="width: 100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품구분</td>
                     <td class="wt-px-200">
-                        <select id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select name="keyword2" id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
                             <option value="">전체</option>
                         </select>
                     </td>

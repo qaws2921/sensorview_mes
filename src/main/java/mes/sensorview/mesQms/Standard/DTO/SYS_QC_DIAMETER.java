@@ -20,5 +20,8 @@ public class SYS_QC_DIAMETER {
     private int rownum_page;
     private int rec_count;
     private String part_grp_code;
+    private String diameter1;
+    private String diameter2;
+    private String part_name;
 
 }

@@ -14,7 +14,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품구분</div>
             <div class="profile-info-value">
-                <select id="gubun_select2" name="gubun_select2" class="form-control keyword condition_main modal_value" style="width: 100%" onchange="select_change1(this.value);">
+                <select id="gubun_select2" name="gubun_select2" class="form-control keyword modal_value" style="width: 100%" onchange="select_change1(this.value);">
                     <option value="">전체</option>
                 </select>
             </div>
@@ -22,20 +22,24 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품명</div>
             <div class="profile-info-value">
-                <select id="code_select" name="code_select" class="form-control keyword condition_main modal_value" style="width: 100%">
+                <select id="code_select" name="code_select" class="form-control keyword modal_value" style="width: 100%">
                 </select>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">1차</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+            <div class="profile-info-value t-align-c">
+                <input type="text" name="dia1_start" class="form-control modal_value">
+                ~
+                <input type="text" name="dia1_stop" class="form-control modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">2차</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+            <div class="profile-info-value t-align-c">
+                <input type="text" name="dia2_start" class="form-control modal_value">
+                ~
+                <input type="text" name="dia2_stop" class="form-control modal_value">
             </div>
         </div>
     </div>

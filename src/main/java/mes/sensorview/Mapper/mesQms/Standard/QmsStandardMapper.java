@@ -16,4 +16,6 @@ public interface QmsStandardMapper {
     Message getQcItemAdd(SYS_QC_ITEM sysQcItem);
 
     List<SYS_QC_DIAMETER> qmsTestStdGet(Page p);
+
+    Message qmsTestStdAdd(SYS_QC_DIAMETER vo);
 }

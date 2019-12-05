@@ -3,7 +3,10 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesQms.Standard.QmsStandardMapper">
     <select id="qmsTestStdGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_DIAMETER">
-        EXEC SP_SYS_QC_DAIMETER_GET #{site_code},#{page},#{rows},'L0100','B0001'
+        EXEC SP_SYS_QC_DAIMETER_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+    </select>
+    <select id="qmsTestStdAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_QC_DAIMETER_ADD #{site_code},#{line_code},#{code_select},#{dia1_start},#{dia1_stop},#{dia2_start},#{dia1_stop},#{user_code},#{keyword}
     </select>
 
     <select id="qmsQcItemGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM">

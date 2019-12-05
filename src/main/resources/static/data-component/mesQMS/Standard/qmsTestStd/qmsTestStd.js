@@ -26,9 +26,9 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 
 function get_btn(page) {
-    // main_data.send_data = value_return(".condition_main");
-    // main_data.send_data_post = main_data.send_data;
-    // console.log(main_data.send_data);
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data_post = main_data.send_data;
+    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: "/qmsTestStdGet",
         datatype: "json",
@@ -70,14 +70,15 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: "POST",
         datatype: "local",
-        colNames: ['제품구분','제품명','1차','2차','등록자','수정일'],
+        colNames: ['제품구분','제품코드','제품명','1차','2차','등록자','수정일'],
         colModel: [
-            {name: 'part_grp_code', index: 'part_grp_code', width: 50, sortable:false,},
-            {name: 'part_code', index: 'part_code', width: 50, sortable:false,},
-            {name: 'diameter1_start', index: 'diameter1_start', width: 50, sortable:false,},
-            {name: 'diameter2_start', index: 'diameter2_start', width: 50, sortable:false,},
-            {name: 'user_code', index: 'user_code', width: 50, sortable:false,},
-            {name: 'update_date', index: 'update_date', width: 50, sortable:false,},
+            {name: 'part_grp_code', index: 'part_grp_code', width: 50, sortable:false},
+            {name: 'part_code', index: 'part_code', width: 50, sortable:false,hidden:true},
+            {name: 'part_name', index: 'part_name', width: 50, sortable:false},
+            {name: 'diameter1', index: 'diameter1', width: 50, sortable:false},
+            {name: 'diameter2', index: 'diameter2', width: 50, sortable:false},
+            {name: 'user_code', index: 'user_code', width: 50, sortable:false},
+            {name: 'update_date', index: 'update_date', width: 50, sortable:false, formatter:formmatterDate}
         ],
         caption: "외경검사기준 | MES",
         autowidth: true,

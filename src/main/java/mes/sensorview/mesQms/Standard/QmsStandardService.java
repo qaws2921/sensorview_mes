@@ -48,4 +48,10 @@ public class QmsStandardService extends ReturnFunction {
         List<SYS_QC_DIAMETER> rows = qmsStandardMapper.qmsTestStdGet(p);
         return getListData(rows, p);
     }
+
+    public Message qmsTestStdAdd(HttpServletRequest req, SYS_QC_DIAMETER vo) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return qmsStandardMapper.qmsTestStdAdd(vo);
+    }
 }

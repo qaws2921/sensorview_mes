@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Vaild.ValidFunction;
+import mes.sensorview.mesQms.Standard.DTO.SYS_QC_DIAMETER;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -51,6 +52,6 @@ public class QmsStandardRestController extends ValidFunction {
         return qmsStandardService.qmsTestStdGet(p, req);
     }
 
-
+    public Message qmsTestStdAdd(HttpServletRequest req, SYS_QC_DIAMETER vo){ return qmsStandardService.qmsTestStdAdd(req, vo);}
 
 }
