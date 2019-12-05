@@ -14,26 +14,32 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품구분</div>
             <div class="profile-info-value">
-                <input type="text" name="gubun_name" id="gubun_name" class="form-control modal_value" readonly>
-                <input type="hidden" name="gubun_code" id="gubun_code" class="form-control modal_value">
+                <select id="gubun_select2" name="part_grp_code" class="form-control modal_value" style="width: 100%" onchange="select_change1(this.value);">
+                    <option value="">전체</option>
+                </select>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">제품명</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value" autofocus>
+                <select id="code_select" name="part_code" class="form-control modal_value" style="width: 100%">
+                </select>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">1차</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+            <div class="profile-info-value t-align-c">
+                <input type="text" name="diameter1_start" class="form-control modal_value">
+                ~
+                <input type="text" name="diameter1_stop" class="form-control modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">2차</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+            <div class="profile-info-value t-align-c">
+                <input type="text" name="diameter2_start" class="form-control modal_value">
+                ~
+                <input type="text" name="diameter2_stop" class="form-control modal_value">
             </div>
         </div>
     </div>

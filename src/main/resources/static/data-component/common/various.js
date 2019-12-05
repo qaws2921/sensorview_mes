@@ -147,6 +147,23 @@ function select_data_makes(tag,url,value,text,data) {
 	});
 }
 
+function select_data_makes2(tag,url,value,text,data) {
+	return new Promise(function (resolve, reject) {
+		$(tag).empty();
+		ccn_ajax(url, data).then(function (data) {
+			var option = null
+			for (var j = 0; j < data.length; j++) {
+				option = $("<option></option>").text(data[j][text]).val(data[j][value]);
+				$(tag).append(option);
+			}
+			$(tag).select2();
+
+		}).catch(function (err) {
+			console.error(err); // Error 출력
+		});
+	});
+}
+
 function select_makes2(tag,url,value,text) {
 	return new Promise(function (resolve, reject) {
 		ccn_ajax(url, null).then(function (data) {
@@ -164,7 +181,7 @@ function select_makes2(tag,url,value,text) {
 }
 
 function select_makes3(tag,url,value,text,data) {
-	$(tag).empty();
+	// $(tag).empty();
 	return new Promise(function (resolve, reject) {
 		ccn_ajax(url, data).then(function (data2) {
 			var option = null

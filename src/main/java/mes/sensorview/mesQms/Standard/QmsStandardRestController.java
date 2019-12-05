@@ -1,11 +1,11 @@
 package mes.sensorview.mesQms.Standard;
 
+import mes.sensorview.Common.DataTransferObject.Page;
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Message;
-import mes.sensorview.Common.DataTransferObject.Page;
-import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Vaild.ValidFunction;
+import mes.sensorview.mesQms.Standard.DTO.SYS_QC_DIAMETER;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -22,11 +21,6 @@ public class QmsStandardRestController extends ValidFunction {
 
     @Autowired
     private QmsStandardService qmsStandardService;
-
-    @RequestMapping(value = "/getSPartType", method = RequestMethod.POST)
-    public List<PartType> getSPartType(HttpServletRequest req) {
-        return qmsStandardService.getSPartType(req);
-    }
 
     @RequestMapping(value = "/qmsQcItemAdd")
     public Message qmsQcItemAdd(@Valid SYS_QC_ITEM sysQcItem, BindingResult errors, HttpServletRequest req)
@@ -51,5 +45,23 @@ public class QmsStandardRestController extends ValidFunction {
     @RequestMapping(value = "/qmsQcItemDel", method = RequestMethod.POST)
     public Message qmsQcItemDel(Page p, HttpServletRequest req) {
         return qmsStandardService.qmsQcItemDel(p, req);
+    }
+
+    @RequestMapping(value = "/qmsTestStdGet", method = RequestMethod.POST)
+    public RESTful qmsTestStdGet(Page p,HttpServletRequest req) {
+        return qmsStandardService.qmsTestStdGet(p, req);
+    }
+
+    @RequestMapping(value = "/qmsTestStdAdd", method = RequestMethod.POST)
+    public Message qmsTestStdAdd(HttpServletRequest req, SYS_QC_DIAMETER vo){ return qmsStandardService.qmsTestStdAdd(req, vo);}
+
+    @RequestMapping(value ="/qmsTestStdOneGet", method = RequestMethod.POST)
+    public SYS_QC_DIAMETER qmsTestStdOneGet(SYS_QC_DIAMETER vo, HttpServletRequest req) {
+        return qmsStandardService.qmsTestStdOneGet(vo, req);
+    }
+
+    @RequestMapping(value = "/qmsTestStdDelete", method = RequestMethod.POST)
+    public Message qmsTestStdDelete(Page p, HttpServletRequest req) {
+        return qmsStandardService.qmsTestStdDelete(p, req);
     }
 }

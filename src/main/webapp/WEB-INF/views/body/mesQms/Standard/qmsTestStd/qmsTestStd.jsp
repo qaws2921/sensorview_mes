@@ -11,12 +11,12 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select id="line_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select name="keyword" id="line_select" class="form-control keyword condition_main" style="width: 100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품구분</td>
                     <td class="wt-px-200">
-                        <select id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select name="keyword2" id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
                             <option value="">전체</option>
                         </select>
                     </td>
@@ -30,25 +30,25 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                         <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
                         </span>
                     </a>
-<%--                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"--%>
-<%--                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">--%>
-<%--                        <span><i class="fa fa-plus bigger-110 blue"></i>--%>
-<%--                            <span>추가</span>--%>
-<%--                        </span>--%>
-<%--                    </a>--%>
-<%--                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"--%>
-<%--                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">--%>
-<%--                        <span>--%>
-<%--                            <i class="fa fa-trash bigger-110 blue"></i>--%>
-<%--                            <span>삭제</span>--%>
-<%--                        </span>--%>
-<%--                    </a>--%>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
+                        <span><i class="fa fa-plus bigger-110 blue"></i>
+                            <span>추가</span>
+                        </span>
+                    </a>
+                    <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn()">
+                        <span>
+                            <i class="fa fa-trash bigger-110 blue"></i>
+                            <span>삭제</span>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
