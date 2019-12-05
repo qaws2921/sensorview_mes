@@ -54,4 +54,14 @@ public class QmsStandardService extends ReturnFunction {
         vo.setUser_code(getSessionData(req).getUser_code());
         return qmsStandardMapper.qmsTestStdAdd(vo);
     }
+
+    public SYS_QC_DIAMETER qmsTestStdOneGet(SYS_QC_DIAMETER vo, HttpServletRequest req) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        return qmsStandardMapper.qmsTestStdOneGet(vo);
+    }
+
+    public Message qmsTestStdDelete(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return qmsStandardMapper.qmsTestStdDelete(p);
+    }
 }

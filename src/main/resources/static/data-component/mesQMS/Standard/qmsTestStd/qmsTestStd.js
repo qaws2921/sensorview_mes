@@ -48,19 +48,64 @@ function get_btn_post(page) {
 
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
-    $("select[name=gubun_select2] option:eq(0)").prop("selected", true).trigger("change");
-    modalValuePush("#line_select","#line_code","#line_name");
     main_data.check = 'I';
+    if(main_data.check == 'I'){
+        $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
+        $('#gubun_select2').prop("disabled",false);
+        $('#code_select').prop("disabled",false);
+    }
+    modalValuePush("#line_select","#line_code","#line_name");
+
     $("#addDialog").dialog('open');
+}
+function update_btn(jqgrid_data) {
+
+    modal_reset(".modal_value", []);
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.part_code = jqgrid_data.part_code;
+
+    ccn_ajax('/qmsTestStdOneGet', send_data).then(function (data) {
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        if(main_data.check=='U'){
+            $('#gubun_select2').prop("disabled",true);
+            $('#code_select').prop("disabled",true);
+        }
+
+        $("#addDialog").dialog('open');
+    });
 }
 
 
+function delete_btn() {
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/qmsTestStdDelete", {keyword: ids.join(",")}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn_post($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
 
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
     select_makes("#line_select", "/getLine", "line_code", "line_name");
     select_data_makes('#gubun_select', "/sysBPartGroupSelectGet" , "part_grp_code", "part_grp_name",{keyword:''});
+
     select_makes3('#gubun_select2', "/sysBPartGroupSelectGet" , "part_grp_code", "part_grp_name",{keyword:''}).then(function (data) {
         select_data_makes('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:data,keyword:''});
     });
@@ -70,10 +115,12 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: "POST",
         datatype: "local",
-        colNames: ['제품구분','제품코드','제품명','1차','2차','등록자','수정일'],
+        colNames: ['제품구분','제품코드','라인코드','라인명','제품명','1차','2차','등록자','수정일'],
         colModel: [
             {name: 'part_grp_code', index: 'part_grp_code', width: 50, sortable:false},
-            {name: 'part_code', index: 'part_code', width: 50, sortable:false,hidden:true},
+            {name: 'part_code', index: 'part_code',key:true, width: 50, sortable:false,hidden:true},
+            {name: 'line_name', index: 'line_name', width: 50, sortable:false,hidden:true},
+            {name: 'line_code', index: 'line_code', width: 50, sortable:false,hidden:true},
             {name: 'part_name', index: 'part_name', width: 50, sortable:false},
             {name: 'diameter1', index: 'diameter1', width: 50, sortable:false},
             {name: 'diameter2', index: 'diameter2', width: 50, sortable:false},
@@ -96,6 +143,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            console.log(data);
             update_btn(data);
 
         }

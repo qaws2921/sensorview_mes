@@ -23,5 +23,6 @@ public class SYS_QC_DIAMETER {
     private String diameter1;
     private String diameter2;
     private String part_name;
+    private String line_name;
 
 }

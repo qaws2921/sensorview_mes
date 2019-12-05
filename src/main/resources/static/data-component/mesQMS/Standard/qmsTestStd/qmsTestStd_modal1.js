@@ -11,7 +11,7 @@ function select_change1(value) {
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
     console.log(modal_objact);
-    if (effectiveness1(modal_objact)) {
+
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {
             text = '수정하겠습니까?';
@@ -35,7 +35,6 @@ function addUdate_btn() {
                 alert("저장실패");
             });
         }
-    }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -67,3 +66,4 @@ function modal_make1() {
         ]
     })
 }
+
