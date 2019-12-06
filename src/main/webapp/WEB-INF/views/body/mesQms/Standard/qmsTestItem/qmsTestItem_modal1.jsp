@@ -22,13 +22,13 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사코드</div>
             <div class="profile-info-value">
-                <input type="text" name="qc_code" class="form-control modal_value" autofocus>
+                <input type="text" name="qc_code" class="form-control modal_value"  value="test" autofocus>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">검사명</div>
             <div class="profile-info-value">
-                <input type="text"  name="qc_name" class="form-control modal_value">
+                <input type="text"  name="qc_name" class="form-control modal_value" value="test">
             </div>
         </div>
         <div class="profile-info-row">

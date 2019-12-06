@@ -2,7 +2,6 @@
 function modal_start1() {
     modal_make1();
 }
-
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
         var text = '저장하겠습니까?';

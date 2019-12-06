@@ -33,5 +33,4 @@ public class SensorviewApplication extends SpringBootServletInitializer {
         sessionFactory.setMapperLocations(res);
         return sessionFactory.getObject();
     }
-
 }

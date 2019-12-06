@@ -13,6 +13,8 @@ public class HomeController extends ReturnFunction {
     @RequestMapping("/login")
     public String home()
     {
+        String data = "//c/$d/e&f/g/h/$i/j&k/n/m/$l/";
+        MakeCodeList(data);
         return "login";
 }
 

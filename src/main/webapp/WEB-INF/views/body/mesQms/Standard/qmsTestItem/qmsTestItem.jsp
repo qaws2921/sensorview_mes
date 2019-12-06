@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <script type="text/javascript" src="/data-component/mesQMS/Standard/qmsTestItem/qmsTestItem.js" charset="UTF-8"></script>
-
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">
@@ -28,7 +27,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
@@ -63,5 +61,4 @@
         </div>
     </div>
 </div>
-
 <%@include file="qmsTestItem_modal1.jsp"%>
