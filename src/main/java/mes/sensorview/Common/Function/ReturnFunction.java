@@ -20,7 +20,7 @@ import java.util.List;
  * 계산하여 리턴하는 함수를 모아둔 클래스.
  * @author      김재일
  * @version     1.0
- * @since       2019-11-14
+ * @since       2018-11-14
  **/
 @Slf4j
 public class ReturnFunction {
@@ -143,27 +143,29 @@ public class ReturnFunction {
             // 첫번째 데이터 확인
             log.info("첫번째 데이터 없음");
         }
-        if(codeList.substring(codeList.length()-1).equals("/")){
+        else if(codeList.substring(codeList.length()-1).equals("/")){
             // 마지막 데이터 확인
             log.info("마지막 데이터 없음");
         }
-        if(codeList.contains("//")){
+        else if(codeList.contains("//")){
             // 중간 데이터 공백 확인
             log.info("중간 데이터 없음");
-        }
-        String[] one = codeList.split("&");
-        String[] two = codeList.split("|");
+        } else {
+            String[] one = codeList.split("&");
+            String[] two = codeList.split("|");
+            String[] tree = codeList.split(",");
+            int a = 0;
 
-
-        // one = [A|B|C|$D|E],[F|G|H|$I|J],[K|L|N|$M|O]
-        for(int i=0 ; i<one.length ; i++)
-        {
-            log.info("one = " + one[i]);
-        }
-        // two = [A],[B],[C],[$D],[E]
-        for(int x=0 ; x<two.length ; x++)
-        {
-            log.info("two = " + two[x]);
+            // one = [A|B|C|$D|E],[F|G|H|$I|J],[K|L|N|$M|O]
+            for (int i = 0; i < one.length; i++) {
+                a = tree[i].length();
+                log.info("tree["+i+"] data 추출 = " + codeList.substring(a+1,a+2));
+                log.info("one = " + one[i]);
+            }
+            // two = [A],[B],[C],[$D],[E]
+            for (int x = 0; x < two.length; x++) {
+                log.info("two = " + two[x]);
+            }
         }
         return null;
     }
