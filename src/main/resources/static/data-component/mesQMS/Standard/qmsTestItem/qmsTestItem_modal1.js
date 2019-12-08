@@ -4,12 +4,15 @@ function modal_start1() {
 }
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
+        var send_data = value_return(".modal_value");
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {
             text = '수정하겠습니까?';
         }
+        send_data.keyword = main_data.check;
     if (confirm(text)) {
                 var options = {
+                    data:send_data,
                     success : function(data) {
                         if (data.result === 'NG') {
                             alert(data.message);
