@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript" src="/data-component/mesQMS/Standard/qmsTestStd/qmsTestStd_modal1.js" charset="UTF-8"></script>
 
+<form method="POST" action="/qmsTestStdAdd" id="qmsTestStd">
 <div id="addDialog" title="외경검사기준추가" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
@@ -43,3 +45,4 @@
         </div>
     </div>
 </div>
+</form>
