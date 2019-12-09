@@ -9,7 +9,7 @@
         <%--    <span class="icon-bar"></span>--%>
         <%--</button>--%>
         <div class="col-lg-12">
-            <a href="/static" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img src="/ui-component/imagesNew/logo/logo.png" width="180px">
             </a>
             <div class="form-group">
