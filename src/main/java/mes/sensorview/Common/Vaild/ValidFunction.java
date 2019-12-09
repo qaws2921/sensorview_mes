@@ -12,7 +12,7 @@ public class ValidFunction {
         log.info("error = " + errors.hasErrors());
         if(errors.hasErrors()){
             for (ObjectError objectError : errors.getAllErrors()) {
-                msg.setMessage(objectError.getDefaultMessage() + "를 입력하세요.");
+                msg.setMessage(objectError.getDefaultMessage());
                 msg.setResult("NG");
             }
             return msg;
