@@ -26,7 +26,7 @@ public class QmsStandardRestController extends ValidFunction {
     public Message qmsQcItemAdd(@Valid SYS_QC_ITEM sysQcItem, BindingResult errors, HttpServletRequest req)
     {
         log.info("msg = " + sysQcItem.getQc_name());
-        log.info("msg = " + sysQcItem.getQc_code());
+        log.info("errors = " + errors.hasErrors());
         if(ValidData(errors).getResult().equals("OK")){
             return qmsStandardService.qmsQcItemAdd(req, sysQcItem);
         }else{

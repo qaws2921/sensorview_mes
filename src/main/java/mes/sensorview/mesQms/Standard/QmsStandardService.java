@@ -25,7 +25,7 @@ public class QmsStandardService extends ReturnFunction {
     public Message qmsQcItemAdd(HttpServletRequest req, SYS_QC_ITEM sysQcItem) {
         sysQcItem.setSite_code(getSessionData(req).getSite_code());
         sysQcItem.setUser_code(getSessionData(req).getUser_code());
-        return qmsStandardMapper.getQcItemAdd(sysQcItem);
+        return qmsStandardMapper.qmsQcItemAdd(sysQcItem);
     }
     public RESTful qmsQcItemGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
