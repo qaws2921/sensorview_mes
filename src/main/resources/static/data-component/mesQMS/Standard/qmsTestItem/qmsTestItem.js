@@ -112,7 +112,7 @@ function jqGrid_main() {
             {name: 'qc_name', index: 'qc_name', width: 50, sortable:false,},
             {name: '', index: '', width: 50, sortable:false,},
             {name: 'user_name', index: 'user_name', width: 50, sortable:false,},
-            {name: 'update_date', index: 'update_date', width: 50, sortable:false,},
+            {name: 'update_date', index: 'update_date', width: 50, sortable:false,formatter: formmatterDate},
         ],
         caption: "검사항목관리 | MES",
         autowidth: true,

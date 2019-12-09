@@ -13,9 +13,9 @@ public class SYS_QC_ITEM
     private String qc_group_name;
     private String qc_type;
     private String qc_type_name;
-    @NotBlank(message = "검사코드")
+    @NotBlank(message = "검사코드를 입력하세요.")
     private String qc_code;
-    @NotBlank(message = "검사명")
+    @NotBlank(message = "검사명를 입력하세요.")
     private String qc_name;
     private String user_code;
     private String user_name;
