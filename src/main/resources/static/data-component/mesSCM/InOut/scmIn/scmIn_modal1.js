@@ -152,6 +152,10 @@ function left_modal1_btn() {
 
 
 function add_modal1_btn() {
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+    var gu3 = String.fromCharCode(3);
+
     if (main_data.check2 === 'Y') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
@@ -170,10 +174,14 @@ function add_modal1_btn() {
                 } else if (data.qty === '' || isNaN(data.qty)) {
                     list.push(data.part_code);
                 } else {
-                    list2.push(data.part_code);
-                    list3.push(data.lot);
-                    list4.push(data.qty);
-                    list5.push(data.pack_qty);
+                    list2.push(data.part_code+gu4+data.lot+gu4+data.qty+gu4+data.pack_qty);
+
+                    //
+                    //
+                    // list2.push(data.part_code);
+                    list3.push(data.part_code);
+                    // list4.push(data.qty);
+                    // list5.push(data.pack_qty);
                 }
             });
             callback(function () {
@@ -186,32 +194,37 @@ function add_modal1_btn() {
                     }
                     if (confirm(text)) {
                         wrapWindowByMask2();
-                        add_data.keyword4 = list2.join("&");
-                        add_data.keyword5 = list3.join("&");
-                        add_data.keyword6 = list4.join("&");
-                        add_data.keyword7 = list5.join("&");
+                        add_data.keyword4 = list2.join(gu5);
+                        //
+                        //
+                        // add_data.keyword4 = list2.join("&");
+                        // add_data.keyword5 = list3.join("&");
+                        // add_data.keyword6 = list4.join("&");
+                        // add_data.keyword7 = list5.join("&");
 
                         var code_list = [];
                         var code_list2 = [];
                         var idx;
 
-                        list2.forEach(function (s2, i2) {
+                        list3.forEach(function (s2, i2) {
                             idx = findArrayIndex(modal2_data.sub_data, function (item) {
                                 return item.part_code === s2
                             });
 
                             if (idx !== -1) {
                                 modal2_data.sub_data[idx].list.forEach(function (s3, k) {
-                                    code_list.push(s3.lot + "\\" + s3.qty);
+                                    code_list.push(s3.lot + gu3 + s3.qty);
                                     if (modal2_data.sub_data[idx].list.length === k + 1) {
-                                        code_list2.push(code_list.join("$"));
+                                        code_list2.push(code_list.join(gu4));
                                         code_list = [];
                                     };
                                 });
                             }
                         });
 
-                        add_data.keyword8 = code_list2.join("&");
+                        add_data.keyword8 = code_list2.join(gu5);
+                        console.log(add_data.keyword4);
+                        console.log(add_data.keyword8);
                         ccn_ajax("/scmInAdd", add_data).then(function (data) {
                             if (data.result === 'NG') {
                                 alert(data.message);
