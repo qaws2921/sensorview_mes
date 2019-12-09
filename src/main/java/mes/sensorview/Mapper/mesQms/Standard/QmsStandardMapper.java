@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface QmsStandardMapper {
 
-    Message getQcItemDel(Page p);
+    Message qmsQcItemDel(Page p);
     SYS_QC_ITEM qmsQcItemOneGet(SYS_QC_ITEM sysQcItem);
     List<SYS_QC_ITEM> qmsQcItemGet(Page p);
     Message qmsQcItemAdd(SYS_QC_ITEM sysQcItem);

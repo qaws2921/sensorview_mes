@@ -40,7 +40,7 @@ public class QmsStandardService extends ReturnFunction {
     public Message qmsQcItemDel(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         p.setUser_code(getSessionData(req).getUser_code());
-        return qmsStandardMapper.getQcItemDel(p);
+        return qmsStandardMapper.qmsQcItemDel(p);
     }
 
     public RESTful qmsTestStdGet(Page p, HttpServletRequest req) {
