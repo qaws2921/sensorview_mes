@@ -126,4 +126,9 @@ public class MasterRestController {
     public Message sysCargoDelete(Page p){
         return masterService.sysCargoDelete(p);
     }
+
+    @RequestMapping(value="/sysSuppListGet", method = RequestMethod.POST)
+    public RESTful sysSuppListGet(Page p, HttpServletRequest req) {
+        return masterService.sysSuppListGet(p,req);
+    }
 }

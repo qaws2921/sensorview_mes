@@ -28,12 +28,12 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data_post = main_data.send_data;
     console.log(main_data.send_data);
-    // $("#mes_grid").setGridParam({
-    //     url: '/sysCommonGet',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: main_data.send_data
-    // }).trigger("reloadGrid");
+    $("#mes_grid").setGridParam({
+        url: '/sysSuppListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
 }
 
 function get_btn_post(page) {
