@@ -28,9 +28,6 @@ public class MasterController {
         return "mesManager/Master/sysCargo/sysCargo";
     }
 
-
     @RequestMapping(value="/sysSupp")
-    public String sysSupp() throws Exception{
-        return "manager/MasterManegement/sysSupp.tiles1";
-    }
+    public String sysSupp() { return "mesManager/Master/sysSupp/sysSupp"; }
 }

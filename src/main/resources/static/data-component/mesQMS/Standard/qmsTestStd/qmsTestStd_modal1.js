@@ -5,14 +5,15 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1(value) {
-    select_data_makes2('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:value,keyword:''});
+        $('#code_select').empty();
+        select_data_makes2('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:value,keyword:''});
 }
 
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
+    modal_objact.part_grp_code = $('#gubun_select2').val();
     console.log(modal_objact);
-
-        var text = '저장하겠습니까?';
+    var text = '저장하겠습니까?';
         if (main_data.check === "U") {
             text = '수정하겠습니까?';
         }

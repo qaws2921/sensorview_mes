@@ -28,7 +28,6 @@ $(document).ready(function () {
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: "/qmsTestStdGet",
         datatype: "json",
@@ -50,29 +49,39 @@ function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
     main_data.check = 'I';
     if(main_data.check == 'I'){
-        $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
         $('#gubun_select2').prop("disabled",false);
         $('#code_select').prop("disabled",false);
     }
     modalValuePush("#line_select","#line_code","#line_name");
 
+    if($('#gubun_select').val() == ''){
+        $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
+    }else {
+        $('#gubun_select2').val($('#gubun_select').val()).prop("selected",true).trigger("change");
+    }
     $("#addDialog").dialog('open');
 }
 function update_btn(jqgrid_data) {
-
     modal_reset(".modal_value", []);
     main_data.check = 'U';
     var send_data = {};
     send_data.part_code = jqgrid_data.part_code;
+    send_data.part_name = jqgrid_data.part_name;
 
     ccn_ajax('/qmsTestStdOneGet', send_data).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        if(main_data.check=='U'){
-            $('#gubun_select2').prop("disabled",true);
-            $('#code_select').prop("disabled",true);
-        }
+        $('#gubun_select2').val(data.part_grp_code).trigger("change");
+        select_data_makes2('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:data.part_grp_code,keyword:''}).then(function (value) {
+            $('#code_select').val(data.part_code).trigger("change");
+            if(main_data.check=='U'){
+                $('#gubun_select2').prop("disabled",true);
+                $('#code_select').prop("disabled",true);
+            }
 
-        $("#addDialog").dialog('open');
+            $("#addDialog").dialog('open');
+        });
+
+
     });
 }
 
@@ -117,14 +126,14 @@ function jqGrid_main() {
         datatype: "local",
         colNames: ['제품구분','제품코드','라인코드','라인명','제품명','1차','2차','등록자','수정일'],
         colModel: [
-            {name: 'part_grp_code', index: 'part_grp_code', width: 50, sortable:false},
+            {name: 'part_grp_name', index: 'part_grp_name', width: 50, sortable:false},
             {name: 'part_code', index: 'part_code',key:true, width: 50, sortable:false,hidden:true},
             {name: 'line_name', index: 'line_name', width: 50, sortable:false,hidden:true},
             {name: 'line_code', index: 'line_code', width: 50, sortable:false,hidden:true},
             {name: 'part_name', index: 'part_name', width: 50, sortable:false},
             {name: 'diameter1', index: 'diameter1', width: 50, sortable:false},
             {name: 'diameter2', index: 'diameter2', width: 50, sortable:false},
-            {name: 'user_code', index: 'user_code', width: 50, sortable:false},
+            {name: 'user_name', index: 'user_name', width: 50, sortable:false},
             {name: 'update_date', index: 'update_date', width: 50, sortable:false, formatter:formmatterDate}
         ],
         caption: "외경검사기준 | MES",
@@ -143,9 +152,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            console.log(data);
             update_btn(data);
-
         }
     });
 }

@@ -14,8 +14,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품구분</div>
             <div class="profile-info-value">
-                <select id="gubun_select2" name="part_grp_code" class="form-control modal_value" style="width: 100%" onchange="select_change1(this.value);">
-                    <option value="">전체</option>
+                <select id="gubun_select2" name="part_grp_code" class="form-control" style="width: 100%" onchange="select_change1(this.value);">
                 </select>
             </div>
         </div>

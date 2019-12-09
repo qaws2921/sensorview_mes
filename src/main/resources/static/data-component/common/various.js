@@ -157,7 +157,7 @@ function select_data_makes2(tag,url,value,text,data) {
 				$(tag).append(option);
 			}
 			$(tag).select2();
-
+			resolve(data);
 		}).catch(function (err) {
 			console.error(err); // Error 출력
 		});
@@ -181,7 +181,7 @@ function select_makes2(tag,url,value,text) {
 }
 
 function select_makes3(tag,url,value,text,data) {
-	// $(tag).empty();
+	$(tag).empty();
 	return new Promise(function (resolve, reject) {
 		ccn_ajax(url, data).then(function (data2) {
 			var option = null
