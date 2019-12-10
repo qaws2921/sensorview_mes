@@ -26,7 +26,7 @@ $(document).ready(function () {
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function get_btn() {
+function test_btn() {
 
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
