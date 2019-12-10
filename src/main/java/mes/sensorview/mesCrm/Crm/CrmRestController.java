@@ -45,7 +45,7 @@ public class CrmRestController {
     }
 
     @RequestMapping(value = "/crmOrderRecpAdd", method = RequestMethod.POST)
-    public Message crmOrderRecpAdd(@Valid CRM_ORD_RECP crmOrdRecp, HttpServletRequest req){
+    public Message crmOrderRecpAdd(CRM_ORD_RECP crmOrdRecp, HttpServletRequest req){
        return crmService.crmOrderRecpAdd(crmOrdRecp,req);
     }
 

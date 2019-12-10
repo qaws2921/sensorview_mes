@@ -11,23 +11,33 @@ var main_data = {
     readonly:[],
 };
 
+// var testdata = [
+//     {id:'1',code:'CSVA1',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
+//     {id:'2',code:'CSVA1',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
+//     {id:'3',code:'CSVA1',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
+//     {id:'4',code:'CSVA2',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
+//     {id:'5',code:'CSVA2',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
+//     {id:'6',code:'CSVA2',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
+// ];
+
 var testdata = [
-    {id:'1',code:'CSVA1',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
-    {id:'2',code:'CSVA1',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-    {id:'3',code:'CSVA1',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-    {id:'4',code:'CSVA2',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
-    {id:'5',code:'CSVA2',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-    {id:'6',code:'CSVA2',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
+    {id:'1',code:'CSVA1',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
+    {id:'2',code:'CSVA1',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
+    {id:'3',code:'CSVA1',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
+    {id:'4',code:'CSVA2',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
+    {id:'5',code:'CSVA2',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
+    {id:'6',code:'CSVA2',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
 ];
-var arrtSetting = function (rowId, val, rawObject, cm) {
-    var attr = rawObject.attr[cm.name], result;
-    if (attr.rowspan) {
-        result = ' rowspan=' + '"' + attr.rowspan + '"';
-    } else if (attr.display) {
-        result = ' style="display:' + attr.display + '"';
-    }
-    return result;
-};
+
+// var arrtSetting = function (rowId, val, rawObject, cm) {
+//     var attr = rawObject.attr[cm.name], result;
+//     if (attr.rowspan) {
+//         result = ' rowspan=' + '"' + attr.rowspan + '"';
+//     } else if (attr.display) {
+//         result = ' style="display:' + attr.display + '"';
+//     }
+//     return result;
+// };
 
 var colNames_sub = {
     a:['제품코드','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기'],
@@ -122,24 +132,25 @@ function jqGrid_main() {
         caption: '계획관리 | MES',
         colNames: colNames,
         colModel: [
-            {name: 'code', index: 'code', sortable: false, width: 60, cellattr: arrtSetting},
+            {name: 'code', index: 'code',key:true, sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form},
             {name: 'code2', index: 'code2', sortable: false, width: 60},
             {name: 'jan', index: 'jan', sortable: false, width: 60},
             {name: 'feb', index: 'feb', sortable: false, width: 60},
             {name: 'mar', index: 'mar', sortable: false, width: 60},
             {name: 'sum', index: 'sum', sortable: false, width: 60},
-            {name: 'sumtotal', index: 'sumtotal', sortable: false, width: 60, cellattr: arrtSetting},
-            {name: 'dif', index: 'dif', sortable: false, width: 60, cellattr: arrtSetting},
-            {name: 'prod_no', index: 'prod_no', sortable: false, width: 60, cellattr: arrtSetting},
-            {name: 'prod_stock', index: 'prod_stock', sortable: false, width: 60, cellattr: arrtSetting},
-            {name: 'prod_date', index: 'prod_date', sortable: false, width: 60, cellattr: arrtSetting},
+            {name: 'sumtotal', index: 'sumtotal', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form2},
+            {name: 'dif', index: 'dif', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form3 },
+            {name: 'prod_no', index: 'prod_no', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form4 },
+            {name: 'prod_stock', index: 'prod_stock', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form5 },
+            {name: 'prod_date', index: 'prod_date', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form6 },
         ],
         loadonce: true,
         autowidth: true,
         viewrecords: true,
+        hoverrows: false,
         height: 500,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
+        rowNum: 99,
+        rowList: [99, 198, 297, 495, 990],
         pager: '#mes_grid_pager',
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
@@ -147,13 +158,164 @@ function jqGrid_main() {
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
+        gridComplete: function() {  // 그리드 생성 후 호출되는 이벤트
+
+            var grid = this;
+
+            $('td[rowspan="1"]', grid).each(function () {
+
+                var spans = $('td[rowspanid="' + this.id + '"]', grid).length + 1;
+
+                if (spans > 1) {
+
+                    $(this).attr('rowspan', spans);
+
+                }
+            });
+        }
+
     });
     jqgridPagerIcons();
 
-    var newWidth = $("#mes_grid_code").width() + $("#mes_grid_code2").outerWidth(true);
-    jQuery("#mes_grid").jqGrid("setLabel", "code", "제품코드", "", {
-        style: "width: " + newWidth + "px;",
-        colspan: "2"
-    });
-    jQuery("#mes_grid").jqGrid("setLabel", "code2", "", "", {style: "display: none"});
+    // var newWidth = $("#mes_grid_code").width() + $("#mes_grid_code2").outerWidth(true);
+    // jQuery("#mes_grid").jqGrid("setLabel", "code", "제품코드", "", {
+    //     style: "width: " + newWidth + "px;",
+    //     colspan: "2"
+    // });
+    // jQuery("#mes_grid").jqGrid("setLabel", "code2", "", "", {style: "display: none"});
 }
+
+var prevCellVal = { cellId: undefined, value: undefined,rowid:undefined };
+var form = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal.value == val) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal.cellId + '"';
+
+    } else {
+
+        var cellId = this.id + '_row_' + rowId + '_' + cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal = { cellId: cellId, value: val };
+
+    }
+
+    return result;
+
+};
+
+
+var prevCellVal2 = { cellId: undefined, value: undefined,rowid:undefined};
+var form2 = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal2.rowid == rawObject.code) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal2.cellId + '"';
+
+    } else {
+        console.log("sss");
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal2 = { cellId: cellId, value: val,rowid: rawObject.code};
+
+    }
+
+    return result;
+
+};
+var prevCellVal3 = { cellId: undefined, value: undefined,rowid:undefined};
+var form3 = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal3.rowid == rawObject.code) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal3.cellId + '"';
+
+    } else {
+        console.log("sss");
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal3 = { cellId: cellId, value: val,rowid: rawObject.code};
+
+    }
+
+    return result;
+
+};
+var prevCellVal4 = { cellId: undefined, value: undefined,rowid:undefined};
+var form4 = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal4.rowid == rawObject.code) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal4.cellId + '"';
+
+    } else {
+        console.log("sss");
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal4 = { cellId: cellId, value: val,rowid: rawObject.code};
+
+    }
+
+    return result;
+
+};
+var prevCellVal5 = { cellId: undefined, value: undefined,rowid:undefined};
+var form5 = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal5.rowid == rawObject.code) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal5.cellId + '"';
+
+    } else {
+        console.log("sss");
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal5 = { cellId: cellId, value: val,rowid: rawObject.code};
+
+    }
+
+    return result;
+
+};
+var prevCellVal6 = { cellId: undefined, value: undefined,rowid:undefined};
+var form6 = function(rowId, val, rawObject, cm, rdata) {
+
+    var result;
+
+    if (prevCellVal6.rowid == rawObject.code) {
+
+        result = ' style="display: none" rowspanid="' + prevCellVal6.cellId + '"';
+
+    } else {
+        console.log("sss");
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+
+        result = ' rowspan="1" id="' + cellId + '"';
+
+        prevCellVal6 = { cellId: cellId, value: val,rowid: rawObject.code};
+
+    }
+
+    return result;
+
+};
