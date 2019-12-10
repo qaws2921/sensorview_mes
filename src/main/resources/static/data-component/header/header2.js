@@ -57,6 +57,8 @@ var array =
         {code:"qmsRecv", title:'품질관리',sub:'수입검사',name:'수입검사진행'},
         {code:"qmsRecvList", title:'품질관리',sub:'수입검사',name:'수입검사현황'},
         {code:"qmsRecvErrorMan", title:'품질관리',sub:'수입검사',name:'수입검사부적합'},
+        {code:"qmsRecvErrorList", title:'품질관리',sub:'수입검사',name:'수입검사부적합현황'},
+        {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
         
     ];
 $(function() {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/data-component/mesQMS/Import/qmsRecvErrorMan/qmsRecvErrorMan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesQMS/Import/qmsRecvMRB/qmsRecvMRB.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="page-content">
@@ -37,6 +37,13 @@
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">MRB</td>
+                    <td class="wt-px-200">
+                        <select id='result_select' class="form-control h-25">
+                            <option>전체</option>
+                            <option>Y</option>
+                        </select>
+                    </td>
                     <td></td>
                 </tr>
                 </tbody>
@@ -47,15 +54,21 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                         <span><i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
                         </span>
                     </a>
-                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="test_btn()">
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
                         <span><i class="fa fa-plus bigger-110 blue"></i>
-                            <span>임시 모달</span>
+                            <span>MRB 처리</span>
+                        </span>
+                    </a>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                        <span><i class="fa fa-times bigger-110 blue"></i>
+                            <span>MRB 취소</span>
                         </span>
                     </a>
                 </div>
@@ -72,6 +85,5 @@
 </div>
 
 <%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
-<%@include file="qmsRecvErrorMan_modal1.jsp" %>
 
 

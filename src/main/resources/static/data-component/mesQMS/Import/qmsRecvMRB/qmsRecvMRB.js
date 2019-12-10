@@ -17,10 +17,9 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
-
+    selectBox();
     datepickerInput();
     suppModal_start();
-    modal_start1();
 
     jqgridPagerIcons();
 });
@@ -49,11 +48,10 @@ function suppModal_bus(code, name) {
 
 }
 
-function test_btn() {
-    $("#addDialog").dialog('open');
-}
-
 ////////////////////////////호출 함수/////////////////////////////////////
+function selectBox() {
+    $('#result_select').select2();
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -64,7 +62,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         data:grid_data,
         datatype: "local",
-        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '검사기준', '검사구분', '입고수량', '불량수량', '검사결과','불량유형','불량내용','조치구분','성적서','부적합보고서','개선조치','검사자','검사일시'],
+        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '검사기준', '검사구분', '입고수량','검사수량','불량수량', '검사결과','불량유형','불량내용','완료여부','성적서','부적합보고서','개선조치','검사자','검사일시','MRB','MRB일시'],
         colModel: [
             {name: '', index: '', sortable: false, width: 60, formatter: formmatterDate2},
             {name: '', index: '', sortable: false, width: 80},
@@ -86,10 +84,14 @@ function jqGrid_main() {
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 90, formatter: formmatterDate},
+            {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 90, formatter: formmatterDate},
         ],
-        caption: "수입검사부적합 | MES",
+        caption: "수입검사MRB관리 | MES",
         autowidth: true,
+        multiselect: true,
         height: $(window).height() - 450,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
