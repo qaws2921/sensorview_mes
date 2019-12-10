@@ -42,4 +42,8 @@
     	#{prod_type}, #{sample},#{currency_type}, #{unit_price}, #{price},
     	#{supp_ord_no},#{payment},#{supp_user_name}, #{supp_tel_no}, #{user_code}, 'I'
     </select>
+
+	<select id="crmPlanGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN">
+		EXEC SP_WMS_STOCK_GET #{site_code}, #{page}, #{rows},#{keyword},#{keyword2},#{keyword3}
+	</select>
 </mapper>

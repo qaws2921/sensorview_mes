@@ -60,13 +60,44 @@ $(document).ready(function () {
     jqgridPagerIcons();
 });
 ////////////////////////////클릭 함수////////////////////////////////
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.keyword = main_data.send_data.keyword.replace("년", '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/crmPlanGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+
+}
+
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly);
     modalValuePush("#bungi_select","#bungi_code","#bungi_name");
+    $("#plan_year").val($("#datepicker").val());
     main_data.check = 'I';
-    console.log($('#bungi_select').val());
-    console.log($('#bungi_select').val());
-    console.log($('#bungi_select').val());
+
+    var value =  $('#bungi_select').val();
+    if (value === "1"){
+        $("#month1").text("1월");
+        $("#month2").text("2월");
+        $("#month3").text("3월");
+    } else if(value ==="2"){
+        $("#month1").text("4월");
+        $("#month2").text("5월");
+        $("#month3").text("6월");
+    } else if(value ==="3"){
+        $("#month1").text("7월");
+        $("#month2").text("8월");
+        $("#month3").text("9월");
+    } else {
+        $("#month1").text("10월");
+        $("#month2").text("11월");
+        $("#month3").text("12월");
+    }
 
     $("#addDialog").dialog('open');
 }
@@ -90,7 +121,7 @@ function bungi_change(value) {
     jQuery("#mes_grid").jqGrid('setGroupHeaders', {
         useColSpanStyle: true,
         groupHeaders: [
-            {startColumnName: 'jan', numberOfColumns: 3, titleText: '<center>'+value+'분기</center>'},
+            {startColumnName: 'month_plan1', numberOfColumns: 3, titleText: '<center>'+value+'분기</center>'},
 
         ]
     });
@@ -118,7 +149,7 @@ function jqGrid_header() {
     jQuery("#mes_grid").jqGrid('setGroupHeaders', {
         useColSpanStyle: true,
         groupHeaders: [
-            {startColumnName: 'jan', numberOfColumns: 3, titleText: '<center>1분기</center>'},
+            {startColumnName: 'month_plan1', numberOfColumns: 3, titleText: '<center>1분기</center>'},
 
         ]
     });
@@ -127,30 +158,30 @@ function jqGrid_header() {
 function jqGrid_main() {
     console.log(colNames);
     $('#mes_grid').jqGrid({
-        data: testdata,
+        mtype: 'POST',
         datatype: 'local',
         caption: '계획관리 | MES',
         colNames: colNames,
         colModel: [
-            {name: 'code', index: 'code',key:true, sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form},
-            {name: 'code2', index: 'code2', sortable: false, width: 60},
-            {name: 'jan', index: 'jan', sortable: false, width: 60},
-            {name: 'feb', index: 'feb', sortable: false, width: 60},
-            {name: 'mar', index: 'mar', sortable: false, width: 60},
-            {name: 'sum', index: 'sum', sortable: false, width: 60},
-            {name: 'sumtotal', index: 'sumtotal', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form2},
-            {name: 'dif', index: 'dif', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form3 },
-            {name: 'prod_no', index: 'prod_no', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form4 },
-            {name: 'prod_stock', index: 'prod_stock', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form5 },
-            {name: 'prod_date', index: 'prod_date', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form6 },
+            {name: 'part_code', index: 'part_code',key:true, sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form},
+            {name: 'plan_name', index: 'plan_name', sortable: false, width: 60},
+            {name: 'month_plan1', index: 'month_plan1', sortable: false, width: 60},
+            {name: 'month_plan2', index: 'month_plan2', sortable: false, width: 60},
+            {name: 'month_plan3', index: 'month_plan3', sortable: false, width: 60},
+            {name: 'plan_qty', index: 'plan_qty', sortable: false, width: 60},
+            {name: 'total_qty', index: 'total_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form2},
+            {name: 'diff_qty', index: 'diff_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form3 },
+            {name: 'prod_qty', index: 'prod_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form4 },
+            {name: 'stock_qty', index: 'stock_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form5 },
+            {name: 'prod_desc', index: 'prod_desc', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form6 },
         ],
         loadonce: true,
         autowidth: true,
         viewrecords: true,
         hoverrows: false,
         height: 500,
-        rowNum: 99,
-        rowList: [99, 198, 297, 495, 990],
+        rowNum: 300,
+        rowList: [300, 600],
         pager: '#mes_grid_pager',
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
@@ -214,17 +245,17 @@ var form2 = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
-    if (prevCellVal2.rowid == rawObject.code) {
+    if (prevCellVal2.rowid == rawObject.part_code) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal2.cellId + '"';
 
     } else {
-        console.log("sss");
-        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+        
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.part_code+"_"+cm.name;
 
         result = ' rowspan="1" id="' + cellId + '"';
 
-        prevCellVal2 = { cellId: cellId, value: val,rowid: rawObject.code};
+        prevCellVal2 = { cellId: cellId, value: val,rowid: rawObject.part_code};
 
     }
 
@@ -236,17 +267,17 @@ var form3 = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
-    if (prevCellVal3.rowid == rawObject.code) {
+    if (prevCellVal3.rowid == rawObject.part_code) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal3.cellId + '"';
 
     } else {
-        console.log("sss");
-        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+        
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.part_code+"_"+cm.name;
 
         result = ' rowspan="1" id="' + cellId + '"';
 
-        prevCellVal3 = { cellId: cellId, value: val,rowid: rawObject.code};
+        prevCellVal3 = { cellId: cellId, value: val,rowid: rawObject.part_code};
 
     }
 
@@ -258,17 +289,17 @@ var form4 = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
-    if (prevCellVal4.rowid == rawObject.code) {
+    if (prevCellVal4.rowid == rawObject.part_code) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal4.cellId + '"';
 
     } else {
-        console.log("sss");
-        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+        
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.part_code+"_"+cm.name;
 
         result = ' rowspan="1" id="' + cellId + '"';
 
-        prevCellVal4 = { cellId: cellId, value: val,rowid: rawObject.code};
+        prevCellVal4 = { cellId: cellId, value: val,rowid: rawObject.part_code};
 
     }
 
@@ -280,17 +311,17 @@ var form5 = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
-    if (prevCellVal5.rowid == rawObject.code) {
+    if (prevCellVal5.rowid == rawObject.part_code) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal5.cellId + '"';
 
     } else {
-        console.log("sss");
-        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+        
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.part_code+"_"+cm.name;
 
         result = ' rowspan="1" id="' + cellId + '"';
 
-        prevCellVal5 = { cellId: cellId, value: val,rowid: rawObject.code};
+        prevCellVal5 = { cellId: cellId, value: val,rowid: rawObject.part_code};
 
     }
 
@@ -302,17 +333,17 @@ var form6 = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
-    if (prevCellVal6.rowid == rawObject.code) {
+    if (prevCellVal6.rowid == rawObject.part_code) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal6.cellId + '"';
 
     } else {
-        console.log("sss");
-        var cellId = this.id + '_row_' + rowId + '_' + rawObject.code+"_"+cm.name;
+        
+        var cellId = this.id + '_row_' + rowId + '_' + rawObject.part_code+"_"+cm.name;
 
         result = ' rowspan="1" id="' + cellId + '"';
 
-        prevCellVal6 = { cellId: cellId, value: val,rowid: rawObject.code};
+        prevCellVal6 = { cellId: cellId, value: val,rowid: rawObject.part_code};
 
     }
 
