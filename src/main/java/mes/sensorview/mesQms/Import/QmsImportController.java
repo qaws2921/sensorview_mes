@@ -7,5 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QmsImportController {
 
     @RequestMapping(value = "/qmsRecv")
-    public String qmsTestItem() { return "mesQms/Import/qmsRecv/qmsRecv"; }
+    public String qmsRecv() { return "mesQms/Import/qmsRecv/qmsRecv"; }
+
+    @RequestMapping(value = "/qmsRecvList")
+    public String qmsRecvList() { return  "mesQms/Import/qmsRecvList/qmsRecvList"; }
+
+    @RequestMapping(value = "/qmsRecvErrorMan")
+    public String qmsRecvErrorMan() { return "mesQms/Import/qmsRecvErrorMan/qmsRecvErrorMan"; }
 }

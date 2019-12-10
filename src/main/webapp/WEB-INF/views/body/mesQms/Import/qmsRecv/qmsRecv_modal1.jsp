@@ -20,9 +20,13 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">업체명</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main" style="width: 100%">
-                            <option value="">전체</option>
-                        </select>
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="supp_name" class="form-control h-25 condition_main"
+                                   id="supp_name_main" onclick="supp_btn('A');" readonly>
+                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"
+                                   id="supp_code_main">
+                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
+                        </div>
                     </td>
                     <td></td>
                 </tr>
@@ -51,3 +55,5 @@
         </div>
     </div>
 </div>
+
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
