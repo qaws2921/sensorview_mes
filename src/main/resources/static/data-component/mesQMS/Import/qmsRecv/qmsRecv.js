@@ -10,11 +10,13 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    qcItem_list:[]
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+    qmsQcItemAllGet();
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
@@ -51,12 +53,22 @@ function under_get(rowid) {
 }
 
 function test_btn() {
-
+    $("#datepicker3").val("");
+    $("#datepicker3").datepicker('setDate', 'today');
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function qmsQcItemAllGet() {
+    ccn_ajax("/qmsQcItemAllGet", {keyword: 1,keyword2:1}).then(function (data) {
+        main_data.qcItem_list = data;
+    }).catch(function (err) {
+        console.error(err); // Error 출력
+    });
+}
+
+
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);

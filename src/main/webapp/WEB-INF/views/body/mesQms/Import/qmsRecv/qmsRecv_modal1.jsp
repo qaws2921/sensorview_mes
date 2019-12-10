@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/data-component/mesQMS/Import/qmsRecv/qmsRecv_modal1.js" charset="UTF-8"></script>
 <div id="addDialog" title="수입검사등록" style="display:none">
     <div class="col-lg-12">
-        <div class="col-lg-12 padding0">
+        <div class="col-lg-12 padding0" >
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -49,11 +49,10 @@
             <div class="row">
                 <div class="col-xs-12">
                     <table id="mes_modal_grid"></table>
-                    <div id="mes_modal_grid_pager"></div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

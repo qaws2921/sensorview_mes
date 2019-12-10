@@ -9,8 +9,8 @@ var main_data = {
 function modal_start1() {
 
     modal_make1();
-    // datepickerInput_modal1();
     jqGrid_modal1();
+    datepickerInput_modal1();
     suppModal_start();
 
     jqGridResize('#mes_modal_grid',$('#mes_modal_grid').closest('[class*="col-"]'));
@@ -44,10 +44,10 @@ function suppModal_bus(code, name) {
 
 function modal_make1() {
     $("#addDialog").dialog({
-        autoOpen:false,
         modal: true,
-        minWidth:900,
+        width:'auto',
         height: 'auto',
+        autoOpen:false,
         resizable: false,
         buttons: [
             {
@@ -83,13 +83,13 @@ function jqGrid_modal1() {
         autowidth: true,
         height: 250,
         rowNum: 100,
-        pager: '#mes_modal_grid_pager',
+
         rowList: [100, 200, 300, 400],
-        viewrecords: true,
+
     });
 }
 
-// function datepickerInput_modal1() {
-//     datepicker_makes("#datepicker3", 0);
-// }
+function datepickerInput_modal1() {
+    datepicker_makes("#datepicker3", 0);
+}
 

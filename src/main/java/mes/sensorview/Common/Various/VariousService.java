@@ -7,6 +7,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -65,5 +66,10 @@ public class VariousService extends ReturnFunction {
             p.setKeyword("");
         }
         return variousMapper.sysPartTypeGet(p);
+    }
+
+    public List<SYS_QC_ITEM> qmsQcItemAllGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.qmsQcItemAllGet(p);
     }
 }
