@@ -33,4 +33,6 @@ import java.util.List;
      Message sysCommonDelete(Page p);
 
      SYSCommon sysCommonOneGet(Page p);
+
+     List<SYSSupp> sysSuppListGet(Page p);
  }

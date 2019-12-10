@@ -52,6 +52,7 @@ var array =
         {code:"qmsTestItem", title:'품질관리',sub:'기준정보',name:'검사항목관리'},
         {code:"qmsTestStd", title:'품질관리',sub:'기준정보',name:'외경검사기준'},
         {code:"qmsErrorType", title:'품질관리',sub:'기준정보',name:'공정별불량유형관리'},
+        {code:"qmsRecv", title:'품질관리',sub:'수입검사',name:'수입검사진행'},
         
     ];
 $(function() {

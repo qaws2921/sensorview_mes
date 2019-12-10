@@ -55,7 +55,14 @@ public class QmsStandardRestController extends ValidFunction {
     }
 
     @RequestMapping(value = "/qmsTestStdAdd", method = RequestMethod.POST)
-    public Message qmsTestStdAdd(HttpServletRequest req, SYS_QC_DIAMETER vo){ return qmsStandardService.qmsTestStdAdd(req, vo);}
+    public Message qmsTestStdAdd(@Valid SYS_QC_DIAMETER sys_qc_diameter, BindingResult errors, HttpServletRequest req)
+    {
+        if(ValidData(errors).getResult().equals("OK")){
+            return qmsStandardService.qmsTestStdAdd(req, sys_qc_diameter);
+        }else {
+            return ValidData(errors);
+        }
+    }
 
     @RequestMapping(value ="/qmsTestStdOneGet", method = RequestMethod.POST)
     public SYS_QC_DIAMETER qmsTestStdOneGet(SYS_QC_DIAMETER vo, HttpServletRequest req) {

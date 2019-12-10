@@ -128,4 +128,10 @@ public class MasterService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.sysCommonOneGet(p);
     }
+
+    public RESTful sysSuppListGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYSSupp> rows = masterMapper.sysSuppListGet(p);
+        return getListData(rows , p);
+    }
 }
