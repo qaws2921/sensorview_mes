@@ -7,14 +7,14 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1(value) {
-    select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:value},"Y");
+    select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:value},"N");
 }
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function selectBoxModal() {
     select_makes2("#gubun_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
-        select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"Y");
+        select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:data},"N");
     });
 
 }

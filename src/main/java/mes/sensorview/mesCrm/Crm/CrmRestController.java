@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -55,5 +56,13 @@ public class CrmRestController {
     @RequestMapping(value = "/crmWorkListOneGet", method = RequestMethod.POST)
     public CRM_ORD_RECP crmWorkListOneGet(HttpServletRequest req, CRM_ORD_RECP cor) {
         return crmService.crmWorkListOneGet(req, cor);
+    }
+
+    @RequestMapping(value = "/crmPlanGet", method = RequestMethod.POST)
+    public RESTful crmPlanGet(HttpServletRequest req, Page p) { return crmService.crmPlanGet(req, p); }
+
+    @RequestMapping(value = "/crmPlanAdd", method = RequestMethod.POST)
+    public Message crmPlanAdd(CRM_PLAN cp, HttpServletRequest req){
+        return crmService.crmPlanAdd(cp,req);
     }
 }
