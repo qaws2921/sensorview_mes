@@ -26,6 +26,30 @@ $(document).ready(function () {
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/qmsRecvGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
+}
+
+function under_get(rowid) {
+
+    $("#mes_grid2").setGridParam({
+        url: '/qmsRecvSubGet',
+        datatype: "json",
+        page: 1,
+        postData: {keyword: rowid}
+    }).trigger("reloadGrid");
+}
+
 function test_btn() {
 
     $("#addDialog").dialog('open');
@@ -40,7 +64,7 @@ function datepickerInput() {
 
 function jqGrid_main() {
     $("#mes_grid").jqGrid({
-        data: grid_data,
+        mtype: 'POST',
         datatype: "local",
         multiselect: true,
         caption: "수입검사진행 | MES",
@@ -67,7 +91,7 @@ function jqGrid_main() {
             return (cm[i].name === 'cb');
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
-
+            under_get(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
 
@@ -76,19 +100,19 @@ function jqGrid_main() {
     });
 
     $('#mes_grid2').jqGrid({
-        data: grid2_data,
+        mtype: 'POST',
         datatype: "local",
-        multiselect: true,
         caption: "수입검사진행 | MES",
-        colNames: ['입고일자', '전표번호', '업체', '상태', '상태기준', '처리자', '출고일시'],
+        colNames: ['전표번호', '품목그룹', '품번', '품명', '규격', '단위', '검사구분', '입고수량'],
         colModel: [
-            {name: 'work_date', index: 'work_date', width: 60, sortable: false, formatter: formmatterDate2},
-            {name: 'in_no', index: 'in_no', key: true, width: 60, sortable: false},
-            {name: 'supp_name', index: 'supp_name', width: 60, sortable: false},
-            {name: 'status_name', index: 'status_name', width: 60, sortable: false},
-            {name: 'status', index: 'status', hidden: true, width: 60, sortable: false},
-            {name: 'user_name', index: 'user_name', width: 60, sortable: false},
-            {name: 'out_date', index: 'out_date', width: 60, sortable: false},
+            {name: 'in_no', index: 'in_no', width: 60, sortable: false},
+            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+            {name: 'part_code', index: 'part_code', width: 60, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
+            {name: 'spec', index: 'spec', width: 60, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
+            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
+            {name: 'qty', index: 'qty', width: 60, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,
