@@ -40,4 +40,5 @@ public class QMS_RECV_SUB {
     private String file1_name;
     private String file2_name;
     private String file3_name;
+    private String qc_name;
 }
