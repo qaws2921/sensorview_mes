@@ -80,7 +80,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-xs-12 table-responsive" style="border: 1px solid #79afce;">
+                <div class="col-xs-12 table-responsive">
                     <table id="mes_modal_grid"></table>
                 </div>
             </div>

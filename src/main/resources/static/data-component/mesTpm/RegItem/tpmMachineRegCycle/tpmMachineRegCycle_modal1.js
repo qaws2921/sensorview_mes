@@ -1,5 +1,4 @@
-var grid_data=[{a:'1'},{a:'2'},{a:'20'}];
-
+var grid_data=[];
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
@@ -15,7 +14,7 @@ function modal_make1() {
 
     $("#addDialog").dialog({
         modal: true,
-        width: '800',
+        width: 800,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -42,17 +41,12 @@ function jqGrid_modal1() {
     $('#mes_modal_grid').jqGrid({
         data:grid_data,
         datatype: "local",
-        colNames: ['부품명','규격','소요수량','구매처','연락처','비고'],
+        colNames: ['알람수신자'],
         colModel: [
             {name: '', index: '', key:true, sortable: false},
-            {name: 'a', index: 'a', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false}
         ],
-        width : 465,
+        width : 'auto',
         rowNum: 100,
-        rowList:[100,200,300,500,1000],
+        multiselect: 'true',
     });
 }

@@ -50,7 +50,8 @@ var array =
 
         //설비관리
         {code:"tpmMC", title:'설비관리',sub:'기준정보',name:'설비정보관리'},
-        {code:"tpmMachineRegItem", title:'설비관리',sub:'예방점검',name:'예방점검 항목관리'},
+        {code:"tpmMachineRegItem", title:'설비관리',sub:'예방점검',name:'예방점검항목관리'},
+        {code:"tpmMachineRegCycle", title:'설비관리',sub:'예방점검',name:'예방점검주기설정'},
         {code:"tpmMachineRegComp", title:'설비관리',sub:'예방점검',name:'예방점검관리'},
         {code:"tpmMachineError", title:'설비관리',sub:'사후보전',name:'사후보전관리'},
 
