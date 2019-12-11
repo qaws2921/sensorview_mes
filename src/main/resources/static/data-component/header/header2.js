@@ -55,13 +55,14 @@ var array =
 
         {code: "qmsProd", title: '품질관리', sub: '출하검사', name: '출하검사진행'},
         {code: "qmsProdList", title: '품질관리', sub: '출하검사', name: '출하검사현황'},
-        {code: "qmsProdErrorMan", title: '품질관리', sub: '출하검사', name: '출하검사부적합등록'},
+        {code: "qmsProdErrorMan", title: '품질관리', sub: '출하검사', name: '출하검사부적합'},
         {code: "qmsProdErrorList", title: '품질관리', sub: '출하검사', name: '출하검사불량현황'},
-
+        {code: "qmsProdMRB", title: '품질관리', sub: '수입검사', name: '출하검사MRB관리'},
+        
         {code: "qmsRecv", title: '품질관리', sub: '수입검사', name: '수입검사진행'},
         {code: "qmsRecvList", title: '품질관리', sub: '수입검사', name: '수입검사현황'},
         {code: "qmsRecvErrorMan", title: '품질관리', sub: '수입검사', name: '수입검사부적합'},
-        {code: "qmsRecvErrorList", title: '품질관리', sub: '수입검사', name: '수입검사부적합현황'},
+        {code: "qmsRecvErrorList", title: '품질관리', sub: '수입검사', name: '수입검사불량현황'},
         {code: "qmsRecvMRB", title: '품질관리', sub: '수입검사', name: '수입검사MRB관리'},
 
     ];

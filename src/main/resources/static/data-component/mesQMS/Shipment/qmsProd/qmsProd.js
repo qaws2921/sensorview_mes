@@ -3,8 +3,8 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-var grid2_data=[];
+var grid_data=[{a:'20191210',b:'TEST201912111010',c:'업체1',d:'관리자',e:'20191210130229'}];
+var grid2_data=[{a:'TEST201912111010',b:'그룹1',c:'part1',d:'제품1',e:'Ø0.91mm',f:'EA',g:'샘플검사',h:'20'}];
 
 var main_data = {
     check: 'I',
@@ -21,15 +21,13 @@ $(document).ready(function () {
     datepickerInput();
 
     modal_start1();
+    modal_start2();
 
     jqgridPagerIcons();
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function test_btn() {
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -45,11 +43,11 @@ function jqGrid_main() {
         caption: "출하검사진행 | MES",
         colNames: ['입고일자', '전표번호', '업체', '처리자', '검사일시'],
         colModel: [
-            {name: '', index: '', width: 60, sortable: false, formatter: formmatterDate2},
-            {name: '', index: '', key: true, width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false, formatter: formmatterDate},
+            {name: 'a', index: 'a', width: 60, sortable: false, formatter: formmatterDate2},
+            {name: 'b', index: 'b', key: true, width: 60, sortable: false},
+            {name: 'c', index: 'c', width: 60, sortable: false},
+            {name: 'd', index: 'd', width: 60, sortable: false},
+            {name: 'e', index: 'e', width: 60, sortable: false, formatter: formmatterDate},
         ],
         autowidth: true,
         viewrecords: true,
@@ -64,10 +62,10 @@ function jqGrid_main() {
             return (cm[i].name === 'cb');
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
-            under_get(rowid);
+
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-
+            update_btn();
         }
 
     });
@@ -79,14 +77,14 @@ function jqGrid_main() {
         caption: "출하검사진행 | MES",
         colNames: ['전표번호', '품목그룹', '품번', '품명', '규격', '단위', '검사구분', '입고수량'],
         colModel: [
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
+            {name: 'a', index: 'a', width: 60, sortable: false},
+            {name: 'b', index: 'b', width: 60, sortable: false},
+            {name: 'c', index: 'c', width: 60, sortable: false},
+            {name: 'd', index: 'd', width: 60, sortable: false},
+            {name: 'e', index: 'e', width: 60, sortable: false},
+            {name: 'f', index: 'f', width: 60, sortable: false},
+            {name: 'g', index: 'g', width: 60, sortable: false},
+            {name: 'h', index: 'h', width: 60, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,

@@ -53,13 +53,6 @@ function under_get(rowid) {
     }).trigger("reloadGrid");
 }
 
-function test_btn() {
-    $("#datepicker3").val("");
-    $("#datepicker3").datepicker('setDate', 'today');
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-}
-
 ////////////////////////////호출 함수/////////////////////////////////////
 function qmsQcItemAllGet() {
     ccn_ajax("/qmsQcItemAllGet", {keyword: 1,keyword2:1}).then(function (data) {

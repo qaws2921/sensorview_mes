@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/data-component/mesQMS/Shipment/qmsProdErrorMan/qmsProdErrorMan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesQMS/Shipment/qmsProdMRB/qmsProdMRB.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="page-content">
@@ -27,6 +27,13 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">MRB</td>
+                    <td class="wt-px-200">
+                        <select id='result_select' class="form-control h-25">
+                            <option>전체</option>
+                            <option>Y</option>
+                        </select>
+                    </td>
                     <td></td>
                 </tr>
                 </tbody>
@@ -42,6 +49,18 @@
                             <span>조회</span>
                         </span>
                     </a>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                        <span><i class="fa fa-plus bigger-110 blue"></i>
+                            <span>MRB 처리</span>
+                        </span>
+                    </a>
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                        <span><i class="fa fa-times bigger-110 blue"></i>
+                            <span>MRB 취소</span>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,6 +74,5 @@
     </div>
 </div>
 
-<%@include file="qmsProdErrorMan_modal1.jsp" %>
 
 

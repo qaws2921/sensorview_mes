@@ -73,10 +73,6 @@ function suppModal_bus(code, name) {
 
 }
 
-function test_btn() {
-    $("#addDialog").dialog('open');
-}
-
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function datepickerInput() {
@@ -128,7 +124,7 @@ function jqGrid_main() {
 
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(rowid);
         }
     });
 }

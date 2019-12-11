@@ -6,10 +6,6 @@
 var grid_data=[];
 var grid2_data=[];
 
-var main_data = {
-  supp_check:'A',
-};
-
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
@@ -19,34 +15,11 @@ $(document).ready(function () {
     datepickerInput();
     selectBox();
 
-    suppModal_start();
-
     jqgridPagerIcons();
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
-function supp_btn(what) {
-    main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
-
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-    $("#supp-search-dialog").dialog('open');
-    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
-}
-
-function suppModal_bus(code, name) {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    } else if (main_data.supp_check === 'B') {
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-
-}
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -62,7 +35,7 @@ function jqGrid_main() {
         data: grid_data,
         datatype: "local",
         multiselect: true,
-        caption: "수입검사불량현황 | MES",
+        caption: "출하검사불량현황 | MES",
         colNames: ['입고일자', '전표번호', '업체', '품목그룹','품번','품명','규격','단위','검사기준','검사구분','입고수량','검사수량','불량수량','검사결과','불량유형','불량내용','완료여부','검사자','검사일시'],
         colModel: [
             {name: '', index: '', width: 60, sortable: false, formatter: formmatterDate2},
@@ -83,7 +56,7 @@ function jqGrid_main() {
             {name: '', index: '', width: 60, sortable: false},
             {name: '', index: '', width: 60, sortable: false},
             {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
+            {name: '', index: '', width: 60, sortable: false, formatter: formmatterDate},
         ],
         autowidth: true,
         viewrecords: true,
@@ -109,7 +82,7 @@ function jqGrid_main() {
     $('#mes_grid2').jqGrid({
         data: grid2_data,
         datatype: "local",
-        caption: "수입검사불량현황 | MES",
+        caption: "출하검사불량현황 | MES",
         colNames: ['구분', '검사수량', '불량수량', '불량율'],
         colModel: [
             {name: '', index: '', width: 60, sortable: false},

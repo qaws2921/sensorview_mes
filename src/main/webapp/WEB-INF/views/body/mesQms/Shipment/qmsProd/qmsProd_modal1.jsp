@@ -8,7 +8,7 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">전표번호</td>
                     <td class="wt-px-200">
-                        <input type="text"  class="form-control h-25" readonly>
+                        <input type="text" value="TEST201912111010" class="form-control h-25" readonly>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">입고일자</td>
                     <td class="wt-px-200">

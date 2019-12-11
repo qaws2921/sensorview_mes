@@ -20,6 +20,8 @@
 .wt-75{width: 75% !important;}
 .wt-100{width: 100% !important;}
 
+.wt-px-10{width: 10px !important;}
+.wt-px-25{width: 25px !important;}
 .wt-px-50{width: 50px !important;}
 .wt-px-75{width: 75px !important;}
 .wt-px-100{width: 100px !important;}
@@ -27,6 +29,7 @@
 .wt-px-150{width: 150px !important;}
 .wt-px-175{width: 175px !important;}
 .wt-px-200{width: 200px !important;}
+.wt-px-250{width: 250px !important;}
 
 .h-25{height: 25px !important;}
 .h-50{height: 50px !important;}

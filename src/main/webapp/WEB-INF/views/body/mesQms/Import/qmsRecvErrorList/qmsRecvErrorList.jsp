@@ -10,7 +10,7 @@
 
         var data = new google.visualization.DataTable();
         data.addColumn('number', 'X');
-        data.addColumn('number', 'Dogs');
+        data.addColumn('number', '불량율');
 
         data.addRows([
             [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
@@ -29,10 +29,10 @@
 
         var options = {
             hAxis: {
-                title: 'Time'
+                title: '기간'
             },
             vAxis: {
-                title: 'Popularity'
+                title: '수입검사\n불량현황'
             }
         };
 
@@ -127,7 +127,9 @@
         <hr />
 
         <div class="row">
-            <div id="chart_div"></div>
+            <div class="col-xs-12">
+                <div id="chart_div" style="border:1px solid black;"></div>
+            </div>
         </div>
     </div>
 </div>

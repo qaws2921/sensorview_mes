@@ -41,13 +41,6 @@
                             <span>조회</span>
                         </span>
                     </a>
-                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="test_btn()">
-                        <span>
-                            <i class="fa fa-plus bigger-110 blue"></i>
-                            <span>임시 모달</span>
-                        </span>
-                    </a>
                 </div>
             </div>
         </div>

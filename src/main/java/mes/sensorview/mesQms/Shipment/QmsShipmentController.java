@@ -17,4 +17,7 @@ public class QmsShipmentController {
 
     @RequestMapping(value = "/qmsProdErrorList")
     public String qmsProdErrorList() { return "mesQms/Shipment/qmsProdErrorList/qmsProdErrorList"; }
+
+    @RequestMapping(value ="/qmsProdMRB")
+    public String qmsProdMRB() { return "mesQms/Shipment/qmsProdMRB/qmsProdMRB"; }
 }
