@@ -99,7 +99,7 @@
                         <label class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
-                                <span>삭제</span>
+                                <span id="del1">삭제</span>
                             </span>
                         </label>
                     </div>
@@ -121,7 +121,7 @@
                         <label class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
-                                <span>삭제</span>
+                                <span id="del2">삭제</span>
                             </span>
                         </label>
                     </div>
@@ -143,7 +143,7 @@
                         <label class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
-                                <span>삭제</span>
+                                <span id="del3">삭제</span>
                             </span>
                         </label>
                     </div>
@@ -195,6 +195,15 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    $("#del1").click(function(){
+        $('#img1').remove();
+    });
+    $("#del2").click(function(){
+        $('#img2').remove();
+    });
+    $("#del3").click(function(){
+        $('#img3').remove();
+    });
     $("#xlsUploads1").change(function(){
         readURL1(this);
     });
