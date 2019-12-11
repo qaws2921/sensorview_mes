@@ -5,11 +5,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class Files {
-    private String OriginFileName;
-    private String fileName;
-    private byte fileSize;
-    private long fileVolume;
-    private String uploadPath;
-    private String fileUrl;
+    private String key1;
+    private String key2;
+    private String key3;
+    private String site_code;
+    private String user_code;
+    private String file_name;
+    private String file_og_name;
+    private byte file_size;
+    private long file_volume;
+    private String upload_path;
+    private String url;
     private MultipartFile files;
+
 }

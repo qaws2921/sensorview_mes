@@ -48,6 +48,12 @@ var array =
         {code: "crmWorkList", title: '영업관리', sub: '영업관리', name: '실적현황'},
         {code: "crmProdOrder", title: '영업관리', sub: '영업관리', name: '구매 생산지시'},
 
+        //설비관리
+        {code:"tpmMC", title:'설비관리',sub:'기준정보',name:'설비정보관리'},
+        {code:"tpmMachineRegItem", title:'설비관리',sub:'예방점검',name:'예방점검 항목관리'},
+        {code:"tpmMachineRegComp", title:'설비관리',sub:'예방점검',name:'예방점검관리'},
+        {code:"tpmMachineError", title:'설비관리',sub:'사후보전',name:'사후보전관리'},
+
         //품질관리
         {code: "qmsTestItem", title: '품질관리', sub: '기준정보', name: '검사항목관리'},
         {code: "qmsTestStd", title: '품질관리', sub: '기준정보', name: '외경검사기준'},
@@ -58,12 +64,21 @@ var array =
         {code: "qmsProdErrorMan", title: '품질관리', sub: '출하검사', name: '출하검사부적합'},
         {code: "qmsProdErrorList", title: '품질관리', sub: '출하검사', name: '출하검사불량현황'},
         {code: "qmsProdMRB", title: '품질관리', sub: '수입검사', name: '출하검사MRB관리'},
-        
+
         {code: "qmsRecv", title: '품질관리', sub: '수입검사', name: '수입검사진행'},
         {code: "qmsRecvList", title: '품질관리', sub: '수입검사', name: '수입검사현황'},
         {code: "qmsRecvErrorMan", title: '품질관리', sub: '수입검사', name: '수입검사부적합'},
         {code: "qmsRecvErrorList", title: '품질관리', sub: '수입검사', name: '수입검사불량현황'},
         {code: "qmsRecvMRB", title: '품질관리', sub: '수입검사', name: '수입검사MRB관리'},
+
+        {code:"qmsTestItem", title:'품질관리',sub:'기준정보',name:'검사항목관리'},
+        {code:"qmsTestStd", title:'품질관리',sub:'기준정보',name:'외경검사기준'},
+        {code:"qmsErrorType", title:'품질관리',sub:'기준정보',name:'공정별불량유형관리'},
+        {code:"qmsRecv", title:'품질관리',sub:'수입검사',name:'수입검사진행'},
+        {code:"qmsRecvList", title:'품질관리',sub:'수입검사',name:'수입검사현황'},
+        {code:"qmsRecvErrorMan", title:'품질관리',sub:'수입검사',name:'수입검사부적합'},
+        {code:"qmsRecvErrorList", title:'품질관리',sub:'수입검사',name:'수입검사부적합현황'},
+        {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
 
     ];
 $(function () {

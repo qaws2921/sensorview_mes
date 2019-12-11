@@ -7,8 +7,8 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,7 +43,6 @@ public class Handler extends HandlerInterceptorAdapter {
         lv.setDuty_code("1000");
 
         request.getSession().setAttribute("userData", lv);
-
         Session userData = (Session) session.getAttribute("userData");
         try {
             if (ObjectUtils.isEmpty(userData) ) {
