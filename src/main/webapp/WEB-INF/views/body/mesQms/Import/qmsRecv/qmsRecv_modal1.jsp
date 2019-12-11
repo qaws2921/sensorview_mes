@@ -7,27 +7,27 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">입고일자</td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-150">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker3" class="form-control h-25" readonly>
+                            <input type="text" name="in_date" id="datepicker3" class="form-control modal_value" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">전표번호</td>
-                    <td class="wt-px-200">
-                        <select class="form-control keyword condition_main" style="width: 100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">업체명</td>
-                    <td class="wt-px-200">
-                        <div class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25 condition_main"
-                                   id="supp_name_main" onclick="supp_btn('A');" readonly>
-                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"
-                                   id="supp_code_main">
-                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
-                        </div>
-                    </td>
+<%--                    <td class="wt-px-100 t-align-c td-title padding-a-0">전표번호</td>--%>
+<%--                    <td class="wt-px-150">--%>
+<%--                        <select class="form-control keyword condition_main" style="width: 100%">--%>
+<%--                        </select>--%>
+<%--                    </td>--%>
+<%--                    <td class="wt-px-100 t-align-c td-title padding-a-0">업체명</td>--%>
+<%--                    <td class="wt-px-150">--%>
+<%--                        <div class="input-icon input-icon-right">--%>
+<%--                            <input type="text" name="supp_name" class="form-control h-25 condition_main"--%>
+<%--                                   id="supp_name_main" onclick="supp_btn('A');" readonly>--%>
+<%--                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"--%>
+<%--                                   id="supp_code_main">--%>
+<%--                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>--%>
+<%--                        </div>--%>
+<%--                    </td>--%>
                     <td></td>
                 </tr>
                 </tbody>
@@ -55,5 +55,3 @@
         </div>
     </div>
 </div>
-
-<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

@@ -36,6 +36,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-1 padding0 mid-arrow-r">
             <div class="dt-buttons btn-overlap btn-group">
                 <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="right_modal1_btn();">
@@ -51,6 +52,7 @@
                 </a>
             </div>
         </div>
+
         <div class="col-lg-6 padding0" id="content2">
             <table class="table wt-100">
                 <tbody>

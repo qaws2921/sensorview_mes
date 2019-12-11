@@ -3,17 +3,22 @@ var modal_grid_data=[];
 
 var main_data = {
     supp_check: 'A',
-};
+    check: 'I',
+    send_data: {},
+    send_data_post: {},
 
+};
 ////////////////////////////시작 함수/////////////////////////////////////
+
 function modal_start1() {
 
     modal_make1();
-    // datepickerInput_modal1();
-    jqGrid_modal1();
-    suppModal_start();
+    datepickerInput_modal1();
 
+    jqGrid_modal1();
     jqGridResize('#mes_modal_grid',$('#mes_modal_grid').closest('[class*="col-"]'));
+
+    suppModal_start();
 }
 
 
@@ -46,7 +51,7 @@ function modal_make1() {
     $("#addDialog").dialog({
         autoOpen:false,
         modal: true,
-        minWidth:900,
+        width: 1000,
         height: 'auto',
         resizable: false,
         buttons: [
@@ -89,7 +94,8 @@ function jqGrid_modal1() {
     });
 }
 
-// function datepickerInput_modal1() {
-//     datepicker_makes("#datepicker3", 0);
-// }
+function datepickerInput_modal1() {
+    datepicker_makes("#datepicker3", 0);
+
+}
 

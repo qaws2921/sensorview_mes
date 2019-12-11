@@ -3,8 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-var grid2_data=[];
 
 var main_data = {
     check: 'I',
@@ -18,9 +16,10 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
+
     datepickerInput();
 
-    modal_start1();
+    // modal_start1();
 
     jqgridPagerIcons();
 });
@@ -51,9 +50,8 @@ function under_get(rowid) {
 }
 
 function test_btn() {
-
     $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+    // jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -120,7 +118,5 @@ function jqGrid_main() {
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid2_pager',
-
     });
-
 }
