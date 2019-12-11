@@ -28,6 +28,9 @@ public class QmsImportRestController {
         return qmsImportService.qmsRecvSubGet(p, req);
     }
 
+    @RequestMapping(value ="/qmsRecvErrorManGet", method = RequestMethod.POST)
+    public RESTful qmsRecvErrorManGet(Page p,HttpServletRequest req) { return qmsImportService.qmsRecvErrorManGet(p, req); }
+
     @RequestMapping(value = "/qmsRecvSubAllGet", method = RequestMethod.POST)
     public List<QMS_RECV_SUB> qmsRecvSubAllGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvSubAllGet(p, req);
