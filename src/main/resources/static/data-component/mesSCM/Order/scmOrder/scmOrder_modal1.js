@@ -229,7 +229,8 @@ function jqGrid_modal1() {
             {name: 'spec', index: 'spec', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false, editable: true,
+            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,
+                editable: true,
                     editoptions: {
 
                         dataEvents: [
@@ -282,8 +283,6 @@ function jqGrid_modal1() {
         ],
         autowidth: true,
         height: 280,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
         cellEdit: true,
         cellsubmit: 'clientArray',
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지

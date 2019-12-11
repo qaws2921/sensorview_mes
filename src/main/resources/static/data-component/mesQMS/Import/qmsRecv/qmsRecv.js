@@ -10,7 +10,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    qcItem_list:[]
+    qcItem_list:[],
+    qcItem_list_string:[]
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -22,7 +23,7 @@ $(document).ready(function () {
     jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     datepickerInput();
 
-    modal_start1();
+
 
     jqgridPagerIcons();
 });
@@ -63,6 +64,11 @@ function test_btn() {
 function qmsQcItemAllGet() {
     ccn_ajax("/qmsQcItemAllGet", {keyword: 1,keyword2:1}).then(function (data) {
         main_data.qcItem_list = data;
+        main_data.qcItem_list_string=[];
+        data.forEach(function (d) {
+            main_data.qcItem_list_string.push(d.qc_code+":"+d.qc_name);
+        })
+        modal_start1();
     }).catch(function (err) {
         console.error(err); // Error 출력
     });
@@ -106,7 +112,7 @@ function jqGrid_main() {
             under_get(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-
+            update_btn(rowid);
         }
 
     });
@@ -124,7 +130,7 @@ function jqGrid_main() {
             {name: 'spec', index: 'spec', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'qty', index: 'qty', width: 60, sortable: false},
+            {name: 'in_qty', index: 'in_qty', width: 60, sortable: false},
         ],
         autowidth: true,
         viewrecords: true,

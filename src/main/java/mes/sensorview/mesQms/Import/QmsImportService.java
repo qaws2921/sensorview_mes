@@ -35,4 +35,9 @@ public class QmsImportService  extends ReturnFunction {
         List<QMS_RECV_SUB> rows =qmsImportMapper.qmsRecvErrorManGet(p);
         return getListData(rows , p);
     }
+
+    public List<QMS_RECV_SUB> qmsRecvSubAllGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvSubGet(p);
+    }
 }
