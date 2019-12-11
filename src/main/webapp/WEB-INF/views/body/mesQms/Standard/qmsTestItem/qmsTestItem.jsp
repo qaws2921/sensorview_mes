@@ -1,59 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="ui-component/googleChart/loader.js"></script>
-<script>
-    $(document).ready(function(){
-        ajaxData();
-    });
-    function ajaxData() {
-        var data = $.ajax({
-            type: "POST",
-            url: "/googleChartTest"
-        });
-        data.done(function(e) {
-            console.log(e);
-            console.log(Object.keys(e).length);
-            if(Object.keys(e).length == 0){
-                alert("데이터 없음");
-            }
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-                var data = new google.visualization.DataTable();
-                data.addColumn('datetime', '월');
-                data.addColumn('number', '불량률');
-                for(var i=0; i < Object.keys(e).length; i++){
-                    data.addRow([new Date(e[i].bloodPressureDate),parseInt(e[i].systolicPressure)]);
-                }
-
-                var data = google.visualization.arrayToDataTable([
-                    ['주차', '불량률'],
-                    ['1주차',  1000],
-                    ['2주차',  1170],
-                    ['3주차',  660],
-                    ['4주차',  1030]
-                ]);
-
-                var options = {
-                    title: '2019년 불량률 현황',
-                    hAxis: {titleTextStyle: {color: '#333'}},
-                    vAxis: {minValue: 0}
-                };
-
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-            }
-        });
-    }
-
-</script>
-
 <script type="text/javascript" src="/data-component/mesQMS/Standard/qmsTestItem/qmsTestItem.js" charset="UTF-8"></script>
-<body>
-<div id="chart_div" style="width: 100%; height: 500px;"></div>
-</body>
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">
