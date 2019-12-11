@@ -7,7 +7,7 @@
             <a href="#" class="navbar-brand top_a">
                 Manufacturing Execution System
             </a>
-            <a href="#" class="navbar-brand top_b">
+            <a href="http://tobesystem.co.kr/help_home?supp_code=S0001&idx=ADMIN" class="navbar-brand top_b">
                 Help Desk
             </a>
         </div>
