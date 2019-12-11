@@ -1,4 +1,4 @@
-package mes.sensorview.mesWms.inOut;
+package mes.sensorview.mesWms.InOut;
 
 public class WmsInOutRestController {
 }

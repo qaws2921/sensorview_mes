@@ -80,6 +80,20 @@ var array =
         {code:"qmsRecvErrorList", title:'품질관리',sub:'수입검사',name:'수입검사부적합현황'},
         {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
 
+
+
+        //출하관리
+        {code:"wmsInList", title:'출하관리',sub:'입/출고 관리',name:'입고현황'},
+        {code:"wmsOutOrder", title:'출하관리',sub:'입/출고 관리',name:'제품출고 지시'},
+        {code:"wmsOutList", title:'출하관리',sub:'입/출고 관리',name:'제품출고 현황'},
+        {code:"wmsOutReady", title:'출하관리',sub:'입/출고 관리',name:'제품 미출고 현황'},
+
+        {code:"wmsStock", title:'재고현황',sub:'재고관리',name:'재고현황'},
+        {code:"wmsStockIOSumDay", title:'제품 일원장',sub:'재고관리',name:'제품 일원장'},
+        {code:"wmsStockIOSumMonth", title:'제품 월원장',sub:'재고관리',name:'제품 월원장'},
+
+
+
     ];
 $(function () {
     wrapWindowByMask2();
