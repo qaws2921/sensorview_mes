@@ -107,9 +107,9 @@ function addupdate_btn() {
                     var index2 = 0;
                     jdata.forEach(function (j,i) {
                         if ($("#file_"+j.part_code).val() !== ""){
-                            formData.append("file_in_no"+(i-index),j.in_no);
+                            formData.append("file_in_no"+(i-index),add_data.in_no);
                             formData.append("file_part_code"+(i-index),j.part_code);
-                            formData.append("file"+i,$("#file_"+(i-index).part_code).files[0]);
+                            formData.append("file"+i,$("#file_"+j.part_code).prop("files")[0]);
                             index2++;
                         } else {
                             index++;
