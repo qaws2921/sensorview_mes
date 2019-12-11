@@ -5,7 +5,6 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.File.DTO.Files;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -15,14 +14,51 @@ import java.util.Random;
 
 @Slf4j
 public class FileUploadFunction {
+    public int checkFiles(List<MultipartFile> multipartFiles){
+        int i;
+        if(multipartFiles.size() == 0){
+            return 0;
+        } else {
+            for (i = 0; i < multipartFiles.size(); i++) {
+                if (i == 1) {
+                    return 1;
+                } else {
+                    return 2;
+                }
+            }
+        }
+        return 0;
+    }
+    public void setFile(MultipartHttpServletRequest multipartHttpServletRequest, String idx){
+        List<MultipartFile> multipartFiles = multipartHttpServletRequest.getFiles("files");
 
-    public Message Uploader(MultipartHttpServletRequest mtfRequest) {
-//        List<MultipartFile> mf = mtfRequest.getFiles("report");
+        for(int i=0; multipartFiles.size() > i;  i++){
 
+        }
+    }
+    /**
+     * 업로드 파일을 가지고 타입 설정
+     * */
+    public String selectFileType(MultipartHttpServletRequest mtfRequest){
         String idx = null;
+        if(mtfRequest.getFile("report").isEmpty()){
+            idx = "improving";
+        }else if(mtfRequest.getFile("improving").isEmpty()){
+            idx = "report";
+        }else {
+            idx = "etc";
+        }
+        return idx;
+    }
+
+    /**
+     * 업로드 부분
+     * */
+    public Message Uploader(MultipartHttpServletRequest mtfRequest) {
+        String idx = selectFileType(mtfRequest);
         Files file = UploadSetFilePath(mtfRequest,idx);
         try {
-            file.getFiles().transferTo(new File(file.getFileUrl()));
+            file.getFiles().transferTo(new File(file.getUpload_path()));
         } catch (IllegalStateException e) {
             e.printStackTrace();
             getMessage(1);
@@ -33,6 +69,9 @@ public class FileUploadFunction {
         return getMessage(0);
     }
 
+    /**
+     * 파일 이름 설정
+     * */
     private String MakeFileName(String idx){
         Date now = new Date();
         Random random = new Random();
@@ -53,6 +92,9 @@ public class FileUploadFunction {
         return FileName;
     }
 
+    /**
+     * 업로드 설정
+     * */
     private Files UploadSetFilePath(MultipartHttpServletRequest mtfRequest, String idx){
         Files files = new Files();
         String FileName = MakeFileName(idx);
@@ -61,33 +103,36 @@ public class FileUploadFunction {
         if(idx.equals("report"))
         {
             files.setFiles(mtfRequest.getFile(idx));
-            files.setFileVolume(files.getFiles().getSize() / 1024);
-            files.setOriginFileName(files.getFiles().getOriginalFilename());
-            files.setFileName(FileName);
-            files.setFileUrl("uploads/report" + FileName);
-            files.setUploadPath(mtfRequest.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
+            files.setFile_volume(files.getFiles().getSize() / 1024);
+            files.setFile_og_name(files.getFiles().getOriginalFilename());
+            files.setFile_name(FileName);
+            files.setUrl("uploads/report" + FileName);
+            files.setUpload_path(mtfRequest.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
         }
         else if(idx.equals("improving"))
         {
             files.setFiles(mtfRequest.getFile(idx));
-            files.setFileVolume(files.getFiles().getSize() / 1024);
-            files.setOriginFileName(files.getFiles().getOriginalFilename());
-            files.setFileName(FileName);
-            files.setFileUrl("uploads/improving" + FileName);
-            files.setUploadPath(mtfRequest.getSession().getServletContext().getRealPath("uploads/improving") + '/' + FileName);
+            files.setFile_volume(files.getFiles().getSize() / 1024);
+            files.setFile_og_name(files.getFiles().getOriginalFilename());
+            files.setFile_name(FileName);
+            files.setUrl("uploads/improving" + FileName);
+            files.setUpload_path(mtfRequest.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
         }
         else
         {
             files.setFiles(mtfRequest.getFile(idx));
-            files.setFileVolume(files.getFiles().getSize() / 1024);
-            files.setOriginFileName(files.getFiles().getOriginalFilename());
-            files.setFileName(FileName);
-            files.setFileUrl("uploads/etc" + FileName);
-            files.setUploadPath(mtfRequest.getSession().getServletContext().getRealPath("uploads/etc") + '/' + FileName);
+            files.setFile_volume(files.getFiles().getSize() / 1024);
+            files.setFile_og_name(files.getFiles().getOriginalFilename());
+            files.setFile_name(FileName);
+            files.setUrl("uploads/etc" + FileName);
+            files.setUpload_path(mtfRequest.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
         }
         return files;
     }
 
+    /**
+     * 메세지
+     * */
     private Message getMessage(int idx){
         Message msg = new Message();
         if(idx == 0){
