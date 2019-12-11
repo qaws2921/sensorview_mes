@@ -3,22 +3,17 @@ var modal_grid_data=[];
 
 var main_data = {
     supp_check: 'A',
-    check: 'I',
-    send_data: {},
-    send_data_post: {},
-
 };
-////////////////////////////시작 함수/////////////////////////////////////
 
+////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
 
     modal_make1();
-    datepickerInput_modal1();
-
     jqGrid_modal1();
-    jqGridResize('#mes_modal_grid',$('#mes_modal_grid').closest('[class*="col-"]'));
-
+    datepickerInput_modal1();
     suppModal_start();
+
+    jqGridResize('#mes_modal_grid',$('#mes_modal_grid').closest('[class*="col-"]'));
 }
 
 
@@ -49,10 +44,10 @@ function suppModal_bus(code, name) {
 
 function modal_make1() {
     $("#addDialog").dialog({
-        autoOpen:false,
         modal: true,
-        width: 1000,
+        width:'auto',
         height: 'auto',
+        autoOpen:false,
         resizable: false,
         buttons: [
             {
@@ -88,14 +83,13 @@ function jqGrid_modal1() {
         autowidth: true,
         height: 250,
         rowNum: 100,
-        pager: '#mes_modal_grid_pager',
+
         rowList: [100, 200, 300, 400],
-        viewrecords: true,
+
     });
 }
 
 function datepickerInput_modal1() {
     datepicker_makes("#datepicker3", 0);
-
 }
 

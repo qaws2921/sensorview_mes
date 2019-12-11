@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -66,6 +67,11 @@ public class VariousRestController {
     public List<PartType> sysPartTypeGet(Page p, HttpServletRequest req) {
         return variousService.sysPartTypeGet(p, req);
 
+    }
+
+    @RequestMapping(value = "/qmsQcItemAllGet", method = RequestMethod.POST)
+    public List<SYS_QC_ITEM> qmsQcItemAllGet(Page p, HttpServletRequest req) {
+        return variousService.qmsQcItemAllGet(p, req);
     }
 
 

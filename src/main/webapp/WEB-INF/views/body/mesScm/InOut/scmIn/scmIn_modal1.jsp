@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmIn/scmIn_modal1.js" charset="UTF-8"></script>
-<div id="scmIn-add-dialog" title="입고추가">
+<div id="scmIn-add-dialog" title="입고추가" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-5 padding0" id="content1">
             <table class="table wt-100">

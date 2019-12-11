@@ -41,7 +41,7 @@
                             <span>조회</span>
                         </span>
                     </a>
-                    <a class="dt-button buttons-collection btn btn-white btn-primary btn-mini btn-bold"
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
                        tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="test_btn()">
                         <span>
                             <i class="fa fa-plus bigger-110 blue"></i>
@@ -67,10 +67,8 @@
                 <div id="mes_grid2_pager"></div>
             </div>
         </div>
-
     </div>
 </div>
 
-
+<%@include file="qmsRecv_modal1.jsp"%>
 <%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
-<%--<%@include file="qmsRecv_modal1.jsp"%>--%>
