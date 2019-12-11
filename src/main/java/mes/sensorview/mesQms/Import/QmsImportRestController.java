@@ -43,10 +43,11 @@ public class QmsImportRestController {
             String in_no = req.getParameter("file_in_no"+i); // jsp text name mapping
             String part_code = req.getParameter("file_part_code"+i); // jsp text name mapping
             MultipartFile mf = mre.getFile("file"+i);
-
+            String original = mf.getOriginalFilename(); // 업로드하는 파일 name
             System.out.println(in_no);
             System.out.println(part_code);
             System.out.println(mf);
+            System.out.println(original);
 
         }
 
