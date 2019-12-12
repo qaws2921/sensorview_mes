@@ -18,7 +18,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    // modal_start1();
+    modal_start1();
     jqgridPagerIcons();
 });
 

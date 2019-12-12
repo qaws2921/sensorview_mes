@@ -99,6 +99,7 @@ var array =
         //생산관리
         {code:"popBcrForm", title:"생산관리",sub:"기준정보",name:"바코드양식"},
         {code:"popRoute", title:"생산관리",sub:"기준정보",name:"공정라우팅설정"},
+        {code:"popLineUser",title:"생산관리",sub:"기준정보",name:"공정별작업자관리"},
     ];
 $(function () {
     wrapWindowByMask2();
