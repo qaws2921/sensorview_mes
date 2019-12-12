@@ -16,7 +16,7 @@ function jqgridPagerIcons() {
 
 
 function formmatterDate(cellValue) { // 날짜 필터
-	   if (cellValue == null){
+	   if (cellValue == null || cellValue === ''){
 	       return '';
 	   } else {
 	    var y = cellValue.substring(0,4);
@@ -31,7 +31,7 @@ function formmatterDate(cellValue) { // 날짜 필터
 }
 
 function formmatterDate2(cellValue) { // 날짜 필터
-	if (cellValue == null){
+	if (cellValue == null || cellValue === ''){
 		return '';
 	} else {
 		var y = cellValue.substring(0,4);
@@ -87,9 +87,9 @@ function value_return(class_name) {
 		objectName = $(this).attr("name");
 		objectValue = $(this).val();
 		modal_objact[objectName] = objectValue;
-	});	
+	});
 		return modal_objact
-		
+
 }
 
 // 조회기간같은 날짜 선택값 리턴 받을때 받은 값이 '-'를 포함해서
@@ -123,7 +123,7 @@ function modal_edits(class_name,readonly,data) {
 
 function select_makes(tag,url,value,text) {
 	ccn_ajax(url,null).then(function (data) {
-		var option = null 
+		var option = null
 		for (var j = 0; j < data.length; j++) {
 			option = $("<option></option>").text(data[j][text]).val(data[j][value]);
 			$(tag).append(option);
@@ -131,7 +131,7 @@ function select_makes(tag,url,value,text) {
 		$(tag).select2();
 	}).catch(function (err) {
 		console.error(err); // Error 출력
-	});	
+	});
 }
 
 function select_data_makes(tag,url,value,text,data) {
@@ -225,12 +225,12 @@ function ccn_ajax(url,data){
 	        dataType: "json",
 	        data:data,
 	        success: function (data2) {
-	        	resolve(data2);       
+	        	resolve(data2);
 	        },
 	        error: function () {
 	        	reject(new Error("Request is failed"));
             }
-	    });	
+	    });
 	  });
 }
 function select_ajax(url,data){

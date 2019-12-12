@@ -82,4 +82,20 @@ public class QmsImportService  extends UploadFunction {
 
         return qmsImportMapper.qmsRecvFileAdd(qr);
     }
+
+    public RESTful qmsRecvMRBGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<QMS_RECV_SUB> rows = qmsImportMapper.qmsRecvMRBGet(p);
+        return getListData(rows , p);
+    }
+
+    public Message qmsRecvMRBAdd(HttpServletRequest req, QMS_RECV_SUB qrs) {
+        qrs.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvMRBAdd(qrs);
+    }
+
+    public Message qmsRecvMRBCancel(HttpServletRequest req, QMS_RECV_SUB qrs) {
+        qrs.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvMRBCancel(qrs);
+    }
 }
