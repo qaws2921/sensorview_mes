@@ -81,7 +81,9 @@ var array =
         {code:"qmsRecvErrorList", title:'품질관리',sub:'수입검사',name:'수입검사부적합현황'},
         {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
 
-
+        // 생산관리
+        {code:"popProdRange",title:'생산관리',sub:'생산현황',name:'기간별 생산실적'},
+        {code:"popProdList1",title:'생산관리',sub:'생산현황',name:'제품별 생산실적'},
 
         //출하관리
         {code:"wmsInList", title:'출하관리',sub:'입/출고 관리',name:'입고현황'},
@@ -96,6 +98,8 @@ var array =
 
         //생산관리
         {code:"popBcrForm", title:"생산관리",sub:"기준정보",name:"바코드양식"},
+        {code:"popRoute", title:"생산관리",sub:"기준정보",name:"공정라우팅설정"},
+        {code:"popLineUser",title:"생산관리",sub:"기준정보",name:"공정별작업자관리"},
     ];
 $(function () {
     wrapWindowByMask2();

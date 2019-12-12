@@ -1,27 +1,27 @@
 /**
- * various.js 와 연동
- */
+     * various.js 와 연동
+     */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[{a:'20191101',b:'압출',c:'압출1호기',d:'노즐확인',e:'Y',f:'양호',g:'비고',h:'관리자',i:'20191211111111'}];
+    var grid_data=[{a:'20191101',b:'압출',c:'압출1호기',d:'노즐확인',e:'Y',f:'양호',g:'비고',h:'관리자',i:'20191211111111'}];
 
-var main_data = {
-    check: 'I',
-    send_data: {},
-    send_data_post: {},
-    readonly: ['']
-};
+    var main_data = {
+        check: 'I',
+        send_data: {},
+        send_data_post: {},
+        readonly: ['']
+    };
 
 
 ////////////////////////////시작 함수//////////////////////////////////
 
-$(document).ready(function () {
-    selectBox();
-    jqGrid_main();
-    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    datepickerInput();
-    modal_start1();
-    jqgridPagerIcons();
+    $(document).ready(function () {
+        selectBox();
+        jqGrid_main();
+        jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+        datepickerInput();
+        modal_start1();
+        jqgridPagerIcons();
 
 
 });
