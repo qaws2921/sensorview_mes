@@ -17,8 +17,5 @@ public class PopController {
     public String popProdPlan(){
         return "mesPop/Pop/popProdPlan/popProdPlan";
     }
-    @RequestMapping("popProdPlanManual")
-    public String popProdPlanManual(){
-        return "mesPop/Pop/popProdPlanManual/popProdPlanManual";
-    }
+
 }
