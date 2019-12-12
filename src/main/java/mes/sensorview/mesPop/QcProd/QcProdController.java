@@ -9,10 +9,10 @@ public class QcProdController {
     public String qmsProd(){
         return "mesPop/QcProd/qmsProd/qmsProd";
     }
-    @RequestMapping("/qmsProdErrorList")
-    public String qmsProdErrorList(){
-        return "mesPop/QcProd/qmsProdErrorList/qmsProdErrorList";
-    }
+//    @RequestMapping("/qmsProdErrorList")
+//    public String qmsProdErrorList(){
+//        return "mesPop/QcProd/qmsProdErrorList/qmsProdErrorList";
+//    }
     @RequestMapping("/qmsProdHistory")
     public String qmsProdHistory(){
         return "mesPop/QcProd/qmsProdHistory/qmsProdHistory";
