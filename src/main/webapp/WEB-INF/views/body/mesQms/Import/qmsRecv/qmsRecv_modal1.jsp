@@ -21,7 +21,7 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value"
-                                   id="supp_name_modal" onclick="supp_btn('B');" readonly>
+                                   id="supp_name_modal"  readonly>
                             <input type="hidden" name="supp_code" class="form-control h-25 modal_value"
                                    id="supp_code_modal">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>

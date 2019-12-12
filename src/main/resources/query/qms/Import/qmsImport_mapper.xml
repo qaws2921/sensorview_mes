@@ -11,4 +11,7 @@
     <select id="qmsRecvErrorManGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
             EXEC SP_QMS_RECV_NG_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date},#{keyword}
     </select>
+    <select id="qmsRecvAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_RECV_INSP_ADD #{site_code},#{user_code},#{in_no}, #{keyword}
+    </select>
 </mapper>

@@ -30,9 +30,11 @@ public class QMS_RECV_SUB {
     private int rownum;
     private int rownum_page;
     private int rec_count;
+    private String keyword;
 
     private String update_date;
     private String user_name;
+    private String user_code;
     private String code_name1;
     private String qc_result_name;
     private String ng_type_name;
