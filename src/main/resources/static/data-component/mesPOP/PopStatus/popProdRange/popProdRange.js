@@ -1,27 +1,27 @@
 /**
-     * various.js 와 연동
-     */
+ * various.js 와 연동
+ */
 
 ////////////////////////////데이터/////////////////////////////////////
-    var grid_data=[{a:'20191101',b:'압출',c:'압출1호기',d:'노즐확인',e:'Y',f:'양호',g:'비고',h:'관리자',i:'20191211111111'}];
+var grid_data=[{a:'20191101',b:'A공정',c:'part0001',d:'DT00150',e:'DTA001501',f:'SMALL',g:'10',h:'관리자',i:'20191211111111'}];
 
-    var main_data = {
-        check: 'I',
-        send_data: {},
-        send_data_post: {},
-        readonly: ['']
-    };
+var main_data = {
+    check: 'I',
+    send_data: {},
+    send_data_post: {},
+    readonly: ['']
+};
 
 
 ////////////////////////////시작 함수//////////////////////////////////
 
-    $(document).ready(function () {
-        selectBox();
-        jqGrid_main();
-        jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-        datepickerInput();
-        modal_start1();
-        jqgridPagerIcons();
+$(document).ready(function () {
+    selectBox();
+    jqGrid_main();
+    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    datepickerInput();
+    modal_start1();
+    jqgridPagerIcons();
 
 
 });
@@ -46,12 +46,19 @@ function selectBox() {
     $('#tpm_select').select2();
 }
 
+
+
+
+
+
+
+
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         data:grid_data,
         // mtype: 'POST',
-        colNames: ['점검예정일', '라인', '설비','점검항목', '점검유무', '점검결과','조치사항','등록자','점검일시'],
+        colNames: ['생산일자', '공정', '품목그룹','품번', '품명', '규격','생산수량'],
         colModel: [
             {name: 'a', index: 'a', key: true, sortable: false, width: 60, formatter:formmatterDate2},
             {name: 'b', index: 'b', sortable: false, width: 60},
@@ -59,11 +66,9 @@ function jqGrid_main() {
             {name: 'd', index: 'd', sortable: false, width: 60},
             {name: 'e', index: 'e', sortable: false, width: 60},
             {name: 'f', index: 'f', sortable: false, width: 60},
-            {name: 'g', index: 'g', sortable: false, width: 60},
-            {name: 'h', index: 'h', sortable: false, width: 60},
-            {name: 'i', index: 'i', width: 60, sortable: false, formatter: formmatterDate,},
+            {name: 'g', index: 'g', sortable: false, width: 60}
         ],
-        caption: "예방점검관리 | MES",
+        caption: "기간별 생산실적 | MES",
         autowidth: true,
         height: 550,
         pager: '#mes_grid_pager',
