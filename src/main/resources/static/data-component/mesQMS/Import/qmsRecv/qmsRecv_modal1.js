@@ -107,6 +107,7 @@ function addupdate_btn() {
                                 $.ajax({
                                     type: "POST",
                                     enctype: 'multipart/form-data',
+                                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                                     url: "/test_file",
                                     data: formData,
                                     processData: false,
@@ -354,9 +355,17 @@ function jqGrid_modal1() {
 
     });
 }
-
+function file_change(e) {
+    if ( $(e).val() !== ''){
+        $(e).closest("div").children(".file_labal").text("완료");
+    }
+}
 
 
 function filebox(cellvalue, options, rowObject) {
-    return "<input type='file' id='file_"+rowObject.part_code+"' style='font-size: 9px; width:100%' />";
+    return "" +
+        "<div class='filebox'>"+
+        "<label class='file_labal' for='file_"+rowObject.part_code+"'>업로드</label>"+
+        "<input type='file' id='file_"+rowObject.part_code+"' style='font-size: 9px; width:100%' onchange='file_change(this);' />" +
+        "</div>";
 }
