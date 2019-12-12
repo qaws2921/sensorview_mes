@@ -17,9 +17,9 @@ public class QcProdController {
     public String popProdHistory(){
         return "mesPop/QcProd/popProdHistory/popProdHistory";
     }
-    @RequestMapping("/popProdList")
-    public String popProdList(){
-        return "mesPop/QcProd/popProdList/popProdList";
+    @RequestMapping("/popQcProdList")
+    public String popQcProdList(){
+        return "mesPop/QcProd/popQcProdList/popQcProdList";
     }
     @RequestMapping("/popProdSPC")
     public String popProdSPC(){
