@@ -39,9 +39,9 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">MRB</td>
                     <td class="wt-px-200">
-                        <select id='result_select' class="form-control h-25">
-                            <option>전체</option>
-                            <option>Y</option>
+                        <select id='result_select' name="keyword2" class="form-control h-25 condition_main">
+                            <option value="">전체</option>
+                            <option value="Y">Y</option>
                         </select>
                     </td>
                     <td></td>
@@ -60,13 +60,13 @@
                         </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn();">
                         <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>MRB 처리</span>
                         </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="cancel_btn();">
                         <span><i class="fa fa-times bigger-110 blue"></i>
                             <span>MRB 취소</span>
                         </span>

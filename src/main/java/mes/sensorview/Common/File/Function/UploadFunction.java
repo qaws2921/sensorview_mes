@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.FileUploadService;
+import mes.sensorview.Common.Function.ReturnFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
-public class UploadFunction {
+public class UploadFunction extends ReturnFunction {
     @Autowired
     FileUploadService fileUploadService;
 
@@ -39,7 +40,7 @@ public class UploadFunction {
         }
     }
 
-    public Message setOneFile(Files files, HttpServletRequest req){
+    public Files setOneFile(Files files, HttpServletRequest req){
         Message msg = new Message();
         Files newFile = UploadSetFilePath(files.getFiles(),req);
 
@@ -51,7 +52,7 @@ public class UploadFunction {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return msg;
+        return newFile;
     }
 
     private Files UploadSetFilePath(MultipartFile multipartFile, HttpServletRequest req){
@@ -72,7 +73,7 @@ public class UploadFunction {
     private String MakeFileName(String idx){
         Date now = new Date();
         Random random = new Random();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String FileName = (char)((Math.random() * 26) + 65) + format.format(now) + random.nextInt(10);
         return FileName;
     }

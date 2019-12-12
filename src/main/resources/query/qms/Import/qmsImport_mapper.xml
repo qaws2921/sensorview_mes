@@ -3,7 +3,7 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesQms.Import.QmsImportMapper">
     <select id="qmsRecvGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV">
-            EXEC [SP_QMS_PROD_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} ,'0' ,''
+            EXEC [SP_QMS_RECV_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} ,'0' ,''
     </select>
     <select id="qmsRecvSubGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
             EXEC [SP_QMS_RECV_SUB_GET] #{site_code}, #{page}, #{rows}, #{keyword}
@@ -13,5 +13,17 @@
     </select>
     <select id="qmsRecvAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_QMS_RECV_INSP_ADD #{site_code},#{user_code},#{in_no}, #{keyword}
+    </select>
+    <select id="qmsRecvFileAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_RECV_INSP_FILE1_ADD #{site_code}, #{keyword}
+    </select>
+    <select id="qmsRecvMRBGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
+            EXEC [SP_QMS_RECV_MRB_GET] #{site_code}, #{page}, #{rows},#{start_date},#{end_date}, #{keyword},#{keyword2}
+    </select>
+    <select id="qmsRecvMRBAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_RECV_MRB_ADD #{site_code}, #{keyword}
+    </select>
+    <select id="qmsRecvMRBCancel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_RECV_MRB_CANCEL #{site_code}, #{keyword}
     </select>
 </mapper>
