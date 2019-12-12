@@ -1,13 +1,18 @@
 package mes.sensorview.Common.File;
 
-import mes.sensorview.Common.DataTransferObject.Message;
-import mes.sensorview.Common.File.Function.FileUploadFunction;
+import mes.sensorview.Common.File.DTO.Files;
+import mes.sensorview.Mapper.File.FileMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class FileUploadService extends FileUploadFunction {
-    public Message uploadFiles(MultipartHttpServletRequest mtfRequest){
-        return Uploader(mtfRequest);
+public class FileUploadService{
+    @Autowired
+    private FileMapper fileMapper;
+
+    public void setOneFile(Files files, HttpServletRequest req) {
+        fileMapper.setOneFile(files);
     }
 }

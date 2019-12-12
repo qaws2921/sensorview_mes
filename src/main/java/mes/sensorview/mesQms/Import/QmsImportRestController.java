@@ -1,7 +1,10 @@
 package mes.sensorview.mesQms.Import;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.File.DTO.Files;
+import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-public class QmsImportRestController {
+@Slf4j
+public class QmsImportRestController extends UploadFunction {
 
     @Autowired
     private QmsImportService qmsImportService;
@@ -37,21 +41,15 @@ public class QmsImportRestController {
     }
 
     @RequestMapping(value = "/test_file", method = RequestMethod.POST)
-    public String test_file(MultipartHttpServletRequest mre, HttpServletRequest req) {
+    public String test_file(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
         int index = Integer.parseInt(req.getParameter("index"));
+        Files files = new Files();
         for (int i = 0 ; i <index;i++){
-            String in_no = req.getParameter("file_in_no"+i); // jsp text name mapping
-            String part_code = req.getParameter("file_part_code"+i); // jsp text name mapping
-            MultipartFile mf = mre.getFile("file"+i);
-            String original = mf.getOriginalFilename(); // 업로드하는 파일 name
-            System.out.println(in_no);
-            System.out.println(part_code);
-            System.out.println(mf);
-            System.out.println(original);
-
+            files.setKey1(multipartHttpServletRequest.getParameter("file_in_no"+i));
+            files.setKey2(multipartHttpServletRequest.getParameter("file_part_code"+i));
+            files.setFiles(multipartHttpServletRequest.getFile("file"+i));
+            setOneFile(files,req);
         }
-
-
         return "성공";
     }
 }
