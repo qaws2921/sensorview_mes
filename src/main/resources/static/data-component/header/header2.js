@@ -96,7 +96,8 @@ var array =
         {code:"wmsStockIOSumMonth", title:'제품 월원장',sub:'재고관리',name:'제품 월원장'},
 
 
-
+        //생산관리
+        {code:"popBcrForm", title:"생산관리",sub:"기준정보",name:"바코드양식"},
     ];
 $(function () {
     wrapWindowByMask2();
