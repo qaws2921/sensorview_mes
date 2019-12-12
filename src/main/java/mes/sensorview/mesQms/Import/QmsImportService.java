@@ -1,5 +1,6 @@
 package mes.sensorview.mesQms.Import;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
@@ -39,5 +40,11 @@ public class QmsImportService  extends ReturnFunction {
     public List<QMS_RECV_SUB> qmsRecvSubAllGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return qmsImportMapper.qmsRecvSubGet(p);
+    }
+
+    public Message qmsRecvAdd(HttpServletRequest req, QMS_RECV_SUB qrs) {
+        qrs.setSite_code(getSessionData(req).getSite_code());
+        qrs.setUser_code(getSessionData(req).getUser_code());
+        return qmsImportMapper.qmsRecvAdd(qrs);
     }
 }
