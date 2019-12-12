@@ -9,9 +9,9 @@ public class PopController {
     public String popPlan(){
         return "mesPop/Pop/popPlan/popPlan";
     }
-    @RequestMapping("popProdList")
-    public String popProdList(){
-        return "mesPop/Pop/popProdList/popProdList";
+    @RequestMapping("popProdPlanManual")
+    public String popProdPlanManual(){
+        return "mesPop/Pop/popProdPlanManual/popProdPlanManual";
     }
     @RequestMapping("popProdPlan")
     public String popProdPlan(){
