@@ -13,4 +13,7 @@ public class PopStandardController {
     public String popLineUser(){
         return "mesPop/Standard/popLineUser/popLineUser";
     }
+
+    @RequestMapping("/popBcrForm")
+    public String popBcrForm() { return "mesPop/Standard/popBcrForm/popBcrForm"; }
 }
