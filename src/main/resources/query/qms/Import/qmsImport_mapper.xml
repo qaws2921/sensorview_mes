@@ -14,4 +14,7 @@
     <select id="qmsRecvAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_QMS_RECV_INSP_ADD #{site_code},#{user_code},#{in_no}, #{keyword}
     </select>
+    <select id="qmsRecvFileAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_RECV_INSP_FILE1_ADD #{site_code}, #{keyword}
+    </select>
 </mapper>

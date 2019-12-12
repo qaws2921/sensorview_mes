@@ -108,7 +108,7 @@ function addupdate_btn() {
                                     type: "POST",
                                     enctype: 'multipart/form-data',
                                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                                    url: "/test_file",
+                                    url: "/qmsRecvFileAdd",
                                     data: formData,
                                     processData: false,
                                     contentType: false,
