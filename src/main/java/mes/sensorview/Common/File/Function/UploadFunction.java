@@ -42,6 +42,7 @@ public class UploadFunction {
     public Message setOneFile(Files files, HttpServletRequest req){
         Message msg = new Message();
         Files newFile = UploadSetFilePath(files.getFiles(),req);
+
         try {
             newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
             msg = fileUploadService.setOneFile(newFile, req);

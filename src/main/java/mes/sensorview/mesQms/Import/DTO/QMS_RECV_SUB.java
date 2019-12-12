@@ -14,9 +14,9 @@ public class QMS_RECV_SUB {
     private String ng_type;
     private String ng_name;
     private String act_type;
-    private int file1;
-    private int file2;
-    private int file3;
+    private String file1;
+    private String file2;
+    private String file3;
     private String mrb;
     private String part_grp_name;
     private String part_name;
