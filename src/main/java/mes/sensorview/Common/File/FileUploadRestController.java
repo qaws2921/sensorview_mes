@@ -19,10 +19,10 @@ public class FileUploadRestController {
     @Autowired
     private FileUploadService fileUploadService;
 
-    @RequestMapping(value = "/uploadFiles" , method = RequestMethod.POST)
-    public Message uploadFiles(MultipartHttpServletRequest mtfRequest){
-        return fileUploadService.uploadFiles(mtfRequest);
-    }
+//    @RequestMapping(value = "/uploadFiles" , method = RequestMethod.POST)
+//    public Message uploadFiles(MultipartHttpServletRequest mtfRequest){
+//        return fileUploadService.uploadFiles(mtfRequest);
+//    }
 
     @RequestMapping(value = "/googleChartTest", method = RequestMethod.POST)
     public Map<String, Double> googleChartTest(){

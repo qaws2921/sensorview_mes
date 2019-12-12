@@ -1,9 +1,4 @@
 ////////////////////////////데이터////////////////////////////////////////
-var modal_grid_data=[];
-
-var main_data = {
-    supp_check: 'A',
-};
 
 var lastsel;
 var saverow = 0;
@@ -15,8 +10,6 @@ function modal_start1() {
 
     modal_make1();
     jqGrid_modal1();
-    datepickerInput_modal1();
-    suppModal_start();
 
     jqGridResize('#mes_modal_grid',$('#mes_modal_grid').closest('[class*="col-"]'));
 }
@@ -31,18 +24,6 @@ function supp_btn(what) {
     $("#SuppSearchGrid").jqGrid('clearGridData');
     $("#supp-search-dialog").dialog('open');
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
-}
-
-function suppModal_bus(code, name) {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    } else if (main_data.supp_check === 'B') {
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-
 }
 
 
@@ -83,9 +64,17 @@ function addupdate_btn() {
         jdata.forEach(function (data, j) {
             if (data.qc_qty !== ''
                 && data.ng_qty !==''
-                && data.ng_type !==''
             ) {
-                list.push(data.part_code + gu4 + data.in_qty+ gu4 + data.qc_qty+ gu4 + data.ng_qty + gu4 + data.qc_result+ gu4 + data.ng_type + gu4 + data.ng_name+ gu4 + data.act_type);
+                if (data.qc_result === '2'){
+                    if (data.ng_type !=='' && data.ng_name !== ''){
+                        list.push(data.part_code + gu4 + data.qc_qty+ gu4 + data.ng_qty + gu4 + data.qc_result+ gu4 + data.ng_type + gu4 + data.ng_name+ gu4 + data.act_type);
+                    } else {
+                        list2.push(data.part_code);
+                    }
+                }else {
+                    list.push(data.part_code + gu4 + data.qc_qty+ gu4 + data.ng_qty + gu4 + data.qc_result+ gu4 + data.ng_type + gu4 + data.ng_name+ gu4 + data.act_type);
+                }
+
             } else {
                 list2.push(data.part_code);
             }
@@ -97,80 +86,64 @@ function addupdate_btn() {
                 if (confirm('저장하겠습니까?')) {
                     wrapWindowByMask2();
                     add_data.keyword = list.join(gu5);
-                    console.log(add_data);
-
-
-                    var formData = new FormData();
-
-
-                    var index = 0;
-                    var index2 = 0;
-                    jdata.forEach(function (j,i) {
-                        if ($("#file_"+j.part_code).val() !== ""){
-                            formData.append("file_in_no"+(i-index),add_data.in_no);
-                            formData.append("file_part_code"+(i-index),j.part_code);
-                            formData.append("file"+i,$("#file_"+j.part_code).prop("files")[0]);
-                            index2++;
-                        } else {
-                            index++;
-                        }
-                    });
-
-                    callback(function () {
-                        formData.append("index",index2);
-                        $.ajax({
-                            type: "POST",
-                            enctype: 'multipart/form-data',
-                            url: "/test_file",
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            success: function (data) {
-                                console.log("SUCCESS : ", data);
-                            },
-                            error: function (e) {
-                                console.log("ERROR : ", e);
+                    ccn_ajax("/qmsRecvAdd", add_data).then(function (data) {
+                        var formData = new FormData();
+                        var index = 0;
+                        var index2 = 0;
+                        jdata.forEach(function (j,i) {
+                            if ($("#file_"+j.part_code).val() !== ""){
+                                formData.append("file_in_no"+(i-index),add_data.in_no);
+                                formData.append("file_part_code"+(i-index),j.part_code);
+                                formData.append("file"+i,$("#file_"+j.part_code).prop("files")[0]);
+                                index2++;
+                            } else {
+                                index++;
                             }
-
                         });
 
-                        closeWindowByMask();
-                    })
+                        callback(function () {
+                            formData.append("index",index2);
+                            if (index2 !== 0) {
+                                $.ajax({
+                                    type: "POST",
+                                    enctype: 'multipart/form-data',
+                                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                                    url: "/test_file",
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
+                                    cache: false,
+                                    success: function (data) {
 
+                                        get_btn(1);
+                                        $("#addDialog").dialog('close');
+                                        closeWindowByMask();
+                                    },
+                                    error: function (e) {
+                                        closeWindowByMask();
+                                        console.log("ERROR : ", e);
+                                    }
+                                });
+                            }else {
+                                get_btn(1);
+                                $("#addDialog").dialog('close');
+                                closeWindowByMask();
+                            }
+                            console.log(2);
 
+                        })
 
-                    // ccn_ajax("/scmOrderAdd", add_data).then(function (data) {
-                    //     if (data.result === 'NG') {
-                    //         alert(data.message);
-                    //     } else {
-                    //         if (main_data.check === "I") {
-                    //             get_btn(1);
-                    //         } else {
-                    //             get_btn_post($("#mes_grid").getGridParam('page'));
-                    //         }
-                    //     }
-                    //     $('#mes_grid2').jqGrid('clearGridData');
-                    //     closeWindowByMask();
-                    //     $("#addDialog").dialog('close');
-                    // }).catch(function (err) {
-                    //     closeWindowByMask();
-                    //     alert("저장실패");
-                    // });
+                    }).catch(function (err) {
+                             closeWindowByMask();
+                             alert("저장실패");
+                    });
+
                 }
             }
         })
     } else {
-        alert("저장 목록을 넣어주세요");
+        alert("저장 목록이 없습니다.");
     }
-
-
-
-
-    // console.log($("#file_prtcode01").val());
-    // if ($("#file_prtcode01").val() === ""){
-    //     alert("Sss");
-    // }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -286,7 +259,7 @@ function jqGrid_modal1() {
                 formatter : 'select',                                 // SELECT 포매터
                 edittype:'select',                                    // EDIT타입 : SELECT
                 editoptions: {
-                    value: main_data.qcItem_list_string.join(";"),             // EDIT옵션(SELECT, INPUT, CHECKBOX등 옵션 상이함)
+                    value: ":선택안함;"+main_data.qcItem_list_string.join(";"),             // EDIT옵션(SELECT, INPUT, CHECKBOX등 옵션 상이함)
                     dataEvents: [{
                         type: 'change',
                         fn: function (e) {                // 값 : this.value || e.target.val()
@@ -382,12 +355,17 @@ function jqGrid_modal1() {
 
     });
 }
-
-function datepickerInput_modal1() {
-    datepicker_makes("#datepicker3", 0);
+function file_change(e) {
+    if ( $(e).val() !== ''){
+        $(e).closest("div").children(".file_labal").text("완료");
+    }
 }
 
 
 function filebox(cellvalue, options, rowObject) {
-    return "<input type='file' id='file_"+rowObject.part_code+"' style='font-size: 9px; width:100%' />";
+    return "" +
+        "<div class='filebox'>"+
+        "<label class='file_labal' for='file_"+rowObject.part_code+"'>업로드</label>"+
+        "<input type='file' id='file_"+rowObject.part_code+"' style='font-size: 9px; width:100%' onchange='file_change(this);' />" +
+        "</div>";
 }

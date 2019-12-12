@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.File.FileMapper">
+    <select id="setOneFile" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_FILE_ADD #{site_code}, #{user_code}, #{key_value}, #{file_name},
+        #{file_og_name}, #{file_size}, #{file_volume}, #{upload_path}, #{url}
+    </select>
+</mapper>
+
+

@@ -20,9 +20,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="(주)투비시스템">
     <meta property="og:description" content="MES 시스템 구축 전문기업 (주)투비시스템">
-
-    <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link rel="shortcut icon" href="/ui-component/imagesNew/icon/icon2.png">
     <link rel="stylesheet" href="/ui-component/assets/css/bootstrap.min.css" />

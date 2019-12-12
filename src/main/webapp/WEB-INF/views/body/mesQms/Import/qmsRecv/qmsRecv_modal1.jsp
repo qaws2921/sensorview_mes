@@ -1,5 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesQMS/Import/qmsRecv/qmsRecv_modal1.js" charset="UTF-8"></script>
+<style>
+    .filebox label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #fff;
+        font-size: 6pt;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #337ab7;
+        cursor: pointer;
+        border: 1px solid #2e6da4;
+        border-radius: .25em;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+    }
+
+    .filebox label:hover {
+        background-color: #2e6da4;
+    }
+
+    .filebox label:active {
+        background-color:#2e6da4;
+    }
+
+    .filebox input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+</style>
+
 <div id="addDialog" title="수입검사등록" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0" id="content1">
@@ -21,7 +57,7 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value"
-                                   id="supp_name_modal" onclick="supp_btn('B');" readonly>
+                                   id="supp_name_modal"  readonly>
                             <input type="hidden" name="supp_code" class="form-control h-25 modal_value"
                                    id="supp_code_modal">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
