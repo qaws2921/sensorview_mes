@@ -5,20 +5,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class QcCheckController {
-    @RequestMapping("qmsCheck")
-    public String qmsCheck(){
-        return "mesPop/QcCheck/qmsCheck/qmsCheck";
+    @RequestMapping("popCheck")
+    public String popCheck(){
+        return "mesPop/QcCheck/popCheck/popCheck";
     }
-    @RequestMapping("qmsCheckItem")
-    public String qmsCheckItem(){
-        return "mesPop/QcCheck/qmsCheckItem/qmsCheckItem";
+    @RequestMapping("popCheckItem")
+    public String popCheckItem(){
+        return "mesPop/QcCheck/popCheckItem/popCheckItem";
     }
-    @RequestMapping("qmsCheckList")
-    public String qmsCheckList(){
-        return "mesPop/QcCheck/qmsCheckList/qmsCheckList";
+    @RequestMapping("popCheckList")
+    public String popCheckList(){
+        return "mesPop/QcCheck/popCheckList/popCheckList";
     }
-    @RequestMapping("qmsCheckStd")
-    public String qmsCheckStd(){
-        return "mesPop/QcCheck/qmsCheckStd/qmsCheckStd";
+    @RequestMapping("popCheckStd")
+    public String popCheckStd(){
+        return "mesPop/QcCheck/popCheckStd/popCheckStd";
     }
 }

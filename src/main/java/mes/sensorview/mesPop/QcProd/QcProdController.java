@@ -5,28 +5,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class QcProdController {
-    @RequestMapping("/qmsProd")
-    public String qmsProd(){
-        return "mesPop/QcProd/qmsProd/qmsProd";
+    @RequestMapping("/popProd")
+    public String popProd(){
+        return "mesPop/QcProd/popProd/popProd";
     }
-//    @RequestMapping("/qmsProdErrorList")
-//    public String qmsProdErrorList(){
-//        return "mesPop/QcProd/qmsProdErrorList/qmsProdErrorList";
-//    }
-    @RequestMapping("/qmsProdHistory")
-    public String qmsProdHistory(){
-        return "mesPop/QcProd/qmsProdHistory/qmsProdHistory";
+    @RequestMapping("/popProdErrorList")
+    public String popProdErrorList(){
+        return "mesPop/QcProd/popProdErrorList/popProdErrorList";
     }
-    @RequestMapping("/qmsProdList")
-    public String qmsProdList(){
-        return "mesPop/QcProd/qmsProdList/qmsProdList";
+    @RequestMapping("/popProdHistory")
+    public String popProdHistory(){
+        return "mesPop/QcProd/popProdHistory/popProdHistory";
     }
-    @RequestMapping("/qmsProdSPC")
-    public String qmsProdSPC(){
-        return "mesPop/QcProd/qmsProdSPC/qmsProdSPC";
+    @RequestMapping("/popProdList")
+    public String popProdList(){
+        return "mesPop/QcProd/popProdList/popProdList";
     }
-    @RequestMapping("/qmsProdStd")
-    public String qmsProdStd(){
-        return "mesPop/QcProd/qmsProdStd/qmsProdStd";
+    @RequestMapping("/popProdSPC")
+    public String popProdSPC(){
+        return "mesPop/QcProd/popProdSPC/popProdSPC";
+    }
+    @RequestMapping("/popProdStd")
+    public String popProdStd(){
+        return "mesPop/QcProd/popProdStd/popProdStd";
     }
 }
