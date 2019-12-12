@@ -43,5 +43,6 @@
 
 
 <%@include file="popTerminal_modal1.jsp" %>
+<%@include file="popTerminal_modal2.jsp" %>
 
 

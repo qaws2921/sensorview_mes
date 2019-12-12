@@ -3,7 +3,7 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[{a:'1',b:'',c:'',d:'',e:'',f:'',g:'',h:'',i:'1'}];
+var grid_data2=[{a:'1',b:'',c:'',d:'',e:'',f:'',g:'',h:'2019111111010101',i:'1'}];
 
 var main_data = {
     check: 'I',
@@ -19,6 +19,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     modal_start1();
+    modal_start2();
     jqgridPagerIcons();
 });
 
@@ -29,19 +30,27 @@ function add_btn() {
     $("#addDialog").dialog('open');
 }
 
+function sub_add_btn() {
+    main_data.check = 'I';
+    $("#addDialog2").dialog('open');
+    jqGridResize2('#mes_modal_grid', $('#mes_modal_grid').closest('[class*="col-"]'));
+
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
-// function subBtn(cellvalue, options, rowObject) {
-//     return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="modal2_modal_open()">\n' +
-//         '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
-//         '                            <span>등록</span>\n' +
-//         '                            </span>\n' +
-//         '                    </a>';
-// }
+function subBtn(cellvalue, options, rowObject) {
+    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="sub_add_btn()">\n' +
+        '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
+        '                            <span>등록</span>\n' +
+        '                            </span>\n' +
+        '                    </a>';
+}
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data:grid_data,
+
         datatype: "local",
+        data:grid_data2,
         // mtype: 'POST',
         colNames: ['단말기코드','단말기명','컴퓨터명','화면X','화면Y','바코드양식','등록자','등록일시','세부항목'],
         colModel: [
@@ -53,7 +62,7 @@ function jqGrid_main() {
             {name: 'f', index: 'f', sortable: false, width: 60},
             {name: 'g', index: 'g', sortable: false, width: 60},
             {name: 'h', index: 'h', width: 60, sortable: false, formatter: formmatterDate,},
-            {name: 'i', index: 'i', sortable: false,width: 60},
+            {name: 'i', index: 'i', sortable: false, formatter: subBtn,width: 60},
         ],
         caption: "공정마스터관리 | MES",
         autowidth: true,
