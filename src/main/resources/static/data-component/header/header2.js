@@ -101,7 +101,7 @@ var array =
         {code:"popRoute", title:"생산관리",sub:"기준정보",name:"공정라우팅설정"},
         {code:"popLineUser",title:"생산관리",sub:"기준정보",name:"공정별작업자관리"},
 
-        {code:"popProdPlan",title:"생산관리",sub:}
+        {code:"popProdPlan",title:"생산관리",sub:"생산관리",name:"작업지시관리"},
 
 
         {code:"popPC",title:"생산관리",sub:"디바이스관리",name:"컴퓨터관리"},
