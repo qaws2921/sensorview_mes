@@ -18,7 +18,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    modal_start1();
+    // modal_start1();
     jqgridPagerIcons();
 });
 
@@ -37,15 +37,20 @@ function jqGrid_main() {
         datatype: "local",
         data:grid_data,
         // mtype: 'POST',
-        colNames: ['양식코드', '양식명', '비고','등록자','등록일'],
+        colNames: ['라우팅코드', '라우팅명', '공정1','공정2','공정3','공정4','공정5','비고','등록자','등록일'],
         colModel: [
             {name: '', index: '', key: true, sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
+            {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', width: 60, sortable: false, formatter: formmatterDate,},
         ],
-        caption: "바코드양식 | MES",
+        caption: "공정라우팅 | MES",
         autowidth: true,
         height: 550,
         pager: '#mes_grid_pager',

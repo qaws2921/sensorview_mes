@@ -5,7 +5,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">양식코드</div>
             <div class="profile-info-value">
-                <input type="text" name="auth_code" class="form-control modal_value">
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
 
@@ -13,23 +13,19 @@
             <div class="profile-info-name">양식명</div>
 
             <div class="profile-info-value">
-                <input type="text" name="auth_name" class="form-control modal_value">
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">폼양식</div>
             <div class="profile-info-value">
-                <select class="form-control">
-                    <option>Y</option>
-                </select>
+                <textarea cols="40" rows="5" style="resize:none;"></textarea>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">비고</div>
             <div class="profile-info-value">
-                <select class="form-control">
-                    <option>Y</option>
-                </select>
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
     </div>

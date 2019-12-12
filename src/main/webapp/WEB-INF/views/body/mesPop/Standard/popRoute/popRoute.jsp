@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-<script type="text/javascript" src="/data-component/mesPOP/Standard/popBcrForm/popBcrForm.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesPOP/Standard/popRoute/popRoute.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="page-content">
@@ -42,6 +42,6 @@
 </div>
 
 
-<%@include file="popBcrForm_modal1.jsp" %>
+<%--<%@include file="popBcrForm_modal1.jsp" %>--%>
 
 
