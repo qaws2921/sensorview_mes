@@ -81,7 +81,9 @@ var array =
         {code:"qmsRecvErrorList", title:'품질관리',sub:'수입검사',name:'수입검사부적합현황'},
         {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
 
-
+        // 생산관리
+        {code:"popProdRange",title:'생산관리',sub:'생산현황',name:'기간별 생산실적'},
+        {code:"popProdList1",title:'생산관리',sub:'생산현황',name:'제품별 생산실적'},
 
         //출하관리
         {code:"wmsInList", title:'출하관리',sub:'입/출고 관리',name:'입고현황'},
