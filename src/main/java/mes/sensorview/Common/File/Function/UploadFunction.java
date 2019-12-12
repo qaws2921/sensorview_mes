@@ -1,6 +1,7 @@
 package mes.sensorview.Common.File.Function;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,27 +39,31 @@ public class UploadFunction {
         }
     }
 
-    public void setOneFile(Files files, HttpServletRequest req){
+    public Message setOneFile(Files files, HttpServletRequest req){
+        Message msg = new Message();
         Files newFile = UploadSetFilePath(files.getFiles(),req);
         try {
             newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
-            fileUploadService.setOneFile(newFile, req);
+            msg = fileUploadService.setOneFile(newFile, req);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return msg;
     }
 
     private Files UploadSetFilePath(MultipartFile multipartFile, HttpServletRequest req){
         Files files = new Files();
         String idx = multipartFile.getOriginalFilename();
         String FileName = MakeFileName(idx)+"."+multipartFile.getOriginalFilename().split("\\.")[1];
+        files.setKey_value(FileName);
         files.setFiles(multipartFile);
+        files.setFile_size(multipartFile.getSize());
         files.setFile_volume(multipartFile.getSize() / 1024);
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
-        files.setUrl("uploads/etc" + FileName);
+        files.setUrl("uploads/etc/" + FileName);
         files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/etc") + '/' + FileName);
         return files;
     }

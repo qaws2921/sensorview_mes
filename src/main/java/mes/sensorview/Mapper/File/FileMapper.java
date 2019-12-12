@@ -1,7 +1,8 @@
 package mes.sensorview.Mapper.File;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.File.DTO.Files;
 
 public interface FileMapper {
-    void setOneFile(Files files);
+    Message setOneFile(Files files);
 }

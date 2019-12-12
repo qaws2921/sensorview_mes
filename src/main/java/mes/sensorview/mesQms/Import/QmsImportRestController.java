@@ -1,6 +1,7 @@
 package mes.sensorview.mesQms.Import;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
@@ -41,15 +42,16 @@ public class QmsImportRestController extends UploadFunction {
     }
 
     @RequestMapping(value = "/test_file", method = RequestMethod.POST)
-    public String test_file(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
+    public Message test_file(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
+        Message msg = new Message();
         int index = Integer.parseInt(req.getParameter("index"));
         Files files = new Files();
         for (int i = 0 ; i <index;i++){
             files.setKey1(multipartHttpServletRequest.getParameter("file_in_no"+i));
             files.setKey2(multipartHttpServletRequest.getParameter("file_part_code"+i));
             files.setFiles(multipartHttpServletRequest.getFile("file"+i));
-            setOneFile(files,req);
+            msg = setOneFile(files,req);
         }
-        return "성공";
+        return msg;
     }
 }
