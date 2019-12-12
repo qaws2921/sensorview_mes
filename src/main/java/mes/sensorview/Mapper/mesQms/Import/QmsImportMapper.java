@@ -12,4 +12,6 @@ public interface QmsImportMapper {
     List<QMS_RECV_SUB> qmsRecvSubGet(Page p);
 
     List<QMS_RECV_SUB> qmsRecvErrorManGet(Page p);
+
+    QMS_RECV_SUB qmsRecvErrorManOneGet(QMS_RECV_SUB qmsRecvSub);
 }

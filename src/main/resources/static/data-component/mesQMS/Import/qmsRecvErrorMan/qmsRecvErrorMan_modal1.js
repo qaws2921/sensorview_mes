@@ -6,10 +6,7 @@ function modal_start1() {
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function update_btn() {
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function modal_make1() {

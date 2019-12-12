@@ -40,4 +40,9 @@ public class QmsImportService  extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return qmsImportMapper.qmsRecvSubGet(p);
     }
+
+    public QMS_RECV_SUB qmsRecvErrorManOneGet(QMS_RECV_SUB qmsRecvSub, HttpServletRequest req) {
+        qmsRecvSub.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvErrorManOneGet(qmsRecvSub);
+    }
 }
