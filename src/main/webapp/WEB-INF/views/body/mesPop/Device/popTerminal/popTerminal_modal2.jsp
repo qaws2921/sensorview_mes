@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesPOP/Device/popTerminal/popTerminal_modal2.js" charset="UTF-8"></script>
-<div id="addDialog2" title="작업지시관리" style="display:none">
+<div id="addDialog2" title="공정마스터관리" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0" id="content1">
 
