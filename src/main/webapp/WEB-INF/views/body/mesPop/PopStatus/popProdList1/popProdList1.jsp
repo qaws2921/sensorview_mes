@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<script type="text/javascript" src="/data-component/mesTpm/RegItem/tpmMachineRegComp/tpmMachineRegComp.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesPOP/PopStatus/popProdList1/popProdList1.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
 
@@ -25,17 +25,16 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">라인</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목구분</td>
                     <td class="wt-px-200">
                         <select name="keyword" id="line_select" class="form-control keyword condition_main" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">설비명</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목</td>
                     <td class="wt-px-200">
                         <select id="tpm_select" class="form-control condition_main">
-                            <option>설비명1</option>
-                            <option>설비명2</option>
+                            <option>전체</option>
                         </select>
                     </td>
                     <td></td>
