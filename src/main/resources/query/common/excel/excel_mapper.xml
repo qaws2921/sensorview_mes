@@ -49,6 +49,9 @@
     <select id="crmWorkListDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
         EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code},0,0,#{row0},#{row1},#{row2},#{row3},#{row4},#{row5},''
     </select>
+    <select id="qmsRecvDbList" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
+        EXEC [SP_QMS_RECV_SUB_DATE_GET] #{site_code}, 0, 0,#{row0},#{row1},#{row2},#{row3}
+    </select>
 </mapper>
 
 
