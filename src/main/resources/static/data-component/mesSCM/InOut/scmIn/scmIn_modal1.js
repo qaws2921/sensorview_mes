@@ -29,7 +29,8 @@ function get_modal1_btn(page) {
 
 
 function update_btn(rowid) {
-
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
     modal_reset(".modal_value2", []);
     modal_reset(".modal_value", []);
     $("#scmInDialogLeftGrid").jqGrid('clearGridData');
@@ -56,10 +57,10 @@ function update_btn(rowid) {
             list = [];
             list3 = [];
             push.part_code = s.part_code;
-            list = s.sub.split("$");
+            list = s.sub.split(gu5);
             list.forEach(function (s2) {
                 list2 = [];
-                list2 = s2.split("\\");
+                list2 = s2.split(gu4);
                 list3.push({lot: list2[0], qty: list2[1]});
             });
             push.list = list3;
