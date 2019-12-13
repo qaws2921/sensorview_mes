@@ -14,28 +14,6 @@ import java.util.Random;
 
 @Slf4j
 public class FileUploadFunction {
-    public int checkFiles(List<MultipartFile> multipartFiles){
-        int i;
-        if(multipartFiles.size() == 0){
-            return 0;
-        } else {
-            for (i = 0; i < multipartFiles.size(); i++) {
-                if (i == 1) {
-                    return 1;
-                } else {
-                    return 2;
-                }
-            }
-        }
-        return 0;
-    }
-    public void setFile(MultipartHttpServletRequest multipartHttpServletRequest, String idx){
-        List<MultipartFile> multipartFiles = multipartHttpServletRequest.getFiles("files");
-
-        for(int i=0; multipartFiles.size() > i;  i++){
-
-        }
-    }
     /**
      * 업로드 파일을 가지고 타입 설정
      * */
