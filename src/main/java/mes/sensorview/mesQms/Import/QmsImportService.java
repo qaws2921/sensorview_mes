@@ -45,6 +45,11 @@ public class QmsImportService  extends UploadFunction {
         return qmsImportMapper.qmsRecvSubGet(p);
     }
 
+    public QMS_RECV_SUB qmsRecvErrorManOneGet(QMS_RECV_SUB qmsRecvSub, HttpServletRequest req) {
+        qmsRecvSub.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvErrorManOneGet(qmsRecvSub);
+    }
+
     public Message qmsRecvAdd(HttpServletRequest req, QMS_RECV_SUB qrs) {
         qrs.setSite_code(getSessionData(req).getSite_code());
         qrs.setUser_code(getSessionData(req).getUser_code());
@@ -97,5 +102,11 @@ public class QmsImportService  extends UploadFunction {
     public Message qmsRecvMRBCancel(HttpServletRequest req, QMS_RECV_SUB qrs) {
         qrs.setSite_code(getSessionData(req).getSite_code());
         return qmsImportMapper.qmsRecvMRBCancel(qrs);
+    }
+
+    public RESTful qmsRecvListGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<QMS_RECV_SUB> rows = qmsImportMapper.qmsRecvListGet(p);
+        return getListData(rows , p);
     }
 }

@@ -39,10 +39,10 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">검사결과</td>
                     <td class="wt-px-200">
-                        <select id='result_select' class="form-control h-25">
-                            <option>전체</option>
-                            <option>양품</option>
-                            <option>불량</option>
+                        <select id='result_select' name="keyword2" class="form-control h-25 condition_main">
+                            <option value="">전체</option>
+                            <option value="1">양품</option>
+                            <option value="2">불량</option>
                         </select>
                     </td>
                     <td></td>
