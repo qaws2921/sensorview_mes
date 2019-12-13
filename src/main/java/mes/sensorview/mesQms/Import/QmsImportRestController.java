@@ -42,6 +42,11 @@ public class QmsImportRestController extends UploadFunction {
     @RequestMapping(value ="/qmsRecvErrorManGet", method = RequestMethod.POST)
     public RESTful qmsRecvErrorManGet(Page p,HttpServletRequest req) { return qmsImportService.qmsRecvErrorManGet(p, req); }
 
+    @RequestMapping(value ="/qmsRecvErrorManOneGet", method = RequestMethod.POST)
+    public QMS_RECV_SUB qmsRecvErrorManOneGet(QMS_RECV_SUB qmsRecvSub, HttpServletRequest req){
+        return qmsImportService.qmsRecvErrorManOneGet(qmsRecvSub, req);
+    }
+
     @RequestMapping(value = "/qmsRecvSubAllGet", method = RequestMethod.POST)
     public List<QMS_RECV_SUB> qmsRecvSubAllGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvSubAllGet(p, req);

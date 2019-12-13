@@ -5,83 +5,80 @@
         <div class="profile-info-row">
             <div class="profile-info-name">입고일자</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="work_date" class="form-control modal_value" readonly>
             </div>
             <div class="profile-info-name">전표번호</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="in_no" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">업체</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="supp_name" class="form-control modal_value" readonly>
             </div>
             <div class="profile-info-name">품목그룹</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_grp_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">품번</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_code" class="form-control modal_value" readonly>
             </div>
             <div class="profile-info-name">품명</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">규격</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="spec" class="form-control modal_value" readonly>
             </div>
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="code_name1" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name">검사기준</div>
+            <div class="profile-info-name">검사등급</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="qc_level_name" class="form-control modal_value" readonly>
             </div>
-            <div class="profile-info-name">검사구분</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
-            </div>
-        </div>
-        <div class="profile-info-row">
             <div class="profile-info-name">입고수량</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="in_qty" class="form-control modal_value" readonly>
             </div>
+        </div>
+        <div class="profile-info-row">
             <div class="profile-info-name">불량수량</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="ng_qty" class="form-control modal_value" readonly>
             </div>
-        </div>
-        <div class="profile-info-row">
             <div class="profile-info-name">검사결과</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
-            </div>
-            <div class="profile-info-name">불량유형</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="qc_result_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
+            <div class="profile-info-name">불량유형</div>
+            <div class="profile-info-value">
+                <input type="text" name="qc_name" class="form-control modal_value" readonly>
+            </div>
             <div class="profile-info-name">불량내용</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="ng_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">조치구분</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <select name="act_type" class="form-control modal_value">
+                    <option value="0">조치중</option>
+                    <option value="1">조치완료</option>
+                </select>
             </div>
             <div class="profile-info-name">성적서</div>
             <div class="profile-info-value">

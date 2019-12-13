@@ -45,6 +45,11 @@ public class QmsImportService  extends UploadFunction {
         return qmsImportMapper.qmsRecvSubGet(p);
     }
 
+    public QMS_RECV_SUB qmsRecvErrorManOneGet(QMS_RECV_SUB qmsRecvSub, HttpServletRequest req) {
+        qmsRecvSub.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvErrorManOneGet(qmsRecvSub);
+    }
+
     public Message qmsRecvAdd(HttpServletRequest req, QMS_RECV_SUB qrs) {
         qrs.setSite_code(getSessionData(req).getSite_code());
         qrs.setUser_code(getSessionData(req).getUser_code());
