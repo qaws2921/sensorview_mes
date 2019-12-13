@@ -3,8 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-
 var main_data = {
     check: 'I',
     supp_check: 'A',
@@ -32,7 +30,6 @@ function get_btn(page) {
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: "/qmsRecvErrorManGet",
         datatype: "json",
@@ -42,7 +39,6 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/qmsRecvErrorManGet',
         datatype: "json",
