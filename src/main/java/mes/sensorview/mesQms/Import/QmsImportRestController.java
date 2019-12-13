@@ -52,6 +52,12 @@ public class QmsImportRestController extends UploadFunction {
         return qmsImportService.qmsRecvFileAdd(multipartHttpServletRequest, req);
 
     }
+
+    @RequestMapping(value = "/qmsRecvListGet", method = RequestMethod.POST)
+    public RESTful qmsRecvListGet(Page p, HttpServletRequest req) {
+        return qmsImportService.qmsRecvListGet(p, req);
+    }
+
     @RequestMapping(value = "/qmsRecvMRBGet", method = RequestMethod.POST)
     public RESTful qmsRecvMRBGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvMRBGet(p, req);

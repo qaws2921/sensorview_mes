@@ -27,6 +27,21 @@ $(document).ready(function () {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/qmsRecvListGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+
+
 function supp_btn(what) {
     main_data.supp_check = what;
     $("#supp_modal_keyword").val("supp_name");
@@ -49,6 +64,14 @@ function suppModal_bus(code, name) {
 
 }
 
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function datepickerInput() {
@@ -63,32 +86,35 @@ function selectBox() {
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data:grid_data,
+        mtype: 'POST',
         datatype: "local",
-        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '입고LOT', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과','불량유형','불량상세','조치구분','성적서','부적합보고서','개선조치','검사자','검사일시'],
+        colNames: ['rownum','입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위',  '검사등급'
+            , '입고수량','검사수량','불량수량', '검사결과','불량유형'
+            ,'불량내용','완료여부','성적서','부적합보고서','개선조치','검사자','검사일시'],
         colModel: [
-            {name: '', index: '', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: '', index: '', sortable: false, width: 80},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'rownum', index: 'rownum', key:true, hidden:true, sortable: false, width: 80},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
+            {name: 'in_no', index: 'in_no', sortable: false, width: 80},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
+            {name: 'qc_level_name', index: 'qc_level_name', sortable: false, width: 60},
+            {name: 'in_qty', index: 'in_qty', sortable: false, width: 60},
+            {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},
+            {name: 'ng_qty', index: 'ng_qty', sortable: false, width: 60},
+            {name: 'qc_result_name', index: 'qc_result_name', sortable: false, width: 60},
+            {name: 'qc_name', index: 'qc_name', sortable: false, width: 60},
+            {name: 'ng_name', index: 'ng_name', sortable: false, width: 60},
+            {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 60},
+            {name: 'file1_name', index: 'file1_name', sortable: false, width: 60},
+            {name: 'file2_name', index: 'file2_name', sortable: false, width: 60},
+            {name: 'file3_name', index: 'file3_name', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
+
         ],
         caption: "수입검사현황 | MES",
         autowidth: true,

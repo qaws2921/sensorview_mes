@@ -171,7 +171,13 @@ function suppModal_bus(code, name) {
     $("#SuppSearchGrid").jqGrid('clearGridData');
 
 }
-
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
 ////////////////////////////호출 함수/////////////////////////////////////
 function selectBox() {
     $('#result_select').select2();

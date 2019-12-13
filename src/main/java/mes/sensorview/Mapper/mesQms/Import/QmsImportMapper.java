@@ -24,4 +24,6 @@ public interface QmsImportMapper {
     Message qmsRecvMRBAdd(QMS_RECV_SUB qrs);
 
     Message qmsRecvMRBCancel(QMS_RECV_SUB qrs);
+
+    List<QMS_RECV_SUB> qmsRecvListGet(Page p);
 }
