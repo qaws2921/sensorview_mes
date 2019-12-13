@@ -22,28 +22,9 @@ public class UploadFunction extends ReturnFunction {
     @Autowired
     FileUploadService fileUploadService;
 
-    public void setFile(MultipartHttpServletRequest multipartHttpServletRequest, Files files){
-        List<MultipartFile> multipartFiles = multipartHttpServletRequest.getFiles("files");
-
-        if(multipartFiles.size() == 1){
-
-        }else {
-            for (int i = 0; multipartFiles.size() > i; i++) {
-//            try {
-//                file.getFiles().transferTo(new File(file.getUpload_path()));
-//            } catch (IllegalStateException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            }
-        }
-    }
-
     public Files setOneFile(Files files, HttpServletRequest req){
         Message msg = new Message();
         Files newFile = UploadSetFilePath(files.getFiles(),req);
-
         try {
             newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
             msg = fileUploadService.setOneFile(newFile, req);
@@ -57,9 +38,10 @@ public class UploadFunction extends ReturnFunction {
 
     private Files UploadSetFilePath(MultipartFile multipartFile, HttpServletRequest req){
         Files files = new Files();
-        String idx = multipartFile.getOriginalFilename();
-        String FileName = MakeFileName(idx)+"."+multipartFile.getOriginalFilename().split("\\.")[1];
-        files.setKey_value(FileName);
+        String FileName = MakeFileName()+"."+multipartFile.getOriginalFilename().split("\\.")[1];
+        String Key = MakeFileName();
+
+        files.setKey_value(Key);
         files.setFiles(multipartFile);
         files.setFile_size(multipartFile.getSize());
         files.setFile_volume(multipartFile.getSize() / 1024);
@@ -70,7 +52,7 @@ public class UploadFunction extends ReturnFunction {
         return files;
     }
 
-    private String MakeFileName(String idx){
+    private String MakeFileName(){
         Date now = new Date();
         Random random = new Random();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
