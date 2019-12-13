@@ -122,7 +122,7 @@ function jqGrid_main() {
         datatype: "local",
         colNames: ['rownum','입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위',  '검사등급'
             , '입고수량','검사수량','불량수량', '검사결과','불량유형'
-            ,'불량내용','완료여부','성적서','부적합보고서','개선조치','검사자','검사일시'],
+            ,'불량내용','완료여부','성적서','부적합보고서','개선조치','file1','file2','file3','검사자','검사일시'],
         colModel: [
             {name: 'rownum', index: 'rownum', key:true, hidden:true, sortable: false, width: 80},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
@@ -142,8 +142,11 @@ function jqGrid_main() {
             {name: 'ng_name', index: 'ng_name', sortable: false, width: 60},
             {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 60},
             {name: 'file1_name', index: 'file1_name', sortable: false, width: 60,align :'center', formatter:file1_formatter},
-            {name: 'file2_name', index: 'file2_name', sortable: false, width: 60,align :'center'},
-            {name: 'file3_name', index: 'file3_name', sortable: false, width: 60,align :'center'},
+            {name: 'file2_name', index: 'file2_name', sortable: false, width: 60,align :'center', formatter:file2_formatter},
+            {name: 'file3_name', index: 'file3_name', sortable: false, width: 60,align :'center', formatter:file3_formatter},
+            {name: 'file1', index: 'file1', sortable: false, width: 60,hidden:true},
+            {name: 'file2', index: 'file2', sortable: false, width: 60,hidden:true},
+            {name: 'file3', index: 'file3', sortable: false, width: 60,hidden:true},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
 
@@ -175,7 +178,7 @@ function file1_formatter(cellvalue, options, rowObject) {
    if(cellvalue === "Y"){
        return "" +
            " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold'"+
-           "tabindex='0' aria-controls='dynamic-table' data-original-title='' title='' onclick='file1_download(\""+rowObject.in_no+"\""+","+"\""+rowObject.part_code+"\");'>"+
+           "tabindex='0' aria-controls='dynamic-table' data-original-title='' title='' onclick='file_download(\""+rowObject.file1+"\");'>"+
            "<span><i class='fa fa-download bigger-110 blue'></i>"+
            "<span>저장</span>"+
            "</span>"+
@@ -184,7 +187,33 @@ function file1_formatter(cellvalue, options, rowObject) {
        return cellvalue;
    }
 }
+function file2_formatter(cellvalue, options, rowObject) {
+    if(cellvalue === "Y"){
+        return "" +
+            " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold'"+
+            "tabindex='0' aria-controls='dynamic-table' data-original-title='' title='' onclick='file_download(\""+rowObject.file2+"\");'>"+
+            "<span><i class='fa fa-download bigger-110 blue'></i>"+
+            "<span>저장</span>"+
+            "</span>"+
+            "</a>";
+    }else {
+        return cellvalue;
+    }
+}
+function file3_formatter(cellvalue, options, rowObject) {
+    if(cellvalue === "Y"){
+        return "" +
+            " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold'"+
+            "tabindex='0' aria-controls='dynamic-table' data-original-title='' title='' onclick='file_download(\""+rowObject.file3+"\");'>"+
+            "<span><i class='fa fa-download bigger-110 blue'></i>"+
+            "<span>저장</span>"+
+            "</span>"+
+            "</a>";
+    }else {
+        return cellvalue;
+    }
+}
 
-function file1_download(in_no,part_code) {
-    alert(in_no+","+part_code);
+function file_download(file_name) {
+    alert(file_name);
 }
