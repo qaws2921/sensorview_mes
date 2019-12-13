@@ -18,6 +18,7 @@ public class QMS_RECV_SUB {
     private String file2;
     private String file3;
     private String mrb;
+    private String mrb_date;
     private String part_grp_name;
     private String part_name;
     private String spec;
@@ -43,4 +44,5 @@ public class QMS_RECV_SUB {
     private String file2_name;
     private String file3_name;
     private String qc_name;
+
 }

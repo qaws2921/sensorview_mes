@@ -52,17 +52,22 @@ public class QmsImportRestController extends UploadFunction {
         return qmsImportService.qmsRecvSubAllGet(p, req);
     }
 
-    @RequestMapping(value = "/test_file", method = RequestMethod.POST)
-    public Message test_file(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
-        Message msg = new Message();
-        int index = Integer.parseInt(req.getParameter("index"));
-        Files files = new Files();
-        for (int i = 0 ; i <index;i++){
-            files.setKey1(multipartHttpServletRequest.getParameter("file_in_no"+i));
-            files.setKey2(multipartHttpServletRequest.getParameter("file_part_code"+i));
-            files.setFiles(multipartHttpServletRequest.getFile("file"+i));
-            msg = setOneFile(files,req);
-        }
-        return msg;
+    @RequestMapping(value = "/qmsRecvFileAdd", method = RequestMethod.POST)
+    public Message qmsRecvFileAdd(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
+        return qmsImportService.qmsRecvFileAdd(multipartHttpServletRequest, req);
+
+    }
+    @RequestMapping(value = "/qmsRecvMRBGet", method = RequestMethod.POST)
+    public RESTful qmsRecvMRBGet(Page p, HttpServletRequest req) {
+        return qmsImportService.qmsRecvMRBGet(p, req);
+    }
+
+    @RequestMapping(value = "/qmsRecvMRBAdd", method = RequestMethod.POST)
+    public Message qmsRecvMRBAdd(HttpServletRequest req, QMS_RECV_SUB qrs) {
+        return qmsImportService.qmsRecvMRBAdd(req, qrs);
+    }
+    @RequestMapping(value = "/qmsRecvMRBCancel", method = RequestMethod.POST)
+    public Message qmsRecvMRBCancel(HttpServletRequest req, QMS_RECV_SUB qrs) {
+        return qmsImportService.qmsRecvMRBCancel(req, qrs);
     }
 }

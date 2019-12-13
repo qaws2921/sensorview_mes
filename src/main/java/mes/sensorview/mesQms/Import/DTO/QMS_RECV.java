@@ -19,4 +19,5 @@ public class QMS_RECV {
     private int rownum_page;
     private String status_name;
     private int rec_count;
+    private String keyword;
 }
