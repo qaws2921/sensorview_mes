@@ -76,6 +76,10 @@ function suppModal_bus(code, name) {
 function update_btn(jqgrid_data) {
 
     modal_reset(".modal_value", []);
+    $('#file_02').val('');
+    $('#file_03').val('');
+    $('.file_labal').text('업로드');
+
     main_data.check = 'U';
     var send_data = {};
     send_data.supp_code = jqgrid_data.supp_code;
@@ -83,6 +87,7 @@ function update_btn(jqgrid_data) {
     send_data.part_code = jqgrid_data.part_code;
 
     ccn_ajax('/qmsRecvErrorManOneGet', send_data).then(function (data) {
+        data.work_date = data.work_date.substring(0,4)+'-'+data.work_date.substring(4,6)+'-'+data.work_date.substring(6);
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
@@ -142,6 +147,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+
             update_btn(data);
         }
     });
