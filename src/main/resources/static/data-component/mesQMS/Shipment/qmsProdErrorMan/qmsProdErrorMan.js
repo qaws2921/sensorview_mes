@@ -3,8 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[{a:'20191210',b:'TEST20191211101010',c:'업체1',d:'그룹1',e:'part1',f:'제품1',g:'0.3nm',h:'EA',i:'20',j:'10',k:'불량',l:'조립',m:'미결합',n:'조치중',o:'N',p:'N',q:'관리자',r:'20191211111111'}];
-
 var main_data = {
     check: 'I',
     send_data: {},
@@ -25,7 +23,27 @@ $(document).ready(function () {
 });
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/qmsProdErrorManGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
 
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({
+        url: '/qmsProdErrorManGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function datepickerInput() {
@@ -35,29 +53,28 @@ function datepickerInput() {
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        // mtype:"POST",
-        data:grid_data,
+        mtype:"POST",
         datatype: "local",
         colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '출고수량', '불량수량', '검사결과','불량유형','불량내용','조치구분','부적합보고서','개선조치','검사자','검사일시'],
         colModel: [
-            {name: 'a', index: 'a', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'b', index: 'b', sortable: false, width: 80},
-            {name: 'c', index: 'c', sortable: false, width: 60},
-            {name: 'd', index: 'd', sortable: false, width: 60},
-            {name: 'e', index: 'e', sortable: false, width: 60},
-            {name: 'f', index: 'f', sortable: false, width: 60},
-            {name: 'g', index: 'g', sortable: false, width: 60},
-            {name: 'h', index: 'h', sortable: false, width: 60},
-            {name: 'i', index: 'i', sortable: false, width: 60},
-            {name: 'j', index: 'j', sortable: false, width: 60},
-            {name: 'k', index: 'k', sortable: false, width: 60},
-            {name: 'l', index: 'l', sortable: false, width: 60},
-            {name: 'm', index: 'm', sortable: false, width: 60},
-            {name: 'n', index: 'n', sortable: false, width: 60},
-            {name: 'o', index: 'o', sortable: false, width: 60},
-            {name: 'p', index: 'p', sortable: false, width: 60},
-            {name: 'q', index: 'q', sortable: false, width: 60},
-            {name: 'r', index: 'r', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
+            {name: 'in_no', index: 'in_no', sortable: false, width: 80},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+            {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},
+            {name: 'ng_qty', index: 'ng_qty', sortable: false, width: 60},
+            {name: 'qc_result_name', index: 'qc_result_name', sortable: false, width: 60},
+            {name: 'qc_name', index: 'qc_name', sortable: false, width: 60},
+            {name: 'ng_name', index: 'ng_name', sortable: false, width: 60},
+            {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 60},
+            {name: 'file2_name', index: 'file2_name', sortable: false, width: 60},
+            {name: 'file3_name', index: 'file3_name', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
         ],
         caption: "출하검사부적합 | MES",
         autowidth: true,
@@ -76,7 +93,7 @@ function jqGrid_main() {
 
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            update_btn(rowid);
+            // update_btn(rowid);
         }
     });
 }

@@ -144,3 +144,4 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
 }
 .img-title{text-align: center !important;padding: 5px !important;}
 .img-text{margin-top: 65px;margin-bottom: 65px;}
+.ui-jqgrid td select{padding: 0px !important;}

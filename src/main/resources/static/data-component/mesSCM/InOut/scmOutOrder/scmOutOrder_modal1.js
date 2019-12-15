@@ -112,6 +112,8 @@ function left_modal1_btn() {
 
 
 function add_modal1_btn() {
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
     if (main_data.check2 === 'Y') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
@@ -124,7 +126,7 @@ function add_modal1_btn() {
 
             jdata.forEach(function (data, j) {
                 if (data.qty !== '') {
-                    list.push(data.part_code + "$" + data.qty);
+                    list.push(data.part_code +gu4 + data.qty);
                 } else {
                     list2.push(data.part_code);
                 }
@@ -139,7 +141,7 @@ function add_modal1_btn() {
                     }
                     if (confirm(text)) {
                         wrapWindowByMask2();
-                        add_data.keyword = list.join("&");
+                        add_data.keyword = list.join(gu5);
                         ccn_ajax("/scmOutOrderAdd", add_data).then(function (data) {
                             if (data.result === 'NG') {
                                 alert(data.message);

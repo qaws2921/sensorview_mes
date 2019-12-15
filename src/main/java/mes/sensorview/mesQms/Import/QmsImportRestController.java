@@ -64,6 +64,24 @@ public class QmsImportRestController extends UploadFunction {
 
     }
 
+    @RequestMapping(value = "/testRecvFileAdd", method = RequestMethod.POST)
+    public String testRecvFileAdd(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
+        String in_no = multipartHttpServletRequest.getParameter("in_no");
+        String part_code = multipartHttpServletRequest.getParameter("part_code");
+        String act_type = multipartHttpServletRequest.getParameter("act_type");
+        String file2 = multipartHttpServletRequest.getFile("file2").getOriginalFilename();
+        String file3 = multipartHttpServletRequest.getFile("file3").getOriginalFilename();
+        System.out.println(in_no);
+        System.out.println(part_code);
+        System.out.println(act_type);
+        System.out.println(file2);
+        System.out.println(file3);
+
+
+        return "성공";
+
+    }
+
     @RequestMapping(value = "/qmsRecvListGet", method = RequestMethod.POST)
     public RESTful qmsRecvListGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvListGet(p, req);

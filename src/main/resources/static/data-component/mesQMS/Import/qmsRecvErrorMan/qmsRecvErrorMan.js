@@ -3,8 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-
 var main_data = {
     check: 'I',
     supp_check: 'A',
@@ -32,7 +30,6 @@ function get_btn(page) {
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: "/qmsRecvErrorManGet",
         datatype: "json",
@@ -42,7 +39,6 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/qmsRecvErrorManGet',
         datatype: "json",
@@ -76,6 +72,10 @@ function suppModal_bus(code, name) {
 function update_btn(jqgrid_data) {
 
     modal_reset(".modal_value", []);
+    $('#file_02').val('');
+    $('#file_03').val('');
+    $('.file_labal').text('업로드');
+
     main_data.check = 'U';
     var send_data = {};
     send_data.supp_code = jqgrid_data.supp_code;
@@ -83,6 +83,7 @@ function update_btn(jqgrid_data) {
     send_data.part_code = jqgrid_data.part_code;
 
     ccn_ajax('/qmsRecvErrorManOneGet', send_data).then(function (data) {
+        data.work_date = data.work_date.substring(0,4)+'-'+data.work_date.substring(4,6)+'-'+data.work_date.substring(6);
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
@@ -142,6 +143,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+
             update_btn(data);
         }
     });

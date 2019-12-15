@@ -66,7 +66,7 @@ function addupdate_btn() {
                 && data.ng_qty !==''
             ) {
                 if (data.qc_result === '2'){
-                    if (data.ng_type !=='' && data.ng_name !== ''){
+                    if (data.ng_type !=='' && data.ng_name !== '' && $("#file_"+data.part_code).val() !==''){
                         list.push(data.part_code + gu4 + data.qc_qty+ gu4 + data.ng_qty + gu4 + data.qc_result+ gu4 + data.ng_type + gu4 + data.ng_name+ gu4 + data.act_type);
                     } else {
                         list2.push(data.part_code);
