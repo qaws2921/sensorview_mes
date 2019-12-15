@@ -5,4 +5,6 @@ import mes.sensorview.Common.File.DTO.Files;
 
 public interface FileMapper {
     Message setOneFile(Files files);
+
+    Files FileDownloads(Files files);
 }

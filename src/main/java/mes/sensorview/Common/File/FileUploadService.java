@@ -19,4 +19,8 @@ public class FileUploadService extends ReturnFunction {
         files.setUser_code(getSessionData(req).getUser_code());
         return fileMapper.setOneFile(files);
     }
+
+    public Files FileDownloads(Files files) {
+        return fileMapper.FileDownloads(files);
+    }
 }
