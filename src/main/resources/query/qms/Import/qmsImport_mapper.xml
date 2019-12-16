@@ -32,4 +32,32 @@
     <select id="qmsRecvMRBCancel" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_QMS_RECV_MRB_CANCEL #{site_code}, #{keyword}
     </select>
+    <update id="qmsRecvErrorManAdd">
+        UPDATE QMS_RECV_SUB
+        SET
+            ACT_TYPE = #{key3}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsRecvErrorManAdd2">
+        UPDATE QMS_RECV_SUB
+        SET
+            FILE2 = #{key_value}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsRecvErrorManAdd3">
+        UPDATE QMS_RECV_SUB
+        SET
+            FILE3 = #{key_value}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsRecvErrorManAdd_AllFile">
+        UPDATE QMS_RECV_SUB
+        SET
+            ${name} = #{key_value}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
 </mapper>

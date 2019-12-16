@@ -5,15 +5,10 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.FileUploadService;
 import mes.sensorview.Common.Function.ReturnFunction;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -57,7 +52,7 @@ public class UploadFunction extends ReturnFunction {
         return files;
     }
 
-    private String MakeFileName() {
+    public String MakeFileName() {
         Date now = new Date();
         Random random = new Random();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -144,5 +139,100 @@ public class UploadFunction extends ReturnFunction {
             }
         }
         return "MSIE";
+    }
+
+    public Files setQmsRecvErrorManFile1(MultipartHttpServletRequest req) {
+        Files files = UploadSetFilePath1(req.getFile("file3"), req);
+        try {
+            files.getFiles().transferTo(new File(files.getUpload_path()));
+            fileUploadService.setQmsRecvErrorManFile(files, req);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return files;
+    }
+    public Files setQmsRecvErrorManFile2(MultipartHttpServletRequest req) {
+        Files files = UploadSetFilePath2(req.getFile("file2"), req);
+        try {
+            files.getFiles().transferTo(new File(files.getUpload_path()));
+            fileUploadService.setQmsRecvErrorManFile(files, req);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return files;
+    }
+
+    private Files UploadSetFilePath1(MultipartFile multipartFile, HttpServletRequest req) {
+        Files files = new Files();
+        String FileName = MakeFileName() + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String Key = MakeFileName();
+
+        files.setKey_value(Key);
+        files.setFiles(multipartFile);
+        files.setFile_size(multipartFile.getSize());
+        files.setFile_volume(multipartFile.getSize() / 1024);
+        files.setFile_og_name(multipartFile.getOriginalFilename());
+        files.setFile_name(FileName);
+        files.setUrl("uploads/improving/" + FileName);
+        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/improving") + '/' + FileName);
+        return files;
+    }
+
+    private Files UploadSetFilePath2(MultipartFile multipartFile, HttpServletRequest req) {
+        Files files = new Files();
+        String FileName = MakeFileName() + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String Key = MakeFileName();
+
+        files.setKey_value(Key);
+        files.setFiles(multipartFile);
+        files.setFile_size(multipartFile.getSize());
+        files.setFile_volume(multipartFile.getSize() / 1024);
+        files.setFile_og_name(multipartFile.getOriginalFilename());
+        files.setFile_name(FileName);
+        files.setUrl("uploads/report/" + FileName);
+        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
+        return files;
+    }
+
+    public Files AllFile(Files files, MultipartHttpServletRequest req, String Key, int i) {
+        Files NewFiles = UploadSetAllFilePath(req, Key, i);
+        try {
+            NewFiles.getFiles().transferTo(new File(NewFiles.getUpload_path()));
+            fileUploadService.setAllFile(NewFiles, req);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        NewFiles.setKey1(files.getKey1());
+        NewFiles.setKey2(files.getKey2());
+        NewFiles.setKey3(files.getKey3());
+
+        return NewFiles;
+    }
+
+    private Files UploadSetAllFilePath(MultipartHttpServletRequest req, String Key, int i) {
+        Files files = new Files();
+        String FileName = Key + "." + req.getFile("file"+i).getOriginalFilename().split("\\.")[1];
+        files.setKey_value(Key);
+        files.setFiles(req.getFile("file"+i));
+        files.setFile_size(req.getFile("file"+i).getSize());
+        files.setFile_volume(req.getFile("file"+i).getSize() / 1024);
+        files.setFile_og_name(req.getFile("file"+i).getOriginalFilename());
+        files.setFile_name(FileName);
+        if(i == 2){
+            files.setName("FILE2");
+            files.setUrl("uploads/report/" + FileName);
+            files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
+        }else if(i == 3){
+            files.setName("FILE3");
+            files.setUrl("uploads/improving/" + FileName);
+            files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/improving") + '/' + FileName);
+        }
+        return files;
     }
 }

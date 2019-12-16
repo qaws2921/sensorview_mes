@@ -9,29 +9,44 @@ function modal_start1() {
 function addupdate_btn() {
     var add_data = value_return(".modal_value");
     var formData = new FormData();
+    var check1;
+    var check2;
     formData.append("in_no",add_data.in_no);
     formData.append("part_code",add_data.part_code);
     formData.append("act_type",add_data.act_type);
-    formData.append("file2",$("#file_02").prop("files")[0]);
-    formData.append("file3",$("#file_03").prop("files")[0]);
+    if($("#file_02").prop("files")[0] == null){
+        check1 = 0;
+        formData.append("check1",check1);
+    }else{
+        check1 = 1;
+        formData.append("file2",$("#file_02").prop("files")[0]);
+        formData.append("check1",check1);
+    }
+    if($("#file_03").prop("files")[0] == null){
+        check2 = 0;
+        formData.append("check2",check2);
+    }else{
+        check2 = 1;
+        formData.append("file3",$("#file_03").prop("files")[0]);
+        formData.append("check2",check2);
+    }
+
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        url: "/testRecvFileAdd",
+        url: "/qmsRecvErrorManAdd",
         data: formData,
         processData: false,
         contentType: false,
         cache: false,
         success: function (data) {
-
-           // get_btn(1);
-            //$("#addDialog").dialog('close');
-            //closeWindowByMask();
-
-            console.log(data);
+            alert(data);
+            $('#addDialog').dialog('close');
+            $('#mes_grid').trigger('reloadGrid');
         },
         error: function (e) {
+            alert('업로드에 실패하였습니다.');
             closeWindowByMask();
             console.log("ERROR : ", e);
         }

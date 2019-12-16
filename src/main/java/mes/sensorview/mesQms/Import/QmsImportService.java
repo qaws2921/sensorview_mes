@@ -1,5 +1,6 @@
 package mes.sensorview.mesQms.Import;
 
+import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
+@Slf4j
 public class QmsImportService  extends UploadFunction {
 
     @Autowired
@@ -57,14 +59,11 @@ public class QmsImportService  extends UploadFunction {
     }
 
     public Message qmsRecvFileAdd(MultipartHttpServletRequest multipartHttpServletRequest, HttpServletRequest req) {
-
-
         Message msg = new Message();
         int index = Integer.parseInt(req.getParameter("index"));
         Files files = new Files();
         Files files2 = new Files();
         QMS_RECV qr = new QMS_RECV();
-
         char a = (char) 5;
         char b = (char) 4;
         for (int i = 0 ; i <index;i++){
@@ -72,9 +71,6 @@ public class QmsImportService  extends UploadFunction {
             files.setKey2(multipartHttpServletRequest.getParameter("file_part_code"+i));
             files.setFiles(multipartHttpServletRequest.getFile("file"+i));
             files2 =setOneFile(files,req);
-
-
-
                 if ( i ==0 ){
                     qr.setKeyword(files.getKey1()+b+files.getKey2()+b+files2.getKey_value());
                 }else {
@@ -108,5 +104,33 @@ public class QmsImportService  extends UploadFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<QMS_RECV_SUB> rows = qmsImportMapper.qmsRecvListGet(p);
         return getListData(rows , p);
+    }
+
+    public void qmsRecvErrorManAdd_NoneFile(Files files, MultipartHttpServletRequest req) {
+        files.setSite_code(getSessionData(req).getSite_code());
+        files.setUser_code(getSessionData(req).getUser_code());
+        int rs = qmsImportMapper.qmsRecvErrorManAdd(files);
+    }
+
+    public void qmsRecvErrorManAdd_File2(Files files, MultipartHttpServletRequest req) {
+        files.setSite_code(getSessionData(req).getSite_code());
+        files.setUser_code(getSessionData(req).getUser_code());
+        Files newFiles = setQmsRecvErrorManFile2(req);
+        int rs = qmsImportMapper.qmsRecvErrorManAdd2(newFiles);
+    }
+
+    public void qmsRecvErrorManAdd_File3(Files files, MultipartHttpServletRequest req) {
+        files.setSite_code(getSessionData(req).getSite_code());
+        files.setUser_code(getSessionData(req).getUser_code());
+        Files newFiles = setQmsRecvErrorManFile1(req);
+        int rs = qmsImportMapper.qmsRecvErrorManAdd3(newFiles);
+    }
+
+    public void qmsRecvErrorManAdd_AllFile(Files files, MultipartHttpServletRequest req) {
+        for(int i=2; 4>i; i++){
+            String Key = MakeFileName();
+            Files newFiles = AllFile(files, req,Key,i);
+            qmsImportMapper.qmsRecvErrorManAdd_AllFile(newFiles);
+        }
     }
 }

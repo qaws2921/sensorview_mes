@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.mesQms.Import;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 
@@ -28,4 +29,12 @@ public interface QmsImportMapper {
     Message qmsRecvMRBCancel(QMS_RECV_SUB qrs);
 
     List<QMS_RECV_SUB> qmsRecvListGet(Page p);
+
+    int qmsRecvErrorManAdd(Files files);
+
+    int qmsRecvErrorManAdd_AllFile(Files files);
+
+    int qmsRecvErrorManAdd3(Files newFiles);
+
+    int qmsRecvErrorManAdd2(Files newFiles);
 }

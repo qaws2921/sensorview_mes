@@ -9,6 +9,7 @@ public class Files {
     private String key2;
     private String key3;
     private String key_value;
+    private String key_value2;
     private String site_code;
     private String user_code;
     private String file_name;
@@ -18,5 +19,6 @@ public class Files {
     private String upload_path;
     private String url;
     private MultipartFile files;
+    private String name;
 
 }

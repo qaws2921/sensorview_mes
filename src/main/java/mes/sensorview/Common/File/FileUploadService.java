@@ -6,6 +6,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.File.FileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,5 +23,17 @@ public class FileUploadService extends ReturnFunction {
 
     public Files FileDownloads(Files files) {
         return fileMapper.FileDownloads(files);
+    }
+
+    public void setQmsRecvErrorManFile(Files files, MultipartHttpServletRequest req) {
+        files.setSite_code(getSessionData(req).getSite_code());
+        files.setUser_code(getSessionData(req).getUser_code());
+        fileMapper.setOneFile(files);
+    }
+
+    public void setAllFile(Files files, MultipartHttpServletRequest req) {
+        files.setSite_code(getSessionData(req).getSite_code());
+        files.setUser_code(getSessionData(req).getUser_code());
+        fileMapper.setOneFile(files);
     }
 }

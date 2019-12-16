@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
+import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +77,35 @@ public class QmsImportRestController extends UploadFunction {
         System.out.println(act_type);
         System.out.println(file2);
         System.out.println(file3);
-
-
         return "성공";
-
     }
-
+    @RequestMapping(value = "/qmsRecvErrorManAdd", method = RequestMethod.POST)
+    public String qmsRecvErrorManAdd(MultipartHttpServletRequest req)throws IOException{
+        Files files = new Files();
+        files.setKey1(req.getParameter("in_no"));
+        files.setKey2(req.getParameter("part_code"));
+        files.setKey3(req.getParameter("act_type"));
+        int check1 = Integer.parseInt(req.getParameter("check1"));
+        int check2 = Integer.parseInt(req.getParameter("check2"));
+        if(check1+check2 == 0)
+        {
+            log.info("파일없음");
+            qmsImportService.qmsRecvErrorManAdd_NoneFile(files, req);
+        }
+        if(check1 == 0 && check2 == 1)
+        {
+            qmsImportService.qmsRecvErrorManAdd_File3(files, req);
+        }
+        if(check2 == 0 && check1 == 1)
+        {
+            qmsImportService.qmsRecvErrorManAdd_File2(files, req);
+        }
+        if(check1+check2 == 2)
+        {
+            qmsImportService.qmsRecvErrorManAdd_AllFile(files, req);
+        }
+        return "수정되었습니다.";
+    }
     @RequestMapping(value = "/qmsRecvListGet", method = RequestMethod.POST)
     public RESTful qmsRecvListGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvListGet(p, req);

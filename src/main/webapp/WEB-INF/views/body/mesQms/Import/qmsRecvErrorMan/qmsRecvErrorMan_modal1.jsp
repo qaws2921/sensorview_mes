@@ -125,14 +125,14 @@
             <div class="profile-info-value">
                 <div class='filebox'>
                     <label class='file_labal' for='file_02'>업로드</label>
-                    <input type='file' id='file_02' onchange='file_change(this);' />
+                    <input type='file' id='file_02' name='file2' onchange='file_change(this);' />
                 </div>
             </div>
             <div class="profile-info-name">개선조치</div>
             <div class="profile-info-value">
                 <div class='filebox'>
                     <label class='file_labal' for='file_03'>업로드</label>
-                    <input type='file' id='file_03' onchange='file_change(this);' />
+                    <input type='file' id='file_03' name='file3' onchange='file_change(this);' />
                 </div>
             </div>
         </div>

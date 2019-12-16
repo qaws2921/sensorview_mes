@@ -8,6 +8,14 @@
     <select id="FileDownloads" resultType="mes.sensorview.Common.File.DTO.Files">
         SELECT * FROM SYS_FILE_CD WHERE key_value = #{key_value}
     </select>
+    <update id="setTwoFile">
+        UPDATE QMS_RECV_SUB
+        SET
+            FILE2 = #{file2},
+            FILE3 = #{file3}
+        WHERE
+            IN_NO = #{key1} AND PART_CODE = {key2}
+    </update>
 </mapper>
 
 
