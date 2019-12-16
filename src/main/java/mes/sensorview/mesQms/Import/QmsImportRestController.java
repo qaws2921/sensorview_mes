@@ -66,7 +66,7 @@ public class QmsImportRestController extends UploadFunction {
     }
 
     @RequestMapping(value = "/qmsRecvErrorManAdd", method = RequestMethod.POST)
-    public String qmsRecvErrorManAdd(MultipartHttpServletRequest req)throws IOException{
+    public String qmsRecvErrorManAdd(MultipartHttpServletRequest req){
         Files files = new Files();
         files.setKey1(req.getParameter("in_no"));
         files.setKey2(req.getParameter("part_code"));
@@ -75,7 +75,6 @@ public class QmsImportRestController extends UploadFunction {
         int check2 = Integer.parseInt(req.getParameter("check2"));
         if(check1+check2 == 0)
         {
-            log.info("파일없음");
             qmsImportService.qmsRecvErrorManAdd_NoneFile(files, req);
         }
         if(check1 == 0 && check2 == 1)
@@ -92,6 +91,7 @@ public class QmsImportRestController extends UploadFunction {
         }
         return "수정되었습니다.";
     }
+
     @RequestMapping(value = "/qmsRecvListGet", method = RequestMethod.POST)
     public RESTful qmsRecvListGet(Page p, HttpServletRequest req) {
         return qmsImportService.qmsRecvListGet(p, req);
