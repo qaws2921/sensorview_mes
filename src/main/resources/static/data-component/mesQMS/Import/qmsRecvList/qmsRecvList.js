@@ -234,14 +234,13 @@ function file3_formatter(cellvalue, options, rowObject) {
 
 function file_download(file_name) {
     if (confirm('파일을 저장하시겠습니까?')) {
-        $.ajax({
-            url: "/FileUploads",
+        $.fileDownload('/FileUploads', {
+            httpMethod: "POST",
             data: { key_value: file_name },
-            method: "POST",
-            dataType: "json"
-        }).fail(function(xhr, status, errorThrown) {
-            console.log(xhr,status,errorThrown);
-            alert('파일 다운로드에 실패하였습니다.');
+            successCallback: function(url){
+            },
+            failCallback: function(){
+            }
         });
     }
 }

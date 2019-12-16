@@ -73,8 +73,7 @@ public class UploadFunction extends ReturnFunction {
         String mime = "application/x-msdownload";
         response.setContentType(mime);
         try {
-            setDisposition(fileData.getFile_name(), request, response);
-            log.info("here1");
+            setDisposition(fileData.getFile_og_name(), request, response);
             file = new File(fileData.getUpload_path());
             is = new FileInputStream(file);
             os = response.getOutputStream();
@@ -84,9 +83,7 @@ public class UploadFunction extends ReturnFunction {
 
             while((len = is.read(b)) > 0){
                 os.write(b,0,len);
-                log.info("here2");
             }
-            log.info("here3");
             is.close();
             os.close();
         } catch (Exception e) {
