@@ -109,21 +109,23 @@ public class QmsImportService  extends UploadFunction {
     public void qmsRecvErrorManAdd_NoneFile(Files files, MultipartHttpServletRequest req) {
         files.setSite_code(getSessionData(req).getSite_code());
         files.setUser_code(getSessionData(req).getUser_code());
-        int rs = qmsImportMapper.qmsRecvErrorManAdd(files);
+        qmsImportMapper.qmsRecvErrorManAdd(files);
     }
 
     public void qmsRecvErrorManAdd_File2(Files files, MultipartHttpServletRequest req) {
         files.setSite_code(getSessionData(req).getSite_code());
         files.setUser_code(getSessionData(req).getUser_code());
         Files newFiles = setQmsRecvErrorManFile2(req);
-        int rs = qmsImportMapper.qmsRecvErrorManAdd2(newFiles);
+        files.setKey_value(newFiles.getKey_value());
+        qmsImportMapper.qmsRecvErrorManAdd2(files);
     }
 
     public void qmsRecvErrorManAdd_File3(Files files, MultipartHttpServletRequest req) {
         files.setSite_code(getSessionData(req).getSite_code());
         files.setUser_code(getSessionData(req).getUser_code());
         Files newFiles = setQmsRecvErrorManFile1(req);
-        int rs = qmsImportMapper.qmsRecvErrorManAdd3(newFiles);
+        files.setKey_value(newFiles.getKey_value());
+        qmsImportMapper.qmsRecvErrorManAdd3(files);
     }
 
     public void qmsRecvErrorManAdd_AllFile(Files files, MultipartHttpServletRequest req) {
