@@ -3,8 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-
 var main_data = {
     check: 'I',
     send_data: {},
@@ -24,6 +22,122 @@ $(document).ready(function () {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({
+        url: "/qmsProdMRBGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    main_data.send_data_post = main_data.send_data;
+    $("#mes_grid").setGridParam({
+        url: "/qmsProdMRBGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+function add_btn() {
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+
+    var ids = $('#mes_grid').getGridParam('selarrrow');
+    var check = '';
+    var check2 = [];
+    var jdata = {};
+    var list = [];
+    if(ids.length === 0) {
+        alert('MRB 처리할 데이터를 선택해주세요.');
+    }else {
+        ids.forEach(function (id){
+            jdata = $('#mes_grid').jqGrid('getRowData',id);
+            check = jdata.mrb;
+            if (check === 'Y') {
+                check2.push(id);
+            }else {
+                list.push(jdata.in_no+gu4+jdata.part_code);
+            }
+        });
+
+        callback(function () {
+            if(check2.length > 0) {
+                alert('이미 MRB 처리된 데이터가 있습니다.');
+            } else {
+                console.log(list.join(gu5));
+                if(confirm("MRB 처리하시겠습니까?")) {
+                    wrapWindowByMask2();
+                    ccn_ajax("/qmsProdMRBAdd", {keyword: list.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                }
+            }
+        });
+    }
+}
+
+function cancel_btn() {
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    var check = '';
+    var check2 = [];
+    var jdata ={};
+    var list = [];
+    if (ids.length === 0) {
+        alert("MRB 처리를 취소할 데이터를 선택해주세요.");
+    }else {
+        ids.forEach(function (id) {
+            jdata = $('#mes_grid').jqGrid('getRowData', id);
+            check = jdata.mrb;
+            if (check === 'N') {
+                check2.push(id);
+            }else {
+                list.push(jdata.in_no+gu4+jdata.part_code);
+            }
+        });
+
+        callback(function () {
+            if (check2.length > 0) {
+                alert("MRB 처리가 되지않은 데이터가 있습니다.");
+            } else {
+                console.log(list.join(gu5));
+                if (confirm("MRB 처리를 취소하시겠습니까?")) {
+                    wrapWindowByMask2();
+                    ccn_ajax("/qmsProdMRBCancel", {keyword: list.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                }
+            }
+        });
+    }
+}
+
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function selectBox() {
@@ -37,30 +151,30 @@ function datepickerInput() {
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-        data:grid_data,
+        mtype: 'POST',
         datatype: "local",
         colNames: ['출고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '출고수량','불량수량', '검사결과','불량유형','불량내용','완료여부','부적합보고서','개선조치','검사자','검사일시','MRB','MRB일시'],
         colModel: [
-            {name: '', index: '', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: '', index: '', sortable: false, width: 80},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60, formatter: formmatterDate},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
+            {name: 'in_no', index: 'in_no', sortable: false, width: 80},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+            {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},
+            {name: 'ng_qty', index: 'ng_qty', sortable: false, width: 60},
+            {name: 'qc_result_name', index: 'qc_result_name', sortable: false, width: 60},
+            {name: 'qc_name', index: 'qc_name', sortable: false, width: 60},
+            {name: 'ng_name', index: 'ng_name', sortable: false, width: 60},
+            {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 60},
+            {name: 'file2_name', index: 'file2_name', sortable: false, width: 60},
+            {name: 'file3_name', index: 'file3_name', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60, formatter: formmatterDate},
+            {name: 'mrb', index: 'mrb', sortable: false, width: 60},
+            {name: 'mrb_date', index: 'mrb_date', sortable: false, width: 90, formatter: formmatterDate},
         ],
         caption: "출하검사MRB관리 | MES",
         autowidth: true,

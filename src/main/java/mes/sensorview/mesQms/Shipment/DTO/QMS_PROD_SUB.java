@@ -34,7 +34,12 @@ public class QMS_PROD_SUB {
     private String qc_result;
     private String unit_name;
     private String qc_level_name;
+
+
     private int rownum;
     private int rownum_page;
     private int rec_count;
+
+    private String mrb_date;
+    private String keyword;
 }
