@@ -57,13 +57,12 @@ function addupdate_btn() {
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function file_change(e) {
-    var data = $(e).val().split('.');
+    var filename = $(e).val().split('\\');
+    var data = $(e).val().split('.'); // 확장자
     if ( $(e).val() !== ''){
         $(e).closest("div")
             .children(".file_labal")
-            .text(data[1]+" 파일 업로드 완료")
-            .css('background-color', '#696969')
-            .css('border', '1px solid #696969');
+            .text(filename[2]);
     }
 }
 
