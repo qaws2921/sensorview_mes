@@ -8,12 +8,12 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">전표번호</td>
                     <td class="wt-px-200">
-                        <input type="text" value="TEST201912111010" class="form-control h-25" readonly>
+                        <input type="text" id="in_no" name="in_no" class="form-control h-25 modal_value" readonly>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">입고일자</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" id="datepicker3" class="form-control h-25" readonly>
+                            <input type="text" id="work_date" name="work_date"  class="form-control h-25 modal_value" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
