@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -38,6 +40,10 @@ public class QmsImportRestController extends UploadFunction {
         return qmsImportService.qmsRecvAdd(req, qrs);
     }
 
+    @RequestMapping(value ="/FileUploads", method = RequestMethod.POST)
+    public void FileUploads(Files files, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        FileDownloads(files,request,response);
+    }
 
     @RequestMapping(value ="/qmsRecvErrorManGet", method = RequestMethod.POST)
     public RESTful qmsRecvErrorManGet(Page p,HttpServletRequest req) { return qmsImportService.qmsRecvErrorManGet(p, req); }

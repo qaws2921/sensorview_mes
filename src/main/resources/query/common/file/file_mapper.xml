@@ -5,6 +5,9 @@
         EXEC SP_SYS_FILE_ADD #{site_code}, #{user_code}, #{key_value}, #{file_name},
         #{file_og_name}, #{file_size}, #{file_volume}, #{upload_path}, #{url}
     </select>
+    <select id="FileDownloads" resultType="mes.sensorview.Common.File.DTO.Files">
+        SELECT * FROM SYS_FILE_CD WHERE key_value = #{key_value}
+    </select>
 </mapper>
 
 
