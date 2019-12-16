@@ -44,6 +44,27 @@ function get_btn_post(page) {
         postData: main_data.send_data_post
     }).trigger("reloadGrid");
 }
+
+function update_btn(jqgrid_data) {
+
+    modal_reset(".modal_value", []);
+    $('#file_02').val('');
+    $('#file_03').val('');
+    $('.file_labal').text('업로드');
+
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.in_no = jqgrid_data.in_no;
+    send_data.part_code = jqgrid_data.part_code;
+
+    ccn_ajax('/qmsProdErrorManOneGet', send_data).then(function (data) {
+        data.work_date = data.work_date.substring(0,4)+'-'+data.work_date.substring(4,6)+'-'+data.work_date.substring(6);
+        data.update_date = data.update_date.substring(0,4)+'-'+data.update_date.substring(4,6)+'-'+data.update_date.substring(6,8)+' '+data.update_date.substring(8,10)+':'+data.update_date.substring(10,12)+':'+data.update_date.substring(12);
+        console.log(data);
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        $("#addDialog").dialog('open');
+    });
+}
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function datepickerInput() {
@@ -55,9 +76,9 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype:"POST",
         datatype: "local",
-        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '출고수량', '불량수량', '검사결과','불량유형','불량내용','조치구분','부적합보고서','개선조치','검사자','검사일시'],
+        colNames: ['rownum','입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '출고수량', '불량수량', '검사결과','불량유형','불량내용','조치구분','부적합보고서','개선조치','검사자','검사일시'],
         colModel: [
-            {name: 'rownum', index: 'rownum', sortable:false, width: 60, hidden:true,key: true,},
+            {name: 'rownum', index: 'rownum', sortable:false, width: 60, hidden:true, key: true,},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'in_no', index: 'in_no', sortable: false, width: 80},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
@@ -95,7 +116,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            update_btn(rowid);
+            update_btn(data);
         }
     });
 }

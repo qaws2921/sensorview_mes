@@ -78,13 +78,13 @@
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">조회구분</td>
-                    <td class="wt-px-200">
-                        <select id="gubun_select" class="form-control h-25">
-                            <option>주별</option>
-                            <option>월별</option>
-                        </select>
-                    </td>
+<%--                    <td class="wt-px-100 td-title t-align-c padding-a-0">조회구분</td>--%>
+<%--                    <td class="wt-px-200">--%>
+<%--                        <select id="gubun_select" class="form-control h-25">--%>
+<%--                            <option>주별</option>--%>
+<%--                            <option>월별</option>--%>
+<%--                        </select>--%>
+<%--                    </td>--%>
                     <td></td>
                 </tr>
                 </tbody>
