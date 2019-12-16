@@ -23,11 +23,10 @@ public class UploadFunction extends ReturnFunction {
     FileUploadService fileUploadService;
 
     public Files setOneFile(Files files, HttpServletRequest req) {
-        Message msg = new Message();
         Files newFile = UploadSetFilePath(files.getFiles(), req);
         try {
             newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
-            msg = fileUploadService.setOneFile(newFile, req);
+            fileUploadService.setOneFile(newFile, req);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -211,7 +210,6 @@ public class UploadFunction extends ReturnFunction {
         NewFiles.setKey1(files.getKey1());
         NewFiles.setKey2(files.getKey2());
         NewFiles.setKey3(files.getKey3());
-
         return NewFiles;
     }
 
