@@ -25,7 +25,7 @@
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold">
+                        <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" onclick="add_modal1_btn();">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>저장</span>
