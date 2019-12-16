@@ -117,9 +117,7 @@
             </div>
             <div class="profile-info-name">성적서</div>
             <div class="profile-info-value">
-                <div class='filebox'>
-                    <input type="text" class="form-control">
-                </div>
+               <input type="text" name="file1_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
@@ -141,11 +139,11 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사자</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="user_name" class="form-control modal_value" readonly>
             </div>
             <div class="profile-info-name">검사일시</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="update_date" class="form-control modal_value" readonly>
             </div>
         </div>
     </div>

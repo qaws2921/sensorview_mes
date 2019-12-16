@@ -31,4 +31,8 @@ public class QMS_PROD_SUB {
     private String file3_name;
     private String user_name;
     private String update_date;
+
+    private int rownum;
+    private int rownum_page;
+    private int rec_count;
 }
