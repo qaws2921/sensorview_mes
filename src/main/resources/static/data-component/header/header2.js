@@ -105,11 +105,13 @@ var array =
         {code:"popProdPlanManual",title:"생산관리",sub:"생산관리",name:"작업지시관리(수동)"},
         {code:"popPlan",title:"생산관리",sub:"생산관리",name:"생산지시현황"},
 
-
-
         {code:"popPC",title:"생산관리",sub:"디바이스관리",name:"컴퓨터관리"},
         {code:"popTerminal", title:"생산관리", sub:"디바이스관리", name:"공정마스터관리"},
 
+        //외주관리
+        {code:"outsOutList", title:"외주관리" , sub:"외주관리", name:"외주출고현황"},
+        {code:"outsInList", title:"외주관리" , sub:"외주관리", name:"외주입고현황"},
+        {code:"outsInReady", title:"외주관리" , sub:"외주관리", name:"미입고관리"},
     ];
 $(function () {
     wrapWindowByMask2();
