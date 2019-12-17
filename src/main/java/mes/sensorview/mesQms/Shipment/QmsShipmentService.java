@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.Mapper.mesQms.Shipment.QmsShipmentMapper;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,5 +74,10 @@ public class QmsShipmentService extends UploadFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<QMS_PROD_SUB> rows = qmsShipmentMapper.qmsProdListGet(p);
         return getListData(rows, p);
+    }
+
+    public List<QMS_PROD_RPT> qmsProdListRPTGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return qmsShipmentMapper.qmsProdListRPTGet(p);
     }
 }

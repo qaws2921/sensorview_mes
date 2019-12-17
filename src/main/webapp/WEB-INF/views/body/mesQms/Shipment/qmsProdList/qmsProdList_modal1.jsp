@@ -9,5 +9,18 @@
                 <div class="profile-info-name wt-px-75">${num}</div>
             </c:forEach>
         </div>
+
+        <%--        <div class="profile-info-row">--%>
+        <%--            <div class="profile-info-name">Connector와 Cable의 결합 상태 확인</div>--%>
+        <%--            <c:forEach begin="1" end="20" step="1">--%>
+        <%--                <div class="profile-info-value wt-px-75">--%>
+        <%--                    <select class="form-control">--%>
+        <%--                        <option>O</option>--%>
+        <%--                        <option>X</option>--%>
+        <%--                        <option>N/A</option>--%>
+        <%--                    </select>--%>
+        <%--                </div>--%>
+        <%--            </c:forEach>--%>
+        <%--        </div>--%>
     </div>
 </div>

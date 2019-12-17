@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.Function.UploadFunction;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,9 @@ public class QmsShipmentRestController extends UploadFunction {
 
     @RequestMapping(value = "/qmsProdListGet", method = RequestMethod.POST)
     public RESTful qmsProdListGet(Page p, HttpServletRequest req) { return qmsShipmentService.qmsProdListGet(p, req); }
+
+    @RequestMapping(value = "/qmsProdListRPTGet", method = RequestMethod.POST)
+    public List<QMS_PROD_RPT> qmsProdListRPTGet(Page p, HttpServletRequest req) { return qmsShipmentService.qmsProdListRPTGet(p, req); }
 
     @RequestMapping(value ="/qmsProdErrorManOneGet", method = RequestMethod.POST)
     public QMS_PROD_SUB qmsProdErrorManOneGet(QMS_PROD_SUB qmsProdSub, HttpServletRequest req){

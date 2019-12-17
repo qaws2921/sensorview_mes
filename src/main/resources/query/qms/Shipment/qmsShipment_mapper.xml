@@ -34,4 +34,7 @@
     <select id="qmsProdAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_QMS_PROD_INSP_ADD #{site_code},#{user_code},#{in_no},#{keyword}, #{keyword2}
     </select>
+    <select id="qmsProdListRPTGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT">
+        EXEC SP_QMS_PROD_RPT_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+    </select>
 </mapper>
