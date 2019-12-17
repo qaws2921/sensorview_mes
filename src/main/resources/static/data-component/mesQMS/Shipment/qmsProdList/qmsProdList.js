@@ -79,7 +79,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype:'POST',
         datatype: "local",
-        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '입고LOT', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과','불량유형','불량상세','조치구분','성적서','부적합보고서','개선조치','file02','file03','검사자','검사일시'],
+        colNames: ['입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위','검사구분', '입고수량', '검사수량', '불량수량', '검사결과','불량유형','불량상세','조치구분','성적서','부적합보고서','개선조치','file02','file03','검사자','검사일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'in_no', index: 'in_no', sortable: false, width: 80},
@@ -89,7 +89,6 @@ function jqGrid_main() {
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false, width: 60},
             {name: 'in_qty', index: 'in_qty', sortable: false, width: 60},
             {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},

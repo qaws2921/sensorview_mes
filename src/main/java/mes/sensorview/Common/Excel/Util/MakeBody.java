@@ -374,7 +374,6 @@ public class MakeBody {
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getCode_name1());
-                    obj.add(data.getCode_name1()); // 입고 LOT
                     obj.add(data.getQc_level_name());
                     obj.add(data.getIn_qty());
                     obj.add(data.getQc_qty());

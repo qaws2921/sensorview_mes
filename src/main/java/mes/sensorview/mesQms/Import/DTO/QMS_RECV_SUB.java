@@ -45,4 +45,6 @@ public class QMS_RECV_SUB {
     private String file3_name;
     private String qc_name;
 
+    private String lot;
+
 }

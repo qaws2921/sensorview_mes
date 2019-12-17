@@ -113,7 +113,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        colNames: ['rownum', '입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위', '검사등급'
+        colNames: ['rownum', '입고일자', '전표번호', '업체', '품목그룹', '품번', '품명', '규격', '단위','입고LOT','검사등급'
             , '입고수량', '검사수량', '불량수량', '검사결과', '불량유형'
             , '불량내용', '완료여부', '성적서', '부적합보고서', '개선조치', 'file1', 'file2', 'file3', '검사자', '검사일시'],
         colModel: [
@@ -126,6 +126,7 @@ function jqGrid_main() {
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
+            {name: 'lot', index: 'lot', sortable: false, width: 60},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false, width: 60},
             {name: 'in_qty', index: 'in_qty', sortable: false, width: 60},
             {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},
