@@ -42,4 +42,6 @@ public class QMS_PROD_SUB {
 
     private String mrb_date;
     private String keyword;
+    private String file1_name;
+    private String file1;
 }

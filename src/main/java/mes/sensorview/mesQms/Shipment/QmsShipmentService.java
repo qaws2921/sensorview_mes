@@ -62,4 +62,10 @@ public class QmsShipmentService extends UploadFunction {
         qps.setSite_code(getSessionData(req).getSite_code());
         return qmsShipmentMapper.qmsProdMRBCancel(qps);
     }
+
+    public RESTful qmsProdListGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<QMS_PROD_SUB> rows = qmsShipmentMapper.qmsProdListGet(p);
+        return getListData(rows, p);
+    }
 }
