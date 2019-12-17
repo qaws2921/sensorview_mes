@@ -37,4 +37,35 @@
     <select id="qmsProdListRPTGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT">
         EXEC SP_QMS_PROD_RPT_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2}
     </select>
+    <update id="qmsProdErrorManAdd_NoneFile">
+        UPDATE QMS_PROD_SUB
+        SET
+            ACT_TYPE = #{key3}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsProdErrorManAdd_File2">
+        UPDATE QMS_PROD_SUB
+        SET
+            FILE2 = #{key_value},
+            ACT_TYPE = #{key3}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsProdErrorManAdd_File3">
+        UPDATE QMS_PROD_SUB
+        SET
+            FILE3 = #{key_value},
+            ACT_TYPE = #{key3}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
+    <update id="qmsProdErrorManAdd_AllFile">
+        UPDATE QMS_PROD_SUB
+        SET
+            ${name} = #{key_value},
+            ACT_TYPE = #{key3}
+            WHERE
+            IN_NO = #{key1} AND PART_CODE = #{key2}
+    </update>
 </mapper>

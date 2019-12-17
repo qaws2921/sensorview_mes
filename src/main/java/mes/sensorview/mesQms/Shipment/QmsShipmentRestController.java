@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -65,6 +67,32 @@ public class QmsShipmentRestController extends UploadFunction {
     @RequestMapping(value = "/qmsProdMRBCancel", method = RequestMethod.POST)
     public Message qmsProdMRBCancel(HttpServletRequest req, QMS_PROD_SUB qps) {
         return qmsShipmentService.qmsProdMRBCancel(req, qps);
+    }
+    @RequestMapping(value = "/qmsProdErrorManAdd", method = RequestMethod.POST)
+    public String qmsProdErrorManAdd(MultipartHttpServletRequest req){
+        Files files = new Files();
+        files.setKey1(req.getParameter("in_no"));
+        files.setKey2(req.getParameter("part_code"));
+        files.setKey3(req.getParameter("act_type"));
+        int check1 = Integer.parseInt(req.getParameter("check1"));
+        int check2 = Integer.parseInt(req.getParameter("check2"));
+        if(check1+check2 == 0)
+        {
+            qmsShipmentService.qmsProdErrorManAdd_NoneFile(files, req);
+        }
+        if(check1 == 0 && check2 == 1)
+        {
+            qmsShipmentService.qmsProdErrorManAdd_File3(files, req);
+        }
+        if(check2 == 0 && check1 == 1)
+        {
+            qmsShipmentService.qmsProdErrorManAdd_File2(files, req);
+        }
+        if(check1+check2 == 2)
+        {
+            qmsShipmentService.qmsProdErrorManAdd_AllFile(files, req);
+        }
+        return "수정되었습니다.";
     }
 
 }
