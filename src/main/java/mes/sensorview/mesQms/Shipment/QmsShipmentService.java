@@ -62,4 +62,10 @@ public class QmsShipmentService extends UploadFunction {
         qps.setSite_code(getSessionData(req).getSite_code());
         return qmsShipmentMapper.qmsProdMRBCancel(qps);
     }
+
+    public Message qmsProdAdd(HttpServletRequest req, QMS_PROD_SUB qps) {
+        qps.setSite_code(getSessionData(req).getSite_code());
+        qps.setUser_code(getSessionData(req).getUser_code());
+        return qmsShipmentMapper.qmsProdAdd(qps);
+    }
 }

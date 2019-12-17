@@ -15,7 +15,7 @@
             <input type="hidden" id="qc_code0" value="ZZZZZ">
             <c:forEach var="num" begin="1" end="20" step="1">
                 <div class="profile-info-value wt-px-75">
-                    <input type="text" name="qc0_result${num}" class="form-control modal_sel_value2 qc0_result${num}">
+                    <input type="text" name="qc0_result${num}" class="form-control modal_sel_value2 qc0_result${num}" maxlength="5">
                 </div>
             </c:forEach>
         </div>

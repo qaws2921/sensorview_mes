@@ -21,4 +21,6 @@ public interface QmsShipmentMapper {
     Message qmsProdMRBAdd(QMS_PROD_SUB qps);
 
     Message qmsProdMRBCancel(QMS_PROD_SUB qps);
+
+    Message qmsProdAdd(QMS_PROD_SUB qps);
 }

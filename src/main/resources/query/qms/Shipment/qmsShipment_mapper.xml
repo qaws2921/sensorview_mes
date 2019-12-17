@@ -27,4 +27,7 @@
     <select id="qmsProdSubGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB">
             EXEC [SP_QMS_PROD_SUB_GET] #{site_code}, #{page}, #{rows}, #{keyword}
     </select>
+    <select id="qmsProdAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_QMS_PROD_INSP_ADD #{site_code},#{user_code},#{in_no},#{keyword}, #{keyword2}
+    </select>
 </mapper>

@@ -30,6 +30,7 @@ public class QMS_PROD_SUB {
     private String file2_name;
     private String file3_name;
     private String user_name;
+    private String user_code;
     private String update_date;
     private String qc_result;
     private String unit_name;
@@ -42,4 +43,5 @@ public class QMS_PROD_SUB {
 
     private String mrb_date;
     private String keyword;
+    private String keyword2;
 }

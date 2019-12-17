@@ -21,20 +21,24 @@ function add_modal1_btn() {
     if (jdata.length > 0) {
         var list = [];
         var list2 = [];
-
+        var list3 = [];
+        var list4 = [];
         jdata.forEach(function (data, j) {
             if (data.qc_qty !== ''
                 && data.ng_qty !== ''
             ) {
                 if (data.qc_result === '2') {
                     if (data.ng_type !== '' && data.ng_name !== '' && $(".reportsAdd:eq("+j+")").text() !== '추가') {
-                        list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type);
+                        list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type+gu4+$(".reportsAdd:eq("+j+")").text());
+                        list3.push(data.part_code);
+                        list4.push(data.qc_qty);
                     } else {
                         list2.push(data.part_code);
                     }
                 } else {
-                        console.log(j);
-                    list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type);
+                    list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type+gu4+$(".reportsAdd:eq("+j+")").text());
+                    list3.push(data.part_code);
+                    list4.push(data.qc_qty);
                 }
 
             } else {
@@ -43,8 +47,61 @@ function add_modal1_btn() {
 
         });
         callback(function () {
-            add_data.keyword = list.join(gu5);
-            console.log(add_data);
+            if (list2.length > 0) {
+                alert(list2.join(", ") + "를 다시 확인해주세요");
+            } else {
+                if (confirm('저장하겠습니까?')) {
+                    wrapWindowByMask2();
+                    add_data.keyword = list.join(gu5);
+
+
+                    var code_list = [];
+                    var code_list2 = [];
+                    var code_list3 = [];
+                    var idx;
+
+
+                    list3.forEach(function (s2, i2) {
+                        idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                            return item.part_code === s2
+                        });
+
+                        if (idx !== -1) {
+                            modal2_data.sub_data[idx].list.forEach(function (s3, k) {
+                                code_list.push(s3.qc_code);
+                                for (var i = 1; i <= list4[i2] && i <= 20;i++){
+                                    code_list.push(s3['qc_result'+i]);
+                                    if (i == list4[i2] || i == 20 ){
+                                        code_list2.push(code_list.join(gu3));
+                                        code_list = [];
+                                    }
+                                }
+
+                            });
+                        }
+                        callback(function () {
+                            code_list3.push(code_list2.join(gu4));
+                            code_list2 = [];
+                        })
+                    });
+                    add_data.keyword2 = code_list3.join(gu5);
+                    ccn_ajax("/qmsProdAdd", add_data).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn(1);
+                        }
+                        $('#mes_grid2').jqGrid('clearGridData');
+                        closeWindowByMask();
+                        $("#addDialog").dialog('close');
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        alert("저장실패");
+                    });
+
+                }
+
+            }
 
         })
 
