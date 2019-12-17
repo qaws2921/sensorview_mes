@@ -201,7 +201,7 @@ function file1_formatter(cellvalue, options, rowObject) {
     } else {
         return "" +
             " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-danger btn-mini btn-bold'" +
-            "tabindex='0' aria-controls='dynamic-table'>" +
+            "tabindex='0' aria-controls='dynamic-table' style='cursor: not-allowed;'>" +
             "<span><i class='fa fa-ban bigger-110 red'></i>" +
             "<span> 없음</span>" +
             "</span>" +
@@ -221,7 +221,7 @@ function file2_formatter(cellvalue, options, rowObject) {
     } else {
         return "" +
             " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-danger btn-mini btn-bold'" +
-            "tabindex='0' aria-controls='dynamic-table'>" +
+            "tabindex='0' aria-controls='dynamic-table' style='cursor: not-allowed;'>" +
             "<span><i class='fa fa-ban bigger-110 red'></i>" +
             "<span> 없음</span>" +
             "</span>" +
@@ -241,7 +241,7 @@ function file3_formatter(cellvalue, options, rowObject) {
     } else {
         return "" +
             " <a class='dt-button buttons-csv buttons-html5 btn btn-white btn-danger btn-mini btn-bold'" +
-            "tabindex='0' aria-controls='dynamic-table'>" +
+            "tabindex='0' aria-controls='dynamic-table' style='cursor: not-allowed;'>" +
             "<span><i class='fa fa-ban bigger-110 red'></i>" +
             "<span> 없음</span>" +
             "</span>" +

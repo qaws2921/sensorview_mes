@@ -223,8 +223,3 @@ function file_download(file_name) {
     }
 }
 
-function file1_Modal(in_no,part_code) {
-    console.log(in_no);
-    console.log(part_code);
-    $("#addDialog").dialog('open');
-}
