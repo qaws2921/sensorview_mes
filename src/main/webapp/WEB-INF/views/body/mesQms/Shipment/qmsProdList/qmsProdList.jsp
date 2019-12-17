@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
+<script type="text/javascript" src="/ui-component/assets/js/jquery.fileDownload.js"></script>
 <script type="text/javascript" src="/data-component/mesQMS/Shipment/qmsProdList/qmsProdList.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
@@ -29,10 +30,10 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">검사결과</td>
                     <td class="wt-px-200">
-                        <select id='result_select' class="form-control h-25">
-                            <option>전체</option>
-                            <option>양품</option>
-                            <option>불량</option>
+                        <select id='result_select' name="keyword" class="form-control h-25 condition_main">
+                            <option value="">전체</option>
+                            <option value="1">양품</option>
+                            <option value="2">불량</option>
                         </select>
                     </td>
                     <td></td>
@@ -51,7 +52,7 @@
                         </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="excel_download()">
                         <span><i class="fa fa-download bigger-110 blue"></i>
                             <span>저장</span>
                         </span>
@@ -69,5 +70,5 @@
     </div>
 </div>
 
-
+<%@include file="qmsProdList_modal1.jsp"%>
 

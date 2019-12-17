@@ -10,6 +10,10 @@
             EXEC SP_QMS_PROD_NG_GET #{site_code}, 1, 1, '', '',#{in_no},#{part_code}
     </select>
 
+    <select id="qmsProdListGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB">
+        EXEC SP_QMS_PROD_SUB_DATE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
+    </select>
+
     <select id="qmsProdMRBGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB">
             EXEC SP_QMS_PROD_MRB_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
     </select>

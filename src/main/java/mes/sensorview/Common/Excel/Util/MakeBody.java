@@ -3,6 +3,7 @@ package mes.sensorview.Common.Excel.Util;
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -337,6 +338,43 @@ public class MakeBody {
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
+                    obj.add(data.getQc_level_name());
+                    obj.add(data.getIn_qty());
+                    obj.add(data.getQc_qty());
+                    obj.add(data.getNg_qty());
+                    obj.add(data.getQc_result_name());
+                    obj.add(data.getQc_name());
+                    obj.add(data.getNg_name());
+                    obj.add(data.getAct_type_name());
+                    obj.add(data.getFile1_name());
+                    obj.add(data.getFile2_name());
+                    obj.add(data.getFile3_name());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> qmsProdList_Body(List<QMS_PROD_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(QMS_PROD_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getIn_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getCode_name1());
+                    obj.add(data.getCode_name1()); // 입고 LOT
                     obj.add(data.getQc_level_name());
                     obj.add(data.getIn_qty());
                     obj.add(data.getQc_qty());

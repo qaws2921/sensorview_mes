@@ -42,6 +42,8 @@ public class QmsShipmentRestController extends UploadFunction {
         return qmsShipmentService.qmsProdAdd(req, qps);
     }
 
+    @RequestMapping(value = "/qmsProdListGet", method = RequestMethod.POST)
+    public RESTful qmsProdListGet(Page p, HttpServletRequest req) { return qmsShipmentService.qmsProdListGet(p, req); }
 
     @RequestMapping(value ="/qmsProdErrorManOneGet", method = RequestMethod.POST)
     public QMS_PROD_SUB qmsProdErrorManOneGet(QMS_PROD_SUB qmsProdSub, HttpServletRequest req){

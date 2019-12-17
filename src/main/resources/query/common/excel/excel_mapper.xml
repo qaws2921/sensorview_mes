@@ -52,6 +52,10 @@
     <select id="qmsRecvDbList" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
         EXEC [SP_QMS_RECV_SUB_DATE_GET] #{site_code}, 0, 0,#{row0},#{row1},#{row2},#{row3}
     </select>
+
+    <select id="qmsProdDbList" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB">
+        EXEC [SP_QMS_PROD_SUB_DATE_GET] #{site_code}, 0, 0,#{row0},#{row1},#{row2}
+    </select>
 </mapper>
 
 
