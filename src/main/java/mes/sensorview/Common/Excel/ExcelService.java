@@ -10,6 +10,8 @@ import mes.sensorview.Common.Excel.Util.Upload;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -455,6 +457,39 @@ public class ExcelService extends ExcelFunction {
                 List<List<Object>> rows = makeBody.qmsRecvList_Body(list);
                 int index = makeHeader.qmsRecvList_Header().length;
                 String[] data = makeHeader.qmsRecvList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("qmsProdList")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("출하검사현황");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("출하검사현황","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<QMS_PROD_SUB> list = excelMapper.qmsProdDbList(excel);
+                List<List<Object>> rows = makeBody.qmsProdList_Body(list);
+                int index = makeHeader.qmsProdList_Header().length;
+                String[] data = makeHeader.qmsProdList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성
