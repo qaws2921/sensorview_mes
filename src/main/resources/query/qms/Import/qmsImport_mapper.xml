@@ -42,21 +42,24 @@
     <update id="qmsRecvErrorManAdd2">
         UPDATE QMS_RECV_SUB
         SET
-            FILE2 = #{key_value}
+            FILE2 = #{key_value},
+            ACT_TYPE = #{key3}
             WHERE
             IN_NO = #{key1} AND PART_CODE = #{key2}
     </update>
     <update id="qmsRecvErrorManAdd3">
         UPDATE QMS_RECV_SUB
         SET
-            FILE3 = #{key_value}
+            FILE3 = #{key_value},
+            ACT_TYPE = #{key3}
             WHERE
             IN_NO = #{key1} AND PART_CODE = #{key2}
     </update>
     <update id="qmsRecvErrorManAdd_AllFile">
         UPDATE QMS_RECV_SUB
         SET
-            ${name} = #{key_value}
+            ${name} = #{key_value},
+            ACT_TYPE = #{key3}
             WHERE
             IN_NO = #{key1} AND PART_CODE = #{key2}
     </update>

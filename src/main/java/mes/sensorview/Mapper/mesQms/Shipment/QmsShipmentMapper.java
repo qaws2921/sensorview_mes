@@ -2,6 +2,7 @@ package mes.sensorview.Mapper.mesQms.Shipment;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
@@ -28,4 +29,12 @@ public interface QmsShipmentMapper {
     List<QMS_PROD_SUB> qmsProdListGet(Page p);
 
     List<QMS_PROD_RPT> qmsProdListRPTGet(Page p);
+
+    void qmsProdErrorManAdd_NoneFile(Files files);
+
+    void qmsProdErrorManAdd_File2(Files files);
+
+    void qmsProdErrorManAdd_File3(Files files);
+
+    void qmsProdErrorManAdd_AllFile(Files newFiles);
 }
