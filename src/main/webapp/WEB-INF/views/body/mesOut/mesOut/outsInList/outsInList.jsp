@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
-<script type="text/javascript" src="/data-component/mesOut/mesOut/outsOutList/outsOutList.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesOut/mesOut/outsInList/outsInList.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="page-content">
