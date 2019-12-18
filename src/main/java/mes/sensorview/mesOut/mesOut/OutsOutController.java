@@ -11,4 +11,7 @@ public class OutsOutController {
 
     @RequestMapping(value = "/outsInList")
     public String outsInList() { return "mesOut/mesOut/outsInList/outsInList"; }
+
+    @RequestMapping(value = "/outsInReady")
+    public String outsInReady() { return "mesOut/mesOut/outsInReady/outsInReady"; }
 }
