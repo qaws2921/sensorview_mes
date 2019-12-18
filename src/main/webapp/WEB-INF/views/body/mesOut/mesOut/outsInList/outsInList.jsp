@@ -69,15 +69,6 @@
             </div>
         </div>
 
-        <hr />
-
-        <div class="row">
-            <div class="col-xs-12 table-responsive">
-                <table id="mes_grid2"></table>
-                <div id="mes_grid2_pager"></div>
-            </div>
-        </div>
-
     </div>
 </div>
 

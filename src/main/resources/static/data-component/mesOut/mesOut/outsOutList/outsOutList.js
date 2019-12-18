@@ -16,7 +16,6 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
-    jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     datepickerInput();
     suppModal_start();
 
@@ -85,7 +84,7 @@ function jqGrid_main() {
         ],
         caption: "외주출고현황 | MES",
         autowidth: true,
-        height: 180,
+        height: 550,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,
@@ -104,24 +103,4 @@ function jqGrid_main() {
         }
     });
 
-    $('#mes_grid2').jqGrid({
-        datatype: "local",
-        caption: "외주출고현황 | MES",
-        colNames: ['출고번호', '품목그룹', '품번', '품명', '규격', '단위','상태', '수량'],
-        colModel: [
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-        ],
-        viewrecords: true,
-        height: 200,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
-        pager: '#mes_grid2_pager',
-    });
 }
