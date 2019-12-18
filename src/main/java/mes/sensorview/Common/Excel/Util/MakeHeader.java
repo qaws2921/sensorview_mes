@@ -74,4 +74,19 @@ public class MakeHeader {
         String[] data = {"입고일자", "전표번호", "업체", "품목그룹", "품번", "품명", "규격", "단위", "검사구분", "입고수량", "검사수량", "불량수량", "검사결과","불량유형","불량상세","조치구분","성적서","부적합보고서","개선조치","검사자","검사일시"};
         return data;
     }
+
+    public String[] outsOutList_Header() {
+        String[] data = {"출고일자", "출고번호", "업체", "품목그룹", "품번", "품명", "규격", "단위", "수량", "등록자","등록일시"};
+        return data;
+    }
+
+    public String[] outsInList_Header() {
+        String[] data = {"입고일자", "입고번호", "업체", "품목그룹", "품번", "품명", "규격", "단위", "출고수량","외주 LOSS","검사 LOSS","양품량", "등록자","등록일시"};
+        return data;
+    }
+
+    public String[] outsInReady_Header() {
+        String[] data = {"출고일자", "출고번호", "업체", "품목그룹", "품번", "품명", "규격", "단위", "수량","바코드", "등록자","등록일시"};
+        return data;
+    }
 }

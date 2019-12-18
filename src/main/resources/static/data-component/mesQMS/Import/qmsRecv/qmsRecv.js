@@ -79,7 +79,7 @@ function jqGrid_main() {
         datatype: "local",
         multiselect: true,
         caption: "수입검사진행 | MES",
-        colNames: ['입고일자', '전표번호', '업체', '상태', '상태기준', '처리자', '출고일시'],
+        colNames: ['입고일자', '전표번호', '업체', '상태', '상태기준', '처리자', '등록일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', width: 60, sortable: false, formatter: formmatterDate2},
             {name: 'in_no', index: 'in_no', key: true, width: 60, sortable: false},
@@ -87,7 +87,7 @@ function jqGrid_main() {
             {name: 'status_name', index: 'status_name', width: 60, sortable: false},
             {name: 'status', index: 'status', hidden: true, width: 60, sortable: false},
             {name: 'user_name', index: 'user_name', width: 60, sortable: false},
-            {name: 'out_date', index: 'out_date', width: 60, sortable: false},
+            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate},
         ],
         autowidth: true,
         viewrecords: true,

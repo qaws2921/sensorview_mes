@@ -24,6 +24,43 @@ $(document).ready(function () {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    $("#mes_grid").setGridParam({
+        url: "/outsOutListGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            data: {
+                "name": "outsOutList",
+                "row0": $('#datepicker').val().replace(/-/gi, ""),
+                "row1": $('#datepicker2').val().replace(/-/gi, ""),
+                "row2": $("#supp_code_main").val()
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
 
 function supp_btn(what) {
     main_data.supp_check = what;
@@ -70,17 +107,17 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['출고일자', '출고번호', '업체', '품목그룹','품번', '품명', '규격', '단위', '수량', '등록자', '입고일시'],
         colModel: [
-            {name: '', index: '', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 40},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 80, formatter: formmatterDate},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
+            {name: 'out_no', index: 'out_no', sortable: false, width: 60},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
+            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 40},
+            {name: 'qty', index: 'qty', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 80, formatter: formmatterDate},
         ],
         caption: "외주출고현황 | MES",
         autowidth: true,
@@ -89,18 +126,7 @@ function jqGrid_main() {
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,
         viewrecords: true,
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
-        onCellSelect: function (rowid, icol, cellcontent, e) {
 
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#mes_grid').jqGrid('getRowData', rowid);
-        }
     });
 
 }

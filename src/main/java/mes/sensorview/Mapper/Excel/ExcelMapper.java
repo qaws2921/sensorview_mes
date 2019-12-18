@@ -3,6 +3,9 @@ package mes.sensorview.Mapper.Excel;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.Excel.DTO.Excel;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
@@ -40,4 +43,10 @@ public interface ExcelMapper {
     List<QMS_RECV_SUB> qmsRecvDbList(Excel excel);
 
     List<QMS_PROD_SUB> qmsProdDbList(Excel excel);
+
+    List<OUTS_OUT_SUB> outsOutDbList(Excel excel);
+
+    List<OUTS_IN_SUB> outsInDbList(Excel excel);
+
+    List<OUTS_OUT_BCR> outsInReadyDbList(Excel excel);
 }

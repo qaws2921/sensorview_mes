@@ -2,6 +2,9 @@ package mes.sensorview.Common.Excel.Util;
 
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
+import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
@@ -385,6 +388,88 @@ public class MakeBody {
                     obj.add(data.getFile1_name());
                     obj.add(data.getFile2_name());
                     obj.add(data.getFile3_name());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> outsOutList_Body(List<OUTS_OUT_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(OUTS_OUT_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> outsInList_Body(List<OUTS_IN_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(OUTS_IN_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getIn_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getOut_qty());
+                    obj.add(data.getOut_loss());
+                    obj.add(data.getQc_loss());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> outsInReady_Body(List<OUTS_OUT_BCR> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(OUTS_OUT_BCR data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getOut_qty());
+                    obj.add(data.getBcr_no());
                     obj.add(data.getUser_name());
                     obj.add(data.getUpdate_date());
                     content.add(obj);

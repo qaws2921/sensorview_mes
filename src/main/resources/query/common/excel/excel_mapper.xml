@@ -56,6 +56,15 @@
     <select id="qmsProdDbList" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB">
         EXEC [SP_QMS_PROD_SUB_DATE_GET] #{site_code}, 0, 0,#{row0},#{row1},#{row2}
     </select>
+    <select id="outsOutDbList" resultType="mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB">
+            EXEC [SP_OUTS_OUT_SUB_DATE_GET] #{site_code}, 0, 0, #{row0}, #{row1} ,#{row2}
+    </select>
+    <select id="outsInDbList" resultType="mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB">
+            EXEC [SP_OUTS_IN_SUB_DATE_GET] #{site_code}, 0, 0, #{row0}, #{row1} ,#{row2}
+    </select>
+    <select id="outsInReadyDbList" resultType="mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR">
+            EXEC [SP_OUTS_IN_SUB_READY_DATE_GET] #{site_code}, 0, 0, #{row0}, #{row1} ,#{row2}
+    </select>
 </mapper>
 
 

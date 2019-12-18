@@ -97,4 +97,5 @@ function selectBox_modal1() {
     select_makes("#dept_select2", "/sysDeptAllGet", "dept_code", "dept_name");
     select_makes("#duty_select", "/sysCommonDutyGet", "code_value", "code_name1");
     select_makes("#auth_select", "/sysAuthAllGet", "auth_code", "auth_name");
+
 }
