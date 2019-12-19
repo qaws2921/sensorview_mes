@@ -78,6 +78,10 @@ public class UserRestController {
     public RESTful sysUserSuppGet(Page p, HttpServletRequest req) {
         return userService.sysUserSuppGet(p, req);
     }
+    @RequestMapping(value = "/sysUserSuppOneGet", method = RequestMethod.POST)
+    public SYSUserSupp sysUserSuppOneGet(Page p, HttpServletRequest req) {
+        return userService.sysUserSuppOneGet(p, req);
+    }
 
     @RequestMapping(value = "/sysUserSuppAdd", method = RequestMethod.POST)
     public Message sysUserSuppAdd(SYSUserSupp susv, HttpServletRequest req) {

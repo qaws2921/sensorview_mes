@@ -110,11 +110,10 @@ function jqGrid_main() {
     $("#mes_grid").jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames : ['부서코드','부서명','사용유무','등록자','등록일'],
+        colNames : ['권한그룹코드','권한그룹명','등록자','등록일'],
         colModel : [
-            {name:'dept_code',index:'dept_code',key: true ,sortable: false,width:380},
-            {name:'dept_name',index:'dept_name',sortable: false,width:380},
-            {name:'use_yn',index:'use_yn',sortable: false,width:380},
+            {name:'auth_code',index:'auth_code',key: true ,sortable: false,width:380},
+            {name:'auth_name',index:'auth_name',sortable: false,width:380},
             {name:'user_name',index:'user_name',sortable: false,width:380},
             {name:'update_date',index:'update_date',formatter:formmatterDate,sortable: false,width:380},
         ],

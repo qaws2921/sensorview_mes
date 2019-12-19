@@ -85,6 +85,7 @@ function update_btn(jqgrid_data) {
 
 // 삭제 버튼
 function delete_btn() {
+    var gu5 = String.fromCharCode(5);
     var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
@@ -92,7 +93,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysUserDelete", {keyword: ids.join(",")}).then(function (data) {
+            ccn_ajax("/sysUserDelete", {keyword: ids.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {

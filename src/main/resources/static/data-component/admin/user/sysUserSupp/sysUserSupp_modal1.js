@@ -17,7 +17,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysUserAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysUserSuppAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -43,12 +43,6 @@ function effectiveness1(modal_objact) { // 유효성 검사
         return false;
     } else if (modal_objact.user_name === '') {
         alert("사용자이름을 입력해주세요");
-        return false;
-    } else if (modal_objact.dept_code === '') {
-        alert("부서를 선택해주세요");
-        return false;
-    } else if (modal_objact.duty_code === '') {
-        alert("직책을 선택해주세요");
         return false;
     } else if (modal_objact.auth_code === '') {
         alert("권한을 선택해주세요");
@@ -88,8 +82,6 @@ function modal_make1() {
 }
 
 function selectBox_modal1() {
-    select_makes("#dept_select2", "/sysDeptAllGet", "dept_code", "dept_name");
-    select_makes("#duty_select", "/sysCommonDutyGet", "code_value", "code_name1");
     select_makes("#auth_select", "/sysAuthAllGet", "auth_code", "auth_name");
 
 }

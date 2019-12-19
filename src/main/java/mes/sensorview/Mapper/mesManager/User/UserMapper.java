@@ -24,4 +24,6 @@ public interface UserMapper {
     SYSUser sysUserOneGet(SYSUser su);
 
     SYSDept sysDeptOneGet(Page p);
+
+    SYSUserSupp sysUserSuppOneGet(Page p);
 }
