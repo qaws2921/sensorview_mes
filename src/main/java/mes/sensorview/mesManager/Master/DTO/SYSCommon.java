@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class SYSCommon {
-	
+
+	//SYS_COMMON_CD
 	private String site_code;
 	private String code_type;
 	private String code_value;
@@ -18,12 +19,20 @@ public class SYSCommon {
 	private String code_name8;
 	private String use_yn;
 	private String user_code;
-	private String user_name;
 	private String create_date;
 	private String update_date;
+
+	//GRID PAGE
 	private int rownum;
+	private int rownum_page;
 	private int rec_count;
-	private String keyword;
-	private String group_code;
+
+	//코드그룹 명
 	private String cn;
+	// #group_select 값을 담는 용도
+	private String keyword;
+
+	//JOIN DATA
+	private String group_code;
+	private String user_name;
 }

@@ -12,7 +12,7 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-200">
-                        <select name="keyword" class="form-control keyword condition_main" style="width:100%" >
+                        <select name="keyword" id="gubun_select" class="form-control keyword condition_main" style="width:100%" >
                             <option value="CORP_TYPE1">고객사</option>
                             <option value="CORP_TYPE2">협력사</option>
                             <option value="CORP_TYPE3">외주업체</option>
@@ -34,14 +34,14 @@
                             </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>추가</span>
                             </span>
                     </a>
                     <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn()">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
                                 <span>삭제</span>
@@ -58,3 +58,5 @@
         </div>
     </div>
 </div>
+
+<%@include file="sysSupp_modal1.jsp"%>

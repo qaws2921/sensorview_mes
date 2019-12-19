@@ -15,5 +15,6 @@ public class SYSMsg {
 	private String update_date;
 	private int rownum;     
 	private int rec_count;
+	private int rownum_page;
 	private String keyword;
 }

@@ -17,58 +17,58 @@ public class MasterRestController {
 
     @Autowired
     private MasterService masterService;
-
+    //공통코드관리
+    //공통코드관리 코드그룹 목록
     @RequestMapping(value="/getCommonGroup", method = RequestMethod.POST)
-    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p){
-        return masterService.getCommonGroup(req, p);
-    }
-
+    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p){ return masterService.getCommonGroup(req, p); }
+    //공통코드관리 그리드 리스트 조회
     @RequestMapping(value="/sysCommonGet", method = RequestMethod.POST)
     public RESTful sysCommonGet(HttpServletRequest req, Page p){
         return masterService.sysCommonGet(req, p);
     }
-
+    //공통코드관리 공통코드 추가
     @RequestMapping(value="/sysCommonAdd", method = RequestMethod.POST)
     public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
         return masterService.sysCommonAdd(req, vo);
     }
-
+    //공통코드관리 공통코드 삭제
     @RequestMapping(value="/sysCommonDelete", method = RequestMethod.POST)
     public Message sysCommonDelete(HttpServletRequest req, Page p){
         return masterService.sysCommonDelete(req,p);
     }
-
+    //공통코드관리 공통코드 수정 시 그리드에서 하나의 항목 값 조회
     @RequestMapping(value="/sysCommonOneGet", method = RequestMethod.POST)
     public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p){
         return masterService.sysCommonOneGet(req, p);
     }
 
-    @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
-    public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
-        return masterService.sysCommonDutyGet(req, p);
-    }
-
-
+    //메세지관리
+    //메세지관리 메세지 목록
     @RequestMapping(value="/sysMsgGet", method = RequestMethod.POST)
     public RESTful sysMsg(Page p){
         return masterService.sysMsgGet(p);
     }
-
-
+    //메세지관리 메세지 추가
     @RequestMapping(value="/sysMsgAdd", method = RequestMethod.POST)
     public  Message sysMsgAdd(HttpServletRequest req,SYSMsg smv){
         return masterService.sysMsgAdd(req, smv);
     }
-
-
+    //메세지관리 메세지 삭제
     @RequestMapping(value="/sysMsgDelete", method = RequestMethod.POST)
     public Message sysMsgDelete(Page p){
         return masterService.sysMsgDelete(p);
     }
+    //메세지관리 메세지 수정 시 그리드에서 하나의 항목 값 조회
+    @RequestMapping(value="/sysMsgOneGet", method = RequestMethod.POST)
+    public SYSMsg sysMsgOneGet(Page p) { return masterService.sysMsgOneGet(p); }
 
 
-    
 
+
+    @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
+    public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
+        return masterService.sysCommonDutyGet(req, p);
+    }
 
     @RequestMapping(value="/sysBoardGet", method = RequestMethod.POST)
     public RESTful sysBoardGet(Page p,HttpServletRequest req){
@@ -118,7 +118,7 @@ public class MasterRestController {
     }
 
     @RequestMapping(value="/sysCargoAdd", method = RequestMethod.POST)
-    public  Message sysCargoAdd(HttpServletRequest req,SYSCargo scv){
+    public Message sysCargoAdd(HttpServletRequest req,SYSCargo scv){
         return masterService.sysCargoAdd(req, scv);
     }
 
@@ -131,4 +131,13 @@ public class MasterRestController {
     public RESTful sysSuppListGet(Page p, HttpServletRequest req) {
         return masterService.sysSuppListGet(p,req);
     }
+
+    @RequestMapping(value="/sysSuppOneGet", method = RequestMethod.POST)
+    public SYSSupp sysSuppOneGet(HttpServletRequest req, Page p) { return masterService.sysSuppOneGet(req,p); }
+
+    @RequestMapping(value="/sysSuppAdd", method = RequestMethod.POST)
+    public Message sysSuppAdd(HttpServletRequest req, SYSSupp vo) { return masterService.sysSuppAdd(req,vo); }
+
+    @RequestMapping(value="/sysSuppListDel", method = RequestMethod.POST)
+    public Message sysSuppListDel(Page p) { return masterService.sysSuppListDel(p); }
 }

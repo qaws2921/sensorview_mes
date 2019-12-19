@@ -74,7 +74,7 @@ function update_btn(jqgrid_data) {
 function delete_btn() {
     var ids = $("#mes_grid").getGridParam('selarrrow');
     if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
+        alert("삭제하는 데이터를 선택해주세요")   ;
     } else {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';

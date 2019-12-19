@@ -16,7 +16,7 @@ function addUdate_btn() {
         }
         if (confirm(text)) {
             modal_objact.keyword = main_data.check;
-            ccn_ajax("/sysCommonAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysMsgAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -33,7 +33,6 @@ function addUdate_btn() {
         }
     }
 }
-
 ////////////////////////////호출 함수/////////////////////////////////////
 //모달생성
 function modal_make1() {
@@ -61,16 +60,12 @@ function modal_make1() {
         ]
     })
 }
-// 유효성 검사
-function effectiveness1(modal_objact) { 
-    if (modal_objact.group_code === '') {
-        alert("코드그룹을 입력해주세요");
+function effectiveness1(modal_objact) {
+    if (modal_objact.msg_code === '') {
+        alert("메세지코드를 입력해주세요");
         return false;
-    } else if (modal_objact.code_value === '') {
-        alert("코드를 입력해주세요");
-        return false;
-    } else if (modal_objact.code_name1 === '') {
-        alert("명칭1을 입력해주세요");
+    } else if (modal_objact.msg_name1 === '') {
+        alert("메세지명1을 입력해주세요");
         return false;
     } else {
         return true;
