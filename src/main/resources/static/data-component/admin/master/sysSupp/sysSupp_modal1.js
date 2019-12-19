@@ -1,22 +1,21 @@
 ////////////////////////////시작 함수/////////////////////////////////////
-
 function modal_start1() {
     modal_make1();
 }
-
 ////////////////////////////클릭 함수/////////////////////////////////////
-//저장,수정 버튼
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
-    console.log(modal_objact.code_name1);
+    console.log(modal_objact);
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {
             text = '수정하겠습니까?';
         }
         if (confirm(text)) {
+
             modal_objact.keyword = main_data.check;
-            ccn_ajax("/sysCommonAdd", modal_objact).then(function (data) {
+
+            ccn_ajax("/sysSuppAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -33,10 +32,10 @@ function addUdate_btn() {
         }
     }
 }
-
 ////////////////////////////호출 함수/////////////////////////////////////
-//모달생성
+
 function modal_make1() {
+
     $("#addDialog").dialog({
         modal: true,
         width: 'auto',
@@ -61,16 +60,13 @@ function modal_make1() {
         ]
     })
 }
-// 유효성 검사
-function effectiveness1(modal_objact) { 
-    if (modal_objact.group_code === '') {
-        alert("코드그룹을 입력해주세요");
+
+function effectiveness1(modal_objact) { // 유효성 검사
+    if (modal_objact.supp_code === '') {
+        alert("업체코드를 입력해주세요");
         return false;
-    } else if (modal_objact.code_value === '') {
-        alert("코드를 입력해주세요");
-        return false;
-    } else if (modal_objact.code_name1 === '') {
-        alert("명칭1을 입력해주세요");
+    } else if (modal_objact.corp_type1 === 'N' && modal_objact.corp_type2 === 'N' && modal_objact.corp_type1 === 'N') {
+        alert("업체구분을 하나라도 Y 입력해주세요.");
         return false;
     } else {
         return true;

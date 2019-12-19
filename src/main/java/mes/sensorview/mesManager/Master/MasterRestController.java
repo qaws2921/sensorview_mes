@@ -17,31 +17,31 @@ public class MasterRestController {
 
     @Autowired
     private MasterService masterService;
-
+    //공통코드관리
+    //공통코드관리 코드그룹 목록
     @RequestMapping(value="/getCommonGroup", method = RequestMethod.POST)
-    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p){
-        return masterService.getCommonGroup(req, p);
-    }
-
+    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p){ return masterService.getCommonGroup(req, p); }
+    //공통코드관리 그리드 리스트 조회
     @RequestMapping(value="/sysCommonGet", method = RequestMethod.POST)
     public RESTful sysCommonGet(HttpServletRequest req, Page p){
         return masterService.sysCommonGet(req, p);
     }
-
+    //공통코드관리 공통코드 추가
     @RequestMapping(value="/sysCommonAdd", method = RequestMethod.POST)
     public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
         return masterService.sysCommonAdd(req, vo);
     }
-
+    //공통코드관리 공통코드 삭제
     @RequestMapping(value="/sysCommonDelete", method = RequestMethod.POST)
     public Message sysCommonDelete(HttpServletRequest req, Page p){
         return masterService.sysCommonDelete(req,p);
     }
-
+    //공통코드관리 공통코드 수정 , 그리드에서 하나의 항목 값 조회
     @RequestMapping(value="/sysCommonOneGet", method = RequestMethod.POST)
     public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p){
         return masterService.sysCommonOneGet(req, p);
     }
+
 
     @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
@@ -118,7 +118,7 @@ public class MasterRestController {
     }
 
     @RequestMapping(value="/sysCargoAdd", method = RequestMethod.POST)
-    public  Message sysCargoAdd(HttpServletRequest req,SYSCargo scv){
+    public Message sysCargoAdd(HttpServletRequest req,SYSCargo scv){
         return masterService.sysCargoAdd(req, scv);
     }
 
@@ -131,4 +131,13 @@ public class MasterRestController {
     public RESTful sysSuppListGet(Page p, HttpServletRequest req) {
         return masterService.sysSuppListGet(p,req);
     }
+
+    @RequestMapping(value="/sysSuppOneGet", method = RequestMethod.POST)
+    public SYSSupp sysSuppOneGet(HttpServletRequest req, Page p) { return masterService.sysSuppOneGet(req,p); }
+
+    @RequestMapping(value="/sysSuppAdd", method = RequestMethod.POST)
+    public Message sysSuppAdd(HttpServletRequest req, SYSSupp vo) { return masterService.sysSuppAdd(req,vo); }
+
+    @RequestMapping(value="/sysSuppListDel", method = RequestMethod.POST)
+    public Message sysSuppListDel(Page p) { return masterService.sysSuppListDel(p); }
 }

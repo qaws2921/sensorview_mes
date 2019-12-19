@@ -19,12 +19,37 @@ public class MasterService extends ReturnFunction {
     @Autowired
     private MasterMapper masterMapper;
 
-
+    //공통코드관리
+    //공통코드관리 코드그룹 목록
+    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.getCommonGroup(p);
+    }
+    //공통코드관리 코드그룹 목록
     public RESTful sysCommonGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSCommon> rows = masterMapper.sysCommonGet(p);
         return getListData(rows , p);
     }
+    //공통코드관리 공통코드 추가
+    public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return masterMapper.sysCommonAdd(vo);
+    }
+    //공통코드관리 공통코드 삭제
+    public Message sysCommonDelete(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setKeyword(p.getKeyword());
+        return masterMapper.sysCommonDelete(p);
+    }
+    //공통코드관리 공통코드 수정 , 그리드에서 하나의 항목 값 조회
+    public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysCommonOneGet(p);
+    }
+
+
 
     
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
@@ -107,31 +132,28 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysCargoBAllGet(p);
     }
 
-    public List<SYSCommon> getCommonGroup(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        return masterMapper.getCommonGroup(p);
-    }
 
-    public Message sysCommonAdd(HttpServletRequest req, SYSCommon vo) {
-        vo.setSite_code(getSessionData(req).getSite_code());
-        vo.setUser_code(getSessionData(req).getUser_code());
-        return masterMapper.sysCommonAdd(vo);
-    }
 
-    public Message sysCommonDelete(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(p.getKeyword());
-        return masterMapper.sysCommonDelete(p);
-    }
 
-    public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        return masterMapper.sysCommonOneGet(p);
-    }
 
     public RESTful sysSuppListGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSSupp> rows = masterMapper.sysSuppListGet(p);
         return getListData(rows , p);
+    }
+
+    public Message sysSuppListDel(Page p) {
+        return masterMapper.sysSuppListDel(p);
+    }
+
+    public SYSSupp sysSuppOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysSuppOneGet(p);
+    }
+
+    public Message sysSuppAdd(HttpServletRequest req, SYSSupp vo) {
+        vo.setSite_code(getSessionData(req).getSite_code());
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return masterMapper.sysSuppAdd(vo);
     }
 }
