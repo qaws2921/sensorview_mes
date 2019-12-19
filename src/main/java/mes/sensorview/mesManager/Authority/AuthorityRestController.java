@@ -55,6 +55,9 @@ public class AuthorityRestController {
     public List<SYSAuthProgram> sysAuthProgramGet(HttpServletRequest req, Page p){
         return authorityService.sysAuthProgramGet(req,p);
     }
+    @RequestMapping(value="/sysAuthProgramList" , method = RequestMethod.POST)
+    public void sysAuthProgramGet(){
+    }
 
     @RequestMapping(value="/sysAuthProgramAdd" , method = RequestMethod.POST)
     public Message sysAuthProgramAdd(HttpServletRequest req,@RequestBody List<SYSAuthProgram> checkList){
