@@ -36,41 +36,39 @@ public class MasterRestController {
     public Message sysCommonDelete(HttpServletRequest req, Page p){
         return masterService.sysCommonDelete(req,p);
     }
-    //공통코드관리 공통코드 수정 , 그리드에서 하나의 항목 값 조회
+    //공통코드관리 공통코드 수정 시 그리드에서 하나의 항목 값 조회
     @RequestMapping(value="/sysCommonOneGet", method = RequestMethod.POST)
     public SYSCommon sysCommonOneGet(HttpServletRequest req, Page p){
         return masterService.sysCommonOneGet(req, p);
     }
+
+    //메세지관리
+    //메세지관리 메세지 목록
+    @RequestMapping(value="/sysMsgGet", method = RequestMethod.POST)
+    public RESTful sysMsg(Page p){
+        return masterService.sysMsgGet(p);
+    }
+    //메세지관리 메세지 추가
+    @RequestMapping(value="/sysMsgAdd", method = RequestMethod.POST)
+    public  Message sysMsgAdd(HttpServletRequest req,SYSMsg smv){
+        return masterService.sysMsgAdd(req, smv);
+    }
+    //메세지관리 메세지 삭제
+    @RequestMapping(value="/sysMsgDelete", method = RequestMethod.POST)
+    public Message sysMsgDelete(Page p){
+        return masterService.sysMsgDelete(p);
+    }
+    //메세지관리 메세지 수정 시 그리드에서 하나의 항목 값 조회
+    @RequestMapping(value="/sysMsgOneGet", method = RequestMethod.POST)
+    public SYSMsg sysMsgOneGet(Page p) { return masterService.sysMsgOneGet(p); }
+
+
 
 
     @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){
         return masterService.sysCommonDutyGet(req, p);
     }
-
-
-    @RequestMapping(value="/sysMsgGet", method = RequestMethod.POST)
-    public RESTful sysMsg(Page p){
-        return masterService.sysMsgGet(p);
-    }
-
-    @RequestMapping(value="/sysMsgOneGet", method = RequestMethod.POST)
-    public SYSMsg sysMsgOneGet(Page p) { return masterService.sysMsgOneGet(p); }
-
-    @RequestMapping(value="/sysMsgAdd", method = RequestMethod.POST)
-    public  Message sysMsgAdd(HttpServletRequest req,SYSMsg smv){
-        return masterService.sysMsgAdd(req, smv);
-    }
-
-
-    @RequestMapping(value="/sysMsgDelete", method = RequestMethod.POST)
-    public Message sysMsgDelete(Page p){
-        return masterService.sysMsgDelete(p);
-    }
-
-
-    
-
 
     @RequestMapping(value="/sysBoardGet", method = RequestMethod.POST)
     public RESTful sysBoardGet(Page p,HttpServletRequest req){

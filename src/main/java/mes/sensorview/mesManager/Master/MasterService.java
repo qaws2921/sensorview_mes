@@ -48,6 +48,26 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysCommonOneGet(p);
     }
 
+    //메세지관리
+    //메세지관리 메세지 목록
+    public RESTful sysMsgGet(Page p){
+        List<SYSMsg> rows = masterMapper.sysMsgGet(p);
+        return getListData(rows , p);
+    }
+    //메세지관리 메세지 추가
+    public Message sysMsgAdd(HttpServletRequest req, SYSMsg smv){
+        smv.setUser_code(getSessionData(req).getUser_code());
+        return masterMapper.sysMsgAdd(smv);
+    }
+    //메세지관리 메세지 삭제
+    public Message sysMsgDelete(Page p){
+        p.setKeyword(p.getKeyword());
+        return masterMapper.sysMsgDelete(p);
+    }
+    //메세지관리 메세지 수정 시 그리드에서 하나의 항목 값 조회
+    public SYSMsg sysMsgOneGet(Page p) {
+        return masterMapper.sysMsgOneGet(p);
+    }
 
 
     
@@ -56,23 +76,6 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysCommonDutyGet(p);
     }
 
-    public RESTful sysMsgGet(Page p){
-        List<SYSMsg> rows = masterMapper.sysMsgGet(p);
-        return getListData(rows , p);
-    }
-    
-    public Message sysMsgAdd(HttpServletRequest req, SYSMsg smv){
-        smv.setUser_code(getSessionData(req).getUser_code());
-        return masterMapper.sysMsgAdd(smv);
-
-    }
-    //
-    public Message sysMsgDelete(Page p){
-        p.setKeyword(p.getKeyword());
-        return masterMapper.sysMsgDelete(p);
-    }
-
-    //
     public RESTful sysBoardGet(Page p, HttpServletRequest req){
         p.setSite_code(getSessionData(req).getSite_code());
         List<SYSBoard> rows = masterMapper.sysBoardGet(p);
@@ -156,7 +159,5 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysSuppAdd(vo);
     }
 
-    public SYSMsg sysMsgOneGet(Page p) {
-        return masterMapper.sysMsgOneGet(p);
-    }
+
 }
