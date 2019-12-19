@@ -16,4 +16,6 @@ public interface AuthorityMapper {
     List<SYSAuthProgram> sysAuthProgramGet(Page p);
     Message sysAuthProgramAdd(Page p);
     List<Auth> menuAllGet();
+
+    SYSAuth sysAuthOneGet(Page p);
 }

@@ -29,6 +29,9 @@
     <select id="sysAuthProgramAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         	EXEC SP_SYS_AUTH_PROGRAM_ADD #{site_code},#{keyword},#{keyword2}
     </select>
+    <select id="sysAuthOneGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuth">
+        	EXEC SP_SYS_AUTH_GROUP_GET #{site_code}, 1,1,#{keyword}
+    </select>
 </mapper>
 
 

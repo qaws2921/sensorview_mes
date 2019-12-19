@@ -34,6 +34,10 @@ public class UserRestController {
     public RESTful sysDeptGet(Page p, HttpServletRequest req) {
         return userService.sysDeptGet(p, req);
     }
+    @RequestMapping(value = "/sysDeptOneGet", method = RequestMethod.POST)
+    public SYSDept sysDeptOneGet(Page p, HttpServletRequest req) {
+        return userService.sysDeptOneGet(p, req);
+    }
 
     @RequestMapping(value = "/sysDeptAllGet", method = RequestMethod.POST)
     public List<SYSDept> sysDeptAllGet(Page p, HttpServletRequest req) {

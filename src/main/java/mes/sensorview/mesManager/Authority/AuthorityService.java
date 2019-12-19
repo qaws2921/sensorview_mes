@@ -76,4 +76,9 @@ public class AuthorityService extends ReturnFunction {
         Page p = setProgram(req,checkList);
         return authorityMapper.sysAuthProgramAdd(p);
     }
+
+    public SYSAuth sysAuthOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return authorityMapper.sysAuthOneGet(p);
+    }
 }

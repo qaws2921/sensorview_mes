@@ -15,6 +15,10 @@
     <select id="sysDeptAllGet" resultType="mes.sensorview.mesManager.User.DTO.SYSDept">
     		EXEC SP_SYS_DEPT_GET #{site_code}, #{page}, #{rows}, '','Y'
     </select>
+
+    <select id="sysDeptOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSDept">
+        	EXEC SP_SYS_DEPT_GET #{site_code}, 1, 1, #{keyword},''
+    </select>
 </mapper>
 
 

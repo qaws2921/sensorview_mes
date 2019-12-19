@@ -26,6 +26,11 @@ public class AuthorityRestController {
         return authorityService.sysAuthGet(req, p);
     }
 
+    @RequestMapping(value="/sysAuthOneGet" , method = RequestMethod.POST)
+    public SYSAuth sysAuthOneGet(HttpServletRequest req, Page p){
+        return authorityService.sysAuthOneGet(req, p);
+    }
+
     @RequestMapping(value="/sysAuthAdd" , method = RequestMethod.POST)
     public  Message sysAuthAU(HttpServletRequest request, SYSAuth sysAuth){
         return authorityService.sysAuthAU(request, sysAuth);

@@ -90,4 +90,9 @@ public class UserService extends ReturnFunction {
         su.setSite_code(getSessionData(req).getSite_code());
         return userMapper.sysUserOneGet(su);
     }
+
+    public SYSDept sysDeptOneGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return userMapper.sysDeptOneGet(p);
+    }
 }
