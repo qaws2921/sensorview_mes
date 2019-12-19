@@ -49,4 +49,6 @@ import java.util.List;
      SYSSupp sysSuppOneGet(Page p);
 
      Message sysSuppAdd(SYSSupp vo);
+
+     SYSMsg sysMsgOneGet(Page p);
  }

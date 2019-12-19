@@ -10,6 +10,9 @@
     <select id="sysMsgDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_MSG_DEL #{keyword}
     </select>
+    <select id="sysMsgOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSMsg">
+        EXEC SP_SYS_MSG_GET 1,1,#{keyword}
+    </select>
 </mapper>
 
 

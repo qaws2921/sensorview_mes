@@ -40,7 +40,6 @@ public class MasterService extends ReturnFunction {
     //공통코드관리 공통코드 삭제
     public Message sysCommonDelete(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        p.setKeyword(p.getKeyword());
         return masterMapper.sysCommonDelete(p);
     }
     //공통코드관리 공통코드 수정 , 그리드에서 하나의 항목 값 조회
@@ -155,5 +154,9 @@ public class MasterService extends ReturnFunction {
         vo.setSite_code(getSessionData(req).getSite_code());
         vo.setUser_code(getSessionData(req).getUser_code());
         return masterMapper.sysSuppAdd(vo);
+    }
+
+    public SYSMsg sysMsgOneGet(Page p) {
+        return masterMapper.sysMsgOneGet(p);
     }
 }

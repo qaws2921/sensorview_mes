@@ -54,6 +54,8 @@ public class MasterRestController {
         return masterService.sysMsgGet(p);
     }
 
+    @RequestMapping(value="/sysMsgOneGet", method = RequestMethod.POST)
+    public SYSMsg sysMsgOneGet(Page p) { return masterService.sysMsgOneGet(p); }
 
     @RequestMapping(value="/sysMsgAdd", method = RequestMethod.POST)
     public  Message sysMsgAdd(HttpServletRequest req,SYSMsg smv){
