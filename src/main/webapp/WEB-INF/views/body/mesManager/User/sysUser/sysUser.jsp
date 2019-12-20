@@ -3,6 +3,16 @@
 <%@ page session="false" %>
 <script type="text/javascript" src="/data-component/admin/user/sysUser/sysUser.js" charset="UTF-8"></script>
 
+<style>
+    .select2-dropdown {
+        z-index: 10060;
+    }
+
+    .select2-close-mask {
+        z-index: 10055;
+    }
+</style>
+
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">

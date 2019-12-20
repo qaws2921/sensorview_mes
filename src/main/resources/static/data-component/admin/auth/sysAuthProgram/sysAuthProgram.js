@@ -280,6 +280,47 @@ function jqGrid_main() {
                         }
                     });
                 };
+
+            setChechedStateOfParentItems = function (parent) {
+                if (state) {
+                    $("#" + parent[localIdName] + " input.itmchk").prop("checked", state).attr("checked","checked");
+
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems($this.jqGrid("getNodeParent", parent));
+                    }
+
+                }else {
+                    setChechedStateOfParentItems_2(parent);
+                }
+            };
+
+            setChechedStateOfParentItems_2 = function (parent) {
+                var chileren = $this.jqGrid("getNodeChildren", parent);
+                var check;
+                var index = 0;
+                chileren.forEach(function (t) {
+                    check = $("#" + t[localIdName] + " input.itmchk").attr("checked");
+                    if (typeof check !== "undefined" ) {
+
+                        index++;
+                    }
+
+                });
+                if (index === 0){
+
+                    $("#" + parent[localIdName] + " input.itmchk").prop("checked", state).removeAttr("checked");
+                    $("#" + parent[localIdName] + " input.itmchk2").prop("checked", state).removeAttr("checked");
+                    $("#" + parent[localIdName] + " input.itmchk3").prop("checked", state).removeAttr("checked");
+                    $("#" + parent[localIdName] + " input.itmchk4").prop("checked", state).removeAttr("checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems_2($this.jqGrid("getNodeParent", parent));
+                    }
+                }
+
+            }
+
+
+
             if (e.target.nodeName === "INPUT" && $(e.target).hasClass("itmchk")) {
                 state = $(e.target).prop("checked");
                 localData = $this.jqGrid("getLocalRow", rowid);
@@ -291,8 +332,14 @@ function jqGrid_main() {
                 }else {
                     $(e.target).prop("checked", state).attr("checked","checked");
                 }
+
                 setChechedStateOfChildrenItems($this.jqGrid("getNodeChildren", localData), state);
+                if (localData.level !== 1 ) {
+                    setChechedStateOfParentItems($this.jqGrid("getNodeParent", localData), state);
+                }
             };
+
+
 
             setChechedStateOfChildrenItems2 = function (children) {
                 $.each(children, function () {
@@ -307,6 +354,43 @@ function jqGrid_main() {
                     }
                 });
             };
+
+            setChechedStateOfParentItems2 = function (parent) {
+                if (state) {
+                    $("#" + parent[localIdName] + " input.itmchk").prop("checked", state).attr("checked","checked");
+                    $("#" + parent[localIdName] + " input.itmchk2").prop("checked", state).attr("checked","checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems2($this.jqGrid("getNodeParent", parent));
+                    }
+
+                }else {
+                    setChechedStateOfParentItems2_2(parent);
+                }
+            };
+
+            setChechedStateOfParentItems2_2 = function (parent) {
+                var chileren = $this.jqGrid("getNodeChildren", parent);
+                var check;
+                var index = 0;
+                chileren.forEach(function (t) {
+                    check = $("#" + t[localIdName] + " input.itmchk2").attr("checked");
+                    if (typeof check !== "undefined" ) {
+
+                        index++;
+                    }
+
+                });
+                if (index === 0){
+
+                    $("#" + parent[localIdName] + " input.itmchk2").prop("checked", state).removeAttr("checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems2_2($this.jqGrid("getNodeParent", parent));
+                    }
+                }
+
+            }
+
+
             if (e.target.nodeName === "INPUT" && $(e.target).hasClass("itmchk2")) {
                 state = $(e.target).prop("checked");
                 localData = $this.jqGrid("getLocalRow", rowid);
@@ -317,6 +401,10 @@ function jqGrid_main() {
                     $(e.target).prop("checked", state).removeAttr("checked");
                 }
                 setChechedStateOfChildrenItems2($this.jqGrid("getNodeChildren", localData), state);
+                if (localData.level !== 1 ) {
+                    setChechedStateOfParentItems2($this.jqGrid("getNodeParent", localData), state);
+                }
+
             }
 
             setChechedStateOfChildrenItems3 = function (children) {
@@ -325,13 +413,50 @@ function jqGrid_main() {
                         $("#" + this[localIdName] + " input.itmchk").prop("checked", state).attr("checked","checked");
                         $("#" + this[localIdName] + " input.itmchk3").prop("checked", state).attr("checked","checked");
                     }else {
-                        $("#" + this[localIdName] + " input.itmchk2").prop("checked", state).removeAttr("checked");
+                        $("#" + this[localIdName] + " input.itmchk3").prop("checked", state).removeAttr("checked");
                     }
                     if (!this[isLeafName]) {
                         setChechedStateOfChildrenItems3($this.jqGrid("getNodeChildren", this));
                     }
                 });
             };
+            setChechedStateOfParentItems3 = function (parent) {
+                if (state) {
+                        $("#" + parent[localIdName] + " input.itmchk").prop("checked", state).attr("checked","checked");
+                        $("#" + parent[localIdName] + " input.itmchk3").prop("checked", state).attr("checked","checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems3($this.jqGrid("getNodeParent", parent));
+                    }
+
+                }else {
+                    setChechedStateOfParentItems3_2(parent);
+                }
+            };
+
+            setChechedStateOfParentItems3_2 = function (parent) {
+                var chileren = $this.jqGrid("getNodeChildren", parent);
+                var check;
+                var index = 0;
+                chileren.forEach(function (t) {
+                    check = $("#" + t[localIdName] + " input.itmchk3").attr("checked");
+                    if (typeof check !== "undefined" ) {
+
+                        index++;
+                    }
+
+                });
+                if (index === 0){
+
+                    $("#" + parent[localIdName] + " input.itmchk3").prop("checked", state).removeAttr("checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems3_2($this.jqGrid("getNodeParent", parent));
+                    }
+                }
+
+            }
+
+
+
             if (e.target.nodeName === "INPUT" && $(e.target).hasClass("itmchk3")) {
                 state = $(e.target).prop("checked");
                 localData = $this.jqGrid("getLocalRow", rowid);
@@ -342,6 +467,9 @@ function jqGrid_main() {
                     $(e.target).prop("checked", state).removeAttr("checked");
                 }
                 setChechedStateOfChildrenItems3($this.jqGrid("getNodeChildren", localData), state);
+                if (localData.level !== 1 ) {
+                    setChechedStateOfParentItems3($this.jqGrid("getNodeParent", localData), state);
+                }
             }
 
             setChechedStateOfChildrenItems4 = function (children) {
@@ -357,6 +485,43 @@ function jqGrid_main() {
                     }
                 });
             };
+            setChechedStateOfParentItems4 = function (parent) {
+                if (state) {
+                    $("#" + parent[localIdName] + " input.itmchk").prop("checked", state).attr("checked","checked");
+                    $("#" + parent[localIdName] + " input.itmchk4").prop("checked", state).attr("checked","checked");
+                    if (parent.level !== 1) {
+                        setChechedStateOfParentItems4($this.jqGrid("getNodeParent", parent));
+                    }
+
+                }else {
+                    setChechedStateOfParentItems4_2(parent);
+                }
+            };
+
+            setChechedStateOfParentItems4_2 = function (parent) {
+                    var chileren = $this.jqGrid("getNodeChildren", parent);
+                    var check;
+                    var index = 0;
+                     chileren.forEach(function (t) {
+                        check = $("#" + t[localIdName] + " input.itmchk4").attr("checked");
+                        if (typeof check !== "undefined" ) {
+
+                            index++;
+                        }
+
+                    });
+                    if (index === 0){
+
+                        $("#" + parent[localIdName] + " input.itmchk4").prop("checked", state).removeAttr("checked");
+                        if (parent.level !== 1) {
+                            setChechedStateOfParentItems4_2($this.jqGrid("getNodeParent", parent));
+                        }
+                    }
+
+            }
+
+
+
             if (e.target.nodeName === "INPUT" && $(e.target).hasClass("itmchk4")) {
                 state = $(e.target).prop("checked");
                 localData = $this.jqGrid("getLocalRow", rowid);
@@ -367,8 +532,41 @@ function jqGrid_main() {
                     $(e.target).prop("checked", state).removeAttr("checked");
                 }
                 setChechedStateOfChildrenItems4($this.jqGrid("getNodeChildren", localData), state);
+                if (localData.level !== 1 ) {
+                    setChechedStateOfParentItems4($this.jqGrid("getNodeParent", localData), state);
+                }
             }
         },
+        loadComplete: function(data){
+
+            var ids = $("#mes_grid2").getDataIDs();
+            var rowData;
+            $.each(
+
+                ids,function(idx,rowId){
+
+                    rowData=$("#mes_grid2").getRowData(rowId);
+
+                    if(rowData.level === '1'){
+
+                        $("#mes_grid2").setRowData(rowId,false,{background: 'rgb(178, 197, 251)'});
+
+                    }
+
+                    else if(rowData.level === '2'){
+
+                        $("#mes_grid2").setRowData(rowId,false,{background: 'rgb(227, 228, 228)'});
+
+                    }
+
+
+
+                }
+
+            );
+
+        },
+
 
 
     });
