@@ -58,4 +58,6 @@ import java.util.List;
      Message sysSuppAdd(SYSSupp vo);
 
      SYSBoard sysBoardOneGet(Page p);
+
+     SYSProdLine sysProdLineOneGet(Page p);
  }

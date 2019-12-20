@@ -91,11 +91,15 @@ public class MasterRestController {
 
 
 
+    @RequestMapping(value="/sysProdLineOneGet", method = RequestMethod.POST)
+    public SYSProdLine sysProdLineOneGet(Page p,HttpServletRequest req){
+        return masterService.sysProdLineOneGet(p,req);
+    }
+
     @RequestMapping(value="/sysProdLineGet", method = RequestMethod.POST)
     public RESTful sysProdLineGet(Page p,HttpServletRequest req){
         return masterService.sysProdLineGet(p,req);
     }
-
 
     @RequestMapping(value="/sysProdLineAdd", method = RequestMethod.POST)
     public Message sysProdLineAdd(HttpServletRequest req, SYSProdLine spv){
