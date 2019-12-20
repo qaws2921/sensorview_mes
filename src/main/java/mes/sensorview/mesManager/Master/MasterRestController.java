@@ -118,6 +118,11 @@ public class MasterRestController {
         return masterService.sysCargoGet(p,req);
     }
 
+    @RequestMapping(value="/sysCargoOneGet", method = RequestMethod.POST)
+    public SYSCargo sysCargoOneGet(Page p,HttpServletRequest req){
+        return masterService.sysCargoOneGet(p,req);
+    }
+
     @RequestMapping(value="/sysCargoBAllGet", method = RequestMethod.POST)
     public List<SYSCargo> sysCargoBAllGet(HttpServletRequest req,Page p){
         return masterService.sysCargoBAllGet(req,p);

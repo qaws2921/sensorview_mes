@@ -15,6 +15,10 @@
     <select id="sysCargoDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_CARGO_DEL #{keyword}
     </select>
+    <select id="sysCargoOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCargo">
+    		EXEC SP_SYS_CARGO_GET #{site_code},1, 1,'',#{keyword},''
+    </select>
+
 </mapper>
 
 

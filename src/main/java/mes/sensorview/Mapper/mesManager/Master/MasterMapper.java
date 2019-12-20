@@ -60,4 +60,6 @@ import java.util.List;
      SYSBoard sysBoardOneGet(Page p);
 
      SYSProdLine sysProdLineOneGet(Page p);
+
+     SYSCargo sysCargoOneGet(Page p);
  }
