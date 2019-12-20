@@ -537,6 +537,36 @@ function jqGrid_main() {
                 }
             }
         },
+        loadComplete: function(data){
+
+            var ids = $("#mes_grid2").getDataIDs();
+            var rowData;
+            $.each(
+
+                ids,function(idx,rowId){
+
+                    rowData=$("#mes_grid2").getRowData(rowId);
+
+                    if(rowData.level === '1'){
+
+                        $("#mes_grid2").setRowData(rowId,false,{background: 'rgb(178, 197, 251)'});
+
+                    }
+
+                    else if(rowData.level === '2'){
+
+                        $("#mes_grid2").setRowData(rowId,false,{background: 'rgb(227, 228, 228)'});
+
+                    }
+
+
+
+                }
+
+            );
+
+        },
+
 
 
     });
