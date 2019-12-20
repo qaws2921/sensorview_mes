@@ -62,8 +62,10 @@ public class MasterRestController {
     @RequestMapping(value="/sysMsgOneGet", method = RequestMethod.POST)
     public SYSMsg sysMsgOneGet(Page p) { return masterService.sysMsgOneGet(p); }
 
-
-
+    @RequestMapping(value="/sysBoardOneGet", method = RequestMethod.POST)
+    public SYSBoard sysBoardOneGet(HttpServletRequest req, Page p) {
+        return masterService.sysBoardOneGet(req, p);
+    }
 
     @RequestMapping(value="/sysCommonDutyGet", method = RequestMethod.POST)
     public List<SYSCommon> sysCommonDutyGet(HttpServletRequest req, Page p){

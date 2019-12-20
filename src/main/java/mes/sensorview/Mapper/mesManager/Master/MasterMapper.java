@@ -56,4 +56,6 @@ import java.util.List;
      SYSSupp sysSuppOneGet(Page p);
 
      Message sysSuppAdd(SYSSupp vo);
+
+     SYSBoard sysBoardOneGet(Page p);
  }

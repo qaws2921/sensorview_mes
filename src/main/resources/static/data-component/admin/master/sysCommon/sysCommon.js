@@ -94,7 +94,7 @@ function delete_btn() {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
+                    get_btn($("#mes_grid").getGridParam('page'));
                 }
                 closeWindowByMask();
             }).catch(function (err) {

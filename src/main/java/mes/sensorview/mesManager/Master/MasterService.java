@@ -160,4 +160,8 @@ public class MasterService extends ReturnFunction {
     }
 
 
+    public SYSBoard sysBoardOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysBoardOneGet(p);
+    }
 }
