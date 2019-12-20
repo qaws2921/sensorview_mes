@@ -164,4 +164,14 @@ public class MasterService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.sysBoardOneGet(p);
     }
+
+    public SYSProdLine sysProdLineOneGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysProdLineOneGet(p);
+    }
+
+    public SYSCargo sysCargoOneGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return masterMapper.sysCargoOneGet(p);
+    }
 }
