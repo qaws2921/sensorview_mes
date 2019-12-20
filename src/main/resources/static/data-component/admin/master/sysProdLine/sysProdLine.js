@@ -12,7 +12,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly:[]
+    readonly:['dept_code','line_code']
 }
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -45,7 +45,25 @@ function get_btn(page) {
 function add_btn() {
     modal_reset(".modal_value", main_data.readonly); // 해당 클래스 명을 가진 항목들의 내용을 리셋,비워줌 main_data readonly 에 추가한 name의 항목에 readonly 옵션을 추가
     main_data.check = 'I'; // 추가인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
+    $('#dept_select').attr('disabled',false);
+    $('#dept_select').val("D9000").trigger("change");
     $("#addDialog").dialog('open'); // 모달 열기
+}
+
+// 그리드 항목 더블클릭시 수정 화면
+function update_btn(jqgrid_data) {
+    modal_reset(".modal_value", []);
+    main_data.check = 'U'; // 수정인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
+
+    var send_data = {};
+    send_data.keyword = jqgrid_data.dept_code;
+    send_data.keyword2 = jqgrid_data.line_code; // data에 값을 추가하여 파라미터로 사용
+
+    ccn_ajax('/sysProdLineOneGet', send_data).then(function (data) {
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        $('#dept_select').attr('disabled',true);
+        $("#addDialog").dialog('open');// 모달 열기
+    });
 }
 
 // 삭제 버튼
@@ -58,7 +76,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D'; // 삭제인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
             wrapWindowByMask2();
-            ccn_ajax("/sysCommonDelete", {keyword: ids.join(gu5)}).then(function (data) {
+            ccn_ajax("/sysProdLineDelete", {keyword: ids.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
