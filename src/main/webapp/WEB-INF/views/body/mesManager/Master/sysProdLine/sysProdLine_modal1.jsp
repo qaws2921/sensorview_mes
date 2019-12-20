@@ -6,7 +6,8 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 부서 </div>
             <div class="profile-info-value">
-                <select name="dept_code" class="form-control modal_value"  id="dept_select">
+                <select name="dept_code" class="form-control modal_value"  id="dept_select" style="width:100%">
+                    <option value="">선택안함</option>
                 </select>
             </div>
         </div>

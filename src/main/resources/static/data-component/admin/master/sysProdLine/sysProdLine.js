@@ -48,7 +48,33 @@ function add_btn() {
     $("#addDialog").dialog('open'); // 모달 열기
 }
 
+// 삭제 버튼
+function delete_btn() {
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow'); // multiselect 된 그리드의 row
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D'; // 삭제인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
+            wrapWindowByMask2();
+            ccn_ajax("/sysCommonDelete", {keyword: ids.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
+
 
 function jqGrid_main() {
     //jqGrid 생성

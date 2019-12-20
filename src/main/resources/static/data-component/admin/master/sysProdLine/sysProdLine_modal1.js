@@ -2,6 +2,7 @@
 
 function modal_start1() {
     modal_make1();
+    selectBox_modal();
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
@@ -32,6 +33,10 @@ function modal_make1() {
             }
         ]
     })
+}
+
+function selectBox_modal() {
+    select_makes("#dept_select", "/sysDeptAllGet", "dept_code", "dept_name");
 }
 // // 유효성 검사
 // function effectiveness1(modal_objact) {
