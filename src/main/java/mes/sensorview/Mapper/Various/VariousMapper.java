@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
@@ -32,4 +33,5 @@ public interface VariousMapper {
     List<SYS_QC_ITEM> qmsQcItemAllGet(Page p);
 
     List<tpmMachine> tpmMachineAllGet(Page p);
+    List<SYSProdLine> getLine(Page p);
 }

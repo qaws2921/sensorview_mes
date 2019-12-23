@@ -16,7 +16,7 @@ public interface InOutMapper {
 
     List<SCM_IN> scmInListGet(Page p);
 
-    List<SYSProdLine> getLine(Page p);
+
 
     List<SCM_IN_SUB> scmInSub1Get(Page p);
 

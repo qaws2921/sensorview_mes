@@ -34,6 +34,10 @@
     <select id="tpmMachineAllGet" resultType="mes.sensorview.mesTpm.Machine.DTO.tpmMachine">
         EXEC SP_TPM_MACHINE_GET #{site_code},0,0,#{keyword},''
     </select>
+
+    <select id="getLine" resultType="mes.sensorview.mesManager.Master.DTO.SYSProdLine">
+        EXEC SP_SYS_LINE_GET #{site_code},0,0,'D9000','';
+    </select>
 </mapper>
 
 

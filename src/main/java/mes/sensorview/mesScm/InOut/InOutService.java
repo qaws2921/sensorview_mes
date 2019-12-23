@@ -71,10 +71,7 @@ public class InOutService extends ReturnFunction {
         return  inOutMapper.scmInDel(p);
     }
 
-    public List<SYSProdLine> getLine(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        return inOutMapper.getLine(p);
-    }
+
 
 
     public RESTful scmOutListGet(HttpServletRequest req, Page p) {
