@@ -77,7 +77,7 @@ function jqGrid_main() {
         colNames: ['점검일', '라인', '설비',  '고정내용', '점검결과', '조치사항', '등록자', '점검일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'req_no', index: 'req_no', sortable: false, width: 60},
+            {name: 'line_name', index: 'req_no', sortable: false, width: 60},
             {name: 'ord_no', index: 'ord_no', sortable: false, width: 60},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
             {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
