@@ -6,7 +6,7 @@
         EXEC [SP_TPM_REG_ITEM_GET] #{site_code}, #{page}, #{rows}, '', ''
     </select>
     <select id="tpmMachineRegItemOneGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
-        EXEC [SP_TPM_REG_ITEM_GET] #{site_code}, 1, 1, ''
+        EXEC [SP_TPM_REG_ITEM_GET] #{site_code}, 1, 1, #{keyword},''
     </select>
     <select id="tpmMachineRegItemAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_TPM_REG_ITEM_ADD #{site_code},#{qc_code}, #{qc_name},#{use_yn},#{user_code},#{keyword}

@@ -17,7 +17,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysDeptAdd", modal_objact).then(function (data) {
+            ccn_ajax("/tpmMachineRegItemAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -38,11 +38,11 @@ function addUdate_btn() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function effectiveness1(modal_objact) { // 유효성 검사
-    if (modal_objact.dept_code === '') {
-        alert("부서코드를 입력해주세요");
+    if (modal_objact.qc_code === '') {
+        alert("검사항목코드를 입력해주세요");
         return false;
-    } else if (modal_objact.dept_name === '') {
-        alert("부서명을 입력해주세요");
+    } else if (modal_objact.qc_name === '') {
+        alert("검사항목명을 입력해주세요");
         return false;
     }  else {
 

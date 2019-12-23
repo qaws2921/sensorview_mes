@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['dept_code']
+    readonly: ['qc_code']
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -28,13 +28,10 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수/////////////////////////////////////
 // 조회 버튼
 function get_btn(page) {
-
-
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/tpmMachineRegItemGet',
         datatype: "json",
         page: page,
-        postData: main_data.send_data
     }).trigger("reloadGrid");
 }
 
@@ -44,7 +41,6 @@ function get_btn_post(page) {
         url: '/tpmMachineRegItemGet',
         datatype: "json",
         page: page,
-        postData: main_data.send_data_post
     }).trigger("reloadGrid");
 }
 
@@ -55,7 +51,6 @@ function add_btn() {
     modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
     main_data.check = 'I'; // 저장인지 체크
-    $("select[name=use_yn] option:eq(0)").prop("selected", true).trigger("change");
 
     $("#addDialog").dialog('open'); // 모달 열기
 }
@@ -67,7 +62,7 @@ function update_btn(jqgrid_data) {
 
     main_data.check = 'U'; // 수정인지 체크
 
-    ccn_ajax('/sysDeptOneGet', {keyword:jqgrid_data.dept_code}).then(function (data) { // user의 하나 출력
+    ccn_ajax('/tpmMachineRegItemOneGet', {keyword:jqgrid_data.qc_code}).then(function (data) { // user의 하나 출력
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
@@ -83,7 +78,7 @@ function delete_btn() {
         if (confirm("삭제하겠습니까?")) {
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysDeptDelete", {keyword: ids.join(gu5)}).then(function (data) {
+            ccn_ajax("/tpmMachineRegItemDel", {keyword: ids.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
