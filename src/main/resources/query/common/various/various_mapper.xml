@@ -32,7 +32,7 @@
     </select>
 
     <select id="tpmMachineAllGet" resultType="mes.sensorview.mesTpm.Machine.DTO.tpmMachine">
-        EXEC SP_SYS_MACHINE_GET #{site_code},0,0,#{keyword},''
+        EXEC SP_TPM_MACHINE_GET #{site_code},0,0,#{keyword},''
     </select>
 </mapper>
 

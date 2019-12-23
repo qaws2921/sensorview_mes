@@ -1,4 +1,4 @@
-package mes.sensorview.mesTpm.MachineError.DTO;
+package mes.sensorview.mesTpm.Error.DTO;
 
 import lombok.Data;
 
@@ -17,4 +17,8 @@ public class tpmMachineError {
     private int stop_time;
     private String check_user_code;
     private String check_date;
+
+    private int rec_count;
+    private int rownum;
+    private int rownum_page;
 }
