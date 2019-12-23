@@ -11,6 +11,7 @@ import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
+import mes.sensorview.mesTpm.Machine.DTO.tpmMachine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,5 +72,10 @@ public class VariousService extends ReturnFunction {
     public List<SYS_QC_ITEM> qmsQcItemAllGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.qmsQcItemAllGet(p);
+    }
+
+    public List<tpmMachine> tpmMachineAllGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.tpmMachineAllGet(p);
     }
 }

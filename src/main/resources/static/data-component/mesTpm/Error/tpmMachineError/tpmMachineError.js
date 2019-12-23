@@ -14,6 +14,7 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+    selectBox();
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
@@ -24,11 +25,12 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function get_btn(page) {
-    main_data.send_data = value_return2(".condition_main");
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
-        url: '/scmReqOrderGet',
+        url: '/tpmMachineErrorGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -38,7 +40,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/scmReqOrderGet',
+        url: '/tpmMachineErrorGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -52,12 +54,20 @@ function add_btn() {
 
 }
 
+function select_change1(value) {
+    select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+}
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
+}
 
+function selectBox() {
+    select_makes2("#line_select", "/getLine", "line_code", "line_name").then(function (data){
+        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"Y");
+    });
 }
 
 function jqGrid_main() {
