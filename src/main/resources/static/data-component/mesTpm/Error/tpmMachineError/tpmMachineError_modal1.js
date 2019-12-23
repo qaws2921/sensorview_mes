@@ -9,36 +9,50 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
-    if (effectiveness1(modal_objact)) {
-        var text = '저장하겠습니까?';
-        if (main_data.check === "U") {
-            text = '수정하겠습니까?';
-        }
-        if (confirm(text)) {
-
-            modal_objact.keyword = main_data.check;
-
-            ccn_ajax("/sysBPartAdd", modal_objact).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    if (main_data.check === "I") {
-                        get_btn(1);
-                    } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
-                    }
-                }
-                $("#addDialog").dialog('close');
-            }).catch(function (err) {
-                alert("저장실패");
-            });
-        }
-    }
+    modal_objact.line_code= $('#line_select2').val();
+    console.log(modal_objact);
+    // if (effectiveness1(modal_objact)) {
+    //     var text = '저장하겠습니까?';
+    //     if (main_data.check === "U") {
+    //         text = '수정하겠습니까?';
+    //     }
+    //     if (confirm(text)) {
+    //
+    //         modal_objact.keyword = main_data.check;
+    //
+    //         ccn_ajax("/sysBPartAdd", modal_objact).then(function (data) {
+    //             if (data.result === 'NG') {
+    //                 alert(data.message);
+    //             } else {
+    //                 if (main_data.check === "I") {
+    //                     get_btn(1);
+    //                 } else {
+    //                     get_btn_post($("#mes_grid").getGridParam('page'));
+    //                 }
+    //             }
+    //             $("#addDialog").dialog('close');
+    //         }).catch(function (err) {
+    //             alert("저장실패");
+    //         });
+    //     }
+    // }
 
 }
 
 function select_change2(value) {
-    select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+    $('#machine_select2').empty();
+
+    select_makes_sub_ajax("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value}).then(function (data) {
+        if ($("#machine_select").val() !== ''){
+            $("#machine_select2").val($("#machine_select").val()).trigger("change");
+            if ($("#machine_select2").val() === null){
+                $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
+            }
+        }else {
+            $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
+        }
+
+    });
 }
 
 
@@ -49,6 +63,11 @@ function selectBox_modal1() {
     select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
         select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
     });
+
+    select_makes3("#type_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_ERROR_TYPE'});
+    select_makes3("#result_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_REG_RESULT'});
+
+    $('#stop_yn').select2();
 }
 
 function modal_make1() {
@@ -79,19 +98,19 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    if (modal_objact.part_grp_code === '') {
-        alert("품목구분을 선택해주세요");
-        return false;
-    } else if (modal_objact.part_code === '') {
-        alert("품목코드를 입력해주세요");
-        return false;
-    } else if (modal_objact.part_name === '') {
-        alert("품목명을 입력해주세요");
-        return false;
-    } else {
+    // if (modal_objact.part_grp_code === '') {
+    //     alert("품목구분을 선택해주세요");
+    //     return false;
+    // } else if (modal_objact.part_code === '') {
+    //     alert("품목코드를 입력해주세요");
+    //     return false;
+    // } else if (modal_objact.part_name === '') {
+    //     alert("품목명을 입력해주세요");
+    //     return false;
+    // } else {
 
         return true;
-    }
+    // }
 }
 
 function datepickerInput_modal1() {

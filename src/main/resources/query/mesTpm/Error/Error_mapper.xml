@@ -5,4 +5,8 @@
     <select id="tpmMachineErrorGet" resultType="mes.sensorview.mesTpm.Error.DTO.tpmMachineError">
         EXEC SP_TPM_MACHINE_ERROR_GET #{site_code}, #{page}, #{rows}, #{keyword}, #{keyword2}
     </select>
+
+    <select id="tpmMachineErrorDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_ERROR_DEL #{keyword}
+    </select>
 </mapper>

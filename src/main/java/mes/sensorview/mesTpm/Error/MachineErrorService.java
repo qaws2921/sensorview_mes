@@ -1,6 +1,7 @@
 package mes.sensorview.mesTpm.Error;
 
 import lombok.extern.slf4j.Slf4j;
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.Function.UploadFunction;
@@ -23,5 +24,10 @@ public class MachineErrorService extends UploadFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<tpmMachineError> rows = errorMapper.tpmMachineErrorGet(p);
         return getListData(rows, p);
+    }
+
+    public Message tpmMachineErrorDelete(Page p) {
+        p.setKeyword(p.getKeyword());
+        return errorMapper.tpmMachineErrorDelete(p);
     }
 }
