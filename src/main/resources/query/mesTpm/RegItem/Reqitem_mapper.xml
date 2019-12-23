@@ -3,10 +3,15 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesQms.Import.QmsImportMapper">
     <select id="tpmMachineRegItemGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
-            EXEC [SP_QMS_RECV_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} ,'0' ,''
+        EXEC [SP_TPM_REG_ITEM_GET] #{site_code}, #{page}, #{rows}, '', ''
     </select>
-    <select id="qmsRecvSubGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
-            EXEC [SP_QMS_RECV_SUB_GET] #{site_code}, #{page}, #{rows}, #{keyword}
+    <select id="tpmMachineRegItemOneGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
+        EXEC [SP_TPM_REG_ITEM_GET] #{site_code}, 1, 1, ''
     </select>
-
+    <select id="tpmMachineRegItemAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_REG_ITEM_ADD #{site_code},#{qc_code}, #{qc_name},#{use_yn},#{user_code},#{keyword}
+    </select>
+    <select id="tpmMachineRegItemDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_REG_ITEM_DEL #{site_code},#{keyword}
+    </select>
 </mapper>
