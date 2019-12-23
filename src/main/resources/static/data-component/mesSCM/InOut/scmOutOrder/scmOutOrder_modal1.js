@@ -60,6 +60,12 @@ function right_modal1_btn() {
 
         var ids = $("#scmOutOrderDialogLeftGrid").getGridParam('selarrrow').slice();
 
+        if (ids.length === 0 ){
+            alert("옮길 데이터를 선택해주세요");
+            return false;
+        }
+
+
         var ids2 = $("#scmOutOrderDialogRightGrid").jqGrid("getDataIDs");
 
         var overlap = [];
@@ -88,6 +94,9 @@ function right_modal1_btn() {
             }
             ids2 = $("#scmOutOrderDialogRightGrid").getRowData();
             ids2 = ids2.concat(list);
+
+            $('#scmOutOrderDialogRightGrid').jqGrid("clearGridData");
+
             $("#scmOutOrderDialogRightGrid").setGridParam({
                 datatype: "local",
                 data: ids2
