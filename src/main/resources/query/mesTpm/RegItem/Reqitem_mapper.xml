@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.sensorview.Mapper.mesQms.Import.QmsImportMapper">
+    <select id="tpmMachineRegItemGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
+            EXEC [SP_QMS_RECV_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} ,'0' ,''
+    </select>
+    <select id="qmsRecvSubGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
+            EXEC [SP_QMS_RECV_SUB_GET] #{site_code}, #{page}, #{rows}, #{keyword}
+    </select>
+
+</mapper>
