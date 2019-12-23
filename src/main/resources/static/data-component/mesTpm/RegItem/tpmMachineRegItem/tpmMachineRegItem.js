@@ -28,7 +28,7 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수/////////////////////////////////////
 // 조회 버튼
 function get_btn(page) {
-    
+
 
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/tpmMachineRegItemGet',
