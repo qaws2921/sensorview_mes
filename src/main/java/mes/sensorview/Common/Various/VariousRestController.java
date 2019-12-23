@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
+import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
@@ -78,5 +79,8 @@ public class VariousRestController {
     public List<tpmMachine> tpmMachineAllGet(Page p, HttpServletRequest req) {
         return variousService.tpmMachineAllGet(p,req);
     }
+
+    @RequestMapping(value = "/getLine", method = RequestMethod.POST)
+    public List<SYSProdLine> getLine(HttpServletRequest req, Page p) { return variousService.getLine(req, p); }
 
 }
