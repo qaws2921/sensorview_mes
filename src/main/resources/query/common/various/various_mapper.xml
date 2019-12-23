@@ -31,8 +31,8 @@
         EXEC SP_SYS_QC_ITEM_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2},''
     </select>
 
-    <select id="tpmMachineAllGet" resultType="mes.sensorview.mesTpm.Machine.DTO.tpmMachine">
-        EXEC SP_TPM_MACHINE_GET #{site_code},0,0,#{keyword},''
+    <select id="tpmMachineAllGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
+        EXEC SP_SYS_MACHINE_GET #{site_code},0,0,#{keyword},''
     </select>
 
     <select id="getLine" resultType="mes.sensorview.mesManager.Master.DTO.SYSProdLine">

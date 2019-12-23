@@ -9,7 +9,7 @@ import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
-import mes.sensorview.mesTpm.Machine.DTO.tpmMachine;
+import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 
 import java.util.List;
 
@@ -32,6 +32,6 @@ public interface VariousMapper {
 
     List<SYS_QC_ITEM> qmsQcItemAllGet(Page p);
 
-    List<tpmMachine> tpmMachineAllGet(Page p);
+    List<TPM_MACHINE_CD> tpmMachineAllGet(Page p);
     List<SYSProdLine> getLine(Page p);
 }

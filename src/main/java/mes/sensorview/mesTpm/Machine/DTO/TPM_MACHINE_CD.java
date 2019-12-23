@@ -3,7 +3,7 @@ package mes.sensorview.mesTpm.Machine.DTO;
 import lombok.Data;
 
 @Data
-public class tpmMachine {
+public class TPM_MACHINE_CD {
     private String site_code;
     private String machine_code;
     private String machine_name;
