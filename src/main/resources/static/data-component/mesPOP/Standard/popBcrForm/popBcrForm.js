@@ -3,7 +3,6 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
 
 var main_data = {
     check: 'I',
@@ -24,6 +23,20 @@ $(document).ready(function () {
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
+// 조회버튼
+function get_btn(page) {
+
+    main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
+
+    $("#mes_grid").setGridParam({ // 그리드 조회
+        url: '/popBcrFormGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+//추가 버튼
 function add_btn() {
     main_data.check = 'I';
     $("#addDialog").dialog('open');
@@ -34,8 +47,7 @@ function add_btn() {
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
-        data:grid_data,
-        // mtype: 'POST',
+        mtype: 'POST',
         colNames: ['양식코드', '양식명', '비고','등록자','등록일'],
         colModel: [
             {name: '', index: '', key: true, sortable: false, width: 60},
