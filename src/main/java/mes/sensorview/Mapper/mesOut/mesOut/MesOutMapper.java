@@ -11,7 +11,7 @@ import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 
 import java.util.List;
 
-public interface MesOutMapper {
+public interface    MesOutMapper {
 
     List<OUTS_OUT_SUB> outsOutListGet(Page p);
 
