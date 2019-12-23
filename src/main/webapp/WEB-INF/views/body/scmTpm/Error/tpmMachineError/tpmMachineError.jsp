@@ -58,16 +58,14 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">라인</td>
                     <td class="wt-px-200">
-                        <select name="keyword" class="form-control h-25 condition_main" id="line_select" style="width:100%">
+                        <select name="keyword" class="form-control h-25 condition_main" onchange="select_change1(this.value);" id="line_select" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">설비</td>
                     <td class="wt-px-200">
-                        <select name="keyword" class="form-control h-25 condition_main" id="scmOutOrderSelect2">
+                        <select name="keyword2" class="form-control h-25 condition_main" id="machine_select" style="width:100%">
                             <option value="">전체</option>
-                            <option value="0">대기</option>
-                            <option value="1">완료</option>
                         </select>
                     </td>
                     <td></td>
