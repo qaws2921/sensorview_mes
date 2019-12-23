@@ -9,7 +9,7 @@ import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
-import mes.sensorview.mesTpm.Machine.DTO.tpmMachine;
+import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,7 +76,7 @@ public class VariousRestController {
         return variousService.qmsQcItemAllGet(p, req);
     }
     @RequestMapping(value = "/tpmMachineAllGet", method = RequestMethod.POST)
-    public List<tpmMachine> tpmMachineAllGet(Page p, HttpServletRequest req) {
+    public List<TPM_MACHINE_CD> tpmMachineAllGet(Page p, HttpServletRequest req) {
         return variousService.tpmMachineAllGet(p,req);
     }
 
