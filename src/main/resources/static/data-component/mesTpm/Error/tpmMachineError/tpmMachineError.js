@@ -14,6 +14,7 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+    selectBox();
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
@@ -57,7 +58,10 @@ function add_btn() {
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
+}
 
+function selectBox() {
+    select_makes("#line_select", "/getLine", "line_code", "line_name");
 }
 
 function jqGrid_main() {
