@@ -86,7 +86,14 @@ function right_modal1_btn() {
         // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
         var ids = $("#scmInDialogLeftGrid").getGridParam('selarrrow').slice();
 
+        if (ids.length === 0 ){
+            alert("옮길 데이터를 선택해주세요");
+            return false;
+        }
+
+
         var ids2 = $("#scmInDialogRightGrid").jqGrid("getDataIDs");
+
 
         var overlap = [];
 
@@ -113,13 +120,17 @@ function right_modal1_btn() {
                 alert(overlap.join(", ") + " 중복");
             }
             ids2 = $("#scmInDialogRightGrid").getRowData();
+
             ids2 = ids2.concat(list);
+
+            $('#scmInDialogRightGrid').jqGrid("clearGridData");
+
             $("#scmInDialogRightGrid").setGridParam({
                 datatype: "local",
                 data: ids2
             }).trigger("reloadGrid");
 
-            $('#scmInDialogLeftGrid').jqGrid("resetSelection");
+            $('#scmInDialogLeftGrid').jqGrid("resetSelection").trigger("reloadGrid");
         });
     }
 }
