@@ -37,44 +37,18 @@ function addUdate_btn() {
 
 }
 
+function select_change2(value) {
+    select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+}
 
-// function supp_btn() {
-//
-//     $("#supp_modal_keyword").val("supp_name");
-//     $("#supp_modal_keyword2").val("");
-//
-//     $("#SuppSearchGrid").jqGrid('clearGridData');
-//     $("#supp-search-dialog").dialog('open');
-//     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
-// }
-//
-// function suppModal_bus(code, name) {
-//     $("#supp_name_main").val(name);
-//     $("#supp_code_main").val(code);
-//
-//     $("#SuppSearchGrid").jqGrid('clearGridData');
-//
-// }
-
-// function select_change2(value) {
-//     if (value === ''){
-//         $("#loc_select").empty();
-//         $("#loc_select").append($("<option></option>").text("선택안함").val(""));
-//     } else {
-//         select_makes_sub("#loc_select","/sysLocAll2Get","loc_code","loc_name",{keyword:value},"N");
-//
-//     }
-//
-// }
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function selectBox_modal1() {
-    // select_makes("#cargo_select", "/sysCargoBAllGet", "cargo_code", "cargo_name");
-    // $("#loc_select").select2();
-    // //select_makes("#loc_select", "/sysLocAllGet", "loc_code", "loc_name");
-    // select_makes("#unit_select", "/sysCommonUnitGet", "code_value", "code_name1");
+    select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
+        select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
+    });
 }
 
 function modal_make1() {

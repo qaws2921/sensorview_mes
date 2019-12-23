@@ -21,4 +21,8 @@ public class tpmMachineError {
     private int rec_count;
     private int rownum;
     private int rownum_page;
+
+    private String line_name;
+    private String machine_name;
+    private String user_name;
 }

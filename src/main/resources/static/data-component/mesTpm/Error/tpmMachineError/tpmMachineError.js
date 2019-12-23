@@ -48,6 +48,7 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
+    // $('#part_grp_code').focus();
 
     $("#addDialog").dialog('open');
 
@@ -74,16 +75,16 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: 'local',
         mtype: 'POST',
-        colNames: ['점검일', '라인', '설비',  '고정내용', '점검결과', '조치사항', '등록자', '점검일시'],
+        colNames: ['점검일', '라인', '설비',  '고장내용', '점검결과', '조치사항', '등록자', '점검일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'line_name', index: 'req_no', sortable: false, width: 60},
-            {name: 'ord_no', index: 'ord_no', sortable: false, width: 60},
-            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
-            {name: 'end_date', index: 'end_date', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
-            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'line_name', index: 'line_name', sortable: false, width: 60},
+            {name: 'machine_name', index: 'machine_name', sortable: false, width: 60},
+            {name: 'error_name', index: 'error_name', sortable: false, width: 60},
+            {name: 'error_result', index: 'error_result', sortable: false, width: 60},
+            {name: 'measure_name', index: 'measure_name', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'check_date', index: 'check_date', sortable: false, width: 60, formatter: formmatterDate},
         ],
         multiselect: true,
         caption: '사후보전관리 | MES',
