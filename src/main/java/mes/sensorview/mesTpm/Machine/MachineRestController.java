@@ -32,4 +32,9 @@ public class MachineRestController {
         return machineService.tpmMCOneGet(req, tmc);
     }
 
+    @RequestMapping(value = "/tpmMCDel", method = RequestMethod.POST)
+    public Message tpmMCDel(HttpServletRequest req, TPM_MACHINE_CD tmc) {
+        return machineService.tpmMCDel(req, tmc);
+    }
+
 }
