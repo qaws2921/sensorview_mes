@@ -7,7 +7,7 @@
         EXEC SP_TPM_MACHINE_GET #{site_code}, #{page}, #{rows},#{keyword},''
     </select>
     <select id="tpmMCOneGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
-        EXEC SP_TPM_MACHINE_GET #{site_code}, 1, 1,#{keyword},''
+        EXEC SP_TPM_MACHINE_GET #{site_code}, 1, 1,'',#{machine_code}
     </select>
 
     <select id="tpmMCAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">

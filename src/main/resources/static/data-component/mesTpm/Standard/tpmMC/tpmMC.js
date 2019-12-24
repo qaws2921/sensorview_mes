@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['qc_code']
+    readonly: ['machine_code']
 };
 
 
@@ -104,10 +104,14 @@ function jqGrid_main() {
         viewrecords: true,
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

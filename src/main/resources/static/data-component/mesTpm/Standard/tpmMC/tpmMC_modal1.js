@@ -27,7 +27,11 @@ function add_modal1_btn() {
     var add_data = value_return(".modal_value");
     if (effectiveness1(add_data)){
     var formData = new FormData(document.getElementById('tpmMC_form'));
-    formData.append("install_date", add_data.install_date.replace(/\-/g, ''));
+        formData.append("keyword",main_data.check);
+        formData.delete("install_date");
+        formData.append("install_date", add_data.install_date.replace(/\-/g, ''));
+        console.log(formData.get("install_date"));
+        return false;
         for (var i = 1; i <=3 ; i ++){
             if (typeof $("#xlsUploads"+i).prop("files")[0] !== "undefined" && $("#xlsUploads"+i).prop("files")[0] !== "" && $("#xlsUploads"+i).prop("files")[0] !== null ) {
                 check = 1;
@@ -85,6 +89,20 @@ function readURLRemove(index) {
     $("#xlsUploads"+index).val("");
 }
 
+
+
+// 그리는 더블 클릭 시 발동
+function update_btn(jqgrid_data) {
+
+    modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+
+    main_data.check = 'U'; // 수정인지 체크
+
+    ccn_ajax('/tpmMCOneGet', {machine_code:jqgrid_data.machine_code}).then(function (data) { // user의 하나 출력
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        $("#addDialog").dialog('open');
+    });
+}
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
