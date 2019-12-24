@@ -26,8 +26,19 @@ public class MachineErrorService extends UploadFunction {
         return getListData(rows, p);
     }
 
-    public Message tpmMachineErrorDelete(Page p) {
-        p.setKeyword(p.getKeyword());
+    public Message tpmMachineErrorDelete(Page p,HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
         return errorMapper.tpmMachineErrorDelete(p);
+    }
+
+    public Message tpmMachineErrorAdd(HttpServletRequest req,tpmMachineError tme) {
+        tme.setSite_code(getSessionData(req).getSite_code());
+        tme.setCheck_user_code(getSessionData(req).getUser_code());
+        return errorMapper.tpmMachineErrorAdd(tme);
+    }
+
+    public tpmMachineError tpmMachineErrorOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return errorMapper.tpmMachineErrorOneGet(p);
     }
 }

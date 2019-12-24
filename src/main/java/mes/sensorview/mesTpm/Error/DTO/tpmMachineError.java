@@ -25,4 +25,9 @@ public class tpmMachineError {
     private String line_name;
     private String machine_name;
     private String user_name;
+
+    private String keyword;
+
+    private String code_name1;
+    private String cn;
 }

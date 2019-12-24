@@ -10,33 +10,33 @@ function modal_start1() {
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
     modal_objact.line_code= $('#line_select2').val();
+    modal_objact.work_date=modal_objact.work_date.replace(/\-/g, '');
     console.log(modal_objact);
-    // if (effectiveness1(modal_objact)) {
-    //     var text = '저장하겠습니까?';
-    //     if (main_data.check === "U") {
-    //         text = '수정하겠습니까?';
-    //     }
-    //     if (confirm(text)) {
-    //
-    //         modal_objact.keyword = main_data.check;
-    //
-    //         ccn_ajax("/sysBPartAdd", modal_objact).then(function (data) {
-    //             if (data.result === 'NG') {
-    //                 alert(data.message);
-    //             } else {
-    //                 if (main_data.check === "I") {
-    //                     get_btn(1);
-    //                 } else {
-    //                     get_btn_post($("#mes_grid").getGridParam('page'));
-    //                 }
-    //             }
-    //             $("#addDialog").dialog('close');
-    //         }).catch(function (err) {
-    //             alert("저장실패");
-    //         });
-    //     }
-    // }
+    if (effectiveness1(modal_objact)) {
+        var text = '저장하겠습니까?';
+        if (main_data.check === "U") {
+            text = '수정하겠습니까?';
+        }
+        if (confirm(text)) {
 
+            modal_objact.keyword = main_data.check;
+
+            ccn_ajax("/tpmMachineErrorAdd", modal_objact).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    if (main_data.check === "I") {
+                        get_btn(1);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                }
+                $("#addDialog").dialog('close');
+            }).catch(function (err) {
+                alert("저장실패");
+            });
+        }
+    }
 }
 
 function select_change2(value) {
@@ -65,7 +65,7 @@ function selectBox_modal1() {
     });
 
     select_makes3("#type_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_ERROR_TYPE'});
-    select_makes3("#result_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_REG_RESULT'});
+    select_makes3("#result_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_ERROR_RESULT'});
 
     $('#stop_yn').select2();
 }

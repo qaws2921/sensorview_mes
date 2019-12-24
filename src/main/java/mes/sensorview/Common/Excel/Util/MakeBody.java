@@ -17,6 +17,8 @@ import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
+import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -472,6 +474,29 @@ public class MakeBody {
                     obj.add(data.getBcr_no());
                     obj.add(data.getUser_name());
                     obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> tpmMachineError_Body(List<tpmMachineError> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(tpmMachineError data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getLine_name());
+                    obj.add(data.getMachine_name());
+                    obj.add(data.getCode_name1());
+                    obj.add(data.getCn());
+                    obj.add(data.getMeasure_name());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getCheck_date());
                     content.add(obj);
                 }
             }

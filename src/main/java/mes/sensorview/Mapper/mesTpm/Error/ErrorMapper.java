@@ -10,4 +10,8 @@ public interface ErrorMapper {
     List<tpmMachineError> tpmMachineErrorGet(Page p);
 
     Message tpmMachineErrorDelete(Page p);
+
+    Message tpmMachineErrorAdd(tpmMachineError tme);
+
+    tpmMachineError tpmMachineErrorOneGet(Page p);
 }

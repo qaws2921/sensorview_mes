@@ -12,9 +12,11 @@
                 $preparingFileModal.dialog({ modal: true });
                 $("#progressbar").progressbar({value: false});
                 $.fileDownload ("/excel_download", {
-                    data : {"name":"scmReqOrder",
+                    data : {"name":"tpmMachineError",
                         "row0":$('#datepicker').val().replace(/-/gi,""),
-                        "row1": $('#datepicker2').val().replace(/-/gi,"")},
+                        "row1":$('#datepicker2').val().replace(/-/gi,""),
+                        "row2":$('#line_select').val(),
+                        "row3":$('#machine_select').val()}
                     successCallback: function (url) {
                         $preparingFileModal.dialog('close');
                     },

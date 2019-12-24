@@ -28,7 +28,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">설비명</div>
             <div class="profile-info-value">
-                <select name="machine_name" id="machine_select2"  class="form-control keyword modal_value" style="width: 100%">
+                <select name="machine_code" id="machine_select2"  class="form-control keyword modal_value" style="width: 100%">
                 </select>
             </div>
         </div>
