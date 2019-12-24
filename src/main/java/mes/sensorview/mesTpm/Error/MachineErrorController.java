@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MachineErrorController {
     @RequestMapping("/tpmMachineError")
     public String tpmMachineError(){
-        return "scmTpm/Error/tpmMachineError/tpmMachineError";
+        return "mesTpm/Error/tpmMachineError/tpmMachineError";
     }
 }

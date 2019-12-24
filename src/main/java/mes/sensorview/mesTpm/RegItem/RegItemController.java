@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegItemController {
     @RequestMapping("/tpmMachineRegItem")
     public String tpmMachineRegItem(){
-        return "scmTpm/RegItem/tpmMachineRegItem/tpmMachineRegItem";
+        return "mesTpm/RegItem/tpmMachineRegItem/tpmMachineRegItem";
     }
     @RequestMapping("/tpmMachineRegCycle")
     public String tpmMachineRegCycle(){
-        return "scmTpm/RegItem/tpmMachineRegCycle/tpmMachineRegCycle";
+        return "mesTpm/RegItem/tpmMachineRegCycle/tpmMachineRegCycle";
 }
     @RequestMapping("/tpmMachineRegComp")
     public String tpmMachineRegComp(){
-        return "scmTpm/RegItem/tpmMachineRegComp/tpmMachineRegComp";
+        return "mesTpm/RegItem/tpmMachineRegComp/tpmMachineRegComp";
     }
 }

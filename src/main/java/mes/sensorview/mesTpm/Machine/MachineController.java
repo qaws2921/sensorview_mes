@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MachineController {
     @RequestMapping("/tpmMC")
     public String tpmMachine(){
-        return "scmTpm/Standard/tpmMC/tpmMC";
+        return "mesTpm/Standard/tpmMC/tpmMC";
     }
 }
