@@ -233,4 +233,39 @@ public class UploadFunction extends ReturnFunction {
         }
         return files;
     }
+    public String tpmMCFileAdd(String code,MultipartHttpServletRequest req,int index){
+        Files files = UploadSetFilePathTpmMC(req.getFile("file"+index), req,index,code);
+        try {
+            files.getFiles().transferTo(new File(files.getUpload_path()));
+            return files.getUpload_path();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return "";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+    private Files UploadSetFilePathTpmMC(MultipartFile multipartFile, HttpServletRequest req,int index,String code) {
+        Files files = new Files();
+        String FileName = MakeFileNameNew(getSessionData(req).getSite_code(),index,code) + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String Key = MakeFileName();
+        files.setKey_value(Key);
+        files.setFiles(multipartFile);
+        files.setFile_size(multipartFile.getSize());
+        files.setFile_volume(multipartFile.getSize() / 1024);
+        files.setFile_og_name(multipartFile.getOriginalFilename());
+        files.setFile_name(FileName);
+        files.setUrl("uploads/img/" + FileName);
+        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/img") + '/' + FileName);
+        return files;
+    }
+    public String MakeFileNameNew(String site_code,int index,String code) {
+        Date now = new Date();
+        Random random = new Random();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String FileName = site_code+"_"+code+"_"+index+"_"+ format.format(now);
+        return FileName;
+    }
+
 }

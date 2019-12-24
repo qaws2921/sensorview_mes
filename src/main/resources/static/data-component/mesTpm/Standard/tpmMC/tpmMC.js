@@ -61,6 +61,16 @@ function add_btn() {
 
     $("#line_select2").val($('#line_select').val()).trigger("change");
 
+
+
+         $("#xlsUploads1").val("");
+         $("#xlsUploads2").val("");
+         $("#xlsUploads3").val("");
+
+
+
+
+
     main_data.check = 'I';
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
@@ -81,7 +91,7 @@ function jqGrid_main() {
             {name: 'machine_code', index: 'machine_code', key: true, sortable: false, width: 60},
             {name: 'machine_name', index: 'machine_name', sortable: false, width: 60},
             {name: 'line_name', index: 'line_name', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
+            {name: 'remark', index: 'remark', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
         ],

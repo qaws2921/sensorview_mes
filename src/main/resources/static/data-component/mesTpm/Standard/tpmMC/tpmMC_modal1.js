@@ -11,34 +11,52 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
+
+function inputIntChange() {
+    if ($("#install_amount").val() === ""){
+        $("#install_amount").val(0);
+    }else {
+        $("#install_amount").val($("#install_amount").val().replace(/[^0-9]/g,''));
+    }
+
+}
+
+
 function add_modal1_btn() {
-    var check1=0;
-    var check2=0;
-    var check3=0;
+    var check=0;
     var add_data = value_return(".modal_value");
     if (effectiveness1(add_data)){
     var formData = new FormData(document.getElementById('tpmMC_form'));
-    formData.append("install_date", formData.get('install_date').replace(/\-/g, ''));
-        if ($("#file_02").prop("files")[0] !== null) {
-            check1 = 1;
-            formData.append("file2", $("#file_02").prop("files")[0]);
+    formData.append("install_date", add_data.install_date.replace(/\-/g, ''));
+        for (var i = 1; i <=3 ; i ++){
+            if (typeof $("#xlsUploads"+i).prop("files")[0] !== "undefined" && $("#xlsUploads"+i).prop("files")[0] !== "" && $("#xlsUploads"+i).prop("files")[0] !== null ) {
+                check = 1;
+                formData.append("file"+i, $("#xlsUploads"+i).prop("files")[0]);
+            }else {
+                check = 0;
+            }
+            formData.append("check"+i, check);
         }
-        formData.append("check1", check1);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            url: "/tpmMCAdd",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+                $('#addDialog').dialog('close');
+            },
+            error: function (e) {
+                alert('업로드에 실패하였습니다.');
+                closeWindowByMask();
+                console.log("ERROR : ", e);
+            }
+        });
 
-        if ($("#file_02").prop("files")[0] !== null) {
-            check2 = 1;
-            formData.append("file2", $("#file_02").prop("files")[0]);
-        }
-        formData.append("check2", check2);
-
-        if ($("#file_02").prop("files")[0] !== null) {
-            check3 = 1;
-            formData.append("file2", $("#file_02").prop("files")[0]);
-        }
-        formData.append("check3", check3);
-
-
-    console.log(formData.get('loc_code'));
 
     }
 }

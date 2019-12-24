@@ -6,4 +6,17 @@
     <select id="tpmMCGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
         EXEC SP_TPM_MACHINE_GET #{site_code}, #{page}, #{rows},#{keyword},''
     </select>
+    <select id="tpmMCOneGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
+        EXEC SP_TPM_MACHINE_GET #{site_code}, 1, 1,#{keyword},''
+    </select>
+
+    <select id="tpmMCAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_ADD #{site_code},#{machine_code}, #{machine_name},#{line_code},#{loc_code},#{install_date},#{install_amount},#{level},
+        #{focus_yn},#{install_corp_name},#{corp_user_name},#{corp_tel_no},#{machine_manager},#{remark},#{user_code},#{keyword}
+    </select>
+
+    <select id="tpmMCFileAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_FILE_ADD #{site_code},#{machine_code}, #{image1},#{image2},#{image3}
+
+    </select>
 </mapper>

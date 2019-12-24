@@ -58,7 +58,7 @@
                     </td>
                     <td class=" td-title t-align-c">제작금액</td>
                     <td>
-                        <input type="text" name="install_amount" class="form-control modal_value">
+                        <input type="text" name="install_amount" value="0" id="install_amount" class="form-control modal_value" onchange="inputIntChange();">
                     </td>
                 </tr>
                 <tr>
@@ -78,27 +78,27 @@
                 <tr>
                     <td class=" td-title t-align-c">제작업체</td>
                     <td>
-                            <input type="text" class="form-control main_value" />
+                            <input type="text" name="install_corp_name" class="form-control main_value" />
                     </td>
                     <td class=" td-title t-align-c">업체담당자</td>
                     <td>
-                        <input type="text" class="form-control">
+                        <input type="text" name="corp_user_name" class="form-control">
                     </td>
                 </tr>
                 <tr>
                     <td class=" td-title t-align-c">설비관리자</td>
                     <td>
-                        <input type="text" class="form-control modal_value">
+                        <input type="text" name="machine_manager" class="form-control modal_value">
                     </td>
                     <td class=" td-title t-align-c">업체담당자(연락처)</td>
                     <td>
-                        <input type="text" class="form-control modal_value">
+                        <input type="text" name="corp_tel_no" class="form-control modal_value">
                     </td>
                 </tr>
                 <tr>
                     <td class=" td-title t-align-c">비고</td>
                     <td colspan="3">
-                        <input type="text" class="form-control modal_value">
+                        <input type="text" name="remark" class="form-control modal_value">
                     </td>
                 </tr>
                 </tbody>
