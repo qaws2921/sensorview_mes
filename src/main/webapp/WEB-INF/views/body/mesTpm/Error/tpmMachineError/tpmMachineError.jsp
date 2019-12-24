@@ -12,9 +12,11 @@
                 $preparingFileModal.dialog({ modal: true });
                 $("#progressbar").progressbar({value: false});
                 $.fileDownload ("/excel_download", {
-                    data : {"name":"scmReqOrder",
+                    data : {"name":"tpmMachineError",
                         "row0":$('#datepicker').val().replace(/-/gi,""),
-                        "row1": $('#datepicker2').val().replace(/-/gi,"")},
+                        "row1":$('#datepicker2').val().replace(/-/gi,""),
+                        "row2":$('#line_select').val(),
+                        "row3":$('#machine_select').val()},
                     successCallback: function (url) {
                         $preparingFileModal.dialog('close');
                     },
@@ -83,12 +85,14 @@
                             <span>조회</span>
                         </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="add_btn();">
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       title="" onclick="add_btn();">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
                             </span>
                     </a>
-                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                    <a id="delete_btn" class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn()">
                         <span>
                         <i class="fa fa-trash bigger-110 blue"></i>
                         <span>삭제</span>

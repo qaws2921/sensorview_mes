@@ -18,6 +18,8 @@ import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
+import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+
 import java.util.List;
 
 public interface ExcelMapper {
@@ -49,4 +51,6 @@ public interface ExcelMapper {
     List<OUTS_IN_SUB> outsInDbList(Excel excel);
 
     List<OUTS_OUT_BCR> outsInReadyDbList(Excel excel);
+
+    List<tpmMachineError> tpmMachineErrorDbList(Excel excel);
 }

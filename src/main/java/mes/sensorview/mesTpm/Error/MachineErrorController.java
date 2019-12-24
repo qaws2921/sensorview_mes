@@ -1,4 +1,4 @@
-package mes.sensorview.mesTpm.MachineError;
+package mes.sensorview.mesTpm.Error;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MachineErrorController {
     @RequestMapping("/tpmMachineError")
     public String tpmMachineError(){
-        return "scmTpm/Error/tpmMachineError/tpmMachineError";
+        return "mesTpm/Error/tpmMachineError/tpmMachineError";
     }
 }

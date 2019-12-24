@@ -89,4 +89,9 @@ public class MakeHeader {
         String[] data = {"출고일자", "출고번호", "업체", "품목그룹", "품번", "품명", "규격", "단위", "수량","바코드", "등록자","등록일시"};
         return data;
     }
+
+    public String[] tpmMachineError_Header() {
+        String[] data ={"점검일", "라인","설비","고장내용", "점검결과", "조치사항", "등록자", "점검일시"};
+        return data;
+    }
 }

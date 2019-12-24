@@ -8,6 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    readonly: []
 };
 
 
@@ -37,7 +38,6 @@ function get_btn(page) {
     }).trigger("reloadGrid");
 }
 
-
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
         url: '/tpmMachineErrorGet',
@@ -49,13 +49,80 @@ function get_btn_post(page) {
 
 function add_btn() {
 
-    $("#addDialog").dialog('open');
+    modal_reset(".modal_value", main_data.readonly);
+    main_data.check = 'I';
+    $("#datepicker3").datepicker('setDate', 'today');
+    if($('#line_select').val() == ''){
+        $("select[name=line_name] option:eq(0)").prop("selected", true).trigger("change");
+    }else {
+        $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
+    }
+    $("select[name=error_type] option:eq(0)").prop("selected", true).trigger("change");
+    $("select[name=error_result] option:eq(0)").prop("selected", true).trigger("change");
 
+    $('#datepicker3').prop("disabled", false);
+    $('#line_select2').prop("disabled", false);
+    $('#machine_select2').prop("disabled", false);
+    $("#addDialog").dialog('open');
 
 }
 
 function select_change1(value) {
     select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+}
+
+function update_btn(jqgrid_data) {
+    modal_reset(".modal_value", []);
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.keyword = jqgrid_data.line_code;
+    send_data.keyword2 = jqgrid_data.machine_code;
+
+    ccn_ajax('/tpmMachineErrorOneGet', send_data).then(function (data) {
+        data.work_date = formmatterDate2(data.work_date);
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+
+        $('#datepicker3').prop("disabled", true);
+        $('#line_select2').prop("disabled", true);
+        $('#machine_select2').prop("disabled", true);
+        // $('#datepicker3').datepicker('option','disabled','true');
+        $("#addDialog").dialog('open');
+    });
+}
+
+
+function delete_btn() {
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    var keywords = [];
+    var code_list;
+
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            for(i=0;i<ids.length;i++){
+                var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
+                console.log(data);
+                keywords.push(data.line_code+gu4+data.machine_code);
+            }
+            code_list=keywords.join(gu5);
+            wrapWindowByMask2();
+            ccn_ajax("/tpmMachineErrorDelete", {keyword:code_list}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn_post($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -66,7 +133,7 @@ function datepickerInput() {
 
 function selectBox() {
     select_makes2("#line_select", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"Y");
+        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:''},"Y");
     });
 }
 
@@ -74,16 +141,19 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: 'local',
         mtype: 'POST',
-        colNames: ['점검일', '라인', '설비',  '고정내용', '점검결과', '조치사항', '등록자', '점검일시'],
+        colNames: ['rownum','점검일', '라인','line_code', '설비','machine_code',  '고장내용', '점검결과', '조치사항', '등록자', '점검일시'],
         colModel: [
+            {name: 'rownum', index: 'rownum', sortable: false,hidden:true,key:true},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'req_no', index: 'req_no', sortable: false, width: 60},
-            {name: 'ord_no', index: 'ord_no', sortable: false, width: 60},
-            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
-            {name: 'end_date', index: 'end_date', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
-            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'line_name', index: 'line_name', sortable: false, width: 60},
+            {name: 'line_code', index: 'line_code', sortable: false, width: 60,hidden:true},
+            {name: 'machine_name', index: 'machine_name', sortable: false, width: 60},
+            {name: 'machine_code', index: 'machine_code', sortable: false, width: 60,hidden:true},
+            {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+            {name: 'cn', index: 'cn', sortable: false, width: 60},
+            {name: 'measure_name', index: 'measure_name', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'check_date', index: 'check_date', sortable: false, width: 60, formatter: formmatterDate},
         ],
         multiselect: true,
         caption: '사후보전관리 | MES',
@@ -104,6 +174,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     });
 }
