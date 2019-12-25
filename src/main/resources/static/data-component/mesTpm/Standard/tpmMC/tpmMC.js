@@ -56,6 +56,7 @@ function get_btn_post(page) {
 }
 
 
+
 function delete_btn() {
     var gu5 = String.fromCharCode(5);
     var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
