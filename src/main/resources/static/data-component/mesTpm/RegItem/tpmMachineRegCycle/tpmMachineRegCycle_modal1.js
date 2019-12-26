@@ -23,6 +23,38 @@ function select_change2(value) {
     });
 }
 
+function addUdate_btn() {
+    var modal_objact = value_return(".modal_value");
+    modal_objact.line_code= $('#line_select2').val();
+    modal_objact.start_date=modal_objact.start_date.replace(/\-/g, '');
+    console.log(modal_objact);
+    if (effectiveness1(modal_objact)) {
+        var text = '저장하겠습니까?';
+        if (main_data.check === "U") {
+            text = '수정하겠습니까?';
+        }
+        if (confirm(text)) {
+
+            modal_objact.keyword = main_data.check;
+
+            ccn_ajax("/tpmMachineRegAdd", modal_objact).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    if (main_data.check === "I") {
+                        get_btn(1);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                }
+                $("#addDialog").dialog('close');
+            }).catch(function (err) {
+                alert("저장실패");
+            });
+        }
+    }
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function selectBox_modal1() {
@@ -45,7 +77,7 @@ function modal_make1() {
                 text: '저장',
                 'class': 'btn btn-primary btn-minier',
                 click: function () {
-                    $(this).dialog('close');
+                    addUdate_btn();
                 }
             },
             {
@@ -79,6 +111,22 @@ function modal_make1() {
             return !!$(e.target).closest('.ui-dialog, .ui-datepicker, .select2-drop').length;
         }
     });
+}
+
+function effectiveness1(modal_objact) { // 유효성 검사
+    // if (modal_objact.part_grp_code === '') {
+    //     alert("품목구분을 선택해주세요");
+    //     return false;
+    // } else if (modal_objact.part_code === '') {
+    //     alert("품목코드를 입력해주세요");
+    //     return false;
+    // } else if (modal_objact.part_name === '') {
+    //     alert("품목명을 입력해주세요");
+    //     return false;
+    // } else {
+
+    return true;
+    // }
 }
 
 function datepickerInput_modal1() {

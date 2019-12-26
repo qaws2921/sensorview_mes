@@ -21,4 +21,8 @@ public interface RegitemMapper {
     List<TPM_MACHINE_REG> tpmMachineRegGet(Page p);
 
     Message tpmMachineRegDel(TPM_MACHINE_REG tmr);
+
+    Message tpmMachineRegAdd(TPM_MACHINE_REG tmr);
+
+    TPM_MACHINE_REG tpmMachineRegOneGet(Page p);
 }

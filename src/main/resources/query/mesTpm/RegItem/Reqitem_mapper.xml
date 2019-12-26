@@ -22,4 +22,12 @@
     <select id="tpmMachineRegDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_TPM_MACHINE_REG_DEL #{site_code},#{keyword}
     </select>
+
+    <select id="tpmMachineRegAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_REG_ADD #{site_code},#{line_code},#{machine_code},#{qc_code},#{cycle_type},#{cycle_qty},#{start_date},#{user_code},#{keyword}
+    </select>
+
+    <select id="tpmMachineRegOneGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG">
+        EXEC SP_TPM_MACHINE_REG_GET #{site_code},1,1,#{keyword},#{keyword2}
+    </select>
 </mapper>

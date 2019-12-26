@@ -50,4 +50,15 @@ public class RegItemService extends ReturnFunction {
         tmr.setSite_code(getSessionData(req).getSite_code());
         return regitemMapper.tpmMachineRegDel(tmr);
     }
+
+    public Message tpmMachineRegAdd(HttpServletRequest req, TPM_MACHINE_REG tmr) {
+        tmr.setSite_code(getSessionData(req).getSite_code());
+        tmr.setUser_code(getSessionData(req).getUser_code());
+        return regitemMapper.tpmMachineRegAdd(tmr);
+    }
+
+    public TPM_MACHINE_REG tpmMachineRegOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegOneGet(p);
+    }
 }
