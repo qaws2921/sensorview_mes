@@ -133,24 +133,90 @@ function update_btn(jqgrid_data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("input[name=install_date]").val(formmatterDate2(data.install_date));
 
-
-        $('#img1').attr('src', data.image1.replace('C:\\Users\\USER\\Desktop\\dev\\sensorview\\src\\main\\webapp\\',''));
-        $('#img2').attr('src', data.image2.replace('C:\\Users\\USER\\Desktop\\dev\\sensorview\\src\\main\\webapp\\',''));
-        $('#img3').attr('src', data.image3.replace('C:\\Users\\USER\\Desktop\\dev\\sensorview\\src\\main\\webapp\\',''));
-        if (data.image1 !== ''){
+        if (data.image1 !== '' && data.image1 !== null){
+            var image1= data.image1.split("\\");
+            var index1 = image1.length;
             $('#img-text1').remove();
+            $('#img1').attr('src',image1[index1-3]+"\\"+image1[index1-2]+"\\"+image1[index1-1]);
         }
-        if (data.image2 !== ''){
+
+
+        if (data.image2 !== '' && data.image2 !== null){
+            var image2= data.image2.split("\\");
+            var index2 = image2.length;
             $('#img-text2').remove();
+            $('#img2').attr('src', image2[index1-3]+"\\"+image2[index1-2]+"\\"+image2[index1-1]);
         }
-        if (data.image3 !== ''){
+        if (data.image3 !== '' && data.image3 !== null){
+            var image3= data.image3.split("\\");
+            var index3 = image3.length;
             $('#img-text3').remove();
+            $('#img3').attr('src', image3[index1-3]+"\\"+image3[index1-2]+"\\"+image3[index1-1]);
         }
+
+
+        return data;
+
+
+    }).then(function (data2) {
+        $("#mes_modal_grid").jqGrid('clearGridData');
+
+        modal2_get_btn();
+
 
 
         $("#addDialog").dialog('open');
+        jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
     });
 }
+
+
+function part_add_btn() {
+
+    if (main_data.check === "U"){
+
+
+    modal_reset(".modal_value2", modal2_data.readonly);
+    modal2_data.check = 'I';
+    $("#addDialog2").dialog('open');
+    }
+}
+
+function part_delete_btn() {
+    if (main_data.check === "U"){
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+    var list = [];
+    var jdata = {};
+    var ids = $("#mes_modal_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+
+            ids.forEach(function (id) {
+                list.push($("#machine_code").val() +gu4+id);
+            })
+
+
+            modal2_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/tpmMCPartDel", {keyword: list.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    modal2_get_btn(1);
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+    }
+}
+
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
@@ -182,22 +248,33 @@ function modal_make1() {
 
 function jqGrid_modal1() {
     $('#mes_modal_grid').jqGrid({
-        data:grid_data,
         datatype: "local",
+        mtype: 'POST',
         colNames: ['부품명','규격','소요수량','구매처','연락처','비고'],
         colModel: [
-            {name: '', index: '', key:true, sortable: false},
-            {name: 'a', index: 'a', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false}
+            {name: 'part_name', index: 'part_name', key:true, sortable: false},
+            {name: 'spec', index: 'spec', sortable: false},
+            {name: 'qty', index: 'qty', sortable: false},
+            {name: 'buy_corp_name', index: 'buy_corp_name', sortable: false},
+            {name: 'corp_tel_no', index: 'corp_tel_no', sortable: false},
+            {name: 'remark', index: 'remark', sortable: false}
         ],
         width : 465,
-        rowNum: 100,
-        rowList:[100,200,300,500,1000],
+        viewrecords: true,
+        multiselect: true,
+        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
+        },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
+            modal2_update_btn(data);
+        }
     });
 }
+
 function effectiveness1(modal_objact) { // 유효성 검사
     if (modal_objact.machine_code === '') {
         alert("설비코드를 입력해주세요");

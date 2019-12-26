@@ -27,4 +27,20 @@
     <select id="tpmMCFileGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
         EXEC SP_TPM_MACHINE_FILE_GET #{site_code},#{keyword}
     </select>
+
+    <select id="tpmMCPartAllGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_PART_CD">
+        EXEC SP_TPM_MACHINE_PART_GET #{site_code}, 0, 0,#{keyword},''
+    </select>
+
+    <select id="tpmMCPartOneGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_PART_CD">
+        EXEC SP_TPM_MACHINE_PART_GET #{site_code}, 1, 1,#{machine_code},#{part_name}
+    </select>
+
+    <select id="tpmMCPartAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_PART_ADD #{site_code},#{machine_code}, #{part_name},#{spec},#{qty},#{buy_corp_name},#{corp_tel_no},#{remark},
+        #{user_code},#{keyword}
+    </select>
+    <select id="tpmMCPartDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_PART_DEL #{site_code},#{keyword}
+    </select>
 </mapper>

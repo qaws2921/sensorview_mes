@@ -5,7 +5,7 @@
         	SELECT * from sys_user_cd
     </select>
     <select id="sysUserGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUser">
-        	EXEC SP_SYS_USER_GET #{site_code}, #{page}, #{rows}, '', #{keyword}
+        	EXEC SP_SYS_USER_GET #{site_code}, #{page}, #{rows}, '', #{keyword},#{keyword2}
     </select>
 
      <select id="sysUserAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">

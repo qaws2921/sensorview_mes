@@ -23,6 +23,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
 
     modal_start1();
+    modal_start2();
     jqgridPagerIcons();
 
 
@@ -94,7 +95,7 @@ function add_btn() {
     readURLRemove(3);
 
 
-
+    $("#mes_modal_grid").jqGrid('clearGridData');
 
 
     main_data.check = 'I';
