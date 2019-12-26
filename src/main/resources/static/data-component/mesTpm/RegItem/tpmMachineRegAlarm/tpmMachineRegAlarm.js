@@ -18,6 +18,8 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
+
+    modal_start1();
     jqgridPagerIcons();
 });
 
@@ -27,7 +29,8 @@ $(document).ready(function () {
 function add_btn() {
     main_data.check = 'I';
     $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+    jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+    jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
 }
 
 function select_change1(value) {

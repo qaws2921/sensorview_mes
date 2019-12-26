@@ -38,7 +38,7 @@
                             </span>
                     </a>
                     <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>추가</span>
@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<%--<%@include file="tpmMachineRegComp_modal1.jsp" %>--%>
+<%@include file="tpmMachineRegAlarm_modal1.jsp" %>
 
 
 
