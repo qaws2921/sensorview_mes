@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_ALARM;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class RegItemRestController {
@@ -73,4 +75,24 @@ public class RegItemRestController {
     public Message tpmMachineRegCompAdd(HttpServletRequest req, TPM_MACHINE_REG_PLAN tmrp){
         return regItemService.tpmMachineRegCompAdd(req,tmrp);
     }
+
+    @RequestMapping(value = "/tpmMachineRegAlarmGet", method = RequestMethod.POST)
+    public RESTful tpmMachineRegAlarmGet(HttpServletRequest req, Page p) {
+        return regItemService.tpmMachineRegAlarmGet(req, p);
+    }
+
+    @RequestMapping(value = "/tpmMachineRegAlarmAllGet", method = RequestMethod.POST)
+    public List<TPM_MACHINE_REG_ALARM> tpmMachineRegAlarmAllGet(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra) {
+        return regItemService.tpmMachineRegAlarmAllGet(req, tmra);
+    }
+
+    @RequestMapping(value ="/tpmMachineRegAlarmAdd", method = RequestMethod.POST)
+    public Message tpmMachineRegAlarmAdd(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra){
+        return regItemService.tpmMachineRegAlarmAdd(req,tmra);
+    }
+    @RequestMapping(value ="/tpmMachineRegAlarmDel", method = RequestMethod.POST)
+    public Message tpmMachineRegAlarmDel(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra){
+        return regItemService.tpmMachineRegAlarmDel(req,tmra);
+    }
+
 }

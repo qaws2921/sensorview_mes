@@ -42,4 +42,21 @@
     <select id="tpmMachineRegCompAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_TPM_MACHINE_REG_READY_ADD #{site_code},#{line_code},#{machine_code},#{qc_code},#{work_date},#{check_yn},#{check_code},#{measure_name},#{check_user_code},#{keyword}
     </select>
+
+    <select id="tpmMachineRegAlarmGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_ALARM">
+        EXEC [SP_TPM_REG_ALARM_GET] #{site_code}, #{page}, #{rows}, #{keyword}, #{keyword2}
+    </select>
+
+    <select id="tpmMachineRegAlarmAllGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_ALARM">
+        EXEC [SP_TPM_REG_ALARM_GET] #{site_code}, 0, 0, #{line_code}, #{machine_code}
+    </select>
+
+    <select id="tpmMachineRegAlarmAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_REG_ALARM_ADD #{site_code},#{line_code},#{machine_code},#{alarm_day},#{user_code},#{alarm_user_code},#{keyword}
+    </select>
+
+    <select id="tpmMachineRegAlarmDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_REG_ALARM_DEL #{site_code},#{keyword}
+    </select>
+
 </mapper>

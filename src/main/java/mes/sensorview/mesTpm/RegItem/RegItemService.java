@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesTpm.RegItem.RegitemMapper;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_ALARM;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,26 @@ public class RegItemService extends ReturnFunction {
         tmrp.setSite_code(getSessionData(req).getSite_code());
         tmrp.setCheck_user_code(getSessionData(req).getUser_code());
         return regitemMapper.tpmMachineRegCompAdd(tmrp);
+    }
+
+    public RESTful tpmMachineRegAlarmGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegAlarmGet(p);
+    }
+
+    public List<TPM_MACHINE_REG_ALARM> tpmMachineRegAlarmAllGet(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra) {
+        tmra.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegAlarmAllGet(tmra);
+    }
+
+    public Message tpmMachineRegAlarmAdd(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra) {
+        tmra.setSite_code(getSessionData(req).getSite_code());
+        tmra.setUser_code(getSessionData(req).getUser_code());
+        return regitemMapper.tpmMachineRegAlarmAdd(tmra);
+    }
+
+    public Message tpmMachineRegAlarmDel(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra) {
+        tmra.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegAlarmDel(tmra);
     }
 }
