@@ -10,6 +10,8 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,4 +85,6 @@ public class VariousRestController {
     @RequestMapping(value = "/getLine", method = RequestMethod.POST)
     public List<SYSProdLine> getLine(HttpServletRequest req, Page p) { return variousService.getLine(req, p); }
 
+    @RequestMapping(value ="/tpmMachineRegItemAllGet", method = RequestMethod.POST)
+    public List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(HttpServletRequest req, Page p) { return variousService.tpmMachineRegItemAllGet(req,p); }
 }

@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesTpm.RegItem.RegitemMapper;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,16 @@ public class RegItemService extends ReturnFunction {
     public Message tpmMachineRegItemDel(TPM_REG_ITEM_CD tric, HttpServletRequest req) {
         tric.setSite_code(getSessionData(req).getSite_code());
         return regitemMapper.tpmMachineRegItemDel(tric);
+    }
+
+    public RESTful tpmMachineRegGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<TPM_MACHINE_REG> rows = regitemMapper.tpmMachineRegGet(p);
+        return getListData(rows, p);
+    }
+
+    public Message tpmMachineRegDel(TPM_MACHINE_REG tmr, HttpServletRequest req) {
+        tmr.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegDel(tmr);
     }
 }

@@ -10,6 +10,8 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 
 import java.util.List;
 
@@ -34,4 +36,6 @@ public interface VariousMapper {
 
     List<TPM_MACHINE_CD> tpmMachineAllGet(Page p);
     List<SYSProdLine> getLine(Page p);
+
+    List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(Page p);
 }

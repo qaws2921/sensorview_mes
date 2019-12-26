@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.mesTpm.RegItem;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 
 import java.util.List;
@@ -16,4 +17,8 @@ public interface RegitemMapper {
     Message tpmMachineRegItemAdd(TPM_REG_ITEM_CD tric);
 
     Message tpmMachineRegItemDel(TPM_REG_ITEM_CD tric);
+
+    List<TPM_MACHINE_REG> tpmMachineRegGet(Page p);
+
+    Message tpmMachineRegDel(TPM_MACHINE_REG tmr);
 }

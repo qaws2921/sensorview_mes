@@ -286,8 +286,23 @@ function datepicker_makes(tag,num) {
         autoclose: true,
         format:'yyyy-mm-dd',
         language: "kr",
+		todayHighlight: true,
     }).datepicker('setDate',date);
 }
+
+function datepicker_makes1(tag,num) {
+	var date = new Date();
+	date.setDate(date.getDate() + num);
+
+	$( tag ).datepicker({
+		autoclose: true,
+		format:'yyyy-mm-dd',
+		language: "kr",
+		startDate:date,
+		todayHighlight: true,
+	}).datepicker('setDate',date);
+}
+
 
 
 function modalValuePush(name1,name2,name3) {

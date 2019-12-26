@@ -13,6 +13,8 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,5 +84,10 @@ public class VariousService extends ReturnFunction {
     public List<SYSProdLine> getLine(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.getLine(p);
+    }
+
+    public List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.tpmMachineRegItemAllGet(p);
     }
 }

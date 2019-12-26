@@ -38,6 +38,10 @@
     <select id="getLine" resultType="mes.sensorview.mesManager.Master.DTO.SYSProdLine">
         EXEC SP_SYS_LINE_GET #{site_code},0,0,'D9000','';
     </select>
+
+    <select id="tpmMachineRegItemAllGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
+        EXEC SP_TPM_REG_ITEM_GET #{site_code}, 0,0,'',#{keyword}
+    </select>
 </mapper>
 
 
