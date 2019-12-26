@@ -98,7 +98,7 @@ function delete_btn() {
             for(i=0;i<ids.length;i++){
                 var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
                 console.log(data);
-                keywords.push(data.machine_code+gu4+data.qc_code);
+                keywords.push(data.machine_code+gu4+data.qc_code+gu4+data.line_code);
             }
             code_list=keywords.join(gu5);
             wrapWindowByMask2();
