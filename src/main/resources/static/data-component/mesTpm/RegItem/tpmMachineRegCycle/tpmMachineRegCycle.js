@@ -51,7 +51,7 @@ function add_btn() {
     date.setDate(date.getDate() + 1);
 
     main_data.check = 'I';
-    $("select[name=line_name] option:eq(0)").prop("selected", true).trigger("change");
+    $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
     $("select[name=qc_code] option:eq(0)").prop("selected", true).trigger("change");
     $("select[name=cycle_type] option:eq(0)").prop("selected", true).trigger("change");
     $("#datepicker3").datepicker('setDate', date);

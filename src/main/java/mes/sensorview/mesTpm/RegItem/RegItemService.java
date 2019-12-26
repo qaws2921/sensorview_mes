@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesTpm.RegItem.RegitemMapper;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,5 +61,22 @@ public class RegItemService extends ReturnFunction {
     public TPM_MACHINE_REG tpmMachineRegOneGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return regitemMapper.tpmMachineRegOneGet(p);
+    }
+
+    public RESTful tpmMachineRegCompGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<TPM_MACHINE_REG_PLAN> rows = regitemMapper.tpmMachineRegCompGet(p);
+        return getListData(rows, p);
+    }
+
+    public TPM_MACHINE_REG_PLAN tpmMachineRegCompOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return regitemMapper.tpmMachineRegCompOneGet(p);
+    }
+
+    public Message tpmMachineRegCompAdd(HttpServletRequest req, TPM_MACHINE_REG_PLAN tmrp) {
+        tmrp.setSite_code(getSessionData(req).getSite_code());
+        tmrp.setCheck_user_code(getSessionData(req).getUser_code());
+        return regitemMapper.tpmMachineRegCompAdd(tmrp);
     }
 }

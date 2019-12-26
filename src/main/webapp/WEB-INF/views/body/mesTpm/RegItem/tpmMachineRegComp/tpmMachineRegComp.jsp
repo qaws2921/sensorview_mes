@@ -5,7 +5,6 @@
 <script type="text/javascript" src="/data-component/mesTpm/RegItem/tpmMachineRegComp/tpmMachineRegComp.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
@@ -14,28 +13,29 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" readonly>
+                            <input type="text" name="start_date" id="datepicker"
+                                   class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="t-align-c" style="width:25px !important;">~</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main" readonly>
+                            <input type="text" name="end_date" id="datepicker2"
+                                   class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">라인</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="line_select" class="form-control keyword condition_main" style="width:100%">
+                        <select name="keyword" id="line_select" class="form-control keyword condition_main" onchange="select_change1(this.value);" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">설비명</td>
                     <td class="wt-px-200">
-                        <select id="tpm_select" class="form-control condition_main">
-                            <option>설비명1</option>
-                            <option>설비명2</option>
+                        <select name="keyword2" class="form-control h-25 condition_main" id="machine_select" style="width:100%">
+                            <option value="">전체</option>
                         </select>
                     </td>
                     <td></td>
@@ -47,7 +47,7 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
                             <span>
                                 <i class="fa fa-search bigger-110 blue"></i>
                                 <span>조회</span>

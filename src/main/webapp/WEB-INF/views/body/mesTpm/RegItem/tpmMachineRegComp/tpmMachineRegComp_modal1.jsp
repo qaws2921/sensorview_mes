@@ -5,49 +5,50 @@
         <div class="profile-info-row">
             <div class="profile-info-name">점검예정일</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input name="work_date" type="text" class="form-control modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">라인</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input name="line_name" type="text" class="form-control modal_value">
+                <input type="hidden" name="line_code" class="modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">설비명</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input name="machine_name" type="text" class="form-control modal_value">
+                <input type="hidden" name="machine_code" class="modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">점검항목</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input name="qc_name" type="text" class="form-control modal_value">
+                <input type="hidden" name="qc_code" class="modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">점검유무</div>
             <div class="profile-info-value">
-                <select class="form-control">
-                    <option>Y</option>
-                    <option>N</option>
+                <select name="check_yn" id="check_yn" class="form-control modal_value">
+                    <option value="Y">Y</option>
+                    <option value="N">N</option>
                 </select>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">점검결과</div>
             <div class="profile-info-value">
-                <select class="form-control">
-                    <option>양호</option>
-                    <option>청소</option>
+                <select name="check_code" id="result_select" class="form-control modal_value" style="width: 100%">
                 </select>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">조치사항</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input name="measure_name" id="measure_name" type="text" class="form-control modal_value">
             </div>
         </div>
     </div>

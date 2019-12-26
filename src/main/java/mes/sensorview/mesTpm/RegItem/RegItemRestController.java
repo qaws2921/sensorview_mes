@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +57,20 @@ public class RegItemRestController {
     @RequestMapping(value = "/tpmMachineRegOneGet", method = RequestMethod.POST)
     public TPM_MACHINE_REG tpmMachineRegOneGet(HttpServletRequest req, Page p){
         return regItemService.tpmMachineRegOneGet(req,p);
+    }
+
+    @RequestMapping(value = "/tpmMachineRegCompGet", method = RequestMethod.POST)
+    public RESTful tpmMachineRegCompGet(HttpServletRequest req, Page p) {
+        return regItemService.tpmMachineRegCompGet(req, p);
+    }
+
+    @RequestMapping(value ="/tpmMachineRegCompOneGet", method = RequestMethod.POST)
+    public TPM_MACHINE_REG_PLAN tpmMachineRegCompOneGet(HttpServletRequest req,Page p){
+        return regItemService.tpmMachineRegCompOneGet(req,p);
+    }
+
+    @RequestMapping(value ="/tpmMachineRegCompAdd", method = RequestMethod.POST)
+    public Message tpmMachineRegCompAdd(HttpServletRequest req, TPM_MACHINE_REG_PLAN tmrp){
+        return regItemService.tpmMachineRegCompAdd(req,tmrp);
     }
 }

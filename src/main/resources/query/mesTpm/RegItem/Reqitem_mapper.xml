@@ -30,4 +30,16 @@
     <select id="tpmMachineRegOneGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG">
         EXEC SP_TPM_MACHINE_REG_GET #{site_code},1,1,#{keyword},#{keyword2}
     </select>
+
+    <select id="tpmMachineRegCompGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN">
+        EXEC SP_TPM_MACHINE_REG_READY_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword},#{keyword2},''
+    </select>
+
+    <select id="tpmMachineRegCompOneGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN">
+        EXEC SP_TPM_MACHINE_REG_READY_GET #{site_code},1,1,'','',#{keyword},#{keyword2},#{keyword3}
+    </select>
+
+    <select id="tpmMachineRegCompAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_REG_READY_ADD #{site_code},#{line_code},#{machine_code},#{qc_code},#{work_date},#{check_yn},#{check_code},#{measure_name},#{check_user_code},#{keyword}
+    </select>
 </mapper>
