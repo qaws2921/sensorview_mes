@@ -218,6 +218,10 @@ function part_delete_btn() {
 }
 
 
+function close_modal1_btn() {
+    $("#addDialog").dialog('close');
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function datepickerInput_modal1() {
