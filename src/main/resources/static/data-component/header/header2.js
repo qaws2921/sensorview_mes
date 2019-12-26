@@ -1,4 +1,3 @@
-var path = window.location.pathname.split("/").slice(1);
 var array =
     [
         // 관리자
@@ -53,7 +52,9 @@ var array =
         {code:"tpmMachineRegItem", title:'설비관리',sub:'예방점검',name:'예방점검항목관리'},
         {code:"tpmMachineRegCycle", title:'설비관리',sub:'예방점검',name:'예방점검주기설정'},
         {code:"tpmMachineRegComp", title:'설비관리',sub:'예방점검',name:'예방점검관리'},
+        {code:"tpmMachineRegAlarm", title:'설비관리',sub:'예방점검',name:'예방점검알람설정'},
         {code:"tpmMachineError", title:'설비관리',sub:'사후보전',name:'사후보전관리'},
+        
 
         //품질관리
         {code: "qmsTestItem", title: '품질관리', sub: '기준정보', name: '검사항목관리'},
@@ -113,6 +114,7 @@ var array =
         {code:"outsInList", title:"외주관리" , sub:"외주관리", name:"외주입고현황"},
         {code:"outsInReady", title:"외주관리" , sub:"외주관리", name:"미입고관리"},
     ];
+var path = window.location.pathname.split("/").slice(1);
 $(function () {
     wrapWindowByMask2();
     setTimeout(function () {

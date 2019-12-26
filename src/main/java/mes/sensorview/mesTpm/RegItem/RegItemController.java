@@ -17,4 +17,6 @@ public class RegItemController {
     public String tpmMachineRegComp(){
         return "mesTpm/RegItem/tpmMachineRegComp/tpmMachineRegComp";
     }
+    @RequestMapping("/tpmMachineRegAlarm")
+    public String tpmMachineRegAlarm() { return "mesTpm/RegItem/tpmMachineRegAlarm/tpmMachineRegAlarm"; }
 }
