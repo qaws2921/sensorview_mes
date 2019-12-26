@@ -7,6 +7,7 @@ import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.Mapper.mesTpm.Machine.MachineMapper;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
+import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_PART_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -160,5 +161,26 @@ public class MachineService   extends UploadFunction {
         }
 
         return machineMapper.tpmMCDel(tmc);
+    }
+
+    public List<TPM_MACHINE_PART_CD> tpmMCPartAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return machineMapper.tpmMCPartAllGet(p);
+    }
+
+    public Message tpmMCPartAdd(HttpServletRequest req, TPM_MACHINE_PART_CD tmpc) {
+        tmpc.setSite_code(getSessionData(req).getSite_code());
+        tmpc.setUser_code(getSessionData(req).getUser_code());
+        return machineMapper.tpmMCPartAdd(tmpc);
+    }
+
+    public Message tpmMCPartDel(HttpServletRequest req, TPM_MACHINE_PART_CD tmpc) {
+        tmpc.setSite_code(getSessionData(req).getSite_code());
+        return machineMapper.tpmMCPartDel(tmpc);
+    }
+
+    public TPM_MACHINE_PART_CD tpmMCPartOneGet(HttpServletRequest req, TPM_MACHINE_PART_CD tmpc) {
+        tmpc.setSite_code(getSessionData(req).getSite_code());
+        return machineMapper.tpmMCPartOneGet(tmpc);
     }
 }

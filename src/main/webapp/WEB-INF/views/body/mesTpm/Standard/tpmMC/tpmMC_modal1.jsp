@@ -29,7 +29,7 @@
                 <tr>
                     <td class=" td-title t-align-c">설비코드</td>
                     <td>
-                        <input name="machine_code" type="text" class="form-control modal_value" >
+                        <input name="machine_code" id="machine_code" type="text" class="form-control modal_value" >
                     </td>
                     <td class=" td-title t-align-c">설비명</td>
                     <td>
@@ -110,7 +110,7 @@
                     <div class="dt-buttons btn-overlap btn-group">
                         <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
                            tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""
-                           onclick="add_btn()">
+                           onclick="part_add_btn()">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>부품추가</span>
@@ -118,7 +118,7 @@
                         </a>
                         <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
                            title=""
-                           onclick="delete_btn();">
+                           onclick="part_delete_btn();">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
                                 <span>부품삭제</span>
