@@ -52,12 +52,35 @@ function add_btn() {
 
     main_data.check = 'I';
     $("select[name=line_name] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=qc_name] option:eq(0)").prop("selected", true).trigger("change");
+    $("select[name=qc_code] option:eq(0)").prop("selected", true).trigger("change");
     $("select[name=cycle_type] option:eq(0)").prop("selected", true).trigger("change");
     $("#datepicker3").datepicker('setDate', date);
 
+    $('#line_select2').prop("disabled", false);
+    $('#machine_select2').prop("disabled", false);
+    $('#qc_select').prop("disabled", false);
+
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+}
+
+function update_btn(jqgrid_data) {
+    modal_reset(".modal_value", []);
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.keyword = jqgrid_data.line_code;
+    send_data.keyword2 = jqgrid_data.machine_code;
+
+    ccn_ajax('/tpmMachineRegOneGet', send_data).then(function (data) {
+        data.start_date = formmatterDate2(data.start_date);
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+
+        $('#line_select2').prop("disabled", true);
+        $('#machine_select2').prop("disabled", true);
+        $('#qc_select').prop("disabled", true);
+
+        $("#addDialog").dialog('open');
+    });
 }
 
 function delete_btn() {
@@ -109,9 +132,10 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['rownum','machine_code','설비명', '점검항목코드', '점검항목명','반복구분', '시작일', '사용유무','등록자','수정일시'],
+        colNames: ['rownum','line_code','machine_code','설비명', '점검항목코드', '점검항목명','반복구분', '시작일', '사용유무','등록자','수정일시'],
         colModel: [
             {name: 'rownum', index: 'rownum', key: true, hidden:true, sortable: false, width: 60},
+            {name: 'line_code', index: 'line_code', hidden:true, sortable: false, width: 60},
             {name: 'machine_code', index: 'machine_code', hidden:true, sortable: false, width: 60},
             {name: 'machine_name', index: 'machine_name', sortable: false, width: 60},
             {name: 'qc_code', index: 'qc_code', sortable: false, width: 60},
@@ -135,6 +159,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

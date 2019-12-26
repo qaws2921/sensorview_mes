@@ -19,7 +19,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">점검항목</div>
             <div class="profile-info-value">
-                <select name="qc_name" id="qc_select" class="form-control keyword modal_value" style="width: 100%">
+                <select name="qc_code" id="qc_select" class="form-control keyword modal_value" style="width: 100%">
                 </select>
             </div>
         </div>
@@ -36,14 +36,14 @@
         <div class="profile-info-row">
             <div class="profile-info-name">반복횟수</div>
             <div class="profile-info-value">
-               <input type="text" class="form-control">
+               <input name="cycle_qty" type="number" class="form-control keyword modal_value" style="width:100%">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">시작일</div>
             <div class="profile-info-value">
                 <div class="input-icon input-icon-right">
-                    <input type="text" name="work_date" id="datepicker3"
+                    <input type="text" name="start_date" id="datepicker3"
                            class="form-control h-25 modal_value" readonly>
                     <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                 </div>

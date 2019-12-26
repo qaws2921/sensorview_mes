@@ -47,4 +47,14 @@ public class RegItemRestController {
     public Message tpmMachineRegDel(TPM_MACHINE_REG tmr, HttpServletRequest req) {
         return regItemService.tpmMachineRegDel(tmr, req);
     }
+
+    @RequestMapping(value = "/tpmMachineRegAdd", method = RequestMethod.POST)
+    public Message tpmMachineRegAdd(HttpServletRequest req, TPM_MACHINE_REG tmr) {
+        return regItemService.tpmMachineRegAdd(req,tmr);
+    }
+
+    @RequestMapping(value = "/tpmMachineRegOneGet", method = RequestMethod.POST)
+    public TPM_MACHINE_REG tpmMachineRegOneGet(HttpServletRequest req, Page p){
+        return regItemService.tpmMachineRegOneGet(req,p);
+    }
 }
