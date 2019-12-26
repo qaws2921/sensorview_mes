@@ -27,4 +27,14 @@ public class MachineRestController {
        return machineService.tpmMCAdd(req, tmc);
     }
 
+    @RequestMapping(value = "/tpmMCOneGet", method = RequestMethod.POST)
+    public TPM_MACHINE_CD tpmMCOneGet(HttpServletRequest req, TPM_MACHINE_CD tmc) {
+        return machineService.tpmMCOneGet(req, tmc);
+    }
+
+    @RequestMapping(value = "/tpmMCDel", method = RequestMethod.POST)
+    public Message tpmMCDel(HttpServletRequest req, TPM_MACHINE_CD tmc) {
+        return machineService.tpmMCDel(req, tmc);
+    }
+
 }

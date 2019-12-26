@@ -257,7 +257,7 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
         files.setUrl("uploads/img/" + FileName);
-        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/img") + '/' + FileName);
+        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/img") + '\\' + FileName);
         return files;
     }
     public String MakeFileNameNew(String site_code,int index,String code) {

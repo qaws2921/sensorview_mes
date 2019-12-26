@@ -39,7 +39,7 @@
                 <tr>
                     <td class=" td-title t-align-c">설치장소</td>
                     <td>
-                        <select class="form-control main_value" id="line_select2" name="line_code" style="width: 100%;">
+                        <select class="form-control modal_value" id="line_select2" name="line_code" style="width: 100%;">
                             <option value="">선택안함</option>
                         </select>
                     </td>
@@ -154,7 +154,7 @@
                     <div class="col-lg-12">
                         <div class="img-wrap" id="img_div1" style="border: 2px solid #79afce; width: 100%; height: 150px; margin-top: 5px; margin-bottom: 5px;">
                             <div class="img-text" id="img-text1">미리보기가 표시됩니다.</div>
-                            <img style="width: 50%; margin-top: 15px;" id="img1">
+                            <img style="width: 100%; margin-top: 15px;" id="img1">
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     <div class="col-lg-12">
                         <div class="img-wrap" id="img_div2" style="border: 2px solid #79afce; width: 100%; height: 150px; margin-top: 5px; margin-bottom: 5px;">
                             <div class="img-text" id="img-text2">미리보기가 표시됩니다.</div>
-                            <img style="width: 50%; margin-top: 15px;" id="img2">
+                            <img style="width: 100%; margin-top: 15px;" id="img2">
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                     <div class="col-lg-12">
                         <div class="img-wrap" id="img_div3" style="border: 2px solid #79afce; width: 100%; height: 150px; margin-top: 5px; margin-bottom: 5px;">
                             <div class="img-text" id="img-text3">미리보기가 표시됩니다.</div>
-                            <img style="width: 50%; margin-top: 15px;" id="img3" src="">
+                            <img style="width: 100%; margin-top: 15px;" id="img3" src="">
                         </div>
                     </div>
                 </div>

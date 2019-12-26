@@ -7,7 +7,7 @@
         EXEC SP_TPM_MACHINE_GET #{site_code}, #{page}, #{rows},#{keyword},''
     </select>
     <select id="tpmMCOneGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
-        EXEC SP_TPM_MACHINE_GET #{site_code}, 1, 1,#{keyword},''
+        EXEC SP_TPM_MACHINE_GET #{site_code}, 1, 1,'',#{machine_code}
     </select>
 
     <select id="tpmMCAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
@@ -18,5 +18,13 @@
     <select id="tpmMCFileAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_TPM_MACHINE_FILE_ADD #{site_code},#{machine_code}, #{image1},#{image2},#{image3}
 
+    </select>
+
+    <select id="tpmMCDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_TPM_MACHINE_DEL #{site_code},#{keyword}
+    </select>
+
+    <select id="tpmMCFileGet" resultType="mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD">
+        EXEC SP_TPM_MACHINE_FILE_GET #{site_code},#{keyword}
     </select>
 </mapper>

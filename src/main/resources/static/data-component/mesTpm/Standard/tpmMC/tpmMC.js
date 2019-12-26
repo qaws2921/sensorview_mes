@@ -8,7 +8,10 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['qc_code']
+    readonly: ['machine_code'],
+    delCheck1:0,
+    delCheck2:0,
+    delCheck3:0
 };
 
 
@@ -54,6 +57,31 @@ function get_btn_post(page) {
 
 
 
+function delete_btn() {
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/tpmMCDel", {keyword: ids.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn_post($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
+
+
 function add_btn() {
 
     modal_reset(".modal_value", main_data.readonly);
@@ -61,11 +89,9 @@ function add_btn() {
 
     $("#line_select2").val($('#line_select').val()).trigger("change");
 
-
-
-         $("#xlsUploads1").val("");
-         $("#xlsUploads2").val("");
-         $("#xlsUploads3").val("");
+    readURLRemove(1);
+    readURLRemove(2);
+    readURLRemove(3);
 
 
 
@@ -104,10 +130,14 @@ function jqGrid_main() {
         viewrecords: true,
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

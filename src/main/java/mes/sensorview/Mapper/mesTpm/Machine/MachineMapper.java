@@ -8,10 +8,12 @@ import java.util.List;
 
 public interface MachineMapper {
     List<TPM_MACHINE_CD> tpmMCGet(Page p);
-
+    List<TPM_MACHINE_CD> tpmMCFileGet(TPM_MACHINE_CD tmc);
     Message tpmMCAdd(TPM_MACHINE_CD tmc);
 
     TPM_MACHINE_CD tpmMCOneGet(TPM_MACHINE_CD tmc);
 
     Message tpmMCFileAdd(TPM_MACHINE_CD tmc2);
+
+    Message tpmMCDel(TPM_MACHINE_CD tmc);
 }
