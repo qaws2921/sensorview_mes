@@ -46,15 +46,15 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
+    main_data.check = 'I';
     modal_reset(".modal_value", main_data.readonly)
     var date = new Date();
     date.setDate(date.getDate() + 1);
+    $("#datepicker3").datepicker('setDate', date);
 
-    main_data.check = 'I';
     $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
     $("select[name=qc_code] option:eq(0)").prop("selected", true).trigger("change");
     $("select[name=cycle_type] option:eq(0)").prop("selected", true).trigger("change");
-    $("#datepicker3").datepicker('setDate', date);
 
     $('#line_select2').prop("disabled", false);
     $('#machine_select2').prop("disabled", false);
@@ -64,16 +64,26 @@ function add_btn() {
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
 }
 
+function select_change1(value) {
+    select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+}
+
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
     main_data.check = 'U';
+    modal_reset(".modal_value", []);
     var send_data = {};
     send_data.keyword = jqgrid_data.line_code;
     send_data.keyword2 = jqgrid_data.machine_code;
-
+    console.log(send_data);
     ccn_ajax('/tpmMachineRegOneGet', send_data).then(function (data) {
         data.start_date = formmatterDate2(data.start_date);
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+
+        $('#line_select2').val(data.line_code).trigger("change");
+        $('#machine_select2').empty();
+        select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data.line_code},"Y").then(function (data2) {
+            $('#machine_select2').val(data.machine_code).trigger("change");
+        });
 
         $('#line_select2').prop("disabled", true);
         $('#machine_select2').prop("disabled", true);
@@ -116,9 +126,7 @@ function delete_btn() {
         }
     }
 }
-function select_change1(value) {
-    select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
-}
+
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
