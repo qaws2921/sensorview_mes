@@ -70,6 +70,7 @@ function right_modal1_btn() {
 
         var overlap = [];
 
+
         if (ids2.length != 0) {
             ids.forEach(function (idsfor, s) {
                 ids2.forEach(function (ids2for) {
