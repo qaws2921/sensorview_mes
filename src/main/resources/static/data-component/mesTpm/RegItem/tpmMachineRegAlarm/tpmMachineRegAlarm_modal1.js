@@ -16,7 +16,7 @@ function modal_make1() {
 
     $("#addDialog").dialog({
         modal: true,
-        width: 'auto',
+        width: 900,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -66,16 +66,11 @@ function jqGrid_modal1() {
         mtype: 'POST',
         datatype: "local",
         multiselect: true,
-        caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '포장수량', '검사등급'],
+        caption: "예방점검알람추가 | MES",
+        colNames: ['사용자코드', '사용자명'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false},
-            {name: 'part_code', key: true, index: 'part_code', sortable: false},
-            {name: 'part_name', index: 'part_name', sortable: false},
-            {name: 'spec', index: 'spec', sortable: false},
-            {name: 'unit_name', index: 'unit_name'},
-            {name: 'qty', index: 'qty'},
-            {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
+            {name: '', index: '', sortable: false},
+            {name: '', index: '', sortable: false},
         ],
         autowidth: true,
         height: 300,
@@ -85,39 +80,17 @@ function jqGrid_modal1() {
     });
 
     $("#mes_modal1_grid2").jqGrid({
-
+        mtype: 'POST',
         datatype: "local",
-        // 다중 select
         multiselect: true,
-        // 타이틀
-        caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량', '패킹수', '수량등록'],
+        caption: "예방점검알람추가 | MES",
+        colNames: ['사용자코드', '사용자명'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
-            {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
-            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-            {name: 'spec', index: 'spec', width: 60, sortable: false},
-            {name: 'unit_name', index: 'unit_name', width: 60},
-            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'lot', index: 'lot', width: 60, sortable: false},
-            {name: 'qty', index: 'qty', width: 60, sortable: false},
-            {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},
-            {name: 'button', index: 'button', width: 60, sortable: false}
-
+            {name: '', index: '', sortable: false},
+            {name: '', index: '', sortable: false},
         ],
         autowidth: true,
         height: 340,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
-        onCellSelect: function (rowid, icol, cellcontent, e) {
-        }
-
     });
 
 }
