@@ -48,9 +48,9 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-
-    modal_reset(".modal_value", main_data.readonly);
     main_data.check = 'I';
+    modal_reset(".modal_value", main_data.readonly);
+
     $("#datepicker3").datepicker('setDate', 'today');
     if($('#line_select').val() == ''){
         $("select[name=line_name] option:eq(0)").prop("selected", true).trigger("change");
@@ -72,8 +72,8 @@ function select_change1(value) {
 }
 
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
     main_data.check = 'U';
+    modal_reset(".modal_value", []);
     var send_data = {};
     send_data.keyword = jqgrid_data.line_code;
     send_data.keyword2 = jqgrid_data.machine_code;
@@ -83,6 +83,13 @@ function update_btn(jqgrid_data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
 
         $('#datepicker3').prop("disabled", true);
+
+        $('#line_select2').val(data.line_code).trigger("change");
+        $('#machine_select2').empty();
+        select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data.line_code},"Y").then(function (data2) {
+            $('#machine_select2').val(data.machine_code).trigger("change");
+        });
+
         $('#line_select2').prop("disabled", true);
         $('#machine_select2').prop("disabled", true);
         // $('#datepicker3').datepicker('option','disabled','true');

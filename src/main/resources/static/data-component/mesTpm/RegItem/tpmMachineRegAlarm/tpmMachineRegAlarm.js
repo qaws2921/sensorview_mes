@@ -63,9 +63,9 @@ function select_change1(value) {
     select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
 }
 function update_btn(jqgrid_data) {
+    main_data.check = 'U';
     modal_reset(".modal_value", []);
     modal_reset(".modal_value2", []);
-    main_data.check = 'U';
     var send_data = {};
     send_data.line_code = jqgrid_data.line_code;
     send_data.machine_code = jqgrid_data.machine_code;
@@ -74,19 +74,28 @@ function update_btn(jqgrid_data) {
         console.log(data);
         modal_edits('.modal_value', main_data.readonly, data[0]); // response 값 출력
 
+        var line_code = '';
         if(data[0].line_code != 'AAAAA'){
+            line_code = data[0].line_code;
             $('#line_select2').val(data[0].line_code).prop("selected",true).trigger("change");
         } else {
             $('#line_select2').val('').prop("selected",true).trigger("change");
         }
-        if(data[0].machine_code != 'AAAAA'){
+
+
+        $('#machine_select2').empty();
+        select_makes_sub_ajax2("#machine_select2", "/tpmMachineAllGet", "machine_code", "machine_name", {keyword:line_code}, "Y").then(function (data2) {
+
+            if(data[0].machine_code != 'AAAAA'){
             console.log(data[0].machine_code);
-            $('#machine_code2').val(data[0].machine_code).prop("selected",true).trigger("change");
-        } else {
-            $('#machine_code2').val('').prop("selected",true).trigger("change");
-        }
-        // $('#line_select2').prop("disabled", true);
-        // $('#machine_select2').prop("disabled", true);
+                $('#machine_select2').val(data[0].machine_code).trigger("change");
+            } else {
+                $('#machine_select2').val('').trigger("change");
+            }
+        });
+
+        $('#line_select2').prop("disabled", true);
+        $('#machine_select2').prop("disabled", true);
         $('#mes_modal1_grid1').jqGrid("clearGridData");
         $('#mes_modal1_grid2').jqGrid("clearGridData");
 

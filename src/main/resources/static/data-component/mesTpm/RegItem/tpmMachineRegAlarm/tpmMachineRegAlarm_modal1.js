@@ -21,18 +21,19 @@ function modal1_get_btn(page) {
 }
 
 function select_change2(value) {
-    console.log(value);
-    $('#machine_select2').empty();
-    select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y").then(function (data) {
-        if ($("#machine_select").val() !== ''){
-            $("#machine_select2").val($("#machine_select").val()).trigger("change");
-            if ($("#machine_select2").val() === null){
+    if (main_data.check === "I") {
+        $('#machine_select2').empty();
+        select_makes_sub_ajax2("#machine_select2", "/tpmMachineAllGet", "machine_code", "machine_name", {keyword: value}, "Y").then(function (data) {
+            if ($("#machine_select").val() !== '') {
+                $("#machine_select2").val($("#machine_select").val()).trigger("change");
+                if ($("#machine_select2").val() === null) {
+                    $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
+                }
+            } else {
                 $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
             }
-        }else {
-            $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
-        }
-    });
+        });
+    }
 }
 function inputIntChange() {
     if ($("#alarm_day").val() === ""){
