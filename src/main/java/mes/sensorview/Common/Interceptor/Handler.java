@@ -3,7 +3,9 @@ package mes.sensorview.Common.Interceptor;
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.Auth.AuthService;
+import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Function.ReturnFunction;
+import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -44,6 +46,10 @@ public class Handler extends HandlerInterceptorAdapter {
 
         request.getSession().setAttribute("userData", lv);
         Session userData = (Session) session.getAttribute("userData");
+
+
+
+
         try {
             if (ObjectUtils.isEmpty(userData) ) {
                 response.setContentType("text/html; charset=UTF-8");
@@ -59,6 +65,20 @@ public class Handler extends HandlerInterceptorAdapter {
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
+
+                    Page p = new Page();
+                    p.setKeyword(request.getServletPath().substring(1));
+
+                    SYSAuthProgram sap = authService.menuAuth(request,p);
+                    if (sap.getCheck_get().equals("N")){
+                        response.setContentType("text/html; charset=UTF-8");
+                        PrintWriter out = response.getWriter();
+                        out.println("<script>alert(' 권한이 존재하지않습니다.\\n 메인페이지로 이동합니다.'); location.href='/';</script>");
+                        out.flush();
+                        return false;
+                    }
+
+
                     ArrayList<List<Auth>> authAllSubSelect = (ArrayList<List<Auth>>) authService.authAllSubSelect(request); // 권한에 맞는 전체 리스트
                     ReturnFunction returnFunction = new ReturnFunction();
 

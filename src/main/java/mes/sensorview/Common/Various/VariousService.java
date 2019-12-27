@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Mapper.Various.VariousMapper;
+import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -89,5 +90,11 @@ public class VariousService extends ReturnFunction {
     public List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.tpmMachineRegItemAllGet(p);
+    }
+
+    public SYSAuthProgram menuAuthGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        p.setUser_code(getSessionData(req).getUser_code());
+        return variousMapper.menuAuthGet(p);
     }
 }
