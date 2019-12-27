@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['auth_code']
+    readonly: ['auth_code'],
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -20,6 +21,7 @@ $(document).ready(function () {
 
     /*----모달----*/
     modal_start1(); // 모달1 시작 함수
+    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
 
 });
@@ -52,12 +54,15 @@ function get_btn_post(page) {
 
 // 추가 버튼
 function add_btn() {
+    if (main_data.auth.check_add !="N"){
+        modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
-    modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+        main_data.check = 'I'; // 저장인지 체크
 
-    main_data.check = 'I'; // 저장인지 체크
-
-    $("#addDialog").dialog('open'); // 모달 열기
+        $("#addDialog").dialog('open'); // 모달 열기
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 // 그리는 더블 클릭 시 발동
@@ -104,6 +109,11 @@ function delete_btn() {
 ////////////////////////////호출 함수/////////////////////////////////////
 
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysAuth"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 
 function jqGrid_main() {

@@ -42,6 +42,10 @@
     <select id="tpmMachineRegItemAllGet" resultType="mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD">
         EXEC SP_TPM_REG_ITEM_GET #{site_code}, 0,0,'',#{keyword}
     </select>
+
+    <select id="menuAuthGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram">
+   		EXEC SP_SYS_AUTH_MENU_GET #{site_code}, #{keyword} ,#{user_code}
+   </select>
 </mapper>
 
 

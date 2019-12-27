@@ -235,8 +235,6 @@ function add_modal1_btn() {
                         });
 
                         add_data.keyword8 = code_list2.join(gu5);
-                        console.log(add_data.keyword4);
-                        console.log(add_data.keyword8);
                         ccn_ajax("/scmInAdd", add_data).then(function (data) {
                             if (data.result === 'NG') {
                                 alert(data.message);

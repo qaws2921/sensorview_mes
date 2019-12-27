@@ -3,6 +3,7 @@ package mes.sensorview.Common.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -87,4 +88,8 @@ public class VariousRestController {
 
     @RequestMapping(value ="/tpmMachineRegItemAllGet", method = RequestMethod.POST)
     public List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(HttpServletRequest req, Page p) { return variousService.tpmMachineRegItemAllGet(req,p); }
+
+    @RequestMapping(value ="/menuAuthGet", method = RequestMethod.POST)
+    public SYSAuthProgram menuAuthGet(HttpServletRequest req, Page p) { return variousService.menuAuthGet(req,p); }
+
 }
