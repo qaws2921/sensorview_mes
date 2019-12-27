@@ -3,7 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="/data-component/mesTpm/RegItem/tpmMachineRegAlarm/tpmMachineRegAlarm.js" charset="UTF-8"></script>
-
+<style>
+    #mes_modal1_grid1_pager #pg_mes_modal1_grid1_pager table{
+        table-layout:auto !important;
+    }
+</style>
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">
