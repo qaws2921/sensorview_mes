@@ -40,7 +40,7 @@ function addUdate_btn() {
 }
 
 function select_change2(value) {
-    if (main_data.check = "I"){
+    if (main_data.check === "I"){
         $('#machine_select2').empty();
         select_makes_sub_ajax("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value}).then(function (data) {
             if ($("#machine_select").val() !== ''){
