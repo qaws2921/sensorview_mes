@@ -36,7 +36,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">반복횟수</div>
             <div class="profile-info-value">
-               <input name="cycle_qty" type="number" class="form-control keyword modal_value" style="width:100%">
+               <input name="cycle_qty" id="cycle_qty" type="text" value="0" class="form-control keyword modal_value" onchange="inputIntChange();" style="width:100%">
             </div>
         </div>
         <div class="profile-info-row">
@@ -56,12 +56,6 @@
                     <option>Y</option>
                     <option>N</option>
                 </select>
-            </div>
-        </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">사전알림(일)</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control">
             </div>
         </div>
     </div>

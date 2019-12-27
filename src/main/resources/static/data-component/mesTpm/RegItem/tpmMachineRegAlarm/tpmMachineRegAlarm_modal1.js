@@ -1,6 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
     jqGrid_modal1();
     jqGridResize("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
     jqGridResize("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
@@ -8,9 +9,161 @@ function modal_start1() {
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function modal1_get_btn(page) {
+    var modal_data = value_return(".modal_value2");
+    modal_data.keyword2='Y';
+    $("#mes_modal1_grid1").setGridParam({
+        url: '/sysUserGet',
+        datatype: "json",
+        page: page,
+        postData: modal_data
+    }).trigger("reloadGrid");
+}
 
+function select_change2(value) {
+    console.log(value);
+    $('#machine_select2').empty();
+    select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y").then(function (data) {
+        if ($("#machine_select").val() !== ''){
+            $("#machine_select2").val($("#machine_select").val()).trigger("change");
+            if ($("#machine_select2").val() === null){
+                $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
+            }
+        }else {
+            $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
+        }
+    });
+}
+function inputIntChange() {
+    if ($("#alarm_day").val() === ""){
+        $("#alarm_day").val(0);
+    }else {
+        $("#alarm_day").val($("#alarm_day").val().replace(/[^0-9]/g,''));
+    }
+
+}
+
+function right_modal1_btn() {
+
+
+        var ids = $("#mes_modal1_grid1").getGridParam('selarrrow').slice();
+
+        if (ids.length === 0 ){
+            alert("옮길 데이터를 선택해주세요");
+            return false;
+        }
+
+
+        var ids2 = $("#mes_modal1_grid2").jqGrid("getDataIDs");
+
+        var overlap = [];
+
+        if (ids2.length != 0) {
+            ids.forEach(function (idsfor, s) {
+                ids2.forEach(function (ids2for) {
+                    if (idsfor === ids2for) {
+                        ids.splice(s, 1, '');
+                        overlap.push(idsfor);
+                    }
+                });
+            });
+        }
+
+        var list = [];
+        ids.forEach(function (idsfor) {
+            if (idsfor !== '') {
+                list.push($("#mes_modal1_grid1").getRowData(idsfor));
+            }
+        });
+
+        callback(function () {
+            if (overlap.length !== 0) {
+                alert(overlap.join(", ") + " 중복");
+            }
+            ids2 = $("#mes_modal1_grid2").getRowData();
+            ids2 = ids2.concat(list);
+
+            $('#mes_modal1_grid2').jqGrid("clearGridData");
+
+            $("#mes_modal1_grid2").setGridParam({
+                datatype: "local",
+                data: ids2
+            }).trigger("reloadGrid");
+
+            $('#mes_modal1_grid1').jqGrid("resetSelection");
+        });
+
+}
+
+function left_modal1_btn() {
+        var ids2 = $("#mes_modal1_grid2").getGridParam('selarrrow').slice();
+
+        for (var i = 0; i < ids2.length; i++) {
+            $('#mes_modal1_grid2').jqGrid('delRowData', ids2[i]);
+        }
+        $('#mes_modal1_grid2').jqGrid("resetSelection");
+}
+
+function add_modal1_btn() {
+    var gu5 = String.fromCharCode(5);
+
+        var add_data = value_return(".modal_send_data");
+        if ( add_data.line_code === ""){
+            add_data.line_code = "AAAAA";
+        }
+        if ( add_data.machine_code === ""){
+            add_data.machine_code = "AAAAA";
+        }
+        var jdata = $("#mes_modal1_grid2").getRowData();
+
+        if (jdata.length > 0) {
+            callback(function () {
+                    var text = '저장하겠습니까?';
+                    if (main_data.check === "U") {
+                        text = '수정하겠습니까?';
+                    }
+                    if (confirm(text)) {
+                        wrapWindowByMask2();
+                        var list = [];
+                        jdata.forEach(function (j) {
+                            list.push(j.user_code);
+                        })
+
+
+                        add_data.alarm_user_code = list.join(gu5);
+                        add_data.keyword = main_data.check;
+                        ccn_ajax("/tpmMachineRegAlarmAdd", add_data).then(function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
+                            } else {
+                                if (main_data.check === "I") {
+                                    get_btn(1);
+                                } else {
+                                    get_btn_post($("#mes_grid").getGridParam('page'));
+                                }
+                            }
+                            closeWindowByMask();
+                            $("#addDialog").dialog('close');
+                        }).catch(function (err) {
+                            closeWindowByMask();
+                            alert("저장실패");
+                        });
+                    }
+            })
+        }else {
+            alert("저장 목록을 넣어주세요");
+        }
+
+}
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function selectBox_modal1() {
+    select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
+        select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:''},"Y");
+    });
+
+    select_makes_sub("#dept_select", "/sysDeptAllGet", "dept_code", "dept_name",'','Y');
+}
 
 function modal_make1() {
 
@@ -22,18 +175,9 @@ function modal_make1() {
         resizable: false,
         buttons: [
             {
-                text: '저장',
-                'class': 'btn btn-primary btn-minier',
-                click: function () {
-                    $(this).dialog('close');
-                }
-            },
-            {
-                text: '취소',
-                'class': 'btn btn-minier',
-                click: function () {
-                    $(this).dialog('close');
-                }
+
+                'class': 'hide',
+
             }
         ],
         open: function () {
@@ -69,8 +213,8 @@ function jqGrid_modal1() {
         caption: "예방점검알람추가 | MES",
         colNames: ['사용자코드', '사용자명'],
         colModel: [
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
+            {name: 'user_code', index: 'user_code', key:true, sortable: false},
+            {name: 'user_name', index: 'user_name', sortable: false},
         ],
         autowidth: true,
         height: 300,
@@ -86,8 +230,8 @@ function jqGrid_modal1() {
         caption: "예방점검알람추가 | MES",
         colNames: ['사용자코드', '사용자명'],
         colModel: [
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
+            {name: 'user_code', index: 'user_code', key:true,sortable: false},
+            {name: 'user_name', index: 'user_name', sortable: false},
         ],
         autowidth: true,
         height: 340,

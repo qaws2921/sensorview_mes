@@ -14,7 +14,7 @@ public class TPM_MACHINE_REG_ALARM {
     private String user_name;
     private String line_name;
     private String alarm_user_name;
-    private int machine_name;
+    private String machine_name;
     private int rownum;
     private int rownum_page;
     private int rec_count;

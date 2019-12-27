@@ -83,7 +83,8 @@ public class RegItemService extends ReturnFunction {
 
     public RESTful tpmMachineRegAlarmGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        return regitemMapper.tpmMachineRegAlarmGet(p);
+        List<TPM_MACHINE_REG_ALARM> rows = regitemMapper.tpmMachineRegAlarmGet(p);
+        return getListData(rows , p);
     }
 
     public List<TPM_MACHINE_REG_ALARM> tpmMachineRegAlarmAllGet(HttpServletRequest req, TPM_MACHINE_REG_ALARM tmra) {

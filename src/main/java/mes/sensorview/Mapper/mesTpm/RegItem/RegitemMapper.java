@@ -35,7 +35,7 @@ public interface RegitemMapper {
 
     Message tpmMachineRegCompAdd(TPM_MACHINE_REG_PLAN tmrp);
 
-    RESTful tpmMachineRegAlarmGet(Page p);
+    List<TPM_MACHINE_REG_ALARM> tpmMachineRegAlarmGet(Page p);
 
     List<TPM_MACHINE_REG_ALARM> tpmMachineRegAlarmAllGet(TPM_MACHINE_REG_ALARM tmra);
 

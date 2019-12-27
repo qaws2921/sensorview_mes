@@ -7,6 +7,15 @@ function modal_start1() {
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
+function inputIntChange() {
+    if ($("#cycle_qty").val() === ""){
+        $("#cycle_qty").val(0);
+    }else {
+        $("#cycle_qty").val($("#cycle_qty").val().replace(/[^0-9]/g,''));
+    }
+
+}
+
 function select_change2(value) {
     $('#machine_select2').empty();
 
