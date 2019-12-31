@@ -8,7 +8,7 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">수주번호</td>
                     <td class="wt-px-200">
-                        <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value" readonly>
+                        <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value" onclick="crm_btn();" readonly>
                     </td>
 
                     <td class="wt-px-100 t-align-c td-title padding-a-0">납품업체</td>

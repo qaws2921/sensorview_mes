@@ -46,6 +46,11 @@
     <select id="menuAuthGet" resultType="mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram">
    		EXEC SP_SYS_AUTH_MENU_GET #{site_code}, #{keyword} ,#{user_code}
    </select>
+
+
+    <select id="crmOrderModalGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+		EXEC [SP_CRM_ORD_RECP_DIALOG_GET] #{site_code}, #{page},#{rows}, #{start_date},#{end_date} ,''
+   </select>
 </mapper>
 
 

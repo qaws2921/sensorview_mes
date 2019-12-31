@@ -23,14 +23,10 @@ function modal_start1() {
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function supp_btn(what) {
-    main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
-
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-    $("#supp-search-dialog").dialog('open');
-    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+function crm_btn() {
+    $("#crmSearchGrid").jqGrid('clearGridData');
+    $("#crm-search-dialog").dialog('open');
+    jqGridResize2("#crmSearchGrid", $('#crmSearchGrid').closest('[class*="col-"]'));
 }
 
 function suppModal_bus(code, name) {
@@ -148,7 +144,7 @@ function addupdate_btn() {
                     //         alert(data.message);
                     //     } else {
                     //         if (main_data.check === "I") {
-                    //             get_btn(1);
+                    //             get_btn(fullcalendar);
                     //         } else {
                     //             get_btn_post($("#mes_grid").getGridParam('page'));
                     //         }

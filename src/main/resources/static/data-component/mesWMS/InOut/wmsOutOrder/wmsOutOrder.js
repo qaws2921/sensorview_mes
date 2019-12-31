@@ -24,11 +24,12 @@ var main_data = {
  * */
 $(document).ready(function () {
     jqGrid_main();
-    jqGridResize("#scmOutOrderTopGrid", $('#scmOutOrderTopGrid').closest('[class*="col-"]'));
+    jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     jqGridResize("#scmOutOrderBottomGrid", $('#scmOutOrderBottomGrid').closest('[class*="col-"]'));
     datepickerInput();
     /*----모달----*/
     modal_start1();
+    crmModal_start();
 
     jqgridPagerIcons();
 
@@ -42,29 +43,29 @@ function get_btn(page) {
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-    $("#scmOutOrderTopGrid").setGridParam({
-        url: "/scmOutOrderGet",
+    $("#mes_grid").setGridParam({
+        url: "/wmsOutOrderGet",
         datatype: "json",
         page: page,
         postData: main_data.send_data
     }).trigger("reloadGrid");
-    $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function get_btn_post(page) {
-    $("#scmOutOrderTopGrid").setGridParam({
-        url: '/scmOutOrderGet',
+    $("#mes_grid").setGridParam({
+        url: '/wmsOutOrderGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
     }).trigger("reloadGrid");
-    $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
+    $('#mes_grid2').jqGrid('clearGridData');
 }
 
 function under_get(rowid) {
 
-    $("#scmOutOrderBottomGrid").setGridParam({
-        url: '/scmOutOrderSup1Get',
+    $("#mes_grid2").setGridParam({
+        url: '/wmsOutOrderSubGet',
         datatype: "json",
         page: 1,
         postData: {keyword: rowid}
@@ -85,7 +86,7 @@ function add_btn() {
 
 
 function delete_btn() {
-    var ids = $("#scmOutOrderTopGrid").getGridParam('selarrrow');
+    var ids = $("#mes_grid").getGridParam('selarrrow');
     var check = '';
     var check2 = [];
     if (ids.length === 0) {
@@ -135,22 +136,22 @@ function datepickerInput() {
 
 
 function jqGrid_main() {
-    $("#scmOutOrderTopGrid").jqGrid({
+    $("#mes_grid").jqGrid({
         mtype: 'POST',
         datatype: "local",
         // 다중 select
         multiselect: true,
         // 타이틀
        caption: "제품출고 지시 | MES",
-       colNames: ['출고일자','전표번호','처리구분','등록자','등록일시','처리자','출고일시'],
+       colNames: ['요청일자','요청번호','처리구분','등록자','등록일시','처리자','출고일시'],
        colModel: [
            {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
-           {name: 'ord_no', index: 'ord_no', key: true, sortable: false},
+           {name: 'req_no', index: 'req_no', key: true, sortable: false},
            {name: 'status_name', index: 'status_name', sortable: false},
-           {name: 'status', index: 'status',hidden:true, sortable: false},
            {name: 'user_name', index: 'user_name', sortable: false},
-           {name: 'user_name', index: 'user_name', sortable: false},
-           {name: 'update_date', index: 'update_date',formatter: formmatterDate, sortable: false},
+           {name: 'update_date', index: 'update_date', sortable: false,formatter: formmatterDate},
+           {name: 'out_user_name', index: 'out_user_name', sortable: false},
+           {name: 'out_update_date', index: 'out_update_date',formatter: formmatterDate, sortable: false},
 
        ],
         autowidth: true,
@@ -158,7 +159,7 @@ function jqGrid_main() {
         height: 200,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: '#scmOutOrderTopGridPager',
+        pager: '#mes_grid_pager',
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
@@ -169,7 +170,7 @@ function jqGrid_main() {
             under_get(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#scmOutOrderTopGrid').jqGrid('getRowData', rowid);
+            var data = $('#mes_grid').jqGrid('getRowData', rowid);
             if (data.status === '1') {
                 main_data.check2 = 'N';
             } else {
@@ -181,19 +182,19 @@ function jqGrid_main() {
 
     });
 
-    $('#scmOutOrderBottomGrid').jqGrid({
+    $('#mes_grid2').jqGrid({
         mtype: 'POST',
         datatype: "local",
         caption: "제품출고 지시 | MES",
        colNames: ['전표번호','품목그룹','품번','품명','규격','단위','요청수량','출고수량'],
        colModel: [
-           {name: 'ord_no', index: 'ord_no', width: 60, sortable: false},
+           {name: 'req_no', index: 'req_no', width: 60, sortable: false},
            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
            {name: 'part_code', index: 'part_code', width: 60, sortable: false},
            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
            {name: 'spec', index: 'spec', width: 60, sortable: false},
            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
-           {name: 'qty', index: 'qty', width: 60, sortable: false},
+           {name: 'req_qty', index: 'req_qty', width: 60, sortable: false},
            {name: 'qty', index: 'qty', width: 60, sortable: false},
 
        ],
@@ -202,7 +203,7 @@ function jqGrid_main() {
         height: 150,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: '#scmOutOrderBottomGridPager'
+        pager: '#mes_grid_pager2'
 
     });
 

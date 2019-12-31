@@ -67,8 +67,8 @@
 
         <div class="row">
             <div class="col-xs-12 table-responsive">
-                <table id="scmOutOrderTopGrid"></table>
-                <div id="scmOutOrderTopGridPager"></div>
+                <table id="mes_grid"></table>
+                <div id="mes_grid_pager"></div>
             </div>
         </div>
 
@@ -76,8 +76,8 @@
 
         <div class="row">
             <div class="col-xs-12 table-responsive">
-                <table id="scmOutOrderBottomGrid"></table>
-                <div id="scmOutOrderBottomGridPager"></div>
+                <table id="mes_grid2"></table>
+                <div id="mes_grid_pager2"></div>
             </div>
         </div>
 
@@ -86,3 +86,4 @@
 
 
 <%@include file="wmsOutOrder_modal1.jsp"%>
+<%@include file="/WEB-INF/views/body/common/modal/crm_modal.jsp" %>
