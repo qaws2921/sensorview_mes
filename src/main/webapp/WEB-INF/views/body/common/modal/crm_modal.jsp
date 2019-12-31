@@ -10,6 +10,7 @@
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="start_date" id="crm_datepicker" class="form-control h-25 crm_condition" readonly >
+                            <input type="hidden"  class="form-control h-25" autofocus readonly >
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
