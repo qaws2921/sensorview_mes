@@ -2,12 +2,14 @@ package mes.sensorview.mesWms.InOut;
 
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class WmsInOutRestController {
@@ -37,5 +39,9 @@ public class WmsInOutRestController {
     @RequestMapping(value="/wmsOutOrderSubGet" , method = RequestMethod.POST)
     public RESTful wmsOutOrderSubGet(HttpServletRequest req, Page p){
         return wmsInOutService.wmsOutOrderSubGet(req, p);
+    }
+    @RequestMapping(value="/wmsOutOrderSubOneGet" , method = RequestMethod.POST)
+    public List<WMS_OUT_ORD_SUB> wmsOutOrderSubOneGet(HttpServletRequest req, Page p){
+        return wmsInOutService.wmsOutOrderSubOneGet(req, p);
     }
 }

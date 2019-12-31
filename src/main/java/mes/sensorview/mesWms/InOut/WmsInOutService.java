@@ -48,4 +48,9 @@ public class WmsInOutService extends ReturnFunction {
         List<WMS_OUT_ORD_SUB> rows = wmsInOutMapper.wmsOutOrderSubGet(p);
         return getListData(rows , p);
     }
+
+    public List<WMS_OUT_ORD_SUB> wmsOutOrderSubOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return wmsInOutMapper.wmsOutOrderSubGet(p);
+    }
 }

@@ -25,10 +25,14 @@ function crmModal_get_btn(page) {
 function crmModal_check() {
     if ($( "#crmSearchGrid" ).getGridParam( "selrow" )) {
         var ids = $( "#crmSearchGrid" ).getGridParam( "selrow" );
-        var data = $('#crmSearchGrid').jqGrid('getRowData', ids);
-        crmModal_bus(data.supp_code,data.supp_name);
 
-        $("#crm-search-dialog").dialog('close');
+
+
+        ccn_ajax('/wmsOutOrderSubOneGet', {keyword:'',keyword2: ids}).then(function (data) {
+            crmModal_bus(data);
+            $("#crm-search-dialog").dialog('close');
+        });
+
     }else {
         alert("선택하십시오");
     }

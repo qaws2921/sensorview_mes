@@ -17,7 +17,7 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">수주번호</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value" onclick="crm_btn();" readonly>
+                            <input type="text" name="ord_no" id="ord_no"  class="form-control h-25 modal_value" onclick="crm_btn();" readonly>
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>

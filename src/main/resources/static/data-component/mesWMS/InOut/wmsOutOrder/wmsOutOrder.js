@@ -68,7 +68,7 @@ function under_get(rowid) {
         url: '/wmsOutOrderSubGet',
         datatype: "json",
         page: 1,
-        postData: {keyword: rowid}
+        postData: {keyword: rowid,keyword2:''}
     }).trigger("reloadGrid");
 }
 
