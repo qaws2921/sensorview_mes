@@ -140,15 +140,12 @@ public class ReturnFunction {
         log.info("substring(0,1) = " + codeList.substring(0,1));
         log.info("last substring = " + codeList.substring(codeList.length()-1));
         if(codeList.substring(0,1).equals("/")){
-            // 첫번째 데이터 확인
             log.info("첫번째 데이터 없음");
         }
         else if(codeList.substring(codeList.length()-1).equals("/")){
-            // 마지막 데이터 확인
             log.info("마지막 데이터 없음");
         }
         else if(codeList.contains("//")){
-            // 중간 데이터 공백 확인
             log.info("중간 데이터 없음");
         } else {
             String[] one = codeList.split("&");
@@ -156,13 +153,11 @@ public class ReturnFunction {
             String[] tree = codeList.split(",");
             int a = 0;
 
-            // one = [A|B|C|$D|E],[F|G|H|$I|J],[K|L|N|$M|O]
             for (int i = 0; i < one.length; i++) {
                 a = tree[i].length();
                 log.info("tree["+i+"] data 추출 = " + codeList.substring(a+1,a+2));
                 log.info("one = " + one[i]);
             }
-            // two = [A],[B],[C],[$D],[E]
             for (int x = 0; x < two.length; x++) {
                 log.info("two = " + two[x]);
             }
