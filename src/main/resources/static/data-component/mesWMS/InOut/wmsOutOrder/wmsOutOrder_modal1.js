@@ -23,25 +23,21 @@ function modal_start1() {
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function supp_btn(what) {
-    main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
-
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-    $("#supp-search-dialog").dialog('open');
-    jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+function crm_btn() {
+    $("#crmSearchGrid").jqGrid('clearGridData');
+    $("#crm-search-dialog").dialog('open');
+    jqGridResize2("#crmSearchGrid", $('#crmSearchGrid').closest('[class*="col-"]'));
 }
 
-function suppModal_bus(code, name) {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    } else if (main_data.supp_check === 'B') {
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
+function crmModal_bus(data) {
+    $("#ord_no").val(data[0].ord_no);
+    $("#supp_name_modal").val(data[0].supp_name);
+    $("#supp_code_modal").val(data[0].supp_code);
+
+    $("#mes_modal_grid").setGridParam({
+        datatype: "local",
+        data: data
+    }).trigger("reloadGrid");
 
 }
 
@@ -148,7 +144,7 @@ function addupdate_btn() {
                     //         alert(data.message);
                     //     } else {
                     //         if (main_data.check === "I") {
-                    //             get_btn(1);
+                    //             get_btn(fullcalendar);
                     //         } else {
                     //             get_btn_post($("#mes_grid").getGridParam('page'));
                     //         }
@@ -197,17 +193,17 @@ function jqGrid_modal1() {
     $('#mes_modal_grid').jqGrid({
         datatype: "local",
         caption: "수입검사등록 | MES",
-        colNames: ['품목그룹','품번','품명','규격','단위','수주수량','가납품수량','납품가능수량','납품요청수량'],
+        colNames: ['품목그룹','품번','품명','규격','단위','수주수량','기납품수량','납품가능수량','납품요청수량'],
         colModel: [
             {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
             {name: 'part_code', index: 'part_code',key:true, width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
-            {name: '', index: '',width: 80, sortable: false},
-            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'in_qty', index: 'in_qty', width: 60, sortable: false},
-            {name: 'in_qty', index: 'in_qty', width: 60, sortable: false},
+            {name: 'ord_qty', index: 'ord_qty',width: 80, sortable: false},
+            {name: 'comp_qty', index: 'comp_qty', width: 60, sortable: false},
+            {name: 'ready_qty', index: 'ready_qty', width: 60, sortable: false},
+            {name: 'req_qty', index: 'req_qty', width: 60, sortable: false},
 
 
             ],

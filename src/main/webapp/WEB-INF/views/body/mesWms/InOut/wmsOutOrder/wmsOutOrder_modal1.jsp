@@ -6,28 +6,33 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">출고일자</td>
+                    <td class="wt-px-200">
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value" readonly>
+                            <input type="hidden" autofocus>
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                        </div>
+                    </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">수주번호</td>
                     <td class="wt-px-200">
-                        <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value" readonly>
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="ord_no" id="ord_no"  class="form-control h-25 modal_value" onclick="crm_btn();" readonly>
+                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
+                        </div>
                     </td>
 
                     <td class="wt-px-100 t-align-c td-title padding-a-0">납품업체</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value"
-                                   id="supp_name_modal" onclick="supp_btn('B');" readonly>
+                                   id="supp_name_modal" readonly>
                             <input type="hidden" name="supp_code" class="form-control h-25 modal_value"
                                    id="supp_code_modal">
-                            <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
+
                         </div>
                     </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">출고일자</td>
-                    <td class="wt-px-200">
-                        <div class="input-icon input-icon-right">
-                            <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value" readonly>
-                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
-                        </div>
-                    </td>
+
                     <td></td>
                 </tr>
                 </tbody>

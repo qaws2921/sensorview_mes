@@ -92,4 +92,8 @@ public class VariousRestController {
     @RequestMapping(value ="/menuAuthGet", method = RequestMethod.POST)
     public SYSAuthProgram menuAuthGet(HttpServletRequest req, Page p) { return variousService.menuAuthGet(req,p); }
 
+    @RequestMapping(value = "/crmOrderModalGet", method = RequestMethod.POST)
+    public RESTful crmOrderModalGet(HttpServletRequest req,Page p) {
+        return variousService.crmOrderModalGet(req,p);
+    }
 }

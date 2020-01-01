@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
@@ -41,4 +42,6 @@ public interface VariousMapper {
     List<TPM_REG_ITEM_CD> tpmMachineRegItemAllGet(Page p);
 
     SYSAuthProgram menuAuthGet(Page p);
+
+    List<CRM_ORD_RECP> crmOrderModalGet(Page p);
 }
