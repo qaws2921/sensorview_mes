@@ -2,4 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mes.sensorview.Mapper.mesPop.Standard.MesPopMapper">
+    <select id="popBcrFormGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM">
+        EXEC SP_SYS_BCR_FORM_GET #{site_code},#{page},#{rows},''
+    </select>
+
+    <select id="popBcrFormOneGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM">
+        EXEC SP_SYS_BCR_FORM_GET #{site_code},1,1,#{keyword}
+    </select>
+
+    <select id="popBcrFormAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_BCR_FORM_ADD #{site_code},#{bcr_form_code},#{bcr_form_name},#{bcr_contents},#{user_code},#{remark},#{keyword}
+    </select>
 </mapper>
