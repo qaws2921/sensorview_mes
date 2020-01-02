@@ -1071,3 +1071,34 @@ org.apache.ibatis.reflection.ReflectionException: There is no getter for propert
 2020-01-02 11:21:54 [WARN ] [DirectJDKLog.java]log(173) : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [583] milliseconds.
 2020-01-02 11:21:54 [INFO ] [HikariDataSource.java]getConnection(110) : HikariPool-1 - Starting...
 2020-01-02 11:21:54 [INFO ] [HikariDataSource.java]getConnection(123) : HikariPool-1 - Start completed.
+2020-01-02 11:28:51 [INFO ] [TilesAccess.java]setContainer(88) : Removing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+2020-01-02 11:28:51 [INFO ] [HikariDataSource.java]close(350) : HikariPool-1 - Shutdown initiated...
+2020-01-02 11:28:51 [INFO ] [HikariDataSource.java]close(352) : HikariPool-1 - Shutdown completed.
+2020-01-02 11:28:53 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 10416 (C:\Users\USER\Desktop\sensorview\build\classes\java\main started by USER in C:\Users\USER\Desktop\sensorview)
+2020-01-02 11:28:53 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 11:28:54 [WARN ] [DirectJDKLog.java]log(173) : The MBean registry cannot be disabled because it has already been initialised
+2020-01-02 11:28:54 [INFO ] [DirectJDKLog.java]log(173) : Starting service [Tomcat]
+2020-01-02 11:28:54 [INFO ] [DirectJDKLog.java]log(173) : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-01-02 11:28:55 [INFO ] [DirectJDKLog.java]log(173) : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-01-02 11:28:55 [INFO ] [DirectJDKLog.java]log(173) : Initializing Spring embedded WebApplicationContext
+2020-01-02 11:28:55 [INFO ] [TilesAccess.java]setContainer(93) : Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+2020-01-02 11:28:56 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 2.889 seconds (JVM running for 437.922)
+2020-01-02 11:56:47 [INFO ] [TilesAccess.java]setContainer(88) : Removing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+2020-01-02 11:56:48 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 10416 (C:\Users\USER\Desktop\sensorview\build\classes\java\main started by USER in C:\Users\USER\Desktop\sensorview)
+2020-01-02 11:56:48 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 11:56:50 [WARN ] [DirectJDKLog.java]log(173) : The MBean registry cannot be disabled because it has already been initialised
+2020-01-02 11:56:50 [INFO ] [DirectJDKLog.java]log(173) : Starting service [Tomcat]
+2020-01-02 11:56:50 [INFO ] [DirectJDKLog.java]log(173) : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-01-02 11:56:51 [INFO ] [DirectJDKLog.java]log(173) : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-01-02 11:56:51 [INFO ] [DirectJDKLog.java]log(173) : Initializing Spring embedded WebApplicationContext
+2020-01-02 11:56:52 [INFO ] [TilesAccess.java]setContainer(93) : Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+2020-01-02 11:56:52 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 3.719 seconds (JVM running for 2122.734)
+2020-01-02 12:05:16 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 10784 (C:\Users\USER\Desktop\sensorview\build\classes\java\main started by USER in C:\Users\USER\Desktop\sensorview)
+2020-01-02 12:05:16 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:05:20 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 4.819 seconds (JVM running for 7.288)
+2020-01-02 12:43:27 [WARN ] [HikariConfig.java]validateNumerics(1009) : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2020-01-02 12:43:27 [INFO ] [HikariDataSource.java]getConnection(110) : HikariPool-1 - Starting...
+2020-01-02 12:43:28 [INFO ] [HikariDataSource.java]getConnection(123) : HikariPool-1 - Start completed.
+2020-01-02 12:44:06 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 19888 (C:\Users\USER\Desktop\sensorview\build\classes\java\main started by USER in C:\Users\USER\Desktop\sensorview)
+2020-01-02 12:44:06 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:44:11 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 6.84 seconds (JVM running for 8.854)
