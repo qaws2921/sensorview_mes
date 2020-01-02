@@ -1,7 +1,9 @@
 package mes.sensorview.mesWms.InOut;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesManager.Authority.DTO.SYSAuth;
 import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,5 +45,14 @@ public class WmsInOutRestController {
     @RequestMapping(value="/wmsOutOrderSubOneGet" , method = RequestMethod.POST)
     public List<WMS_OUT_ORD_SUB> wmsOutOrderSubOneGet(HttpServletRequest req, Page p){
         return wmsInOutService.wmsOutOrderSubOneGet(req, p);
+    }
+
+    @RequestMapping(value="/wmsOutOrderAdd" , method = RequestMethod.POST)
+    public Message wmsOutOrderAdd(HttpServletRequest req, WMS_OUT_ORD_SUB woos){
+        return wmsInOutService.wmsOutOrderAdd(req, woos);
+    }
+    @RequestMapping(value="/wmsOutOrderDel" , method = RequestMethod.POST)
+    public Message wmsOutOrderDel(HttpServletRequest req,  Page p){
+        return wmsInOutService.wmsOutOrderDel(req, p);
     }
 }

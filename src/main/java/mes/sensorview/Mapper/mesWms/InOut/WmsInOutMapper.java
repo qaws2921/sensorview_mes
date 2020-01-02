@@ -1,5 +1,6 @@
 package mes.sensorview.Mapper.mesWms.InOut;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB;
 import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD;
@@ -19,4 +20,8 @@ public interface WmsInOutMapper {
     List<WMS_OUT_ORD> wmsOutOrderGet(Page p);
 
     List<WMS_OUT_ORD_SUB> wmsOutOrderSubGet(Page p);
+
+    Message wmsOutOrderAdd(WMS_OUT_ORD_SUB woos);
+
+    Message wmsOutOrderDel(Page p);
 }

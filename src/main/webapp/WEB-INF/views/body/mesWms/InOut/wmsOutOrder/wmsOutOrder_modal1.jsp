@@ -37,7 +37,7 @@
                 </tr>
                 </tbody>
             </table>
-
+            <input type="hidden" name="req_no" id="req_no"  class="form-control h-25 modal_value" readonly>
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">

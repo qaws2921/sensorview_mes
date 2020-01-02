@@ -1,5 +1,6 @@
 package mes.sensorview.mesWms.InOut;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
@@ -52,5 +53,16 @@ public class WmsInOutService extends ReturnFunction {
     public List<WMS_OUT_ORD_SUB> wmsOutOrderSubOneGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return wmsInOutMapper.wmsOutOrderSubGet(p);
+    }
+
+    public Message wmsOutOrderAdd(HttpServletRequest req, WMS_OUT_ORD_SUB woos) {
+        woos.setSite_code(getSessionData(req).getSite_code());
+        woos.setUser_code(getSessionData(req).getUser_code());
+        return wmsInOutMapper.wmsOutOrderAdd(woos);
+    }
+
+    public Message wmsOutOrderDel(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return wmsInOutMapper.wmsOutOrderDel(p);
     }
 }

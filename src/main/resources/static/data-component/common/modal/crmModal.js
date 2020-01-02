@@ -105,9 +105,7 @@ function crmModal_jqGrid() {
             return true; // allow row selection
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#crmSearchGrid').jqGrid('getRowData', rowid);
-            crmModal_bus(data.supp_code,data.supp_name);
-            $("#crm-search-dialog").dialog('close');
+            crmModal_check();
 
         }
 

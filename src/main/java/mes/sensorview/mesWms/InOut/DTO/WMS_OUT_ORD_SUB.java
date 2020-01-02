@@ -20,6 +20,7 @@ public class WMS_OUT_ORD_SUB {
     private String user_name;
     private String supp_code;
     private String supp_name;
+    private String user_code;
     private String update_date;
     private String ord_no;
     private int rownum;

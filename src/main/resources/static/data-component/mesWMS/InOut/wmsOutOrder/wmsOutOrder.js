@@ -74,8 +74,12 @@ function under_get(rowid) {
 
 
 function add_btn() {
+    main_data.check = 'I';
+    main_data.check2 = 'Y';
+    modal_reset(".modal_value", []);
+    $("#datepicker3").datepicker('setDate', 'today');
 
-
+    $("#mes_modal_grid").jqGrid('clearGridData');
 
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
@@ -86,6 +90,7 @@ function add_btn() {
 
 
 function delete_btn() {
+    var gu5 = String.fromCharCode(5);
     var ids = $("#mes_grid").getGridParam('selarrrow');
     var check = '';
     var check2 = [];
@@ -93,8 +98,8 @@ function delete_btn() {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         ids.forEach(function (id) {
-            check = $('#scmOutOrderTopGrid').jqGrid('getRowData', id).status;
-            if (check === '1') {
+            check = $('#mes_grid').jqGrid('getRowData', id).status_name;
+            if (check === '완료') {
                 check2.push(id);
             }
 
@@ -105,13 +110,13 @@ function delete_btn() {
             if (confirm("삭제하겠습니까?")) {
                 main_data.check = 'D';
                 wrapWindowByMask2();
-                ccn_ajax("/scmOutOrderDel", {ord_no: ids.join("&")}).then(function (data) {
+                ccn_ajax("/wmsOutOrderDel", {keyword: ids.join(gu5)}).then(function (data) {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {
-                        get_btn_post($("#scmOutOrderTopGrid").getGridParam('page'));
+                        get_btn_post($("#mes_grid").getGridParam('page'));
                     }
-                    $('#scmOutOrderBottomGrid').jqGrid('clearGridData');
+                    $('#mes_grid2').jqGrid('clearGridData');
                     closeWindowByMask();
                 }).catch(function (err) {
                     closeWindowByMask();
@@ -119,7 +124,7 @@ function delete_btn() {
                 });
             }
         }
-        $('#scmOutOrderTopGrid').jqGrid("resetSelection");
+        $('#mes_grid').jqGrid("resetSelection");
 
 
     }
@@ -171,7 +176,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            if (data.status === '1') {
+            if (data.status_name === '완료') {
                 main_data.check2 = 'N';
             } else {
                 main_data.check2 = 'Y';
