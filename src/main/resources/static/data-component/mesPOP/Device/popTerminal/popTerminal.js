@@ -43,10 +43,22 @@ function add_btn() {
     $("#addDialog").dialog('open');
 }
 
-function sub_add_btn() {
-    main_data.check = 'I';
-    $("#addDialog2").dialog('open');
-    jqGridResize2('#mes_modal_grid', $('#mes_modal_grid').closest('[class*="col-"]'));
+function sub_add_btn(rowid) {
+    modal_reset(".modal_value2",[]);
+
+    ccn_ajax('/popTerminalOneGet', {keyword:rowid}).then(function (data) {
+        modal_edits('.modal_value2',[],data);
+        return rowid;
+
+    }).then(function (value) {
+        $("#mes_modal_grid").setGridParam({ // 그리드 조회
+            url: '/popTerminalSubGet',
+            datatype: "json",
+            postData: {keyword:rowid}
+        }).trigger("reloadGrid");
+        $("#addDialog2").dialog('open');
+        jqGridResize2('#mes_modal_grid', $('#mes_modal_grid').closest('[class*="col-"]'));
+    }) ;
 
 }
 
@@ -87,7 +99,7 @@ function delete_btn() {
 }
 ////////////////////////////호출 함수//////////////////////////////////
 function subBtn(cellvalue, options, rowObject) {
-    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="sub_add_btn()">\n' +
+    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="sub_add_btn('+'\''+rowObject.terminal_code+'\''+')">\n' +
         '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
         '                            <span>등록</span>\n' +
         '                            </span>\n' +

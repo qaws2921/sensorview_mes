@@ -14,4 +14,6 @@ public class POP_TERMINAL_SUB {
     private int rownum_page;
     private int rec_count;
     private String keyword;
+
+
 }

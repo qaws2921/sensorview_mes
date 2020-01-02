@@ -49,15 +49,15 @@
         EXEC SP_POP_TERMINAL_DEL #{site_code},#{keyword}
     </select>
 
-    <select id="popTerminalSubGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD">
+    <select id="popTerminalSubGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB">
         EXEC SP_POP_TERMINAL_SUB_GET #{site_code},0,0,#{keyword}
     </select>
     <select id="popTerminalSubAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-        EXEC SP_POP_TERMINAL_SUB_ADD #{site_code},#{terminal_code},#{item_code},#{item_name},#{item_value},#{screen_y}
+        EXEC SP_POP_TERMINAL_SUB_ADD #{site_code},#{terminal_code},#{item_code},#{item_name},#{item_value}
     </select>
 
     <select id="popTerminalSubDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
-        EXEC SP_POP_TERMINAL_SUB_DEL #{site_code}.#{terminal_code},#{keyword}
+        EXEC SP_POP_TERMINAL_SUB_DEL #{site_code},#{terminal_code},#{keyword}
     </select>
 
 </mapper>
