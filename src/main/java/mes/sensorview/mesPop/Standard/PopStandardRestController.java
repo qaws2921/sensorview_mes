@@ -10,4 +10,9 @@ public class PopStandardRestController {
     private PopStandardService popStandardService;
 
 
+    @RequestMapping(value = "/popBcrFormDel", method = RequestMethod.POST)
+    public Message popBcrFormDel(HttpServletRequest req, POP_BCR_FORM pbf) {
+        return popStandardService.popBcrFormDel(req,pbf);
+    }
+
 }
