@@ -49,6 +49,30 @@ function update_btn(jqgrid_data) {
         $("#addDialog").dialog('open');
     });
 }
+
+function delete_btn() {
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/popRouteDel", {keyword:ids.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
 ////////////////////////////호출 함수//////////////////////////////////
 
 function jqGrid_main() {

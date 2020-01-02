@@ -28,4 +28,6 @@ public interface MesPopMapper {
     POP_TERMINAL_CD popTerminalOneGet(Page p);
 
     Message popTerminalAdd(POP_TERMINAL_CD ptc);
+
+    Message popRouteDel(POP_ROUTE_CD pr);
 }

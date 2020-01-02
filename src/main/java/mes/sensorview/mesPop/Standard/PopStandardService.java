@@ -58,6 +58,11 @@ public class PopStandardService extends ReturnFunction {
         return mesPopMapper.popRouteAdd(pr);
     }
 
+    public Message popRouteDel(HttpServletRequest req, POP_ROUTE_CD pr) {
+        pr.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popRouteDel(pr);
+    }
+
     public RESTful popTerminalGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<POP_TERMINAL_CD> rows = mesPopMapper.popTerminalGet(p);
