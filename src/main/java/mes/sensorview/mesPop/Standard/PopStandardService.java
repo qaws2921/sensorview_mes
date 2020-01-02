@@ -8,6 +8,7 @@ import mes.sensorview.Mapper.mesPop.Standard.MesPopMapper;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,5 +79,26 @@ public class PopStandardService extends ReturnFunction {
         ptc.setSite_code(getSessionData(req).getSite_code());
         ptc.setUser_code(getSessionData(req).getUser_code());
         return mesPopMapper.popTerminalAdd(ptc);
+    }
+
+    public Message popTerminalDel(HttpServletRequest req, POP_TERMINAL_CD ptc) {
+        ptc.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popTerminalDel(ptc);
+    }
+
+    public List<POP_TERMINAL_SUB> popTerminalSubGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popTerminalSubGet(p);
+
+    }
+
+    public Message popTerminalSubAdd(HttpServletRequest req, POP_TERMINAL_SUB pts) {
+        pts.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popTerminalSubAdd(pts);
+    }
+
+    public Message popTerminalSubDel(HttpServletRequest req, POP_TERMINAL_SUB pts) {
+        pts.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popTerminalSubDel(pts);
     }
 }

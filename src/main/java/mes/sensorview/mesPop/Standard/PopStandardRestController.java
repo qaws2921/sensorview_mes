@@ -6,12 +6,14 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class PopStandardRestController {
@@ -73,5 +75,26 @@ public class PopStandardRestController {
     public Message popTerminalAdd(HttpServletRequest req, POP_TERMINAL_CD ptc) {
         return popStandardService.popTerminalAdd(req, ptc);
     }
+
+    @RequestMapping(value ="/popTerminalDel", method = RequestMethod.POST)
+    public Message popTerminalDel(HttpServletRequest req, POP_TERMINAL_CD ptc) {
+        return popStandardService.popTerminalDel(req, ptc);
+    }
+
+    @RequestMapping(value = "/popTerminalSubGet", method = RequestMethod.POST)
+    public List<POP_TERMINAL_SUB> popTerminalSubGet(HttpServletRequest req, Page p){
+        return popStandardService.popTerminalSubGet(req, p);
+    }
+
+    @RequestMapping(value = "/popTerminalSubAdd", method = RequestMethod.POST)
+    public Message popTerminalSubAdd(HttpServletRequest req, POP_TERMINAL_SUB pts) {
+        return popStandardService.popTerminalSubAdd(req, pts);
+    }
+
+    @RequestMapping(value ="/popTerminalSubDel", method = RequestMethod.POST)
+    public Message popTerminalSubDel(HttpServletRequest req, POP_TERMINAL_SUB pts) {
+        return popStandardService.popTerminalSubDel(req, pts);
+    }
+
 
 }
