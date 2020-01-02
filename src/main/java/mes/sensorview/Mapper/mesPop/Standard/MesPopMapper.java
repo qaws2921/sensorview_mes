@@ -12,4 +12,6 @@ public interface MesPopMapper {
     POP_BCR_FORM popBcrFormOneGet(POP_BCR_FORM pbf);
 
     Message popBcrFormAdd(POP_BCR_FORM pbf);
+
+    Message popBcrFormDel(POP_BCR_FORM pbf);
 }

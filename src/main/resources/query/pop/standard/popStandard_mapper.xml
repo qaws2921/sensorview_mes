@@ -13,4 +13,8 @@
     <select id="popBcrFormAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_SYS_BCR_FORM_ADD #{site_code},#{bcr_form_code},#{bcr_form_name},#{bcr_contents},#{user_code},#{remark},#{keyword}
     </select>
+
+    <select id="popBcrFormDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_BCR_FORM_DEL #{site_code},#{keyword}
+    </select>
 </mapper>

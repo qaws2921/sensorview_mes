@@ -33,4 +33,9 @@ public class PopStandardService extends ReturnFunction {
         pbf.setUser_code(getSessionData(req).getUser_code());
         return mesPopMapper.popBcrFormAdd(pbf);
     }
+
+    public Message popBcrFormDel(HttpServletRequest req, POP_BCR_FORM pbf) {
+        pbf.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popBcrFormDel(pbf);
+    }
 }
