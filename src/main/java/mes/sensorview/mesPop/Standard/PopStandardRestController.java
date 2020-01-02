@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,6 +52,22 @@ public class PopStandardRestController {
     @RequestMapping(value = "/popRouteAdd", method = RequestMethod.POST)
     public Message popRouteAdd(HttpServletRequest req, POP_ROUTE_CD pr) {
         return popStandardService.popRouteAdd(req,pr);
+    }
+
+
+    @RequestMapping(value = "/popTerminalGet", method = RequestMethod.POST)
+    public RESTful popTerminalGet(HttpServletRequest req, Page p){
+        return popStandardService.popTerminalGet(req, p);
+    }
+
+    @RequestMapping(value = "/popTerminalOneGet", method = RequestMethod.POST)
+    public POP_TERMINAL_CD popTerminalOneGet(HttpServletRequest req, Page p) {
+        return popStandardService.popTerminalOneGet(req,p);
+    }
+
+    @RequestMapping(value = "/popTerminalAdd", method = RequestMethod.POST)
+    public Message popTerminalAdd(HttpServletRequest req, POP_TERMINAL_CD ptc) {
+        return popStandardService.popTerminalAdd(req, ptc);
     }
 
 }

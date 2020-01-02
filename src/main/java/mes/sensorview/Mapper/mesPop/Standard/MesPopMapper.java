@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
 
 import java.util.List;
 
@@ -21,4 +22,10 @@ public interface MesPopMapper {
     POP_ROUTE_CD popRouteOneGet(POP_ROUTE_CD pr);
 
     Message popRouteAdd(POP_ROUTE_CD pr);
+
+    List<POP_TERMINAL_CD> popTerminalGet(Page p);
+
+    POP_TERMINAL_CD popTerminalOneGet(Page p);
+
+    Message popTerminalAdd(POP_TERMINAL_CD ptc);
 }
