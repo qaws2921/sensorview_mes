@@ -434,3 +434,15 @@ Caused by: java.io.FileNotFoundException: class path resource [mes/sensorview/Co
 2020-01-02 12:01:34 [WARN ] [HikariConfig.java]validateNumerics(1009) : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
 2020-01-02 12:01:34 [INFO ] [HikariDataSource.java]getConnection(110) : HikariPool-1 - Starting...
 2020-01-02 12:01:35 [INFO ] [HikariDataSource.java]getConnection(123) : HikariPool-1 - Start completed.
+2020-01-02 12:03:56 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 19820 (C:\Users\USER\Desktop\dev\sensorview\out\production\classes started by USER in C:\Users\USER\Desktop\dev\sensorview)
+2020-01-02 12:03:56 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:03:59 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 3.286 seconds (JVM running for 2171.024)
+2020-01-02 12:04:34 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 19820 (C:\Users\USER\Desktop\dev\sensorview\out\production\classes started by USER in C:\Users\USER\Desktop\dev\sensorview)
+2020-01-02 12:04:34 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:04:37 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 3.591 seconds (JVM running for 2209.691)
+2020-01-02 12:04:44 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 19820 (C:\Users\USER\Desktop\dev\sensorview\out\production\classes started by USER in C:\Users\USER\Desktop\dev\sensorview)
+2020-01-02 12:04:44 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:04:47 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 3.243 seconds (JVM running for 2219.075)
+2020-01-02 12:04:59 [INFO ] [StartupInfoLogger.java]logStarting(55) : Starting SensorviewApplication on DESKTOP-1V2UL8N with PID 22432 (C:\Users\USER\Desktop\dev\sensorview\out\production\classes started by USER in C:\Users\USER\Desktop\dev\sensorview)
+2020-01-02 12:04:59 [INFO ] [SpringApplication.java]logStartupProfileInfo(651) : No active profile set, falling back to default profiles: default
+2020-01-02 12:05:06 [INFO ] [StartupInfoLogger.java]logStarted(61) : Started SensorviewApplication in 9.178 seconds (JVM running for 12.183)
