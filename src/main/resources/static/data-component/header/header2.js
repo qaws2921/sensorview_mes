@@ -129,6 +129,30 @@ $(function () {
             $('#sub-t-4').text(array[i].name);
         }
     }
+
+    $('#go_hpdk').click(function(){
+        $.ajax({
+            type: "POST",
+            dataType : "jsonp",
+            url: "http://localhost:8888/partners",
+            data:
+                {
+                    site_code : $('#hstcd').val(),
+                    user_code : $('#huscd').val(),
+                    user_name : $('#husnm').val(),
+                    url : window.location.host
+                },
+            error: function (request,status,error) {
+                if(request.status == 200){
+                    const newTab = window.open('http://localhost:8888/h_index', '_blank');
+                    newTab.focus();
+                }else{
+                    alert('헬프데스크 인증에 실패하였습니다.');
+                }
+
+            }
+        });
+    });
 });
 
 

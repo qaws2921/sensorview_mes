@@ -15,6 +15,9 @@
             <div class="form-group">
                 <a href="/login" class="navbar-brand top_m">
                     <i class="fa fa-user"></i> ${sessionScope.userData.user_name}님 반갑습니다.
+                    <input type="hidden" value="${sessionScope.userData.site_code}" id="hstcd">
+                    <input type="hidden" value="${sessionScope.userData.user_code}" id="huscd">
+                    <input type="hidden" value="${sessionScope.userData.user_name}" id="husnm">
                     <br>
                     <button type="button" class="btn btn-minier btn-dark">정보수정</button>
                     <button type="button" class="btn btn-minier btn-dark">로그아웃</button>
