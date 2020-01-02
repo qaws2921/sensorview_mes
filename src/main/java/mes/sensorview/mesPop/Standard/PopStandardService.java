@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesPop.Standard.MesPopMapper;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,22 @@ public class PopStandardService extends ReturnFunction {
     public Message popBcrFormDel(HttpServletRequest req, POP_BCR_FORM pbf) {
         pbf.setSite_code(getSessionData(req).getSite_code());
         return mesPopMapper.popBcrFormDel(pbf);
+    }
+
+    public RESTful popRouteGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<POP_ROUTE_CD> rows = mesPopMapper.popRouteGet(p);
+        return getListData(rows,p);
+    }
+
+    public POP_ROUTE_CD popRouteOneGet(HttpServletRequest req, POP_ROUTE_CD pr) {
+        pr.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popRouteOneGet(pr);
+    }
+
+    public Message popRouteAdd(HttpServletRequest req, POP_ROUTE_CD pr) {
+        pr.setSite_code(getSessionData(req).getSite_code());
+        pr.setUser_code(getSessionData(req).getUser_code());
+        return mesPopMapper.popRouteAdd(pr);
     }
 }
