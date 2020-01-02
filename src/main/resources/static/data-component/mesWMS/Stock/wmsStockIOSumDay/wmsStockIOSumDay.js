@@ -29,7 +29,7 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data_post = main_data.send_data;
     $("#mes_grid").setGridParam({
-        url: '/scmStockSumDayListGet',
+        url: '/wmsStockSumDayListGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -38,7 +38,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/scmStockSumDayListGet',
+        url: '/wmsStockSumDayListGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post
@@ -55,9 +55,7 @@ function datepickerInput() {
 }
 
 function selectBox() {
-
-    select_makes_sub("#partGrp_select","/sysBPartGroupSelectGet","part_grp_code","part_grp_name",{keyword:'A'},"Y");
-
+    select_makes("#partGrp_select", "/sysPartTypeGet", "part_type_code", "part_type_name");
 }
 
 function jqGrid_main() {
