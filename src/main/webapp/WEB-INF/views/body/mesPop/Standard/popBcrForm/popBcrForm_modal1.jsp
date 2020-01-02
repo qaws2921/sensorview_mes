@@ -5,26 +5,27 @@
         <div class="profile-info-row">
             <div class="profile-info-name">양식코드</div>
             <div class="profile-info-value">
-                <input name="bcr_form_code" type="text" class="form-control modal_value">
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name">양식명</div>
+
             <div class="profile-info-value">
-                <input name="bcr_form_name" type="text" class="form-control modal_value">
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">폼양식</div>
             <div class="profile-info-value">
-                <textarea id="bcr_contents" name="bcr_contents" cols="40" rows="5" style="resize:none;"></textarea>
+                <textarea cols="40" rows="5" style="resize:none;"></textarea>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">비고</div>
             <div class="profile-info-value">
-                <input name="remark" type="text" class="form-control modal_value">
+                <input type="text" class="form-control modal_value">
             </div>
         </div>
     </div>

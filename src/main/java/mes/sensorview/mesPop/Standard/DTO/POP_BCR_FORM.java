@@ -18,5 +18,4 @@ public class POP_BCR_FORM {
     private int rec_count;
 
     private String user_name;
-    private String keyword;
 }
