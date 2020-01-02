@@ -52,5 +52,9 @@ public class PopStandardRestController {
     public Message popRouteAdd(HttpServletRequest req, POP_ROUTE_CD pr) {
         return popStandardService.popRouteAdd(req,pr);
     }
+    @RequestMapping(value ="/popRouteDel", method = RequestMethod.POST)
+    public Message popRouteDel(HttpServletRequest req, POP_ROUTE_CD pr) {
+        return popStandardService.popRouteDel(req, pr);
+    }
 
 }

@@ -21,4 +21,6 @@ public interface MesPopMapper {
     POP_ROUTE_CD popRouteOneGet(POP_ROUTE_CD pr);
 
     Message popRouteAdd(POP_ROUTE_CD pr);
+
+    Message popRouteDel(POP_ROUTE_CD pr);
 }

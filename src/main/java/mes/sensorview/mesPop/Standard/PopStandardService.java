@@ -56,4 +56,9 @@ public class PopStandardService extends ReturnFunction {
         pr.setUser_code(getSessionData(req).getUser_code());
         return mesPopMapper.popRouteAdd(pr);
     }
+
+    public Message popRouteDel(HttpServletRequest req, POP_ROUTE_CD pr) {
+        pr.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popRouteDel(pr);
+    }
 }
