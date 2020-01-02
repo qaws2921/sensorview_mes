@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.sensorview.Mapper.mesPop.Device.MesPopDeviceMapper">
+    <select id="popPCGet" resultType="mes.sensorview.mesPop.Device.DTO.POP_PC_CD">
+        EXEC SP_POP_PC_GET #{site_code},#{page},#{rows},''
+    </select>
+    <select id="popPCOneGet" resultType="mes.sensorview.mesPop.Device.DTO.POP_PC_CD">
+        EXEC SP_POP_PC_GET #{site_code},1,1,#{keyword}
+    </select>
+    <select id="popPCAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PC_ADD #{site_code},#{pc_code},#{pc_name},#{ip},#{remark},#{user_code},#{keyword}
+    </select>
+    <select id="popPCDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PC_DEL #{site_code},#{pc_code}
+    </select>
+</mapper>
