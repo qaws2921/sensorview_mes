@@ -70,13 +70,16 @@ function modal_make1() {
 
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    if (modal_objact.auth_code === '') {
-        alert("권한코드를 입력해주세요");
+    if (modal_objact.pc_code === '') {
+        alert("컴퓨터코드를 입력해주세요");
         return false;
-    } else if (modal_objact.auth_name === '') {
-        alert("권한명을 입력해주세요");
+    } else if (modal_objact.pc_name === '') {
+        alert("컴퓨터명을 입력해주세요");
         return false;
-    }  else {
+    } else if (modal_objact.ip === '') {
+        alert("ip를 입력해주세요");
+        return false;
+    } else {
 
         return true;
     }
