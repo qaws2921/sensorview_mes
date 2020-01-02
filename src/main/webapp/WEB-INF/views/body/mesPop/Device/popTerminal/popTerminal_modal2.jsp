@@ -9,30 +9,30 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">단말기코드</td>
                     <td class="wt-px-200">
-                        <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value" >
+                        <input type="text" name="in_no" id="in_no"  class="form-control h-25 modal_value2" >
                     </td>
 
                     <td class="wt-px-100 t-align-c td-title padding-a-0">단말기명</td>
                     <td class="wt-px-200">
-                        <input type="text" name="supp_name" class="form-control h-25 modal_value"/>
+                        <input type="text" name="supp_name" class="form-control h-25 modal_value2"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" style="border: 0px !important;">세부코드</td>
                     <td colspan="3" style="border: 0px !important;;">
-                        <input type="text" name="supp_name" class="form-control h-25 modal_value"/>
+                        <input type="text" name="supp_name" class="form-control h-25 modal_value2"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" style="border: 0px !important;">세부내용</td>
                     <td colspan="3" style="border: 0px !important;;">
-                        <input type="text" name="supp_name" class="form-control h-25 modal_value"/>
+                        <input type="text" name="supp_name" class="form-control h-25 modal_value2"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" style="border: 0px !important;">적용값</td>
                     <td colspan="3" style="border: 0px !important;;">
-                        <input type="text" name="supp_name" class="form-control h-25 modal_value"/>
+                        <input type="text" name="supp_name" class="form-control h-25 modal_value2"/>
                     </td>
                 </tr>
                 </tbody>
@@ -61,7 +61,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <table id="mes_modal_grid"></table>
-                    <div id="mes_modal_grid_pager"></div>
                 </div>
             </div>
         </div>

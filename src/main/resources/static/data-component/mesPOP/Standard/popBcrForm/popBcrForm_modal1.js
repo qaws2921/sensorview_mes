@@ -9,7 +9,6 @@ function modal_start1() {
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
     modal_objact.bcr_contents = $("#bcr_contents").val();
-    console.log(modal_objact);
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {

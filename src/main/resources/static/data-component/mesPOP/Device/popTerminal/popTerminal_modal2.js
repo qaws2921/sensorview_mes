@@ -50,7 +50,6 @@ function jqGrid_modal() {
             {name: '', index: '', sortable: false,},
         ],
         caption: "공정마스터세부항목추가 | MES",
-        pager: '#mes_modal_grid_pager',
         width: 400,
         height: 300,
         rowNum: 100,
@@ -61,5 +60,5 @@ function jqGrid_modal() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
         }
-    }).navGrid('#mes_modal_grid_pager', {search: false, add: false, edit: false, del: false});
+    });
 }

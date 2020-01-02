@@ -3,13 +3,12 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data2=[{a:'1',b:'',c:'',d:'',e:'',f:'',g:'',h:'2019111111010101',i:'1'}];
 
 var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['']
+    readonly: ['terminal_code']
 };
 
 
@@ -25,7 +24,21 @@ $(document).ready(function () {
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
+// 조회버튼
+function get_btn(page) {
+
+    main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
+
+    $("#mes_grid").setGridParam({ // 그리드 조회
+        url: '/popTerminalGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
 function add_btn() {
+    modal_reset(".modal_value", main_data.readonly);
     main_data.check = 'I';
     $("#addDialog").dialog('open');
 }
@@ -37,6 +50,41 @@ function sub_add_btn() {
 
 }
 
+function update_btn(jqgrid_data) {
+    modal_reset(".modal_value", main_data.readonly);
+    main_data.check = 'U';
+    var send_data = {};
+    send_data.keyword = jqgrid_data.terminal_code;
+    ccn_ajax('/popTerminalOneGet', send_data).then(function (data) {
+        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        $("#addDialog").dialog('open');
+    });
+}
+
+
+function delete_btn() {
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/popTerminalDel", {keyword:ids.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
 ////////////////////////////호출 함수//////////////////////////////////
 function subBtn(cellvalue, options, rowObject) {
     return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="sub_add_btn()">\n' +
@@ -50,19 +98,18 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
 
         datatype: "local",
-        data:grid_data2,
-        // mtype: 'POST',
+        mtype: 'POST',
         colNames: ['단말기코드','단말기명','컴퓨터명','화면X','화면Y','바코드양식','등록자','등록일시','세부항목'],
         colModel: [
-            {name: 'a', index: 'a', key: true, sortable: false, width: 60},
-            {name: 'b', index: 'b', sortable: false, width: 60},
-            {name: 'c', index: 'c', sortable: false, width: 60},
-            {name: 'd', index: 'd', sortable: false, width: 60},
-            {name: 'e', index: 'e', sortable: false, width: 60},
-            {name: 'f', index: 'f', sortable: false, width: 60},
-            {name: 'g', index: 'g', sortable: false, width: 60},
-            {name: 'h', index: 'h', width: 60, sortable: false, formatter: formmatterDate,},
-            {name: 'i', index: 'i', sortable: false, formatter: subBtn,width: 60},
+            {name: 'terminal_code', index: 'terminal_code', key: true, sortable: false, width: 60},
+            {name: 'terminal_name', index: 'terminal_name', sortable: false, width: 60},
+            {name: 'pc_name', index: 'pc_name', sortable: false, width: 60},
+            {name: 'screen_x', index: 'screen_x', sortable: false, width: 60},
+            {name: 'screen_y', index: 'screen_y', sortable: false, width: 60},
+            {name: 'bcr_form_code', index: 'bcr_form_code', sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
+            {name: '', index: '', sortable: false, formatter: subBtn,width: 60},
         ],
         caption: "공정마스터관리 | MES",
         autowidth: true,
@@ -73,8 +120,14 @@ function jqGrid_main() {
         viewrecords: true,
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
+            var $myGrid = $(this),
+                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
+                cm = $myGrid.jqGrid('getGridParam', 'colModel');
+            return (cm[i].name === 'cb');
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }
