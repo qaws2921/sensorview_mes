@@ -48,7 +48,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목구분</td>
                     <td class="wt-px-200">
-                        <select name="keyword2" id="partGrp_select" class="form-control keyword condition_main" style="width: 100%">
+                        <select name="keyword" id="partGrp_select" class="form-control keyword condition_main" style="width: 100%">
                             <option value="">전체</option>
                         </select>
                     </td>
