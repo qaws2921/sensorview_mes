@@ -16,7 +16,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysBPartGroupAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysPartGroupAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -63,10 +63,7 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    if (modal_objact.part_type_code === '') {
-        alert("구분을 선택해주세요");
-        return false;
-    } else if (modal_objact.part_grp_code === '') {
+    if (modal_objact.part_grp_code === '') {
         alert("그룹코드를 입력해주세요");
         return false;
     } else if (modal_objact.part_grp_name === '') {
