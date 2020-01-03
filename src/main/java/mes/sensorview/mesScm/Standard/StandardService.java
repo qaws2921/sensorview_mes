@@ -104,4 +104,20 @@ public class StandardService extends ReturnFunction {
         List<SYS_PART_GROUP> rows = scmStandardMapper.sysPartGroupGet(p);
         return getListData(rows , p);
     }
+
+    public SYS_PART_GROUP sysPartGroupOneGet(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartGroupOneGet(spg);
+    }
+
+    public Message sysPartGroupAdd(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        spg.setUser_code(getSessionData(req).getUser_code());
+        return scmStandardMapper.sysPartGroupAdd(spg);
+    }
+
+    public Message sysPartGroupDel(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartGroupDel(spg);
+    }
 }

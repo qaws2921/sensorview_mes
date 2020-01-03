@@ -16,7 +16,7 @@ function addUdate_btn() {
 
             modal_objact.keyword = main_data.check;
 
-            ccn_ajax("/sysBPartGroupAdd", modal_objact).then(function (data) {
+            ccn_ajax("/sysPartGroupAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {

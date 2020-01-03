@@ -53,7 +53,8 @@ function get_btn_post(page) {
 function add_btn() {
 
     modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#gubun_select", "#part_type_code", "#part_type_name");
+    modalValuePush("#part_type_select", "#part_type_code", "#part_type_name");
+    modalValuePush("#part_group_select", "#part_level", "#part_level_name");
     main_data.check = 'I';
 
     $("#addDialog").dialog('open');
@@ -64,9 +65,7 @@ function update_btn(jqgrid_data) {
 
     modal_reset(".modal_value", []);
     main_data.check = 'U';
-    var send_data = {};
-    send_data.keyword = jqgrid_data.part_grp_code;
-    ccn_ajax('/sysBPartGroupOneGet', send_data).then(function (data) {
+    ccn_ajax('/sysPartGroupOneGet', jqgrid_data).then(function (data) {
         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
         $("#addDialog").dialog('open');
     });
@@ -74,14 +73,27 @@ function update_btn(jqgrid_data) {
 
 
 function delete_btn() {
+
+    var gu4 = String.fromCharCode(4);
+    var gu5 = String.fromCharCode(5);
+
     var ids = $("#mes_grid").getGridParam('selarrrow');
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         if (confirm("삭제하겠습니까?")) {
+
+            var list = [];
+            var data;
+
+            ids.forEach(function (id) {
+                data = $('#mes_grid').jqGrid('getRowData', id);
+                list.push(data.part_type+gu4+data.part_level+gu4+data.part_grp_code);
+            });
+
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/sysBPartGroupDelete", {keyword: ids.join(",")}).then(function (data) {
+            ccn_ajax("/sysPartGroupDel", {keyword: list.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -130,8 +142,10 @@ function jqGrid_main() {
 
         datatype: "local",
         mtype: 'POST',
-        colNames: ['그룹코드', '그룹명', '비고', '등록자', '수정일'],
+        colNames: ['part_type','part_level','그룹코드', '그룹명', '비고', '등록자', '수정일'],
         colModel: [
+            {name: 'part_type', index: 'part_type', hidden:true,sortable: false, width: 60},
+            {name: 'part_level', index: 'part_level',hidden:true, sortable: false, width: 60},
             {name: 'part_grp_code', index: 'part_grp_code', key: true, sortable: false, width: 60},
             {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'remark', index: 'remark', sortable: false, width: 60},

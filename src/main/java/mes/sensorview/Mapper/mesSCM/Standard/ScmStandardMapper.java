@@ -29,4 +29,10 @@ public interface ScmStandardMapper {
     Message sysBPartAdd(sysBPart vo);
 
     List<SYS_PART_GROUP> sysPartGroupGet(Page p);
+
+    SYS_PART_GROUP sysPartGroupOneGet(SYS_PART_GROUP spg);
+
+    Message sysPartGroupAdd(SYS_PART_GROUP spg);
+
+    Message sysPartGroupDel(SYS_PART_GROUP spg);
 }
