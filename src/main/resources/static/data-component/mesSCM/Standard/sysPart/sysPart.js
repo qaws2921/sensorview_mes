@@ -11,13 +11,16 @@ var main_data = {
     readonly: []
 };
 
+var colNames = ['구분','t1','t2','t3','품목코드','품목명','보관로케이션','업체명','규격','단위','L/T','검사기준','검사구분','재고최대','재고최소','등록자','수정일']
+
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
     selectBox();
-    jqGrid_main();
-    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    jqgridPagerIcons();
+    //jqGrid_main();
+    //jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    //jqgridPagerIcons();
+
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
@@ -26,9 +29,31 @@ function select_change1(value) {
         for(var i=1; i<=3;i++) {
             group_cb(value,i);
         }
+        tttt(value);
+
     });
+
+
+
+
 }
+
+
+
 ////////////////////////////호출 함수//////////////////////////////////
+
+
+
+function tttt(value) {
+    colNames[1] = value.part_group1;
+    colNames[2] = value.part_group2;
+    colNames[3] = value.part_group3;
+
+    $.jgrid.gridUnload('#mes_grid');
+    jqGrid_main();
+    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    jqgridPagerIcons();
+}
 
 function group_cb(value,i) {
     $('#part_group'+i).text(value["part_group"+i]);
@@ -51,6 +76,9 @@ function selectBox() {
             for(var i=1; i<=3;i++) {
                 group_cb(value,i);
             }
+
+            tttt(value);
+
         })
     });
 }
@@ -59,7 +87,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['구분','t1','t2','t3','품목코드','품목명','보관로케이션','업체명','규격','단위','L/T','검사기준','검사구분','재고최대','재고최소','등록자','수정일'],
+        colNames: colNames,
         colModel: [
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
