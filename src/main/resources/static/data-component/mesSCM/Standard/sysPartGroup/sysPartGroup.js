@@ -123,8 +123,6 @@ function selectBox() {
             $('#part_group_select').select2();
         })
     });
-
-
 }
 
 function jqGrid_main() {
