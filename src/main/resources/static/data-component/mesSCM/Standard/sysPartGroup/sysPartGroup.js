@@ -34,7 +34,7 @@ function get_btn(page) {
     main_data.send_data_post = main_data.send_data;
 
     $("#mes_grid").setGridParam({
-        url: '/sysBPartGroupGet',
+        url: '/sysPartGroupGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
@@ -43,7 +43,7 @@ function get_btn(page) {
 
 function get_btn_post(page) {
     $("#mes_grid").setGridParam({
-        url: '/sysBPartGroupGet',
+        url: '/sysPartGroupGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data_post

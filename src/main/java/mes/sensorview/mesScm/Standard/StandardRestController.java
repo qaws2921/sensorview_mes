@@ -94,4 +94,9 @@ public class StandardRestController {
 
     }
 
+    @RequestMapping(value = "/sysPartGroupGet", method = RequestMethod.POST)
+    public RESTful sysPartGroupGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartGroupGet(req, p);
+    }
+
 }
