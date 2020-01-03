@@ -17,9 +17,11 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수////////////////////////////////
 
 function add_btn() {
+
     var data = value_return(".main_value");
     data.work_date = data.work_date.replace(/\-/g, '');
     data.end_date =  data.end_date.replace(/\-/g, '');
+    data.keyword = "I";
 
     if ($('input:checkbox[name="option1"]').is(":checked")) {
         data.option1 = 'Y';
@@ -171,7 +173,7 @@ function selectBox() {
     $("#price_type_select").select2();
     $("#prod_type_select").select2();
     $("#delivery_price_select").select2();
-    select_makes2("#part_type_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
+    select_makes2("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name").then(function (data) {
         select_makes3("#partGrp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name",{keyword:data}).then(function (data2) {
             select_makes_sub("#part_select", "/sysBPartAllGet", "part_code", "part_name", {keyword: data,keyword2:data2}, "N");
             select_makes_sub("#part_select2", "/sysBPartAllGet", "part_code", "part_name", {keyword: data,keyword2:data2}, "N");

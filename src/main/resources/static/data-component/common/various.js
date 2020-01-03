@@ -307,6 +307,32 @@ function select_ajax(url,data){
 }
 
 
+function part_type_select_ajax(tag,url,value,text,data){
+	return new Promise(function (resolve, reject) {
+		$(tag).empty();
+		$.ajax({
+			url: url,
+			type: 'POST',
+			async: true,
+			dataType: "json",
+			data:data,
+			success: function (data2) {
+				var option = null
+				for (var j = 0; j < data2.length; j++) {
+					option = $("<option></option>").text(data2[j][text]).val(data2[j][value]);
+					$(tag).append(option);
+				}
+				$(tag).select2();
+				resolve(data2);
+			},
+			error: function () {
+				reject(new Error("Request is failed"));
+			}
+		});
+	});
+}
+
+
 function datepicker_makes(tag,num) {
 	var date = new Date();
 	date.setDate(date.getDate() + num);
@@ -367,5 +393,8 @@ var findArrayIndex = function (array, predicateFunction) {
 	}
 	return index;
 }
+
+
+
 
 

@@ -27,6 +27,7 @@ public class SYSSupp {
     private String update_date;
 
     private String keyword;
+    private String keyword2;
     private String site_code;
     private String user_code;
     private String user_name;

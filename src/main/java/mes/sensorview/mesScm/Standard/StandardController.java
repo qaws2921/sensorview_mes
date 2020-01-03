@@ -5,6 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class StandardController {
+
+    @RequestMapping(value = "/sysPartGroup")
+    public String sysPartGroup() {
+        return "mesScm/Standard/sysPartGroup/sysPartGroup";
+    }
+
+    @RequestMapping(value = "/sysPart")
+    public String sysPart() {
+        return "mesScm/Standard/sysPart/sysPart";
+    }
+
     @RequestMapping(value = "/sysBPartGroup")
     public String sysBPartGroup() {
         return "mesScm/Standard/sysBPartGroup/sysBPartGroup";

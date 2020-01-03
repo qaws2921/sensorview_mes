@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -96,5 +97,27 @@ public class StandardService extends ReturnFunction {
     public List<sysLoc> sysLocAllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return scmStandardMapper.sysLocGet(p);
+    }
+
+    public RESTful sysPartGroupGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_GROUP> rows = scmStandardMapper.sysPartGroupGet(p);
+        return getListData(rows , p);
+    }
+
+    public SYS_PART_GROUP sysPartGroupOneGet(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartGroupOneGet(spg);
+    }
+
+    public Message sysPartGroupAdd(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        spg.setUser_code(getSessionData(req).getUser_code());
+        return scmStandardMapper.sysPartGroupAdd(spg);
+    }
+
+    public Message sysPartGroupDel(HttpServletRequest req, SYS_PART_GROUP spg) {
+        spg.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartGroupDel(spg);
     }
 }

@@ -64,41 +64,5 @@ public class PopStandardService extends ReturnFunction {
         return mesPopMapper.popRouteDel(pr);
     }
 
-    public RESTful popTerminalGet(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        List<POP_TERMINAL_CD> rows = mesPopMapper.popTerminalGet(p);
-        return getListData(rows, p);
-    }
 
-    public POP_TERMINAL_CD popTerminalOneGet(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        return mesPopMapper.popTerminalOneGet(p);
-    }
-
-    public Message popTerminalAdd(HttpServletRequest req, POP_TERMINAL_CD ptc) {
-        ptc.setSite_code(getSessionData(req).getSite_code());
-        ptc.setUser_code(getSessionData(req).getUser_code());
-        return mesPopMapper.popTerminalAdd(ptc);
-    }
-
-    public Message popTerminalDel(HttpServletRequest req, POP_TERMINAL_CD ptc) {
-        ptc.setSite_code(getSessionData(req).getSite_code());
-        return mesPopMapper.popTerminalDel(ptc);
-    }
-
-    public List<POP_TERMINAL_SUB> popTerminalSubGet(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        return mesPopMapper.popTerminalSubGet(p);
-
-    }
-
-    public Message popTerminalSubAdd(HttpServletRequest req, POP_TERMINAL_SUB pts) {
-        pts.setSite_code(getSessionData(req).getSite_code());
-        return mesPopMapper.popTerminalSubAdd(pts);
-    }
-
-    public Message popTerminalSubDel(HttpServletRequest req, POP_TERMINAL_SUB pts) {
-        pts.setSite_code(getSessionData(req).getSite_code());
-        return mesPopMapper.popTerminalSubDel(pts);
-    }
 }

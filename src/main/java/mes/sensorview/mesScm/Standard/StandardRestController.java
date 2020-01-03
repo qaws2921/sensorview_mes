@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -93,5 +94,26 @@ public class StandardRestController {
         return standardService.sysBPartDelete(p, req);
 
     }
+
+    @RequestMapping(value = "/sysPartGroupGet", method = RequestMethod.POST)
+    public RESTful sysPartGroupGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartGroupGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartGroupOneGet", method = RequestMethod.POST)
+    public SYS_PART_GROUP sysPartGroupOneGet(HttpServletRequest req, SYS_PART_GROUP spg) {
+        return standardService.sysPartGroupOneGet(req, spg);
+    }
+
+    @RequestMapping(value = "/sysPartGroupAdd", method = RequestMethod.POST)
+    public Message sysPartGroupAdd(HttpServletRequest req, SYS_PART_GROUP spg) {
+        return standardService.sysPartGroupAdd(req, spg);
+    }
+
+    @RequestMapping(value = "/sysPartGroupDel", method = RequestMethod.POST)
+    public Message sysPartGroupDel(HttpServletRequest req, SYS_PART_GROUP spg) {
+        return standardService.sysPartGroupDel(req, spg);
+    }
+
 
 }

@@ -24,8 +24,11 @@
     <select id="sysCommonAllGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
         EXEC SP_SYS_COMMON_GET #{site_code},#{page}, #{rows},#{keyword}, ''
     </select>
-    <select id="sysPartTypeGet" resultType="mes.sensorview.Common.DataTransferObject.PartType">
-        EXEC SP_SYS_PART_TYPE_GET #{site_code},#{keyword}
+    <select id="sysPartTypeGet" resultType="mes.sensorview.Common.Various.DTO.SYSPartType">
+        EXEC SP_SYS_PART_TYPE_GET #{site_code},#{keyword},''
+    </select>
+    <select id="sysPartTypeOneGet" resultType="mes.sensorview.Common.Various.DTO.SYSPartType">
+        EXEC SP_SYS_PART_TYPE_GET #{site_code},#{keyword},#{keyword2}
     </select>
     <select id="qmsQcItemAllGet" resultType="mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM">
         EXEC SP_SYS_QC_ITEM_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2},''
@@ -51,6 +54,14 @@
     <select id="crmOrderModalGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
 		EXEC [SP_CRM_ORD_RECP_DIALOG_GET] #{site_code}, #{page},#{rows}, #{start_date},#{end_date} ,''
    </select>
+
+    <select id="suppModalGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSSupp">
+        EXEC SP_SYS_SUPP_GET2 #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+    </select>
+
+    <select id="sysPartGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP">
+        EXEC SP_SYS_PART_GROUP_GET #{site_code},0,0,#{keyword},#{keyword2},''
+    </select>
 </mapper>
 
 

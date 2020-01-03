@@ -3,10 +3,12 @@ package mes.sensorview.Common.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -69,8 +71,14 @@ public class VariousRestController {
 
     }
     @RequestMapping(value = "/sysPartTypeGet", method = RequestMethod.POST)
-    public List<PartType> sysPartTypeGet(Page p, HttpServletRequest req) {
+    public List<SYSPartType> sysPartTypeGet(Page p, HttpServletRequest req) {
         return variousService.sysPartTypeGet(p, req);
+
+    }
+
+    @RequestMapping(value = "/sysPartTypeOneGet", method = RequestMethod.POST)
+    public SYSPartType sysPartTypeOneGet(Page p, HttpServletRequest req) {
+        return variousService.sysPartTypeOneGet(p, req);
 
     }
 
@@ -96,4 +104,12 @@ public class VariousRestController {
     public RESTful crmOrderModalGet(HttpServletRequest req,Page p) {
         return variousService.crmOrderModalGet(req,p);
     }
+
+    @RequestMapping(value = "/suppModalGet", method = RequestMethod.POST)
+    public RESTful suppModalGet(HttpServletRequest req, Page p) {
+        return variousService.suppModalGet(req,p);
+    }
+
+    @RequestMapping(value = "/sysPartGroupAllGet", method = RequestMethod.POST)
+    public List<SYS_PART_GROUP> sysPartGroupAllGet(HttpServletRequest req,Page p){ return variousService.sysPartGroupAllGet(req,p);}
 }
