@@ -21,10 +21,23 @@ $(document).ready(function () {
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
-
+function select_change1(value) {
+    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
+        $('#part_group1').text(value.part_group1);
+        $('#part_group2').text(value.part_group2);
+        $('#part_group3').text(value.part_group3);
+    });
+}
 ////////////////////////////호출 함수//////////////////////////////////
 function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''});
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
+            console.log(value);
+            $('#part_group1').text(value.part_group1);
+            $('#part_group2').text(value.part_group2);
+            $('#part_group3').text(value.part_group3);
+        })
+    });
 }
 
 function jqGrid_main() {
