@@ -7,32 +7,33 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100">
-                        <select name="keyword" class="form-control h-25 suppModal_condition" id="supp_modal_keyword">
-                            <option value="supp_name">업체명</option>
-                            <option value="supp_code">업체코드</option>
+                        <select name="keyword" id="gubun_select" class="form-control keyword suppModal_condition" style="width:100%">
+                            <option value="CORP_TYPE1">고객사</option>
+                            <option value="CORP_TYPE2">협력사</option>
+                            <option value="CORP_TYPE3">외주업체</option>
                         </select>
                     </td>
                     <td class="wt-px-200">
-                        <input name="keyword3" type="text" class="form-control h-25 suppModal_condition" id="supp_modal_keyword2">
+                        <input name="keyword2" type="text" class="form-control h-25 suppModal_condition">
                     </td>
                     <td>
                         <div class="dt-buttons btn-overlap btn-group">
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="" onclick="suppModal_get_btn(1)">
+                            <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" title="" onclick="suppModal_get_btn(1)">
 			                        <span>
 			                            <i class="fa fa-search bigger-110 blue"></i>
 			                            <span>조회</span>
 			                        </span>
                             </a>
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" title="" onclick="suppModal_check()">
+                            <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" title="" onclick="suppModal_check()">
 			                        <span>
 			                            <i class="fa fa-check bigger-110 blue"></i>
 			                            <span>선택</span>
 			                        </span>
                             </a>
-                            <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" id="close_btn2" onclick="suppModal_close()">
+                            <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" onclick="suppModal_close()">
 			                        <span>
 			                            <i class="fa fa-times bigger-110 blue"></i>
-			                            <span>취소</span>
+			                            <span>닫기</span>
 			                        </span>
                             </a>
                         </div>

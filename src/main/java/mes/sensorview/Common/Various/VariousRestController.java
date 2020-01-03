@@ -103,4 +103,9 @@ public class VariousRestController {
     public RESTful crmOrderModalGet(HttpServletRequest req,Page p) {
         return variousService.crmOrderModalGet(req,p);
     }
+
+    @RequestMapping(value = "/suppModalGet", method = RequestMethod.POST)
+    public RESTful suppModalGet(HttpServletRequest req, Page p) {
+        return variousService.suppModalGet(req,p);
+    }
 }

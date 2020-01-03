@@ -1,30 +1,44 @@
+var suppModal_data = {
+    send_data: {},
+    send_data_post: {},
+}
+
+
+
 ////////////////////////////시작 함수/////////////////////////////////////
 function suppModal_start() {
 
     suppModal_make();
     suppModal_jqGrid();
-
     jqGridResize("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+    selectBox_suppModal();
 }
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function suppModal_get_btn(page) {
-    var supp_send_data = value_return(".suppModal_condition");
-    var data_go = {}
-    if (supp_send_data.keyword === 'supp_name'){
-        data_go = {keyword2 : supp_send_data.keyword3,keyword:""};
-    } else {
-        data_go = {keyword : supp_send_data.keyword3,keyword2:""};
-    }
-
+    suppModal_data.send_data = value_return(".suppModal_condition");
+    console.log(suppModal_data);
     $("#SuppSearchGrid").setGridParam({
-        url: '/sysSuppGet',
+        url: '/suppModalGet',
         datatype: "json",
         page: page,
-        postData: data_go,
+        postData: suppModal_data.send_data
     }).trigger("reloadGrid");
+    // var data_go = {}
+    // if (supp_send_data.keyword === 'supp_name'){
+    //     data_go = {keyword2 : supp_send_data.keyword3,keyword:""};
+    // } else {
+    //     data_go = {keyword : supp_send_data.keyword3,keyword2:""};
+    // }
+
+    // $("#SuppSearchGrid").setGridParam({
+    //     url: '/sysSuppGet',
+    //     datatype: "json",
+    //     page: page,
+    //     postData: data_go,
+    // }).trigger("reloadGrid");
 }
 
 function suppModal_check() {
@@ -47,8 +61,9 @@ function suppModal_close() {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
-
-
+function selectBox_suppModal() {
+    $('#gubun_select').select2();
+}
 
 function suppModal_make() {
     $("#supp-search-dialog").dialog({
@@ -61,7 +76,29 @@ function suppModal_make() {
             {
                 "class": "hide",
             }
-        ]
+        ],
+        open: function () {
+            if ($.ui && $.ui.dialog && !$.ui.dialog.prototype._allowInteractionRemapped && $(this).closest(".ui-dialog").length) {
+                if ($.ui.dialog.prototype._allowInteraction) {
+                    $.ui.dialog.prototype._allowInteraction = function (e) {
+                        if ($(e.target).closest('.select2-drop').length) return true;
+
+                        if (typeof ui_dialog_interaction!="undefined") {
+                            return ui_dialog_interaction.apply(this, arguments);
+                        } else {
+                            return true;
+                        }
+                    };
+                    $.ui.dialog.prototype._allowInteractionRemapped = true;
+                }
+                else {
+                    $.error("You must upgrade jQuery UI or else.");
+                }
+            }
+        },
+        _allowInteraction: function (event) {
+            return !!$(e.target).closest('.ui-dialog, .ui-datepicker, .select2-drop').length;
+        }
 
     });
 

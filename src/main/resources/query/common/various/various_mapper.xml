@@ -54,6 +54,10 @@
     <select id="crmOrderModalGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
 		EXEC [SP_CRM_ORD_RECP_DIALOG_GET] #{site_code}, #{page},#{rows}, #{start_date},#{end_date} ,''
    </select>
+
+    <select id="suppModalGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSSupp">
+        EXEC SP_SYS_SUPP_GET2 #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+    </select>
 </mapper>
 
 
