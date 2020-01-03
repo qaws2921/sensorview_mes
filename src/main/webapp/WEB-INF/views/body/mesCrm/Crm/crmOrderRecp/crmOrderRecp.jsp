@@ -128,8 +128,10 @@
                             <td class="wt-px-200">
                                 <input type="text" name="qty" class="form-control main_value" onkeyup="sum_qty_keyup();">
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td class="wt-px-100 td-title t-align-c">수축튜브</td>
+                            <td>
+                                <input type="text" class="form-control main_value">
+                            </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c">옵션</td>
