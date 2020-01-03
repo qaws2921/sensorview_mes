@@ -173,7 +173,7 @@ function selectBox() {
     $("#price_type_select").select2();
     $("#prod_type_select").select2();
     $("#delivery_price_select").select2();
-    select_makes2("#part_type_select", "/getPartType", "part_type_code", "part_type_name").then(function (data) {
+    select_makes2("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name").then(function (data) {
         select_makes3("#partGrp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name",{keyword:data}).then(function (data2) {
             select_makes_sub("#part_select", "/sysBPartAllGet", "part_code", "part_name", {keyword: data,keyword2:data2}, "N");
             select_makes_sub("#part_select2", "/sysBPartAllGet", "part_code", "part_name", {keyword: data,keyword2:data2}, "N");

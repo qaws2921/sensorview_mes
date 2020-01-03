@@ -96,12 +96,12 @@ function delete_btn() {
     }
 }
 
-function select_change1(e) {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:e.target.value}).then(function (value) {
+function select_change1(value) {
+    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
         $('#part_group_select').empty();
         var option = null;
         for (var j = 1; j <= 3; j++) {
-            option = $("<option></option>").text(value['part_group'+j]);
+            option = $("<option></option>").text(value['part_group'+j]).val(j);
             $('#part_group_select').append(option);
         }
         $('#part_group_select').select2();
@@ -117,7 +117,7 @@ function selectBox() {
             $('#part_group_select').empty();
             var option = null;
             for (var j = 1; j <= 3; j++) {
-                option = $("<option></option>").text(value['part_group'+j]);
+                option = $("<option></option>").text(value['part_group'+j]).val(j);
                 $('#part_group_select').append(option);
             }
             $('#part_group_select').select2();
