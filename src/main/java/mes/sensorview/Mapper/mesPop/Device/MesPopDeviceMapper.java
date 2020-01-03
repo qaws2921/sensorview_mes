@@ -3,7 +3,8 @@ package mes.sensorview.Mapper.mesPop.Device;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Device.DTO.POP_PC_CD;
-import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
+import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB;
 
 import java.util.List;
 
@@ -16,4 +17,18 @@ public interface MesPopDeviceMapper {
     Message popPCDel(POP_PC_CD ppc);
 
     POP_PC_CD popPCOneGet(Page p);
+
+    List<POP_TERMINAL_CD> popTerminalGet(Page p);
+
+    POP_TERMINAL_CD popTerminalOneGet(Page p);
+
+    Message popTerminalAdd(POP_TERMINAL_CD ptc);
+
+    Message popTerminalDel(POP_TERMINAL_CD ptc);
+
+    List<POP_TERMINAL_SUB> popTerminalSubGet(Page p);
+
+    Message popTerminalSubAdd(POP_TERMINAL_SUB pts);
+
+    Message popTerminalSubDel(POP_TERMINAL_SUB pts);
 }

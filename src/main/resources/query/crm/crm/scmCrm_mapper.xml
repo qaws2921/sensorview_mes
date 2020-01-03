@@ -4,14 +4,12 @@
 <mapper namespace="mes.sensorview.Mapper.mesCrm.Crm.CrmMapper">
     <select id="crmRecpAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_CRM_ORD_RECP_ADD
-    	#{site_code}, #{ord_no}, #{supp_code}, #{user_code}, #{work_date},
-    	#{status1},#{status2}, #{status3}, #{end_date},#{end_supp_code},
-    	#{part_type}, #{part_grp_code}, #{part_code}, #{work_type},#{connector1},
-    	#{connector2}, #{part_length}, #{part_desc},#{qty},#{unit_type},
-    	#{option1}, #{option2}, #{option3},#{remark}, #{crm_type},
-    	#{delivery}, #{delivery_corp},#{delivery_price},#{sale_type}, #{price_type},
-    	#{prod_type}, #{sample},#{currency_type}, #{unit_price}, #{price},
-    	#{supp_ord_no},#{payment},#{supp_user_name}, #{supp_tel_no}, 'I'
+    	#{site_code}, #{ord_no}, #{work_date},#{status1},#{status2},#{end_date},#{supp_code},
+    	#{end_supp_code},#{part_type},#{part_grp_code},#{part_code},#{work_type},#{connector1},
+    	#{connector2},#{part_length},#{qty},#{unit_type},#{tube},#{option1}, #{option2}, #{option3},
+		#{remark}, #{crm_type},#{delivery}, #{delivery_corp},#{delivery_price},#{sale_type},#{price_type},
+    	#{prod_type}, #{sample},#{currency_type},#{unit_price},#{price},#{supp_ord_no},#{payment},#{supp_user_name},
+    	#{supp_tel_no},#{user_code},'I'
     </select>
 
 	<select id="crmProdOrderGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">

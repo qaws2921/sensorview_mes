@@ -17,6 +17,7 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수////////////////////////////////
 
 function add_btn() {
+
     var data = value_return(".main_value");
     data.work_date = data.work_date.replace(/\-/g, '');
     data.end_date =  data.end_date.replace(/\-/g, '');
