@@ -19,6 +19,8 @@ var array =
         {code: "sysBOMList", title: '관리자', sub: '마스터관리', name: 'BOM현황'},
 
         // 자재관리
+        {code: "sysPartGroup", title: '자재관리', sub:'기준정보', name:'품목그룹 관리'},
+        {code: "sysPart", title: '자재관리', sub:'기준정보', name:'품목정보 관리'},
         {code: "sysBPartGroup", title: '자재관리', sub: '기준정보', name: '자재그룹관리'},
         {code: "sysBPart", title: '자재관리', sub: '기준정보', name: '자재정보관리'},
         {code: "sysLoc", title: '자재관리', sub: '기준정보', name: '로케이션관리'},
@@ -144,7 +146,7 @@ $(function () {
                 },
             error: function (request,status,error) {
                 if(request.status == 200){
-                    const newTab = window.open('http://localhost:8888/h_index', '_blank');
+                    var newTab = window.open('http://localhost:8888/h_index', '_blank');
                     newTab.focus();
                 }else{
                     alert('헬프데스크 인증에 실패하였습니다.');
