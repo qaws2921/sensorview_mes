@@ -140,7 +140,7 @@ $(function () {
                     site_code : $('#hstcd').val(),
                     user_code : $('#huscd').val(),
                     user_name : $('#husnm').val(),
-                    url : window.location.host
+                    url : "http://"+window.location.host
                 },
             error: function (request,status,error) {
                 if(request.status == 200){
