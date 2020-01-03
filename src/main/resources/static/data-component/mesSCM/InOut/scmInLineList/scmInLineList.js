@@ -6,7 +6,6 @@
 var main_data = {
     check: 'I',
     send_data: {},
-    send_data_post: {},
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -17,14 +16,11 @@ $(document).ready(function () {
     jqGrid_main();
     jqgridPagerIcons();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    jqGridResize('#mes_grid2', $('#mes_grid2').closest('[class*="col-"]'));
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
 function get_btn(page) {
     main_data.send_data = value_return2(".condition_main");
-    main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/scmInLineListGet',
         datatype: "json",
@@ -34,25 +30,6 @@ function get_btn(page) {
     $('#mes_grid2').jqGrid('clearGridData');
 }
 
-function get_btn_post(page) {
-    $("#mes_grid").setGridParam({
-        url: '/scmInLineListGet',
-        datatype: "json",
-        page: page,
-        postData: main_data.send_data_post
-    }).trigger("reloadGrid");
-    $('#mes_grid2').jqGrid('clearGridData');
-}
-
-function under_get(rowid) {
-
-    $("#mes_grid2").setGridParam({
-        url: '/scmInLineSubListGet',
-        datatype: "json",
-        page: 1,
-        postData: {keyword: rowid}
-    }).trigger("reloadGrid");
-}
 
 ////////////////////////////호출 함수//////////////////////////////////
 
@@ -86,7 +63,7 @@ function jqGrid_main() {
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
-        height: 180,
+        height: 550,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
@@ -96,27 +73,6 @@ function jqGrid_main() {
         },
     });
 
-    $('#mes_grid2').jqGrid({
-        mtype: 'POST',
-        datatype: "local",
-        caption: "재입고현황 | MES",
-        colNames: ['입고번호', '품목그룹', '품번', '품명', '규격', '단위', '수량', '바코드'],
-        colModel: [
-            {name: 'in_no', index: 'in_no', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: 'qty', index: 'qty', sortable: false, width: 60},
-            {name: 'bcr_no', index: 'bcr_no', sortable: false, width: 60},
-        ],
-        autowidth: true,
-        viewrecords: true,
-        height: 200,
-        rowNum: 100,
-        pager: '#mes_grid2_pager',
 
-    });
 }
 
