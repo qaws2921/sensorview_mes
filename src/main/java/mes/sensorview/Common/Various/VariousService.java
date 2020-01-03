@@ -11,6 +11,7 @@ import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -113,5 +114,10 @@ public class VariousService extends ReturnFunction {
     public SYSPartType sysPartTypeOneGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysPartTypeOneGet(p);
+    }
+
+    public List<SYS_PART_GROUP> sysPartGroupAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysPartGroupAllGet(p);
     }
 }

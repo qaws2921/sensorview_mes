@@ -23,26 +23,40 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 function select_change1(value) {
     ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
-        $('#part_group1').text(value.part_group1);
-        $('#part_group2').text(value.part_group2);
-        $('#part_group3').text(value.part_group3);
+        for(var i=1; i<=3;i++) {
+            group_cb(value,i);
+        }
     });
 }
 ////////////////////////////호출 함수//////////////////////////////////
+
+function group_cb(value,i) {
+    $('#part_group'+i).text(value["part_group"+i]);
+    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
+        console.log(value1)
+        $('#part_group_select'+i).empty();
+        var option = null;
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+            $('#part_group_select'+i).append(option);
+        }
+        $('#part_group_select'+i).select2();
+    });
+}
+
 function selectBox() {
     part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
         ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
             console.log(value);
-            $('#part_group1').text(value.part_group1);
-            $('#part_group2').text(value.part_group2);
-            $('#part_group3').text(value.part_group3);
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+            }
         })
     });
 }
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
-
         datatype: "local",
         mtype: 'POST',
         colNames: ['구분','t1','t2','t3','품목코드','품목명','보관로케이션','업체명','규격','단위','L/T','검사기준','검사구분','재고최대','재고최소','등록자','수정일'],

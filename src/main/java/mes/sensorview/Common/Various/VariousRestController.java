@@ -8,6 +8,7 @@ import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -108,4 +109,7 @@ public class VariousRestController {
     public RESTful suppModalGet(HttpServletRequest req, Page p) {
         return variousService.suppModalGet(req,p);
     }
+
+    @RequestMapping(value = "/sysPartGroupAllGet", method = RequestMethod.POST)
+    public List<SYS_PART_GROUP> sysPartGroupAllGet(HttpServletRequest req,Page p){ return variousService.sysPartGroupAllGet(req,p);}
 }

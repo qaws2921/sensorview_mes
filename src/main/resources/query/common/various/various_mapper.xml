@@ -58,6 +58,10 @@
     <select id="suppModalGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSSupp">
         EXEC SP_SYS_SUPP_GET2 #{site_code},#{page},#{rows},#{keyword},#{keyword2}
     </select>
+
+    <select id="sysPartGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP">
+        EXEC SP_SYS_PART_GROUP_GET #{site_code},0,0,#{keyword},#{keyword2},''
+    </select>
 </mapper>
 
 

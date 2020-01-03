@@ -20,4 +20,5 @@ public class SYS_PART_GROUP {
     private int rownum_page;
     private int rec_count;
     private String keyword;
+    private String keyword2;
 }

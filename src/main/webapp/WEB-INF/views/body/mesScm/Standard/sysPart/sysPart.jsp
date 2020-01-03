@@ -18,17 +18,17 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main">
+                        <select id="part_group_select1" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main">
+                        <select id="part_group_select2" class="form-control keyword condition_main"  style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main">
+                        <select id="part_group_select3" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
