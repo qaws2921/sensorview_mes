@@ -667,14 +667,14 @@ function jqGrid_main() {
 
 
 function cell(cellvalue, options, rowObject) {
-    if (rowObject.menu_name === '게시판') {
-        if (rowObject.level === 1) {
-            return '<img src="/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
-        } else if (rowObject.level === 2) {
-            return "           " + '<img src="/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
-        }
-
-    } else {
+    // if (rowObject.menu_name === '게시판') {
+    //     if (rowObject.level === 1) {
+    //         return '<img src="/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
+    //     } else if (rowObject.level === 2) {
+    //         return "           " + '<img src="/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
+    //     }
+    //
+    // } else {
         if (rowObject.level === 1) {
             return '<img src="/ui-component/assets/images/icon/folder.png" style="max-width: 17px;" />' + cellvalue;
         } else if (rowObject.level === 2) {
@@ -682,5 +682,5 @@ function cell(cellvalue, options, rowObject) {
         } else if (rowObject.level === 3) {
             return '		<img src="/ui-component/assets/images/icon/File.png" style="max-width: 17px;" />' + cellvalue;
         }
-    }
+    //}
 }
