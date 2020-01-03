@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.mesSCM.Standard;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
@@ -26,4 +27,6 @@ public interface ScmStandardMapper {
     sysBPart sysBPartOneGet(Page p);
 
     Message sysBPartAdd(sysBPart vo);
+
+    List<SYS_PART_GROUP> sysPartGroupGet(Page p);
 }
