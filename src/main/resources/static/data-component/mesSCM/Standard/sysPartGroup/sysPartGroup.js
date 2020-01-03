@@ -82,7 +82,7 @@ function delete_btn() {
         alert("삭제하는 데이터를 선택해주세요");
     } else {
         if (confirm("삭제하겠습니까?")) {
-
+            wrapWindowByMask2();
             var list = [];
             var data;
 
@@ -92,18 +92,20 @@ function delete_btn() {
             });
 
             main_data.check = 'D';
-            wrapWindowByMask2();
-            ccn_ajax("/sysPartGroupDel", {keyword: list.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
+            callback(function () {
+                ccn_ajax("/sysPartGroupDel", {keyword: list.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
             });
+
         }
     }
 }
