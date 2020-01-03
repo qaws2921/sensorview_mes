@@ -2,6 +2,7 @@ package mes.sensorview.Mapper.Various;
 
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
+import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
@@ -32,7 +33,7 @@ public interface VariousMapper {
 
     List<SYSCommon> sysCommonAllGet(Page p);
 
-    List<PartType> sysPartTypeGet(Page p);
+    List<SYSPartType> sysPartTypeGet(Page p);
 
     List<SYS_QC_ITEM> qmsQcItemAllGet(Page p);
 
@@ -44,4 +45,6 @@ public interface VariousMapper {
     SYSAuthProgram menuAuthGet(Page p);
 
     List<CRM_ORD_RECP> crmOrderModalGet(Page p);
+
+    SYSPartType sysPartTypeOneGet(Page p);
 }

@@ -3,6 +3,7 @@ package mes.sensorview.Common.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
+import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
@@ -69,8 +70,14 @@ public class VariousRestController {
 
     }
     @RequestMapping(value = "/sysPartTypeGet", method = RequestMethod.POST)
-    public List<PartType> sysPartTypeGet(Page p, HttpServletRequest req) {
+    public List<SYSPartType> sysPartTypeGet(Page p, HttpServletRequest req) {
         return variousService.sysPartTypeGet(p, req);
+
+    }
+
+    @RequestMapping(value = "/sysPartTypeOneGet", method = RequestMethod.POST)
+    public SYSPartType sysPartTypeOneGet(Page p, HttpServletRequest req) {
+        return variousService.sysPartTypeOneGet(p, req);
 
     }
 

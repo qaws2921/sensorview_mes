@@ -96,11 +96,34 @@ function delete_btn() {
     }
 }
 
+function select_change1(e) {
+    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:e.target.value}).then(function (value) {
+        $('#part_group_select').empty();
+        var option = null;
+        for (var j = 1; j <= 3; j++) {
+            option = $("<option></option>").text(value['part_group'+j]);
+            $('#part_group_select').append(option);
+        }
+        $('#part_group_select').select2();
+    })
+}
 
 ////////////////////////////호출 함수//////////////////////////////////
 
+
 function selectBox() {
-    select_makes("#gubun_select", "/sysPartTypeGet", "part_type_code", "part_type_name");
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
+            $('#part_group_select').empty();
+            var option = null;
+            for (var j = 1; j <= 3; j++) {
+                option = $("<option></option>").text(value['part_group'+j]);
+                $('#part_group_select').append(option);
+            }
+            $('#part_group_select').select2();
+        })
+    });
+
 
 }
 
