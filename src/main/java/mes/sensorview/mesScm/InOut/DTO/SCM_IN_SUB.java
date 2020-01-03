@@ -25,7 +25,8 @@ public class SCM_IN_SUB {
     private String sub;
     private int rownum_page;
     private int rec_count;
-
+    private String qc_result_name;
+    private String mrb;
     private String status_name;
     private String user_name;
     private String update_date;
