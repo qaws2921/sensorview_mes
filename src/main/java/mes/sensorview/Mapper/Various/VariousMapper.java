@@ -2,17 +2,16 @@ package mes.sensorview.Mapper.Various;
 
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
-import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesManager.Master.DTO.SYSSupp;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
-import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 
 import java.util.List;
@@ -44,4 +43,6 @@ public interface VariousMapper {
     SYSAuthProgram menuAuthGet(Page p);
 
     List<CRM_ORD_RECP> crmOrderModalGet(Page p);
+
+    List<SYSSupp> suppModalGet(Page p);
 }

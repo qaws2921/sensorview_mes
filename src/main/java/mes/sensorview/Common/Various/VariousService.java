@@ -4,7 +4,6 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
-import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
@@ -15,7 +14,7 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
-import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
+import mes.sensorview.mesManager.Master.DTO.SYSSupp;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,5 +102,11 @@ public class VariousService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<CRM_ORD_RECP> rows = variousMapper.crmOrderModalGet(p);
         return getListData(rows , p);
+    }
+
+    public RESTful suppModalGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYSSupp> rows = variousMapper.suppModalGet(p);
+        return getListData(rows, p);
     }
 }
