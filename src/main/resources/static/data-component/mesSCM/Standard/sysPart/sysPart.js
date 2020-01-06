@@ -88,8 +88,69 @@ function get_btn_post(page) {
 }
 
 function update_btn(jqgrid_data) {
+    modal_reset(".modal_value", []);
 
+    main_data.check = 'U';
+    console.log(jqgrid_data);
+    ccn_ajax('/sysPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
+
+       return data;
+    }).then(function (data2) {
+        console.log(data2);
+        ccn_ajax('/sysPartGroupAllGet',{keyword:data2.part_type,keyword2:1}).then(function (value1) {
+            $('#part_group_select1_modal1').empty();
+            var option = null;
+            for(var j=0;j<value1.length;j++){
+                option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+                $('#part_group_select1_modal1').append(option);
+            }
+            $('#part_group_select1_modal1').select2();
+            return data2;
+        });
+
+    }).then(function (data3) {
+        console.log(data3);
+        ccn_ajax('/sysPartGroupAllGet',{keyword:data3.part_type,keyword2:2}).then(function (value1) {
+            $('#part_group_select2_modal1').empty();
+            var option = null;
+            for(var j=0;j<value1.length;j++){
+                option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+                $('#part_group_select2_modal1').append(option);
+            }
+            $('#part_group_select2_modal1').select2();
+            return data3;
+        });
+
+    }).then(function (data4) {
+
+        ccn_ajax('/sysPartGroupAllGet',{keyword:data4.part_type,keyword2:3}).then(function (value1) {
+            $('#part_group_select3_modal1').empty();
+            var option = null;
+            for(var j=0;j<value1.length;j++){
+                option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+                $('#part_group_select3_modal1').append(option);
+            }
+            $('#part_group_select3_modal1').select2();
+            return data4;
+        });
+
+    }).then(function (data5) {
+        modal_edits('.modal_value', main_data.readonly, data5); // response 값 출력
+        $('#part_group_select1_modal1').val(data5.part_group1).trigger("change");
+        $('#part_group_select2_modal1').val(data5.part_group2).trigger("change");
+        $('#part_group_select3_modal1').val(data5.part_group3).trigger("change");
+
+
+        // setTimeout(function () {
+        //     $("#loc_select").val(data.loc_code).trigger("change");
+        // },10);
+        $("#addDialog").dialog('open');
+
+    });
 }
+
+
+
 
 
 
@@ -160,7 +221,7 @@ function jqGrid_main() {
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
             {name: 'part_grp_name3', index: 'part_grp_name3', sortable: false, width: 60},
-            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', key:true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'loc_name', index: 'loc_name', sortable: false, width: 60},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
@@ -189,6 +250,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }
