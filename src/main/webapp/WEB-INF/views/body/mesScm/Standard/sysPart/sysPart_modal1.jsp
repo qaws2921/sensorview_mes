@@ -81,7 +81,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">검사등급</div>
             <div class="profile-info-value">
-                <select id="qc_select" name="qc_level" class="form-control keyword modal_value" style="width:100%">
+                <select id="qc_select" name="qc_level" class="form-control modal_value" style="width:100%">
                     <option value="">선택안함</option>
                     <option value="0">무검사</option>
                     <option value="1">샘플검사</option>

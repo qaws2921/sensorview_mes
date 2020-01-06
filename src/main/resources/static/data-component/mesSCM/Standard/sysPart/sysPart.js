@@ -93,7 +93,7 @@ function update_btn(jqgrid_data) {
     ccn_ajax('/sysPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
        return data;
     }).then(function (data2) {
-        for (var i = 1; i <=3; i++){
+        for (var i = 1; i<=3; i++){
             selectBoxPartModal(data2,i)
         }
         return data2;
@@ -103,7 +103,10 @@ function update_btn(jqgrid_data) {
             $('#part_group2_modal1').text(value.part_group2);
             $('#part_group3_modal1').text(value.part_group3);
         });
-        modal_edits('.modal_value', main_data.readonly, data5); // response 값 출력
+        data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
+        modal_edits('.modal_value', main_data.readonly,data5); // response 값 출력
+        console.log(data5);
+
         $("#addDialog").dialog('open');
 
     });
