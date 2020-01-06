@@ -103,7 +103,7 @@ function update_btn(jqgrid_data) {
             $('#part_group2_modal1').text(value.part_group2);
             $('#part_group3_modal1').text(value.part_group3);
         });
-        data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
+        // data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
         modal_edits('.modal_value', main_data.readonly,data5); // response 값 출력
         console.log(data5);
 
