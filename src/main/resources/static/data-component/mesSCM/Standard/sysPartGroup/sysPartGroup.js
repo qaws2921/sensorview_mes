@@ -21,8 +21,6 @@ $(document).ready(function () {
 
     modal_start1();
     jqgridPagerIcons();
-
-
 });
 
 
@@ -30,7 +28,6 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-
     main_data.send_data_post = main_data.send_data;
 
     $("#mes_grid").setGridParam({

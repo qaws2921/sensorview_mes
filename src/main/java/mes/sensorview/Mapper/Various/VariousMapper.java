@@ -5,6 +5,7 @@ import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -50,4 +51,6 @@ public interface VariousMapper {
     SYSPartType sysPartTypeOneGet(Page p);
 
     List<SYS_PART_GROUP> sysPartGroupAllGet(Page p);
+
+    List<SYSCargo> cargoListGet(Page p);
 }

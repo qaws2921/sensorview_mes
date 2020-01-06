@@ -8,6 +8,7 @@ import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -120,4 +121,6 @@ public class VariousService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysPartGroupAllGet(p);
     }
+
+
 }

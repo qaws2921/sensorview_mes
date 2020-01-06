@@ -395,6 +395,3 @@ var findArrayIndex = function (array, predicateFunction) {
 }
 
 
-
-
-

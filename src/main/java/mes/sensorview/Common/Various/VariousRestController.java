@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -112,4 +113,5 @@ public class VariousRestController {
 
     @RequestMapping(value = "/sysPartGroupAllGet", method = RequestMethod.POST)
     public List<SYS_PART_GROUP> sysPartGroupAllGet(HttpServletRequest req,Page p){ return variousService.sysPartGroupAllGet(req,p);}
+
 }
