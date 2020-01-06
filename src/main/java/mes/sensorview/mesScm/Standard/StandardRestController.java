@@ -128,4 +128,9 @@ public class StandardRestController {
         return standardService.sysPartAdd(req, spc);
     }
 
+    @RequestMapping(value = "/sysPartDel", method = RequestMethod.POST)
+    public Message sysPartDel(HttpServletRequest req, SYS_PART_CD spc) {
+        return standardService.sysPartDel(req, spc);
+    }
+
 }

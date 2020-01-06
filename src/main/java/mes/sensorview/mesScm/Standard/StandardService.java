@@ -134,4 +134,9 @@ public class StandardService extends ReturnFunction {
         spc.setUser_code(getSessionData(req).getUser_code());
         return scmStandardMapper.sysPartAdd(spc);
     }
+
+    public Message sysPartDel(HttpServletRequest req, SYS_PART_CD spc) {
+        spc.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartDel(spc);
+    }
 }

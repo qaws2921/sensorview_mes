@@ -29,5 +29,9 @@
     	#{spec},#{unit_code},#{qc_level},#{max_qty},#{min_qty},#{ord_qty},#{user_code},#{keyword}
     </select>
 
+    <select id="sysPartDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_PART_DEL #{site_code},#{keyword}
+    </select>
+
 
 </mapper>

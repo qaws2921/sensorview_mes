@@ -39,4 +39,6 @@ public interface ScmStandardMapper {
     SYS_PART_CD sysPartOneGet(Page p);
 
     Message sysPartAdd(SYS_PART_CD spc);
+
+    Message sysPartDel(SYS_PART_CD spc);
 }
