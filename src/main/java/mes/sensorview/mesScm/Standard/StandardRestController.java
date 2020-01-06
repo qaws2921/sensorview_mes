@@ -123,5 +123,9 @@ public class StandardRestController {
         return standardService.sysPartOneGet(req, p);
     }
 
+    @RequestMapping(value = "/sysPartAdd", method = RequestMethod.POST)
+    public Message sysPartAdd(HttpServletRequest req, SYS_PART_CD spc) {
+        return standardService.sysPartAdd(req, spc);
+    }
 
 }
