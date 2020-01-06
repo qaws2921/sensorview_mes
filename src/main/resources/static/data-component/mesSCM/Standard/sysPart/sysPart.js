@@ -127,6 +127,30 @@ function selectBoxPartModal(value,i) {
 
 
 
+function delete_btn() {
+    var gu5 = String.fromCharCode(5);
+    var ids = $("#mes_grid").getGridParam('selarrrow');
+    if (ids.length === 0) {
+        alert("삭제하는 데이터를 선택해주세요");
+    } else {
+        if (confirm("삭제하겠습니까?")) {
+            main_data.check = 'D';
+            wrapWindowByMask2();
+            ccn_ajax("/sysPartDel", {keyword: ids.join(gu5)}).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    get_btn_post($("#mes_grid").getGridParam('page'));
+                }
+                closeWindowByMask();
+            }).catch(function (err) {
+                closeWindowByMask();
+                console.error(err); // Error 출력
+            });
+        }
+    }
+}
+
 
 ////////////////////////////호출 함수//////////////////////////////////
 
@@ -172,7 +196,6 @@ function group_cb_modal1(value,i) {
 function selectBox() {
     part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
         ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            console.log(value);
             for(var i=1; i<=3;i++) {
                 group_cb(value,i);
                 group_cb_modal1(value,i);
