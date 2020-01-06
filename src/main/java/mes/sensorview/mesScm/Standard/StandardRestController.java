@@ -4,10 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
-import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
-import mes.sensorview.mesScm.Standard.DTO.sysBPart;
-import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
-import mes.sensorview.mesScm.Standard.DTO.sysLoc;
+import mes.sensorview.mesScm.Standard.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -113,6 +110,17 @@ public class StandardRestController {
     @RequestMapping(value = "/sysPartGroupDel", method = RequestMethod.POST)
     public Message sysPartGroupDel(HttpServletRequest req, SYS_PART_GROUP spg) {
         return standardService.sysPartGroupDel(req, spg);
+    }
+
+
+    @RequestMapping(value = "/sysPartGet", method = RequestMethod.POST)
+    public RESTful sysPartGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartOneGet", method = RequestMethod.POST)
+    public SYS_PART_CD sysPartOneGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartOneGet(req, p);
     }
 
 

@@ -6,10 +6,7 @@ import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.Standard.ScmStandardMapper;
-import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
-import mes.sensorview.mesScm.Standard.DTO.sysBPart;
-import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
-import mes.sensorview.mesScm.Standard.DTO.sysLoc;
+import mes.sensorview.mesScm.Standard.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -119,5 +116,16 @@ public class StandardService extends ReturnFunction {
     public Message sysPartGroupDel(HttpServletRequest req, SYS_PART_GROUP spg) {
         spg.setSite_code(getSessionData(req).getSite_code());
         return scmStandardMapper.sysPartGroupDel(spg);
+    }
+
+    public RESTful sysPartGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_CD> rows = scmStandardMapper.sysPartGet(p);
+        return getListData(rows , p);
+    }
+
+    public SYS_PART_CD sysPartOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+       return scmStandardMapper.sysPartOneGet(p);
     }
 }
