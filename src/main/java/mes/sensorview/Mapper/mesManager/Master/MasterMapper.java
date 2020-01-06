@@ -3,9 +3,10 @@ package mes.sensorview.Mapper.mesManager.Master;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesManager.Master.DTO.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
  public interface MasterMapper {
 
     //공통코드관리----------------------

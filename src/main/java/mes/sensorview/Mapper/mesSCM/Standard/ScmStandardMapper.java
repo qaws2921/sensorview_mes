@@ -4,9 +4,10 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.mesScm.Standard.DTO.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface ScmStandardMapper {
     List<sysBPartGroup> sysBPartGroupGet(Page p);
     Message sysBPartGroupDelete(Page p);

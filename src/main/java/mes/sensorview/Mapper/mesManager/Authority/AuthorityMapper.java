@@ -5,9 +5,10 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuth;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface AuthorityMapper {
     List<SYSAuth> sysAuthGet(Page p);
     Message sysAuthAU(SYSAuth sysAuth);

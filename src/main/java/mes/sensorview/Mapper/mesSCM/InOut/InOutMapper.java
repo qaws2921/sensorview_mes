@@ -4,9 +4,10 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesScm.InOut.DTO.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface InOutMapper {
     Message scmInAdd(Page p);
     List<SCM_IN> scmInGet(Page p);

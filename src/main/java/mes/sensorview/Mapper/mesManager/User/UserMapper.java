@@ -6,9 +6,10 @@ import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.User.DTO.SYSDept;
 import mes.sensorview.mesManager.User.DTO.SYSUser;
 import mes.sensorview.mesManager.User.DTO.SYSUserSupp;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface UserMapper {
     Session loginAction(Session session);
     List<SYSDept> sysDeptGet(Page p);

@@ -8,9 +8,10 @@ import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_ALARM;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG_PLAN;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface RegitemMapper {
 
     List<TPM_REG_ITEM_CD> tpmMachineRegItemGet(Page p);
