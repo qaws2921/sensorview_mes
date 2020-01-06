@@ -26,7 +26,7 @@
 
     <select id="sysPartAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_PART_ADD #{site_code},#{part_type},#{part_group1},#{part_group2},#{part_group3},#{part_code},#{part_name},#{cargo_code},#{loc_code},#{supp_code},
-    	#{spec},#{unit_code},#{qc_level},#{max_qty},#{min_qty},#{ord_qty},#{user_code},#{keyword}
+    	#{spec},#{unit_code},#{lt},#{qc_level},#{max_qty},#{min_qty},#{ord_qty},#{user_code},#{keyword}
     </select>
 
     <select id="sysPartDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
