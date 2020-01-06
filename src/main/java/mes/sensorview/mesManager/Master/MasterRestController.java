@@ -134,8 +134,8 @@ public class MasterRestController {
     }
 
     @RequestMapping(value="/sysCargoDelete", method = RequestMethod.POST)
-    public Message sysCargoDelete(Page p){
-        return masterService.sysCargoDelete(p);
+    public Message sysCargoDelete(HttpServletRequest req,Page p){
+        return masterService.sysCargoDelete(req,p);
     }
 
     @RequestMapping(value="/sysSuppListGet", method = RequestMethod.POST)

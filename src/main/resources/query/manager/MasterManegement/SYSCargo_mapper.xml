@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mes.sensorview.Mapper.mesManager.Master.MasterMapper">
     <select id="sysCargoGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCargo">
-    		EXEC SP_SYS_CARGO_GET #{site_code},#{page}, #{rows},#{keyword},'',''
+    		EXEC SP_SYS_CARGO_GET #{site_code},#{page}, #{rows},'',''
     </select>
 
     <select id="sysCargoBAllGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCargo">
@@ -10,13 +10,13 @@
     </select>
 
     <select id="sysCargoAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_CARGO_ADD #{site_code},#{cargo_grp_code},#{cargo_code},#{cargo_name},#{qty_yn},#{use_yn},#{user_code},#{keyword}
+    	EXEC SP_SYS_CARGO_ADD #{site_code},#{cargo_code},#{cargo_name},#{use_yn},#{user_code},#{keyword}
     </select>
     <select id="sysCargoDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_CARGO_DEL #{keyword}
+    	EXEC SP_SYS_CARGO_DEL #{site_code}, #{keyword}
     </select>
     <select id="sysCargoOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCargo">
-    		EXEC SP_SYS_CARGO_GET #{site_code},1, 1,'',#{keyword},''
+    		EXEC SP_SYS_CARGO_GET #{site_code},1, 1,#{keyword},''
     </select>
 
 </mapper>

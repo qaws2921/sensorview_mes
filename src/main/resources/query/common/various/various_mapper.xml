@@ -62,6 +62,22 @@
     <select id="sysPartGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP">
         EXEC SP_SYS_PART_GROUP_GET #{site_code},0,0,#{keyword},#{keyword2},''
     </select>
+
+    <select id="partGroup1" resultType="mes.sensorview.Common.Various.DTO.VT_PART_GROUP">
+        SELECT * FROM VT_PART_GROUP1 WHERE SITE_CODE = #{site_code} AND PART_TYPE = #{keyword}
+        ORDER BY PART_GRP_CODE
+    </select>
+    <select id="partGroup2" resultType="mes.sensorview.Common.Various.DTO.VT_PART_GROUP">
+        SELECT * FROM VT_PART_GROUP2 WHERE SITE_CODE = #{site_code} AND PART_TYPE = #{keyword}
+         ORDER BY PART_GRP_CODE
+    </select>
+    <select id="partGroup3" resultType="mes.sensorview.Common.Various.DTO.VT_PART_GROUP">
+        SELECT * FROM VT_PART_GROUP3 WHERE SITE_CODE = #{site_code} AND PART_TYPE = #{keyword}
+         ORDER BY PART_GRP_CODE
+    </select>
+
+
+
 </mapper>
 
 

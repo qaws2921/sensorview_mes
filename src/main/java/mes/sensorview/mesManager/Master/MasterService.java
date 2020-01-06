@@ -124,8 +124,8 @@ public class MasterService extends ReturnFunction {
         return masterMapper.sysCargoAdd(scv);
     }
 
-    public Message sysCargoDelete(Page p){
-        p.setKeyword(p.getKeyword());
+    public Message sysCargoDelete(HttpServletRequest req,Page p){
+        p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.sysCargoDelete(p);
     }
 

@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
+import mes.sensorview.Common.Various.DTO.VT_PART_GROUP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
@@ -51,4 +52,10 @@ public interface VariousMapper {
     SYSPartType sysPartTypeOneGet(Page p);
 
     List<SYS_PART_GROUP> sysPartGroupAllGet(Page p);
+
+    List<VT_PART_GROUP> partGroup1(Page p);
+
+    List<VT_PART_GROUP> partGroup2(Page p);
+
+    List<VT_PART_GROUP> partGroup3(Page p);
 }
