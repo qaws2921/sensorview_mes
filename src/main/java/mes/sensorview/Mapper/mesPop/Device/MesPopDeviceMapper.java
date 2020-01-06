@@ -5,9 +5,11 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Device.DTO.POP_PC_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MesPopDeviceMapper {
 
     List<POP_PC_CD> popPCGet(Page p);

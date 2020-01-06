@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.Various;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
+import mes.sensorview.Common.Various.DTO.VT_PART_GROUP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCargo;
@@ -15,9 +16,10 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface VariousMapper {
     List<SYSSupp> sysSuppGet(Page p);
 
@@ -52,5 +54,9 @@ public interface VariousMapper {
 
     List<SYS_PART_GROUP> sysPartGroupAllGet(Page p);
 
-    List<SYSCargo> cargoListGet(Page p);
+    List<VT_PART_GROUP> partGroup1(Page p);
+
+    List<VT_PART_GROUP> partGroup2(Page p);
+
+    List<VT_PART_GROUP> partGroup3(Page p);
 }

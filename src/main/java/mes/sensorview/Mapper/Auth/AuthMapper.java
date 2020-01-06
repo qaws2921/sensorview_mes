@@ -4,8 +4,10 @@ import mes.sensorview.Common.Auth.Auth;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.Interceptor.Session;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface AuthMapper {
     List<Auth> authSubSelect(Session session);
     SYSAuthProgram menuAuth(Page p);

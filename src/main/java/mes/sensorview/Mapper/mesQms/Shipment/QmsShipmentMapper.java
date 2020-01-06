@@ -6,9 +6,10 @@ import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface QmsShipmentMapper {
     List<QMS_PROD_SUB> qmsProdErrorManGet(Page p);
 

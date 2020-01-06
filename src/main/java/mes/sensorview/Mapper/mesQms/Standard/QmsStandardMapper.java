@@ -5,9 +5,10 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_DIAMETER;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface QmsStandardMapper {
 
     Message qmsQcItemDel(Page p);

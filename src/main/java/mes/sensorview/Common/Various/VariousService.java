@@ -5,10 +5,10 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
+import mes.sensorview.Common.Various.DTO.VT_PART_GROUP;
 import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
-import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -122,5 +122,19 @@ public class VariousService extends ReturnFunction {
         return variousMapper.sysPartGroupAllGet(p);
     }
 
+    public List<VT_PART_GROUP> partGroup1(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.partGroup1(p);
 
+    }
+
+    public List<VT_PART_GROUP> partGroup2(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.partGroup2(p);
+    }
+
+    public List<VT_PART_GROUP> partGroup3(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.partGroup3(p);
+    }
 }

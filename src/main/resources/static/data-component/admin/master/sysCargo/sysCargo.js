@@ -37,9 +37,6 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수/////////////////////////////////////
 // 조회 버튼
 function get_btn(page) {
-    main_data.send_data = value_return(".condition_main"); // value_return 클래스명 넣으면 name에 맞게 객체 생성
-
-    main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
 
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/sysCargoGet',
@@ -49,15 +46,6 @@ function get_btn(page) {
     }).trigger("reloadGrid");
 }
 
-// 수정 삭제 시 호출 하는 조회
-function get_btn_post(page) {
-    $("#mes_grid").setGridParam({ // 그리드 조회
-        url: '/sysCargoGet',
-        datatype: "json",
-        page: page,
-        postData: main_data.send_data_post
-    }).trigger("reloadGrid");
-}
 
 // 추가 버튼
 function add_btn() {
@@ -66,7 +54,6 @@ function add_btn() {
 
     main_data.check = 'I'; // 저장인지 체크
 
-    modalValuePush("#cargo_select","#cargo_grp_code","#cargo_grp_name"); // name1의 값을 name2,name3 에 넣어줌
 
     $("#addDialog").dialog('open'); // 모달 열기
 }
@@ -99,7 +86,7 @@ function delete_btn() {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
+                    get_btn($("#mes_grid").getGridParam('page'));
                 }
                 closeWindowByMask();
             }).catch(function (err) {
@@ -122,20 +109,18 @@ function jqGrid_main() {
     $("#mes_grid").jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames:['구분코드','구분','창고코드','창고명','수량관리','활성','등록자','등록일'],
+        colNames:['창고코드','창고명','활성','등록자','등록일'],
         colModel:[
-            {name:'cargo_grp_code',index:'cargo_grp_code',sortable: false,hidden:true},
-            {name:'cargo_grp_name',index:'cargo_grp_name',sortable: false},
+
             {name:'cargo_code',index:'cargo_code',key: true ,sortable: false},
             {name:'cargo_name',index:'cargo_name',sortable: false},
-            {name:'qty_yn',index:'qty_yn',sortable: false},
             {name:'use_yn',index:'use_yn',sortable: false},
             {name:'user_name',index:'user_name',sortable: false},
             {name:'update_date',index:'update_date',formatter:formmatterDate,sortable: false},
         ],
         caption: "창고관리 | MES",
         autowidth: true,
-        height: 450,
+        height: 550,
         pager: '#mes_grid_pager',
         jsonReader: {cell: ""},
         rowNum: 100,

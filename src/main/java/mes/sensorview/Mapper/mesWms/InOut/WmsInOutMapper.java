@@ -6,9 +6,10 @@ import mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB;
 import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD;
 import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
 import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface WmsInOutMapper {
 
     List<WMS_IN_SUB> wmsInListGet(Page p);

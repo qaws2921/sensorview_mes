@@ -19,9 +19,10 @@ import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface ExcelMapper {
     List<sysBPart> testDbList();
     List<SCM_REQ_ORD> scmReqOrderDbList(Excel excel);

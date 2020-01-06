@@ -6,9 +6,10 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface QmsImportMapper {
     List<QMS_RECV> qmsRecvGet(Page p);
 

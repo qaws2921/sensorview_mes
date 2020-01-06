@@ -5,13 +5,6 @@
 
 <div id="addDialog" title="창고관리" style="display: none">
     <div class="profile-user-info profile-user-info-striped">
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 구분 </div>
-            <div class="profile-info-value">
-                <input type="text" name="cargo_grp_name" id="cargo_grp_name" class="form-control modal_value column_text" readonly="readonly">
-                <input type="hidden" name="cargo_grp_code" id="cargo_grp_code" class="form-control modal_value column_main">
-            </div>
-        </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name"> 창고코드 </div>
@@ -25,15 +18,6 @@
             <div class="profile-info-name"> 창고명 </div>
             <div class="profile-info-value">
                 <input type="text" name="cargo_name" class="form-control modal_value">
-            </div>
-        </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 수량관리 </div>
-            <div class="profile-info-value">
-                <select name="qty_yn" class="form-control modal_value ynCheck">
-                    <option>Y</option>
-                    <option>N</option>
-                </select>
             </div>
         </div>
         <div class="profile-info-row">

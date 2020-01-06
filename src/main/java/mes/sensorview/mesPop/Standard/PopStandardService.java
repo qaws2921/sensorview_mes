@@ -7,8 +7,6 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesPop.Standard.MesPopMapper;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
-import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_CD;
-import mes.sensorview.mesPop.Standard.DTO.POP_TERMINAL_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +15,7 @@ import java.util.List;
 
 @Service
 public class PopStandardService extends ReturnFunction {
+
     @Autowired
     private MesPopMapper mesPopMapper;
 

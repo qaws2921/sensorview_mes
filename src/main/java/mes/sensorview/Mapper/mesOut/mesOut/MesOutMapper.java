@@ -8,10 +8,11 @@ import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-public interface    MesOutMapper {
+@Repository
+public interface MesOutMapper {
 
     List<OUTS_OUT_SUB> outsOutListGet(Page p);
 

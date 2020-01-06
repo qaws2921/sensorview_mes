@@ -5,9 +5,10 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface CrmMapper {
 
     List<CRM_ORD_RECP> crmProdOrderGet(Page p);

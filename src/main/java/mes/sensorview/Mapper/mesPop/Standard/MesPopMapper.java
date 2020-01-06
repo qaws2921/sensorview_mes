@@ -4,9 +4,11 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MesPopMapper {
     List<POP_BCR_FORM> popBcrFormGet(Page p);
 
