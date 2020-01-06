@@ -166,7 +166,7 @@ function jqGrid_main() {
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
+            {name: 'lt', index: 'lt', sortable: false, width: 60},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false, width: 60},
             {name: 'max_qty', index: 'max_qty', sortable: false, width: 60},
             {name: 'min_qty', index: 'min_qty', sortable: false, width: 60},
