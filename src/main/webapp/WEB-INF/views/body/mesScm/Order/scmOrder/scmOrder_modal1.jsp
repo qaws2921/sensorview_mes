@@ -10,19 +10,43 @@
                     <td class="wt-px-150 h-25">
                           <span class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value" value="" id="supp_name_modal" onclick="supp_btn('B');" readonly>
-                            <input type="hidden" name="keyword" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
+                            <input type="hidden" name="keyword5" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
                     </td>
 
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword2" class="form-control modal_value" id="grp_select">
+                        <select name="keyword" class="form-control modal_value" id="part_type_select"  onchange="select_change1(this.value);">
 
 
                         </select>
                     </td>
-                    <td></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword2" class="form-control modal_value" id="part_group_select1">
+
+
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword3" class="form-control modal_value" id="part_group_select2">
+
+
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품목그룹</td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword4" class="form-control modal_value" id="part_group_select3">
+
+
+                        </select>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
@@ -64,6 +88,9 @@
         <div class="col-lg-6 padding0" id="content2">
             <table class="table wt-100">
                 <tbody>
+                <tr>
+                    <td class="wt-px-150 h-25" colspan="5"></td>
+                </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">발주일자</td>
                     <td class="wt-px-150 h-25">
@@ -114,22 +141,19 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Payment</td>
                     <td class="wt-px-150">
                         <select name="t_payment" class="form-control modal_value2">
-                            <option value="0">T</option>
                         </select>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Delivery</td>
                     <td class="wt-px-150">
                         <select name="t_delivery" class="form-control modal_value2">
-                            <option value="0">택배</option>
+
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0 ">Delivery</td>
                     <td colspan="3">
-                        <select name="delivery" class="form-control modal_value2">
-                            <option value="0">전체</option>
-                        </select>
+                        <input name="delivery" type="text" class="form-control modal_value2"/>
                     </td>
                 </tr>
                 <tr>
@@ -144,8 +168,8 @@
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Shipping Nomination</td>
                     <td colspan="3">
-                        <select name="shipping_addr" class="form-control modal_value2">
-                            <option value="0">주소</option>
+                        <select name="shipping_addr" class="form-control modal_value2" style="width: 100%">
+
                         </select>
                     </td>
                 </tr>

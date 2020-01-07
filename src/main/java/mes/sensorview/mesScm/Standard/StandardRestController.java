@@ -113,6 +113,11 @@ public class StandardRestController {
     }
 
 
+    @RequestMapping(value = "/sysPartSuppGet", method = RequestMethod.POST)
+    public RESTful sysPartSuppGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartSuppGet(req, p);
+    }
+
     @RequestMapping(value = "/sysPartGet", method = RequestMethod.POST)
     public RESTful sysPartGet(HttpServletRequest req, Page p) {
         return standardService.sysPartGet(req, p);

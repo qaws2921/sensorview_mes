@@ -30,5 +30,6 @@ public class Page {
     private String site_code;
     private String work_date;
     private String gb;
+    private String supp_code;
 
 }
