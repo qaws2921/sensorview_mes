@@ -99,7 +99,6 @@ function selectBox() {
     });
 
 }
-var colNames = ['구분','t1','t2','t3','품목코드','품목명','규격', '단위','전일재고','금일입고','금일출고','재고'];
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
@@ -118,7 +117,7 @@ function jqGrid_main() {
             {name: 'prev_qty', index: 'prev_qty', width: 60},
             {name: 'in_qty', index: 'in_qty', width: 60},
             {name: 'out_qty', index: 'out_qty', width: 60},
-            {name: 'qty', index: 'qty', width: 60},
+            {name: 'qty', index: 'qty', width: 60}
         ],
         caption: "자재 일원장 | MES",
         autowidth: true,

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SCM_STOCK_SUM_MONTH {
-
+    private String part_type_name;
     private String part_grp_name;
     private String part_code;
     private String part_name;
@@ -15,4 +15,9 @@ public class SCM_STOCK_SUM_MONTH {
     private int out_qty;
     private int qty;
     private int rec_count;
+
+
+    private String part_grp_name1;
+    private String part_grp_name2;
+    private String part_grp_name3;
 }

@@ -11,7 +11,7 @@
     </select>
 
     <select id="scmStockSumMonthListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH">
-        EXEC SP_SCM_STOCK_GET_MONTH #{site_code},#{page},#{rows},'','',''
+        EXEC SP_SCM_STOCK_GET_MONTH #{site_code},#{page},#{rows},'','','','','',''
     </select>
 
 
