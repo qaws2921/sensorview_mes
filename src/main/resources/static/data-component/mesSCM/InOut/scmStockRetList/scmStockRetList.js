@@ -79,12 +79,11 @@ function jqGrid_main() {
         datatype: "local",
         mtype: 'POST',
         caption: "자재반출현황 | MES",
-        colNames: ['반출일자', '반출번호', '업체명', '품목그룹', '품번', '품명', '규격', '단위', '반출수량', '등록자', '반출일시'],
+        colNames: ['반출일자', '반출번호', '업체명', '품번', '품명', '규격', '단위', '반출수량', '등록자', '반출일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60,formatter: formmatterDate2},
             {name: 'ret_no', index: 'ret_no', sortable: false, width: 60},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
