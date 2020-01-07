@@ -17,11 +17,16 @@ function get_modal1_btn(page) {
     if ($("#supp_code_modal").val() === '') {
         alert("업체를 선택하세요");
     } else {
+
+
+        var data = value_return(".modal_value");
+
+
         $("#scmInDialogLeftGrid").setGridParam({
-            url: "/sysBPartModalGet",
+            url: "/sysPartSuppGet",
             datatype: "json",
             page: page,
-            postData: value_return(".modal_value")
+            postData: data
         }).trigger("reloadGrid");
     }
 
@@ -109,9 +114,12 @@ function right_modal1_btn() {
         }
 
         var list = [];
+        var checkData={};
         ids.forEach(function (idsfor) {
             if (idsfor !== '') {
-                list.push($("#scmInDialogLeftGrid").getRowData(idsfor));
+                checkData =  $("#scmInDialogLeftGrid").getRowData(idsfor);
+                checkData.check='N';
+                list.push(checkData);
             }
         });
 
@@ -283,14 +291,13 @@ function jqGrid_modal1() {
         datatype: "local",
         multiselect: true,
         caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '포장수량', '검사등급'],
+        colNames: [ '품번', '품명', '규격', '단위', '검사등급'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false},
+
             {name: 'part_code', key: true, index: 'part_code', sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
             {name: 'spec', index: 'spec', sortable: false},
             {name: 'unit_name', index: 'unit_name'},
-            {name: 'qty', index: 'qty'},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
 
         ],
@@ -310,9 +317,8 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "입고등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량', '패킹수', '수량등록'],
+        colNames: ['품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량', '패킹수', '수량등록','발주확인','발주체크'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
             {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
@@ -321,7 +327,9 @@ function jqGrid_modal1() {
             {name: 'lot', index: 'lot', width: 60, sortable: false},
             {name: 'qty', index: 'qty', width: 60, sortable: false},
             {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},
-            {name: 'button', index: 'button', width: 60, formatter: qtyButton, sortable: false}
+            {name: 'button', index: 'button', width: 60, formatter: qtyButton, sortable: false},
+            {name: 'button2', index: 'button2', width: 60, formatter: orderButton, sortable: false},
+            {name: 'check', index: 'check', width: 60,  sortable: false}
 
             // {name: 'in_pty', index: 'in_pty', width: 60
             //     editoptions: {
@@ -444,6 +452,14 @@ function qtyButton(cellvalue, options, rowObject) {
         '                    </a>';
 
 };
+function orderButton(cellvalue, options, rowObject) {
+    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="modal3_modal_open(\'' + rowObject.part_code + '\')">\n' +
+        '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
+        '                            <span>추가</span>\n' +
+        '                            </span>\n' +
+        '                    </a>';
+
+};
 
 
 function modal_make1() {
@@ -457,8 +473,15 @@ function modal_make1() {
 }
 
 function selectBox_modal1() {
-    select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
 
+            }
+
+        })
+    });
 }
 
 function datepickerInput_modal1() {
@@ -466,3 +489,27 @@ function datepickerInput_modal1() {
 
 }
 
+function select_change1(value) {
+    if (value !== ''){
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+            }
+        });
+    }
+}
+
+function group_cb(value,i) {
+    $('#part_group'+i).text(value["part_group"+i]);
+    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
+        $('#part_group_select'+i).empty();
+        var option = null;
+        var allSelect = ($("<option></option>").text("전체").val(""));
+        $('#part_group_select'+i).append(allSelect);
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+            $('#part_group_select'+i).append(option);
+        }
+        $('#part_group_select'+i).select2();
+    });
+}

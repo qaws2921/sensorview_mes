@@ -10,17 +10,42 @@
                     <td class="wt-px-150">
                           <span class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 modal_value modal_value2" value="" id="supp_name_modal" readonly onclick="supp_btn('B');">
-                            <input type="hidden" name="keyword" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
+                            <input type="hidden" name="keyword5" class="form-control h-25 modal_value modal_value2" value="" id="supp_code_modal">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword2" class="form-control modal_value" id="grp_select">
+                        <select name="keyword" class="form-control modal_value" id="part_type_select"  onchange="select_change1(this.value);">
+
 
                         </select>
                     </td>
-                    <td></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword2" class="form-control modal_value" id="part_group_select1">
+
+
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword3" class="form-control modal_value" id="part_group_select2">
+
+
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품목그룹</td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword4" class="form-control modal_value" id="part_group_select3">
+
+
+                        </select>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
