@@ -37,6 +37,7 @@ function update_btn(rowid) {
         $("#supp_code_modal").val(data[0].supp_code);
         $("#datepicker3").val(formmatterDate2(data[0].work_date));
 
+
         $("#mes_modal_grid").setGridParam({
             datatype: "local",
             data: data
