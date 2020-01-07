@@ -28,7 +28,7 @@
                     <td class="wt-px-100 t-align-c td-title padding-a-0">업체</td>
                     <td class="wt-px-150">
                           <span class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25  modal3_condition" value="" id="supp_name_modal3" readonly onclick="supp_btn('B');">
+                            <input type="text" name="supp_name" class="form-control h-25  modal3_condition" value="" id="supp_name_modal3" readonly>
                             <input type="hidden" name="keyword" class="form-control h-25  modal3_condition" value="" id="supp_code_modal3">
                           <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch-Main"></i>
                           </span>
@@ -46,7 +46,7 @@
                                     <span>조회</span>
                                 </span>
                         </a>
-                        <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="crmModal_check();">
+                        <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="modal3_add_btn();">
                                 <span><i class="fa fa-check bigger-110 blue"></i>
                                     <span>적용</span>
                                 </span>

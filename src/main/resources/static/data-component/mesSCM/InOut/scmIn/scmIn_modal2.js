@@ -12,7 +12,7 @@ function modal_start2() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function modal2_add_btn() {
-    if ($(".modal2_check1").val() !== '' || $(".modal2_check2").val() !== '') {
+    if ($(".modal2_check1").val() !== '' && $(".modal2_check2").val() !== '') {
         var data = {};
         var data2 = {};
         var list = [];
@@ -23,6 +23,12 @@ function modal2_add_btn() {
         for (var i = 1; i <= 50; i++) {
             data2 = {};
             if ($("#scmIn_sub" + i).val() !== '' && $("#scmIn2_sub" + i).val() !== '') {
+
+                if (isNaN($("#scmIn2_sub" + i).val())) {
+                    alert(i+'번째 수량항목을 확인해주세요' );
+                    return false;
+                }
+
                 if (check) {
                     $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'lot', $("#scmIn_sub" + i).val());
                     check = false;

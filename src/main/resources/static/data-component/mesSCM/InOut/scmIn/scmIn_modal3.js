@@ -42,16 +42,77 @@ function modal3_close() {
 
 
 function modal3_modal_open(rowid) {
-    modal3_data.part_code = rowid;
 
-    $("#supp_name_modal3").val($("#supp_name_modal").val());
-    $("#supp_code_modal3").val($("#supp_code_modal").val());
+    var data = $('#scmInDialogRightGrid').jqGrid('getRowData', rowid);
 
-    datepicker_makes("#modal3_datepicker", -1);
-    datepicker_makes("#modal3_datepicker2", 0);
+    if (data.qty === ''){
+        alert("수량을 등록해주세요");
+        return false;
+    } else {
+        modal3_data.part_code = rowid;
 
-    $("#addDialog3").dialog('open');
-    jqGridResize2("#modal3Grid", $('#modal3Grid').closest('[class*="col-"]'));
+        $("#supp_name_modal3").val($("#supp_name_modal").val());
+        $("#supp_code_modal3").val($("#supp_code_modal").val());
+
+        datepicker_makes("#modal3_datepicker", -1);
+        datepicker_makes("#modal3_datepicker2", 0);
+
+        $('#modal3Grid').jqGrid("clearGridData");
+        jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: 0});
+        $('#scmInDialogRightGrid').jqGrid('setCell', rowid, 'check', 'N');
+
+        $("#addDialog3").dialog('open');
+        jqGridResize2("#modal3Grid", $('#modal3Grid').closest('[class*="col-"]'));
+    }
+
+}
+
+
+
+function modal3_add_btn() {
+    var data = $('#scmInDialogRightGrid').jqGrid('getRowData', modal3_data.part_code);
+    var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
+    if (data.qty == sumOfPrice){
+        var data = {};
+        var data2 = {};
+        var list = [];
+        data.part_code = modal3_data.part_code;
+
+        var grid3 = $("#modal3Grid").getRowData();
+
+
+        grid3.forEach(function (g) {
+            data2 = {};
+            if (parseInt(g.in_qty) > 0 && g.in_qty !== '') {
+                data2.ord_no = g.ord_no;
+                data2.part_code = g.part_code;
+                data2.in_qty = g.in_qty;
+                data2.result_check = g.result_check;
+                list.push(data2);
+
+            }
+        });
+
+
+        var idx;
+        idx = findArrayIndex(modal3_data.sub_data, function (item) {
+            return item.part_code === data.part_code
+        })
+
+
+        if (idx !== -1) {
+            modal3_data.sub_data.splice(idx, 1);
+        }
+
+        data.list = list;
+        modal3_data.sub_data.push(data);
+        $("#addDialog3").dialog('close');
+        
+    } else {
+        alert("입고수량이 맞지 않습니다.");
+        return false;
+    }
+
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -110,18 +171,20 @@ function modal3_jqGrid() {
                                     alert("숫자만 입력가능합니다.");
                                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
                                     $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
+                                    var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
+                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
                                     return false;
                                 } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(value)) {
                                     alert("입고 가능 수량이 초과 하였습니다.");
                                     e.target.value = 0;
                                     $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
+                                    var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
+                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
                                     return false;
                                 }
                                 $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                 var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
-                                jQuery("#modal3Grid").jqGrid('footerData', 'set', {ord_qty: 'Total:', in_qty: sumOfPrice});
-                                alert(sumOfPrice);
-
+                                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
                             }
                         }
 
@@ -182,7 +245,11 @@ function modal3_jqGrid() {
                     $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', 0);
                     return false;
                 }
+
+                var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
+                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
             }
+
 
 
         },
@@ -190,23 +257,13 @@ function modal3_jqGrid() {
         jsonReader: {cell: ""},
         rowList: [100, 200, 300, 400],
         viewrecords: true,
-        beforeSelectRow: function (rowid, e) {
-            var radio = $(e.target).closest('tr').find('input[type="radio"]');
-            $('input[name="radio_SuppSearchGrid"]').removeAttr("checked").trigger('change');
-            radio.prop('checked', true).trigger('change');
-            return true; // allow row selection
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            crmModal_check();
-
-        },
         footerrow: true,
         userDataOnFooter: true,
         loadComplete: function () {
             var $self = $(this),
                 sum = $self.jqGrid("getCol", "in_qty", false, "sum");
 
-            $self.jqGrid("footerData", "set", {ord_qty: "Total:", in_qty: sum});
+            $self.jqGrid("footerData", "set", {qty: "Total:", in_qty: sum});
         }
 
 
