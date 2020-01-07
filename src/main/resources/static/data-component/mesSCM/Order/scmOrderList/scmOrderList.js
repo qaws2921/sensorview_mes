@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     supp_check: 'A',
     send_data: {},
-    send_data_post: {},
+    send_data_post: {}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -78,12 +78,11 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: 'local',
         mtype: 'POST',
-        colNames: ['발주일자', '발주번호', '업체명', '품목그룹', '품번', '품명', '규격', '단위', '상태', '발주수량', '입고수량', '미입고', '등록자', '등록일시'],
+        colNames: ['발주일자', '발주번호', '업체명', '품번', '품명', '규격', '단위', '상태', '발주수량', '입고수량', '미입고', '등록자', '등록일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'ord_no', index: 'ord_no', sortable: false, width: 80},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
@@ -93,7 +92,7 @@ function jqGrid_main() {
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'not_qty', index: 'not_qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_code', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate}
         ],
         caption: '발주현황 | MES',
         autowidth: true,
@@ -112,7 +111,7 @@ function jqGrid_main() {
 
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            // var data = $('#mes_grid').jqGrid('getRowData', rowid);
         }
     });
 }
