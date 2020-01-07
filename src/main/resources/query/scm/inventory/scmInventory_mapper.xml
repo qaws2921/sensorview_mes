@@ -3,7 +3,7 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Inventory.InventoryMapper">
     <select id="scmStockListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST">
-        EXEC SP_SCM_STOCK_GET #{site_code},#{page},#{rows},'',''
+        EXEC SP_SCM_STOCK_GET #{site_code},#{page},#{rows},'','','','',''
     </select>
 
     <select id="scmStockSumDayListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY">

@@ -15,4 +15,13 @@ public class SCM_STOCK_LIST {
     private int rec_count;
 
     private String supp_name;
+
+    private String site_code;
+    private String cargo_code;
+    private String part_code;
+
+    private String part_grp_name1;
+    private String part_grp_name2;
+    private String part_grp_name3;
+
 }
