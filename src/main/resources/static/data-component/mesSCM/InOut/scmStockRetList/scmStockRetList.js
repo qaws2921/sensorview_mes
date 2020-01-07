@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     supp_check: 'A',
     send_data: {},
-    send_data_post: {},
+    send_data_post: {}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -90,12 +90,12 @@ function jqGrid_main() {
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate}
         ],
         viewrecords: true,
         height: $(window).height() - 450,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: '#mes_grid_pager',
+        pager: '#mes_grid_pager'
     });
 }
