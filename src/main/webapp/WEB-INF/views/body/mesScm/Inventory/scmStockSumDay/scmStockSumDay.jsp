@@ -48,13 +48,22 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="gubun_select" class="form-control keyword condition_main" onchange="select_change1(this.value);" style="width: 100%">
+                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1(this.value);">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목구분</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
                     <td class="wt-px-200">
-                        <select name="keyword2" id="partGrp_select" class="form-control keyword condition_main" style="width: 100%">
-                            <option value="">전체</option>
+                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-200">
+                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
+                    <td class="wt-px-200">
+                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -89,9 +98,11 @@
             </div>
         </div>
     </div>
+    <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
+        <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
+    </div>
+    <div title="알림" id="error-modal" style="display: none;">
+        <p>저장 실패. 관리자에게 문의하세요</p>
+    </div>
 </div>
-
-
-
-
 

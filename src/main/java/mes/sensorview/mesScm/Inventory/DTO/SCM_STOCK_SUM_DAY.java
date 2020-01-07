@@ -15,4 +15,8 @@ public class SCM_STOCK_SUM_DAY {
     private int out_qty;
     private int qty;
     private int rec_count;
+
+    private String part_grp_name1;
+    private String part_grp_name2;
+    private String part_grp_name3;
 }
