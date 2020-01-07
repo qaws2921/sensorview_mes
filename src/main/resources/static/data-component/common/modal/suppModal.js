@@ -26,19 +26,6 @@ function suppModal_get_btn(page) {
         page: page,
         postData: suppModal_data.send_data
     }).trigger("reloadGrid");
-    // var data_go = {}
-    // if (supp_send_data.keyword === 'supp_name'){
-    //     data_go = {keyword2 : supp_send_data.keyword3,keyword:""};
-    // } else {
-    //     data_go = {keyword : supp_send_data.keyword3,keyword2:""};
-    // }
-
-    // $("#SuppSearchGrid").setGridParam({
-    //     url: '/sysSuppGet',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: data_go,
-    // }).trigger("reloadGrid");
 }
 
 function suppModal_check() {
@@ -53,11 +40,9 @@ function suppModal_check() {
     }
 }
 
-
 function suppModal_close() {
     $("#supp-search-dialog").dialog('close');
     suppModal_close_bus();
-
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
