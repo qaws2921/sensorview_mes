@@ -139,4 +139,10 @@ public class StandardService extends ReturnFunction {
         spc.setSite_code(getSessionData(req).getSite_code());
         return scmStandardMapper.sysPartDel(spc);
     }
+
+    public RESTful sysPartSuppGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_CD> rows = scmStandardMapper.sysPartSuppGet(p);
+        return getListData(rows , p);
+    }
 }

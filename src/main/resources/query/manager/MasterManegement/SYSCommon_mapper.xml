@@ -8,7 +8,7 @@
     </select>
     <!--공통코드관리 그리드 리스트 조회 -->
     <select id="sysCommonGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-        EXEC SP_SYS_COMMON_GET #{site_code},#{page},#{rows},#{keyword},''
+        EXEC SP_SYS_COMMON_GET #{site_code},#{page},#{rows},#{keyword},'',''
     </select>
     <!--공통코드관리 공통코드 추가 -->
     <select id="sysCommonAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">

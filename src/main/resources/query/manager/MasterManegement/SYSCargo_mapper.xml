@@ -6,7 +6,7 @@
     </select>
 
     <select id="sysCargoBAllGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCargo">
-    		EXEC SP_SYS_CARGO_GET #{site_code},0, 0,'B','','Y'
+    		EXEC SP_SYS_CARGO_GET #{site_code},0, 0,'','Y'
     </select>
 
     <select id="sysCargoAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">

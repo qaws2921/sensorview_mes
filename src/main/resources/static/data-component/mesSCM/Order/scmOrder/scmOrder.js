@@ -69,16 +69,18 @@ function under_get(rowid) {
 function add_btn() {
     modal_reset(".modal_value", []);
     modal_reset(".modal_value2", []);
+
+
+
     $("#mes_add_grid").jqGrid('clearGridData');
     $("#mes_add_grid2").jqGrid('clearGridData');
 
 
     $("#datepicker3").datepicker('setDate', 'today');
-
+    $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
     $("#view_select option:eq(0)").prop("selected", true).trigger("change");
     $("select[name=t_payment] option:eq(0)").prop("selected", true).trigger("change");
     $("select[name=t_delivery] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=delivery] option:eq(0)").prop("selected", true).trigger("change");
     $("input[name=attachment]:eq(0)").prop("checked", true).trigger("change");
     $("select[name=shipping_addr] option:eq(0)").prop("selected", true).trigger("change");
 

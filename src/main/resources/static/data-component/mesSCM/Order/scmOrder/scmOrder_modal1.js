@@ -14,9 +14,9 @@ function modal_start1() {
 
 function get_modal1_btn(page) {
     var data = value_return(".modal_value");
-    if (data.keyword !== '') {
+    if (data.keyword5 !== '') {
         $("#mes_add_grid").setGridParam({
-            url: "/sysBPartModalGet",
+            url: "/sysPartSuppGet",
             datatype: "json",
             page: page,
             postData: data
@@ -40,11 +40,11 @@ function update_btn(rowid) {
     main_data.check = 'U';
 
     ccn_ajax('/scmOrderSub2Get', {keyword: rowid}).then(function (data) {
-
+        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
         $("select[name=view_amount]").val(data[0].view_amount).trigger("change");
         $("select[name=t_payment]").val(data[0].t_payment).trigger("change");
         $("select[name=t_delivery]").val(data[0].t_delivery).trigger("change");
-        $("select[name=delivery]").val(data[0].delivery).trigger("change");
+        $("input[name=delivery]").val(data[0].delivery).trigger("change");
         $("input:radio[name=attachment]:input[value="+data[0].attachment+"]").prop("checked", true);
         $("select[name=shipping_addr]").val(data[0].shipping_addr).trigger("change");
         $("input[name=remark]").val(data[0].remark).trigger("change");
@@ -70,7 +70,7 @@ function add_modal1_btn() {
     if (main_data.check2 === 'Y') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
-        add_data.supp_code = add_data.keyword;
+        add_data.supp_code = add_data.keyword5;
         add_data.attachment = $("input:radio[name=attachment]:checked").val();
         var jdata = $("#mes_add_grid2").getRowData();
         if (jdata.length > 0) {
@@ -201,9 +201,9 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "발주추가 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사기준'],
+        colNames: [ '품번', '품명', '규격', '단위', '검사기준'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false},
+
             {name: 'part_code', index: 'part_code',key:true, sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
             {name: 'spec', index: 'spec', sortable: false},
@@ -230,12 +230,13 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "발주추가 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사기준','발주수량','납기일'],
+        colNames: [ '품번', '품명', '규격','도면REV', '단위', '검사기준','발주수량','납기일'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+
             {name: 'part_code', index: 'part_code', width: 60,key:true, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
+            {name: '', index: '', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
             {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,
@@ -264,29 +265,26 @@ function jqGrid_modal1() {
                         ]
                     }
             },
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false, editable: true,
+            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2, editable: true,
                 editoptions: {
+                    dataInit: function (element) {
+                        $(element).attr("readonly","readonly").datepicker({
+                            format: 'yyyymmdd',
+                            autoclose: true,
+                            language: "kr",
+                            widgetPositioning:{
+                                horizontal: 'auto',
+                                vertical: 'bottom'
+                            },
 
-                    dataEvents: [
-                        {
-                            type: 'focusout',
-                            fn: function (e) {
-                                var row = $(e.target).closest('tr.jqgrow');
-                                var rowid = row.attr('id');
-                                var value = e.target.value;
-                                if (isNaN(value)){
-                                    alert("숫자만 입력가능합니다.");
-                                    e.target.value = e.target.value.replace(/[^0-9]/g,'');
-                                    $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
-                                    return false;
-                                }
+                        }).on('changeDate', function(e) {
+                            $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
 
-                                $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                        }).on('hide', function(ev) {
+                            $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                        });
+                    },
 
-                            }
-                        }
-
-                    ]
                 }
             },
         ],
@@ -337,4 +335,46 @@ function datepicker_modal1() {
 function selectBox_modal1() {
     select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
     $("#view_select").select2();
+    select_data_makes('select[name=t_payment]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_PAY'});
+    select_data_makes('select[name=t_delivery]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_DELIVERY'});
+    select_data_makes('select[name=shipping_addr]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_SHIPPING'});
+
+
+
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+
+            }
+
+        })
+    });
+
+}
+
+
+function group_cb(value,i) {
+    $('#part_group'+i).text(value["part_group"+i]);
+    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
+        $('#part_group_select'+i).empty();
+        var option = null;
+        var allSelect = ($("<option></option>").text("전체").val(""));
+        $('#part_group_select'+i).append(allSelect);
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+            $('#part_group_select'+i).append(option);
+        }
+        $('#part_group_select'+i).select2();
+    });
+}
+
+function select_change1(value) {
+    if (value !== ''){
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+            }
+        });
+    }
 }
