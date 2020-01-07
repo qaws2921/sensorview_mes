@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     supp_check: 'A',
     send_data: {},
-    send_data_post: {},
+    send_data_post: {}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -102,7 +102,7 @@ function jqGrid_main() {
             {name: 'mrb', index: 'mrb', sortable: false, width: 60},
             {name: 'status_name', index: 'status_name', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 50},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate}
         ],
         caption: "입고현황 | MES",
         autowidth: true,
@@ -110,18 +110,7 @@ function jqGrid_main() {
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,
-        viewrecords: true,
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
-        onCellSelect: function (rowid, icol, cellcontent, e) {
+        viewrecords: true
 
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#mes_grid').jqGrid('getRowData', rowid);
-        }
     });
 }

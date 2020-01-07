@@ -68,6 +68,14 @@ function suppModal_bus(code, name) {
 
 }
 
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);

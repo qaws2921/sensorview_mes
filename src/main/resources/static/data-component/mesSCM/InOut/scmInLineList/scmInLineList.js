@@ -5,7 +5,7 @@
 ////////////////////////////데이터/////////////////////////////////////
 var main_data = {
     check: 'I',
-    send_data: {},
+    send_data: {}
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -58,7 +58,7 @@ function jqGrid_main() {
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate}
         ],
         caption: "재입고현황 | MES",
         autowidth: true,
@@ -66,10 +66,7 @@ function jqGrid_main() {
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        viewrecords: true,
-        onCellSelect: function (rowid, icol, cellcontent, e) {
-            under_get(rowid);
-        },
+        viewrecords: true
     });
 
 
