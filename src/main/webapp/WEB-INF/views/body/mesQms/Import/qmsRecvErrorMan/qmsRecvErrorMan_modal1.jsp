@@ -74,7 +74,7 @@
             </div>
             <div class="profile-info-name">단위</div>
             <div class="profile-info-value">
-                <input type="text" name="code_name1" class="form-control modal_value" readonly>
+                <input type="text" name="unit_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">

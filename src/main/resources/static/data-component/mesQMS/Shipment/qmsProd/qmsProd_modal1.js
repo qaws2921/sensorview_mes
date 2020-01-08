@@ -1,5 +1,10 @@
 ////////////////////////////데이터////////////////////////////////////////
+var row_save;
 
+var lastsel;
+var saverow = 0;
+
+var savecol = 0;
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
 
@@ -159,9 +164,9 @@ function jqGrid_modal1() {
     $('#mes_modal_grid').jqGrid({
         datatype: "local",
         caption: "출하검사등록 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과', '불량유형', '불량상세', '조치구분', '성적서'],
+        colNames: [ '품번', '품명', '규격', '단위', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과', '불량유형', '불량상세', '조치구분', '성적서'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+
             {name: 'part_code', index: 'part_code', key: true, width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
@@ -174,6 +179,12 @@ function jqGrid_modal1() {
                 editoptions: {
 
                     dataEvents: [
+                        {
+                            type: 'focus',
+                            fn: function (e) {
+                                row_save = $(e.target).closest('tr.jqgrow');
+                            }
+                        },
                         {
                             type: 'focusout',
                             fn: function (e) {
@@ -189,10 +200,17 @@ function jqGrid_modal1() {
                                     modal2_data.sub_data.splice(idx, 1);
                                 }
                                 var value = e.target.value;
+                                var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
                                 if (isNaN(value)) {
                                     alert("숫자만 입력가능합니다.");
                                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
                                     $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
+                                    return false;
+                                } else if (parseInt(data.in_qty)  < parseInt(value)) {
+                                    alert("검사 수량이 초과 하였습니다.");
+                                    e.target.value = 0;
+                                    $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
+
                                     return false;
                                 }
 
@@ -216,9 +234,15 @@ function jqGrid_modal1() {
                                 var row = $(e.target).closest('tr.jqgrow');
                                 var rowid = row.attr('id');
                                 var value = e.target.value;
+                                var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
                                 if (isNaN(value)) {
                                     alert("숫자만 입력가능합니다.");
                                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                                    $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
+                                    return false;
+                                }else if (parseInt(data.qc_qty)  < parseInt(value)) {
+                                    alert("불량 수량이 초과 하였습니다.");
+                                    e.target.value = 0;
                                     $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
                                     return false;
                                 }
@@ -340,15 +364,63 @@ function jqGrid_modal1() {
 
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
-            if (icol === 13) {
+            if (icol === 12) {
 
                 var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
-                if (data.qc_qty !== '0') {
+                if (data.qc_qty !== '0' && data.qc_qty !== '') {
                     update_btn2(rowid, e);
                 } else {
                     alert("검사수량을 확인해주세요");
                 }
             }
+
+        },
+        afterSaveCell: function (rowid, name, val, iRow, iCol) {
+            var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
+            if (iCol === 6) {
+                var idx;
+                row_save.find('.reportsAdd').text("추가");
+                idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                    return item.part_code === rowid
+                });
+
+                if (idx !== -1) {
+                    modal2_data.sub_data.splice(idx, 1);
+                }
+                if (isNaN(data.qc_qty)) {
+
+                    alert("숫자만 입력가능합니다.");
+                    data.qc_qty = data.qc_qty.replace(/[^0-9]/g, '');
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'qc_qty', data.qc_qty);
+                    if (data.qc_qty === '') {
+                        $('#mes_modal_grid').jqGrid('setCell', rowid, 'qc_qty', '0');
+                    }
+                    return false;
+                } else if (parseInt(data.in_qty)  < parseInt(data.qc_qty)) {
+                    alert("검사 수량이 초과 하였습니다.");
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'qc_qty', 0);
+                    return false;
+                }
+            }
+
+
+            if (iCol === 7) {
+                if (isNaN(data.ng_qty)) {
+                    alert("숫자만 입력가능합니다.");
+                    data.ng_qty = data.ng_qty.replace(/[^0-9]/g, '');
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'ng_qty', data.ng_qty);
+                    if (data.ng_qty === '') {
+                        $('#mes_modal_grid').jqGrid('setCell', rowid, 'ng_qty', '0');
+                    }
+                    return false;
+                } else if (parseInt(data.qc_qty)  < parseInt(data.ng_qty)) {
+                    alert("불량 수량이 초과 하였습니다.");
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'ng_qty', 0);
+                    return false;
+                }
+            }
+
+
 
         },
 
