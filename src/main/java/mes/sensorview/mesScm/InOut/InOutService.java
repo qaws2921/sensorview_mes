@@ -18,11 +18,11 @@ public class InOutService extends ReturnFunction {
     @Autowired
     private InOutMapper inOutMapper;
 
-    public Message scmInAdd(HttpServletRequest req, Page p)
+    public Message scmInAdd(HttpServletRequest req, SCM_IN si)
     {
-        p.setSite_code(getSessionData(req).getSite_code());
-        p.setUser_code(getSessionData(req).getUser_code());
-        return inOutMapper.scmInAdd(p);
+        si.setSite_code(getSessionData(req).getSite_code());
+        si.setUser_code(getSessionData(req).getUser_code());
+        return inOutMapper.scmInAdd(si);
     }
 
     public RESTful scmInGet(HttpServletRequest req, Page p) {
@@ -124,5 +124,11 @@ public class InOutService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_REIN_BCR> rows = inOutMapper.scmInLineSubListGet(p);
         return getListData(rows,p);
+    }
+
+    public RESTful scmInLot2Get(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_IN_SUB_LOT2> rows = inOutMapper.scmInLot2Get(p);
+        return getListData(rows , p);
     }
 }

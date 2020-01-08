@@ -12,52 +12,66 @@ function modal_start2() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function modal2_add_btn() {
-    if ($(".modal2_check1").val() !== '' && $(".modal2_check2").val() !== '') {
-        var data = {};
-        var data2 = {};
-        var list = [];
-        data.part_code = modal2_data.part_code;
-        var check = true;
-        var in_qty_sum = 0;
-        var pack_sum = 0;
-        for (var i = 1; i <= 50; i++) {
-            data2 = {};
-            if ($("#scmIn_sub" + i).val() !== '' && $("#scmIn2_sub" + i).val() !== '') {
+    if (main_data.check2 === 'Y'  && main_data.check === 'I') {
+        if ($(".modal2_check1").val() !== '' && $(".modal2_check2").val() !== '') {
+            var data = {};
+            var data2 = {};
+            var list = [];
+            data.part_code = modal2_data.part_code;
+            var check = true;
+            var in_qty_sum = 0;
+            var pack_sum = 0;
+            var lot;
 
-                if (isNaN($("#scmIn2_sub" + i).val())) {
-                    alert(i+'번째 수량항목을 확인해주세요' );
-                    return false;
-                }
+            for (var i = 1; i <= 50; i++) {
+                data2 = {};
+                if ($("#scmIn_sub" + i).val() !== '' && $("#scmIn2_sub" + i).val() !== '') {
 
-                if (check) {
-                    $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'lot', $("#scmIn_sub" + i).val());
-                    check = false;
+                    if (isNaN($("#scmIn2_sub" + i).val())) {
+                        alert(i + '번째 수량항목을 확인해주세요');
+                        return false;
+                    }
+
+                    if (check) {
+
+                        lot = $("#scmIn_sub" + i).val();
+
+                        check = false;
+                    }
+                    data2.part_code = modal2_data.part_code;
+                    data2.lot = $("#scmIn_sub" + i).val();
+                    data2.qty = $("#scmIn2_sub" + i).val();
+                    in_qty_sum += Number($("#scmIn2_sub" + i).val());
+                    pack_sum += 1;
+                    list.push(data2);
                 }
-                data2.lot = $("#scmIn_sub" + i).val();
-                data2.qty = $("#scmIn2_sub" + i).val();
-                in_qty_sum += Number($("#scmIn2_sub" + i).val());
-                pack_sum += 1;
-                list.push(data2);
             }
+            if (in_qty_sum <= 0) {
+                alert("입고수량을 다시 확인해주세요");
+                return false;
+            }
+
+
+            $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'lot', lot);
+            $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'qty', in_qty_sum);
+            $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'pack_qty', pack_sum);
+            var idx;
+            idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                return item.part_code === data.part_code
+            })
+
+
+            if (idx !== -1) {
+                modal2_data.sub_data.splice(idx, 1);
+            }
+
+            data.list = list;
+            modal2_data.sub_data.push(data);
+            $('#scmInDialogRightGrid').jqGrid('setCell', modal2_data.part_code, 'ord_check', 'N');
+            $("#scmInAddDialog").dialog('close');
+        } else {
+            alert("아무 값도 입력이 되지 않았습니다.");
         }
-
-        $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'qty', in_qty_sum);
-        $("#scmInDialogRightGrid").jqGrid('setCell', modal2_data.part_code, 'pack_qty', pack_sum);
-        var idx;
-        idx = findArrayIndex(modal2_data.sub_data, function (item) {
-            return item.part_code === data.part_code
-        })
-
-
-        if (idx !== -1) {
-            modal2_data.sub_data.splice(idx, 1);
-        }
-
-        data.list = list;
-        modal2_data.sub_data.push(data);
-        $("#scmInAddDialog").dialog('close');
-    } else {
-        alert("아무 값도 입력이 되지 않았습니다.");
     }
 }
 

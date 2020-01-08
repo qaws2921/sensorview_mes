@@ -97,12 +97,12 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">비고</td>
                     <td>
-                        <input type="text" name="keyword2" class="form-control h-25 modal_value2" id="remark">
+                        <input type="text" name="remark" class="form-control h-25 modal_value2" id="remark">
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="keyword3" class="form-control h-25 modal_value2" id="in_no">
+            <input type="hidden" name="in_no" class="form-control h-25 modal_value2" id="in_no">
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">

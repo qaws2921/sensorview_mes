@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface InOutMapper {
-    Message scmInAdd(Page p);
+    Message scmInAdd(SCM_IN si);
     List<SCM_IN> scmInGet(Page p);
     List<SCM_OUT> scmOutGet(Page p);
     List<SCM_IN_LINE> scmInLineGet(Page p);
@@ -39,4 +39,6 @@ public interface InOutMapper {
     List<SCM_REIN_SUB> scmInLineListGet(Page p);
 
     List<SCM_REIN_BCR> scmInLineSubListGet(Page p);
+
+    List<SCM_IN_SUB_LOT2> scmInLot2Get(Page p);
 }

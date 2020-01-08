@@ -84,6 +84,9 @@ function add_btn() {
     $("#scmInDialogRightGrid").jqGrid('clearGridData');
     modal2_data.part_code = '';
     modal2_data.sub_data = [];
+    modal3_data.part_code = '';
+    modal3_data.sub_data = [];
+
     $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
     $("#datepicker3").datepicker('setDate', 'today');
 
@@ -108,6 +111,7 @@ function supp_btn(what) {
 
 
 function delete_btn() {
+    var gu5 = String.fromCharCode(5);
     var ids = $("#scmInTopGrid").getGridParam('selarrrow');
     var check = '';
     var check2 = [];
@@ -127,7 +131,7 @@ function delete_btn() {
             if (confirm("삭제하겠습니까?")) {
                 main_data.check = 'D';
                 wrapWindowByMask2();
-                ccn_ajax("/scmInDel", {keyword: ids.join("&")}).then(function (data) {
+                ccn_ajax("/scmInDel", {keyword: ids.join(gu5)}).then(function (data) {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {

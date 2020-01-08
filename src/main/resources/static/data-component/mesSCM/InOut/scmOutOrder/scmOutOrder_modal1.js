@@ -1,5 +1,7 @@
 var lastsel;
+var saverow = 0;
 
+var savecol = 0;
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
@@ -15,9 +17,9 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function get_modal1_btn(page) {
     var data = value_return(".modal_value");
-    data.keyword = "";
+    data.keyword5 = "";
     $("#scmOutOrderDialogLeftGrid").setGridParam({
-        url: "/sysBPartModalGet",
+        url: "/sysPartSuppGet",
         datatype: "json",
         page: page,
         postData: data
@@ -41,7 +43,7 @@ function update_btn(rowid) {
         $("#line_select").val(data[0].cargo_code_to).trigger("change");
         $("#usage_select").val(data[0].usage).trigger("change");
         $("#datepicker3").val(formmatterDate2(data[0].work_date));
-
+        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
 
         $("#scmOutOrderDialogRightGrid").setGridParam({
             datatype: "local",
@@ -135,7 +137,7 @@ function add_modal1_btn() {
             var list2 = [];
 
             jdata.forEach(function (data, j) {
-                if (data.qty !== '') {
+                if (data.qty !== '' ||  parseInt(data.qty) <= 0 ) {
                     list.push(data.part_code +gu4 + data.qty);
                 } else {
                     list2.push(data.part_code);
@@ -190,9 +192,9 @@ function jqGrid_modal1() {
         datatype: "local",
         multiselect: true,
         caption: "출고요청 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위'],
+        colNames: [ '품번', '품명', '규격', '단위'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false},
+
             {name: 'part_code', key: true, index: 'part_code', sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
             {name: 'spec', index: 'spec', sortable: false},
@@ -214,9 +216,9 @@ function jqGrid_modal1() {
         multiselect: true,
         // 타이틀
         caption: "출고요청 | MES",
-        colNames: ['품목그룹', '품번', '품명', '규격', '단위', '요청수량'],
+        colNames: [ '품번', '품명', '규격', '단위', '요청수량'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
+
             {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
@@ -232,15 +234,14 @@ function jqGrid_modal1() {
                                 var row = $(e.target).closest('tr.jqgrow');
                                 var rowid = row.attr('id');
                                 var value = e.target.value;
-                                if (isNaN(value)) {
-                                    alert("숫자만 입력 가능합니다.")
+                                if (isNaN(value)){
+                                    alert("숫자만 입력가능합니다.");
                                     e.target.value = e.target.value.replace(/[^0-9]/g,'');
-                                    $('#scmOutOrderDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
+                                    $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
                                     return false;
-                                } else {
-
-                                    $('#scmOutOrderDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
                                 }
+
+                                $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
 
 
                             }
@@ -252,8 +253,8 @@ function jqGrid_modal1() {
         ],
         autowidth: true,
         height: 340,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
+        cellEdit: true,
+        cellsubmit: 'clientArray',
         loadonce: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
@@ -261,25 +262,32 @@ function jqGrid_modal1() {
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
+        beforeEditCell: function (id, name, val, IRow, ICol) {
+            lastsel = id;
+            saverow = IRow;
+            savecol = ICol;
 
-        onCellSelect: function (rowid, icol, cellcontent, e) {
-            if (icol === 6) {
+        },
+        afterSaveCell: function (rowid, name, val, iRow, iCol) {
+            var data = $('#scmOutOrderDialogRightGrid').jqGrid('getRowData', rowid);
 
-
-                if ($("#" + lastsel + "_qty").val()) {
-                    if (isNaN($("#" + lastsel + "_in_pty").val())) {
-                        alert("입고 수량은 숫자만 가능합니다.");
-                        return false;
+                if (isNaN(data.qty)) {
+                    alert("숫자만 입력가능합니다.");
+                    data.qty = data.qty.replace(/[^0-9]/g, '');
+                    $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', data.qty);
+                    if (data.qty === '') {
+                        $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', '0');
                     }
+                    return false;
                 }
-                $('#scmOutOrderDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
-                $('#scmOutOrderDialogRightGrid').jqGrid('editRow', rowid, {
-                    keys: false
-                });
 
 
-            }
-            lastsel = rowid;
+
+
+
+        },
+        onCellSelect: function (rowid, icol, cellcontent, e) {
+
 
         }
 
@@ -296,6 +304,28 @@ function modal_make1() {
         height: 'auto',
         autoOpen: false,
         resizable: false,
+        open: function () {
+        if ($.ui && $.ui.dialog && !$.ui.dialog.prototype._allowInteractionRemapped && $(this).closest(".ui-dialog").length) {
+            if ($.ui.dialog.prototype._allowInteraction) {
+                $.ui.dialog.prototype._allowInteraction = function (e) {
+                    if ($(e.target).closest('.select2-drop').length) return true;
+
+                    if (typeof ui_dialog_interaction!="undefined") {
+                        return ui_dialog_interaction.apply(this, arguments);
+                    } else {
+                        return true;
+                    }
+                };
+                $.ui.dialog.prototype._allowInteractionRemapped = true;
+            }
+            else {
+                $.error("You must upgrade jQuery UI or else.");
+            }
+        }
+    },
+    _allowInteraction: function (event) {
+        return !!$(e.target).closest('.ui-dialog, .ui-datepicker, .select2-drop').length;
+    }
     });
 }
 
@@ -303,6 +333,16 @@ function selectBox_modal1() {
     select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
     select_makes("#line_select", "/getLine", "line_code", "line_name");
     $("#usage_select").select2();
+
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+
+            }
+
+        })
+    });
 }
 
 function datepickerInput_modal1() {
@@ -310,3 +350,27 @@ function datepickerInput_modal1() {
 
 }
 
+function select_change1(value) {
+    if (value !== ''){
+        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
+            for(var i=1; i<=3;i++) {
+                group_cb(value,i);
+            }
+        });
+    }
+}
+
+function group_cb(value,i) {
+    $('#part_group'+i).text(value["part_group"+i]);
+    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
+        $('#part_group_select'+i).empty();
+        var option = null;
+        var allSelect = ($("<option></option>").text("전체").val(""));
+        $('#part_group_select'+i).append(allSelect);
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
+            $('#part_group_select'+i).append(option);
+        }
+        $('#part_group_select'+i).select2();
+    });
+}

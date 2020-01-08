@@ -6,13 +6,39 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목그룹</td>
-                    <td class="wt-px-150">
-                        <select name="keyword2" id="grp_select" class="form-control h-25 modal_value" style="width: 100%">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword" class="form-control modal_value" id="part_type_select" style="width: 100%;"  onchange="select_change1(this.value);">
+
 
                         </select>
                     </td>
-                    <td></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword2" class="form-control modal_value" style="width: 100%;" id="part_group_select1">
+
+
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword3" class="form-control modal_value" style="width: 100%;" id="part_group_select2">
+
+
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품목그룹</td>
+                    <td class="wt-px-150 h-25">
+                        <select name="keyword4" class="form-control modal_value" style="width: 100%;" id="part_group_select3">
+
+
+                        </select>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
