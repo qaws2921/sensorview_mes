@@ -77,7 +77,7 @@ function add_btn() {
     modal_reset(".modal_value2", []);
     $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
     $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
-
+    $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
     $("#datepicker3").datepicker('setDate', 'today');
 
     main_data.check = 'I';
@@ -95,6 +95,7 @@ function add_btn() {
 
 
 function delete_btn() {
+    var gu5 = String.fromCharCode(5);
     var ids = $("#scmOutOrderTopGrid").getGridParam('selarrrow');
     var check = '';
     var check2 = [];
@@ -114,7 +115,7 @@ function delete_btn() {
             if (confirm("삭제하겠습니까?")) {
                 main_data.check = 'D';
                 wrapWindowByMask2();
-                ccn_ajax("/scmOutOrderDel", {ord_no: ids.join("&")}).then(function (data) {
+                ccn_ajax("/scmOutOrderDel", {ord_no: ids.join(gu5)}).then(function (data) {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {

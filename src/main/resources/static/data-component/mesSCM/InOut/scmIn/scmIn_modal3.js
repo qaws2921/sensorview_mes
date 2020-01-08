@@ -263,6 +263,9 @@ function modal3_jqGrid() {
                     alert("숫자만 입력가능합니다.");
                     data.in_qty = data.in_qty.replace(/[^0-9]/g, '');
                     $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', data.in_qty);
+                    if (data.in_qty === '') {
+                        $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', '0');
+                    }
                     return false;
                 } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(data.in_qty)) {
                     alert("입고 가능 수량이 초과 하였습니다.");
