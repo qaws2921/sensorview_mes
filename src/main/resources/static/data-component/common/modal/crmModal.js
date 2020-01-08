@@ -40,7 +40,7 @@ function crmModal_check() {
 
 
 function crmModal_close() {
-    $("#supp-search-dialog").dialog('close');
+    $("#crm-search-dialog").dialog('close');
     suppModal_close_bus();
 
 }

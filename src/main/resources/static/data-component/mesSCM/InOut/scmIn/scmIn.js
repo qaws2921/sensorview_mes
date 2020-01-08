@@ -31,6 +31,7 @@ $(document).ready(function () {
     /*----모달----*/
     modal_start1();
     modal_start2();
+    modal_start3();
 
     suppModal_start();
 
@@ -83,7 +84,7 @@ function add_btn() {
     $("#scmInDialogRightGrid").jqGrid('clearGridData');
     modal2_data.part_code = '';
     modal2_data.sub_data = [];
-
+    $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
     $("#datepicker3").datepicker('setDate', 'today');
 
     main_data.check = 'I';
