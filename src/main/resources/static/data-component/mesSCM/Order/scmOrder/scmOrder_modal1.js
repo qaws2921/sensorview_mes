@@ -1,7 +1,7 @@
 var lastsel;
 var saverow = 0;
-
 var savecol = 0;
+
 function modal_start1() {
     modal_make1();
     datepicker_modal1();

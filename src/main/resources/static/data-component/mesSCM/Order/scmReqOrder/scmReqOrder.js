@@ -8,6 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    check2: 'Y'
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -56,6 +57,8 @@ function add_btn() {
     $('#datepicker4').datepicker('setDate',date2);
 
     main_data.check = 'I';
+    main_data.check = 'Y';
+
     $("#addDialog").dialog('open');
     jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
     jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));

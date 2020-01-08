@@ -5,6 +5,10 @@ var modal_data = {
     send_data_post: {},
 };
 
+var lastsel;
+var saverow = 0;
+var savecol = 0;
+
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
@@ -28,16 +32,20 @@ function select_change1(value) {
 
 function get_modal1_btn(page) {
     modal_data.send_data = value_return(".modal_value");
+    modal_data.send_data.keyword =$('#part_type_select').val();
+
+    modal_data.send_data_post = modal_data.send_data;
     console.log(modal_data);
-        // $("#mes_add_grid").setGridParam({
-        //     url: "/sysPartSuppGet",
-        //     datatype: "json",
-        //     page: page,
-        //     postData: data
-        // }).trigger("reloadGrid");
+    $("#mes_modal1_grid1").setGridParam({
+        url: '/sysPartGet',
+        datatype: "json",
+        page: page,
+        postData: modal_data.send_data
+    }).trigger("reloadGrid");
 }
+
 function get_modal1_btn_post(page) {
-    $("#mes_grid").setGridParam({
+    $("#mes_modal1_grid1").setGridParam({
         url: '/scmReqOrderGet',
         datatype: "json",
         page: page,
@@ -46,6 +54,58 @@ function get_modal1_btn_post(page) {
 }
 
 
+function right_modal1_btn() {
+    $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
+    if (main_data.check2 === 'Y') {
+
+        var ids = $("#mes_add_grid").getGridParam('selarrrow').slice();
+
+        if (ids.length === 0 ){
+            alert("옮길 데이터를 선택해주세요");
+            return false;
+        }
+
+
+        var ids2 = $("#mes_add_grid2").jqGrid("getDataIDs");
+
+        var overlap = [];
+
+        if (ids2.length != 0) {
+            ids.forEach(function (idsfor, s) {
+                ids2.forEach(function (ids2for) {
+                    if (idsfor === ids2for) {
+                        ids.splice(s, 1, '');
+                        overlap.push(idsfor);
+                    }
+                });
+            });
+        }
+
+        var list = [];
+        ids.forEach(function (idsfor) {
+            if (idsfor !== '') {
+                list.push($("#mes_add_grid").getRowData(idsfor));
+            }
+        });
+
+        callback(function () {
+            if (overlap.length !== 0) {
+                alert(overlap.join(", ") + " 중복");
+            }
+            ids2 = $("#mes_add_grid2").getRowData();
+            ids2 = ids2.concat(list);
+
+            $('#mes_add_grid2').jqGrid("clearGridData");
+
+            $("#mes_add_grid2").setGridParam({
+                datatype: "local",
+                data: ids2
+            }).trigger("reloadGrid");
+
+            $('#mes_add_grid').jqGrid("resetSelection");
+        });
+    }
+}
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput_modal1() {
     datepicker_makes("#datepicker3", 0);
@@ -100,36 +160,34 @@ function jqGrid_modal1() {
         mtype: 'POST',
         datatype: "local",
         multiselect: true,
-        caption: "발주추가 | MES",
-        colNames: [ '품번', '품명', '규격', '단위', '검사기준'],
+        caption: "구매의뢰서 | MES",
+        colNames: [ '품번', '품명', '규격', '단위', '발주단위'],
         colModel: [
-            {name: 'part_code', index: 'part_code',key:true, sortable: false},
-            {name: 'part_name', index: 'part_name', sortable: false},
-            {name: 'spec', index: 'spec', sortable: false},
-            {name: 'unit_name', index: 'unit_name', sortable: false},
-            {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
+            {name: 'part_code', index: 'part_code',key:true, sortable: false, width:80},
+            {name: 'part_name', index: 'part_name', sortable: false, width:60},
+            {name: 'spec', index: 'spec', sortable: false, width:60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width:60},
+            {name: 'ord_qty', index: 'ord_qty', sortable: false, width:60},
         ],
         autowidth: true,
         height: 250,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: "#mes_modal1_grid1_pager",
+        pager: "#mes_modal1_grid1_pager"
     });
 
     $("#mes_modal1_grid2").jqGrid({
         datatype: "local",
         multiselect: true,
-        caption: "발주추가 | MES",
-        colNames: [ '품번', '품명', '규격','도면REV', '단위', '검사기준','발주수량','납기일'],
+        caption: "구매의뢰서 | MES",
+        colNames: [ '품번', '품명', '규격','단위', '발주단위','요청수량'],
         colModel: [
             {name: 'part_code', index: 'part_code', width: 60,key:true, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
-            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,},
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2}
+            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false},
+            {name: '', index: '', width: 60, sortable: false,},
         ],
         autowidth: true,
         height: 300,

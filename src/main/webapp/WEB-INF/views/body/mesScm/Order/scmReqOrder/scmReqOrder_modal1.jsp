@@ -7,7 +7,7 @@
 </style>
 <div id="addDialog" title="구매의뢰서" style="display: none">
     <div class="col-lg-12">
-        <div class="col-lg-6 padding0" id="content1">
+        <div class="col-lg-5 padding0" id="content1">
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -18,7 +18,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1">그룹1</td>
                     <td class="wt-px-125 h-25">
-                        <select id="part_group_select1" class="form-control modal_value" style="width:100%">
+                        <select id="part_group_select1" name="keyword2" class="form-control modal_value" style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -26,12 +26,12 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2">그룹2</td>
                     <td class="wt-px-125 h-25">
-                        <select id="part_group_select2" class="form-control modal_value"  style="width:100%">
+                        <select id="part_group_select2" name="keyword3" class="form-control modal_value"  style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">그룹3</td>
                     <td class="wt-px-125 h-25">
-                        <select id="part_group_select3" class="form-control modal_value"  style="width:100%">
+                        <select id="part_group_select3" name="keyword4" class="form-control modal_value"  style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -61,13 +61,15 @@
 
         <div class="col-lg-1 padding0 mid-arrow-r">
             <div class="dt-buttons btn-overlap btn-group">
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="right_modal1_btn();">
+                <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
+                   tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="right_modal1_btn();">
                         <span>
                             <i class="fa fa-arrow-right bigger-110 blue"></i>
                         </span>
                 </a>
                 <br><br>
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="left_modal1_btn();">
+                <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
+                   tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="left_modal1_btn();">
                         <span>
                             <i class="fa fa-arrow-left bigger-110 pink"></i>
                         </span>
@@ -75,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-lg-5 padding0" id="content2">
+        <div class="col-lg-6 padding0" id="content2">
             <table class="table wt-100">
                 <tbody>
                 <tr>
