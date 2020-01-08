@@ -105,12 +105,11 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['출고일자', '출고번호', '업체', '품목그룹','품번', '품명', '규격', '단위', '수량', '등록자', '입고일시'],
+        colNames: ['출고일자', '출고번호', '업체','품번', '품명', '규격', '단위', '수량', '등록자', '입고일시'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'out_no', index: 'out_no', sortable: false, width: 60},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
