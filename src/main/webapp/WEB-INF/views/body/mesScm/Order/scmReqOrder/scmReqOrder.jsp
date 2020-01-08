@@ -50,7 +50,7 @@
                     <td class="t-align-c" style="width:25px !important;">~</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="end_date" id="datepicker2"
+                            <input type="text" name="stop_date" id="datepicker2"
                                    class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;" ></i>
                         </div>
@@ -71,7 +71,7 @@
                         </span>
                     </a>
                     <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                         <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>추가</span>
                         </span>
@@ -108,3 +108,4 @@
     </div>
 </div>
 
+<%@include file="scmReqOrder_modal1.jsp" %>

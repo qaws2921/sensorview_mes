@@ -17,6 +17,8 @@ $(document).ready(function () {
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
 
+    modal_start1();
+
     jqgridPagerIcons();
 });
 
@@ -43,6 +45,22 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
+function add_btn() {
+    modal_reset(".modal_value", []);
+    $("select[name=part_type] option:eq(0)").prop("selected", true).trigger("change");
+
+    var date = new Date();
+    var date2 = new Date();
+    date2.setDate(date.getDate()+1);
+    $('#datepicker3').datepicker('setDate',date);
+    $('#datepicker4').datepicker('setDate',date2);
+
+    main_data.check = 'I';
+    $("#addDialog").dialog('open');
+    jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+    jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
+
+}
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);

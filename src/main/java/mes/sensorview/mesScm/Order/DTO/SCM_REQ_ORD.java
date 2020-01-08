@@ -15,6 +15,7 @@ public class SCM_REQ_ORD {
     private String create_date;
     private String update_date;
 
+
     private String supp_name;
     private String end_supp_name;
     private String end_date;
@@ -27,6 +28,7 @@ public class SCM_REQ_ORD {
     private int rec_count;
     private String keyword;
 
+    private String user_name;
 }
 
 

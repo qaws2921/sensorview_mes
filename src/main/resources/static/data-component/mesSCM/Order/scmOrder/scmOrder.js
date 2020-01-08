@@ -13,9 +13,6 @@ var main_data = {
 
 };
 
-var grid_data = [];
-var grid2_data = [];
-
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
