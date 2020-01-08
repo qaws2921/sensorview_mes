@@ -27,6 +27,7 @@ public class Interceptor implements WebMvcConfigurer {
                 .excludePathPatterns("/logout")
                 .excludePathPatterns("/excel_*")
                 .excludePathPatterns("/login")
-                .excludePathPatterns("/sysAuthProgramList");
+                .excludePathPatterns("/sysAuthProgramList")
+                .excludePathPatterns("/FileUploads");
     }
 }
