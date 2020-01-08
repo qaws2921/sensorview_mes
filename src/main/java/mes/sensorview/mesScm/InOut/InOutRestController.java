@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesScm.InOut.DTO.SCM_IN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD_SUB;
@@ -22,8 +23,8 @@ public class InOutRestController {
     private InOutService inOutService;
 
     @RequestMapping(value = "/scmInAdd", method = RequestMethod.POST)
-    public Message scmInAdd(HttpServletRequest req, Page p) {
-        return inOutService.scmInAdd(req, p);
+    public Message scmInAdd(HttpServletRequest req, SCM_IN si) {
+        return inOutService.scmInAdd(req, si);
     }
 
     @RequestMapping(value = "/scmInDel", method = RequestMethod.POST)
@@ -34,6 +35,11 @@ public class InOutRestController {
     @RequestMapping(value = "/scmInGet", method = RequestMethod.POST)
     public RESTful scmInGet(HttpServletRequest req, Page p) {
         return inOutService.scmInGet(req, p);
+    }
+
+    @RequestMapping(value = "/scmInLot2Get", method = RequestMethod.POST)
+    public RESTful scmInLot2Get(HttpServletRequest req, Page p) {
+        return inOutService.scmInLot2Get(req, p);
     }
 
     @RequestMapping(value = "/scmInListGet", method = RequestMethod.POST)

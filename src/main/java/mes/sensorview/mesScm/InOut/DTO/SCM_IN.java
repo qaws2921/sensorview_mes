@@ -20,4 +20,8 @@ public class SCM_IN {
     private String code_list;
     private int rownum;
     private int rec_count;
+    private String keyword;
+    private String keyword2;
+    private String keyword3;
+
 }
