@@ -111,7 +111,7 @@ function jqGrid_main() {
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'out_no', index: 'out_no', sortable: false, width: 60},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            
+
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
