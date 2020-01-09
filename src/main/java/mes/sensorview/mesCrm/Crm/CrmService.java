@@ -6,6 +6,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesCrm.Crm.CrmMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN;
+import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import org.springframework.beans.factory.annotation.Autowired;
 import mes.sensorview.Common.DataTransferObject.Message;
 import org.springframework.stereotype.Service;
@@ -115,5 +116,22 @@ public class CrmService extends ReturnFunction {
         cp.setSite_code(getSessionData(req).getSite_code());
         cp.setUser_code(getSessionData(req).getUser_code());
         return crmMapper.crmPlanAdd(cp);
+    }
+
+    public RESTful crmAssyCableGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_ASSY_CABLE> rows = crmMapper.crmAssyCableGet(p);
+        return getListData(rows, p);
+    }
+
+    public Message crmAssyCableAdd(SYS_ASSY_CABLE sac, HttpServletRequest req) {
+        sac.setSite_code(getSessionData(req).getSite_code());
+        sac.setUser_code(getSessionData(req).getUser_code());
+        return crmMapper.crmAssyCableAdd(sac);
+    }
+
+    public Message crmAssyCableDel(SYS_ASSY_CABLE sac, HttpServletRequest req) {
+        sac.setSite_code(getSessionData(req).getSite_code());
+        return crmMapper.crmAssyCableDel(sac);
     }
 }

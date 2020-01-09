@@ -43,4 +43,15 @@
 	<select id="crmPlanGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN">
 		EXEC SP_WMS_STOCK_GET #{site_code}, #{page}, #{rows},#{keyword},#{keyword2},#{keyword3}
 	</select>
+
+
+	<select id="crmAssyCableGet" resultType="mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE">
+		EXEC SP_SYS_ASSY_CABLE_GET #{site_code},#{page}, #{rows}, #{keyword}
+	</select>
+	<select id="crmAssyCableAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_ASSY_CABLE_ADD #{site_code}, #{cable_code}, #{connector_code},#{user_code}
+    </select>
+	<select id="crmAssyCableDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_ASSY_CABLE_DEL #{site_code}, #{cable_code}, #{connector_code}
+    </select>
 </mapper>
