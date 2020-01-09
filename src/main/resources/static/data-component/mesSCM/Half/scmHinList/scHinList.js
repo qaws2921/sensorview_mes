@@ -22,13 +22,12 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
-    console.log(main_data);
-    // $("#mes_grid").setGridParam({
-    //     url: '/scmHinListGet',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: main_data.send_data
-    // }).trigger("reloadGrid");
+    $("#mes_grid").setGridParam({
+        url: '/scmHinListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
