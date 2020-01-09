@@ -59,4 +59,10 @@ public class OrderService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return orderMapper.scmOrderSub1Get(p);
     }
+
+    public Message scmReqOrderAdd(HttpServletRequest req, SCM_REQ_ORD sro) {
+        sro.setSite_code(getSessionData(req).getSite_code());
+        sro.setUser_code(getSessionData(req).getUser_code());
+        return  orderMapper.scmReqOrderAdd(sro);
+    }
 }

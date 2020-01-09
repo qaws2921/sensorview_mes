@@ -3,7 +3,7 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Order.OrderMapper">
     <select id="scmReqOrderGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD">
-        EXEC SP_SCM_REQ_ORD_GET #{site_code},#{page},#{rows},#{start_date},#{end_date}
+        EXEC SP_SCM_REQ_ORD_GET #{site_code},#{page},#{rows},#{start_date},#{stop_date}
     </select>
 
     <select id="scmOrderListGet" resultType="mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB">
@@ -26,5 +26,8 @@
         	EXEC SP_SCM_IN_ORD_DEL #{site_code},#{ord_no}
     </select>
 
+    <select id="scmReqOrderAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_REQ_ORD_ADD '','','','','',''
+    </select>
 
 </mapper>
