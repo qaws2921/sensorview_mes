@@ -12,6 +12,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
+/**
+ * <javadoc>
+ * Main args class
+ * @author      김재일
+ * @version     1.0
+ * @since       2019-11-14
+ **/
 @SpringBootApplication
 @MapperScan(value = {"mes.sensorview.Mapper"})
 public class SensorviewApplication extends SpringBootServletInitializer {
