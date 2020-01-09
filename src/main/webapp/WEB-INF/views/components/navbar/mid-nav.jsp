@@ -37,13 +37,13 @@
 <div id="sidebar" class="sidebar h-sidebar navbar-collapse collapse ace-save-state" data-sidebar="true"
      data-sidebar-scroll="true" data-sidebar-hover="true">
     <ul class="nav nav-list of-hidden">
-        <li class="hover">
-            <a href="/">
-                <img src="/ui-component/assets/images/icon/icon.png" class="menu-icon">
-                <span class="menu-text"> HOME </span>
-            </a>
-            <b class="arrow"></b>
-        </li>
+        <%--<li class="hover">--%>
+            <%--<a href="/">--%>
+                <%--<i class="menu-icon fa fa-home"></i>--%>
+                <%--<span class="menu-text"> 메인홈 </span>--%>
+            <%--</a>--%>
+            <%--<b class="arrow"></b>--%>
+        <%--</li>--%>
         <c:set var="doneLoop" value="false"/>
         <c:set var="doneLoop2" value="false"/>
         <c:forEach var="main_list" items="${main_list}" varStatus="starus">
@@ -58,7 +58,7 @@
                         <c:if test="${doneLoop3 != true}">
                             <c:if test="${under_list2.level == 3 }">
                                 <a href='<c:out value="${under_list2.menu_code}"/>'>
-                                    <img src="/ui-component/assets/images/icon/icon.png" class="menu-icon">
+                                    <i class="menu-icon fa fa-desktop"></i>
                                     <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
                                 </a>
                                 <b class="arrow"></b>
