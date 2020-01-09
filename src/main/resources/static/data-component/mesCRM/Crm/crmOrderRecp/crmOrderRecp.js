@@ -12,7 +12,8 @@ $(document).ready(function () {
     selectBox();
     datepickerInput();
     suppModal_start();
-
+    partModal_start();
+    jqgridPagerIcons();
 });
 ////////////////////////////클릭 함수////////////////////////////////
 
@@ -65,6 +66,25 @@ if (effectiveness(data)){
         });
     }
 }
+}
+
+function  partModal_bus(rowid) {
+        modal_reset(".part_value", []);
+
+    ccn_ajax('/sysPartOneGet', {keyword:rowid}).then(function (data) {
+        modal_edits('.part_value',[], data);
+    });
+}
+
+function part_btn() {
+
+
+
+    $("#partSearchGrid").jqGrid('clearGridData');
+    $("#part_type_select_part  option:eq(0)").prop("selected", true).trigger("change");
+    part_gu = 'Y';
+    $("#part-search-dialog").dialog('open');
+    jqGridResize2("#partSearchGrid", $('#partSearchGrid').closest('[class*="col-"]'));
 }
 
 function supp_btn(what) {

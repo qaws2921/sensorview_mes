@@ -101,37 +101,41 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c">품목코드</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                 <span class="input-icon input-icon-right " style="width: 100%;">
+                                    <input type="text" name="part_code" class="form-control main_value part_value"  readonly value="찾기" onclick="part_btn();">
+                                     <i class="ace-icon fa fa-search dark" style="top: -2px;"></i>
+                                 </span>
                             </td>
                             <td class="wt-px-100 td-title t-align-c">품명</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="part_name" readonly value="자동표시" class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">규격</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="spec" readonly value="자동표시" class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">구분</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="part_type_name" readonly value="자동표시" class="form-control main_value part_value">
+                                <input type="hidden" name="part_type" readonly class="form-control main_value part_value">
                             </td>
                         </tr>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c">그룹1</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="part_grp_name1" readonly value="자동표시" class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">그룹2</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="part_grp_name2" readonly value="자동표시" class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">그룹3</td>
                             <td class="wt-px-200">
-                                <input type="text" class="form-control main_value">
+                                <input type="text" name="part_grp_name3" readonly value="자동표시" class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">End User</td>
                             <td class="wt-px-200">
-                              <span class="input-icon input-icon-right">
+                              <span class="input-icon input-icon-right " style="width: 100%;">
                                     <input type="text" class="form-control main_value" id="supp_name_modal" onclick="supp_btn('B');" readonly/>
                                     <input type="hidden" class="form-control main_value" id="supp_code_modal" name="end_supp_code"/>
                                     <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch2-Main"></i>
@@ -272,3 +276,4 @@
     </div>
 </form>
 <%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>
+<%@include file="/WEB-INF/views/body/common/modal/part_modal.jsp" %>
