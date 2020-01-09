@@ -58,7 +58,30 @@
                         <c:if test="${doneLoop3 != true}">
                             <c:if test="${under_list2.level == 3 }">
                                 <a href='<c:out value="${under_list2.menu_code}"/>'>
-                                    <i class="menu-icon fa fa-desktop"></i>
+                                    <c:if test="${main_list.menu_name eq '관리자'}">
+                                        <i class="menu-icon fa fa-asterisk"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '자재관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '출하관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '영업관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '품질관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '생산관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '외주관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
+                                    <c:if test="${main_list.menu_name eq '설비관리'}">
+                                        <i class="menu-icon fa fa-cogs"></i>
+                                    </c:if>
                                     <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
                                 </a>
                                 <b class="arrow"></b>
