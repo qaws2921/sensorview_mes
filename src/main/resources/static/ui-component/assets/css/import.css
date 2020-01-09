@@ -12,7 +12,7 @@
 .padding0{padding-left: 0 !important; padding-right: 0 !important;}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
 {
-    border-top: 2px solid #79afce !important;
+    border-top: 1px solid #cccccc !important;
 }
 .wt-15{width: 15% !important;}
 .wt-25{width: 25% !important;}
@@ -41,14 +41,14 @@
 .fs-11{font-size: 11px !important;}
 
 .t-align-c{text-align: center !important; vertical-align: middle !important;}
-.td-title{background-color: #f2f2f2 !important; font-weight: bold !important;}
+.td-title{background-color: #f2f2f2 !important; font-weight: bold !important; border-left: 3px solid #79afce !important; font-size: 9px !important}
 .padding-a-0{padding: 0px !important;}
 
 .form-control:focus{border: 1px solid #307ecc !important;}
-.form-control{ height:25px !important;}
+.form-control{ height:20px !important;}
 
 input[type=color], input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], textarea {
-    font-size: 11px !important;
+    font-size: 9px !important;
 }
 
 .mid-arrow-r{
@@ -146,3 +146,72 @@ input[type=color], input[type=text], input[type=password], input[type=datetime],
 .img-title{text-align: center !important;padding: 5px !important;}
 .img-text{margin-top: 65px;margin-bottom: 65px;}
 .ui-jqgrid td select{padding: 0px !important;}
+.ui-jqgrid .ui-pg-selbox {font-size: 11px !important;}
+.ui-jqgrid .ui-pg-table td {font-size: 11px !important;}
+.ui-jqgrid .ui-pg-input {font-size: 11px !important;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding: 3px !important;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {margin-top: -5px !important;}
+.select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 20px !important;}
+.select2-container .select2-selection--single .select2-selection__rendered {padding-left: 5px!important; padding-right: 10px !important;}
+.select2-container .select2-selection--single {height: 20px !important;}
+.select2-container--default .select2-selection--single .select2-selection__arrow {top: -3px !important;}
+.input-icon>.ace-icon {line-height: 25px !important;font-size: 11px !important;}
+.ui-jqgrid-view>.ui-jqgrid-titlebar {
+    height: 30px !important;
+    line-height: 15px !important;
+    font-size: 13px !important;
+}
+.ui-jqgrid .ui-jqgrid-view, .ui-jqgrid .ui-paging-info, .ui-jqgrid .ui-pg-selbox, .ui-jqgrid .ui-pg-table {
+    font-size: 11px !important;
+}
+.ui-jqgrid .ui-jqgrid-view button, .ui-jqgrid .ui-jqgrid-view input, .ui-jqgrid .ui-jqgrid-view select, .ui-jqgrid .ui-jqgrid-view textarea {
+    font-size: 9px !important;
+}
+.ui-jqgrid-sortable {
+    padding-left: 3px !important;
+    font-size: 11px !important;
+    color: #135875 !important;
+}
+.middleBtn{
+    width: 3.333%;
+    margin-top: 225px;
+    margin-bottom: 225px;
+}
+.custom-xs-6 {
+    width: 48%;
+}
+.margin-at{margin: auto !important;}
+.btn-group-mini>.btn, .btn-mini {
+    font-size: 11px !important;
+}
+.ui-jqgrid .ui-jqgrid-pager {
+    line-height: 0px;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    background-color: #EFF3F8 !important;
+    border-bottom: 1px solid #E1E1E1 !important;
+    border-right: 1px solid #E1E1E1 !important;
+    border-left: 1px solid #E1E1E1 !important;
+}
+.ui-dialog .ui-dialog-buttonpane button, .ui-dialog .ui-jqdialog-buttonpane button, .ui-jqdialog .ui-dialog-buttonpane button, .ui-jqdialog .ui-jqdialog-buttonpane button {
+    font-size: 11px !important;
+}
+.select2-search:before {
+    font-size: 10px !important;
+    top: 6px !important;
+}
+.select2-search--dropdown .select2-search__field {
+    padding: 0px !important;
+}
+input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], textarea {
+    font-size: 11px !important;
+}
+.select2-results__option {
+    font-size: 9px !important;
+}
+.nav-list>li .submenu>li {
+    font-weight: 500 !important;
+}
+.no-skin .nav-list>li .submenu>li.active>a {
+    font-weight: 700 !important;
+}
