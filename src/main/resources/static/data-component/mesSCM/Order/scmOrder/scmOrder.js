@@ -10,11 +10,7 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     check2 : 'Y'
-
 };
-
-var grid_data = [];
-var grid2_data = [];
 
 ////////////////////////////시작 함수/////////////////////////////////////
 
