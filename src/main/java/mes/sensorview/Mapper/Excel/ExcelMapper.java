@@ -8,6 +8,7 @@ import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
+import mes.sensorview.mesScm.Half.DTO.SCM_HIN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -54,4 +55,6 @@ public interface ExcelMapper {
     List<OUTS_OUT_BCR> outsInReadyDbList(Excel excel);
 
     List<tpmMachineError> tpmMachineErrorDbList(Excel excel);
+
+    List<SCM_HIN> scmHinListDbList(Excel excel);
 }

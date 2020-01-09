@@ -7,6 +7,7 @@ import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
+import mes.sensorview.mesScm.Half.DTO.SCM_HIN;
 import mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_SUB;
 import mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB;
@@ -497,6 +498,31 @@ public class MakeBody {
                     obj.add(data.getMeasure_name());
                     obj.add(data.getUser_name());
                     obj.add(data.getCheck_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> scmHinList_Body(List<SCM_HIN> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(SCM_HIN data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getIn_no());
+                    obj.add(data.getLine_name());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
                     content.add(obj);
                 }
             }

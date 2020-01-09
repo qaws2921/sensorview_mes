@@ -11,19 +11,19 @@
                 var $preparingFileModal = $("#preparing-file-modal");
                 $preparingFileModal.dialog({ modal: true });
                 $("#progressbar").progressbar({value: false});
-                // $.fileDownload ("/excel_download", {
-                //     data : {"name":"scmInLineList",
-                //         "row0":$('#datepicker').val().replace(/-/gi,""),
-                //         "row1": $('#datepicker2').val().replace(/-/gi,""),
-                //         "row2":$('#line_select').val()},
-                //     successCallback: function (url) {
-                //         $preparingFileModal.dialog('close');
-                //     },
-                //     failCallback: function (responseHtml, url) {
-                //         $preparingFileModal.dialog('close');
-                //         $("#error-modal").dialog({ modal: true });
-                //     }
-                // });
+                $.fileDownload ("/excel_download", {
+                    data : {"name":"scmHinList",
+                        "row0":$('#datepicker').val().replace(/-/gi,""),
+                        "row1": $('#datepicker2').val().replace(/-/gi,""),
+                        "row2":$('#line_select').val()},
+                    successCallback: function (url) {
+                        $preparingFileModal.dialog('close');
+                    },
+                    failCallback: function (responseHtml, url) {
+                        $preparingFileModal.dialog('close');
+                        $("#error-modal").dialog({ modal: true });
+                    }
+                });
                 return false;
             }else{
                 alert('다운로드가 취소되었습니다.');

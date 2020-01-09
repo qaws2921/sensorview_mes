@@ -94,4 +94,9 @@ public class MakeHeader {
         String[] data ={"점검일", "라인","설비","고장내용", "점검결과", "조치사항", "등록자", "점검일시"};
         return data;
     }
+
+    public String[] scmHinList_Header() {
+        String[] data ={"입고일자", "입고번호", "공정", "품번", "품명", "규격", "단위", "입고수량", "등록자", "입고일시"};
+        return data;
+    }
 }
