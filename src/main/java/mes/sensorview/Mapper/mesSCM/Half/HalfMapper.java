@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface HalfMapper {
-    List<SCM_HIN> scmHinListGet(Page p);
+    List<SCM_HIN> scmHInListGet(Page p);
+
 }

@@ -15,6 +15,6 @@ public class HalfRestController {
     @Autowired
     private HalfService halfService;
 
-    @RequestMapping(value = "/scmHinListGet", method = RequestMethod.POST)
-    public RESTful scmHinListGet(HttpServletRequest req, Page p){ return halfService.scmHinListGet(req,p);}
+    @RequestMapping(value = "/scmHInListGet", method = RequestMethod.POST)
+    public RESTful scmHInListGet(HttpServletRequest req, Page p){ return halfService.scmHInListGet(req,p);}
 }

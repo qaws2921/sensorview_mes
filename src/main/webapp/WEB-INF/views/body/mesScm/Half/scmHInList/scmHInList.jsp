@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
 <script type="text/javascript" src="/ui-component/assets/js/jquery.fileDownload.js"></script>
-<script type="text/javascript" src="/data-component/mesSCM/Half/scmHinList/scHinList.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesSCM/Half/scmHInList/scmHInList.js" charset="UTF-8"></script>
 <script type="text/javascript">
     //<![CDATA[
     $(function() {
