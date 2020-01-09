@@ -22,4 +22,7 @@ public class CrmController {
 
     @RequestMapping(value = "/crmProdOrder")
     public String crmProdOrder() { return "mesCrm/Crm/crmProdOrder/crmProdOrder"; }
+
+    @RequestMapping(value = "/crmAssyCable")
+    public String crmAssyCable() { return "mesCrm/Crm/crmAssyCable/crmAssyCable"; }
 }

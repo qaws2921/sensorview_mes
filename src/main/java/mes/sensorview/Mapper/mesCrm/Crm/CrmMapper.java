@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN;
+import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public interface CrmMapper {
     List<CRM_PLAN> crmPlanGet(Page p);
 
     Message crmPlanAdd(CRM_PLAN cp);
+
+    List<SYS_ASSY_CABLE> crmAssyCableGet(Page p);
+
+    Message crmAssyCableAdd(SYS_ASSY_CABLE sac);
+
+    Message crmAssyCableDel(SYS_ASSY_CABLE sac);
 }
