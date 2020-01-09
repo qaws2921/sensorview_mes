@@ -217,3 +217,10 @@ input[type=email], input[type=url], input[type=search], input[type=tel], input[t
 .no-skin .nav-list>li .submenu>li.active>a {
     font-weight: 700 !important;
 }
+.ui-jqgrid-labels th[id*="_cb"]:first-child>div {
+    padding-bottom: 20px !important;
+}
+.ui-jqgrid .ui-jqgrid-hdiv {
+    line-height: 0 !important;
+    max-height: 25px!important;
+}
