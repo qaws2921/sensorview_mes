@@ -16,6 +16,7 @@ import java.util.List;
 
 @Service
 public class PopDeviceService extends ReturnFunction {
+
     @Autowired
     private MesPopDeviceMapper mesPopDeviceMapper;
 
