@@ -139,7 +139,7 @@ $(function () {
         $.ajax({
             type: "POST",
             dataType : "jsonp",
-            url: "http://localhost:8888/partners",
+            url: "http://tobesystem.co.kr/web/partners",
             data:
                 {
                     site_code : $('#hstcd').val(),
@@ -149,7 +149,7 @@ $(function () {
                 },
             error: function (request,status,error) {
                 if(request.status == 200){
-                    var newTab = window.open('http://localhost:8888/h_index', '_blank');
+                    var newTab = window.open('http://tobesystem.co.kr/web/h_index', '_blank');
                     newTab.focus();
                 }else{
                     alert('헬프데스크 인증에 실패하였습니다.');
