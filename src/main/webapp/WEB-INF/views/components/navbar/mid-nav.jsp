@@ -39,7 +39,7 @@
     <ul class="nav nav-list of-hidden">
         <li class="hover">
             <a href="/">
-                <i class="menu-icon fa fa-home"></i>
+                <img src="/ui-component/assets/images/icon/icon.png" class="menu-icon">
                 <span class="menu-text"> HOME </span>
             </a>
             <b class="arrow"></b>
@@ -58,7 +58,7 @@
                         <c:if test="${doneLoop3 != true}">
                             <c:if test="${under_list2.level == 3 }">
                                 <a href='<c:out value="${under_list2.menu_code}"/>'>
-                                    <i class="menu-icon fa fa-cog"></i>
+                                    <img src="/ui-component/assets/images/icon/icon.png" class="menu-icon">
                                     <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
                                 </a>
                                 <b class="arrow"></b>

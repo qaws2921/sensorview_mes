@@ -14,7 +14,6 @@
                 <span id="sub-t-3"></span>
                 <i class="ace-icon fa fa-angle-double-right"></i>
                 <b><span id="sub-t-4"></span></b>
-
            </span>
     </div>
 </div>

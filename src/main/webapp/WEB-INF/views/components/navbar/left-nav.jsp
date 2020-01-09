@@ -29,7 +29,7 @@
                 <li class="${top_active == mainLeft_list.menu_code ? 'active open' : ''}">
                     <c:if test="${mainLeft_list.level != 1 }">
                         <a href="javascript:void(0)" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-cog"></i>
+                            <i class="menu-icon fa fa-list-ul"></i>
                             <span class="menu-text"> ${mainLeft_list.menu_name} </span>
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
