@@ -36,6 +36,7 @@
                     <td class="wt-px-125 h-25">
                         <select id="part_group_select3" name="keyword4" class="form-control modal_value"  style="width:100%">
                         </select>
+                        <input type="hidden" name="ord_no" id="ord_no" class="form-control h-25 modal_value">
                     </td>
                     <td></td>
                 </tr>

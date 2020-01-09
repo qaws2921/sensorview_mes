@@ -17,4 +17,6 @@ public interface OrderMapper {
     Message scmOrderDel(SCM_IN_ORD sio);
 
     List<SCM_IN_ORD_SUB> scmOrderSub1Get(Page p);
+
+    Message scmReqOrderAdd(SCM_REQ_ORD sro);
 }

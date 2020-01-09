@@ -135,7 +135,7 @@ function add_modal1_btn() {
                         wrapWindowByMask2();
                         add_data.keyword = list.join(gu5);
                         console.log(add_data);
-                        // ccn_ajax("/", add_data).then(function (data) {
+                        // ccn_ajax("/scmReqOrderAdd", add_data).then(function (data) {
                         //     if (data.result === 'NG') {
                         //         alert(data.message);
                         //     } else {
@@ -145,10 +145,8 @@ function add_modal1_btn() {
                         //             get_btn_post($("#mes_grid").getGridParam('page'));
                         //         }
                         //     }
-                        //     $('#mes_modal1_grid1').jqGrid('clearGridData');
-                        //     $('#mes_modal1_grid2').jqGrid('clearGridData');
-                        //     closeWindowByMask();
-                        //     $("#addDialog").dialog('close');
+                            closeWindowByMask();
+                            $("#addDialog").dialog('close');
                         // }).catch(function (err) {
                         //     closeWindowByMask();
                         //     alert("저장실패");

@@ -48,6 +48,9 @@ function get_btn_post(page) {
 
 function add_btn() {
     modal_reset(".modal_value", []);
+    $("#mes_modal1_grid1").jqGrid('clearGridData');
+    $("#mes_modal1_grid2").jqGrid('clearGridData');
+
     $("select[name=part_type] option:eq(0)").prop("selected", true).trigger("change");
 
     var date = new Date();

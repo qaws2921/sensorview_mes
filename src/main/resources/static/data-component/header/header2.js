@@ -34,6 +34,7 @@ var array =
         {code: "scmOutOrder", title: '자재관리', sub: '자재입출고', name: '출고요청'},
         {code: "scmOutList", title: '자재관리', sub: '자재입출고', name: '출고현황'},
         {code: "scmStockRetList", title: '자재관리', sub: '자재입출고', name: '자재반출현황'},
+        {code: "scmHinList", title:'자재관리',sub:'반제품입출고',name:'반제품입고현황'},
         {code: "scmStockList", title: '자재관리', sub: '재고관리', name: '재고현황'},
         {code: "scmStockSumDay", title: '자재관리', sub: '재고관리', name: '자재 일원장'},
         {code: "scmStockSumMonth", title: '자재관리', sub: '재고관리', name: '자재 월원장'},
