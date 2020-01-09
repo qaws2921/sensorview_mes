@@ -23,7 +23,7 @@ function get_btn(page) {
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
     $("#mes_grid").setGridParam({
-        url: '/scmHinListGet',
+        url: '/scmHInListGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data

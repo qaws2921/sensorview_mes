@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Half.HalfMapper">
-    <select id="scmHinListGet" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HIN">
+    <select id="scmHInListGet" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HIN">
         EXEC SP_SCM_HIN_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
     </select>
 </mapper>

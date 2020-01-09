@@ -16,9 +16,9 @@ public class HalfService extends ReturnFunction {
     @Autowired
     private HalfMapper halfMapper;
 
-    public RESTful scmHinListGet(HttpServletRequest req, Page p) {
+    public RESTful scmHInListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_HIN> rows = halfMapper.scmHinListGet(p);
+        List<SCM_HIN> rows = halfMapper.scmHInListGet(p);
         return getListData(rows, p);
     }
 }
