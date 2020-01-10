@@ -165,7 +165,7 @@ function modal3_jqGrid() {
         // 다중 select
         mtype: 'POST',
         // 타이틀
-        caption: "업체조회 | MES",
+        caption: "발주확인 | MES",
         colNames: ['발주일자', '발주번호', '품번', '품명', '규격', '단위', '발주수량', '기입고수량', '입고수량', '완료처리'],
         colModel: [
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},

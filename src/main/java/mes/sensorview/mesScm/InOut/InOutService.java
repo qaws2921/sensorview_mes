@@ -128,7 +128,7 @@ public class InOutService extends ReturnFunction {
 
     public RESTful scmInLot2Get(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        List<SCM_IN_SUB_LOT2> rows = inOutMapper.scmInLot2Get(p);
+        List<SCM_IN_SUB_ORD> rows = inOutMapper.scmInLot2Get(p);
         return getListData(rows , p);
     }
 }
