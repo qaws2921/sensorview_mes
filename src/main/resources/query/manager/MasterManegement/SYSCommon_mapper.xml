@@ -20,7 +20,7 @@
     </select>
     <!--공통코드관리 공통코드 수정 , 그리드에서 하나의 항목 값 조회 -->
     <select id="sysCommonOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-        EXEC SP_SYS_COMMON_GET #{site_code},1,1,#{keyword},#{keyword2}
+        EXEC SP_SYS_COMMON_GET #{site_code},1,1,#{keyword},#{keyword2},''
     </select>
 
 

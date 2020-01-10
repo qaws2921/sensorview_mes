@@ -141,10 +141,9 @@ function modal_make1() {
 function jqGrid_modal1() {
     $('#mes_modal_grid').jqGrid({
         datatype: "local",
-        caption: "수입검사등록 | MES",
-        colNames: ['품목그룹','품번','품명','규격','단위','수주수량','기납품수량','납품가능수량','납품요청수량'],
+        caption: "제품출고요청 | MES",
+        colNames: ['품번','품명','규격','단위','수주수량','기납품수량','납품가능수량','납품요청수량'],
         colModel: [
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
             {name: 'part_code', index: 'part_code',key:true, width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 60, sortable: false},
@@ -198,6 +197,24 @@ function jqGrid_modal1() {
             savecol = ICol;
 
         },
+        afterSaveCell: function (rowid, name, val, iRow, iCol) {
+            var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
+            if (iCol === 7) {
+                if (isNaN(data.req_qty)) {
+                    alert("숫자만 입력가능합니다.");
+                    data.req_qty = data.req_qty.replace(/[^0-9]/g, '');
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'req_qty', data.req_qty);
+                    if (data.req_qty === '') {
+                        $('#mes_modal_grid').jqGrid('setCell', rowid, 'req_qty', '0');
+                    }
+                    return false;
+                } else if (parseInt(data.ready_qty) < parseInt(data.req_qty)) {
+                    alert("납품가능 수량이 초과 하였습니다.");
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'req_qty', 0);
+                    return false;
+                }
+            }
+        }
 
     });
 }
