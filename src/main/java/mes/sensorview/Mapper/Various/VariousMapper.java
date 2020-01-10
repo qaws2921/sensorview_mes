@@ -5,6 +5,7 @@ import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.SYSSupp;
 import mes.sensorview.Common.Various.DTO.VT_PART_GROUP;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
@@ -59,4 +60,6 @@ public interface VariousMapper {
     List<VT_PART_GROUP> partGroup2(Page p);
 
     List<VT_PART_GROUP> partGroup3(Page p);
+
+    List<SYS_ASSY_CABLE> crmAssyCableAllGet(Page p);
 }

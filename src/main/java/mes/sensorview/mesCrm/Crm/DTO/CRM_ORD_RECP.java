@@ -30,6 +30,7 @@ public class CRM_ORD_RECP {
     private String connector1;
     private String connector2;
     private String part_length;
+    private String length_type;
     private String part_desc;
     private int qty;
     private String unit_type;
@@ -68,11 +69,10 @@ public class CRM_ORD_RECP {
     private String  price_type_name;
     private String prod_type_name;
     private int sum_price;
-    private String address;
     private int rownum;
     private int rownum_page;
     private int rec_count;
     private String keyword;
-
+    private String delivery_addr;
     private String tube;
 }

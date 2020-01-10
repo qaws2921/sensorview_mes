@@ -25,9 +25,11 @@ function partModal_get_btn(page) {
     }).trigger("reloadGrid");
 }
 
-function partModal_check(rowid) {
+function partModal_check() {
     if ($( "#partSearchGrid" ).getGridParam( "selrow" )) {
-        partModal_bus(rowid);
+        var ids = $( "#partSearchGrid" ).getGridParam( "selrow" );
+        var data = $('#partSearchGrid').jqGrid('getRowData', ids);
+        partModal_bus(data.part_code);
         $("#part-search-dialog").dialog('close');
 
 
@@ -164,7 +166,7 @@ function partModal_jqGrid() {
             return true; // allow row selection
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            partModal_check(rowid);
+            partModal_check();
 
         }
 

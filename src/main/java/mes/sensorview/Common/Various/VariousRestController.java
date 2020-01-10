@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.PartType;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Various.DTO.SYSPartType;
 import mes.sensorview.Common.Various.DTO.VT_PART_GROUP;
+import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
@@ -122,4 +123,7 @@ public class VariousRestController {
 
     @RequestMapping(value ="/partGroup3", method = RequestMethod.POST)
     public List<VT_PART_GROUP> partGroup3(HttpServletRequest req, Page p) { return variousService.partGroup3(req,p); }
+
+    @RequestMapping(value = "/crmAssyCableAllGet", method = RequestMethod.POST)
+    public List<SYS_ASSY_CABLE> crmAssyCableAllGet(HttpServletRequest req, Page p) { return variousService.crmAssyCableAllGet(req, p); }
 }

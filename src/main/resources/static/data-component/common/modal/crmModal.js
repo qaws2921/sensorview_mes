@@ -72,7 +72,7 @@ function crmModal_jqGrid() {
         // 다중 select
         mtype: 'POST',
         // 타이틀
-        caption: "업체조회 | MES",
+        caption: "수주현황조회 | MES",
         colNames: ['','접수일', '수주번호', '수주처', 'End User', '진행상태', '진행여부', '납기일', 'Part No','수량','단위','수축튜브','비고'],
         colModel: [
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
@@ -88,7 +88,7 @@ function crmModal_jqGrid() {
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
+            {name: 'tube', index: 'tube', sortable: false, width: 60},
             {name: 'remark', index: 'remark', sortable: false, width: 60},
         ],
         autowidth: true,
