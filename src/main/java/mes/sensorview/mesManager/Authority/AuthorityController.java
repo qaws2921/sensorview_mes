@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthorityController {
 
 
-    @RequestMapping(value = "/sysAuth")
-    public String sysAuthList() {
-        return "mesManager/AuthorityManagement/sysAuth/sysAuth";
-    }
+//    @RequestMapping(value = "/sysAuth")
+//    public String sysAuthList() {
+//        return "mesManager/AuthorityManagement/sysAuth/sysAuth";
+//    }
 
     @RequestMapping(value = "/sysAuthProgram")
     public String sysAuthProgram() {
