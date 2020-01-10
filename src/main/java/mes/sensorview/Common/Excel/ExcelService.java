@@ -648,7 +648,7 @@ public class ExcelService extends ExcelFunction {
                         cell.setCellValue(String.valueOf(rows.get(i).get(v)));
                     }
                 }
-            }else if(excel.getName().equals("scmHinList")){
+            }else if(excel.getName().equals("scmHInList")){
                 // 시트 생성
                 Sheet sheet = sxssfWorkbook.createSheet("반제품입고현황");
                 // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
@@ -656,10 +656,10 @@ public class ExcelService extends ExcelFunction {
 
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
-                List<SCM_HIN> list = excelMapper.scmHinListDbList(excel);
-                List<List<Object>> rows = makeBody.scmHinList_Body(list);
-                int index = makeHeader.scmHinList_Header().length;
-                String[] data = makeHeader.scmHinList_Header();
+                List<SCM_HIN> list = excelMapper.scmHInListDbList(excel);
+                List<List<Object>> rows = makeBody.scmHInList_Body(list);
+                int index = makeHeader.scmHInList_Header().length;
+                String[] data = makeHeader.scmHInList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성

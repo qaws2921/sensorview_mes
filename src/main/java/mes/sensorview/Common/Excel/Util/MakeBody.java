@@ -507,7 +507,7 @@ public class MakeBody {
         return content;
     }
 
-    public List<List<Object>> scmHinList_Body(List<SCM_HIN> list) {
+    public List<List<Object>> scmHInList_Body(List<SCM_HIN> list) {
         List<List<Object>> content = new ArrayList<>();
         try{
             if(list.size()!=0){

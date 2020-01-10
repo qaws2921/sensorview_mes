@@ -69,7 +69,7 @@
             EXEC SP_TPM_MACHINE_ERROR_GET #{site_code},0,0,#{row0},#{row1},#{row2},#{row3}
     </select>
 
-    <select id="scmHinListDbList" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HIN">
+    <select id="scmHInListDbList" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HIN">
         EXEC SP_SCM_HIN_GET #{site_code},0,0,#{row0},#{row1},#{row2}
     </select>
 </mapper>
