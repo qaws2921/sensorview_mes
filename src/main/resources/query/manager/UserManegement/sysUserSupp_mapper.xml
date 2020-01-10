@@ -7,7 +7,6 @@
     </select>
     <select id="sysUserSuppOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUserSupp">
         	SELECT * FROM  SYS_USER_CD WHERE  USER_TYPE = '1' AND USER_CODE = #{keyword}
-
     </select>
 
     <select id="sysUserSuppAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
