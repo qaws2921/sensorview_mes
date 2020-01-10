@@ -56,5 +56,5 @@ public interface ExcelMapper {
 
     List<tpmMachineError> tpmMachineErrorDbList(Excel excel);
 
-    List<SCM_HIN> scmHinListDbList(Excel excel);
+    List<SCM_HIN> scmHInListDbList(Excel excel);
 }

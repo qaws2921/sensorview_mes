@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: []
+    readonly: [],
+    auth:{}
 };
 
 var colNames = ['구분','t1','t2','t3','품목코드','품목명','보관로케이션','업체명','규격','단위','L/T','검사등급','재고최대','재고최소','등록자','수정일']
@@ -20,6 +21,7 @@ $(document).ready(function () {
     jqgridPagerIcons();
 
     selectBox();
+    authcheck();
     modal_start1();
 });
 
@@ -35,33 +37,37 @@ function select_change1(value) {
 }
 
 function add_btn() {
-    modal_reset(".modal_value", main_data.readonly);
-    $('#part_group1_modal1').text($('#part_group1').text());
-    $('#part_group2_modal1').text($('#part_group2').text());
-    $('#part_group3_modal1').text($('#part_group3').text());
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        $('#part_group1_modal1').text($('#part_group1').text());
+        $('#part_group2_modal1').text($('#part_group2').text());
+        $('#part_group3_modal1').text($('#part_group3').text());
 
-    modalValuePush("#part_type_select","#part_type_code","#part_type_name");
-    main_data.check = 'I';
-    if($('#part_group_select1').val() == ''){
-        $("select[name=part_group1] option:eq(0)").prop("selected", true).trigger("change");
-    }else {
-        $('#part_group_select1_modal1').val($('#part_group_select1').val()).trigger("change");
-    }
-    if($('#part_group_select2').val() == ''){
-        $("select[name=part_group2] option:eq(0)").prop("selected", true).trigger("change");
-    }else {
-        $('#part_group_select2_modal1').val($('#part_group_select2').val()).trigger("change");
-    }
-    if($('#part_group_select3').val() == ''){
-        $("select[name=part_group3] option:eq(0)").prop("selected", true).trigger("change");
-    }else {
-        $('#part_group_select3_modal1').val($('#part_group_select3').val()).trigger("change");
-    }
-    $("select[name=unit_name] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=qc_level] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=loc_code] option:eq(0)").prop("selected", true).trigger("change");
+        modalValuePush("#part_type_select","#part_type_code","#part_type_name");
+        main_data.check = 'I';
+        if($('#part_group_select1').val() == ''){
+            $("select[name=part_group1] option:eq(0)").prop("selected", true).trigger("change");
+        }else {
+            $('#part_group_select1_modal1').val($('#part_group_select1').val()).trigger("change");
+        }
+        if($('#part_group_select2').val() == ''){
+            $("select[name=part_group2] option:eq(0)").prop("selected", true).trigger("change");
+        }else {
+            $('#part_group_select2_modal1').val($('#part_group_select2').val()).trigger("change");
+        }
+        if($('#part_group_select3').val() == ''){
+            $("select[name=part_group3] option:eq(0)").prop("selected", true).trigger("change");
+        }else {
+            $('#part_group_select3_modal1').val($('#part_group_select3').val()).trigger("change");
+        }
+        $("select[name=unit_name] option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=qc_level] option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=loc_code] option:eq(0)").prop("selected", true).trigger("change");
 
-    $("#addDialog").dialog('open');
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 function get_btn(page) {
@@ -88,28 +94,32 @@ function get_btn_post(page) {
 }
 
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    ccn_ajax('/sysPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
-       return data;
-    }).then(function (data2) {
-        for (var i = 1; i<=3; i++){
-            selectBoxPartModal(data2,i)
-        }
-        return data2;
-    }).then(function (data5) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data5.part_type}).then(function (value) {
-            $('#part_group1_modal1').text(value.part_group1);
-            $('#part_group2_modal1').text(value.part_group2);
-            $('#part_group3_modal1').text(value.part_group3);
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        ccn_ajax('/sysPartOneGet', {keyword:jqgrid_data.part_code}).then(function (data) {
+            return data;
+        }).then(function (data2) {
+            for (var i = 1; i<=3; i++){
+                selectBoxPartModal(data2,i)
+            }
+            return data2;
+        }).then(function (data5) {
+            ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data5.part_type}).then(function (value) {
+                $('#part_group1_modal1').text(value.part_group1);
+                $('#part_group2_modal1').text(value.part_group2);
+                $('#part_group3_modal1').text(value.part_group3);
+            });
+            // data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
+            modal_edits('.modal_value', main_data.readonly,data5); // response 값 출력
+            console.log(data5);
+
+            $("#addDialog").dialog('open');
+
         });
-        // data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
-        modal_edits('.modal_value', main_data.readonly,data5); // response 값 출력
-        console.log(data5);
-
-        $("#addDialog").dialog('open');
-
-    });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 function selectBoxPartModal(value,i) {
@@ -131,31 +141,40 @@ function selectBoxPartModal(value,i) {
 
 
 function delete_btn() {
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            wrapWindowByMask2();
-            ccn_ajax("/sysPartDel", {keyword: ids.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/sysPartDel", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysDept"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function grid_head_value_change(value) {
     colNames[1] = value.part_group1;

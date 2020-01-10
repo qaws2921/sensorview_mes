@@ -62,7 +62,7 @@
             </div>
             <div class="profile-info-name">업체명</div>
             <div class="profile-info-value">
-                <input type="text" name="supp_name" id="supp_name_main" class="form-control modal_value" readonly>
+                <input type="text" name="supp_name" id="supp_name_main" class="form-control modal_value" placeholder="자동입력" readonly>
             </div>
 
         </div>

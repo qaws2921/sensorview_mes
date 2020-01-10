@@ -95,7 +95,7 @@ public class MakeHeader {
         return data;
     }
 
-    public String[] scmHinList_Header() {
+    public String[] scmHInList_Header() {
         String[] data ={"입고일자", "입고번호", "공정", "품번", "품명", "규격", "단위", "입고수량", "등록자", "입고일시"};
         return data;
     }

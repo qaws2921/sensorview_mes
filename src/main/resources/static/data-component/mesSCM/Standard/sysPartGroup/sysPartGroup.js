@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['part_grp_code']
+    readonly: ['part_grp_code'],
+    auth:{}
 };
 
 
@@ -20,6 +21,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
 
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -48,62 +50,71 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        modalValuePush("#part_type_select", "#part_type_code", "#part_type_name");
+        modalValuePush("#part_group_select", "#part_level", "#part_level_name");
+        main_data.check = 'I';
 
-    modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#part_type_select", "#part_type_code", "#part_type_name");
-    modalValuePush("#part_group_select", "#part_level", "#part_level_name");
-    main_data.check = 'I';
-
-    $("#addDialog").dialog('open');
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 
 function update_btn(jqgrid_data) {
-
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    ccn_ajax('/sysPartGroupOneGet', jqgrid_data).then(function (data) {
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
-    });
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        ccn_ajax('/sysPartGroupOneGet', jqgrid_data).then(function (data) {
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
 function delete_btn() {
+    if(main_data.auth.check_del != "N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
 
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                wrapWindowByMask2();
+                var list = [];
+                var data;
 
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            wrapWindowByMask2();
-            var list = [];
-            var data;
-
-            ids.forEach(function (id) {
-                data = $('#mes_grid').jqGrid('getRowData', id);
-                list.push(data.part_type+gu4+data.part_level+gu4+data.part_grp_code);
-            });
-
-            main_data.check = 'D';
-            callback(function () {
-                ccn_ajax("/sysPartGroupDel", {keyword: list.join(gu5)}).then(function (data) {
-                    if (data.result === 'NG') {
-                        alert(data.message);
-                    } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
-                    }
-                    closeWindowByMask();
-                }).catch(function (err) {
-                    closeWindowByMask();
-                    console.error(err); // Error 출력
+                ids.forEach(function (id) {
+                    data = $('#mes_grid').jqGrid('getRowData', id);
+                    list.push(data.part_type+gu4+data.part_level+gu4+data.part_grp_code);
                 });
-            });
 
+                main_data.check = 'D';
+                callback(function () {
+                    ccn_ajax("/sysPartGroupDel", {keyword: list.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                });
+
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
@@ -120,7 +131,11 @@ function select_change1(value) {
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
-
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysDept"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function selectBox() {
     part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
