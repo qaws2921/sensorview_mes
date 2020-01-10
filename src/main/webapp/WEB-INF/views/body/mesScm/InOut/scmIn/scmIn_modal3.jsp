@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmIn/scmIn_modal3.js"
         charset="UTF-8"></script>
 
-<div id="addDialog3" title="수주현황 조회" style="display:none">
+<div id="addDialog3" title="발주확인 조회" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
