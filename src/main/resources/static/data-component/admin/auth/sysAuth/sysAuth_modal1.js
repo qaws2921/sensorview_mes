@@ -44,7 +44,6 @@ function effectiveness1(modal_objact) { // 유효성 검사
         alert("권한명을 입력해주세요");
         return false;
     }  else {
-
         return true;
     }
 }

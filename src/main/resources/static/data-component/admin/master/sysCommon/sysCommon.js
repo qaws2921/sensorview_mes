@@ -12,7 +12,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly:['code_type']
+    readonly:['code_type'],
+    auth:{}
 }
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -28,7 +29,7 @@ $(document).ready(function () {
 
     /*----모달----*/
     modal_start1(); // 모달1 시작 함수
-
+    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정
 });
 

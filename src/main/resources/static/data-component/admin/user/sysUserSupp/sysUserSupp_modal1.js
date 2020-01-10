@@ -105,5 +105,5 @@ function modal_make1() {
 
 function selectBox_modal1() {
     select_makes("#auth_select", "/sysAuthAllGet", "auth_code", "auth_name");
-
+    $('#use_yn').select2();
 }

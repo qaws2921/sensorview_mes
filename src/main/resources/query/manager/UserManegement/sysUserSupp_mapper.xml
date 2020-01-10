@@ -6,7 +6,7 @@
         	EXEC SP_SYS_USER_SUPP_GET #{site_code}, #{page},#{rows},''
     </select>
     <select id="sysUserSuppOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUserSupp">
-        	EXEC SP_SYS_USER_SUPP_GET #{site_code}, #{page},#{rows},#{keyword}
+        	SELECT * FROM  SYS_USER_CD WHERE  USER_TYPE = '1' AND USER_CODE = #{keyword}
     </select>
 
     <select id="sysUserSuppAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
