@@ -2,6 +2,7 @@
 
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
@@ -76,4 +77,10 @@ function effectiveness1(modal_objact) {
     } else {
         return true;
     }
+}
+
+function selectBox_modal1(){
+    $('#board_auth').select2();
+    $('#use_yn').select2();
+
 }

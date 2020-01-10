@@ -9,7 +9,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly:['supp_code']
+    readonly:['supp_code'],
+    auth:{}
 }
 
 
@@ -20,6 +21,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -48,64 +50,81 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-    modal_reset(".modal_value", main_data.readonly);
-    $('#corp_type1').val('N');
-    $('#corp_type2').val('N');
-    $('#corp_type3').val('N');
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        $('#corp_type1').val('N');
+        $('#corp_type2').val('N');
+        $('#corp_type3').val('N');
 
-    main_data.check = 'I';
-    $("#addDialog").dialog('open');
+        main_data.check = 'I';
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    var send_data = {};
-    send_data.keyword = jqgrid_data.supp_code;
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.keyword = jqgrid_data.supp_code;
 
-    ccn_ajax('/sysSuppOneGet', send_data).then(function (data) {
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $('#corp_type1').val(data.corp_type1);
-        $('#corp_type2').val(data.corp_type2);
-        $('#corp_type3').val(data.corp_type3);
-        $("#addDialog").dialog('open');
-    });
+        ccn_ajax('/sysSuppOneGet', send_data).then(function (data) {
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $('#corp_type1').val(data.corp_type1);
+            $('#corp_type2').val(data.corp_type2);
+            $('#corp_type3').val(data.corp_type3);
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 function delete_btn() {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
+    if(main_data.auth.check_del != "N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
 
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    var ids2 = {};
-    var list = [];
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        var ids2 = {};
+        var list = [];
 
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            wrapWindowByMask2();
-            for(var i=0;i<ids.length;i++){
-                ids2 = $("#mes_grid").jqGrid('getRowData',ids[i]);
-                list.push(ids2.site_code+gu4+ids2.supp_code);
-            }
-            ccn_ajax("/sysSuppListDel",{keyword: list.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                for(var i=0;i<ids.length;i++){
+                    ids2 = $("#mes_grid").jqGrid('getRowData',ids[i]);
+                    list.push(ids2.site_code+gu4+ids2.supp_code);
                 }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+                ccn_ajax("/sysSuppListDel",{keyword: list.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysDept"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function selectBox() {
     $('#gubun_select').select2();

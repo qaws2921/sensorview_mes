@@ -1,6 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
@@ -71,4 +72,11 @@ function effectiveness1(modal_objact) { // 유효성 검사
     } else {
         return true;
     }
+}
+
+function selectBox_modal1(){
+    $('#corp_type1').select2();
+    $('#corp_type2').select2();
+    $('#corp_type3').select2();
+    $('#use_yn').select2();
 }

@@ -2,6 +2,7 @@
 
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 
@@ -79,7 +80,8 @@ function modal_make1() {
             }
         ]
     });
-
-
 }
 
+function selectBox_modal1() {
+    $('#use_yn').select2();
+}
