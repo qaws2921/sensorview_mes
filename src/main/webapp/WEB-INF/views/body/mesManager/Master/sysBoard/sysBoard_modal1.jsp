@@ -25,7 +25,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 권한 </div>
             <div class="profile-info-value">
-                <select name="board_auth" class="form-control modal_value">
+                <select name="board_auth" id="board_auth" class="form-control modal_value">
                     <option value="">선택안함</option>
                     <option value="1">당사</option>
                     <option value="2">전체</option>
