@@ -22,7 +22,7 @@
             <div class="profile-info-name"> 권한 </div>
 
             <div class="profile-info-value">
-                <select name="auth_code" class="form-control modal_value" id="auth_select">
+                <select name="auth_code" class="form-control modal_value" id="auth_select" style="width: 100%;">
                     <option value="">선택안함</option>
                 </select>
             </div>
@@ -44,7 +44,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 사용유무 </div>
             <div class="profile-info-value">
-                <select name="use_yn" class="form-control modal_value ynCheck">
+                <select name="use_yn" id="use_yn" class="form-control modal_value ynCheck" style="width: 100%;">
                     <option>Y</option>
                     <option>N</option>
                 </select>
