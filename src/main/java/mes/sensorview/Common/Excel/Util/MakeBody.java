@@ -127,7 +127,7 @@ public class MakeBody {
         List<List<Object>> content = new ArrayList<>();
         try{
             if(list.size()!=0){
-                for(SCM_IN_SUB data : list){
+                    for(SCM_IN_SUB data : list){
                     obj = new ArrayList<>();
                     obj.add(data.getWork_date());
                     obj.add(data.getIn_no());

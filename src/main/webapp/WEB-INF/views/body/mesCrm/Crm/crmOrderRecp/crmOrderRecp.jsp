@@ -9,7 +9,7 @@
                 <div class="col-xs-12 ">
                     <span class="sp-title">수주정보</span>
                 </div>
-                <div class="col-xs-12">
+                <div class="col-xs-6">
                     <table class="table multi_table">
                         <tbody>
                         <tr>
@@ -66,7 +66,7 @@
                 <div class="col-xs-12 ">
                     <span class="sp-title">고객정보</span>
                 </div>
-                <div class="col-xs-12 ">
+                <div class="col-xs-6 ">
                     <table class="table multi_table">
                         <tbody>
                         <tr>
@@ -95,7 +95,7 @@
                 <div class="col-xs-12">
                     <span class="sp-title">수주품목</span>
                 </div>
-                <div class="col-xs-12">
+                <div class="col-xs-6">
                     <table class="table multi_table">
                         <tbody>
                         <tr>
@@ -275,7 +275,7 @@
                 </div>
             </div>
         </div>
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="clearfix">
                     <div class="pull-right tableTools-container">
                         <div class="dt-buttons btn-overlap btn-group">

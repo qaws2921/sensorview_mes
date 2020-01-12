@@ -1,5 +1,7 @@
 var array =
     [
+        {code: "", title: 'SENSORVIEW', sub: 'MES', name: 'HOME'},
+
         // 관리자
         {code: "sysAuth", title: '관리자', sub: '권한관리', name: '권한그룹관리'},
         {code: "sysAuthProgram", title: '관리자', sub: '권한관리', name: '권한그룹별 프로그램관리'},
