@@ -7,6 +7,7 @@ import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.Mapper.mesQms.Shipment.QmsShipmentMapper;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_NG_SUM;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,5 +111,10 @@ public class QmsShipmentService extends UploadFunction {
             Files newFiles = AllFile(files, req,Key,i);
             qmsShipmentMapper.qmsProdErrorManAdd_AllFile(newFiles);
         }
+    }
+
+    public List<QMS_PROD_NG_SUM> qmsProdErrorListSumGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return qmsShipmentMapper.qmsProdErrorListSumGet(p);
     }
 }

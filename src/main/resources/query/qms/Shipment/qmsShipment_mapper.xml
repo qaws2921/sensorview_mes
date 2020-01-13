@@ -68,4 +68,8 @@
             WHERE
             IN_NO = #{key1} AND PART_CODE = #{key2}
     </update>
+
+    <select id="qmsProdErrorListSumGet" resultType="mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_NG_SUM">
+            EXEC SP_QMS_PROD_NG_SUM_GET #{site_code}, #{start_date}, #{end_date}
+    </select>
 </mapper>
