@@ -34,55 +34,59 @@ function get_modal1_btn(page) {
 
 
 function update_btn(rowid) {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
-    modal_reset(".modal_value2", []);
-    modal_reset(".modal_value", []);
-    $("#scmInDialogLeftGrid").jqGrid('clearGridData');
-    $("#scmInDialogRightGrid").jqGrid('clearGridData');
-    $("#in_no").val(rowid);
-    modal2_data.part_code = '';
-    modal2_data.sub_data = [];
-    main_data.check = 'U';
+    if (main_data.auth.check_edit !="N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
+        modal_reset(".modal_value2", []);
+        modal_reset(".modal_value", []);
+        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
+        $("#in_no").val(rowid);
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        main_data.check = 'U';
 
-    ccn_ajax('/scmInSub2Get', {keyword: rowid}).then(function (data) {
+        ccn_ajax('/scmInSub2Get', {keyword: rowid}).then(function (data) {
 
-        $("#supp_name_modal").val(data[0].supp_name);
-        $("#supp_code_modal").val(data[0].supp_code);
+            $("#supp_name_modal").val(data[0].supp_name);
+            $("#supp_code_modal").val(data[0].supp_code);
 
-        $("#datepicker3").val(formmatterDate2(data[0].work_date));
-        $("#remark").val(data[0].remark);
+            $("#datepicker3").val(formmatterDate2(data[0].work_date));
+            $("#remark").val(data[0].remark);
 
-        var push;
-        var list;
-        var list2;
-        var list3;
-        data.forEach(function (s) {
-            push = {};
-            list = [];
-            list3 = [];
-            push.part_code = s.part_code;
-            list = s.sub.split(gu5);
-            list.forEach(function (s2) {
-                list2 = [];
-                list2 = s2.split(gu4);
-                list3.push({lot: list2[0], qty: list2[1]});
-            });
-            push.list = list3;
-            modal2_data.sub_data.push(push);
+            var push;
+            var list;
+            var list2;
+            var list3;
+            data.forEach(function (s) {
+                push = {};
+                list = [];
+                list3 = [];
+                push.part_code = s.part_code;
+                list = s.sub.split(gu5);
+                list.forEach(function (s2) {
+                    list2 = [];
+                    list2 = s2.split(gu4);
+                    list3.push({lot: list2[0], qty: list2[1]});
+                });
+                push.list = list3;
+                modal2_data.sub_data.push(push);
 
-        })
+            })
 
 
-        $("#scmInDialogRightGrid").setGridParam({
-            datatype: "local",
-            data: data
-        }).trigger("reloadGrid");
+            $("#scmInDialogRightGrid").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
 
-        $("#scmIn-add-dialog").dialog('open');
-        jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
-        jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
-    });
+            $("#scmIn-add-dialog").dialog('open');
+            jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
+            jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
@@ -423,7 +427,7 @@ function jqGrid_modal1() {
             // },
         ],
         autowidth: true,
-        height: 340,
+        height: 331,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         loadonce: true,
@@ -497,7 +501,7 @@ function orderButton(cellvalue, options, rowObject) {
 function modal_make1() {
     $("#scmIn-add-dialog").dialog({
         modal: true,
-        width: 'auto',
+        width: 1300,
         height: 'auto',
         autoOpen: false,
         resizable: false,

@@ -13,8 +13,8 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
-    check2: 'Y'
-
+    check2: 'Y',
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -34,7 +34,7 @@ $(document).ready(function () {
     modal_start3();
 
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 
 });
@@ -78,24 +78,28 @@ function under_get(rowid) {
 
 
 function add_btn() {
-    modal_reset(".modal_value", []);
-    modal_reset(".modal_value2", []);
-    $("#scmInDialogLeftGrid").jqGrid('clearGridData');
-    $("#scmInDialogRightGrid").jqGrid('clearGridData');
-    modal2_data.part_code = '';
-    modal2_data.sub_data = [];
-    modal3_data.part_code = '';
-    modal3_data.sub_data = [];
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", []);
+        modal_reset(".modal_value2", []);
+        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        modal3_data.part_code = '';
+        modal3_data.sub_data = [];
 
-    $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
-    $("#datepicker3").datepicker('setDate', 'today');
+        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#datepicker3").datepicker('setDate', 'today');
 
-    main_data.check = 'I';
-    main_data.check2 = 'Y';
+        main_data.check = 'I';
+        main_data.check2 = 'Y';
 
-    $("#scmIn-add-dialog").dialog('open');
-    jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
-    jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+        $("#scmIn-add-dialog").dialog('open');
+        jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
+        jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 
@@ -111,48 +115,57 @@ function supp_btn(what) {
 
 
 function delete_btn() {
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#scmInTopGrid").getGridParam('selarrrow');
-    var check = '';
-    var check2 = [];
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        ids.forEach(function (id) {
-            check = $('#scmInTopGrid').jqGrid('getRowData', id).status;
-            if (check === '2') {
-                check2.push(id);
-            }
-
-        })
-        if (check2.length > 0) {
-            alert(check2.join(",") + " 전표가 입고 완료 되어있습니다.");
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#scmInTopGrid").getGridParam('selarrrow');
+        var check = '';
+        var check2 = [];
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
         } else {
-            if (confirm("삭제하겠습니까?")) {
-                main_data.check = 'D';
-                wrapWindowByMask2();
-                ccn_ajax("/scmInDel", {keyword: ids.join(gu5)}).then(function (data) {
-                    if (data.result === 'NG') {
-                        alert(data.message);
-                    } else {
-                        get_btn_post($("#scmInTopGrid").getGridParam('page'));
-                    }
-                    $('#scmInBottomGrid').jqGrid('clearGridData');
-                    closeWindowByMask();
-                }).catch(function (err) {
-                    closeWindowByMask();
-                    console.error(err); // Error 출력
-                });
+            ids.forEach(function (id) {
+                check = $('#scmInTopGrid').jqGrid('getRowData', id).status;
+                if (check === '2') {
+                    check2.push(id);
+                }
+
+            })
+            if (check2.length > 0) {
+                alert(check2.join(",") + " 전표가 입고 완료 되어있습니다.");
+            } else {
+                if (confirm("삭제하겠습니까?")) {
+                    main_data.check = 'D';
+                    wrapWindowByMask2();
+                    ccn_ajax("/scmInDel", {keyword: ids.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                        }
+                        $('#scmInBottomGrid').jqGrid('clearGridData');
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                }
             }
+            $('#scmInTopGrid').jqGrid("resetSelection");
         }
-        $('#scmInTopGrid').jqGrid("resetSelection");
-
-
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "scmIn"}).then(function (data) {
+        main_data.auth = data;
+        console.log(main_data);
+    });
+}
+
 function suppModal_bus(code, name) {
     if (main_data.supp_check === 'A') {
         $("#supp_name_main").val(name);
@@ -235,10 +248,9 @@ function jqGrid_main() {
         mtype: 'POST',
         datatype: "local",
         caption: "입고등록 | MES",
-        colNames: ['전표번호', '품목그룹', '품번', '품명', '업체명', '규격', '단위', 'lot', '입고수량', '패킹수'],
+        colNames: ['전표번호', '품번', '품명', '업체명', '규격', '단위', 'lot', '입고수량', '패킹수'],
         colModel: [
             {name: 'in_no', index: 'in_no', width: 60, sortable: false},
-            {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
             {name: 'part_code', index: 'part_code', width: 60, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'supp_name', index: 'supp_name', width: 60, sortable: false},

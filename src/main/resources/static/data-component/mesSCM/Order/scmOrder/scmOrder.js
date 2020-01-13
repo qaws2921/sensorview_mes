@@ -93,7 +93,7 @@ function add_btn() {
 
 
 function delete_btn() {
-    if (main_data.auth.check_edit !="N") {
+    if(main_data.auth.check_del != "N") {
         var ids = $("#mes_grid").getGridParam('selarrrow');
         var check = '';
         var check2 = [];
@@ -130,7 +130,7 @@ function delete_btn() {
             $('#mes_grid').jqGrid("resetSelection");
         }
     } else {
-        alert("수정권한이 없습니다.");
+        alert("삭제권한이 없습니다.");
     }
 }
 
@@ -160,7 +160,7 @@ function suppModal_bus(code, name) {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysOrder"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "scmOrder"}).then(function (data) {
         main_data.auth = data;
     });
 }

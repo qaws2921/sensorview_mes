@@ -31,9 +31,7 @@ $(document).ready(function () {
 // 조회 버튼
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main"); // value_return 클래스명 넣으면 name에 맞게 객체 생성
-
     main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
-
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/sysAuthGet',
         datatype: "json",
@@ -56,9 +54,7 @@ function get_btn_post(page) {
 function add_btn() {
     if (main_data.auth.check_add !="N"){
         modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
-
         main_data.check = 'I'; // 저장인지 체크
-
         $("#addDialog").dialog('open'); // 모달 열기
     } else {
         alert("추가권한이 없습니다,");

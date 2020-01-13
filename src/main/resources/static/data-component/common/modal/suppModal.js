@@ -57,11 +57,6 @@ function suppModal_make() {
         minWidth:900,
         height: 'auto',
         resizable: false,
-        buttons: [
-            {
-                "class": "hide",
-            }
-        ],
         open: function () {
             if ($.ui && $.ui.dialog && !$.ui.dialog.prototype._allowInteractionRemapped && $(this).closest(".ui-dialog").length) {
                 if ($.ui.dialog.prototype._allowInteraction) {

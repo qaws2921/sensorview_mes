@@ -115,9 +115,9 @@ function delete_btn() {
 }
 ////////////////////////////호출 함수/////////////////////////////////////
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysReqOrder"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "scmReqOrder"}).then(function (data) {
         main_data.auth = data;
-
+        console.log(main_data);
     });
 }
 
