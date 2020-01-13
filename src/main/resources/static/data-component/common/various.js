@@ -51,6 +51,17 @@ function formatterDate3(cellValue) { // 날짜 필터
 	}
 }
 
+function formatterDate4(cellValue) { // 날짜 필터
+	if (cellValue == null){
+		return '';
+	} else {
+		var y = cellValue.substring(0,4);
+		var m = cellValue.substring(4,6);
+		var date = y+"-"+m+"월"
+		return date;
+	}
+}
+
 
 function jqGridResize(main_name, top_name) {
 	$(window).on('resize', function () {

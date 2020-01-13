@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_NG_SUM;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import org.springframework.stereotype.Repository;
@@ -38,4 +39,6 @@ public interface QmsShipmentMapper {
     void qmsProdErrorManAdd_File3(Files files);
 
     void qmsProdErrorManAdd_AllFile(Files newFiles);
+
+    List<QMS_PROD_NG_SUM> qmsProdErrorListSumGet(Page p);
 }

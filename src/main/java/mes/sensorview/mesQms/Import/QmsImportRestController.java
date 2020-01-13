@@ -7,6 +7,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
+import mes.sensorview.mesQms.Import.DTO.QMS_RECV_NG_SUM;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,5 +110,11 @@ public class QmsImportRestController extends UploadFunction {
     @RequestMapping(value = "/qmsRecvMRBCancel", method = RequestMethod.POST)
     public Message qmsRecvMRBCancel(HttpServletRequest req, QMS_RECV_SUB qrs) {
         return qmsImportService.qmsRecvMRBCancel(req, qrs);
+    }
+
+
+    @RequestMapping(value = "/qmsRecvErrorListSumGet", method = RequestMethod.POST)
+    public List<QMS_RECV_NG_SUM> qmsRecvErrorListSumGet(Page p, HttpServletRequest req) {
+        return qmsImportService.qmsRecvErrorListSumGet(p, req);
     }
 }

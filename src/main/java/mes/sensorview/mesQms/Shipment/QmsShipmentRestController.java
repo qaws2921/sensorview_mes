@@ -7,6 +7,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.Common.File.Function.UploadFunction;
+import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_NG_SUM;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_RPT;
 import mes.sensorview.mesQms.Shipment.DTO.QMS_PROD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,11 @@ public class QmsShipmentRestController extends UploadFunction {
             qmsShipmentService.qmsProdErrorManAdd_AllFile(files, req);
         }
         return "수정되었습니다.";
+    }
+
+    @RequestMapping(value = "/qmsProdErrorListSumGet", method = RequestMethod.POST)
+    public List<QMS_PROD_NG_SUM> qmsProdErrorListSumGet(Page p, HttpServletRequest req) {
+        return qmsShipmentService.qmsProdErrorListSumGet(p, req);
     }
 
 }
