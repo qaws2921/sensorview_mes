@@ -21,7 +21,7 @@ public class HomeController extends ReturnFunction {
     }
 
     @RequestMapping(value="/")
-    public String main(){
-        return "main";
+    public String index(){
+        return "index";
     }
 }
