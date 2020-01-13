@@ -12,10 +12,13 @@
     input[type=text][name="ord_qty"] {
         height: 18px !important;
     }
+    input[type=text][name="end_date"] {
+        height: 18px !important;
+    }
 </style>
 <div id="addDialog" title="발주추가" style="display: none">
     <div class="col-lg-12">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -90,7 +93,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <table class="table wt-100">
                 <tbody>
                 <tr>

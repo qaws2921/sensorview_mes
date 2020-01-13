@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="/data-component/mesSCM/Order/scmOrder/scmOrder.js" charset="UTF-8"></script>
 <style>
-    #SuppSearchGridPager #pg_SuppSearchGridPager table{
-        table-layout:auto !important;
-    }
     #mes_add_grid_pager #pg_mes_add_grid_pager table{
         table-layout:auto !important;
     }

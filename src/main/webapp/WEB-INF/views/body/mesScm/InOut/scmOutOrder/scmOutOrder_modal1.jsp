@@ -80,13 +80,13 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-100">
-                        <select name="cargo_code_to" id="line_select" class="form-control modal_value2">
+                        <select name="cargo_code_to" id="line_select" class="form-control modal_value2" style="width: 100%">
 
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">용도</td>
                     <td class="wt-px-100">
-                        <select name="usage" id="usage_select" class="form-control modal_value2">
+                        <select name="usage" id="usage_select" class="form-control modal_value2" style="width: 100%">
                             <option value="1">양산</option>
                             <option value="2">개발</option>
                         </select>

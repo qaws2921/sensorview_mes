@@ -37,6 +37,11 @@ function update_btn(rowid) {
     if (main_data.auth.check_edit !="N") {
         var gu4 = String.fromCharCode(4);
         var gu5 = String.fromCharCode(5);
+        $("#supp_name_modal").prop("disabled", true);
+        $("#part_type_select").prop("disabled", true);
+        $("#part_group_select1").prop("disabled", true);
+        $("#part_group_select2").prop("disabled", true);
+        $("#part_group_select3").prop("disabled", true);
         modal_reset(".modal_value2", []);
         modal_reset(".modal_value", []);
         $("#scmInDialogLeftGrid").jqGrid('clearGridData');
@@ -47,6 +52,7 @@ function update_btn(rowid) {
         main_data.check = 'U';
 
         ccn_ajax('/scmInSub2Get', {keyword: rowid}).then(function (data) {
+            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
 
             $("#supp_name_modal").val(data[0].supp_name);
             $("#supp_code_modal").val(data[0].supp_code);
@@ -355,14 +361,14 @@ function jqGrid_modal1() {
         caption: "입고등록 | MES",
         colNames: ['품번', '품명', '규격', '단위', '검사등급', 'lot_no', '입고수량', '패킹수', '수량등록','발주확인','발주체크'],
         colModel: [
-            {name: 'part_code', key: true, index: 'part_code', width: 60, sortable: false},
-            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-            {name: 'spec', index: 'spec', width: 60, sortable: false},
-            {name: 'unit_name', index: 'unit_name', width: 60},
+            {name: 'part_code', key: true, index: 'part_code', width: 90, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 70, sortable: false},
+            {name: 'spec', index: 'spec', width: 80, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 50},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'lot', index: 'lot', width: 60, sortable: false},
-            {name: 'qty', index: 'qty', width: 60, sortable: false},
-            {name: 'pack_qty', index: 'pack_qty', width: 60, sortable: false},
+            {name: 'lot', index: 'lot', width: 50, sortable: false},
+            {name: 'qty', index: 'qty', width: 50, sortable: false},
+            {name: 'pack_qty', index: 'pack_qty', width: 50, sortable: false},
             {name: 'button', index: 'button', width: 60, formatter: qtyButton, sortable: false},
             {name: 'button2', index: 'button2', width: 60, formatter: orderButton, sortable: false},
             {name: 'ord_check', index: 'ord_check', width: 60,  sortable: false}

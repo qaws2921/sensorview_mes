@@ -316,7 +316,7 @@ function jqGrid_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 1200,
+        width: 1300,
         height: 'auto',
         autoOpen: false,
         resizable: false

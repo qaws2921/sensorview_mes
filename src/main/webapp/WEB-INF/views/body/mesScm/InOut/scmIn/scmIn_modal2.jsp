@@ -23,7 +23,7 @@
                     <c:forEach var="num2" begin="${num}" end="${num+40}" step="10">
 
                         <div class="profile-info-name wt-px-50">${num2}</div>
-                        <div class="profile-info-value wt-px-100">
+                        <div class="profile-info-value wt-px-75">
                             <input type="text" name="lot${num2}" id="scmIn_sub${num2}" class="form-control  modal_value3 modal2_check1">
                         </div>
                         <div class="profile-info-value wt-px-75">

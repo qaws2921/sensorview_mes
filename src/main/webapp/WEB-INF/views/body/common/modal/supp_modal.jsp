@@ -6,7 +6,7 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100">
+                    <td class="wt-px-100 td-title" style="background-color: #ffffff !important;">
                         <select name="keyword" id="gubun_select" class="form-control keyword suppModal_condition" style="width:100%">
                             <option value="CORP_TYPE1">고객사</option>
                             <option value="CORP_TYPE2">협력사</option>
@@ -14,7 +14,7 @@
                         </select>
                     </td>
                     <td class="wt-px-200">
-                        <input name="keyword2" type="text" class="form-control h-25 suppModal_condition">
+                        <input name="keyword2" id="supp_code_search" type="text" class="form-control h-25 suppModal_condition">
                     </td>
                     <td>
                         <div class="dt-buttons btn-overlap btn-group">

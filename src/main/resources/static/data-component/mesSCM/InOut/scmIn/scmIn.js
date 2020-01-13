@@ -93,7 +93,11 @@ function add_btn() {
 
         main_data.check = 'I';
         main_data.check2 = 'Y';
-
+        $("#supp_name_modal").prop("disabled", false);
+        $("#part_type_select").prop("disabled", false);
+        $("#part_group_select1").prop("disabled", false);
+        $("#part_group_select2").prop("disabled", false);
+        $("#part_group_select3").prop("disabled", false);
         $("#scmIn-add-dialog").dialog('open');
         jqGridResize2("#scmInDialogLeftGrid", $('#scmInDialogLeftGrid').closest('[class*="col-"]'));
         jqGridResize2("#scmInDialogRightGrid", $('#scmInDialogRightGrid').closest('[class*="col-"]'));
@@ -105,12 +109,36 @@ function add_btn() {
 
 function supp_btn(what) {
     main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
 
     $("#SuppSearchGrid").jqGrid('clearGridData');
     $("#supp-search-dialog").dialog('open');
+    $('#gubun_select option:eq(0)').prop("selected", true).trigger("change");
+
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+}
+
+function suppModal_bus(code, name) {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    } else if (main_data.supp_check === 'B') {
+
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+        modal2_data.part_code = '';
+        modal2_data.sub_data = [];
+        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
+        $("#scmInDialogRightGrid").jqGrid('clearGridData');
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
+
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 
 
@@ -166,37 +194,12 @@ function authcheck() {
     });
 }
 
-function suppModal_bus(code, name) {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val(name);
-        $("#supp_code_main").val(code);
-    } else if (main_data.supp_check === 'B') {
-
-        $("#supp_name_modal").val(name);
-        $("#supp_code_modal").val(code);
-        modal2_data.part_code = '';
-        modal2_data.sub_data = [];
-        $("#scmInDialogLeftGrid").jqGrid('clearGridData');
-        $("#scmInDialogRightGrid").jqGrid('clearGridData');
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-}
-
-function suppModal_close_bus() {
-    if (main_data.supp_check === 'A') {
-        $("#supp_name_main").val("");
-        $("#supp_code_main").val("");
-    }
-    $("#SuppSearchGrid").jqGrid('clearGridData');
-}
-
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
 
 }
-
 
 function jqGrid_main() {
     $("#scmInTopGrid").jqGrid({

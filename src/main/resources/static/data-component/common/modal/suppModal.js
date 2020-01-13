@@ -7,7 +7,6 @@ var suppModal_data = {
 
 ////////////////////////////시작 함수/////////////////////////////////////
 function suppModal_start() {
-
     suppModal_make();
     suppModal_jqGrid();
     jqGridResize("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
@@ -33,6 +32,7 @@ function suppModal_check() {
         var ids = $( "#SuppSearchGrid" ).getGridParam( "selrow" );
         var data = $('#SuppSearchGrid').jqGrid('getRowData', ids);
         suppModal_bus(data.supp_code,data.supp_name);
+        $('#suppModal_condition').val('');
 
         $("#supp-search-dialog").dialog('close');
     }else {
@@ -42,6 +42,7 @@ function suppModal_check() {
 
 function suppModal_close() {
     $("#supp-search-dialog").dialog('close');
+    $('#supp_code_search').val('');
     suppModal_close_bus();
 }
 
@@ -97,7 +98,7 @@ function suppModal_jqGrid() {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
             {name: 'supp_code', index: 'supp_code', key:true,width: 80, sortable: false},
-            {name: 'supp_name', index: 'supp_name',width: 200, sortable: false},
+            {name: 'supp_name', index: 'supp_name',width: 120, sortable: false},
             {name: 'supp_no', index: 'supp_no',width: 80, sortable: false},
             {name: 'emp_name', index: 'emp_name',width: 80, sortable: false},
             {name: 'address', index: 'address',width: 200, sortable: false},
