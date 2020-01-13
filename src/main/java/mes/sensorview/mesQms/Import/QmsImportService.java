@@ -9,6 +9,7 @@ import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesQms.Import.QmsImportMapper;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
+import mes.sensorview.mesQms.Import.DTO.QMS_RECV_NG_SUM;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -134,5 +135,10 @@ public class QmsImportService  extends UploadFunction {
             Files newFiles = AllFile(files, req,Key,i);
             qmsImportMapper.qmsRecvErrorManAdd_AllFile(newFiles);
         }
+    }
+
+    public List<QMS_RECV_NG_SUM> qmsRecvErrorListSumGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return qmsImportMapper.qmsRecvErrorListSumGet(p);
     }
 }

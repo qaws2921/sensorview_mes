@@ -11,7 +11,6 @@
         var data = new google.visualization.DataTable();
         data.addColumn('number', 'X');
         data.addColumn('number', '불량율');
-
         data.addRows([
             [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
             [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
@@ -68,13 +67,13 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-<%--                    <td class="wt-px-100 td-title t-align-c padding-a-0">조회구분</td>--%>
-<%--                    <td class="wt-px-200">--%>
-<%--                        <select id="gubun_select" class="form-control h-25">--%>
-<%--                            <option>주별</option>--%>
-<%--                            <option>월별</option>--%>
-<%--                        </select>--%>
-<%--                    </td>--%>
+                    <%--                    <td class="wt-px-100 td-title t-align-c padding-a-0">조회구분</td>--%>
+                    <%--                    <td class="wt-px-200">--%>
+                    <%--                        <select id="gubun_select" class="form-control h-25">--%>
+                    <%--                            <option>주별</option>--%>
+                    <%--                            <option>월별</option>--%>
+                    <%--                        </select>--%>
+                    <%--                    </td>--%>
                     <td></td>
                 </tr>
                 </tbody>
@@ -125,6 +124,5 @@
         </div>
     </div>
 </div>
-
 
 

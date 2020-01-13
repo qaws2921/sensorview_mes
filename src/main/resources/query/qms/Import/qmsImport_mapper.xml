@@ -63,4 +63,10 @@
             WHERE
             IN_NO = #{key1} AND PART_CODE = #{key2}
     </update>
+
+
+
+    <select id="qmsRecvErrorListSumGet" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_NG_SUM">
+            EXEC SP_QMS_RECV_NG_SUM_GET #{site_code}, #{start_date}, #{end_date},#{keyword}
+    </select>
 </mapper>

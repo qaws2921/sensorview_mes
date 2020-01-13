@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.File.DTO.Files;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV;
+import mes.sensorview.mesQms.Import.DTO.QMS_RECV_NG_SUM;
 import mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB;
 import org.springframework.stereotype.Repository;
 
@@ -38,4 +39,6 @@ public interface QmsImportMapper {
     int qmsRecvErrorManAdd3(Files newFiles);
 
     int qmsRecvErrorManAdd2(Files newFiles);
+
+    List<QMS_RECV_NG_SUM> qmsRecvErrorListSumGet(Page p);
 }
