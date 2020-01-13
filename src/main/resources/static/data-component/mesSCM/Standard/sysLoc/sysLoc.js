@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['loc_code']
+    readonly: ['loc_code'],
+    auth:{}
 };
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -17,6 +18,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -46,55 +48,71 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        modalValuePush("#cargo_select","#cargo_code","#cargo_name");
+        main_data.check = 'I';
 
-    modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#cargo_select","#cargo_code","#cargo_name");
-    main_data.check = 'I';
-
-    $("#addDialog").dialog('open');
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 
 function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.keyword = jqgrid_data.loc_code;
 
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    var send_data = {};
-    send_data.keyword = jqgrid_data.loc_code;
 
-
-    ccn_ajax('/sysLocOneGet', send_data).then(function (data) {
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
-    });
+        ccn_ajax('/sysLocOneGet', send_data).then(function (data) {
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
 function delete_btn() {
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            wrapWindowByMask2();
-            ccn_ajax("/sysLocDelete", {keyword: ids.join(",")}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/sysLocDelete", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysLoc"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function selectBox() {
     select_makes("#cargo_select", "/sysCargoBAllGet", "cargo_code", "cargo_name");
@@ -130,7 +148,6 @@ function jqGrid_main() {
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
             update_btn(data);
-
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

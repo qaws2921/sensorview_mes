@@ -10,7 +10,7 @@
 </style>
 <div id="addDialog" title="구매의뢰서" style="display: none">
     <div class="col-lg-12">
-        <div class="col-lg-5 padding0" id="content1">
+        <div class="col-lg-6">
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -54,6 +54,18 @@
                         </a>
                     </div>
                 </div>
+                <div class="pull-right">
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" onclick="right_modal1_btn();">
+                                <span>
+                                    <i class="fa fa-arrow-right bigger-110 blue"></i>
+                                </span>
+                    </a>
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" style="margin-left:10px;" tabindex="0" aria-controls="dynamic-table" onclick="left_modal1_btn();">
+                                <span>
+                                    <i class="fa fa-arrow-left bigger-110 pink"></i>
+                                </span>
+                    </a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
@@ -62,26 +74,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-1 padding0 mid-arrow-r">
-            <div class="dt-buttons btn-overlap btn-group">
-                <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                   tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="right_modal1_btn();">
-                        <span>
-                            <i class="fa fa-arrow-right bigger-110 blue"></i>
-                        </span>
-                </a>
-                <br><br>
-                <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                   tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="left_modal1_btn();">
-                        <span>
-                            <i class="fa fa-arrow-left bigger-110 pink"></i>
-                        </span>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-6 padding0" id="content2">
+        <div class="col-lg-6">
             <table class="table wt-100">
                 <tbody>
                 <tr>

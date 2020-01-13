@@ -44,7 +44,7 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">상태</td>
                     <td class="wt-px-200">
-                        <select name="keyword2" class="form-control condition_main">
+                        <select name="keyword2" id="status_select" class="form-control condition_main">
                             <option value="">전체</option>
                             <option value="0">입고대기</option>
                             <option value="1">완료</option>

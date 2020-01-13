@@ -31,37 +31,40 @@ function get_modal1_btn(page) {
 
 
 function update_btn(rowid) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value2", []);
+        modal_reset(".modal_value", []);
+        $("#mes_add_grid").jqGrid('clearGridData');
+        $("#mes_add_grid2").jqGrid('clearGridData');
+        $("#ord_no").val(rowid);
+        main_data.check = 'U';
 
-    modal_reset(".modal_value2", []);
-    modal_reset(".modal_value", []);
-    $("#mes_add_grid").jqGrid('clearGridData');
-    $("#mes_add_grid2").jqGrid('clearGridData');
-    $("#ord_no").val(rowid);
-    main_data.check = 'U';
-
-    ccn_ajax('/scmOrderSub2Get', {keyword: rowid}).then(function (data) {
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
-        $("select[name=view_amount]").val(data[0].view_amount).trigger("change");
-        $("select[name=t_payment]").val(data[0].t_payment).trigger("change");
-        $("select[name=t_delivery]").val(data[0].t_delivery).trigger("change");
-        $("input[name=delivery]").val(data[0].delivery).trigger("change");
-        $("input:radio[name=attachment]:input[value="+data[0].attachment+"]").prop("checked", true);
-        $("select[name=shipping_addr]").val(data[0].shipping_addr).trigger("change");
-        $("input[name=remark]").val(data[0].remark).trigger("change");
-        $("#supp_name_modal").val(data[0].supp_name).trigger("change");
-        $("#supp_code_modal").val(data[0].supp_code).trigger("change");
-        $("#datepicker3").val(formmatterDate2(data[0].work_date));
+        ccn_ajax('/scmOrderSub2Get', {keyword: rowid}).then(function (data) {
+            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+            $("select[name=view_amount]").val(data[0].view_amount).trigger("change");
+            $("select[name=t_payment]").val(data[0].t_payment).trigger("change");
+            $("select[name=t_delivery]").val(data[0].t_delivery).trigger("change");
+            $("input[name=delivery]").val(data[0].delivery).trigger("change");
+            $("input:radio[name=attachment]:input[value="+data[0].attachment+"]").prop("checked", true);
+            $("select[name=shipping_addr]").val(data[0].shipping_addr).trigger("change");
+            $("input[name=remark]").val(data[0].remark).trigger("change");
+            $("#supp_name_modal").val(data[0].supp_name).trigger("change");
+            $("#supp_code_modal").val(data[0].supp_code).trigger("change");
+            $("#datepicker3").val(formmatterDate2(data[0].work_date));
 
 
-        $("#mes_add_grid2").setGridParam({
-            datatype: "local",
-            data: data
-        }).trigger("reloadGrid");
+            $("#mes_add_grid2").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
 
-        $("#addDialog").dialog('open');
-        jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
-        jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
-    });
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
+            jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
@@ -213,7 +216,7 @@ function jqGrid_modal1() {
         // 페이지 수 보기 (1 / 100) = true
         // 높이 : 450px
         autowidth: true,
-        height: 500,
+        height: 406,
         // 디폴트 조회 개수 : 100
         rowNum: 100,
         // 단위 별 조회 개수
@@ -233,13 +236,13 @@ function jqGrid_modal1() {
         colNames: [ '품번', '품명', '규격','도면REV', '단위', '검사기준','발주수량','납기일'],
         colModel: [
 
-            {name: 'part_code', index: 'part_code', width: 60,key:true, sortable: false},
-            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-            {name: 'spec', index: 'spec', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
-            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'ord_qty', index: 'ord_qty', width: 60, sortable: false,
+            {name: 'part_code', index: 'part_code', width: 80,key:true, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 50, sortable: false},
+            {name: 'spec', index: 'spec', width: 50, sortable: false},
+            {name: '', index: '', width: 50, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 50, sortable: false},
+            {name: 'qc_level_name', index: 'qc_level_name', width: 50, sortable: false},
+            {name: 'ord_qty', index: 'ord_qty', width: 50, sortable: false,
                 editable: true,
                     editoptions: {
 
@@ -248,7 +251,6 @@ function jqGrid_modal1() {
                                 type: 'focusout',
                                 fn: function (e) {
                                     var row = $(e.target).closest('tr.jqgrow');
-                                    var rowid = row.attr('id');
                                     var value = e.target.value;
                                     if (isNaN(value)){
                                          alert("숫자만 입력가능합니다.");
@@ -256,7 +258,6 @@ function jqGrid_modal1() {
                                         $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
                                          return false;
                                     }
-
                                     $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
 
                                 }
@@ -265,7 +266,7 @@ function jqGrid_modal1() {
                         ]
                     }
             },
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2, editable: true,
+            {name: 'end_date', index: 'end_date', width: 80, sortable: false,formatter: formmatterDate2, editable: true,
                 editoptions: {
                     dataInit: function (element) {
                         $(element).attr("readonly","readonly").datepicker({
@@ -315,15 +316,11 @@ function jqGrid_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 'auto',
+        width: 1200,
         height: 'auto',
         autoOpen: false,
-        resizable: false,
-        buttons : [
-            {
-                "class": "hide",
-            }
-        ]
+        resizable: false
+
     });
 }
 

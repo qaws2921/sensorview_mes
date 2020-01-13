@@ -9,7 +9,8 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
-    check2 : 'Y'
+    check2 : 'Y',
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -22,7 +23,8 @@ $(document).ready(function () {
 
     modal_start1();
     suppModal_start();
-
+    selectBox();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -63,74 +65,72 @@ function under_get(rowid) {
 }
 
 function add_btn() {
-    modal_reset(".modal_value", []);
-    modal_reset(".modal_value2", []);
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", []);
+        modal_reset(".modal_value2", []);
 
+        $("#mes_add_grid").jqGrid('clearGridData');
+        $("#mes_add_grid2").jqGrid('clearGridData');
 
+        $("#datepicker3").datepicker('setDate', 'today');
+        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#view_select option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=t_payment] option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=t_delivery] option:eq(0)").prop("selected", true).trigger("change");
+        $("input[name=attachment]:eq(0)").prop("checked", true).trigger("change");
+        $("select[name=shipping_addr] option:eq(0)").prop("selected", true).trigger("change");
 
-    $("#mes_add_grid").jqGrid('clearGridData');
-    $("#mes_add_grid2").jqGrid('clearGridData');
+        main_data.check = 'I';
+        main_data.check2 = 'Y';
 
-
-    $("#datepicker3").datepicker('setDate', 'today');
-    $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
-    $("#view_select option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=t_payment] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=t_delivery] option:eq(0)").prop("selected", true).trigger("change");
-    $("input[name=attachment]:eq(0)").prop("checked", true).trigger("change");
-    $("select[name=shipping_addr] option:eq(0)").prop("selected", true).trigger("change");
-
-
-
-    main_data.check = 'I';
-    main_data.check2 = 'Y';
-
-
-
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
-    jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
-
+        $("#addDialog").dialog('open');
+        jqGridResize2("#mes_add_grid", $('#mes_add_grid').closest('[class*="col-"]'));
+        jqGridResize2("#mes_add_grid2", $('#mes_add_grid2').closest('[class*="col-"]'));
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 
 function delete_btn() {
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    var check = '';
-    var check2 = [];
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        ids.forEach(function (id) {
-            check = $('#mes_grid').jqGrid('getRowData', id).status;
-            if (check === '1') {
-                check2.push(id);
-            }
-
-        })
-        if (check2.length > 0) {
-            alert(check2.join(",") + " 전표가 완료 되어있습니다.");
+    if (main_data.auth.check_edit !="N") {
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        var check = '';
+        var check2 = [];
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
         } else {
-            if (confirm("삭제하겠습니까?")) {
-                main_data.check = 'D';
-                wrapWindowByMask2();
-                ccn_ajax("/scmOrderDel", {ord_no: ids.join("&")}).then(function (data) {
-                    if (data.result === 'NG') {
-                        alert(data.message);
-                    } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
-                    }
-                    $('#mes_grid2').jqGrid('clearGridData');
-                    closeWindowByMask();
-                }).catch(function (err) {
-                    closeWindowByMask();
-                    console.error(err); // Error 출력
-                });
+            ids.forEach(function (id) {
+                check = $('#mes_grid').jqGrid('getRowData', id).status;
+                if (check === '1') {
+                    check2.push(id);
+                }
+
+            })
+            if (check2.length > 0) {
+                alert(check2.join(",") + " 전표가 완료 되어있습니다.");
+            } else {
+                if (confirm("삭제하겠습니까?")) {
+                    main_data.check = 'D';
+                    wrapWindowByMask2();
+                    ccn_ajax("/scmOrderDel", {ord_no: ids.join("&")}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+                        $('#mes_grid2').jqGrid('clearGridData');
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                }
             }
+            $('#mes_grid').jqGrid("resetSelection");
         }
-        $('#mes_grid').jqGrid("resetSelection");
-
-
+    } else {
+        alert("수정권한이 없습니다.");
     }
 }
 
@@ -159,6 +159,15 @@ function suppModal_bus(code, name) {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysOrder"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
+function selectBox() {
+    $('#status_select').select2();
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -213,7 +222,6 @@ function jqGrid_main() {
                 main_data.check2 = 'Y';
             }
             update_btn(rowid);
-
         }
     });
 

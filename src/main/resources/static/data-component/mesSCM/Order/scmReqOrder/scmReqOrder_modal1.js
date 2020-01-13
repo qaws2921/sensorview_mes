@@ -174,7 +174,7 @@ function datepickerInput_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 1000,
+        width: 1200,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -246,7 +246,7 @@ function jqGrid_modal1() {
             {name: 'ord_qty', index: 'ord_qty', sortable: false, width:60},
         ],
         autowidth: true,
-        height: 250,
+        height: 300,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: "#mes_modal1_grid1_pager"
@@ -286,7 +286,7 @@ function jqGrid_modal1() {
             }
         ],
         autowidth: true,
-        height: 293,
+        height: 328,
         cellEdit: true,
         cellsubmit: 'clientArray',
         loadonce: true,

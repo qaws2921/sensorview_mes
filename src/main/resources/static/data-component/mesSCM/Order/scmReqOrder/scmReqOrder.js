@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    check2: 'Y'
+    check2: 'Y',
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -19,7 +20,7 @@ $(document).ready(function () {
     datepickerInput();
 
     modal_start1();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -47,27 +48,79 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-    modal_reset(".modal_value", []);
-    $("#mes_modal1_grid1").jqGrid('clearGridData');
-    $("#mes_modal1_grid2").jqGrid('clearGridData');
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", []);
+        $("#mes_modal1_grid1").jqGrid('clearGridData');
+        $("#mes_modal1_grid2").jqGrid('clearGridData');
 
-    $("select[name=part_type] option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=part_type] option:eq(0)").prop("selected", true).trigger("change");
 
-    var date = new Date();
-    var date2 = new Date();
-    date2.setDate(date.getDate()+1);
-    $('#datepicker3').datepicker('setDate',date);
-    $('#datepicker4').datepicker('setDate',date2);
+        var date = new Date();
+        var date2 = new Date();
+        date2.setDate(date.getDate()+1);
+        $('#datepicker3').datepicker('setDate',date);
+        $('#datepicker4').datepicker('setDate',date2);
 
-    main_data.check = 'I';
-    main_data.check = 'Y';
+        main_data.check = 'I';
+        main_data.check = 'Y';
 
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
-    jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
+        $("#addDialog").dialog('open');
+        jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+        jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
+    } else {
+        alert("추가권한이 없습니다,");
+    }
+}
 
+function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.keyword = jqgrid_data.part_code;
+        // ccn_ajax('/', send_data).then(function (data) {
+        //     modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        //     $("#addDialog").dialog('open');
+        // });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
+
+function delete_btn() {
+    if(main_data.auth.check_del != "N") {
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                // ccn_ajax("/", {keyword: ids.join(",")}).then(function (data) {
+                //     if (data.result === 'NG') {
+                //         alert(data.message);
+                //     } else {
+                //         get_btn_post($("#mes_grid").getGridParam('page'));
+                //     }
+                //     closeWindowByMask();
+                // }).catch(function (err) {
+                //     closeWindowByMask();
+                //     console.error(err); // Error 출력
+                // });
+            }
+        }
+    } else {
+        alert("삭제권한이 없습니다.");
+    }
 }
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysReqOrder"}).then(function (data) {
+        main_data.auth = data;
+
+    });
+}
+
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
@@ -110,6 +163,7 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
     });
 }

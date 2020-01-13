@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesSCM/Order/scmOrder/scmOrder_modal1.js" charset="UTF-8"></script>
+<style>
+    td label {
+        font-size: 12px!important;
+        margin-right: 8px;
+    }
+    input[name='attachment']{
+        position: relative;
+        top: 3px;
+    }
+    input[type=text][name="ord_qty"] {
+        height: 18px !important;
+    }
+</style>
 <div id="addDialog" title="발주추가" style="display: none">
     <div class="col-lg-12">
-        <div class="col-lg-5 padding0" id="content1">
+        <div class="col-lg-6">
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -17,36 +30,30 @@
 
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword" class="form-control modal_value" id="part_type_select"  onchange="select_change1(this.value);">
-
-
+                        <select name="keyword" class="form-control modal_value" id="part_type_select"  onchange="select_change1(this.value);" style="width: 100%">
                         </select>
                     </td>
-                    <td></td><td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword2" class="form-control modal_value" id="part_group_select1">
-
-
+                        <select name="keyword2" class="form-control modal_value" id="part_group_select1" style="width: 100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword3" class="form-control modal_value" id="part_group_select2">
-
-
+                        <select name="keyword3" class="form-control modal_value" id="part_group_select2" style="width: 100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품목그룹</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
                     <td class="wt-px-150 h-25">
-                        <select name="keyword4" class="form-control modal_value" id="part_group_select3">
-
-
+                        <select name="keyword4" class="form-control modal_value" id="part_group_select3" style="width: 100%">
                         </select>
                     </td>
-
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
@@ -62,6 +69,18 @@
                         </a>
                     </div>
                 </div>
+                <div class="pull-right">
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" onclick="right_modal1_btn();">
+                                <span>
+                                    <i class="fa fa-arrow-right bigger-110 blue"></i>
+                                </span>
+                    </a>
+                    <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" style="margin-left:10px;" tabindex="0" aria-controls="dynamic-table" onclick="left_modal1_btn();">
+                                <span>
+                                    <i class="fa fa-arrow-left bigger-110 pink"></i>
+                                </span>
+                    </a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
@@ -70,26 +89,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-1 padding0 mid-arrow-r">
-            <div class="dt-buttons btn-overlap btn-group">
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="right_modal1_btn();">
-                        <span>
-                            <i class="fa fa-arrow-right bigger-110 blue"></i>
-                        </span>
-                </a>
-                <br><br>
-                <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="left_modal1_btn();">
-                        <span>
-                            <i class="fa fa-arrow-left bigger-110 pink"></i>
-                        </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-6 padding0" id="content2">
+
+        <div class="col-lg-6">
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-150 h-25" colspan="5"></td>
+                    <td class="wt-px-150 h-25" colspan="5" style="border-top: 0px!important;"></td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">발주일자</td>
@@ -101,7 +106,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">금액표기</td>
                     <td class="wt-px-150 h-25">
-                       <select name="view_amount" class="form-control modal_value2" id="view_select">
+                       <select name="view_amount" class="form-control modal_value2" id="view_select" style="width: 100%">
                            <option value="0">표기안함</option>
                            <option value="1">표기</option>
                        </select>
@@ -130,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-bottom:30px;">
+            <div class="row" style="margin-bottom:20px;">
                 <div class="col-xs-12">
                     <table id="mes_add_grid2"></table>
                 </div>
@@ -140,12 +145,12 @@
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Payment</td>
                     <td class="wt-px-150">
-                        <select name="t_payment" class="form-control modal_value2">
+                        <select name="t_payment" class="form-control modal_value2" style="width: 100%">
                         </select>
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">Terms of Delivery</td>
                     <td class="wt-px-150">
-                        <select name="t_delivery" class="form-control modal_value2">
+                        <select name="t_delivery" class="form-control modal_value2" style="width: 100%">
 
                         </select>
                     </td>

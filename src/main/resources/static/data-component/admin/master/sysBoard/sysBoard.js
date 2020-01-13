@@ -101,7 +101,7 @@ function delete_btn() {
 }
 ////////////////////////////호출 함수//////////////////////////////////
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysDept"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "sysBoard"}).then(function (data) {
         main_data.auth = data;
     });
 }
