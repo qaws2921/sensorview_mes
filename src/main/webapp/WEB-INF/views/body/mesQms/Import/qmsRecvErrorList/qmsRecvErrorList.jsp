@@ -73,11 +73,11 @@
         <div class="row">
             <div class="col-xs-12 table-responsive">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <table id="mes_grid"></table>
                         <div id="mes_grid_pager"></div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <table id="mes_grid2"></table>
                     </div>
                 </div>
