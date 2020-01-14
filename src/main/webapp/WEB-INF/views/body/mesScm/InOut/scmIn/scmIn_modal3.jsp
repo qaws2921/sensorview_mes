@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmIn/scmIn_modal3.js"
         charset="UTF-8"></script>
-
+<style>
+    .footrow td {
+        border: 0px!important;
+    }
+</style>
 <div id="addDialog3" title="발주확인 조회" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0">
