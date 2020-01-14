@@ -19,18 +19,20 @@ function modal_start3() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 function modal3_get_btn(page) {
-    var modal3_send_data = value_return(".modal3_condition");
-    modal3_send_data.start_date = modal3_send_data.start_date.replace(/\-/g, '');
-    modal3_send_data.end_date = modal3_send_data.end_date.replace(/\-/g, '');
+    if(main_data.check !== 'U') {
+        var modal3_send_data = value_return(".modal3_condition");
+        modal3_send_data.start_date = modal3_send_data.start_date.replace(/\-/g, '');
+        modal3_send_data.end_date = modal3_send_data.end_date.replace(/\-/g, '');
 
-    modal3_send_data.keyword2 = '0';
-    modal3_send_data.keyword3 = modal3_data.part_code;
-    $("#modal3Grid").setGridParam({
-        url: '/scmOrderListGet',
-        datatype: "json",
-        page: page,
-        postData: modal3_send_data,
-    }).trigger("reloadGrid");
+        modal3_send_data.keyword2 = '0';
+        modal3_send_data.keyword3 = modal3_data.part_code;
+        $("#modal3Grid").setGridParam({
+            url: '/scmOrderListGet',
+            datatype: "json",
+            page: page,
+            postData: modal3_send_data,
+        }).trigger("reloadGrid");
+    }
 }
 
 
@@ -66,6 +68,8 @@ function modal3_modal_open(rowid) {
 
         if (main_data.check === 'U'){
             scmIn_lot2_get_btn(rowid);
+
+
         }
 
         $("#addDialog3").dialog('open');
@@ -179,6 +183,21 @@ function modal3_jqGrid() {
 
                     dataEvents: [
                         {
+                            type: 'focus',
+                            fn: function (e) {
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
+
+                                // if(main_data.check !== 'I') {
+                                //     $(e.target).prop('readonly',true);
+                                // }
+
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
+                        {
                             type: 'focusout',
                             fn: function (e) {
                                 var row = $(e.target).closest('tr.jqgrow');
@@ -193,13 +212,15 @@ function modal3_jqGrid() {
                                     var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
                                     jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                                     return false;
-                                } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(value)) {
+                                } else if ((parseInt(data.ord_qty) - parseInt(data.qty)) < parseInt(value)) {
                                     alert("입고 가능 수량이 초과 하였습니다.");
                                     e.target.value = 0;
                                     $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                     var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
                                     jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                                     return false;
+                                } else if(value === ''){
+                                    e.target.value = 0;
                                 }
                                 $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                 var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
@@ -245,6 +266,7 @@ function modal3_jqGrid() {
         cellEdit: true,
         cellsubmit: 'clientArray',
         beforeEditCell: function (id, name, val, IRow, ICol) {
+
             lastsel3 = id;
             saverow3 = IRow;
             savecol3 = ICol;
@@ -262,8 +284,11 @@ function modal3_jqGrid() {
                         $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', '0');
                     }
                     return false;
-                } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(data.in_qty)) {
+                } else if ((parseInt(data.ord_qty) - parseInt(data.qty)) < parseInt(data.in_qty)) {
                     alert("입고 가능 수량이 초과 하였습니다.");
+                    $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', 0);
+                    return false;
+                } else if(data.in_qty === ''){
                     $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', 0);
                     return false;
                 }
@@ -281,7 +306,16 @@ function modal3_jqGrid() {
         viewrecords: true,
         footerrow: true,
         userDataOnFooter: true,
-        loadComplete: function () {
+        loadComplete: function (data) {
+            if(main_data.check === 'U'){
+                var rows = data.rows;
+                rows.forEach(function (r) {
+                    $("#modal3Grid").jqGrid('setCell', r.ord_no,  'in_qty', "", 'not-editable-cell');
+                    $("#modal3Grid").jqGrid('setCell', r.ord_no,  'result_check', "", 'not-editable-cell');
+                })
+            }
+
+
             var $self = $(this),
                 sum = $self.jqGrid("getCol", "in_qty", false, "sum");
 

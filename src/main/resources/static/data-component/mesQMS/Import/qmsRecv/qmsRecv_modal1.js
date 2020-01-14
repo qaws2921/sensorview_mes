@@ -185,6 +185,16 @@ function jqGrid_modal1() {
 
                     dataEvents: [
                         {
+                            type: 'focus',
+                            fn: function (e) {
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
+                        {
                             type: 'focusout',
                             fn: function (e) {
                                 var row = $(e.target).closest('tr.jqgrow');
@@ -202,6 +212,8 @@ function jqGrid_modal1() {
                                     $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
 
                                     return false;
+                                }else if(value === ''){
+                                    e.target.value = 0;
                                 }
 
                                 $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
@@ -217,6 +229,16 @@ function jqGrid_modal1() {
                 editoptions: {
 
                     dataEvents: [
+                        {
+                            type: 'focus',
+                            fn: function (e) {
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
                         {
                             type: 'focusout',
                             fn: function (e) {
@@ -234,6 +256,8 @@ function jqGrid_modal1() {
                                     e.target.value = 0;
                                     $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
                                     return false;
+                                }else if(value === ''){
+                                    e.target.value = 0;
                                 }
 
                                 $("#mes_modal_grid").jqGrid("saveCell", saverow, savecol);
@@ -299,6 +323,14 @@ function jqGrid_modal1() {
                 editoptions: {
 
                     dataEvents: [
+                        {
+                            type: 'focus',
+                            fn: function (e) {
+
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
                         {
                             type: 'focusout',
                             fn: function (e) {
@@ -382,6 +414,9 @@ function jqGrid_modal1() {
                     alert("검사 수량이 초과 하였습니다.");
                     $('#mes_modal_grid').jqGrid('setCell', rowid, 'qc_qty', 0);
                     return false;
+                }else if(data.qc_qty === ''){
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'qc_qty', 0);
+                    return false;
                 }
             }
 
@@ -397,6 +432,9 @@ function jqGrid_modal1() {
                     return false;
                 } else if (parseInt(data.qc_qty)  < parseInt(data.ng_qty)) {
                     alert("불량 수량이 초과 하였습니다.");
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'ng_qty', 0);
+                    return false;
+                }else if(data.ng_qty === ''){
                     $('#mes_modal_grid').jqGrid('setCell', rowid, 'ng_qty', 0);
                     return false;
                 }
