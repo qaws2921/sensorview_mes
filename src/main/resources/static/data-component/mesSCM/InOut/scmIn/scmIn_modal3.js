@@ -148,12 +148,7 @@ function modal_make3() {
         modal: true,
         minWidth: 1100,
         height: 'auto',
-        resizable: false,
-        buttons: [
-            {
-                "class": "hide",
-            }
-        ]
+        resizable: false
 
     });
 

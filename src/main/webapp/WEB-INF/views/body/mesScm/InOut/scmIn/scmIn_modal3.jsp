@@ -5,6 +5,14 @@
     .footrow td {
         border: 0px!important;
     }
+
+    input[type=text][name=in_qty] {
+        height: 18px !important;
+    }
+    select[name=result_check] {
+        height: 18px !important;
+        width: 100%;
+    }
 </style>
 <div id="addDialog3" title="발주확인 조회" style="display:none">
     <div class="col-lg-12">
