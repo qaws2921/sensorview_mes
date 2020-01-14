@@ -161,6 +161,16 @@ function jqGrid_modal1() {
 
                     dataEvents: [
                         {
+                            type: 'focus',
+                            fn: function (e) {
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
+                        {
                             type: 'focusout',
                             fn: function (e) {
                                 var row = $(e.target).closest('tr.jqgrow');
@@ -216,6 +226,8 @@ function jqGrid_modal1() {
                     alert("납품가능 수량이 초과 하였습니다.");
                     $('#mes_modal_grid').jqGrid('setCell', rowid, 'req_qty', 0);
                     return false;
+                } else if(data.req_qty === ''){
+                    $('#mes_modal_grid').jqGrid('setCell', rowid, 'req_qty', 0);
                 }
             }
         }

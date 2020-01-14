@@ -181,7 +181,9 @@ function modal3_jqGrid() {
                         {
                             type: 'focus',
                             fn: function (e) {
-                                e.target.value = '';
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
                                 $(e.target).attr('autocomplete', 'off');
 
                             }
