@@ -65,7 +65,7 @@ function modal3_modal_open(rowid) {
         }
 
         if (main_data.check === 'U'){
-            scmIn_lot2_get_btn();
+            scmIn_lot2_get_btn(rowid);
         }
 
         $("#addDialog3").dialog('open');
@@ -74,12 +74,12 @@ function modal3_modal_open(rowid) {
 
 }
 
-function scmIn_lot2_get_btn() {
+function scmIn_lot2_get_btn(rowid) {
     $("#modal3Grid").setGridParam({
         url: '/scmInLot2Get',
         datatype: "json",
         page: 1,
-        postData: {keyword:$("#in_no").val()}
+        postData: {keyword:$("#in_no").val(),keyword2:rowid}
     }).trigger("reloadGrid");
 
 }
