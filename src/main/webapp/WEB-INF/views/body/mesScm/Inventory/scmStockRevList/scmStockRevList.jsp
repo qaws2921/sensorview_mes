@@ -26,8 +26,8 @@
                         </div>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
-                    <td class="wt-px-200 t-align-c">
-                        <select name="keyword" class="form-control keyword condition_main">
+                    <td class="wt-px-200">
+                        <select name="keyword" id="stockRev_gubun_select" class="form-control keyword condition_main">
                             <option value="">전체</option>
                         </select>
                     </td>

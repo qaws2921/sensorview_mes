@@ -272,7 +272,7 @@ function jqGrid_modal1() {
                         $(element).attr("readonly","readonly").datepicker({
                             format: 'yyyymmdd',
                             autoclose: true,
-                            language: "kr",
+                            language:   "kr",
                             widgetPositioning:{
                                 horizontal: 'auto',
                                 vertical: 'bottom'

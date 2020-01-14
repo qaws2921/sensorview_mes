@@ -30,30 +30,33 @@ function get_modal1_btn(page) {
 
 
 function update_btn(rowid) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value2", []);
+        modal_reset(".modal_value", []);
+        $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
+        $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
+        $("#ord_no").val(rowid);
+        main_data.check = 'U';
 
-    modal_reset(".modal_value2", []);
-    modal_reset(".modal_value", []);
-    $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
-    $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
-    $("#ord_no").val(rowid);
-    main_data.check = 'U';
+        ccn_ajax('/scmOutOrderSup2Get', {keyword: rowid}).then(function (data) {
 
-    ccn_ajax('/scmOutOrderSup2Get', {keyword: rowid}).then(function (data) {
+            $("#line_select").val(data[0].cargo_code_to).trigger("change");
+            $("#usage_select").val(data[0].usage).trigger("change");
+            $("#datepicker3").val(formmatterDate2(data[0].work_date));
+            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
 
-        $("#line_select").val(data[0].cargo_code_to).trigger("change");
-        $("#usage_select").val(data[0].usage).trigger("change");
-        $("#datepicker3").val(formmatterDate2(data[0].work_date));
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#scmOutOrderDialogRightGrid").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
 
-        $("#scmOutOrderDialogRightGrid").setGridParam({
-            datatype: "local",
-            data: data
-        }).trigger("reloadGrid");
-
-        $("#scmOutOrder-add-dialog").dialog('open');
-        jqGridResize2("#scmOutOrderDialogLeftGrid", $('#scmOutOrderDialogLeftGrid').closest('[class*="col-"]'));
-        jqGridResize2("#scmOutOrderDialogRightGrid", $('#scmOutOrderDialogRightGrid').closest('[class*="col-"]'));
-    });
+            $("#scmOutOrder-add-dialog").dialog('open');
+            jqGridResize2("#scmOutOrderDialogLeftGrid", $('#scmOutOrderDialogLeftGrid').closest('[class*="col-"]'));
+            jqGridResize2("#scmOutOrderDialogRightGrid", $('#scmOutOrderDialogRightGrid').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 

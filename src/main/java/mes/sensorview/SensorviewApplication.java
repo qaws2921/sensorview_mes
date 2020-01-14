@@ -23,6 +23,8 @@ import javax.sql.DataSource;
 @MapperScan(value = {"mes.sensorview.Mapper"})
 public class SensorviewApplication extends SpringBootServletInitializer {
 
+
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(SensorviewApplication.class);
