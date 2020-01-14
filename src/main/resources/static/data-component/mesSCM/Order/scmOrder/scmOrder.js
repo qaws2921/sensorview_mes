@@ -141,6 +141,8 @@ function supp_btn(what) {
     $("#SuppSearchGrid").jqGrid('clearGridData');
     $("#supp-search-dialog").dialog('open');
     $('#gubun_select option:eq(0)').prop("selected", true).trigger("change");
+    $('#supp_code_search').val('').trigger("change");
+
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 

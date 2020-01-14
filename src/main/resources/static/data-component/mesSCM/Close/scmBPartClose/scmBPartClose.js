@@ -23,8 +23,6 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 function supp_btn(what) {
     main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
 
     $( "#SuppSearchGrid" ).jqGrid('clearGridData');
     $( "#supp-search-dialog" ).dialog('open');
