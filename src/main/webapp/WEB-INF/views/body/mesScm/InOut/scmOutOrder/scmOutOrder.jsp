@@ -80,7 +80,6 @@
                 <div id="scmOutOrderBottomGridPager"></div>
             </div>
         </div>
-
     </div>
 </div>
 

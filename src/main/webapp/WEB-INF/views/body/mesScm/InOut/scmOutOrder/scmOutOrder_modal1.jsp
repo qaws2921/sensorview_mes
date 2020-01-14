@@ -130,8 +130,3 @@
     </div>
 </div>
 
-<div class="col-xs-1 t-align-c middleBtn">
-    <div class="dt-buttons btn-overlap btn-group">
-
-    </div>
-</div>

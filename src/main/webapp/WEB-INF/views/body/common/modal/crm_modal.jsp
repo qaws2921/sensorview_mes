@@ -23,6 +23,7 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

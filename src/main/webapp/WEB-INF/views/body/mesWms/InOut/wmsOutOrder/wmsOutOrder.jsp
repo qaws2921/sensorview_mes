@@ -29,7 +29,7 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">처리구분</td>
                     <td class="wt-px-200">
-                        <select name="keyword" class="form-control h-25 condition_main" id="scmOutOrderSelect">
+                        <select name="keyword" id="wms_qc_select" class="form-control h-25 condition_main" id="scmOutOrderSelect">
                             <option value="">전체</option>
                             <option value="0">대기</option>
                             <option value="1">완료</option>

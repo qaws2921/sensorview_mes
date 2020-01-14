@@ -148,7 +148,6 @@ function delete_btn() {
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "scmOutOrder"}).then(function (data) {
         main_data.auth = data;
-        console.log(main_data);
     });
 }
 

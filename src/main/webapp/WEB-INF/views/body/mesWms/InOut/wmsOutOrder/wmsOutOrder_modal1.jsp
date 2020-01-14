@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesWMS/InOut/wmsOutOrder/wmsOutOrder_modal1.js" charset="UTF-8"></script>
+<style>
+    input[type=text][name="req_qty"] {
+        height: 18px !important;
+    }
+
+</style>
 <div id="addDialog" title="제품 출고 요청 추가" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0" id="content1">

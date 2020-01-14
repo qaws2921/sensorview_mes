@@ -1,6 +1,4 @@
 ////////////////////////////데이터////////////////////////////////////////
-var modal_grid_data=[];
-
 var main_data = {
     supp_check: 'A',
 };
@@ -27,6 +25,12 @@ function crm_btn() {
     if (main_data.check2 === 'Y') {
         $("#crmSearchGrid").jqGrid('clearGridData');
         $("#crm-search-dialog").dialog('open');
+        var date = new Date();
+        var date2 = new Date();
+        date2.setDate(date.getDate()+1);
+        $('#crm_datepicker').datepicker('setDate',date);
+        $('#crm_datepicker2').datepicker('setDate',date2);
+
         jqGridResize2("#crmSearchGrid", $('#crmSearchGrid').closest('[class*="col-"]'));
     } else {
         alert("출고가 완료된 제품입니다.");
@@ -50,25 +54,29 @@ function close_modal1_btn() {
 }
 
 function update_btn(rowid) {
-    modal_reset(".modal_value", []);
-    $("#mes_modal_grid").jqGrid('clearGridData');
-    main_data.check = 'U';
-    ccn_ajax('/wmsOutOrderSubOneGet', {keyword: rowid}).then(function (data) {
-        $("#ord_no").val(data[0].ord_no);
-        $("#req_no").val(data[0].req_no);
-        $("#supp_name_modal").val(data[0].supp_name);
-        $("#supp_code_modal").val(data[0].supp_code);
-        $("#datepicker3").val(formmatterDate2(data[0].work_date));
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        $("#mes_modal_grid").jqGrid('clearGridData');
+        main_data.check = 'U';
+        ccn_ajax('/wmsOutOrderSubOneGet', {keyword: rowid}).then(function (data) {
+            $("#ord_no").val(data[0].ord_no);
+            $("#req_no").val(data[0].req_no);
+            $("#supp_name_modal").val(data[0].supp_name);
+            $("#supp_code_modal").val(data[0].supp_code);
+            $("#datepicker3").val(formmatterDate2(data[0].work_date));
 
-        $("#mes_modal_grid").setGridParam({
-            datatype: "local",
-            data: data
-        }).trigger("reloadGrid");
+            $("#mes_modal_grid").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
 
 
-        $("#addDialog").dialog('open');
-        jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-    });
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 function addupdate_btn() {
@@ -129,12 +137,8 @@ function modal_make1() {
         width:'auto',
         height: 'auto',
         autoOpen:false,
-        resizable: false,
-        buttons: [
-            {
-                "class": "hide",
-            }
-        ]
+        resizable: false
+
     });
 }
 

@@ -56,12 +56,6 @@ function crmModal_make() {
         minWidth:1100,
         height: 'auto',
         resizable: false,
-        buttons: [
-            {
-                "class": "hide",
-            }
-        ]
-
     });
 
 }
@@ -79,16 +73,16 @@ function crmModal_jqGrid() {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60 ,formatter: formmatterDate2},
-            {name: 'ord_no', index: 'ord_no', key:true, sortable: false, width: 60},
+            {name: 'ord_no', index: 'ord_no', key:true, sortable: false, width: 90},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
             {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
-            {name: 'status1_name', index: 'status1_name', sortable: false, width: 60},
-            {name: 'status2_name', index: 'status2_name', sortable: false, width: 60},
+            {name: 'status1_name', index: 'status1_name', sortable: false, width: 50},
+            {name: 'status2_name', index: 'status2_name', sortable: false, width: 50},
             {name: 'end_date', index: 'end_date', sortable: false, width: 60,formatter:formmatterDate2},
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
-            {name: 'qty', index: 'qty', sortable: false, width: 60},
-            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: 'tube', index: 'tube', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 50},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 50},
+            {name: 'tube', index: 'tube', sortable: false, width: 50},
             {name: 'remark', index: 'remark', sortable: false, width: 60},
         ],
         autowidth: true,
