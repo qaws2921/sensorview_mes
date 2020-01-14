@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmOrderRecp/crmOrderRecp.js" charset="UTF-8"></script>
+<style>
+    td input[type=checkbox]{
+        position: relative;
+        top: 5px;
+    }
+</style>
 <form method="POST" action="/crmOrderRecpAdd" id="crmRecp">
     <div class="main-content-inner">
         <div class="page-content">
