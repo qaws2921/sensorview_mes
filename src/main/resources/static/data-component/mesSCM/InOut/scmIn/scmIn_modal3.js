@@ -58,7 +58,7 @@ function modal3_modal_open(rowid) {
         datepicker_makes("#modal3_datepicker2", 0);
 
         $('#modal3Grid').jqGrid("clearGridData");
-        jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: 0});
+        jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: 0});
 
         if (main_data.check === 'I'){
          $('#scmInDialogRightGrid').jqGrid('setCell', rowid, 'ord_check', 'N');
@@ -196,19 +196,19 @@ function modal3_jqGrid() {
                                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
                                     $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                     var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
-                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
+                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                                     return false;
                                 } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(value)) {
                                     alert("입고 가능 수량이 초과 하였습니다.");
                                     e.target.value = 0;
                                     $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                     var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
-                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
+                                    jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                                     return false;
                                 }
                                 $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                 var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
-                                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
+                                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                             }
                         }
 
@@ -274,7 +274,7 @@ function modal3_jqGrid() {
                 }
 
                 var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
-                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: 'Total:', in_qty: sumOfPrice});
+                jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
             }
 
 
@@ -290,7 +290,7 @@ function modal3_jqGrid() {
             var $self = $(this),
                 sum = $self.jqGrid("getCol", "in_qty", false, "sum");
 
-            $self.jqGrid("footerData", "set", {qty: "Total:", in_qty: sum});
+            $self.jqGrid("footerData", "set", {qty: "총 입고수량:", in_qty: sum});
         }
 
 
