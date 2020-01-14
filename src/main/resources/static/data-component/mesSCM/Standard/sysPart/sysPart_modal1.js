@@ -10,35 +10,28 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function inputIntChangeLT() {
-    if ($("#lt").val() === "") {
-        $("#lt").val(0);
-    } else {
+    if ($("#lt").val() !== "") {
         $("#lt").val($("#lt").val().replace(/[^0-9]/g, ''));
     }
 }
 function inputIntChangeMaxQty() {
-    if ($("#max_qty").val() === ""){
-        $("#max_qty").val(0);
-    }else {
+    if ($("#max_qty").val() !== ""){
         $("#max_qty").val($("#max_qty").val().replace(/[^0-9]/g,''));
     }
 
 }
 function inputIntChangeMinQty() {
-    if ($("#min_qty").val() === ""){
-        $("#min_qty").val(0);
-    }else {
+    if ($("#min_qty").val() !== ""){
         $("#min_qty").val($("#min_qty").val().replace(/[^0-9]/g,''));
     }
 
 }
 function inputIntChangeOrdQty() {
-    if ($("#ord_qty").val() === ""){
-        $("#ord_qty").val(0);
-    }else {
+    if ($("#ord_qty").val() !== ""){
         $("#ord_qty").val($("#ord_qty").val().replace(/[^0-9]/g,''));
     }
 }
+
 function supp_btn(what) {
     modal_data.supp_check = what;
     $("#SuppSearchGrid").jqGrid('clearGridData');
@@ -66,7 +59,21 @@ function suppModal_close_bus() {
 }
 
 function addUdate_btn() {
+    if ($("#lt").val() === "") {
+        $("#lt").val(0);
+    }
+    if ($("#max_qty").val() === ""){
+        $("#max_qty").val(0);
+    }
+    if ($("#min_qty").val() === ""){
+        $("#min_qty").val(0);
+    }
+    if ($("#ord_qty").val() === ""){
+        $("#ord_qty").val(0);
+    }
+
     var modal_objact = value_return(".modal_value");
+
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {

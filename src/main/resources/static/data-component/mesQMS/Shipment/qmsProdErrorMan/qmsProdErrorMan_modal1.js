@@ -2,6 +2,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 
@@ -60,6 +61,10 @@ function file_change(e) {
             .children(".file_labal")
             .text(filename[2]);
     }
+}
+
+function selectBox_modal1(){
+    $('#act_select').select2();
 }
 
 function modal_make1() {

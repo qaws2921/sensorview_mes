@@ -52,9 +52,12 @@
             <div class="profile-info-value">
                 <input type="text" name="supp_name" class="form-control modal_value" readonly>
             </div>
-            <div class="profile-info-name">품목그룹</div>
+            <div class="profile-info-name">조치구분</div>
             <div class="profile-info-value">
-                <input type="text" name="part_grp_name" class="form-control modal_value" readonly>
+                <select name="act_type" id="act_select" class="form-control modal_value" autofocus style="width: 100%">
+                    <option value="0">조치중</option>
+                    <option value="1">조치완료</option>
+                </select>
             </div>
         </div>
         <div class="profile-info-row">
@@ -107,27 +110,19 @@
                 <input type="text" name="ng_name" class="form-control modal_value" readonly>
             </div>
         </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">조치구분</div>
-            <div class="profile-info-value">
-                <select name="act_type" class="form-control modal_value" autofocus>
-                    <option value="0">조치중</option>
-                    <option value="1">조치완료</option>
-                </select>
-            </div>
-        </div>
+
         <div class="profile-info-row">
             <div class="profile-info-name">부적합보고서</div>
             <div class="profile-info-value">
-                <div class='filebox'>
-                    <label class='file_labal' for='file_02'>업로드</label>
+                <div class='filebox t-align-c'>
+                    <label class='file_labal' for='file_02' style="margin-bottom: 0px!important;">업로드</label>
                     <input type='file' id='file_02' onchange='file_change(this);' />
                 </div>
             </div>
             <div class="profile-info-name">개선조치</div>
             <div class="profile-info-value">
-                <div class='filebox'>
-                    <label class='file_labal' for='file_03'>업로드</label>
+                <div class='filebox t-align-c'>
+                    <label class='file_labal' for='file_03' style="margin-bottom: 0px!important;">업로드</label>
                     <input type='file' id='file_03' onchange='file_change(this);' />
                 </div>
             </div>

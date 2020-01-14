@@ -7,7 +7,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly:[]
+    readonly:[],
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -18,7 +19,7 @@ $(document).ready(function () {
 
     datepickerInput();
     modal_start1();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -46,26 +47,34 @@ function get_btn_post(page) {
 }
 
 function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        $('#file_02').val('');
+        $('#file_03').val('');
+        $('.file_labal').text('업로드');
 
-    modal_reset(".modal_value", []);
-    $('#file_02').val('');
-    $('#file_03').val('');
-    $('.file_labal').text('업로드');
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.in_no = jqgrid_data.in_no;
+        send_data.part_code = jqgrid_data.part_code;
 
-    main_data.check = 'U';
-    var send_data = {};
-    send_data.in_no = jqgrid_data.in_no;
-    send_data.part_code = jqgrid_data.part_code;
-
-    ccn_ajax('/qmsProdErrorManOneGet', send_data).then(function (data) {
-        data.work_date = data.work_date.substring(0,4)+'-'+data.work_date.substring(4,6)+'-'+data.work_date.substring(6);
-        data.update_date = data.update_date.substring(0,4)+'-'+data.update_date.substring(4,6)+'-'+data.update_date.substring(6,8)+' '+data.update_date.substring(8,10)+':'+data.update_date.substring(10,12)+':'+data.update_date.substring(12);
-        console.log(data);
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
-    });
+        ccn_ajax('/qmsProdErrorManOneGet', send_data).then(function (data) {
+            data.work_date = data.work_date.substring(0,4)+'-'+data.work_date.substring(4,6)+'-'+data.work_date.substring(6);
+            data.update_date = data.update_date.substring(0,4)+'-'+data.update_date.substring(4,6)+'-'+data.update_date.substring(6,8)+' '+data.update_date.substring(8,10)+':'+data.update_date.substring(10,12)+':'+data.update_date.substring(12);
+            console.log(data);
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsProdErrorMan"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
