@@ -34,6 +34,7 @@ function formmatterDate2(cellValue) { // 날짜 필터
 	if (cellValue == null || cellValue === ''){
 		return '';
 	} else {
+		cellValue = cellValue.replace(/[^0-9]/g,'');
 		var y = cellValue.substring(0,4);
 		var m = cellValue.substring(4,6);
 		var d = cellValue.substring(6,8);

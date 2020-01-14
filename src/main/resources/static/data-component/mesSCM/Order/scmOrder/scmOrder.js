@@ -94,6 +94,7 @@ function add_btn() {
 
 function delete_btn() {
     if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
         var ids = $("#mes_grid").getGridParam('selarrrow');
         var check = '';
         var check2 = [];
@@ -113,7 +114,7 @@ function delete_btn() {
                 if (confirm("삭제하겠습니까?")) {
                     main_data.check = 'D';
                     wrapWindowByMask2();
-                    ccn_ajax("/scmOrderDel", {ord_no: ids.join("&")}).then(function (data) {
+                    ccn_ajax("/scmOrderDel", {ord_no: ids.join(gu5)}).then(function (data) {
                         if (data.result === 'NG') {
                             alert(data.message);
                         } else {

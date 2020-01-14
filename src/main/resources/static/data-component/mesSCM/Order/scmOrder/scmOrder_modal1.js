@@ -70,6 +70,8 @@ function update_btn(rowid) {
 
 function add_modal1_btn() {
     $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+    var gu5 = String.fromCharCode(5);
+    var gu4 = String.fromCharCode(4);
     if (main_data.check2 === 'Y') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
@@ -82,7 +84,7 @@ function add_modal1_btn() {
 
             jdata.forEach(function (data, j) {
                 if (data.ord_qty !== '' && data.end_date !=='' ) {
-                    list.push(data.part_code + "$" + data.ord_qty+"$"+data.end_date.replace(/\-/g, ''));
+                    list.push(data.part_code + gu4 + data.ord_qty+gu4+data.end_date.replace(/\-/g, ''));
                 } else {
                     list2.push(data.part_code);
                 }
@@ -97,7 +99,7 @@ function add_modal1_btn() {
                     }
                     if (confirm(text)) {
                         wrapWindowByMask2();
-                        add_data.keyword = list.join("&");
+                        add_data.keyword = list.join(gu5);
                         ccn_ajax("/scmOrderAdd", add_data).then(function (data) {
                             if (data.result === 'NG') {
                                 alert(data.message);
