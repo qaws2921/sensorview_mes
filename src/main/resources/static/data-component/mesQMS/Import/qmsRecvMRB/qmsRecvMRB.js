@@ -152,11 +152,11 @@ function cancel_btn() {
 
 function supp_btn(what) {
     main_data.supp_check = what;
-    $("#supp_modal_keyword").val("supp_name");
-    $("#supp_modal_keyword2").val("");
 
     $("#SuppSearchGrid").jqGrid('clearGridData');
     $("#supp-search-dialog").dialog('open');
+    $('#gubun_select option:eq(0)').prop("selected", true).trigger("change");
+
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 

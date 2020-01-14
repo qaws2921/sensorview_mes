@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesSCM/InOut/scmOutOrder/scmOutOrder_modal1.js" charset="UTF-8"></script>
+<style>
+    input[type=text][name="qty"] {
+        height: 18px !important;
+    }
+    #scmOutOrderDialogLeftGridPager #pg_scmOutOrderDialogLeftGridPager table{
+        table-layout:auto !important;
+    }
+</style>
 <div id="scmOutOrder-add-dialog"  title="출고요청추가" style="display: none">
     <div class="clearfix margin-at">
-        <div class="col-xs-6">
+        <div class="col-xs-5">
             <table class="table wt-100">
                 <tbody>
                 <tr>
@@ -63,29 +71,29 @@
             </div>
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-7">
             <table class="table wt-100">
                 <tbody>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">출고일자</td>
-                    <td>
-                        <div  class="input-icon input-icon-right">
+                    <td class="wt-px-150 h-25">
+                        <div class="input-icon input-icon-right">
                             <input type="text" name="work_date" id="datepicker3" class="form-control h-25 modal_value2" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="td-title"></td>
-                    <td></td>
+                    <td class="wt-px-100 td-title"></td>
+                    <td class="wt-px-150 h-25"></td>
                 </tr>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
-                    <td class="wt-px-100">
+                    <td class="wt-px-150">
                         <select name="cargo_code_to" id="line_select" class="form-control modal_value2" style="width: 100%">
 
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">용도</td>
-                    <td class="wt-px-100">
+                    <td class="wt-px-150">
                         <select name="usage" id="usage_select" class="form-control modal_value2" style="width: 100%">
                             <option value="1">양산</option>
                             <option value="2">개발</option>

@@ -11,8 +11,11 @@ var grid_data = [];
 
 $(document).ready(function () {
     jqGrid_main();
-    jqgridPagerIcons();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    selectBox();
+    datepickerInput();
+    jqgridPagerIcons();
+
 });
 
 
@@ -22,6 +25,15 @@ $(document).ready(function () {
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+function selectBox() {
+    $('#stockRev_gubun_select').select2();
+}
+
+function datepickerInput() {
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
+
+}
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
