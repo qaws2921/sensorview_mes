@@ -12,7 +12,7 @@
 
 
     <select id="scmInLot2Get" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB_ORD">
-        	EXEC SP_SCM_IN_SUB2_GET #{site_code},#{page}, #{rows}, #{keyword}
+        	EXEC SP_SCM_IN_SUB2_GET #{site_code},#{page}, #{rows}, #{keyword}, #{keyword2}
     </select>
 
     <select id="scmInDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
