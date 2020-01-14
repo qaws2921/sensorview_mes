@@ -76,7 +76,7 @@ function jqGrid_main() {
             {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
+            {name: 'tube_name', index: 'tube_name', sortable: false, width: 60},
             {name: 'remark', index: 'remark', sortable: false, width: 60},
         ],
         multiselect: true,

@@ -75,4 +75,5 @@ public class CRM_ORD_RECP {
     private String keyword;
     private String delivery_addr;
     private String tube;
+    private String tube_name;
 }

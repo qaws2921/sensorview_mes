@@ -211,97 +211,106 @@ function add_modal1_btn() {
             var list3 = [];
             var list4 = [];
             var list5 = [];
+            var add_check=true;
             jdata.forEach(function (data, j) {
-                if(data.ord_check === 'N'){
-                    alert(data.part_code+"의 " + "발주등록을 다시 확인해주세요");
-                    return false;
-                }else if (data.lot === '') {
-                    //list.push(data.part_code);
-                    alert(data.part_code+"의 " + "수량등록을 다시 확인해주세요");
-                    return false;
-                } else if (data.qty === '' || isNaN(data.qty)) {
-                    //list.push(data.part_code);
-                    alert(data.part_code+"의 " + "수량등록을 다시 확인해주세요");
-                    return false;
-                } else {
-                    list2.push(data.part_code+gu4+data.lot+gu4+data.qty+gu4+data.pack_qty);
+                if (add_check === true) {
+                    if (data.ord_check === 'N') {
+                        alert(data.part_code + "의 " + "발주등록을 다시 확인해주세요");
+                        add_check=false;
+                        return false;
+                    } else if (data.lot === '') {
+                        //list.push(data.part_code);
+                        alert(data.part_code + "의 " + "수량등록을 다시 확인해주세요");
+                        add_check=false;
+                        return false;
+                    } else if (data.qty === '' || isNaN(data.qty)) {
+                        //list.push(data.part_code);
+                        alert(data.part_code + "의 " + "수량등록을 다시 확인해주세요");
+                        add_check=false;
+                        return false;
+                    } else {
+                        list2.push(data.part_code + gu4 + data.lot + gu4 + data.qty + gu4 + data.pack_qty);
 
-                    list3.push(data.part_code);
+                        list3.push(data.part_code);
 
+                    }
                 }
             });
             callback(function () {
-                if (list.length > 0) {
-                    alert(list.join(", ") + "를 다시 확인해주세요");
-                } else {
-                    var text = '저장하겠습니까?';
-                    if (main_data.check === "U") {
-                        text = '수정하겠습니까?';
-                    }
-                    if (confirm(text)) {
-                        wrapWindowByMask2();
-                        add_data.keyword = list2.join(gu5);
+                if (add_check=== true) {
+                    if (list.length > 0) {
+                        alert(list.join(", ") + "를 다시 확인해주세요");
+                    } else {
+                        var text = '저장하겠습니까?';
+                        if (main_data.check === "U") {
+                            text = '수정하겠습니까?';
+                        }
+                        if (confirm(text)) {
+                            wrapWindowByMask2();
+                            add_data.keyword = list2.join(gu5);
 
-                        var code_list = [];
-                        var code_list2 = [];
-                        var idx;
+                            var code_list = [];
+                            var code_list2 = [];
+                            var idx;
 
-                        var code_list_2 = [];
-                        var code_list2_2 = [];
-                        var idx2;
+                            var code_list_2 = [];
+                            var code_list2_2 = [];
+                            var idx2;
 
 
-
-                        list3.forEach(function (s2, i2) {
-                            idx = findArrayIndex(modal2_data.sub_data, function (item) {
-                                return item.part_code === s2
-                            });
-
-                            if (idx !== -1) {
-                                modal2_data.sub_data[idx].list.forEach(function (s3, k) {
-                                    code_list.push(s3.part_code + gu3 +s3.lot + gu3 + s3.qty);
-                                    if (modal2_data.sub_data[idx].list.length === k + 1) {
-                                        code_list2.push(code_list.join(gu4));
-                                        code_list = [];
-                                    };
+                            list3.forEach(function (s2, i2) {
+                                idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                                    return item.part_code === s2
                                 });
-                            }
 
-                        /////////////////////////////////////////////
-                            idx2 = findArrayIndex(modal3_data.sub_data, function (item) {
-                                return item.part_code === s2
-                            });
-
-                            if (idx2 !== -1) {
-                                modal3_data.sub_data[idx2].list.forEach(function (s3, k) {
-                                    code_list_2.push(s3.ord_no + gu3 + s3.part_code+ gu3 + s3.in_qty + gu3 + s3.result_check);
-                                    if (modal3_data.sub_data[idx].list.length === k + 1) {
-                                        code_list2_2.push(code_list_2.join(gu4));
-                                        code_list_2 = [];
-                                    };
-                                });
-                            }
-                        });
-
-                        add_data.keyword2 = code_list2.join(gu5);
-                        add_data.keyword3 = code_list2_2.join(gu5);
-                        ccn_ajax("/scmInAdd", add_data).then(function (data) {
-                            if (data.result === 'NG') {
-                                alert(data.message);
-                            } else {
-                                if (main_data.check === "I") {
-                                    get_btn(1);
-                                } else {
-                                    get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                                if (idx !== -1) {
+                                    modal2_data.sub_data[idx].list.forEach(function (s3, k) {
+                                        code_list.push(s3.part_code + gu3 + s3.lot + gu3 + s3.qty);
+                                        if (modal2_data.sub_data[idx].list.length === k + 1) {
+                                            code_list2.push(code_list.join(gu4));
+                                            code_list = [];
+                                        }
+                                        ;
+                                    });
                                 }
-                            }
-                            $('#scmInBottomGrid').jqGrid('clearGridData');
-                            closeWindowByMask();
-                            $("#scmIn-add-dialog").dialog('close');
-                        }).catch(function (err) {
-                            closeWindowByMask();
-                            alert("저장실패");
-                        });
+
+                                /////////////////////////////////////////////
+                                idx2 = findArrayIndex(modal3_data.sub_data, function (item) {
+                                    return item.part_code === s2
+                                });
+
+                                if (idx2 !== -1) {
+                                    modal3_data.sub_data[idx2].list.forEach(function (s3, k) {
+                                        code_list_2.push(s3.ord_no + gu3 + s3.part_code + gu3 + s3.in_qty + gu3 + s3.result_check);
+                                        if (modal3_data.sub_data[idx].list.length === k + 1) {
+                                            code_list2_2.push(code_list_2.join(gu4));
+                                            code_list_2 = [];
+                                        }
+                                        ;
+                                    });
+                                }
+                            });
+
+                            add_data.keyword2 = code_list2.join(gu5);
+                            add_data.keyword3 = code_list2_2.join(gu5);
+                            ccn_ajax("/scmInAdd", add_data).then(function (data) {
+                                if (data.result === 'NG') {
+                                    alert(data.message);
+                                } else {
+                                    if (main_data.check === "I") {
+                                        get_btn(1);
+                                    } else {
+                                        get_btn_post($("#scmInTopGrid").getGridParam('page'));
+                                    }
+                                }
+                                $('#scmInBottomGrid').jqGrid('clearGridData');
+                                closeWindowByMask();
+                                $("#scmIn-add-dialog").dialog('close');
+                            }).catch(function (err) {
+                                closeWindowByMask();
+                                alert("저장실패");
+                            });
+                        }
                     }
                 }
             })
@@ -371,7 +380,7 @@ function jqGrid_modal1() {
             {name: 'pack_qty', index: 'pack_qty', width: 50, sortable: false},
             {name: 'button', index: 'button', width: 60, formatter: qtyButton, sortable: false},
             {name: 'button2', index: 'button2', width: 60, formatter: orderButton, sortable: false},
-            {name: 'ord_check', index: 'ord_check', width: 60,  sortable: false}
+            {name: 'ord_check', index: 'ord_check', width: 60,  sortable: false, formatter:formatter_check}
 
             // {name: 'in_pty', index: 'in_pty', width: 60
             //     editoptions: {

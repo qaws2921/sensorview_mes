@@ -19,7 +19,7 @@
                     <input type="hidden" value="${sessionScope.userData.user_code}" id="huscd">
                     <input type="hidden" value="${sessionScope.userData.user_name}" id="husnm">
                     <br>
-                    <button type="button" class="btn btn-minier btn-dark">정보수정</button>
+                    <button type="button" class="btn btn-minier btn-dark">암호변경</button>
                     <button type="button" class="btn btn-minier btn-dark">로그아웃</button>
                 </a>
             </div>

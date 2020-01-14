@@ -148,12 +148,12 @@
                                 <input type="text" name="supp_ord_no" class="form-control main_value" readonly>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="wt-px-100 td-title t-align-c padding-a-0">결재방법</td>
-                            <td class="wt-px-150">
-                                <input type="text" name="payment" class="form-control main_value" readonly>
-                            </td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <td class="wt-px-100 td-title t-align-c padding-a-0">결재방법</td>--%>
+<%--                            <td class="wt-px-150">--%>
+<%--                                <input type="text" name="payment" class="form-control main_value" readonly>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">담당자</td>
                             <td class="wt-px-150">
@@ -169,7 +169,7 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송지</td>
                             <td class="wt-px-150">
-                                <input type="text" name="address" class="form-control main_value" readonly>
+                                <input type="text" name="delivery_addr" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         </tbody>

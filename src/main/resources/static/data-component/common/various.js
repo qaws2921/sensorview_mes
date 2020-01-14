@@ -63,6 +63,13 @@ function formatterDate4(cellValue) { // 날짜 필터
 	}
 }
 
+function formatter_check(cellValue) { // 날짜 필터
+	if (cellValue === '' || typeof cellValue === "undefined"){
+		return 'N';
+	}
+	return cellValue;
+}
+
 
 function jqGridResize(main_name, top_name) {
 	$(window).on('resize', function () {
