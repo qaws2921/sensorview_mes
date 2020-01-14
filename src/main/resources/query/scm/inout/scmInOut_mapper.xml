@@ -63,8 +63,8 @@
         EXEC SP_SCM_OUT_ORDER_DEL #{site_code},#{ord_no}
     </select>
 
-    <select id="scmStockRetListGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB">
-        EXEC SP_SCM_STOCK_RET_SUB_DATE_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} , #{keyword}
+    <select id="scmStockRetListGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_RET_SUB">
+        EXEC SP_SCM_RET_SUB_DATE_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} , #{keyword}
     </select>
 
     <select id="scmInLineListGet" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_REIN_SUB">
