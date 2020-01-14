@@ -179,6 +179,14 @@ function modal3_jqGrid() {
 
                     dataEvents: [
                         {
+                            type: 'focus',
+                            fn: function (e) {
+                                e.target.value = '';
+                                $(e.target).attr('autocomplete', 'off');
+
+                            }
+                        },
+                        {
                             type: 'focusout',
                             fn: function (e) {
                                 var row = $(e.target).closest('tr.jqgrow');
@@ -200,6 +208,8 @@ function modal3_jqGrid() {
                                     var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
                                     jQuery("#modal3Grid").jqGrid('footerData', 'set', {qty: '총 입고수량:', in_qty: sumOfPrice});
                                     return false;
+                                } else if(value === ''){
+                                    e.target.value = 0;
                                 }
                                 $("#modal3Grid").jqGrid("saveCell", saverow3, savecol3);
                                 var sumOfPrice = jQuery("#modal3Grid").jqGrid('getCol', 'in_qty', false, 'sum');
@@ -264,6 +274,9 @@ function modal3_jqGrid() {
                     return false;
                 } else if ((parseInt(data.ord_qty) + parseInt(data.qty)) < parseInt(data.in_qty)) {
                     alert("입고 가능 수량이 초과 하였습니다.");
+                    $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', 0);
+                    return false;
+                } else if(data.in_qty === ''){
                     $('#modal3Grid').jqGrid('setCell', rowid, 'in_qty', 0);
                     return false;
                 }

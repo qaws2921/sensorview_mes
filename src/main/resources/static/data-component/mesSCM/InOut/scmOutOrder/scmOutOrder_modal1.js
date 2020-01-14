@@ -232,6 +232,15 @@ function jqGrid_modal1() {
 
                     dataEvents: [
                         {
+                            type: 'focus',
+                            fn: function (e) {
+
+
+                                e.target.value = '';
+                                $(e.target).attr('autocomplete', 'off');
+                            }
+                        },
+                        {
                             type: 'focusout',
                             fn: function (e) {
                                 var row = $(e.target).closest('tr.jqgrow');
@@ -240,6 +249,11 @@ function jqGrid_modal1() {
                                 if (isNaN(value)){
                                     alert("숫자만 입력가능합니다.");
                                     e.target.value = e.target.value.replace(/[^0-9]/g,'');
+                                    $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
+                                    return false;
+                                } else if(parseInt(value) <= 0) {
+                                    alert("요청수량이 0보다 커야합니다.");
+                                    e.target.value = '';
                                     $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
                                     return false;
                                 }
@@ -278,9 +292,20 @@ function jqGrid_modal1() {
                     alert("숫자만 입력가능합니다.");
                     data.qty = data.qty.replace(/[^0-9]/g, '');
                     $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', data.qty);
-                    if (data.qty === '') {
-                        $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', '0');
+
+                    if(parseInt(data.qty) <= 0) {
+                        alert("발주수량이 0보다 커야합니다.");
+                        $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', '');
+                        $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
+                        return false;
+                    }else {
+                        $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
                     }
+                    return false;
+                }else if(parseInt(data.qty) <= 0) {
+                    alert("발주수량이 0보다 커야합니다.");
+                    $('#scmOutOrderDialogRightGrid').jqGrid('setCell', rowid, 'qty', '');
+                    $("#scmOutOrderDialogRightGrid").jqGrid("saveCell", saverow, savecol);
                     return false;
                 }
 

@@ -250,6 +250,14 @@ function jqGrid_modal1() {
 
                         dataEvents: [
                             {
+                                type: 'focus',
+                                fn: function (e) {
+                                    e.target.value = '';
+                                    $(e.target).attr('autocomplete', 'off');
+
+                                }
+                            },
+                            {
                                 type: 'focusout',
                                 fn: function (e) {
                                     var row = $(e.target).closest('tr.jqgrow');
@@ -259,6 +267,11 @@ function jqGrid_modal1() {
                                         e.target.value = e.target.value.replace(/[^0-9]/g,'');
                                         $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
                                          return false;
+                                    } else if(parseInt(value) <= 0) {
+                                        alert("발주수량이 0보다 커야합니다.");
+                                        e.target.value = '';
+                                        $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                                        return false;
                                     }
                                     $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
 
@@ -309,7 +322,36 @@ function jqGrid_modal1() {
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
 
-        }
+        },
+        afterSaveCell: function (rowid, name, val, iRow, iCol) {
+            var data = $('#mes_add_grid2').jqGrid('getRowData', rowid);
+
+            if (isNaN(data.ord_qty)) {
+                alert("숫자만 입력가능합니다.");
+                data.ord_qty = data.ord_qty.replace(/[^0-9]/g, '');
+                $('#mes_add_grid2').jqGrid('setCell', rowid, 'ord_qty', data.ord_qty);
+
+                if(parseInt(data.ord_qty) <= 0) {
+                    alert("발주수량이 0보다 커야합니다.");
+                    $('#mes_add_grid2').jqGrid('setCell', rowid, 'ord_qty', '');
+                    $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                    return false;
+                }else {
+                    $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                }
+                return false;
+            }else if(parseInt(data.ord_qty) <= 0) {
+                    alert("발주수량이 0보다 커야합니다.");
+                    $('#mes_add_grid2').jqGrid('setCell', rowid, 'ord_qty', '');
+                $("#mes_add_grid2").jqGrid("saveCell", saverow, savecol);
+                    return false;
+                }
+
+
+
+
+
+        },
     });
 
 }
