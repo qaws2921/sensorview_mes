@@ -5,7 +5,7 @@
 <style>
     td input[type=checkbox]{
         position: relative;
-        top: 5px;
+        top: 3px;
     }
 </style>
 <form method="POST" action="/crmOrderRecpAdd" id="crmRecp">
@@ -190,10 +190,10 @@
                             </td>
                             <td class="wt-px-100 td-title t-align-c">옵션</td>
                             <td class="t-align-c">
-                                <input type="checkbox" name="option1" id="chbox1" value="N" class="main_value">
-                                <label for="chbox1" style="font-size: 12px">성적서</label>
-                                <input type="checkbox" name="option2" id="chbox2" value="N" class="main_value">
-                                <label for="chbox2" style="font-size: 12px">라벨</label>
+                                <input type="checkbox" name="option1" id="chbox1" value="N" class="main_value" style="margin: 0px!important;" >
+                                <label for="chbox1" style="font-size: 11px; margin-right:5px;" >성적서</label>
+                                <input type="checkbox" name="option2" id="chbox2" value="N" class="main_value" style="margin: 0px!important;" >
+                                <label for="chbox2" style="font-size: 11px">라벨</label>
                             </td>
                         </tr>
                         <tr>

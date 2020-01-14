@@ -4,7 +4,8 @@
 
 ////////////////////////////데이터/////////////////////////////////////
 var main_data = {
-    supp_check:'A'
+    supp_check:'A',
+    auth:{}
 }
 
 ////////////////////////////시작 함수/////////////////////////////////
@@ -13,64 +14,68 @@ $(document).ready(function () {
     datepickerInput();
     suppModal_start();
     partModal_start();
+    authcheck();
     jqgridPagerIcons();
 });
 ////////////////////////////클릭 함수////////////////////////////////
 
 function add_btn() {
+    if (main_data.auth.check_add !="N") {
+        var data = value_return(".main_value");
+        data.work_date = data.work_date.replace(/\-/g, '');
+        data.end_date =  data.end_date.replace(/\-/g, '');
+        data.ord_no = '';
+        data.keyword = "I";
 
-    var data = value_return(".main_value");
-    data.work_date = data.work_date.replace(/\-/g, '');
-    data.end_date =  data.end_date.replace(/\-/g, '');
-    data.ord_no = '';
-    data.keyword = "I";
+        if ($('input:checkbox[name="option1"]').is(":checked")) {
+            data.option1 = 'Y';
+        }
+        if ($('input:checkbox[name="option2"]').is(":checked")) {
+            data.option2 = 'Y';
+        }
 
-    if ($('input:checkbox[name="option1"]').is(":checked")) {
-        data.option1 = 'Y';
+        data.work_type =$('#work_type').val();
+
+        if (data.work_type === "1"){
+            data.connector1 ="";
+            data.connector2 ="";
+            data.part_length =0;
+        }
+        if (effectiveness(data)){
+            if (confirm("저장 하시겠습니까?")) {
+                ccn_ajax("/crmOrderRecpAdd", data).then(function (data2) {
+                    if (data2.result === 'NG') {
+                        alert(data2.message);
+                    } else {
+                        modal_reset(".crm_order_value", []);
+
+                        $(".part_value").val("자동표시");
+                        $("#crm_part_code").val("찾기");
+
+                        $("#connector1").empty();
+                        $("#connector2").empty();
+
+                        $("#connector1").append($("<option></option>").text("선택안함").val(""));
+                        $("#connector2").append($("<option></option>").text("선택안함").val(""));
+
+
+                        $(".crm_order_select").each(function () {
+                            $(this).find('option:first').prop("selected", true).trigger("change");
+                        })
+
+
+                        $("#chbox1").prop("checked", false);
+                        $("#chbox2").prop("checked", false);
+
+                    }
+                }).catch(function (err) {
+                    console.error(err); // Error 출력
+                });
+             }
+         }
+    } else {
+        alert("추가권한이 없습니다,");
     }
-    if ($('input:checkbox[name="option2"]').is(":checked")) {
-        data.option2 = 'Y';
-    }
-
-    data.work_type =$('#work_type').val();
-
-    if (data.work_type === "1"){
-        data.connector1 ="";
-        data.connector2 ="";
-        data.part_length =0;
-    }
-if (effectiveness(data)){
-    if (confirm("저장 하시겠습니까?")) {
-        ccn_ajax("/crmOrderRecpAdd", data).then(function (data2) {
-            if (data2.result === 'NG') {
-                alert(data2.message);
-            } else {
-                modal_reset(".crm_order_value", []);
-
-                $(".part_value").val("자동표시");
-                $("#crm_part_code").val("찾기");
-
-                $("#connector1").empty();
-                $("#connector2").empty();
-
-                $("#connector1").append($("<option></option>").text("선택안함").val(""));
-                $("#connector2").append($("<option></option>").text("선택안함").val(""));
-
-
-                $(".crm_order_select").each(function () {
-                    $(this).find('option:first').prop("selected", true).trigger("change");
-                })
-
-
-                $("#chbox1").prop("checked", false);
-                $("#chbox2").prop("checked", false);
-
-            }
-        }).catch(function (err) {
-            console.error(err); // Error 출력
-        });
-     }
- }
 }
 
 function  partModal_bus(rowid) {
@@ -163,6 +168,13 @@ function datepickerInput() {
     datepicker_makes("#datepicker2", 1);
 
 }
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "crmOrderRecp"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function selectBox() {
     $("#status1_select").select2();
     $("#status2_select").select2();

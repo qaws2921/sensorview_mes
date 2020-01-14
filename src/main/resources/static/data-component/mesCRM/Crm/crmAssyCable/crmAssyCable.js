@@ -8,7 +8,8 @@
 var main_data = {
 
     send_data: {},
-    part_code:''
+    part_code:'',
+    auth:{}
 };
 
 
@@ -20,6 +21,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid2', $('#mes_grid2').closest('[class*="col-"]'));
     selectBox();
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -53,41 +55,49 @@ function left_get_btn(page) {
 }
 
 function add_btn() {
-    if (typeof main_data.part_code !== "undefined" && main_data.part_code !=='') {
-        $('#mes_modal_grid').jqGrid('clearGridData');
-        $('#mes_modal_grid').jqGrid("resetSelection");
-        $("#part_group_select1_2 option:eq(0)").prop("selected", true).trigger("change");
-        $("#part_group_select2_2 option:eq(0)").prop("selected", true).trigger("change");
-        $("#part_group_select3_2 option:eq(0)").prop("selected", true).trigger("change");
-        $("#addDialog").dialog('open');
-        jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-    }else {
-        alert("품목을 선택해주세요");
+    if (main_data.auth.check_add !="N") {
+        if (typeof main_data.part_code !== "undefined" && main_data.part_code !=='') {
+            $('#mes_modal_grid').jqGrid('clearGridData');
+            $('#mes_modal_grid').jqGrid("resetSelection");
+            $("#part_group_select1_2 option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_group_select2_2 option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_group_select3_2 option:eq(0)").prop("selected", true).trigger("change");
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+        }else {
+            alert("품목을 선택해주세요");
+        }
+    } else {
+        alert("추가권한이 없습니다,");
     }
 }
 
 
 
 function delete_btn() {
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#mes_grid2").getGridParam('selarrrow'); // 체크된 그리드 로우
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            wrapWindowByMask2();
-            ccn_ajax("/crmAssyCableDel", {cable_code:main_data.part_code,connector_code: ids.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    left_get_btn(1);
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid2").getGridParam('selarrrow'); // 체크된 그리드 로우
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                wrapWindowByMask2();
+                ccn_ajax("/crmAssyCableDel", {cable_code:main_data.part_code,connector_code: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        left_get_btn(1);
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
@@ -98,6 +108,12 @@ function selectBox() {
             group_cb(value,i);
         }
     })
+}
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "crmAssyCable"}).then(function (data) {
+        main_data.auth = data;
+    });
 }
 
 function group_cb(value,i) {
