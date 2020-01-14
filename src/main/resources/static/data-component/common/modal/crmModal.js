@@ -82,7 +82,7 @@ function crmModal_jqGrid() {
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 50},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 50},
-            {name: 'tube', index: 'tube', sortable: false, width: 50},
+            {name: 'tube_name', index: 'tube_name', sortable: false, width: 50},
             {name: 'remark', index: 'remark', sortable: false, width: 60},
         ],
         autowidth: true,
