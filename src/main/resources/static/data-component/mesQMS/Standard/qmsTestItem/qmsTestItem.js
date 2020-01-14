@@ -77,9 +77,10 @@ function delete_btn() {
         alert("삭제하는 데이터를 선택해주세요")   ;
     } else {
         if (confirm("삭제하겠습니까?")) {
+            var gu5 = String.fromCharCode(5);
             main_data.check = 'D';
             wrapWindowByMask2();
-            ccn_ajax("/qmsQcItemDel", {keyword: ids.join("&")}).then(function (data) {
+            ccn_ajax("/qmsQcItemDel", {keyword: ids.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
