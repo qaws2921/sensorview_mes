@@ -174,4 +174,22 @@ public class MasterService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return masterMapper.sysCargoOneGet(p);
     }
+
+    public RESTful sysERateGet(HttpServletRequest req, Page p) {
+        List<SYSERate> rows = masterMapper.sysERateGet(p);
+        return getListData(rows,p);
+    }
+
+    public SYSERate sysERateOneGet(HttpServletRequest req,SYSERate ser) {
+        return masterMapper.sysERateOneGet(ser);
+    }
+
+    public Message sysERateAdd(HttpServletRequest req, SYSERate vo) {
+        vo.setUser_code(getSessionData(req).getUser_code());
+        return masterMapper.sysERateAdd(vo);
+    }
+
+    public Message sysERateDel(Page p) {
+        return masterMapper.sysERateDel(p);
+    }
 }

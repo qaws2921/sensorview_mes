@@ -151,7 +151,7 @@ function jqGrid_main() {
             {name: 'code_name8', index: 'code_name8',sortable: false, width: 60},
             {name: 'use_yn', index: 'use_yn',sortable: false, width: 60},
             {name: 'user_name', index: 'user_name',sortable: false, width: 60},
-            {name: 'create_date', index: 'create_date',sortable: false, width: 60, formatter: formmatterDate,},
+            {name: 'create_date', index: 'create_date',sortable: false, width: 60, formatter: formmatterDate},
         ],
         caption: "공통코드관리 | MES",
         autowidth: true,

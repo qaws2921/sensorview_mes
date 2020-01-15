@@ -151,4 +151,16 @@ public class MasterRestController {
 
     @RequestMapping(value="/sysSuppListDel", method = RequestMethod.POST)
     public Message sysSuppListDel(Page p) { return masterService.sysSuppListDel(p); }
+
+    @RequestMapping(value="/sysERateGet", method = RequestMethod.POST)
+    public RESTful sysERateGet(HttpServletRequest req, Page p){ return masterService.sysERateGet(req,p);}
+
+    @RequestMapping(value="/sysERateOneGet", method = RequestMethod.POST)
+    public SYSERate sysERateOneGet(HttpServletRequest req,SYSERate ser) { return masterService.sysERateOneGet(req, ser); }
+
+    @RequestMapping(value="/sysERateAdd", method = RequestMethod.POST)
+    public Message sysERateAdd(HttpServletRequest req, SYSERate vo) { return masterService.sysERateAdd(req,vo); }
+
+    @RequestMapping(value="/sysERateDel", method = RequestMethod.POST)
+    public Message sysERateDel(Page p) { return masterService.sysERateDel(p); }
 }

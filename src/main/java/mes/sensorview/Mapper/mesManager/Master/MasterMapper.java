@@ -63,4 +63,12 @@ import java.util.List;
      SYSProdLine sysProdLineOneGet(Page p);
 
      SYSCargo sysCargoOneGet(Page p);
- }
+
+    List<SYSERate> sysERateGet(Page p);
+
+    SYSERate sysERateOneGet(SYSERate ser);
+
+    Message sysERateAdd(SYSERate vo);
+
+    Message sysERateDel(Page p);
+}

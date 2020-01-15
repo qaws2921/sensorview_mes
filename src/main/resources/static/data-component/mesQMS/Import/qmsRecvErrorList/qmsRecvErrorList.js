@@ -11,8 +11,6 @@ google.setOnLoadCallback(drawBasic);
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-var grid2_data=[];
 
 var main_data = {
   supp_check:'A',
