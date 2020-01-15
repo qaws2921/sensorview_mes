@@ -53,19 +53,7 @@
                                     <span>조회</span>
                                 </span>
                     </a>
-                    <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
-                                <span><i class="fa fa-plus bigger-110 blue"></i>
-                                    <span>추가</span>
-                                </span>
-                    </a>
-                    <a id="delete_btn" class="dt-button  btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="">
-                                <span>
-                                    <i class="fa fa-trash bigger-110 blue"></i>
-                                    <span>삭제</span>
-                                </span>
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -89,4 +77,4 @@
     </div>
 </div>
 
-
+<%@include file="/WEB-INF/views/body/common/modal/supp_modal.jsp" %>

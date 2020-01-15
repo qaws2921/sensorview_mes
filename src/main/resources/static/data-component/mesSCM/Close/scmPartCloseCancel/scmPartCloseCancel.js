@@ -1,24 +1,29 @@
+/**
+ * various.js 와 연동
+ */
 
 ////////////////////////////데이터/////////////////////////////////////
+
+var grid_data = [];
+
 var main_data = {
     check: 'I',
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    readonly:[],
     auth:{}
 };
-
-
-////////////////////////////시작 함수/////////////////////////////////////
 $(document).ready(function () {
     jqGrid_main();
-    jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
-    jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
-    datepickerInput();
-    /*----모달----*/
+    jqgridPagerIcons();
+    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+
     suppModal_start();
+    datepickerInput();
     jqgridPagerIcons();
 });
+
 
 ////////////////////////////클릭 함수//////////////////////////////////
 function supp_btn(what) {
@@ -52,72 +57,39 @@ function suppModal_close_bus() {
     }
     $("#SuppSearchGrid").jqGrid('clearGridData');
 }
+
+
 ////////////////////////////호출 함수//////////////////////////////////
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
 }
 
+
 function jqGrid_main() {
-    $("#mes_grid").jqGrid({
-        mtype: 'POST',
+    $('#mes_grid').jqGrid({
+        data: grid_data,
         datatype: "local",
-        // 다중 select
-        multiselect: true,
-        // 타이틀
-        caption: "자재마감 현황 | MES",
-        colNames: ['마감일자','업체','금액','비고'],
+        colNames: ['마감일자', '업체', '금액', '비고'],
         colModel: [
             {name: '', index: '' ,formatter: formmatterDate2, sortable: false},
             {name: '', index: '', sortable: false},
             {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
+            {name: '', index: '', sortable: false}
         ],
+        caption: "자재마감 취소 | MES",
         autowidth: true,
-        viewrecords: true,
-        height: 200,
+        height: 450,
+        pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: '#mes_grid_pager',
+        viewrecords: true,
+        multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
-        onCellSelect: function (rowid, icol, cellcontent, e) {
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-
-        }
-
-    });
-
-    $('#mes_grid2').jqGrid({
-        mtype: 'POST',
-        datatype: "local",
-        caption: "제품출고 지시 | MES",
-        colNames: ['입고일자','전표번호','구분','품번','품명','업체','입고수량','화폐','단가','금액'],
-        colModel: [
-            {name: '', index: '' ,formatter: formmatterDate2, sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-
-        ],
-        autowidth: true,
-        viewrecords: true,
-        height: 150,
-        rowNum: 100,
-        rowList: [100, 200, 300, 500, 1000],
-        pager: '#mes_grid_pager2'
-
-    });
-
+    }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

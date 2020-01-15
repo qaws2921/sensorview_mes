@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<script type="text/javascript" src="/data-component/mesSCM/Close/scmPartClose/scmPartClose.js"
-        charset="UTF-8"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script type="text/javascript" src="/data-component/mesSCM/Close/scmPartCloseCancel/scmPartCloseCancel.js" charset="UTF-8"></script>
 <div class="main-content-inner">
 
     <div class="page-content">
@@ -11,10 +11,19 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">마감일자</td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">마감기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" readonly>
+                            <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" readonly >
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                        </div>
+                    </td>
+                    <td class="t-align-c" style="width:25px !important;">
+                        ~
+                    </td>
+                    <td class="wt-px-200">
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
@@ -27,10 +36,6 @@
                                    id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
-                    </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">비고</td>
-                    <td class="wt-px-200">
-                        <input type="text" class="form-control h-25 t-align-c" />
                     </td>
                     <td></td>
                 </tr>
@@ -50,19 +55,22 @@
                     </a>
                     <a class="dt-button  btn btn-white btn-primary btn-mini btn-bold"
                        tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                            <span><i class="fa fa-plus bigger-110 blue"></i>
-                            <span>마감처리</span>
+                            <span><i class="fa fa-times bigger-110 blue"></i>
+                            <span>마감취소</span>
                             </span>
                     </a>
+
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xs-12 table-responsive">
                 <table id="mes_grid"></table>
                 <div id="mes_grid_pager"></div>
             </div>
         </div>
+
     </div>
 </div>
 

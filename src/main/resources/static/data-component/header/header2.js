@@ -44,7 +44,7 @@ var array =
         {code: "scmStockSumMonth", title: '자재관리', sub: '재고관리', name: '자재 월원장'},
         {code: "scmStockRevList", title: '자재관리', sub: '재고관리', name: '재고조정현황'},
 
-        {code: "scmPartClose", title: '자재관리', sub: '매입마감', name: '마감진행'},
+        {code: "scmPartClose", title: '자재관리', sub: '매입마감', name: '마감처리'},
         {code: "scmPartCloseSumList", title: '자재관리', sub: '매입마감', name: '마감현황'},
         {code: "scmPartCloseCancel", title: '자재관리', sub: '자재입출고', name: '마감취소'},
 
