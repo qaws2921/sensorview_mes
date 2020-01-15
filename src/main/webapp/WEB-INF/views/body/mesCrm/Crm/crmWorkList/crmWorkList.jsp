@@ -64,7 +64,7 @@
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">제품구분</td>
                     <td class="wt-px-150">
-                        <select name="keyword" id="gubun_select" class="form-control keyword condition_main" style="width:100%">
+                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
@@ -130,7 +130,7 @@
                 <table id="mes_grid"></table>
                 <div id="mes_grid_pager"></div>
             </div>
-            <div class="col-xs-3 table-responsive" style="margin-top: -20px;">
+            <div class="col-xs-3 table-responsive2" style="margin-top: -20px; display:none;">
                 <div class="col-lg-12">
                     <div class="col-lg-12 ">
                         <span class="sp-title">영업정보</span>
@@ -224,12 +224,12 @@
                                 <input type="text" name="supp_ord_no" class="form-control main_value" readonly>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="wt-px-100 td-title t-align-c padding-a-0">결재방법</td>
-                            <td class="wt-px-150">
-                                <input type="text" name="payment" class="form-control main_value" readonly>
-                            </td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <td class="wt-px-100 td-title t-align-c padding-a-0">결재방법</td>--%>
+<%--                            <td class="wt-px-150">--%>
+<%--                                <input type="text" name="payment" class="form-control main_value" readonly>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">담당자</td>
                             <td class="wt-px-150">
@@ -245,7 +245,7 @@
                         <tr>
                             <td class="wt-px-100 td-title t-align-c padding-a-0">배송지</td>
                             <td class="wt-px-150">
-                                <input type="text" name="address" class="form-control main_value" readonly>
+                                <input type="text" name="delivery_addr" class="form-control main_value" readonly>
                             </td>
                         </tr>
                         </tbody>
