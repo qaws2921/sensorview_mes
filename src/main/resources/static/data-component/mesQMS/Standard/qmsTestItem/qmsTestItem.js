@@ -123,13 +123,12 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        colNames: ['검사구분','코드그룹','검사코드','검사명','사용유무','등록자','수정일'],
+        colNames: ['검사구분','코드그룹','검사코드','검사명','등록자','수정일'],
         colModel: [
             {name: 'qc_group_name', index: 'qc_group_name', width: 50, sortable:false,},
             {name: 'qc_type_name', index: 'qc_type_name', width: 50, sortable:false,},
             {name: 'qc_code', index: 'qc_code',key:true, width: 50, sortable:false,},
             {name: 'qc_name', index: 'qc_name', width: 50, sortable:false,},
-            {name: '', index: '', width: 50, sortable:false,},
             {name: 'user_name', index: 'user_name', width: 50, sortable:false,},
             {name: 'update_date', index: 'update_date', width: 50, sortable:false,formatter: formmatterDate},
         ],
