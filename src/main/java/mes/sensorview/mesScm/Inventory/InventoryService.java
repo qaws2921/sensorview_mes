@@ -4,9 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesSCM.Inventory.InventoryMapper;
-import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST;
-import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY;
-import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
+import mes.sensorview.mesScm.Inventory.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +32,12 @@ public class InventoryService extends ReturnFunction {
     public RESTful scmStockSumMonthListGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<SCM_STOCK_SUM_MONTH> rows = inventoryMapper.scmStockSumMonthListGet(p);
+        return  getListData(rows, p);
+    }
+
+    public RESTful scmStockRevListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_STOCK_REV_LIST> rows = inventoryMapper.scmStockRevListGet(p);
         return  getListData(rows, p);
     }
 }

@@ -34,6 +34,7 @@ function select_change1(value) {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
     $("#mes_grid").setGridParam({
         url: '/wmsStockSumMonthListGet',
