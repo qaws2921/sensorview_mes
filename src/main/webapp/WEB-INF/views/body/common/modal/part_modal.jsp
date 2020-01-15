@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/common/modal/partModal.js" charset="UTF-8"></script>
-<div id="part-search-dialog" title="수주현황 조회" style="display:none">
+<div id="part-search-dialog" title="품목 조회" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">

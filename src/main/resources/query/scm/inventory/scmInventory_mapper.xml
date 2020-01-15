@@ -3,15 +3,19 @@
 
 <mapper namespace="mes.sensorview.Mapper.mesSCM.Inventory.InventoryMapper">
     <select id="scmStockListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_LIST">
-        EXEC SP_SCM_STOCK_GET #{site_code},#{page},#{rows},'','','','',''
+        EXEC SP_SCM_STOCK_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2},#{keyword3},#{keyword4}
     </select>
 
     <select id="scmStockSumDayListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY">
-        EXEC SP_SCM_STOCK_GET_DAY #{site_code},#{page},#{rows},'','','','','',''
+        EXEC SP_SCM_STOCK_GET_DAY #{site_code},#{page},#{rows},#{start_date},#{keyword},#{keyword2},#{keyword3},#{keyword4}
     </select>
 
     <select id="scmStockSumMonthListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH">
-        EXEC SP_SCM_STOCK_GET_MONTH #{site_code},#{page},#{rows},'','','','','',''
+        EXEC SP_SCM_STOCK_GET_MONTH #{site_code},#{page},#{rows},#{start_date},#{keyword},#{keyword2},#{keyword3},#{keyword4}
+    </select>
+
+    <select id="scmStockRevListGet" resultType="mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_REV_LIST">
+        EXEC SP_SCM_STOCK_REV_GET #{site_code},#{page},#{rows},#{start_date},#{stop_date},#{keyword},#{keyword2},#{keyword3},#{keyword4}
     </select>
 
 

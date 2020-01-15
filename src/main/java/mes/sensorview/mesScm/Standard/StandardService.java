@@ -145,4 +145,26 @@ public class StandardService extends ReturnFunction {
         List<SYS_PART_CD> rows = scmStandardMapper.sysPartSuppGet(p);
         return getListData(rows , p);
     }
+
+    public RESTful sysPartPriceGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_PRICE> rows = scmStandardMapper.sysPartPriceGet(p);
+        return getListData(rows , p);
+    }
+
+    public Message sysPartPriceAdd(HttpServletRequest req, SYS_PART_PRICE spp) {
+        spp.setSite_code(getSessionData(req).getSite_code());
+        spp.setUser_code(getSessionData(req).getUser_code());
+        return scmStandardMapper.sysPartPriceAdd(spp);
+    }
+
+    public Message sysPartPriceDel(HttpServletRequest req, SYS_PART_PRICE spp) {
+        spp.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartPriceDel(spp);
+    }
+
+    public SYS_PART_PRICE sysPartPriceOneGet(HttpServletRequest req, SYS_PART_PRICE spp) {
+        spp.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartPriceOneGet(spp);
+    }
 }

@@ -23,4 +23,7 @@ public class InventoryRestController {
 
     @RequestMapping(value = "/scmStockSumMonthListGet", method = RequestMethod.POST)
     public RESTful scmStockSumMonthListGet(HttpServletRequest req, Page p) { return inventoryService.scmStockSumMonthListGet(req, p); }
+
+    @RequestMapping(value = "/scmStockRevListGet", method = RequestMethod.POST)
+    public RESTful scmStockRevListGet(HttpServletRequest req, Page p) { return inventoryService.scmStockRevListGet(req, p); }
 }

@@ -29,7 +29,7 @@ function partModal_check() {
     if ($( "#partSearchGrid" ).getGridParam( "selrow" )) {
         var ids = $( "#partSearchGrid" ).getGridParam( "selrow" );
         var data = $('#partSearchGrid').jqGrid('getRowData', ids);
-        partModal_bus(data.part_code);
+        partModal_bus(data.part_code,data.part_name);
         $("#part-search-dialog").dialog('close');
 
 
