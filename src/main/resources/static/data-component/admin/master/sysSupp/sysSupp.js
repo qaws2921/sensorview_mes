@@ -52,9 +52,10 @@ function get_btn_post(page) {
 function add_btn() {
     if (main_data.auth.check_add !="N") {
         modal_reset(".modal_value", main_data.readonly);
-        $('#corp_type1').val('N');
-        $('#corp_type2').val('N');
-        $('#corp_type3').val('N');
+        $('#corp_type1').val('Y').trigger('change');
+        $('#corp_type2').val('N').trigger('change');
+        $('#corp_type3').val('N').trigger('change');
+        $('#use_yn').val('Y').trigger('change');
 
         main_data.check = 'I';
         $("#addDialog").dialog('open');
@@ -143,13 +144,13 @@ function jqGrid_main() {
             {name: 'supp_name_en', index: 'supp_name_en', width: 60},
             {name: 'supp_no', index: 'supp_no', width: 60},
             {name: 'tel_no', index: 'tel_no', width: 60},
-            {name: 'buss_type', index: 'buss_type', width: 60},
+            {name: 'buss_type', index: 'buss_type', width: 30},
             {name: 'fax_no', index: 'fax_no', width: 60},
-            {name: 'category', index: 'category', width: 60},
-            {name: 'give_type', index: 'give_type', width: 60},
-            {name: 'address', index: 'address', width: 60},
-            {name: 'user_name', index: 'user_name', width: 60},
-            {name: 'create_date', index: 'create_date', width: 60, formatter: formmatterDate,},
+            {name: 'category', index: 'category', width: 40},
+            {name: 'give_type', index: 'give_type', width: 40},
+            {name: 'address', index: 'address', width: 80},
+            {name: 'user_name', index: 'user_name', width: 40},
+            {name: 'create_date', index: 'create_date', width: 80, formatter: formmatterDate,},
         ],
         caption: "업체코드관리 | MES",
         autowidth: true,

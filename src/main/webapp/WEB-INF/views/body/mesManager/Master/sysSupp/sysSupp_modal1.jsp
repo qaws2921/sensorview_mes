@@ -65,23 +65,13 @@
     </div>
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
-            <div class="profile-info-name">담당자1</div>
+            <div class="profile-info-name">담당자</div>
             <div class="profile-info-value">
                 <input type="text" name="emp_name" class="form-control modal_value" />
             </div>
-            <div class="profile-info-name">담당자1(전화)</div>
+            <div class="profile-info-name">담당자(전화)</div>
             <div class="profile-info-value">
                 <input type="text" name="emp_tel" class="form-control modal_value"/>
-            </div>
-        </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">담당자2</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control" />
-            </div>
-            <div class="profile-info-name">담당자2(전화)</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control"/>
             </div>
         </div>
         <div class="profile-info-row">
@@ -101,10 +91,6 @@
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name">담당자1(휴대전화)</div>
-            <div class="profile-info-value">
-                <input type="text" class="form-control" />
-            </div>
             <div class="profile-info-name">외주업체</div>
             <div class="profile-info-value">
                 <select name="corp_type3" id="corp_type3" class="form-control modal_value" style="width:100%">
@@ -112,6 +98,8 @@
                     <option value="N">N</option>
                 </select>
             </div>
+            <div class="profile-info-name"></div>
+            <div class="profile-info-value"></div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">이메일</div>
