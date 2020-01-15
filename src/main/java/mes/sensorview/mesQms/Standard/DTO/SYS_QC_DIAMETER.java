@@ -23,8 +23,6 @@ public class SYS_QC_DIAMETER {
     private int rownum;
     private int rownum_page;
     private int rec_count;
-    @NotBlank(message = "제품구분을 입력하세요.")
-    private String part_grp_code;
     private String diameter1;
     private String diameter2;
     private String part_name;

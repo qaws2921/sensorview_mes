@@ -10,14 +10,28 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
-                    <td class="wt-px-200">
-                        <select name="keyword" id="line_select" class="form-control keyword condition_main" style="width: 100%">
+                    <td class="wt-px-150">
+                        <select name="keyword5" id="line_select" class="form-control keyword condition_main" style="width: 100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품구분</td>
-                    <td class="wt-px-200">
-                        <select name="keyword2" id="gubun_select" class="form-control keyword condition_main" style="width: 100%">
-                            <option value="">전체</option>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-150">
+                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1_main(this.value);">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-150">
+                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-150">
+                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
+                    <td class="wt-px-150">
+                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -62,3 +76,4 @@
 </div>
 
 <%@include file="qmsTestStd_modal1.jsp"%>
+<%@include file="/WEB-INF/views/body/common/modal/part_modal.jsp" %>

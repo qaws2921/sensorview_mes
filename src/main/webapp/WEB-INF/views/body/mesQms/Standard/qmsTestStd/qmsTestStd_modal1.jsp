@@ -13,18 +13,17 @@
                 <input type="hidden" name="line_code" id="line_code" class="form-control modal_value">
             </div>
         </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">제품구분</div>
-            <div class="profile-info-value">
-                <select id="gubun_select2" name="part_grp_code" class="form-control" style="width: 100%" onchange="select_change1(this.value);">
-                </select>
-            </div>
-        </div>
+
         <div class="profile-info-row">
             <div class="profile-info-name">제품명</div>
             <div class="profile-info-value">
-                <select id="code_select" name="part_code" class="form-control modal_value" style="width: 100%">
-                </select>
+                <div class="input-icon input-icon-right">
+                    <input type="text" name="part_name" class="form-control h-25 modal_value"
+                           id="part_name_modal" onclick="part_btn();" readonly>
+                    <input type="hidden" name="part_code" class="form-control h-25 modal_value"
+                           id="part_code_modal">
+                    <i class="ace-icon fa fa-search dark" style="top: -2px;" ></i>
+                </div>
             </div>
         </div>
         <div class="profile-info-row">
