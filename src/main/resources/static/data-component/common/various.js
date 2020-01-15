@@ -436,3 +436,7 @@ function comma(num){
 function num_keyup(e) {
 	$(e).val($(e).val().replace(/[^0-9]/g,''));
 }
+
+function num_keyup_float(e) {
+	$(e).val($(e).val().replace(/[^\.0-9]/g,''));
+}

@@ -128,14 +128,13 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['no','화폐단위','currency_code','시작일', '종료일', '단위', '환율', '사용유무'],
+        colNames: ['no','화폐단위','currency_code','시작일', '종료일', '환율', '사용유무'],
         colModel: [
             {name: 'rownum', index:'code_type',key:true,hidden:true},
             {name: 'currency_name', index: 'currency_name',sortable: false, width: 60},
             {name: 'currency_code', index: 'currency_code',hidden:true,sortable: false, width: 60},
             {name: 'start_date', index: 'start_date',sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'stop_date', index: 'stop_date',sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'currency_unit', index: 'currency_unit',sortable: false, width: 60},
             {name: 'exch_rate', index: 'exch_rate',sortable: false, width: 60},
             {name: 'use_yn', index: 'use_yn',sortable: false, width: 60}
         ],

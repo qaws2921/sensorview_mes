@@ -33,15 +33,9 @@
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name">단위</div>
-            <div class="profile-info-value">
-                <input type="text" name="currency_unit" class="form-control modal_value"/>
-            </div>
-        </div>
-        <div class="profile-info-row">
             <div class="profile-info-name">환율</div>
             <div class="profile-info-value">
-                <input type="text" name="exch_rate" class="form-control modal_value"/>
+                <input type="text" name="exch_rate" class="form-control modal_value" onkeyup="num_keyup_float(this)"/>
             </div>
         </div>
         <div class="profile-info-row">

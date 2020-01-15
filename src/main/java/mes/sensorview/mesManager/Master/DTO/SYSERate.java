@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 @Data
 public class SYSERate {
     private String currency_code;
-    private String code_type;
     private String start_date;
     private String stop_date;
     private double exch_rate;
@@ -20,7 +19,6 @@ public class SYSERate {
     private int rownum_page;
     private int rec_count;
 
-    private int currency_unit;
     private String currency_name;
 
     private String keyword;

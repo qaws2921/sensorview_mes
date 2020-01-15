@@ -6,6 +6,14 @@
 
 var grid_data = [];
 
+var main_data = {
+    check: 'I',
+    supp_check: 'A',
+    send_data: {},
+    send_data_post: {},
+    readonly:[],
+    auth:{}
+};
 
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -24,11 +32,34 @@ $(document).ready(function () {
 function supp_btn(what) {
     main_data.supp_check = what;
 
-    $( "#SuppSearchGrid" ).jqGrid('clearGridData');
-    $( "#supp-search-dialog" ).dialog('open');
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+    $("#supp-search-dialog").dialog('open');
+    $('#gubun_select option:eq(0)').prop("selected", true).trigger("change");
+    $('#supp_code_search').val('').trigger("change");
+
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
+
 }
 
+function suppModal_bus(code, name) {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val(name);
+        $("#supp_code_main").val(code);
+    } else if (main_data.supp_check === 'B') {
+        $("#supp_name_modal").val(name);
+        $("#supp_code_modal").val(code);
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+
+}
+
+function suppModal_close_bus() {
+    if (main_data.supp_check === 'A') {
+        $("#supp_name_main").val("");
+        $("#supp_code_main").val("");
+    }
+    $("#SuppSearchGrid").jqGrid('clearGridData');
+}
 
 
 ////////////////////////////호출 함수//////////////////////////////////
@@ -37,13 +68,12 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         data: grid_data,
         datatype: "local",
-        colNames: ['입고일자', '업체', '전표번호', '구분', '품목그룹', '품번', '품명', '입고수량'],
+        colNames: ['입고일자', '업체', '전표번호', '구분', '품번', '품명', '입고수량'],
         colModel: [
             {name: 'scmIn_date', index: 'scmIn_date', width: 60},
             {name: 'supp', index: 'supp', width: 60},
             {name: 'in_no', index: 'in_no', width: 60},
             {name: 'category', index: 'category', width: 60},
-            {name: 'p_group', index: 'p_group', width: 60},
             {name: 'p_num', index: 'p_num', width: 60},
             {name: 'p_name', index: 'p_name', width: 60},
             {name: 'in_num', index: 'in_num', width: 60},
