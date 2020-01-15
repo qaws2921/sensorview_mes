@@ -16,7 +16,7 @@ public class CRM_OUT_SUB {
     private String supp_code;
     private String supp_name;
 
-    private int price;
+    private int unit_price;
     private String update_date;
     private int rownum;
     private int rownum_page;
