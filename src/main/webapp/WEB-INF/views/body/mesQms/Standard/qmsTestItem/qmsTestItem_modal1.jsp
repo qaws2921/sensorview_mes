@@ -31,15 +31,6 @@
                 <input type="text"  name="qc_name" class="form-control modal_value" value="test">
             </div>
         </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">사용유무</div>
-            <div class="profile-info-value">
-                <select name="use_yn" id="use_yn" class="form-control modal_value ynCheck" style="width: 100%">
-                    <option value="Y">Y</option>
-                    <option value="N">N</option>
-                </select>
-            </div>
-        </div>
     </div>
 </div>
 </form>
