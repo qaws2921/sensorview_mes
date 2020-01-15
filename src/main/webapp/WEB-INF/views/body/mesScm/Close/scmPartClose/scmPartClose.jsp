@@ -21,8 +21,10 @@
                     <td class="wt-px-100 td-title t-align-c padding-a-0">업체</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="supp_name" class="form-control h-25 condition_main" id="supp_name_main" onclick="supp_btn('A');">
-                            <input type="hidden" name="supp_code" class="form-control h-25 condition_main" id="supp_code_main">
+                            <input type="text" name="supp_name" class="form-control h-25 condition_main"
+                                   id="supp_name_main" onclick="supp_btn('A');" readonly>
+                            <input type="hidden" name="keyword" class="form-control h-25 condition_main"
+                                   id="supp_code_main">
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
@@ -39,13 +41,15 @@
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
-                    <a id="get_btn" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""   onclick="get_btn(1)">
+                    <a class="dt-button  btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""   >
                             <span>
                             <i class="fa fa-search bigger-110 blue"></i>
                             <span>조회</span>
                             </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog" onclick="add_btn();">
+                    <a class="dt-button  btn btn-white btn-primary btn-mini btn-bold"
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>마감처리</span>
                             </span>

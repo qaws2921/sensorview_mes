@@ -10,7 +10,7 @@
     </select>
 
     <select id="sysERateAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-        EXEC SP_SYS_ERATE_ADD #{currency_code},#{currency_unit},#{start_date},#{stop_date},#{exch_rate},#{use_yn},#{user_code},#{keyword}
+        EXEC SP_SYS_ERATE_ADD #{currency_code},#{start_date},#{stop_date},#{exch_rate},#{use_yn},#{user_code},#{keyword}
     </select>
 
     <select id="sysERateDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
