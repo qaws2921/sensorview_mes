@@ -91,4 +91,9 @@
 	<select id="crmAssyCableDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_ASSY_CABLE_DEL #{site_code}, #{cable_code}, #{connector_code}
     </select>
+
+
+	<select id="crmOutListGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB">
+		EXEC SP_CRM_OUT_SUB_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{stop_date} , #{keyword}
+	</select>
 </mapper>

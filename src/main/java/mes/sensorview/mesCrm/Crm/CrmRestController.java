@@ -80,4 +80,7 @@ public class CrmRestController {
     public Message crmAssyCableDel(SYS_ASSY_CABLE sac, HttpServletRequest req){
         return crmService.crmAssyCableDel(sac,req);
     }
+
+    @RequestMapping(value = "/crmOutListGet", method = RequestMethod.POST)
+    public RESTful crmOutListGet(HttpServletRequest req, Page p) { return crmService.crmOutListGet(req, p); }
 }

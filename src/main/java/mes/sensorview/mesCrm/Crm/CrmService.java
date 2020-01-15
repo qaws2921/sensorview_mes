@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesCrm.Crm.CrmMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN;
 import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,5 +134,11 @@ public class CrmService extends ReturnFunction {
     public Message crmAssyCableDel(SYS_ASSY_CABLE sac, HttpServletRequest req) {
         sac.setSite_code(getSessionData(req).getSite_code());
         return crmMapper.crmAssyCableDel(sac);
+    }
+
+    public RESTful crmOutListGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<CRM_OUT_SUB> rows = crmMapper.crmOutListGet(p);
+        return getListData(rows , p);
     }
 }
