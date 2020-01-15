@@ -43,16 +43,17 @@ var array =
         {code: "scmStockSumDay", title: '자재관리', sub: '재고관리', name: '자재 일원장'},
         {code: "scmStockSumMonth", title: '자재관리', sub: '재고관리', name: '자재 월원장'},
         {code: "scmStockRevList", title: '자재관리', sub: '재고관리', name: '재고조정현황'},
-        {code: "scmBPartClose", title: '자재관리', sub: '매입마감', name: '마감진행'},
-        {code: "scmBPartClose", title: '자재관리', sub: '매입마감', name: '마감진행'},
-        {code: "scmBPartCloseSumList", title: '자재관리', sub: '매입마감', name: '마감현황'},
-        {code: "scmBPartCloseCancel", title: '자재관리', sub: '자재입출고', name: '마감취소'},
+
+        {code: "scmPartClose", title: '자재관리', sub: '매입마감', name: '마감진행'},
+        {code: "scmPartCloseSumList", title: '자재관리', sub: '매입마감', name: '마감현황'},
+        {code: "scmPartCloseCancel", title: '자재관리', sub: '자재입출고', name: '마감취소'},
 
         //영업관리
         {code: "crmOrderRecp", title: '영업관리', sub: '영업관리', name: '수주정보관리'},
         {code: "crmPlan", title: '영업관리', sub: '영업관리', name: '계획관리'},
         {code: "crmWorkList", title: '영업관리', sub: '영업관리', name: '실적현황'},
         {code: "crmProdOrder", title: '영업관리', sub: '영업관리', name: '구매 생산지시'},
+        {code: "crmAssyCable", title: '영업관리', sub: '영업관리', name: '조립케이블 구성'},
 
         //설비관리
         {code:"tpmMC", title:'설비관리',sub:'기준정보',name:'설비정보관리'},
