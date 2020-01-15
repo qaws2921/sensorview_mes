@@ -94,6 +94,6 @@
 
 
 	<select id="crmOutListGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB">
-		EXEC SP_CRM_OUT_SUB_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{stop_date} , #{keyword}
+		EXEC SP_CRM_OUT_SUB_GET #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date} , #{keyword}
 	</select>
 </mapper>
