@@ -25,4 +25,7 @@ public class CrmController {
 
     @RequestMapping(value = "/crmAssyCable")
     public String crmAssyCable() { return "mesCrm/Crm/crmAssyCable/crmAssyCable"; }
+
+    @RequestMapping(value = "/crmOutList")
+    public String crmOutList() { return "mesCrm/Crm/crmOutList/crmOutList"; }
 }

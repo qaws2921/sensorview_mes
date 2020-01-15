@@ -20,6 +20,8 @@ $(document).ready(function () {
     suppModal_start();
 
     jqgridPagerIcons();
+
+    $(".table-responsive2").attr("style","margin-top: -20px;");
 });
 
 
@@ -28,6 +30,8 @@ $(document).ready(function () {
 function get_btn(page) {
     modal_reset(".main_value", []);
     main_data.send_data = value_return2(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.keyword2 = main_data.send_data.keyword2.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
     console.log(main_data);
     $("#mes_grid").setGridParam({
@@ -67,8 +71,8 @@ function supp_btn(what) {
 
 ////////////////////////////호출 함수////////////////////////////////
 function selectBox() {
-    select_makes("#gubun_select", "/getPartType", "part_type_code", "part_type_name");
     $('#status1_select').select2();
+    select_data_makes("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''});
 }
 
 function datepickerInput() {
@@ -113,12 +117,12 @@ function jqGrid_main() {
             {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
             {name: 'status1_name', index: 'status1_name', sortable: false, width: 40},
             {name: 'status2_name', index: 'status2_name', sortable: false, width: 40},
-            {name: 'end_date', index: 'end_date', sortable: false, width: 60, formatter: formatterDate3},
+            {name: 'end_date', index: 'end_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'status3_name', index: 'status3_name', sortable: false, width: 60},
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 40},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: 'tube', index: 'tube', sortable: false, width: 60},
+            {name: 'tube_name', index: 'tube_name', sortable: false, width: 60},
             {name: 'remark', index: 'remark', sortable: false, width: 80},
         ],
         multiselect: true,

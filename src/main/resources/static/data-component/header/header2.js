@@ -54,6 +54,7 @@ var array =
         {code: "crmWorkList", title: '영업관리', sub: '영업관리', name: '실적현황'},
         {code: "crmProdOrder", title: '영업관리', sub: '영업관리', name: '구매 생산지시'},
         {code: "crmAssyCable", title: '영업관리', sub: '영업관리', name: '조립케이블 구성'},
+        {code: "crmOutList", title: '영업관리', sub: '영업관리', name: '출하실적'},
 
         //설비관리
         {code:"tpmMC", title:'설비관리',sub:'기준정보',name:'설비정보관리'},
