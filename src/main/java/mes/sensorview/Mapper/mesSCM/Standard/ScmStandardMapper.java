@@ -44,4 +44,12 @@ public interface ScmStandardMapper {
     Message sysPartDel(SYS_PART_CD spc);
 
     List<SYS_PART_CD> sysPartSuppGet(Page p);
+
+    List<SYS_PART_PRICE> sysPartPriceGet(Page p);
+
+    Message sysPartPriceAdd(SYS_PART_PRICE spp);
+
+    Message sysPartPriceDel(SYS_PART_PRICE spp);
+
+    SYS_PART_PRICE sysPartPriceOneGet(SYS_PART_PRICE spp);
 }
