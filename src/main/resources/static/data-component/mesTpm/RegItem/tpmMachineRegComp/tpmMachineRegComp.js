@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['work_date','line_name','machine_name','qc_name']
+    readonly: ['work_date','line_name','machine_name','qc_name'],
+    auth:{}
 };
 
 
@@ -62,22 +63,31 @@ function select_change1(value) {
 }
 
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    var send_data = {};
-    send_data.keyword = jqgrid_data.line_code;
-    send_data.keyword2 = jqgrid_data.machine_code;
-    send_data.keyword3 = jqgrid_data.work_date.replace(/\-/g, '');
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.keyword = jqgrid_data.line_code;
+        send_data.keyword2 = jqgrid_data.machine_code;
+        send_data.keyword3 = jqgrid_data.work_date.replace(/\-/g, '');
 
-    ccn_ajax('/tpmMachineRegCompOneGet', send_data).then(function (data) {
-        data.work_date = formmatterDate2(data.work_date);
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        ccn_ajax('/tpmMachineRegCompOneGet', send_data).then(function (data) {
+            data.work_date = formmatterDate2(data.work_date);
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
 
-        $("#addDialog").dialog('open');
-    });
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "tpmMachineRegComp"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);

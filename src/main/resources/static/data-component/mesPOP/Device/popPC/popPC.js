@@ -3,13 +3,12 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-
 var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['pc_code']
+    readonly: ['pc_code'],
+    auth:{}
 };
 
 
@@ -19,6 +18,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -34,53 +34,68 @@ function get_btn(page) {
 }
 
 function add_btn() {
-    main_data.check = 'I';
-    modal_reset('.modal_value',main_data.readonly);
-    $("#addDialog").dialog('open');
+    if(main_data.auth.check_add != "N") {
+        main_data.check = 'I';
+        modal_reset('.modal_value',main_data.readonly);
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다.");
+    }
 }
 
 
 function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
-    modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
-
-    main_data.check = 'U'; // 수정인지 체크
+        main_data.check = 'U'; // 수정인지 체크
 
 
-    ccn_ajax('/popPCOneGet', {keyword:jqgrid_data.pc_code}).then(function (data) { // user의 하나 출력
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
-    });
+        ccn_ajax('/popPCOneGet', {keyword:jqgrid_data.pc_code}).then(function (data) { // user의 하나 출력
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
 function delete_btn() {
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            wrapWindowByMask2();
-            ccn_ajax("/popPCDel", {pc_code: ids.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn($("#mes_grid").getGridParam('page'));
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/popPCDel", {pc_code: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 
 ////////////////////////////호출 함수//////////////////////////////////
-
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "popPC"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",

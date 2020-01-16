@@ -9,6 +9,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -18,7 +19,7 @@ $(document).ready(function () {
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -96,7 +97,11 @@ function suppModal_close_bus() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "outsInList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);

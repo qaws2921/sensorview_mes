@@ -36,9 +36,7 @@ function select_change2(value) {
     }
 }
 function inputIntChange() {
-    if ($("#alarm_day").val() === ""){
-        $("#alarm_day").val(0);
-    }else {
+    if ($("#alarm_day").val() !== ""){
         $("#alarm_day").val($("#alarm_day").val().replace(/[^0-9]/g,''));
     }
 
@@ -107,8 +105,11 @@ function left_modal1_btn() {
 
 function add_modal1_btn() {
     var gu5 = String.fromCharCode(5);
-
+    if(  $("#alarm_day").val() === ''){
+        $("#alarm_day").val(0);
+    }
         var add_data = value_return(".modal_send_data");
+
         if ( add_data.line_code === ""){
             add_data.line_code = "AAAAA";
         }

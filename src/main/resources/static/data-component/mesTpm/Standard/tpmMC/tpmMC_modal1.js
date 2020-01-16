@@ -117,57 +117,60 @@ function readURLRemove(index) {
 
 // 그리는 더블 클릭 시 발동
 function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        readURLRemove(1);
+        readURLRemove(2);
+        readURLRemove(3);
+        main_data.delCheck1 = 0;
+        main_data.delCheck2 = 0;
+        main_data.delCheck3 = 0;
 
-    readURLRemove(1);
-    readURLRemove(2);
-    readURLRemove(3);
-    main_data.delCheck1 = 0;
-    main_data.delCheck2 = 0;
-    main_data.delCheck3 = 0;
+        modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
 
-    modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+        main_data.check = 'U'; // 수정인지 체크
 
-    main_data.check = 'U'; // 수정인지 체크
+        ccn_ajax('/tpmMCOneGet', {machine_code:jqgrid_data.machine_code}).then(function (data) { // user의 하나 출력
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("input[name=install_date]").val(formmatterDate2(data.install_date));
 
-    ccn_ajax('/tpmMCOneGet', {machine_code:jqgrid_data.machine_code}).then(function (data) { // user의 하나 출력
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("input[name=install_date]").val(formmatterDate2(data.install_date));
-
-        if (data.image1 !== '' && data.image1 !== null){
-            var image1= data.image1.split("\\");
-            var index1 = image1.length;
-            $('#img-text1').remove();
-            $('#img1').attr('src',image1[index1-3]+"\\"+image1[index1-2]+"\\"+image1[index1-1]);
-        }
-
-
-        if (data.image2 !== '' && data.image2 !== null){
-            var image2= data.image2.split("\\");
-            var index2 = image2.length;
-            $('#img-text2').remove();
-            $('#img2').attr('src', image2[index1-3]+"\\"+image2[index1-2]+"\\"+image2[index1-1]);
-        }
-        if (data.image3 !== '' && data.image3 !== null){
-            var image3= data.image3.split("\\");
-            var index3 = image3.length;
-            $('#img-text3').remove();
-            $('#img3').attr('src', image3[index1-3]+"\\"+image3[index1-2]+"\\"+image3[index1-1]);
-        }
+            if (data.image1 !== '' && data.image1 !== null){
+                var image1= data.image1.split("\\");
+                var index1 = image1.length;
+                $('#img-text1').remove();
+                $('#img1').attr('src',image1[index1-3]+"\\"+image1[index1-2]+"\\"+image1[index1-1]);
+            }
 
 
-        return data;
+            if (data.image2 !== '' && data.image2 !== null){
+                var image2= data.image2.split("\\");
+                var index2 = image2.length;
+                $('#img-text2').remove();
+                $('#img2').attr('src', image2[index1-3]+"\\"+image2[index1-2]+"\\"+image2[index1-1]);
+            }
+            if (data.image3 !== '' && data.image3 !== null){
+                var image3= data.image3.split("\\");
+                var index3 = image3.length;
+                $('#img-text3').remove();
+                $('#img3').attr('src', image3[index1-3]+"\\"+image3[index1-2]+"\\"+image3[index1-1]);
+            }
 
 
-    }).then(function (data2) {
-        $("#mes_modal_grid").jqGrid('clearGridData');
-
-        modal2_get_btn();
+            return data;
 
 
+        }).then(function (data2) {
+            $("#mes_modal_grid").jqGrid('clearGridData');
 
-        $("#addDialog").dialog('open');
-        jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-    });
+            modal2_get_btn();
+
+
+
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
@@ -187,7 +190,6 @@ function part_delete_btn() {
     var gu4 = String.fromCharCode(4);
     var gu5 = String.fromCharCode(5);
     var list = [];
-    var jdata = {};
     var ids = $("#mes_modal_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
     if (ids.length === 0) {
         alert("삭제하는 데이터를 선택해주세요");
@@ -230,6 +232,7 @@ function datepickerInput_modal1() {
 }
 function selectBox_modal1() {
     select_makes("#line_select2", "/getLine", "line_code", "line_name");
+    $('#focus_yn_modal').select2();
 }
 
 function modal_make1() {
@@ -239,14 +242,8 @@ function modal_make1() {
         width: '800',
         height: 'auto',
         autoOpen: false,
-        resizable: false,
-        buttons: [
-            {
-                text: '',
-                'class': 'btn btn-primary btn-minier hidden',
+        resizable: false
 
-            }
-        ]
     })
 }
 
@@ -264,6 +261,7 @@ function jqGrid_modal1() {
             {name: 'remark', index: 'remark', sortable: false}
         ],
         width : 465,
+        height: 270,
         viewrecords: true,
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지

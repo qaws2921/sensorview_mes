@@ -8,9 +8,8 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function inputIntChange() {
-    if ($("#cycle_qty").val() === ""){
-        $("#cycle_qty").val(0);
-    }else {
+    if ($("#cycle_qty").val() !== ""){
+
         $("#cycle_qty").val($("#cycle_qty").val().replace(/[^0-9]/g,''));
     }
 
@@ -34,6 +33,10 @@ function select_change2(value) {
 }
 
 function addUdate_btn() {
+
+    if ($("#cycle_qty").val() === ''){
+        $("#cycle_qty").val(0)
+    }
     var modal_objact = value_return(".modal_value");
     modal_objact.line_code= $('#line_select2').val();
     modal_objact.start_date=modal_objact.start_date.replace(/\-/g, '');

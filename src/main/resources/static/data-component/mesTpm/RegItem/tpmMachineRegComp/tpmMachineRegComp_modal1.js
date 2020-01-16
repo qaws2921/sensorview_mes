@@ -9,7 +9,7 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function selectBox_modal1() {
     select_makes_sub("#result_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_REG_RESULT'},'N');
-
+    $('#check_yn').select2();
 }
 
 
