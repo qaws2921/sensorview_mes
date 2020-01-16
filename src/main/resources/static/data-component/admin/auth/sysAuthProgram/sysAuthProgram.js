@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: ['auth_code']
+    readonly: ['auth_code'],
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -20,6 +21,7 @@ $(document).ready(function () {
 
     selectBox();
     /*----모달----*/
+    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
 
 });
@@ -61,69 +63,73 @@ function main_select_change(e) {
 
 
 function check_add_btn(object) {
-     if (main_data.send_data.keyword == null) {
-         alert("권한그룹명을 선택해주세요");
-     } else {
-         if (confirm("저장하겠습니까?")) {
-           var ids2 = $("#mes_grid2").getRowData();
-            var get;
-            var add;
-            var edit;
-            var del;
-            $(".itmchk").each(function (i) {
-                get = $(".itmchk").eq(i).attr("checked");
-                add = $(".itmchk2").eq(i).attr("checked");
-                edit = $(".itmchk3").eq(i).attr("checked");
-                del = $(".itmchk4").eq(i).attr("checked");
+    if (main_data.auth.check_edit !="N") {
+         if (main_data.send_data.keyword == null) {
+             alert("권한그룹명을 선택해주세요");
+         } else {
+             if (confirm("저장하겠습니까?")) {
+               var ids2 = $("#mes_grid2").getRowData();
+                var get;
+                var add;
+                var edit;
+                var del;
+                $(".itmchk").each(function (i) {
+                    get = $(".itmchk").eq(i).attr("checked");
+                    add = $(".itmchk2").eq(i).attr("checked");
+                    edit = $(".itmchk3").eq(i).attr("checked");
+                    del = $(".itmchk4").eq(i).attr("checked");
 
-                if (typeof get == "undefined") {
-                    ids2[i].check_get = "N"
-                }else {
-                    ids2[i].check_get = "Y"
-                }
+                    if (typeof get == "undefined") {
+                        ids2[i].check_get = "N"
+                    }else {
+                        ids2[i].check_get = "Y"
+                    }
 
-                if (typeof add == "undefined") {
-                    ids2[i].check_add = "N"
-                }else {
-                    ids2[i].check_add = "Y"
-                }
+                    if (typeof add == "undefined") {
+                        ids2[i].check_add = "N"
+                    }else {
+                        ids2[i].check_add = "Y"
+                    }
 
-                if (typeof edit == "undefined") {
-                    ids2[i].check_edit = "N"
-                }else {
-                    ids2[i].check_edit = "Y"
-                }
+                    if (typeof edit == "undefined") {
+                        ids2[i].check_edit = "N"
+                    }else {
+                        ids2[i].check_edit = "Y"
+                    }
 
-                if (typeof del == "undefined") {
-                    ids2[i].check_del = "N"
-                }else {
-                    ids2[i].check_del = "Y"
-                }
-            });
-
-            callback(function () {
-                $.ajax({
-                    url: "/sysAuthProgramAdd",
-                    data: JSON.stringify(ids2),
-                    type: 'POST',
-                    async: true,
-                    contentType: 'application/json',
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.result === 'NG') {
-                            alert(data.message);
-                        } else {
-                            get_btn_post();
-                        }
-                    },
-                    error: function () {
-                        alert("저장실패");
+                    if (typeof del == "undefined") {
+                        ids2[i].check_del = "N"
+                    }else {
+                        ids2[i].check_del = "Y"
                     }
                 });
-            })
+
+                callback(function () {
+                    $.ajax({
+                        url: "/sysAuthProgramAdd",
+                        data: JSON.stringify(ids2),
+                        type: 'POST',
+                        async: true,
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
+                            } else {
+                                get_btn_post();
+                            }
+                        },
+                        error: function () {
+                            alert("저장실패");
+                        }
+                    });
+                })
 
 
+            }
         }
+    } else {
+        alert("수정권한이 없습니다.");
     }
 }
 
