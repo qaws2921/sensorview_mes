@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript" src="/data-component/mesQMS/Standard/qmsTestStd/qmsTestStd_modal1.js" charset="UTF-8"></script>
-
 <form method="POST" action="/qmsTestStdAdd" id="qmsTestStd">
 <div id="addDialog" title="외경검사기준추가" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
@@ -29,17 +28,33 @@
         <div class="profile-info-row">
             <div class="profile-info-name">1차</div>
             <div class="profile-info-value t-align-c">
-                <input type="text" name="diameter1_start" class="form-control modal_value">
-                ~
-                <input type="text" name="diameter1_stop" class="form-control modal_value">
+                <div class="col-xs-12 padding0">
+                    <div class="col-xs-5 padding0">
+                        <input type="text" name="diameter1_start" class="form-control modal_value">
+                    </div>
+                    <div class="col-xs-2 padding0" style="margin-top:3px;">
+                        <span>~</span>
+                    </div>
+                    <div class="col-xs-5 padding0">
+                        <input type="text" name="diameter1_stop" class="form-control modal_value">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">2차</div>
             <div class="profile-info-value t-align-c">
-                <input type="text" name="diameter2_start" class="form-control modal_value">
-                ~
-                <input type="text" name="diameter2_stop" class="form-control modal_value">
+                <div class="col-xs-12 padding0">
+                    <div class="col-xs-5 padding0">
+                        <input type="text" name="diameter2_start" class="form-control modal_value">
+                    </div>
+                    <div class="col-xs-2 padding0" style="margin-top:3px;">
+                        <span>~</span>
+                    </div>
+                    <div class="col-xs-5 padding0">
+                        <input type="text" name="diameter2_stop" class="form-control modal_value">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
