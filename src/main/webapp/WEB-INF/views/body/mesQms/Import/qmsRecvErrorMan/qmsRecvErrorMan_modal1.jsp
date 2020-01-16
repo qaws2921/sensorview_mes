@@ -52,9 +52,9 @@
             <div class="profile-info-value">
                 <input type="text" name="supp_name" class="form-control modal_value" readonly>
             </div>
-            <div class="profile-info-name">품목그룹</div>
+            <div class="profile-info-name">성적서</div>
             <div class="profile-info-value">
-                <input type="text" name="part_grp_name" class="form-control modal_value" readonly>
+                <input type="text" name="file1_name" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
@@ -110,15 +110,13 @@
         <div class="profile-info-row">
             <div class="profile-info-name">조치구분</div>
             <div class="profile-info-value">
-                <select name="act_type" class="form-control modal_value" autofocus>
+                <select name="act_type" id="act_type_modal" class="form-control modal_value" autofocus style="width:100%;">
                     <option value="0">조치중</option>
                     <option value="1">조치완료</option>
                 </select>
             </div>
-            <div class="profile-info-name">성적서</div>
-            <div class="profile-info-value">
-               <input type="text" name="file1_name" class="form-control modal_value" readonly>
-            </div>
+            <div class="profile-info-name"></div>
+            <div class="profile-info-value"></div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">부적합보고서</div>

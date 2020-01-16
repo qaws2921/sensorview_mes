@@ -134,7 +134,7 @@ function jqGrid_main() {
         ],
         caption: "검사항목관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 450,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
@@ -149,7 +149,6 @@ function jqGrid_main() {
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
             update_btn(data);
-
         }
     });
 }

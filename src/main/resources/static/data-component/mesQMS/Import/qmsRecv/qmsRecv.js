@@ -3,15 +3,14 @@
  */
 
 ////////////////////////////데이터/////////////////////////////////////
-var grid_data=[];
-var grid2_data=[];
 
 var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
     qcItem_list:[],
-    qcItem_list_string:[]
+    qcItem_list_string:[],
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -22,9 +21,7 @@ $(document).ready(function () {
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     datepickerInput();
-
-
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -67,6 +64,11 @@ function qmsQcItemAllGet() {
     });
 }
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsRecv"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);

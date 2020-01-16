@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    rpt_list:[]
+    rpt_list:[],
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -21,7 +22,7 @@ $(document).ready(function () {
 
     qmsQcItemAllGet();
 
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -42,7 +43,6 @@ function get_btn(page) {
 }
 
 function under_get(rowid) {
-
     $("#mes_grid2").setGridParam({
         url: '/qmsProdSubGet',
         datatype: "json",
@@ -55,6 +55,11 @@ function under_get(rowid) {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsProd"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 
 function qmsQcItemAllGet() {

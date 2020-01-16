@@ -9,6 +9,7 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     readonly:[],
+    auth:{}
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -20,6 +21,7 @@ $(document).ready(function () {
     modal_start1();
     partModal_start();
     selectBox();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -54,66 +56,78 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-    modal_reset(".modal_value", main_data.readonly);
-    main_data.check = 'I';
-    if(main_data.check == 'I'){
-        $('#gubun_select2').prop("disabled",false);
-        $('#code_select').prop("disabled",false);
-    }
-    modalValuePush("#line_select","#line_code","#line_name");
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        main_data.check = 'I';
+        if(main_data.check == 'I'){
+            $('#gubun_select2').prop("disabled",false);
+            $('#code_select').prop("disabled",false);
+        }
+        modalValuePush("#line_select","#line_code","#line_name");
 
-    if($('#gubun_select').val() == ''){
-        $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
-    }else {
-        $('#gubun_select2').val($('#gubun_select').val()).prop("selected",true).trigger("change");
+        if($('#gubun_select').val() == ''){
+            $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
+        }else {
+            $('#gubun_select2').val($('#gubun_select').val()).prop("selected",true).trigger("change");
+        }
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
     }
-    $("#addDialog").dialog('open');
 }
 
 function update_btn(jqgrid_data) {
-    modal_reset(".modal_value", []);
-    main_data.check = 'U';
-    var send_data = {};
-    send_data.part_code = jqgrid_data.part_code;
-    send_data.line_code = jqgrid_data.line_code;
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var send_data = {};
+        send_data.part_code = jqgrid_data.part_code;
+        send_data.line_code = jqgrid_data.line_code;
 
-    ccn_ajax('/qmsTestStdOneGet', send_data).then(function (data) {
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
+        ccn_ajax('/qmsTestStdOneGet', send_data).then(function (data) {
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
         });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
 function delete_btn() {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            wrapWindowByMask2();
+    if(main_data.auth.check_del != "N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
 
-            var data;
-            var list = [];
-            ids.forEach(function (id) {
-                data =$('#mes_grid').jqGrid('getRowData', id);
-                list.push(data.line_code+gu4+data.part_code);
-            })
+                var data;
+                var list = [];
+                ids.forEach(function (id) {
+                    data =$('#mes_grid').jqGrid('getRowData', id);
+                    list.push(data.line_code+gu4+data.part_code);
+                })
 
-            ccn_ajax("/qmsTestStdDelete", {keyword: list.join(gu5)}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
-                }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+                ccn_ajax("/qmsTestStdDelete", {keyword: list.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
@@ -127,6 +141,12 @@ function selectBox() {
                 group_cb(value,i);
             }
         })
+    });
+}
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsTestStd"}).then(function (data) {
+        main_data.auth = data;
     });
 }
 
@@ -162,7 +182,7 @@ function jqGrid_main() {
         ],
         caption: "외경검사기준 | MES",
         autowidth: true,
-        height: 550,
+        height: 450,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
