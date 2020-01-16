@@ -18,105 +18,108 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function add_modal1_btn() {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
-    var gu3 = String.fromCharCode(3);
-    var add_data = value_return(".modal_value");
-    var jdata = $("#mes_modal_grid").getRowData();
-    if (jdata.length > 0) {
-        var list = [];
-        var list2 = [];
-        var list3 = [];
-        var list4 = [];
-        jdata.forEach(function (data, j) {
-            if (data.qc_qty !== ''
-                && data.ng_qty !== ''
-            ) {
-                if (data.qc_result === '2') {
-                    if (data.ng_type !== '' && data.ng_name !== '' && $(".reportsAdd:eq("+j+")").text() !== '추가') {
+    if (main_data.auth.check_add !="N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
+        var gu3 = String.fromCharCode(3);
+        var add_data = value_return(".modal_value");
+        var jdata = $("#mes_modal_grid").getRowData();
+        if (jdata.length > 0) {
+            var list = [];
+            var list2 = [];
+            var list3 = [];
+            var list4 = [];
+            jdata.forEach(function (data, j) {
+                if (data.qc_qty !== ''
+                    && data.ng_qty !== ''
+                ) {
+                    if (data.qc_result === '2') {
+                        if (data.ng_type !== '' && data.ng_name !== '' && $(".reportsAdd:eq("+j+")").text() !== '추가') {
+                            list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type+gu4+$(".reportsAdd:eq("+j+")").text());
+                            list3.push(data.part_code);
+                            list4.push(data.qc_qty);
+                        } else {
+                            list2.push(data.part_code);
+                        }
+                    } else {
                         list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type+gu4+$(".reportsAdd:eq("+j+")").text());
                         list3.push(data.part_code);
                         list4.push(data.qc_qty);
-                    } else {
-                        list2.push(data.part_code);
                     }
+
                 } else {
-                    list.push(data.part_code + gu4 + data.qc_qty + gu4 + data.ng_qty + gu4 + data.qc_result + gu4 + data.ng_type + gu4 + data.ng_name + gu4 + data.act_type+gu4+$(".reportsAdd:eq("+j+")").text());
-                    list3.push(data.part_code);
-                    list4.push(data.qc_qty);
+                    list2.push(data.part_code);
                 }
 
-            } else {
-                list2.push(data.part_code);
-            }
-
-        });
-        callback(function () {
-            if (list2.length > 0) {
-                alert(list2.join(", ") + "를 다시 확인해주세요");
-            } else {
-                if (confirm('저장하겠습니까?')) {
-                    wrapWindowByMask2();
-                    add_data.keyword = list.join(gu5);
+            });
+            callback(function () {
+                if (list2.length > 0) {
+                    alert(list2.join(", ") + "를 다시 확인해주세요");
+                } else {
+                    if (confirm('저장하겠습니까?')) {
+                        wrapWindowByMask2();
+                        add_data.keyword = list.join(gu5);
 
 
-                    var code_list = [];
-                    var code_list2 = [];
-                    var code_list3 = [];
-                    var idx;
+                        var code_list = [];
+                        var code_list2 = [];
+                        var code_list3 = [];
+                        var idx;
 
 
-                    list3.forEach(function (s2, i2) {
-                        idx = findArrayIndex(modal2_data.sub_data, function (item) {
-                            return item.part_code === s2
+                        list3.forEach(function (s2, i2) {
+                            idx = findArrayIndex(modal2_data.sub_data, function (item) {
+                                return item.part_code === s2
+                            });
+
+                            if (idx !== -1) {
+                                modal2_data.sub_data[idx].list.forEach(function (s3, k) {
+                                    code_list.push(s3.qc_code);
+                                    for (var i = 1; i <= list4[i2] && i <= 20;i++){
+                                        code_list.push(s3['qc_result'+i]);
+                                        if (i == list4[i2] || i == 20 ){
+                                            code_list2.push(code_list.join(gu3));
+                                            code_list = [];
+                                        }
+                                    }
+
+                                });
+                            }
+                            callback(function () {
+                                code_list3.push(code_list2.join(gu4));
+                                code_list2 = [];
+                            })
+                        });
+                        add_data.keyword2 = code_list3.join(gu5);
+                        ccn_ajax("/qmsProdAdd", add_data).then(function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
+                            } else {
+                                get_btn(1);
+                            }
+                            $('#mes_grid2').jqGrid('clearGridData');
+                            closeWindowByMask();
+                            $("#addDialog").dialog('close');
+                        }).catch(function (err) {
+                            closeWindowByMask();
+                            alert("저장실패");
                         });
 
-                        if (idx !== -1) {
-                            modal2_data.sub_data[idx].list.forEach(function (s3, k) {
-                                code_list.push(s3.qc_code);
-                                for (var i = 1; i <= list4[i2] && i <= 20;i++){
-                                    code_list.push(s3['qc_result'+i]);
-                                    if (i == list4[i2] || i == 20 ){
-                                        code_list2.push(code_list.join(gu3));
-                                        code_list = [];
-                                    }
-                                }
-
-                            });
-                        }
-                        callback(function () {
-                            code_list3.push(code_list2.join(gu4));
-                            code_list2 = [];
-                        })
-                    });
-                    add_data.keyword2 = code_list3.join(gu5);
-                    ccn_ajax("/qmsProdAdd", add_data).then(function (data) {
-                        if (data.result === 'NG') {
-                            alert(data.message);
-                        } else {
-                            get_btn(1);
-                        }
-                        $('#mes_grid2').jqGrid('clearGridData');
-                        closeWindowByMask();
-                        $("#addDialog").dialog('close');
-                    }).catch(function (err) {
-                        closeWindowByMask();
-                        alert("저장실패");
-                    });
+                    }
 
                 }
 
-            }
-
-        })
+            })
 
 
+        }
+    } else {
+        alert("추가권한이 없습니다,");
     }
 }
 
 
 function update_btn(rowid) {
-
     modal_reset(".modal_value", []);
     $("#mes_modal_grid").jqGrid('clearGridData');
     main_data.check = 'U';
@@ -148,15 +151,10 @@ function update_btn(rowid) {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 900,
+        width: 1000,
         height: 'auto',
         autoOpen: false,
-        resizable: false,
-        buttons: [
-            {
-                "class": "hide",
-            }
-        ]
+        resizable: false
     });
 }
 
@@ -167,14 +165,14 @@ function jqGrid_modal1() {
         colNames: [ '품번', '품명', '규격', '단위', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과', '불량유형', '불량상세', '조치구분', '성적서'],
         colModel: [
 
-            {name: 'part_code', index: 'part_code', key: true, width: 60, sortable: false},
+            {name: 'part_code', index: 'part_code', key: true, width: 80, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-            {name: 'spec', index: 'spec', width: 60, sortable: false},
-            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
+            {name: 'spec', index: 'spec', width: 70, sortable: false},
+            {name: 'unit_name', index: 'unit_name', width: 40, sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'in_qty', index: 'in_qty', width: 60, sortable: false},
+            {name: 'in_qty', index: 'in_qty', width: 55, sortable: false},
             {
-                name: 'qc_qty', index: 'qc_qty', width: 80, sortable: false,
+                name: 'qc_qty', index: 'qc_qty', width: 55, sortable: false,
                 editable: true,
                 editoptions: {
 
@@ -229,7 +227,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'ng_qty', index: 'ng_qty', width: 80, sortable: false,
+                name: 'ng_qty', index: 'ng_qty', width: 55, sortable: false,
                 editable: true,
                 editoptions: {
 
@@ -274,7 +272,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'qc_result', index: 'qc_result', width: 80, sortable: false,
+                name: 'qc_result', index: 'qc_result', width: 60, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -300,7 +298,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'ng_type', index: 'ng_type', width: 80, sortable: false,
+                name: 'ng_type', index: 'ng_type', width: 60, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -352,7 +350,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'act_type', index: 'act_type', width: 80, sortable: false,
+                name: 'act_type', index: 'act_type', width: 60, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -377,7 +375,7 @@ function jqGrid_modal1() {
 
                 }
             },
-            {name: 'file', index: 'file', width: 80, sortable: false, formatter: reportsButton}
+            {name: 'file', index: 'file', width: 50, sortable: false,align: 'center', formatter: reportsButton}
         ],
         autowidth: true,
         height: 250,
@@ -464,7 +462,7 @@ function datepickerInput_modal1() {
 }
 
 function reportsButton(cellvalue, options, rowObject) {
-    return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" id="showDialog">\n' +
+    return ' <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" title="">\n' +
         '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
         '                            <span class="reportsAdd">추가</span>\n' +
         '                            </span>\n' +

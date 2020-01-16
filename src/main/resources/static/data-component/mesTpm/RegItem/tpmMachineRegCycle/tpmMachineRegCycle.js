@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: []
+    readonly: [],
+    auth:{}
 };
 
 
@@ -19,6 +20,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     modal_start1();
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -46,22 +48,26 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-    main_data.check = 'I';
-    modal_reset(".modal_value", main_data.readonly)
-    var date = new Date();
-    date.setDate(date.getDate() + 1);
-    $("#datepicker3").datepicker('setDate', date);
+    if(main_data.auth.check_add != "N") {
+        main_data.check = 'I';
+        modal_reset(".modal_value", main_data.readonly)
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        $("#datepicker3").datepicker('setDate', date);
 
-    $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
-    $("select[name=qc_code] option:eq(0)").prop("selected", true).trigger("change");
-    $("select[name=cycle_type] option:eq(0)").prop("selected", true).trigger("change");
+        $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
+        $("select[name=qc_code] option:eq(0)").prop("selected", true).trigger("change");
+        $("select[name=cycle_type] option:eq(0)").prop("selected", true).trigger("change");
 
-    $('#line_select2').prop("disabled", false);
-    $('#machine_select2').prop("disabled", false);
-    $('#qc_select').prop("disabled", false);
+        $('#line_select2').prop("disabled", false);
+        $('#machine_select2').prop("disabled", false);
+        $('#qc_select').prop("disabled", false);
 
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+        $("#addDialog").dialog('open');
+        jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+    } else {
+        alert("추가권한이 없습니다.");
+    }
 }
 
 function select_change1(value) {
@@ -69,65 +75,78 @@ function select_change1(value) {
 }
 
 function update_btn(jqgrid_data) {
-    main_data.check = 'U';
-    modal_reset(".modal_value", []);
-    var send_data = {};
-    send_data.keyword = jqgrid_data.line_code;
-    send_data.keyword2 = jqgrid_data.machine_code;
-    console.log(send_data);
-    ccn_ajax('/tpmMachineRegOneGet', send_data).then(function (data) {
-        data.start_date = formmatterDate2(data.start_date);
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+    if (main_data.auth.check_edit !="N") {
+        main_data.check = 'U';
+        modal_reset(".modal_value", []);
+        var send_data = {};
+        send_data.keyword = jqgrid_data.line_code;
+        send_data.keyword2 = jqgrid_data.machine_code;
+        console.log(send_data);
+        ccn_ajax('/tpmMachineRegOneGet', send_data).then(function (data) {
+            data.start_date = formmatterDate2(data.start_date);
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
 
-        $('#line_select2').val(data.line_code).trigger("change");
-        $('#machine_select2').empty();
-        select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data.line_code},"Y").then(function (data2) {
-            $('#machine_select2').val(data.machine_code).trigger("change");
+            $('#line_select2').val(data.line_code).trigger("change");
+            $('#machine_select2').empty();
+            select_makes_sub_ajax2("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data.line_code},"Y").then(function (data2) {
+                $('#machine_select2').val(data.machine_code).trigger("change");
+            });
+
+            $('#line_select2').prop("disabled", true);
+            $('#machine_select2').prop("disabled", true);
+            $('#qc_select').prop("disabled", true);
+
+            $("#addDialog").dialog('open');
         });
-
-        $('#line_select2').prop("disabled", true);
-        $('#machine_select2').prop("disabled", true);
-        $('#qc_select').prop("disabled", true);
-
-        $("#addDialog").dialog('open');
-    });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 function delete_btn() {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    var keywords = [];
-    var code_list;
+    if(main_data.auth.check_del != "N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        var keywords = [];
+        var code_list;
 
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            main_data.check = 'D';
-            for(i=0;i<ids.length;i++){
-                var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
-                console.log(data);
-                keywords.push(data.machine_code+gu4+data.qc_code+gu4+data.line_code);
-            }
-            code_list=keywords.join(gu5);
-            wrapWindowByMask2();
-            ccn_ajax("/tpmMachineRegDel", {keyword:code_list}).then(function (data) {
-                if (data.result === 'NG') {
-                    alert(data.message);
-                } else {
-                    get_btn_post($("#mes_grid").getGridParam('page'));
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                for(i=0;i<ids.length;i++){
+                    var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
+                    console.log(data);
+                    keywords.push(data.machine_code+gu4+data.qc_code+gu4+data.line_code);
                 }
-                closeWindowByMask();
-            }).catch(function (err) {
-                closeWindowByMask();
-                console.error(err); // Error 출력
-            });
+                code_list=keywords.join(gu5);
+                wrapWindowByMask2();
+                ccn_ajax("/tpmMachineRegDel", {keyword:code_list}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "tpmMachineRegCycle"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function selectBox() {
     select_makes2("#line_select", "/getLine", "line_code", "line_name").then(function (data){
@@ -140,7 +159,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['rownum','line_code','machine_code','설비명', '점검항목코드', '점검항목명','반복구분', '시작일', '사용유무','등록자','수정일시'],
+        colNames: ['rownum','line_code','machine_code','설비명', '점검항목코드', '점검항목명','반복구분', '시작일','등록자','수정일시'],
         colModel: [
             {name: 'rownum', index: 'rownum', key: true, hidden:true, sortable: false, width: 60},
             {name: 'line_code', index: 'line_code', hidden:true, sortable: false, width: 60},
@@ -150,7 +169,6 @@ function jqGrid_main() {
             {name: 'qc_name', index: 'qc_name', sortable: false, width: 60},
             {name: 'cycle_type_name', index: 'cycle_type_name', sortable: false, width: 60},
             {name: 'start_date', index: 'start_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: '', index: '', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
         ],

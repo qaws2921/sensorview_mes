@@ -66,6 +66,21 @@ function addUdate_btn() {
     // }
 }
 
+
+function  partModal_bus(rowid,name) {
+    modal_reset(".part_value", []);
+    $("#part_name_modal").val(name);
+    $("#part_code_modal").val(rowid);
+}
+
+function part_btn() {
+    $("#partSearchGrid").jqGrid('clearGridData');
+    $("#part_type_select_part  option:eq(0)").prop("selected", true).trigger("change");
+    part_gu = 'Y';
+    $("#part-search-dialog").dialog('open');
+    jqGridResize2("#partSearchGrid", $('#partSearchGrid').closest('[class*="col-"]'));
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 
@@ -73,7 +88,7 @@ function modal_make1() {
 
     $("#addDialog").dialog({
         modal: true,
-        width: 'auto',
+        width: '350px',
         height: 'auto',
         autoOpen: false,
         resizable: false,

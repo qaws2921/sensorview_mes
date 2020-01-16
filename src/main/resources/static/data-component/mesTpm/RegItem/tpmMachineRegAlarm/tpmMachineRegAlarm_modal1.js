@@ -36,9 +36,7 @@ function select_change2(value) {
     }
 }
 function inputIntChange() {
-    if ($("#alarm_day").val() === ""){
-        $("#alarm_day").val(0);
-    }else {
+    if ($("#alarm_day").val() !== ""){
         $("#alarm_day").val($("#alarm_day").val().replace(/[^0-9]/g,''));
     }
 
@@ -107,8 +105,11 @@ function left_modal1_btn() {
 
 function add_modal1_btn() {
     var gu5 = String.fromCharCode(5);
-
+    if(  $("#alarm_day").val() === ''){
+        $("#alarm_day").val(0);
+    }
         var add_data = value_return(".modal_send_data");
+
         if ( add_data.line_code === ""){
             add_data.line_code = "AAAAA";
         }
@@ -218,7 +219,7 @@ function jqGrid_modal1() {
             {name: 'user_name', index: 'user_name', sortable: false},
         ],
         autowidth: true,
-        height: 300,
+        height: 310,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: "#mes_modal1_grid1_pager",

@@ -14,6 +14,7 @@
         border-radius: .25em;
         -webkit-transition: background-color 0.2s;
         transition: background-color 0.2s;
+        margin-bottom: 0px!important;
     }
 
     .filebox label:hover {
@@ -33,6 +34,33 @@
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
         border: 0;
+    }
+
+    div .filebox{
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    input[type=text][name="qc_qty"] {
+        height: 18px !important;
+    }
+    input[type=text][name="ng_qty"] {
+        height: 18px !important;
+    }
+    select[name=qc_result] {
+        height: 18px !important;
+        width: 100%;
+    }
+    select[name=ng_type] {
+        height: 18px !important;
+        width: 100%;
+    }
+    input[type=text][name="ng_name"] {
+        height: 18px !important;
+    }
+    select[name=act_type] {
+        height: 18px !important;
+        width: 100%;
     }
 </style>
 

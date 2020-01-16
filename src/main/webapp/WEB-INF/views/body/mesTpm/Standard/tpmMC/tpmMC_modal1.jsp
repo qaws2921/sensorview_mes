@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/data-component/mesTpm/Standard/tpmMC/tpmMC_modal1.js"charset="UTF-8"></script>
 <div id="addDialog" title="설비정보 추가" style="display:none">
     <div class="col-lg-12 ">
-        <div class="col-lg-8" style="margin-top: 35px;">
+        <div class="col-lg-8" style="margin-top: 5px;">
             <div class="clearfix">
                 <div class="pull-left tableTools-container">
                     <div class="dt-buttons btn-overlap btn-group">
@@ -69,7 +69,7 @@
 
                     <td class=" td-title t-align-c">중점관리</td>
                     <td>
-                        <select class="form-control main_value ynCheck"  name="focus_yn">
+                        <select class="form-control main_value ynCheck"  name="focus_yn" id="focus_yn_modal" style="width:100%">
                             <option value="Y">유</option>
                             <option value="N">무</option>
                         </select>
@@ -130,7 +130,7 @@
 
             <div class="row">
                 <div class="col-xs-12 table-responsive">
-                    <table id="mes_modal_grid"></table>
+                    <table id="mes_modal_grid" style="margin-bottom: 5px !important;"></table>
                 </div>
             </div>
         </div>
@@ -198,7 +198,7 @@
                     <div class="col-lg-12">
                         <div class="img-wrap" id="img_div3" style="border: 2px solid #79afce; width: 100%; height: 150px; margin-top: 5px; margin-bottom: 5px;">
                             <div class="img-text" id="img-text3">미리보기가 표시됩니다.</div>
-                            <img style="width: 100%; margin-top: 15px;" id="img3" src="">
+                            <img style="width: 100%; margin-top: 15px;" id="img3">
                         </div>
                     </div>
                 </div>

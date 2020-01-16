@@ -1,6 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 
@@ -50,6 +51,9 @@ function effectiveness1(modal_objact) { // 유효성 검사
     }
 }
 
+function selectBox_modal1() {
+    $('#use_yn_modal').select2();
+}
 
 function modal_make1() {
     $("#addDialog").dialog({

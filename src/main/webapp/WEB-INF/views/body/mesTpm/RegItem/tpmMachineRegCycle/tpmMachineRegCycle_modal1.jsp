@@ -49,14 +49,5 @@
                 </div>
             </div>
         </div>
-        <div class="profile-info-row">
-            <div class="profile-info-name">사용유무</div>
-            <div class="profile-info-value">
-                <select class="form-control">
-                    <option>Y</option>
-                    <option>N</option>
-                </select>
-            </div>
-        </div>
     </div>
 </div>

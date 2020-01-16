@@ -2,6 +2,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 
@@ -55,6 +56,9 @@ function addupdate_btn() {
     }
 }
 ////////////////////////////호출 함수/////////////////////////////////////
+function selectBox_modal1(){
+    $('#act_type_modal').select2();
+}
 
 function file_change(e) {
     var filename = $(e).val().split('\\');

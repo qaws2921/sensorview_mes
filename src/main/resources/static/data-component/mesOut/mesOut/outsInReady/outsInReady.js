@@ -9,6 +9,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -19,7 +20,7 @@ $(document).ready(function () {
     jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     datepickerInput();
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -96,6 +97,11 @@ function suppModal_close_bus() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "outsInReady"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -117,8 +123,8 @@ function jqGrid_main() {
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: 'out_qty', index: 'out_qty', sortable: false, width: 60},
-            {name: 'bcr_no', index: 'bcr_no', sortable: false, width: 60},
+            {name: 'out_qty', index: 'out_qty', sortable: false, width: 40},
+            {name: 'bcr_no', index: 'bcr_no', sortable: false, width: 80},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', sortable: false, width: 80, formatter: formmatterDate},
         ],

@@ -9,6 +9,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -20,7 +21,7 @@ $(document).ready(function () {
     datepickerInput();
     suppModal_start();
     selectBox();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -109,6 +110,12 @@ function selectBox() {
     $('#result_select').select2();
 }
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsRecvList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
@@ -120,22 +127,22 @@ function jqGrid_main() {
         colModel: [
             {name: 'rownum', index: 'rownum', key: true, hidden: true, sortable: false, width: 80},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'in_no', index: 'in_no', sortable: false, width: 80},
+            {name: 'in_no', index: 'in_no', sortable: false, width: 90},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
 
-            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 80},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},
-            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: 'lot', index: 'lot', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 40},
+            {name: 'lot', index: 'lot', sortable: false, width: 40},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false, width: 60},
-            {name: 'in_qty', index: 'in_qty', sortable: false, width: 60},
-            {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 60},
-            {name: 'ng_qty', index: 'ng_qty', sortable: false, width: 60},
-            {name: 'qc_result_name', index: 'qc_result_name', sortable: false, width: 60},
-            {name: 'qc_name', index: 'qc_name', sortable: false, width: 60},
-            {name: 'ng_name', index: 'ng_name', sortable: false, width: 60},
-            {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 60},
+            {name: 'in_qty', index: 'in_qty', sortable: false, width: 50},
+            {name: 'qc_qty', index: 'qc_qty', sortable: false, width: 50},
+            {name: 'ng_qty', index: 'ng_qty', sortable: false, width: 50},
+            {name: 'qc_result_name', index: 'qc_result_name', sortable: false, width: 50},
+            {name: 'qc_name', index: 'qc_name', sortable: false, width: 50},
+            {name: 'ng_name', index: 'ng_name', sortable: false, width: 80},
+            {name: 'act_type_name', index: 'act_type_name', sortable: false, width: 50},
             {
                 name: 'file1_name',
                 index: 'file1_name',
@@ -160,11 +167,11 @@ function jqGrid_main() {
                 align: 'center',
                 formatter: file3_formatter
             },
-            {name: 'file1', index: 'file1', sortable: false, width: 60, hidden: true},
-            {name: 'file2', index: 'file2', sortable: false, width: 60, hidden: true},
-            {name: 'file3', index: 'file3', sortable: false, width: 60, hidden: true},
+            {name: 'file1', index: 'file1', sortable: false,hidden: true},
+            {name: 'file2', index: 'file2', sortable: false,hidden: true},
+            {name: 'file3', index: 'file3', sortable: false,hidden: true},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 90, formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 100, formatter: formmatterDate},
 
         ],
         caption: "수입검사현황 | MES",

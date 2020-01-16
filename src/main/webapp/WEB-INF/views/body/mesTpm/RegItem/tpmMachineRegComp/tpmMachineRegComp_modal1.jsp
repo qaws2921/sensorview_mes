@@ -32,7 +32,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">점검유무</div>
             <div class="profile-info-value">
-                <select name="check_yn" id="check_yn" class="form-control modal_value">
+                <select name="check_yn" id="check_yn" class="form-control modal_value" style="width: 100%">
                     <option value="Y">Y</option>
                     <option value="N">N</option>
                 </select>

@@ -72,7 +72,7 @@
         </div>
 
         <div class="profile-info-row">
-            <div class="profile-info-name">고정시간(분)</div>
+            <div class="profile-info-name">고장시간(분)</div>
             <div class="profile-info-value">
                 <input type="text" name="stop_time" class="form-control keyword modal_value">
             </div>

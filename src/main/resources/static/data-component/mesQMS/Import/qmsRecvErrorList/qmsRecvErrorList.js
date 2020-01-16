@@ -14,6 +14,7 @@ google.setOnLoadCallback(drawBasic);
 
 var main_data = {
   supp_check:'A',
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -26,7 +27,7 @@ $(document).ready(function () {
     selectBox();
 
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -173,6 +174,12 @@ function datepickerInput() {
     datepicker_makes("#datepicker2", 0);
 }
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsRecvErrorList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function selectBox() {
     $('#gubun_select').select2();
 }
@@ -185,7 +192,7 @@ function jqGrid_main() {
         colNames: ['rownum','업체코드','입고일자', '전표번호', '업체', '품번', '품명', '규격', '단위', '검사등급', '입고수량', '불량수량', '검사결과','불량유형','불량내용','조치구분','검사자','검사일시'],
         colModel: [
             {name:'rownum',index:'rownum',sortable:false,hidden:true,key:true,},
-            {name: 'supp_code', index: 'supp_code',sortable: false, width: 80, hidden:true,},
+            {name: 'supp_code', index: 'supp_code',sortable: false, hidden:true,},
             {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
             {name: 'in_no', index: 'in_no', sortable: false, width: 80},
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},

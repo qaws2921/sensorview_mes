@@ -5,6 +5,14 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
+    if ($("#screen_x").val() === "") {
+        $('#scrren_x').val(0);
+    }
+    if ($("#screen_y").val() === "") {
+        $('#scrren_y').val(0);
+    }
+
+
     var modal_objact = value_return(".modal_value");
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
@@ -31,17 +39,15 @@ function addUdate_btn() {
     }
 }
 function inputIntChange_x() {
-    if ($("#screen_x").val() === ""){
-        $("#screen_x").val(0);
-    }else {
+    if ($("#screen_x").val() !== ""){
+
         $("#screen_x").val($("#screen_x").val().replace(/[^0-9]/g,''));
     }
 }
 
 function inputIntChange_y() {
-    if ($("#screen_y").val() === ""){
-        $("#screen_y").val(0);
-    }else {
+    if ($("#screen_y").val() !== ""){
+
         $("#screen_y").val($("#screen_y").val().replace(/[^0-9]/g,''));
     }
 }

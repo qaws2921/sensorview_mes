@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="/data-component/mesQMS/Shipment/qmsProd/qmsProd_modal1.js" charset="UTF-8"></script>
+<style>
+    input[type=text][name="qc_qty"] {
+        height: 18px !important;
+    }
+    input[type=text][name="ng_qty"] {
+        height: 18px !important;
+    }
+    select[name="qc_result"]{
+        height: 18px !important;
+        width: 100% !important;
+    }
+    select[name="ng_type"]{
+        height: 18px !important;
+        width: 100% !important;
+    }
+    input[type=text][name="ng_name"] {
+        height: 18px !important;
+    }
+    select[name="act_type"]{
+        height: 18px !important;
+        width: 100% !important;
+    }
+    t
+</style>
+
 <div id="addDialog" title="출하검사등록" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0" id="content1">
