@@ -79,7 +79,7 @@ public class Handler extends HandlerInterceptorAdapter {
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
                 session.setMaxInactiveInterval(60*60);
 
-                Cookie loginId = new Cookie("userData", userData.getUser_code());
+                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
                 loginId.setMaxAge(60*60);
                 response.addCookie(loginId);
 
@@ -87,7 +87,7 @@ public class Handler extends HandlerInterceptorAdapter {
             }else {
                 session.setMaxInactiveInterval(60*60);
 
-                Cookie loginId = new Cookie("userData", userData.getUser_code());
+                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
                 loginId.setMaxAge(60*60);
                 response.addCookie(loginId);
 

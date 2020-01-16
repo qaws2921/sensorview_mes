@@ -36,7 +36,7 @@ public class HomeController extends ReturnFunction {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie c : cookies) {
-                if (c.getName().equals("userData")) {
+                if (c.getName().equals("senUserData")) {
                     c.setValue(null);
                     c.setMaxAge(0);
                     res.addCookie(c);

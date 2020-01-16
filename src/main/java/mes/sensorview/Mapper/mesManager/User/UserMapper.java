@@ -31,4 +31,6 @@ public interface UserMapper {
     int userInformationChange(SYSUser u);
 
     int userInformationCheck(SYSUser u);
+
+
 }
