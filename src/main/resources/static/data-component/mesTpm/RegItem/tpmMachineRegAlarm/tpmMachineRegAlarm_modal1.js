@@ -20,6 +20,10 @@ function modal1_get_btn(page) {
     }).trigger("reloadGrid");
 }
 
+function num_keyup(e) {
+    $(e).val($(e).val().replace(/[^0-9]/g,''));
+}
+
 function select_change2(value) {
     if (main_data.check === "I") {
         $('#machine_select2').empty();
@@ -175,13 +179,7 @@ function modal_make1() {
         height: 'auto',
         autoOpen: false,
         resizable: false,
-        buttons: [
-            {
 
-                'class': 'hide',
-
-            }
-        ],
         open: function () {
             if ($.ui && $.ui.dialog && !$.ui.dialog.prototype._allowInteractionRemapped && $(this).closest(".ui-dialog").length) {
                 if ($.ui.dialog.prototype._allowInteraction) {

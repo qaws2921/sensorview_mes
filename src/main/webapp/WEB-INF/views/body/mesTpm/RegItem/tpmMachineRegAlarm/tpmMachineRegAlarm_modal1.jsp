@@ -12,22 +12,23 @@
                             <select name="keyword" class="form-control h-25 modal_value2" id="dept_select" style="width: 100%">
                             </select>
                         </td>
-                        <td>
-                            <div class="dt-buttons btn-overlap btn-group">
-                                <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
-                                   tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="modal1_get_btn(1)">
-                                <span>
-                                    <i class="fa fa-search bigger-110 blue"></i>
-                                    <span>조회</span>
-                                </span>
-                                </a>
-                            </div>
-                        </td>
                         <td></td>
+
                     </tr>
                     </tbody>
                 </table>
                 <div class="col-xs-12 padding0">
+                    <div class="tableTools-container pull-left">
+                        <div class="dt-buttons btn-overlap btn-group">
+                            <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
+                               tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="modal1_get_btn(1)">
+                                <span>
+                                    <i class="fa fa-search bigger-110 blue"></i>
+                                    <span>조회</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                     <div class="tableTools-container pull-right">
                         <div class="dt-buttons btn-overlap btn-group">
                             <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold" tabindex="0" aria-controls="dynamic-table" onclick="right_modal1_btn();">
@@ -65,7 +66,7 @@
                         </td>
                         <td class="wt-px-100 t-align-c td-title padding-a-0">사전알림(일)</td>
                         <td class="wt-px-150">
-                            <input type="text" name="alarm_day" value="0" id="alarm_day" class="form-control modal_value modal_send_data" onchange="inputIntChange();">
+                            <input type="text" name="alarm_day" value="0" id="alarm_day" class="form-control modal_value modal_send_data"  onkeyup="num_keyup(this)">
                         </td>
                         <td></td>
                     </tr>

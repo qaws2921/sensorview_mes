@@ -36,7 +36,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">반복횟수</div>
             <div class="profile-info-value">
-               <input name="cycle_qty" id="cycle_qty" type="text" value="0" class="form-control keyword modal_value" onchange="inputIntChange();" style="width:100%">
+               <input name="cycle_qty" id="cycle_qty" type="text" value="0" class="form-control keyword modal_value" onkeyup="num_keyup(this)" style="width:100%">
             </div>
         </div>
         <div class="profile-info-row">

@@ -7,12 +7,8 @@ function modal_start1() {
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function inputIntChange() {
-    if ($("#cycle_qty").val() !== ""){
-
-        $("#cycle_qty").val($("#cycle_qty").val().replace(/[^0-9]/g,''));
-    }
-
+function num_keyup(e) {
+    $(e).val($(e).val().replace(/[^0-9]/g,''));
 }
 
 function select_change2(value) {
