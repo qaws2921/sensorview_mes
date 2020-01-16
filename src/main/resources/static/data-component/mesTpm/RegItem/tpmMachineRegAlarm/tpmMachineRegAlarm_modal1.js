@@ -218,7 +218,7 @@ function jqGrid_modal1() {
             {name: 'user_name', index: 'user_name', sortable: false},
         ],
         autowidth: true,
-        height: 300,
+        height: 310,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: "#mes_modal1_grid1_pager",
