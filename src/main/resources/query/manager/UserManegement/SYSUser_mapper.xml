@@ -17,7 +17,7 @@
     </select>
 
     <select id="sysUserOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUser">
-        	EXEC SP_SYS_USER_GET #{site_code},1,1,#{user_code},#{dept_code}
+        	EXEC SP_SYS_USER_GET #{site_code},1,1,#{user_code},#{dept_code},''
     </select>
 
     <select id="userInformationCheck" resultType="Integer">
