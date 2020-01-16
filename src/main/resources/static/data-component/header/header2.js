@@ -162,13 +162,40 @@ $(function () {
             }
         });
     });
+
+
+
+
+    password_modal_start();
+
+    var settime=  setInterval(function() {
+    if (getCookie('userData') == null){
+        alert('회원데이터가 존재하지않습니다.\n로그인페이지로 이동합니다.');
+        location.href = "logout";
+        clearTimeout(settime);
+    }
+},1000);
+
 });
+
+
+function getCookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
 
 
 function logout() {
     if (confirm("로그아웃 하시겠습니까?")) {
         location.href = "logout";
     }
+}
+
+
+
+function password_add_btn() {
+    modal_reset(".password_value", []);
+    $("#passwordDialog").dialog('open');
 }
 
 

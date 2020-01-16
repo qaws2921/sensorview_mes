@@ -4,6 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Function.ReturnFunction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,5 +27,25 @@ public class HomeController extends ReturnFunction {
     @RequestMapping(value="/")
     public String index(){
         return "index";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest req, HttpServletResponse res)
+    {
+        req.getSession().invalidate();
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("userData")) {
+                    c.setValue(null);
+                    c.setMaxAge(0);
+                    res.addCookie(c);
+                    break;
+                }
+            }
+        }
+
+
+        return "logout";
     }
 }

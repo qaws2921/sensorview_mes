@@ -12,7 +12,11 @@ import mes.sensorview.mesManager.User.DTO.SYSUserSupp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Service
@@ -99,5 +103,34 @@ public class UserService extends ReturnFunction {
     public SYSUserSupp sysUserSuppOneGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         return userMapper.sysUserSuppOneGet(p);
+    }
+
+    public Message userInformationChange(Page p, HttpServletRequest req, HttpServletResponse res) {
+        Message m = new Message();
+        SYSUser u = new SYSUser();
+        u.setUser_code(getSessionData(req).getUser_code());
+        u.setUser_pwd(p.getPassword());
+        int check = userMapper.userInformationCheck(u);
+        System.out.println(check);
+        if (check == 1){
+            u.setUser_pwd(p.getPassword_new());
+            check = userMapper.userInformationChange(u);
+            System.out.println(check);
+            if (check ==1){
+                req.getSession().invalidate();
+                m.setResult("OK");
+                m.setMessage("비밀번호가 변경 되었습니다.\n 로그인페이지로 이동합니다.");
+            } else {
+                m.setResult("NG");
+                m.setMessage("변경이 실패하였습니다.");
+            }
+
+        }else {
+            m.setResult("NG");
+            m.setMessage("비밀번호가 맞지 않습니다.");
+        }
+        return m;
+
+
     }
 }

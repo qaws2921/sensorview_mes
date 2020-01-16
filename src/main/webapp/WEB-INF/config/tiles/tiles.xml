@@ -42,6 +42,7 @@
     <!--  body content [e]  -->
 
     <definition name="login"  template="/WEB-INF/views/body/login/login.jsp"/>
+    <definition name="logout"  template="/WEB-INF/views/body/login/login.jsp"/>
     <definition name="main"  extends="layout"/>
 
 </tiles-definitions>

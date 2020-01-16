@@ -1,5 +1,7 @@
+<%@ page import="org.springframework.util.ObjectUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="/data-component/header/header2.js"></script>
 <div id="navbar" class="navbar navbar-default ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <%--<button type="button" class="navbar-toggle menu-toggler" id="menu-toggler" data-target="#sidebar">--%>
@@ -13,14 +15,14 @@
                 <img src="/ui-component/imagesNew/logo/logo.png" width="180px">
             </a>
             <div class="form-group">
-                <a href="/login" class="navbar-brand top_m">
+                <a href="javascript:void(0);" class="navbar-brand top_m">
                     <i class="fa fa-user"></i> ${sessionScope.userData.user_name}님 반갑습니다.
                     <input type="hidden" value="${sessionScope.userData.site_code}" id="hstcd">
                     <input type="hidden" value="${sessionScope.userData.user_code}" id="huscd">
                     <input type="hidden" value="${sessionScope.userData.user_name}" id="husnm">
                     <br>
-                    <button type="button" class="btn btn-minier btn-dark">암호변경</button>
-                    <button type="button" class="btn btn-minier btn-dark">로그아웃</button>
+                    <button type="button" class="btn btn-minier btn-dark" onclick="password_add_btn();">암호변경</button>
+                    <button type="button" class="btn btn-minier btn-dark" onclick="logout();">로그아웃</button>
                 </a>
             </div>
         </div>
@@ -94,3 +96,5 @@
         </c:forEach>
     </ul>
 </div>
+
+<%@include file="/WEB-INF/views/body/common/modal/password_modal.jsp" %>

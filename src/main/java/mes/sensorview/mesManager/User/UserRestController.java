@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,11 +26,20 @@ public class UserRestController {
     private UserService userService;
 
     @RequestMapping("/loginAction")
-    public Session loginAction(Session s, HttpServletRequest request) {
+    public Session loginAction(Session s, HttpServletRequest request , HttpServletResponse res) {
         HttpSession session = request.getSession();
         Session data = userService.loginAction(s);
         session.setAttribute("userData", data);
+        session.setMaxInactiveInterval(60*60);
+        Cookie loginId = new Cookie("userData", data.getUser_code());
+        loginId.setMaxAge(60*60);
+        res.addCookie(loginId);
         return data;
+    }
+
+    @RequestMapping(value = "/userInformationChange", method = RequestMethod.POST)
+    public Message userInformationChange(Page p, HttpServletRequest req, HttpServletResponse res){
+        return userService.userInformationChange(p, req,res);
     }
 
     @RequestMapping(value = "/sysDeptGet", method = RequestMethod.POST)

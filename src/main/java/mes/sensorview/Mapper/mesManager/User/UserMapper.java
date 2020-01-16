@@ -27,4 +27,8 @@ public interface UserMapper {
     SYSDept sysDeptOneGet(Page p);
 
     SYSUserSupp sysUserSuppOneGet(Page p);
+
+    int userInformationChange(SYSUser u);
+
+    int userInformationCheck(SYSUser u);
 }

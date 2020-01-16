@@ -68,7 +68,7 @@
     <script src="/ui-component/assets/js/ace-elements.min.js"></script>
     <script src="/ui-component/assets/js/ace.min.js"></script>
     <script src="/ui-component/assets/js/jquery.form.min.js"></script>
-    <script src="/data-component/header/header2.js"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src="/data-component/common/es6-promise.auto.min.js"></script>

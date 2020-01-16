@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,28 +40,57 @@ public class Handler extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         HttpSession session = request.getSession();
 
-        Session lv = new Session();
-        lv.setUser_code("ADMIN");
-        lv.setUser_name("관리자");
-        lv.setSite_code("S0001");
-        lv.setDept_code("D1000");
-        lv.setDuty_code("1000");
-
-        request.getSession().setAttribute("userData", lv);
+//        Session lv = new Session();
+//        lv.setUser_code("ADMIN");
+//        lv.setUser_name("관리자");
+//        lv.setSite_code("S0001");
+//        lv.setDept_code("D1000");
+//        lv.setDuty_code("1000");
+//
+//        request.getSession().setAttribute("userData", lv);
         Session userData = (Session) session.getAttribute("userData");
+
+        response.setHeader("pragma","No-cache");
+
+        response.setHeader("Cache-Control","no-cache");
+
+        response.addHeader("Cache-Control","No-store");
+
+
+        response.setDateHeader("Expires",1L);
 
         try {
             if (ObjectUtils.isEmpty(userData) ) {
-                response.setContentType("text/html; charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
-                out.flush();
-                return false;
+                if (!request.getServletPath().equals("/")){
+                    response.setContentType("text/html; charset=UTF-8");
+                    PrintWriter out = response.getWriter();
+                    out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
+                    out.flush();
+                    out.close();
+                    return false;
+                } else {
+                    response.setContentType("text/html; charset=UTF-8");
+                    PrintWriter out = response.getWriter();
+                    out.println("<script>location.href='/login';</script>");
+                    out.flush();
+                    out.close();
+                    return false;
+                }
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
-                session.setMaxInactiveInterval(30 * 60);
+                session.setMaxInactiveInterval(60*60);
+
+                Cookie loginId = new Cookie("userData", userData.getUser_code());
+                loginId.setMaxAge(60*60);
+                response.addCookie(loginId);
+
             }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
             }else {
-                session.setMaxInactiveInterval(30 * 60);
+                session.setMaxInactiveInterval(60*60);
+
+                Cookie loginId = new Cookie("userData", userData.getUser_code());
+                loginId.setMaxAge(60*60);
+                response.addCookie(loginId);
+
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {

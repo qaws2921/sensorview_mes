@@ -19,6 +19,16 @@
     <select id="sysUserOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSUser">
         	EXEC SP_SYS_USER_GET #{site_code},1,1,#{user_code},#{dept_code}
     </select>
+
+    <select id="userInformationCheck" resultType="Integer">
+        	SELECT COUNT(USER_CODE) FROM SYS_USER_CD WHERE USER_CODE = #{user_code} AND USER_PWD = #{user_pwd}
+    </select>
+
+    <update id="userInformationChange">
+        UPDATE SYS_USER_CD SET
+                USER_PWD = #{user_pwd}
+            WHERE USER_CODE = #{user_code}
+    </update>
 </mapper>
 
 

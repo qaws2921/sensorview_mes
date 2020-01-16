@@ -32,5 +32,8 @@ public class Page {
     private String work_date;
     private String gb;
     private String supp_code;
+    private String password;
+    private String password_new;
+    private String password_confirm;
 
 }
