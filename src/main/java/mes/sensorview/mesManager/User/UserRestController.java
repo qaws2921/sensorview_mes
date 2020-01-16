@@ -29,11 +29,21 @@ public class UserRestController {
     public Session loginAction(Session s, HttpServletRequest request , HttpServletResponse res) {
         HttpSession session = request.getSession();
         Session data = userService.loginAction(s);
+
+
+        data.setSite_code("S0001");
+
         session.setAttribute("userData", data);
         session.setMaxInactiveInterval(60*60);
-        Cookie loginId = new Cookie("userData", data.getUser_code());
+
+
+        Cookie loginId = new Cookie("senUserData", data.getUser_code());
         loginId.setMaxAge(60*60);
         res.addCookie(loginId);
+
+
+
+
         return data;
     }
 
