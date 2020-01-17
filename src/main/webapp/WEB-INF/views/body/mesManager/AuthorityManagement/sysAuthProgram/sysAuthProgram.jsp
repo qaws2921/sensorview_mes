@@ -28,7 +28,7 @@
                     <table class="table wt-100">
                         <tbody>
                         <tr>
-                            <td class="wt-px-100 t-align-c td-title padding-a-0">업무조회</td>
+                            <td class="wt-px-100 t-align-c td-title padding-a-0">업무분류</td>
                             <td class="wt-px-200">
                                 <select name="keyword2" class="form-control keyword condition_main" id="code_group" onchange="main_select_change(this);">
 

@@ -15,15 +15,14 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+    authcheck();
+    selectBox();
+
     jqGrid_main(); // main 그리드 생성
     jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]')); //그리드 리 사이즈
     jqGridResize("#mes_grid2" , $('#mes_grid2').closest('[class*="col-"]')); //그리드 리 사이즈
 
-    selectBox();
-    /*----모달----*/
-    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
-
 });
 
 
@@ -31,7 +30,6 @@ $(document).ready(function () {
 // 조회 버튼
 function get_btn() {
     main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
-
     $("#mes_grid2").setGridParam({ // 그리드 조회
         url: '/sysAuthProgramGet',
         datatype: "json",
@@ -57,8 +55,6 @@ function main_select_change(e) {
         main_data.send_data.keyword2 = e.value;
         get_btn();
     }
-
-
 }
 
 
@@ -134,12 +130,16 @@ function check_add_btn(object) {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysAuthProgram"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function selectBox() {
     select_makes("#code_group", "/menuAllGet", "menu_code", "menu_name");
 
 }
-
-
 
 function jqGrid_main() {
     $("#mes_grid").jqGrid({
@@ -153,7 +153,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹별 프로그램관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 580,
         jsonReader: {cell: ""},
         viewrecords: true,
         onCellSelect: function (rowid, iRow, iCol, e) { // jqGrid 더블 클릭시 실행
@@ -249,7 +249,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹별 프로그램관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 580,
         jsonReader: {cell: ""},
         viewrecords: true,
         treeGridModel: 'adjacency',

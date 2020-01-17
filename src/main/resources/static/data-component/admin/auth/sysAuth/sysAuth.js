@@ -6,8 +6,6 @@
 
 var main_data = {
     check: 'I',
-    send_data: {},
-    send_data_post: {},
     readonly: ['auth_code'],
     auth:{}
 };
@@ -15,38 +13,25 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
+    authcheck();
+    /*----모달----*/
+    modal_start1(); // 모달1 시작 함수
+
     jqGrid_main(); // main 그리드 생성
     jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]')); //그리드 리 사이즈
 
-
-    /*----모달----*/
-    modal_start1(); // 모달1 시작 함수
-    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
-
 });
 
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 // 조회 버튼
 function get_btn(page) {
-    main_data.send_data = value_return(".condition_main"); // value_return 클래스명 넣으면 name에 맞게 객체 생성
-    main_data.send_data_post = main_data.send_data; // 수정 삭제시 다시 조회하기 위한 데이터저장
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/sysAuthGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
-    }).trigger("reloadGrid");
-}
-
-// 수정 삭제 시 호출 하는 조회
-function get_btn_post(page) {
-    $("#mes_grid").setGridParam({ // 그리드 조회
-        url: '/sysAuthGet',
-        datatype: "json",
-        page: page,
-        postData: main_data.send_data_post
     }).trigger("reloadGrid");
 }
 
@@ -65,11 +50,8 @@ function add_btn() {
 function update_btn(jqgrid_data) {
     if (main_data.auth.check_edit !="N") {
         modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
-
         main_data.check = 'U'; // 수정인지 체크
-
         jqgrid_data.dept_code = main_data.send_data_post.keyword; // 저장한데이터 dept_code 를 넣어 서 진행
-
         ccn_ajax('/sysAuthOneGet', {keyword: jqgrid_data.auth_code}).then(function (data) { // user의 하나 출력
             modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
             $("#addDialog").dialog('open');
@@ -94,7 +76,7 @@ function delete_btn() {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
+                        get_btn($("#mes_grid").getGridParam('page'));
                     }
                     closeWindowByMask();
                 }).catch(function (err) {
@@ -111,14 +93,11 @@ function delete_btn() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-
-
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "sysAuth"}).then(function (data) {
         main_data.auth = data;
     });
 }
-
 
 function jqGrid_main() {
     $("#mes_grid").jqGrid({
@@ -133,7 +112,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹관리 | MES",
         autowidth: true,
-        height: 450,
+        height: 550,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 400],

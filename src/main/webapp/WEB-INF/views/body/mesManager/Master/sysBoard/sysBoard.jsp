@@ -18,7 +18,7 @@
                     <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"
                        tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                         <span><i class="fa fa-plus bigger-110 blue"></i>
-                            <span>등록</span>
+                            <span>추가</span>
                         </span>
                     </a>
                     <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"

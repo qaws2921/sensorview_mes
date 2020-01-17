@@ -212,10 +212,9 @@ function jqGrid_main() {
         mtype: 'POST',
         datatype: "local",
         caption: "출고요청 | MES",
-       colNames: ['전표번호','품목그룹','품번','품명','규격','단위','요청수량','출고수량'],
+       colNames: ['전표번호','품번','품명','규격','단위','요청수량','출고수량'],
        colModel: [
            {name: 'ord_no', index: 'ord_no', width: 60, sortable: false},
-           {name: 'part_grp_name', index: 'part_grp_name', width: 60, sortable: false},
            {name: 'part_code', index: 'part_code', width: 60, sortable: false},
            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
            {name: 'spec', index: 'spec', width: 60, sortable: false},
@@ -226,7 +225,7 @@ function jqGrid_main() {
        ],
         autowidth: true,
         viewrecords: true,
-        height: 150,
+        height: 200,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#scmOutOrderBottomGridPager'

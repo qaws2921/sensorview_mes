@@ -148,7 +148,7 @@ function jqGrid_main() {
         ],
         caption: '구매요청현황 | MES',
         autowidth: true,
-        height: $(window).height()-450,
+        height: 550,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],

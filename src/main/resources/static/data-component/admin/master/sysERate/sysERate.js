@@ -20,6 +20,7 @@ $(document).ready(function () {
     selectBox();
     modal_start1();
     datepickerInput();
+    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정
 });
 
@@ -48,72 +49,90 @@ function get_btn_post(page) {
 }
 
 function add_btn() {
-    modal_reset('.modal_value',main_data.readonly);
-    modalValuePush("#currency_select","#currency_code","#currency_name");
-    $("#datepicker3").prop("disabled", false);
+    if (main_data.auth.check_add !="N") {
+        modal_reset('.modal_value',main_data.readonly);
+        modalValuePush("#currency_select","#currency_code","#currency_name");
+        $("#datepicker3").prop("disabled", false);
 
-    var date = new Date();
-    var date2 = new Date();
-    date2.setDate(date.getDate()+1);
-    $('#datepicker3').datepicker('setDate',date);
-    $('#datepicker4').datepicker('setDate',date2);
-    main_data.check = 'I'; // 추가인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
-    $("#addDialog").dialog('open'); // 모달 열기
+        var date = new Date();
+        var date2 = new Date();
+        date2.setDate(date.getDate()+1);
+        $('#datepicker3').datepicker('setDate',date);
+        $('#datepicker4').datepicker('setDate',date2);
+        main_data.check = 'I'; // 추가인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
+        $("#addDialog").dialog('open'); // 모달 열기
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 function delete_btn() {
-    var gu4 = String.fromCharCode(4);
-    var gu5 = String.fromCharCode(5);
+    if(main_data.auth.check_del != "N") {
+        var gu4 = String.fromCharCode(4);
+        var gu5 = String.fromCharCode(5);
 
-    var ids = $("#mes_grid").getGridParam('selarrrow');
-    if (ids.length === 0) {
-        alert("삭제하는 데이터를 선택해주세요");
-    } else {
-        if (confirm("삭제하겠습니까?")) {
-            wrapWindowByMask2();
-            var list = [];
-            var data;
-            ids.forEach(function (id) {
-                data = $('#mes_grid').jqGrid('getRowData', id);
-                data.start_date = data.start_date.replace(/\-/g, '');
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                wrapWindowByMask2();
+                var list = [];
+                var data;
+                ids.forEach(function (id) {
+                    data = $('#mes_grid').jqGrid('getRowData', id);
+                    data.start_date = data.start_date.replace(/\-/g, '');
 
-                list.push(data.start_date + gu4 + data.currency_code);
-            });
-
-            main_data.check = 'D';
-            callback(function () {
-                ccn_ajax("/sysERateDel", {keyword: list.join(gu5)}).then(function (data) {
-                    if (data.result === 'NG') {
-                        alert(data.message);
-                    } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
-                    }
-                    closeWindowByMask();
-                }).catch(function (err) {
-                    closeWindowByMask();
-                    console.error(err); // Error 출력
+                    list.push(data.start_date + gu4 + data.currency_code);
                 });
-            });
 
+                main_data.check = 'D';
+                callback(function () {
+                    ccn_ajax("/sysERateDel", {keyword: list.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                });
+
+            }
         }
+    } else {
+        alert("삭제권한이 없습니다.");
     }
 }
 
 
 function update_btn(jqgrid_data) {
-    main_data.check='U';
-    $("#datepicker3").prop("disabled", true);
+    if (main_data.auth.check_edit !="N") {
+        main_data.check='U';
+        $("#datepicker3").prop("disabled", true);
 
-    jqgrid_data.start_date=jqgrid_data.start_date.replace(/\-/g, '');
-    ccn_ajax('/sysERateOneGet', jqgrid_data).then(function (data) {
-        data.start_date=(formmatterDate2(data.start_date));
-        data.stop_date=(formmatterDate2(data.stop_date));
-        modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-        $("#addDialog").dialog('open');
-    });
+        jqgrid_data.start_date=jqgrid_data.start_date.replace(/\-/g, '');
+        ccn_ajax('/sysERateOneGet', jqgrid_data).then(function (data) {
+            data.start_date=(formmatterDate2(data.start_date));
+            data.stop_date=(formmatterDate2(data.stop_date));
+            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+            $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysERate"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
@@ -140,7 +159,7 @@ function jqGrid_main() {
         ],
         caption: "환율관리 | MES",
         autowidth: true,
-        height: 450,
+        height: 550,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],

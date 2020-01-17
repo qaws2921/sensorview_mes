@@ -5,7 +5,8 @@
 ////////////////////////////데이터/////////////////////////////////////
 var main_data = {
     check: 'I',
-    send_data: {}
+    send_data: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -15,6 +16,7 @@ $(document).ready(function () {
     datepickerInput();
     jqGrid_main();
     jqgridPagerIcons();
+    authcheck();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
 });
 
@@ -32,6 +34,11 @@ function get_btn(page) {
 
 
 ////////////////////////////호출 함수//////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "scmInLineList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function selectBox() {
     select_makes("#line_select", "/getLine", "line_code", "line_name");

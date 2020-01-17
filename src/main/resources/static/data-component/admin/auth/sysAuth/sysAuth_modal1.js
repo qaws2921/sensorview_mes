@@ -3,7 +3,6 @@ function modal_start1() {
     modal_make1();
 }
 
-
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
@@ -38,10 +37,10 @@ function addUdate_btn() {
 ////////////////////////////호출 함수/////////////////////////////////////
 function effectiveness1(modal_objact) { // 유효성 검사
     if (modal_objact.auth_code === '') {
-        alert("권한코드를 입력해주세요");
+        alert("권한그룹코드를 입력해주세요");
         return false;
     } else if (modal_objact.auth_name === '') {
-        alert("권한명을 입력해주세요");
+        alert("권한그룹명을 입력해주세요");
         return false;
     }  else {
         return true;

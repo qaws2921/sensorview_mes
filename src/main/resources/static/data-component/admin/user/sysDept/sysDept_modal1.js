@@ -1,7 +1,7 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
-    modal_make1();
     selectBox_modal1();
+    modal_make1();
 }
 
 

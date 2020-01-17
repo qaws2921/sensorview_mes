@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     supp_check: 'A',
     send_data: {},
-    send_data_post: {}
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     datepickerInput();
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -27,22 +27,11 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return2(".condition_main");
-    main_data.send_data_post = main_data.send_data;
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/scmInListGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
-    }).trigger("reloadGrid");
-}
-
-function get_btn_post(page) {
-    $("#mes_grid").setGridParam({
-        url: '/scmInListGet',
-        datatype: "json",
-        page: page,
-        postData: main_data.send_data_post
     }).trigger("reloadGrid");
 }
 
@@ -78,6 +67,11 @@ function suppModal_close_bus() {
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "scmInList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -107,7 +101,7 @@ function jqGrid_main() {
         ],
         caption: "입고현황 | MES",
         autowidth: true,
-        height: $(window).height() - 450,
+        height: 550,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,

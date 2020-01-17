@@ -121,7 +121,7 @@ function authcheck() {
 function subBtn(cellvalue, options, rowObject) {
     return ' <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title="" onclick="sub_add_btn('+'\''+rowObject.terminal_code+'\''+')">\n' +
         '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
-        '                            <span>등록</span>\n' +
+        '                            <span>추가</span>\n' +
         '                            </span>\n' +
         '                    </a>';
 }

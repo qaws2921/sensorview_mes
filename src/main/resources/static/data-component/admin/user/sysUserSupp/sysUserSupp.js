@@ -124,7 +124,7 @@ function jqGrid_main() {
 		],
 		caption: "사용자(협력업체)관리 | MES",
 		autowidth: true,
-		height: 450,
+		height: 550,
 		pager: '#mes_grid_pager',
 		rowNum: 100,
 		rowList: [100, 200, 300, 400],

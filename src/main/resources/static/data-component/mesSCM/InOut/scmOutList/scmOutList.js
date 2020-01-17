@@ -5,7 +5,8 @@
 ////////////////////////////데이터/////////////////////////////////////
 
 var main_data = {
-    send_data: {}
+    send_data: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -14,7 +15,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -31,6 +32,11 @@ function get_btn(page) {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "scmOutList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -56,7 +62,7 @@ function jqGrid_main() {
         ],
         caption: "출고현황 | MES",
         autowidth: true,
-        height: 500,
+        height: 550,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,
