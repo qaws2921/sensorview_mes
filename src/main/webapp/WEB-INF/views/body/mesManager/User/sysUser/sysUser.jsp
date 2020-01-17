@@ -4,14 +4,12 @@
 <script type="text/javascript" src="/data-component/admin/user/sysUser/sysUser.js" charset="UTF-8"></script>
 
 <style>
-    .select2-dropdown {
-        z-index: 10060;
-    }
-
-    .select2-close-mask {
-        z-index: 10055;
+    td input[type=checkbox] {
+        position: relative;
+        top:3px;
     }
 </style>
+
 
 <div class="main-content-inner">
     <div class="page-content">

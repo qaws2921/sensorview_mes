@@ -22,7 +22,7 @@ function addUdate_btn() {
                     if (main_data.check === "I") {
                         get_btn(1);
                     } else {
-                        get_btn_post($("#mes_grid").getGridParam('page'));
+                        get_btn($("#mes_grid").getGridParam('page'));
                     }
                 }
                 $("#addDialog").dialog('close');

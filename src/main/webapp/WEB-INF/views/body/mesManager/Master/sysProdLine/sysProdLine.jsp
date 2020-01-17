@@ -2,7 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <script type="text/javascript" src="/data-component/admin/master/sysProdLine/sysProdLine.js" charset="UTF-8"></script>
-
+<style>
+    td input[type=checkbox] {
+        position: relative;
+        top:3px;
+    }
+</style>
 <div class="main-content-inner">
     <div class="page-content">
         <div class="clearfix">

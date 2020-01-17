@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
-
+<style>
+    td input[type=checkbox] {
+        position: relative;
+        top:3px;
+    }
+</style>
 <script type="text/javascript" src="/data-component/admin/master/sysERate/sysERate.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">

@@ -6,6 +6,7 @@
 
 var main_data = {
     check: 'I',
+    send_data: {},
     readonly: ['auth_code'],
     auth:{}
 };
@@ -51,7 +52,7 @@ function update_btn(jqgrid_data) {
     if (main_data.auth.check_edit !="N") {
         modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
         main_data.check = 'U'; // 수정인지 체크
-        jqgrid_data.dept_code = main_data.send_data_post.keyword; // 저장한데이터 dept_code 를 넣어 서 진행
+        jqgrid_data.dept_code = main_data.send_data.keyword; // 저장한데이터 dept_code 를 넣어 서 진행
         ccn_ajax('/sysAuthOneGet', {keyword: jqgrid_data.auth_code}).then(function (data) { // user의 하나 출력
             modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
             $("#addDialog").dialog('open');
