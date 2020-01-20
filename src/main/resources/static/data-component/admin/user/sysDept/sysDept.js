@@ -13,14 +13,14 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 
 $(document).ready(function () {
-    authcheck();
-    /*----모달----*/
-    modal_start1(); // 모달1 시작 함수
-
     jqGrid_main(); // main 그리드 생성
     jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]')); //그리드 리 사이즈
 
+    /*----모달----*/
+    modal_start1(); // 모달1 시작 함수
+    authcheck();
     jqgridPagerIcons(); // 그리드 아이콘 설정 맨 하단으로
+
 });
 
 
@@ -113,7 +113,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 600,
         pager: '#mes_grid_pager',
         jsonReader: {cell: ""},
         rowNum: 100,

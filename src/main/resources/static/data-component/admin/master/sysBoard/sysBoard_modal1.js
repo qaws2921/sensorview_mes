@@ -9,6 +9,13 @@ function modal_start1() {
 //저장,수정 버튼
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
+    if (modal_objact.files === ''){
+        modal_objact.files = 0;
+    }
+
+    if (modal_objact.file_size === ''){
+        modal_objact.file_size = 0;
+    }
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {
