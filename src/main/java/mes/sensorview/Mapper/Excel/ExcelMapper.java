@@ -18,6 +18,7 @@ import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY;
 import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
 import org.springframework.stereotype.Repository;
@@ -57,4 +58,6 @@ public interface ExcelMapper {
     List<tpmMachineError> tpmMachineErrorDbList(Excel excel);
 
     List<SCM_HIN> scmHInListDbList(Excel excel);
+
+    List<SYS_PART_PRICE> sysPartPriceDbList(Excel excel);
 }

@@ -146,10 +146,11 @@ function excel_download() {
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
             data: {
-                "name": "outsOutList",
+                "name":"sysPartPrice",
                 "row0": $('#datepicker').val().replace(/-/gi, ""),
                 "row1": $('#datepicker2').val().replace(/-/gi, ""),
-                "row2": $("#supp_code_main").val()
+                "row2": $("#supp_code_main").val(),
+                "row3": $('#part_code').val()
             },
             successCallback: function (url) {
                 $preparingFileModal.dialog('close');

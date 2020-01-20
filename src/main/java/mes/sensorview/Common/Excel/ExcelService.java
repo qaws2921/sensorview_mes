@@ -25,6 +25,7 @@ import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_DAY;
 import mes.sensorview.mesScm.Inventory.DTO.SCM_STOCK_SUM_MONTH;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
+import mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -115,6 +116,39 @@ public class ExcelService extends ExcelFunction {
                 for (i = 0; list.size() > i; i++) {
                     row = sheet.createRow(rowNo++);
                     for (v = 0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("sysPartPrice")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("자재단가관리");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("자재단가관리","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<SYS_PART_PRICE> list = excelMapper.sysPartPriceDbList(excel);
+                List<List<Object>> rows = makeBody.sysPartPrice_Body(list);
+                int index = makeHeader.sysPartPrice_Header().length;
+                String[] data = makeHeader.sysPartPrice_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    sheet.setColumnWidth((short)i, (short)7000);
+                    cell = row.createCell(i);
+                    cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                    cell.setCellValue(data[i]);
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
                         cell = row.createCell(v);
                         cell.setCellStyle(setBodyStyle(sxssfWorkbook));
                         cell.setCellValue(String.valueOf(rows.get(i).get(v)));

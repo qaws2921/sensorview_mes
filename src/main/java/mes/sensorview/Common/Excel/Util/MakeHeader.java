@@ -99,4 +99,9 @@ public class MakeHeader {
         String[] data ={"입고일자", "입고번호", "공정", "품번", "품명", "규격", "단위", "입고수량", "등록자", "입고일시"};
         return data;
     }
+
+    public String[] sysPartPrice_Header() {
+        String[] data ={"업체명", "시작일","종료일","품번","품명","화폐단위", "단가"};
+        return data;
+    }
 }

@@ -4,6 +4,8 @@
 <script type="text/javascript" src="/ui-component/assets/js/jquery.fileDownload.js"></script>
 <script type="text/javascript" src="/data-component/mesSCM/Standard/sysPartPrice/sysPartPrice.js" charset="UTF-8"></script>
 
+<div id="progressbar1" data-value="0"></div>
+
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">
@@ -40,7 +42,7 @@
                     </td>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">품목코드</td>
                     <td class="wt-px-200">
-                        <input type="text" name="keyword2" class="form-control h-25 condition_main">
+                        <input type="text" name="keyword2" id="part_code" class="form-control h-25 condition_main">
                     </td>
                     <td></td>
                 </tr>
@@ -84,7 +86,12 @@
                 <div id="mes_grid_pager"></div>
             </div>
         </div>
-
+    </div>
+    <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
+        <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
+    </div>
+    <div title="알림" id="error-modal" style="display: none;">
+        <p>저장 실패. 관리자에게 문의하세요</p>
     </div>
 </div>
 
