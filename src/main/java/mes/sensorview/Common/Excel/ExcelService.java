@@ -154,18 +154,18 @@ public class ExcelService extends ExcelFunction {
                         cell.setCellValue(String.valueOf(rows.get(i).get(v)));
                     }
                 }
-            }else if(excel.getName().equals("scmReqOrder")){
+            }else if(excel.getName().equals("scmOrderList")){
                 // 시트 생성
-                Sheet sheet = sxssfWorkbook.createSheet("구매요청현황");
+                Sheet sheet = sxssfWorkbook.createSheet("발주현황");
                 // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
-                excelName = URLEncoder.encode("구매요청현황","UTF-8");
+                excelName = URLEncoder.encode("발주현황","UTF-8");
 
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
-                List<SCM_REQ_ORD> list = excelMapper.scmReqOrderDbList(excel);
-                List<List<Object>> rows = makeBody.scmReqOrder_Body(list);
-                int index = makeHeader.scmReqOrder_Header().length;
-                String[] data = makeHeader.scmReqOrder_Header();
+                List<SCM_IN_ORD_SUB> list = excelMapper.scmOrderListDbList(excel);
+                List<List<Object>> rows = makeBody.scmOrderList_Body(list);
+                int index = makeHeader.scmOrderList_Header().length;
+                String[] data = makeHeader.scmOrderList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성
@@ -187,18 +187,18 @@ public class ExcelService extends ExcelFunction {
                         cell.setCellValue(String.valueOf(rows.get(i).get(v)));
                     }
                 }
-            }else if(excel.getName().equals("scmOrderList")){
+            }else if(excel.getName().equals("scmReqOrder")){
                 // 시트 생성
-                Sheet sheet = sxssfWorkbook.createSheet("발주현황");
+                Sheet sheet = sxssfWorkbook.createSheet("구매요청현황");
                 // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
-                excelName = URLEncoder.encode("발주현황","UTF-8");
+                excelName = URLEncoder.encode("구매요청현황","UTF-8");
 
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
-                List<SCM_IN_ORD_SUB> list = excelMapper.scmOrderListDbList(excel);
-                List<List<Object>> rows = makeBody.scmOrderList_Body(list);
-                int index = makeHeader.scmOrderList_Header().length;
-                String[] data = makeHeader.scmOrderList_Header();
+                List<SCM_REQ_ORD> list = excelMapper.scmReqOrderDbList(excel);
+                List<List<Object>> rows = makeBody.scmReqOrder_Body(list);
+                int index = makeHeader.scmReqOrder_Header().length;
+                String[] data = makeHeader.scmReqOrder_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성

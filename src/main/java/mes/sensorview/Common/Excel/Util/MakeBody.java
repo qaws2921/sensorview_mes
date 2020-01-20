@@ -67,6 +67,57 @@ public class MakeBody {
         }
         return content;
     }
+    //자재단가
+    public List<List<Object>> sysPartPrice_Body(List<SYS_PART_PRICE> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(SYS_PART_PRICE data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getStart_date());
+                    obj.add(data.getStop_date());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getCurrency_name());
+                    obj.add(data.getUnit_price());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+    //발주현황
+    public List<List<Object>> scmOrderList_Body(List<SCM_IN_ORD_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(SCM_IN_ORD_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(data.getWork_date());
+                    obj.add(data.getOrd_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getStatus_name());
+                    obj.add(data.getOrd_qty());
+                    obj.add(data.getQty());
+                    obj.add(data.getNot_qty()); // 미입고 임시로 입고수량 받을 예정
+                    obj.add(data.getUser_name());
+                    obj.add(data.getUpdate_date());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
 
     public List<List<Object>> scmReqOrder_Body(List<SCM_REQ_ORD> list) {
         List<List<Object>> content = new ArrayList<>();
@@ -95,34 +146,6 @@ public class MakeBody {
         return content;
     }
 
-    public List<List<Object>> scmOrderList_Body(List<SCM_IN_ORD_SUB> list) {
-        List<List<Object>> content = new ArrayList<>();
-        try{
-            if(list.size()!=0){
-                for(SCM_IN_ORD_SUB data : list){
-                    obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
-                    obj.add(data.getOrd_no());
-                    obj.add(data.getSupp_name());
-                    obj.add(data.getPart_grp_name());
-                    obj.add(data.getPart_code());
-                    obj.add(data.getPart_name());
-                    obj.add(data.getSpec());
-                    obj.add(data.getUnit_name());
-                    obj.add(data.getStatus_name());
-                    obj.add(data.getOrd_qty());
-                    obj.add(data.getQty());
-                    obj.add(data.getQty()); // 미입고 임시로 입고수량 받을 예정
-                    obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
-                    content.add(obj);
-                }
-            }
-        }catch (Exception e){
-            log.info("error code : "+ e);
-        }
-        return content;
-    }
 
     public List<List<Object>> scmInList_Body(List<SCM_IN_SUB> list) {
         List<List<Object>> content = new ArrayList<>();
@@ -533,25 +556,5 @@ public class MakeBody {
         return content;
     }
 
-    public List<List<Object>> sysPartPrice_Body(List<SYS_PART_PRICE> list) {
-        List<List<Object>> content = new ArrayList<>();
-        try{
-            if(list.size()!=0){
-                for(SYS_PART_PRICE data : list){
-                    obj = new ArrayList<>();
-                    obj.add(data.getSupp_name());
-                    obj.add(data.getStart_date());
-                    obj.add(data.getStop_date());
-                    obj.add(data.getPart_code());
-                    obj.add(data.getPart_name());
-                    obj.add(data.getCurrency_name());
-                    obj.add(data.getUnit_price());
-                    content.add(obj);
-                }
-            }
-        }catch (Exception e){
-            log.info("error code : "+ e);
-        }
-        return content;
-    }
+
 }
