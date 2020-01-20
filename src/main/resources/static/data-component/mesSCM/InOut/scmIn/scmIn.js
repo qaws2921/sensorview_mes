@@ -188,7 +188,11 @@ function delete_btn() {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "scmIn"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
 
 
 function datepickerInput() {
@@ -217,7 +221,7 @@ function jqGrid_main() {
         ],
         autowidth: true,
         viewrecords: true,
-        height: 200,
+        height: 250,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#scmInTopGridPager',

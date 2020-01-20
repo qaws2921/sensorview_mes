@@ -98,7 +98,7 @@ function jqGrid_main() {
             {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate}
         ],
         viewrecords: true,
-        height: 550,
+        height: 570,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid_pager'

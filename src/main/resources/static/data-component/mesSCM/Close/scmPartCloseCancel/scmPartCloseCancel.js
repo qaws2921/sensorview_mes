@@ -79,7 +79,7 @@ function jqGrid_main() {
         ],
         caption: "자재마감 취소 | MES",
         autowidth: true,
-        height: 450,
+        height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
