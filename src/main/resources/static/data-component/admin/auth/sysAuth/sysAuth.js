@@ -133,7 +133,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹관리 | MES",
         autowidth: true,
-        height: 450,
+        height: 600,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 400],

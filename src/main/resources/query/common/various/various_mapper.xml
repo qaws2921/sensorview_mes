@@ -56,7 +56,7 @@
    </select>
 
     <select id="suppModalGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSSupp">
-        EXEC SP_SYS_SUPP_GET2 #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+        EXEC SP_SYS_SUPP_GET2 #{site_code},#{page},#{rows},#{keyword},#{keyword2},'Y'
     </select>
 
     <select id="sysPartGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP">

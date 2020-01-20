@@ -23,6 +23,7 @@
             <img src="/ui-component/imagesNew/logo/logo.png">
         </div>
     </div>
+    <form>
         <div class="login-form">
             <div class="login-content">
                 <div class="form-group">
@@ -47,6 +48,7 @@
                 </div>
             </div>
     </div>
+    </form>
 </div>
 </body>
 </html>

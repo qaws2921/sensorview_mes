@@ -153,7 +153,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹별 프로그램관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 650,
         jsonReader: {cell: ""},
         viewrecords: true,
         onCellSelect: function (rowid, iRow, iCol, e) { // jqGrid 더블 클릭시 실행
@@ -249,7 +249,7 @@ function jqGrid_main() {
         ],
         caption: "권한그룹별 프로그램관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 650,
         jsonReader: {cell: ""},
         viewrecords: true,
         treeGridModel: 'adjacency',

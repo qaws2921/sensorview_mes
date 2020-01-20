@@ -10,7 +10,7 @@
     </select>
 
     <select id="sysUserSuppAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_USER_SUPP_ADD #{user_code},#{user_name},#{auth_code},#{tel_no},#{email},#{use_yn},#{update_user},#{keyword}
+    	EXEC SP_SYS_USER_SUPP_ADD #{site_code},#{user_code},#{user_name},#{auth_code},#{tel_no},#{email},#{use_yn},#{update_user},#{keyword}
     </select>
     <select id="sysUserSuppDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_USER_SUPP_DEL #{keyword}

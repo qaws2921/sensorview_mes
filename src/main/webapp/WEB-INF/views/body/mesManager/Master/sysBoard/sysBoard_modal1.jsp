@@ -35,13 +35,13 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 최대파일수 </div>
             <div class="profile-info-value">
-                <input type="text" name="files" class="form-control modal_value">
+                <input type="text" name="files" class="form-control modal_value" onkeyup="num_keyup(this);">
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name"> 최대파일크기(MB) </div>
             <div class="profile-info-value">
-                <input type="text" name="file_size" class="form-control modal_value">
+                <input type="text" name="file_size" class="form-control modal_value"  onkeyup="num_keyup(this);">
             </div>
         </div>
         <div class="profile-info-row">
