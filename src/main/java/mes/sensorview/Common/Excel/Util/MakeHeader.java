@@ -14,14 +14,19 @@ public class MakeHeader {
         String[] data = {"품목구분", "품목코드", "품목명", "보관로케이션", "업체명", "규격", "단위", "L/T", "검사기준", "검사구분", "재고최대", "재고최소", "등록자", "수정일"};
         return data;
     }
-
-    public String[] scmReqOrder_Header() {
-        String[] data = {"일자","접수번호","수주번호","수주처","End User","납기일","품목그룹","품번","품명","규격","단위","수량"};
+    //자재단가
+    public String[] sysPartPrice_Header() {
+        String[] data ={"업체명", "시작일","종료일","품번","품명","화폐단위", "단가"};
+        return data;
+    }
+    //발주현황
+    public String[] scmOrderList_Header() {
+        String[] data = {"발주일자","발주번호","업체명","품번","품명","규격","단위","상태","발주수량","입고수량","미입고","등록자","등록일시"};
         return data;
     }
 
-    public String[] scmOrderList_Header() {
-        String[] data = {"발주일자","발주번호","업체명","품목그룹","품번","품명","규격","단위","상태","발주수량","입고수량","미입고","등록자","등록일시"};
+    public String[] scmReqOrder_Header() {
+        String[] data = {"일자","접수번호","수주번호","수주처","End User","납기일","품목그룹","품번","품명","규격","단위","수량"};
         return data;
     }
 
@@ -100,8 +105,5 @@ public class MakeHeader {
         return data;
     }
 
-    public String[] sysPartPrice_Header() {
-        String[] data ={"업체명", "시작일","종료일","품번","품명","화폐단위", "단가"};
-        return data;
-    }
+
 }
