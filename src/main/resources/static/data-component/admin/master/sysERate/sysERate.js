@@ -159,7 +159,7 @@ function jqGrid_main() {
         ],
         caption: "환율관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],

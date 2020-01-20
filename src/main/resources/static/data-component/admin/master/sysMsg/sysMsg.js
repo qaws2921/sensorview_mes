@@ -125,7 +125,7 @@ function jqGrid_main() {
 		],
 		caption: "메세지관리 | MES",
 		autowidth: true,
-		height: 550,
+		height: 600,
 		pager: '#mes_grid_pager',
 		rowNum: 100,
 		rowList: [100, 200, 300, 500, 1000],
