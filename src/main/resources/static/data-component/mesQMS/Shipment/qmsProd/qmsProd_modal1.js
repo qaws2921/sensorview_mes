@@ -18,7 +18,7 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function add_modal1_btn() {
-    if (main_data.auth.check_add !="N") {
+
         var gu4 = String.fromCharCode(4);
         var gu5 = String.fromCharCode(5);
         var gu3 = String.fromCharCode(3);
@@ -113,37 +113,39 @@ function add_modal1_btn() {
 
 
         }
-    } else {
-        alert("추가권한이 없습니다,");
-    }
+
 }
 
 
 function update_btn(rowid) {
-    modal_reset(".modal_value", []);
-    $("#mes_modal_grid").jqGrid('clearGridData');
-    main_data.check = 'U';
-    ccn_ajax('/qmsProdSubAllGet', {keyword: rowid}).then(function (data) {
-        $("#in_no").val(data[0].in_no);
-        $("#work_date").val(formmatterDate2(data[0].work_date));
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        $("#mes_modal_grid").jqGrid('clearGridData');
+        main_data.check = 'U';
+        ccn_ajax('/qmsProdSubAllGet', {keyword: rowid}).then(function (data) {
+            $("#in_no").val(data[0].in_no);
+            $("#work_date").val(formmatterDate2(data[0].work_date));
 
-        $("#mes_modal_grid").setGridParam({
-            datatype: "local",
-            data: data
-        }).trigger("reloadGrid");
+            $("#mes_modal_grid").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
 
 
-        modal2_data._this = '';
-        modal2_data.part_code = '';
-        modal2_data.qc_qty = 0;
+            modal2_data._this = '';
+            modal2_data.part_code = '';
+            modal2_data.qc_qty = 0;
+
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+        });
+
 
         $("#addDialog").dialog('open');
         jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
-    });
-
-
-    $("#addDialog").dialog('open');
-    jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
+    } else {
+        alert("수정권한이 없습니다,");
+    }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -165,14 +167,14 @@ function jqGrid_modal1() {
         colNames: [ '품번', '품명', '규격', '단위', '검사구분', '입고수량', '검사수량', '불량수량', '검사결과', '불량유형', '불량상세', '조치구분', '성적서'],
         colModel: [
 
-            {name: 'part_code', index: 'part_code', key: true, width: 80, sortable: false},
+            {name: 'part_code', index: 'part_code', key: true, width: 70, sortable: false},
             {name: 'part_name', index: 'part_name', width: 60, sortable: false},
             {name: 'spec', index: 'spec', width: 70, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 40, sortable: false},
-            {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
-            {name: 'in_qty', index: 'in_qty', width: 55, sortable: false},
+            {name: 'qc_level_name', index: 'qc_level_name', width: 50, sortable: false},
+            {name: 'in_qty', index: 'in_qty', width: 50, sortable: false},
             {
-                name: 'qc_qty', index: 'qc_qty', width: 55, sortable: false,
+                name: 'qc_qty', index: 'qc_qty', width: 50, sortable: false,
                 editable: true,
                 editoptions: {
 
@@ -227,7 +229,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'ng_qty', index: 'ng_qty', width: 55, sortable: false,
+                name: 'ng_qty', index: 'ng_qty', width: 50, sortable: false,
                 editable: true,
                 editoptions: {
 
@@ -272,7 +274,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'qc_result', index: 'qc_result', width: 60, sortable: false,
+                name: 'qc_result', index: 'qc_result', width: 50, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -298,7 +300,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'ng_type', index: 'ng_type', width: 60, sortable: false,
+                name: 'ng_type', index: 'ng_type', width: 50, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -350,7 +352,7 @@ function jqGrid_modal1() {
                 }
             },
             {
-                name: 'act_type', index: 'act_type', width: 60, sortable: false,
+                name: 'act_type', index: 'act_type', width: 50, sortable: false,
                 editable: true,                                       // 수정가능 여부
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
@@ -375,7 +377,7 @@ function jqGrid_modal1() {
 
                 }
             },
-            {name: 'file', index: 'file', width: 50, sortable: false,align: 'center', formatter: reportsButton}
+            {name: 'file', index: 'file', width: 50, sortable: false, formatter: reportsButton}
         ],
         autowidth: true,
         height: 250,
@@ -391,7 +393,7 @@ function jqGrid_modal1() {
             if (icol === 12) {
 
                 var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
-                if (data.qc_qty !== '0' && data.qc_qty !== '') {
+                if (data.qc_qty === '0' && data.qc_qty === '') {
                     update_btn2(rowid, e);
                 } else {
                     alert("검사수량을 확인해주세요");
