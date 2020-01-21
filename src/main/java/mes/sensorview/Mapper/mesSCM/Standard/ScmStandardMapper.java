@@ -52,4 +52,14 @@ public interface ScmStandardMapper {
     Message sysPartPriceDel(SYS_PART_PRICE spp);
 
     SYS_PART_PRICE sysPartPriceOneGet(SYS_PART_PRICE spp);
+
+    List<SYS_COMMON2_CD> sysPartNameGroupGet(Page p);
+
+    SYS_COMMON2_CD sysPartNameGroupOneGet(SYS_COMMON2_CD scc);
+
+    Message sysPartNameGroupAdd(SYS_COMMON2_CD scc);
+
+    Message sysPartNameGroupDel(SYS_COMMON2_CD scc);
+
+    List<SYS_COMMON2_CD> sysCommon2AllGet(Page p);
 }

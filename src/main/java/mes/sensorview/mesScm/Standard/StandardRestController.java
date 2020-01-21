@@ -156,5 +156,30 @@ public class StandardRestController {
         return standardService.sysPartPriceDel(req, spp);
     }
 
+    @RequestMapping(value = "/sysPartNameGroupGet", method = RequestMethod.POST)
+    public RESTful sysPartNameGroupGet(HttpServletRequest req, Page p) {
+        return standardService.sysPartNameGroupGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroupOneGet", method = RequestMethod.POST)
+    public SYS_COMMON2_CD sysPartNameGroupOneGet(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        return standardService.sysPartNameGroupOneGet(req, scc);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroupAdd", method = RequestMethod.POST)
+    public Message sysPartNameGroupAdd(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        return standardService.sysPartNameGroupAdd(req, scc);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroupDel", method = RequestMethod.POST)
+    public Message sysPartNameGroupDel(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        return standardService.sysPartNameGroupDel(req, scc);
+    }
+
+    @RequestMapping(value = "/sysCommon2AllGet", method = RequestMethod.POST)
+    public List<SYS_COMMON2_CD> sysCommon2AllGet(HttpServletRequest req, Page p) {
+        return standardService.sysCommon2AllGet(req, p);
+    }
+
 
 }
