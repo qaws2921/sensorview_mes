@@ -35,4 +35,7 @@ public class StandardController {
     public String sysLoc() {
         return "mesScm/Standard/sysLoc/sysLoc";
     }
+
+    @RequestMapping(value = "/sysPartNameGroup")
+    public String sysPartNameGroup() { return "mesScm/Standard/sysPartNameGroup/sysPartNameGroup"; }
 }
