@@ -172,19 +172,19 @@ $(function () {
 
 
 });
-var settime =  setInterval(function() {
-
-    if (getCookie('senUserData') == null){
-
-        alert('회원데이터가 존재하지않습니다.\n로그인페이지로 이동합니다.');
-
-        window.location.href = "logout";
-
-        clearTimeout(settime);
-
-
-    }
-},1000);
+// var settime =  setInterval(function() {
+//
+//     if (getCookie('senUserData') == null){
+//
+//         alert('회원데이터가 존재하지않습니다.\n로그인페이지로 이동합니다.');
+//
+//         window.location.href = "logout";
+//
+//         clearTimeout(settime);
+//
+//
+//     }
+// },1000);
 
 function  callback2(cb){
     return  cb();
