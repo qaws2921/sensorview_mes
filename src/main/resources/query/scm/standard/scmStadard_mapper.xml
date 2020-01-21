@@ -60,15 +60,15 @@
     </select>
 
     <select id="sysPartNameGroupAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_COMMON2_ADD #{site_code}.#{idx},#{code_value},'CODE',#{code_name1},#{code_name2},#{code_name3},#{code_name4},#{user_code},#{keyword}
+    	EXEC SP_SYS_COMMON2_ADD #{site_code},#{idx},#{code_value},'CODE',#{code_name1},#{code_name2},#{code_name3},#{code_name4},#{user_code},#{keyword}
     </select>
 
     <select id="sysPartNameGroupDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
-    	EXEC SP_SYS_COMMON2_DEL #{site_code}.#{keyword}
+    	EXEC SP_SYS_COMMON2_DEL #{site_code},#{keyword}
     </select>
 
     <select id="sysCommon2AllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
-        	EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword}
+        	EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword2}
     </select>
 
 

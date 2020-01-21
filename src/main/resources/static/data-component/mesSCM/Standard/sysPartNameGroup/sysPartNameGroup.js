@@ -11,7 +11,10 @@ var main_data = {
     readonly: [],
     auth:{}
 };
+var code_name4;
 
+
+var modal_div=[];
 
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -23,6 +26,12 @@ $(document).ready(function () {
     modal_start1();
     authcheck();
     jqgridPagerIcons();
+
+    code_name4 = $("#code_name4_div").clone();
+    $("#code_name4_div").remove();
+
+
+
 });
 
 
@@ -30,89 +39,139 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-    main_data.send_data_post = main_data.send_data;
+    if (main_data.send_data.keyword !== null){
+        main_data.send_data_post = main_data.send_data;
+        grid_head_change(main_data.send_data.keyword,page);
+    }
 
-    // $("#mes_grid").setGridParam({
-    //     url: '/',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: main_data.send_data
-    // }).trigger("reloadGrid");
+
+
+
 }
 
 function get_btn_post(page) {
-    // $("#mes_grid").setGridParam({
-    //     url: '/',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: main_data.send_data_post
-    // }).trigger("reloadGrid");
+    $("#mes_grid").setGridParam({
+        url: '/sysPartNameGroupGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
 }
 
 function add_btn() {
-    // if (main_data.auth.check_add !="N") {
-    //     main_data.check = 'I';
+    if (main_data.auth.check_add !="N") {
+        if ($("#code_value_select").val() !== null) {
+            ccn_ajax('/sysCommon2AllGet', {
+                keyword: $("#code_value_select").val(),
+                keyword2: 'NAME'
+            }).then(function (value1) {
+                var data = value1[0];
+                $("#code_name1_text").text(data.code_name1);
+                $("#code_name2_text").text(data.code_name2);
+                $("#code_name3_text").text(data.code_name3);
 
-        $("#addDialog").dialog('open');
-    // } else {
-    //     alert("추가권한이 없습니다,");
-    // }
+                if (data.code_name4 === null || data.code_name4 === '') {
+                    $("#code_name4_div").remove();
+                } else {
+                    $("#modal_all_div").append(code_name4);
+                    $("#code_name1_text").text(data.code_name1);
+                }
+
+
+                main_data.check = 'I';
+
+                modal_reset(".modal_value", main_data.readonly);
+                modalValuePush("#gubun_select", "#code_type", "#code_type_name");
+                modalValuePush("#code_value_select", "#code_value", "#code_value_name");
+
+
+                $("#addDialog").dialog('open');
+
+
+            });
+        }
+
+    } else {
+        alert("추가권한이 없습니다,");
+    }
 }
 
 
 function update_btn(jqgrid_data) {
-    // if (main_data.auth.check_edit !="N") {
-    //     modal_reset(".modal_value", []);
+        if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
         main_data.check = 'U';
-    //     ccn_ajax('/', jqgrid_data).then(function (data) {
-    //         modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-    //         $("#addDialog").dialog('open');
-    //     });
-    // } else {
-    //     alert("수정권한이 없습니다.");
-    // }
+        ccn_ajax('/sysPartNameGroupOneGet', jqgrid_data).then(function (data2) {
+            ccn_ajax('/sysCommon2AllGet',{keyword:data2.code_value,keyword2:'NAME'}).then(function (value1) {
+                var data = value1[0];
+                $("#code_name1_text").text(data.code_name1);
+                $("#code_name2_text").text(data.code_name2);
+                $("#code_name3_text").text(data.code_name3);
+
+                if (data.code_name4 === null || data.code_name4 === ''){
+                    $("#code_name4_div").remove();
+                } else {
+                    $("#modal_all_div").append(code_name4);
+                    $("#code_name1_text").text(data.code_name1);
+                }
+
+
+
+                modal_edits('.modal_value', main_data.readonly, data2); // response 값 출력
+                $("#addDialog").dialog('open');
+            });
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 
 function delete_btn() {
-    // if(main_data.auth.check_del != "N") {
-    //     var gu4 = String.fromCharCode(4);
-    //     var gu5 = String.fromCharCode(5);
-    //     var ids = $("#mes_grid").getGridParam('selarrrow');
-    //     if (ids.length === 0) {
-    //         alert("삭제하는 데이터를 선택해주세요");
-    //     } else {
-    //         if (confirm("삭제하겠습니까?")) {
-    //             wrapWindowByMask2();
-    //             var list = [];
-    //             var data;
-    //
-    //             ids.forEach(function (id) {
-    //                 data = $('#mes_grid').jqGrid('getRowData', id);
-    //                 list.push(data.part_type+gu4+data.part_level+gu4+data.part_grp_code);
-    //             });
-    //
-    //             main_data.check = 'D';
-    //             callback(function () {
-    //                 ccn_ajax("/", {keyword: list.join(gu5)}).then(function (data) {
-    //                     if (data.result === 'NG') {
-    //                         alert(data.message);
-    //                     } else {
-    //                         get_btn_post($("#mes_grid").getGridParam('page'));
-    //                     }
-    //                     closeWindowByMask();
-    //                 }).catch(function (err) {
-    //                     closeWindowByMask();
-    //                     console.error(err); // Error 출력
-    //                 });
-    //             });
-    //
-    //         }
-    //     }
-    // } else {
-    //     alert("삭제권한이 없습니다.");
-    // }
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                wrapWindowByMask2();
+                main_data.check = 'D';
+                callback(function () {
+                    ccn_ajax("/sysPartNameGroupDel", {keyword: ids.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                });
+
+            }
+        }
+    } else {
+        alert("삭제권한이 없습니다.");
+    }
 }
+
+
+function select_change1(value) {
+    ccn_ajax('/sysCommon2AllGet',{keyword:value,keyword2:''}).then(function (value1) {
+        $('#code_value_select').empty();
+        var option = null;
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].code_name1).val(value1[j].code_value);
+            $('#code_value_select').append(option);
+        }
+        $('#code_value_select').select2();
+
+    });
+}
+
 
 ////////////////////////////호출 함수//////////////////////////////////
 function authcheck() {
@@ -123,22 +182,88 @@ function authcheck() {
 
 function selectBox() {
     $('#gubun_select').select2();
+    ccn_ajax('/sysCommon2AllGet',{keyword:$('#gubun_select').val(),keyword2:''}).then(function (value1) {
+        $('#code_value_select').empty();
+        var option = null;
+        for(var j=0;j<value1.length;j++){
+            option = $("<option></option>").text(value1[j].code_name1).val(value1[j].code_value);
+            $('#code_value_select').append(option);
+        }
+        $('#code_value_select').select2();
+
+    });
 }
+var colNames =['idx','시리즈','표기','지름', '범위'];
+
+
+function grid_head_change(value,page) {
+    ccn_ajax('/sysCommon2AllGet',{keyword:value,keyword2:'NAME'}).then(function (value1) {
+        grid_head_value_change(value1[0]);
+        $.jgrid.gridUnload('#mes_grid');
+        jqGrid_main();
+        jqGridResize2('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+        jqgridPagerIcons();
+
+
+
+        $("#mes_grid").setGridParam({
+            url: '/sysPartNameGroupGet',
+            datatype: "json",
+            page: page,
+            postData: main_data.send_data
+        }).trigger("reloadGrid");
+    });
+
+
+}
+
+
+function grid_head_value_change(value) {
+    colNames[1] = value.code_name1;
+    colNames[2] = value.code_name2;
+    colNames[3] = value.code_name3;
+    if (value.code_name4 === null || value.code_name4 === ''){
+        colModel = colModel2;
+        colNames.splice(4,1);
+    } else {
+        colModel = colModel1;
+        colNames[4] = value.code_name4;
+    }
+}
+
+var colModel = [
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
+    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
+    {name: 'code_name4', index: 'code_name4', sortable: false, width: 60}
+];
+
+var colModel1 = [
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
+    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
+    {name: 'code_name4', index: 'code_name4', sortable: false, width: 60}
+];
+
+
+var colModel2 = [
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
+    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
+];
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['시리즈','표기','지름', '범위'],
-        colModel: [
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60}
-        ],
+        colNames: colNames,
+        colModel: colModel,
         caption: "품명분류관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],

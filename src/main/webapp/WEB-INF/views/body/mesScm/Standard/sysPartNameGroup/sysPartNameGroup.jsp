@@ -13,14 +13,14 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
                     <td class="wt-px-200">
-                        <select id="gubun_select" class="form-control keyword condition_main" style="width:100%">
-                            <option>자재</option>
-                            <option>완제품</option>
+                        <select id="gubun_select" class="form-control keyword" style="width:100%" onchange="select_change1(this.value)">
+                            <option value="MAT_LIST">자재</option>
+                            <option value="PROD_LIST">완제품</option>
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">분류항목</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword condition_main" style="width:100%">
+                        <select id="code_value_select" name="keyword" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
