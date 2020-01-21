@@ -393,7 +393,7 @@ function jqGrid_modal1() {
             if (icol === 12) {
 
                 var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
-                if (data.qc_qty === '0' && data.qc_qty === '') {
+                if (data.qc_qty !== '0' && data.qc_qty !== '') {
                     update_btn2(rowid, e);
                 } else {
                     alert("검사수량을 확인해주세요");
