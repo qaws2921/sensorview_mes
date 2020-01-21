@@ -46,7 +46,7 @@ public class Handler extends HandlerInterceptorAdapter {
 //        lv.setSite_code("S0001");
 //        lv.setDept_code("D1000");
 //        lv.setDuty_code("1000");
-
+//
 //        request.getSession().setAttribute("userData", lv);
         Session userData = (Session) session.getAttribute("userData");
 
@@ -77,19 +77,46 @@ public class Handler extends HandlerInterceptorAdapter {
                     return false;
                 }
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
-                session.setMaxInactiveInterval(60*60);
-
-                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-                loginId.setMaxAge(60*60);
-                response.addCookie(loginId);
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
 
             }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
-            }else {
-                session.setMaxInactiveInterval(60*60);
+            } else if(request.getServletPath().equals("/board")){
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
+                String keyword = request.getParameter("keyword");
 
-                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-                loginId.setMaxAge(60*60);
-                response.addCookie(loginId);
+                Page p = new Page();
+                p.setKeyword(keyword);
+                SYSAuthProgram sap = authService.menuAuth(request,p);
+                if (sap.getCheck_get().equals("N")){
+                    response.setContentType("text/html; charset=UTF-8");
+                    PrintWriter out = response.getWriter();
+                    out.println("<script>alert(' 권한이 존재하지않습니다.\\n 메인페이지로 이동합니다.'); location.href='/';</script>");
+                    out.flush();
+                    return false;
+                }
+
+                ArrayList<List<Auth>> authAllSubSelect = (ArrayList<List<Auth>>) authService.authAllSubSelect(request); // 권한에 맞는 전체 리스트
+                ReturnFunction returnFunction = new ReturnFunction();
+
+                request.setAttribute("allSub_list", authAllSubSelect);
+                Auth av1 = returnFunction.authMenu2(request,authAllSubSelect);
+                String under_name = av1.getParent_menu_code();
+                authService.model_menu_setting(request, keyword, under_name.substring(0, under_name.length() - 1), under_name);
+
+            } else {
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
 
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
