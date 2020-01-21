@@ -108,7 +108,7 @@ function jqGrid_main() {
         ],
         autowidth: true,
         viewrecords: true,
-        height: 180,
+        height: 200,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid_pager',
