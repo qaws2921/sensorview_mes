@@ -34,12 +34,12 @@ public class UserRestController {
         data.setSite_code("S0001");
 
         session.setAttribute("userData", data);
-        session.setMaxInactiveInterval(60*60);
-
-
-        Cookie loginId = new Cookie("senUserData", data.getUser_code());
-        loginId.setMaxAge(60*60);
-        res.addCookie(loginId);
+//        session.setMaxInactiveInterval(60*60);
+//
+//
+//        Cookie loginId = new Cookie("senUserData", data.getUser_code());
+//        loginId.setMaxAge(60*60);
+//        res.addCookie(loginId);
 
 
 

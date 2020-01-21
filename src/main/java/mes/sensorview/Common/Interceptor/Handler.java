@@ -41,13 +41,13 @@ public class Handler extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
 
         Session lv = new Session();
-        lv.setUser_code("ADMIN");
-        lv.setUser_name("관리자");
-        lv.setSite_code("S0001");
-        lv.setDept_code("D1000");
-        lv.setDuty_code("1000");
-
-        request.getSession().setAttribute("userData", lv);
+//        lv.setUser_code("ADMIN");
+//        lv.setUser_name("관리자");
+//        lv.setSite_code("S0001");
+//        lv.setDept_code("D1000");
+//        lv.setDuty_code("1000");
+//
+//        request.getSession().setAttribute("userData", lv);
         Session userData = (Session) session.getAttribute("userData");
 
         response.setHeader("pragma","No-cache");
@@ -77,19 +77,19 @@ public class Handler extends HandlerInterceptorAdapter {
                     return false;
                 }
             }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
-                session.setMaxInactiveInterval(60*60);
-
-                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-                loginId.setMaxAge(60*60);
-                response.addCookie(loginId);
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
 
             }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
             } else if(request.getServletPath().equals("/board")){
-                session.setMaxInactiveInterval(60*60);
-
-                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-                loginId.setMaxAge(60*60);
-                response.addCookie(loginId);
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
                 String keyword = request.getParameter("keyword");
 
                 Page p = new Page();
@@ -112,11 +112,11 @@ public class Handler extends HandlerInterceptorAdapter {
                 authService.model_menu_setting(request, keyword, under_name.substring(0, under_name.length() - 1), under_name);
 
             } else {
-                session.setMaxInactiveInterval(60*60);
-
-                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-                loginId.setMaxAge(60*60);
-                response.addCookie(loginId);
+//                session.setMaxInactiveInterval(60*60);
+//
+//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
+//                loginId.setMaxAge(60*60);
+//                response.addCookie(loginId);
 
                 if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
