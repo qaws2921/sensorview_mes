@@ -133,6 +133,38 @@ public class ReturnFunction {
         return null;
     }
 
+
+    public Auth authMenu2(HttpServletRequest req,ArrayList<List<Auth>> authAllSubSelect)
+    {
+        Auth av1 = null;
+        boolean check = true;
+        boolean check2 = true;
+
+        int index = 0;
+        int index2 = 0;
+
+        while (check) { // 반복해서 체크
+            while (check2) {
+                if (req.getParameter("keyword").equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
+                    av1 = authAllSubSelect.get(index).get(index2);
+                    check2 = false;
+                    check = false;
+                    return av1;
+                }
+
+                if (authAllSubSelect.get(index).size() == index2 + 1) {
+                    check2 = false;
+                }
+                ++index2;
+            }
+            check2 = true;
+            index2 = 0;
+            ++index;
+        }
+        return null;
+    }
+
+
     public String MakeCodeList(String codeList)
     {
         codeList.trim();

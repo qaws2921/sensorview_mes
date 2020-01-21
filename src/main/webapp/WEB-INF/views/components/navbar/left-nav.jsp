@@ -38,10 +38,20 @@
                         <ul class="submenu">
                             <c:forEach var="subLeft_list" items="${left_list[1]}">
                                 <c:if test="${mainLeft_list.menu_code == subLeft_list.parent_menu_code }">
+                                <c:if test="${mainLeft_list.menu_code == 'topBoard1'}">
                                     <li class="${subLeft_list.menu_code } ${under_active == subLeft_list.menu_code ? 'active' : ''}" >
-                                        <a href="${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
+                                        <a href="/board?keyword=${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
                                         <b class="arrow"></b>
                                     </li>
+                                </c:if>
+                                    <c:if test="${mainLeft_list.menu_code != 'topBoard1'}">
+                                        <li class="${subLeft_list.menu_code } ${under_active == subLeft_list.menu_code ? 'active' : ''}" >
+                                            <a href="${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
+                                            <b class="arrow"></b>
+                                        </li>
+                                    </c:if>
+
+
                                 </c:if>
                             </c:forEach>
                         </ul>
