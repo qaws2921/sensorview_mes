@@ -22,6 +22,7 @@ var array =
 
         // 자재관리
         {code: "sysPartNameGroup", title: '자재관리', sub: '기준정보', name: '품명분류 관리'},
+        {code: "sysPartNameGroupSub", title: '자재관리', sub: '기준정보', name: '품명세부분류 관리'},
         {code: "sysPartGroup", title: '자재관리', sub:'기준정보', name:'품목그룹 관리'},
         {code: "sysPart", title: '자재관리', sub:'기준정보', name:'품목정보 관리'},
         {code: "sysBPartGroup", title: '자재관리', sub: '기준정보', name: '자재그룹관리'},

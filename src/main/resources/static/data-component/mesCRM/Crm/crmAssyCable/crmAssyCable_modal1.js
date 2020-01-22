@@ -106,7 +106,7 @@ function jqGrid_modal1() {
         datatype: "local",
         mtype: 'POST',
         caption: "조립케이블 구성 | MES",
-        colNames: ['픔목','주파수','기준커넥터','품목코드','품목명', '규격'],
+        colNames: ['품목','주파수','기준커넥터','품목코드','품목명', '규격'],
         colModel: [
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},

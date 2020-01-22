@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%--<script type="text/javascript" src="/data-component/mesSCM/Standard/sysPartNameGroup/sysPartNameGroup.js" charset="UTF-8"></script>--%>
+<script type="text/javascript" src="/data-component/mesSCM/Standard/sysPartNameGroupSub/sysPartNameGroupSub.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
 
@@ -30,23 +30,21 @@
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
                     <a class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="get_btn(1)">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
                             <span>
                                 <i class="fa fa-search bigger-110 blue"></i>
                                 <span>조회</span>
                             </span>
                     </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title=""
-                       onclick="add_btn()">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="add_btn()">
                             <span>
                                 <i class="fa fa-plus bigger-110 blue"></i>
                                 <span>추가</span>
                             </span>
                     </a>
                     <a class="dt-button buttons-copy buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       title=""
-                       onclick="delete_btn();">
+                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
                             <span>
                                 <i class="fa fa-trash bigger-110 blue"></i>
                                 <span>삭제</span>
@@ -64,7 +62,7 @@
     </div>
 </div>
 
-<%--<%@include file="sysPartNameGroup_modal1.jsp" %>--%>
+<%@include file="sysPartNameGroupSub_modal1.jsp" %>
 
 
 
