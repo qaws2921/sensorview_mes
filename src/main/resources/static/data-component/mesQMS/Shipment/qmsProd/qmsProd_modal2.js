@@ -20,8 +20,7 @@ function update_btn2(rowid, e) {
     var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
     modal2_data.qc_qty = Number(data.qc_qty);
 
-
-    if ($(modal2_data._this.target).parent().find(".reportsAdd").text() !== "추가") {
+    if ($(modal2_data._this).find(".reportsAdd").text() !== "추가") {
         modal2_edit(rowid);
 
     }
@@ -63,7 +62,7 @@ function modal2_add_btn() {
 
     data.list = list;
     modal2_data.sub_data.push(data);
-    $(modal2_data._this.target).parent().find(".reportsAdd").text("완료");
+    $(modal2_data._this).find(".reportsAdd").text("완료");
     console.log(modal2_data.sub_data);
     $("#addDialog2").dialog('close');
 

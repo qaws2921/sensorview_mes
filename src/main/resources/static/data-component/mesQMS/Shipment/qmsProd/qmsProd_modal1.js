@@ -389,18 +389,18 @@ function jqGrid_modal1() {
             savecol = ICol;
 
         },
-        onCellSelect: function (rowid, icol, cellcontent, e) {
-            if (icol === 12) {
-
-                var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
-                if (data.qc_qty !== '0' && data.qc_qty !== '') {
-                    update_btn2(rowid, e);
-                } else {
-                    alert("검사수량을 확인해주세요");
-                }
-            }
-
-        },
+        // onCellSelect: function (rowid, icol, cellcontent, e) {
+        //     if (icol === 12) {
+        //
+        //         var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
+        //         if (data.qc_qty !== '0' && data.qc_qty !== '') {
+        //             update_btn2(rowid, e);
+        //         } else {
+        //             alert("검사수량을 확인해주세요");
+        //         }
+        //     }
+        //
+        // },
         afterSaveCell: function (rowid, name, val, iRow, iCol) {
             var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
             if (iCol === 6) {
@@ -463,8 +463,17 @@ function datepickerInput_modal1() {
     datepicker_makes("#datepicker3", 0);
 }
 
+function pmsProd_modal1_btn(rowid,e) {
+    var data = $('#mes_modal_grid').jqGrid('getRowData', rowid);
+    if (data.qc_qty !== '0' && data.qc_qty !== '') {
+        update_btn2(rowid, e);
+    } else {
+        alert("검사수량을 확인해주세요");
+    }
+}
+
 function reportsButton(cellvalue, options, rowObject) {
-    return ' <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" title="">\n' +
+    return ' <a class="dt-button btn btn-white btn-primary btn-mini btn-bold" title="" onclick="pmsProd_modal1_btn('+'\''+rowObject.part_code+'\','+'this)">\n' +
         '                            <span><i class="fa fa-plus bigger-110 blue"></i>\n' +
         '                            <span class="reportsAdd">추가</span>\n' +
         '                            </span>\n' +
