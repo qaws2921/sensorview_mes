@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="profile-info-row">
+        <div class="profile-info-row" id="code_name3_div">
             <div class="profile-info-name" id="code_name3_text">지름</div>
             <div class="profile-info-value">
                 <input type="text" name="code_name3"class="form-control modal_value">
