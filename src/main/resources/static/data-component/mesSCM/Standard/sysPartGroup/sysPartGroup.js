@@ -164,9 +164,9 @@ function jqGrid_main() {
             {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'remark', index: 'remark', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
+            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate}
         ],
-        caption: "자재그룹관리 | MES",
+        caption: "품목그룹관리 | MES",
         autowidth: true,
         height: 550,
         pager: '#mes_grid_pager',

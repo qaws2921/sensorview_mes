@@ -91,6 +91,13 @@ function add_btn() {
     }
 }
 
+function complete_btn() {
+    if (main_data.auth.check_edit !="N") {
+
+    }else {
+        alert("수정권한이 없습니다.");
+    }
+}
 
 function delete_btn() {
     if(main_data.auth.check_del != "N") {

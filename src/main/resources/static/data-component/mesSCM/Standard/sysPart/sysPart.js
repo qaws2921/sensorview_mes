@@ -252,7 +252,7 @@ function jqGrid_main() {
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', width: 90, sortable: false, formatter: formmatterDate,},
         ],
-        caption: "품목정보 | MES",
+        caption: "품목정보관리 | MES",
         autowidth: true,
         height: 550,
         pager: '#mes_grid_pager',
