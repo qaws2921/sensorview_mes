@@ -12,6 +12,7 @@ var main_data = {
     auth:{}
 };
 var code_name4;
+var code_name3;
 
 
 var modal_div=[];
@@ -30,6 +31,9 @@ $(document).ready(function () {
     code_name4 = $("#code_name4_div").clone();
     $("#code_name4_div").remove();
 
+
+    code_name3 = $("#code_name3_div").clone();
+    $("#code_name3_div").remove();
 
 
 });
@@ -68,13 +72,20 @@ function add_btn() {
                 var data = value1[0];
                 $("#code_name1_text").text(data.code_name1);
                 $("#code_name2_text").text(data.code_name2);
-                $("#code_name3_text").text(data.code_name3);
+                //$("#code_name3_text").text(data.code_name3);
+
+                if (data.code_name3 === null || data.code_name3 === '') {
+                    $("#code_name3_div").remove();
+                } else {
+                    $("#modal_all_div").append(code_name3);
+                    $("#code_name3_text").text(data.code_name3);
+                }
 
                 if (data.code_name4 === null || data.code_name4 === '') {
                     $("#code_name4_div").remove();
                 } else {
                     $("#modal_all_div").append(code_name4);
-                    $("#code_name1_text").text(data.code_name1);
+                    $("#code_name4_text").text(data.code_name4);
                 }
 
 
@@ -106,13 +117,22 @@ function update_btn(jqgrid_data) {
                 var data = value1[0];
                 $("#code_name1_text").text(data.code_name1);
                 $("#code_name2_text").text(data.code_name2);
-                $("#code_name3_text").text(data.code_name3);
+                //$("#code_name3_text").text(data.code_name3);
+
+                if (data.code_name3 === null || data.code_name3 === '') {
+                    $("#code_name3_div").remove();
+                } else {
+                    $("#modal_all_div").append(code_name3);
+                    $("#code_name3_text").text(data.code_name3);
+                }
+
+
 
                 if (data.code_name4 === null || data.code_name4 === ''){
                     $("#code_name4_div").remove();
                 } else {
                     $("#modal_all_div").append(code_name4);
-                    $("#code_name1_text").text(data.code_name1);
+                    $("#code_name4_text").text(data.code_name4);
                 }
 
 
@@ -193,13 +213,14 @@ function selectBox() {
 
     });
 }
-var colNames =['idx','시리즈','표기','지름', '범위'];
+var colNames =['idx','명칭','자재구분'];
 
 
 function grid_head_change(value,page) {
     ccn_ajax('/sysCommon2AllGet',{keyword:value,keyword2:'NAME'}).then(function (value1) {
         grid_head_value_change(value1[0]);
         $.jgrid.gridUnload('#mes_grid');
+
         jqGrid_main();
         jqGridResize2('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
         jqgridPagerIcons();
@@ -221,38 +242,58 @@ function grid_head_change(value,page) {
 function grid_head_value_change(value) {
     colNames[1] = value.code_name1;
     colNames[2] = value.code_name2;
-    colNames[3] = value.code_name3;
-    if (value.code_name4 === null || value.code_name4 === ''){
-        colModel = colModel2;
+
+
+    if (value.code_name3 === null || value.code_name3 === ''){
+        colModel = colModel3;
         colNames.splice(4,1);
+        colNames.splice(3,1);
     } else {
-        colModel = colModel1;
-        colNames[4] = value.code_name4;
+
+        colNames[3] = value.code_name3;
+
+
+        if (value.code_name4 === null || value.code_name4 === ''){
+            colModel = colModel2;
+            colNames.splice(4,1);
+        } else {
+            colModel = colModel1;
+            colNames[4] = value.code_name4;
+        }
+
     }
+
+
 }
 
 var colModel = [
-    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
-    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
-    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
-    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
-    {name: 'code_name4', index: 'code_name4', sortable: false, width: 60}
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 250,fixed: true},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 250,fixed: true},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 250,fixed: true},
+
 ];
 
 var colModel1 = [
-    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
-    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
-    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
-    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
-    {name: 'code_name4', index: 'code_name4', sortable: false, width: 60}
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 250,fixed: true},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 250,fixed: true},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 250,fixed: true},
+    {name: 'code_name3', index: 'code_name3', sortable: false, width: 250,fixed: true},
+    {name: 'code_name4', index: 'code_name4', sortable: false, width: 250,fixed: true}
 ];
 
 
 var colModel2 = [
-    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 60},
-    {name: 'code_name1', index: 'code_name1', sortable: false, width: 60},
-    {name: 'code_name2', index: 'code_name2', sortable: false, width: 60},
-    {name: 'code_name3', index: 'code_name3', sortable: false, width: 60},
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 250,fixed: true},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 250,fixed: true},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 250,fixed: true},
+    {name: 'code_name3', index: 'code_name3', sortable: false, width: 250,fixed: true},
+];
+
+var colModel3 = [
+    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 250,fixed: true},
+    {name: 'code_name1', index: 'code_name1', sortable: false, width: 250,fixed: true},
+    {name: 'code_name2', index: 'code_name2', sortable: false, width: 250,fixed: true},
+
 ];
 
 function jqGrid_main() {
@@ -267,7 +308,7 @@ function jqGrid_main() {
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        viewrecords: true,
+
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
