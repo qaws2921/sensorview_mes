@@ -53,7 +53,7 @@
     </select>
 
     <select id="sysPartNameGroupGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
-        	EXEC SP_SYS_COMMON2_GET #{site_code},#{page}, #{rows},#{keyword},'CODE'
+        	EXEC SP_SYS_COMMON2_GET #{site_code},#{page}, #{rows},#{keyword},#{keyword2}
     </select>
     <select id="sysPartNameGroupOneGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
         	EXEC SP_SYS_COMMON2_ONE_GET #{site_code},#{idx}
@@ -69,6 +69,14 @@
 
     <select id="sysCommon2AllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
         	EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword2}
+    </select>
+
+    <select id="sysPartNameGroupSubAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_COMMON2_SUB_ADD #{site_code},#{idx},#{code_value},#{code_name1},#{code_name2},#{user_code},#{keyword}
+    </select>
+
+    <select id="sysPartNameGroupSubOneGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
+        	EXEC SP_SYS_COMMON2_SUB_ONE_GET #{site_code},#{idx}
     </select>
 
 

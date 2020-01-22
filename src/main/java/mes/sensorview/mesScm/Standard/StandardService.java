@@ -195,4 +195,15 @@ public class StandardService extends ReturnFunction {
         return scmStandardMapper.sysCommon2AllGet(p);
 
     }
+
+    public Message sysPartNameGroupSubAdd(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        scc.setSite_code(getSessionData(req).getSite_code());
+        scc.setUser_code(getSessionData(req).getUser_code());
+        return scmStandardMapper.sysPartNameGroupSubAdd(scc);
+    }
+
+    public SYS_COMMON2_CD sysPartNameGroupSubOneGet(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        scc.setSite_code(getSessionData(req).getSite_code());
+        return scmStandardMapper.sysPartNameGroupSubOneGet(scc);
+    }
 }

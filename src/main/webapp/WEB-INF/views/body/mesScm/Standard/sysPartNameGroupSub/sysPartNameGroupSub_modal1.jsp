@@ -8,27 +8,30 @@
         <div class="profile-info-row">
             <div class="profile-info-name">구분</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="code_type_name" id="code_type_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="code_type" id="code_type" class="form-control modal_value" readonly>
+                <input type="hidden" name="idx" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">분류항목</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="code_value_name" id="code_value_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="code_value" id="code_value" class="form-control modal_value" readonly>
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name">생성순</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text"  name="code_name1" class="form-control modal_value">
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name">코드</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text"  name="code_name2" class="form-control modal_value">
             </div>
         </div>
     </div>

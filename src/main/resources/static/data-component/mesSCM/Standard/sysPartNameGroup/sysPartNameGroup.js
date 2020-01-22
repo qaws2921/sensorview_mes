@@ -44,6 +44,7 @@ $(document).ready(function () {
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     if (main_data.send_data.keyword !== null){
+        main_data.send_data.keyword2 = 'CODE'
         main_data.send_data_post = main_data.send_data;
         grid_head_change(main_data.send_data.keyword,page);
     }

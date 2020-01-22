@@ -62,4 +62,8 @@ public interface ScmStandardMapper {
     Message sysPartNameGroupDel(SYS_COMMON2_CD scc);
 
     List<SYS_COMMON2_CD> sysCommon2AllGet(Page p);
+
+    Message sysPartNameGroupSubAdd(SYS_COMMON2_CD scc);
+
+    SYS_COMMON2_CD sysPartNameGroupSubOneGet(SYS_COMMON2_CD scc);
 }

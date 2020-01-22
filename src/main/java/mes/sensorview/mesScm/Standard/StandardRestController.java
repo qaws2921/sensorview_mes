@@ -181,5 +181,14 @@ public class StandardRestController {
         return standardService.sysCommon2AllGet(req, p);
     }
 
+    @RequestMapping(value = "/sysPartNameGroupSubAdd", method = RequestMethod.POST)
+    public Message sysPartNameGroupSubAdd(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        return standardService.sysPartNameGroupSubAdd(req, scc);
+    }
+    @RequestMapping(value = "/sysPartNameGroupSubOneGet", method = RequestMethod.POST)
+    public SYS_COMMON2_CD sysPartNameGroupSubOneGet(HttpServletRequest req, SYS_COMMON2_CD scc) {
+        return standardService.sysPartNameGroupSubOneGet(req, scc);
+    }
+
 
 }
