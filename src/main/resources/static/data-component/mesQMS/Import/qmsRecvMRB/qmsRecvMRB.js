@@ -74,7 +74,6 @@ function add_btn() {
                 if (check2.length > 0) {
                     alert("MRB가 이미 처리 된 데이터가 있습니다.");
                 } else {
-                    console.log(list.join(gu5));
                     if (confirm("MRB 처리하겠습니까?")) {
                         wrapWindowByMask2();
                         ccn_ajax("/qmsRecvMRBAdd", {keyword: list.join(gu5)}).then(function (data) {
@@ -125,7 +124,6 @@ function cancel_btn() {
                 if (check2.length > 0) {
                     alert("MRB가 이미 취소 된 데이터가 있습니다.");
                 } else {
-                    console.log(list.join(gu5));
                     if (confirm("MRB 처리하겠습니까?")) {
                         wrapWindowByMask2();
                         ccn_ajax("/qmsRecvMRBCancel", {keyword: list.join(gu5)}).then(function (data) {

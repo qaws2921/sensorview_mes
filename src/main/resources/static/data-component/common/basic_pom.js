@@ -6,7 +6,7 @@
  * */
 $(document).ready(function() {
 	var object = object_send();
-	page_init(object);``
+	page_init(object);
 	object.page_event(object); 
 });
 

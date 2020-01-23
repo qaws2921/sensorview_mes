@@ -72,7 +72,6 @@ function add_btn() {
                 if(check2.length > 0) {
                     alert('이미 MRB 처리된 데이터가 있습니다.');
                 } else {
-                    console.log(list.join(gu5));
                     if(confirm("MRB 처리하시겠습니까?")) {
                         wrapWindowByMask2();
                         ccn_ajax("/qmsProdMRBAdd", {keyword: list.join(gu5)}).then(function (data) {
@@ -123,7 +122,6 @@ function cancel_btn() {
                 if (check2.length > 0) {
                     alert("MRB 처리가 되지않은 데이터가 있습니다.");
                 } else {
-                    console.log(list.join(gu5));
                     if (confirm("MRB 처리를 취소하시겠습니까?")) {
                         wrapWindowByMask2();
                         ccn_ajax("/qmsProdMRBCancel", {keyword: list.join(gu5)}).then(function (data) {

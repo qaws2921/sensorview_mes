@@ -82,7 +82,6 @@ function addUdate_btn() {
         if (confirm(text)) {
 
             modal_objact.keyword = main_data.check;
-            console.log(modal_objact);
             ccn_ajax("/sysPartAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);

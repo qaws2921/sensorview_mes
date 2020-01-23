@@ -64,7 +64,6 @@ function drawChart() {
             var date;
             var bad;
             data2.forEach(function (d) {
-                console.log(d.qc_ratio);
                 date = formatterDate4(d.work_date);
                 bad = parseInt(d.qc_ratio.replace("%"));
                 dataSet.push([date,bad]);

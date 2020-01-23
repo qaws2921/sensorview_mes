@@ -112,8 +112,6 @@ function update_btn(jqgrid_data) {
             });
             // data5.qc_level=data5.qc_level.replace(/(\s*)/g,"");
             modal_edits('.modal_value', main_data.readonly,data5); // response 값 출력
-            console.log(data5);
-
             $("#addDialog").dialog('open');
 
         });

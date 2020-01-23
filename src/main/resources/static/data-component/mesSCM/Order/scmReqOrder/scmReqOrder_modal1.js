@@ -32,7 +32,6 @@ function select_change1(value) {
 function get_modal1_btn(page) {
     modal_data.send_data = value_return(".modal_value");
     modal_data.send_data.keyword =$('#part_type_select').val();
-    console.log(modal_data);
     $("#mes_modal1_grid1").setGridParam({
         url: '/sysPartGet',
         datatype: "json",

@@ -123,7 +123,6 @@ function delete_btn() {
                 main_data.check = 'D';
                 for(i=0;i<ids.length;i++){
                     var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
-                    console.log(data);
                     keywords.push(data.line_code+gu4+data.machine_code);
                 }
                 code_list=keywords.join(gu5);

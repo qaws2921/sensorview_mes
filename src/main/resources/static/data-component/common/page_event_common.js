@@ -26,7 +26,6 @@ function basicGet(object, jqGrid_object, page) {
         }
 
 
-        console.log(object.condition_objact);
         if (effectiveness_condition(object, object.condition_objact)) {
             $(jqGrid_object.main_name).setGridParam({
                 url: object.getUrl,
@@ -259,7 +258,6 @@ function valueReturn(class_name) {
         objectValue = $(this).val();
         modal_objact[objectName] = objectValue;
     });
-    console.log(modal_objact);
     return modal_objact
 
 }

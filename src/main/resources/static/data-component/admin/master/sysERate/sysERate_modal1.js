@@ -9,11 +9,9 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
-    console.log(modal_objact);
     modal_objact.start_date = modal_objact.start_date.replace(/\-/g, '');
     modal_objact.stop_date = modal_objact.stop_date.replace(/\-/g, '');
 
-    console.log(modal_objact);
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
         if (main_data.check === "U") {

@@ -13,7 +13,6 @@ function file1_Modal(in_no,part_code) {
     var div3;
     var input1;
     ccn_ajax("/qmsProdListRPTGet", {keyword:in_no,keyword2:part_code}).then(function (data) {
-        console.log(data);
         data.forEach(function (d,i) {
 
             div1 = $(' <div class="profile-info-row"></div>').addClass("file1_modal");
