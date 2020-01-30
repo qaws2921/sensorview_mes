@@ -34,7 +34,7 @@ public class UserRestController {
         data.setSite_code("S0001");
 
         session.setAttribute("userData", data);
-//        session.setMaxInactiveInterval(60*60);
+        session.setMaxInactiveInterval(60*60*24);
 //
 //
 //        Cookie loginId = new Cookie("senUserData", data.getUser_code());

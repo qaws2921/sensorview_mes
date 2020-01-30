@@ -112,7 +112,7 @@ public class Handler extends HandlerInterceptorAdapter {
                 authService.model_menu_setting(request, keyword, under_name.substring(0, under_name.length() - 1), under_name);
 
             } else {
-//                session.setMaxInactiveInterval(60*60);
+                    session.setMaxInactiveInterval(60*60*24);
 //
 //                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
 //                loginId.setMaxAge(60*60);
