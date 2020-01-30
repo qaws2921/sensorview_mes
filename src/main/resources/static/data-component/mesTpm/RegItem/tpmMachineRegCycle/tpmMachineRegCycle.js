@@ -29,7 +29,6 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data_post = main_data.send_data;
 
-    console.log(main_data);
     $("#mes_grid").setGridParam({
         url: '/tpmMachineRegGet',
         datatype: "json",
@@ -81,7 +80,6 @@ function update_btn(jqgrid_data) {
         var send_data = {};
         send_data.keyword = jqgrid_data.line_code;
         send_data.keyword2 = jqgrid_data.machine_code;
-        console.log(send_data);
         ccn_ajax('/tpmMachineRegOneGet', send_data).then(function (data) {
             data.start_date = formmatterDate2(data.start_date);
             modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
@@ -118,7 +116,6 @@ function delete_btn() {
                 main_data.check = 'D';
                 for(i=0;i<ids.length;i++){
                     var data = $('#mes_grid').jqGrid('getRowData', ids[i]);
-                    console.log(data);
                     keywords.push(data.machine_code+gu4+data.qc_code+gu4+data.line_code);
                 }
                 code_list=keywords.join(gu5);

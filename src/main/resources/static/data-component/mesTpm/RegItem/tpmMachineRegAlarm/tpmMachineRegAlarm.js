@@ -77,7 +77,6 @@ function update_btn(jqgrid_data) {
         send_data.machine_code = jqgrid_data.machine_code;
 
         ccn_ajax('/tpmMachineRegAlarmAllGet', send_data).then(function (data) {
-            console.log(data);
             modal_edits('.modal_value', main_data.readonly, data[0]); // response 값 출력
 
             var line_code = '';
@@ -93,7 +92,6 @@ function update_btn(jqgrid_data) {
             select_makes_sub_ajax2("#machine_select2", "/tpmMachineAllGet", "machine_code", "machine_name", {keyword:line_code}, "Y").then(function (data2) {
 
                 if(data[0].machine_code != 'AAAAA'){
-                console.log(data[0].machine_code);
                     $('#machine_select2').val(data[0].machine_code).trigger("change");
                 } else {
                     $('#machine_select2').val('').trigger("change");

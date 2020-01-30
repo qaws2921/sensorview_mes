@@ -18,7 +18,6 @@ function suppModal_start() {
 
 function suppModal_get_btn(page) {
     suppModal_data.send_data = value_return(".suppModal_condition");
-    console.log(suppModal_data);
     $("#SuppSearchGrid").setGridParam({
         url: '/suppModalGet',
         datatype: "json",

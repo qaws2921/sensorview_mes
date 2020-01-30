@@ -132,7 +132,6 @@ function bungi_change(value) {
 function datepickerInput() {
     var date = new Date();
     date.setDate(date.getDate());
-    console.log(date);
     $('#datepicker').datepicker({
         autoclose: true,
         format:'yyyy'+'년',
@@ -156,7 +155,6 @@ function jqGrid_header() {
 }
 
 function jqGrid_main() {
-    console.log(colNames);
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: 'local',

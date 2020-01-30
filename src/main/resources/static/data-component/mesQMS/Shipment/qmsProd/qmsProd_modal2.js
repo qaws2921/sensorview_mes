@@ -63,7 +63,6 @@ function modal2_add_btn() {
     data.list = list;
     modal2_data.sub_data.push(data);
     $(modal2_data._this).find(".reportsAdd").text("완료");
-    console.log(modal2_data.sub_data);
     $("#addDialog2").dialog('close');
 
 
@@ -103,7 +102,6 @@ function modal2_column(data) {
         '                    </select>');
 
     var sub_select;
-    console.log(data);
     data.forEach(function (j, i) {
         $("#modal2_column").append(div1);
         div1 = $(' <div class="profile-info-row"></div>');
@@ -111,7 +109,6 @@ function modal2_column(data) {
         input1 = $('<input type="hidden">').attr("id", "qc_code" + (i + 1)).val(j.qc_code);
         div2.append(input1);
         div1.append(div2);
-        console.log(1);
         for (var z = 1; z < 21; z++) {
             div3 = $('<div class="profile-info-value wt-px-75"></div>');
             sub_select = main_select.clone();

@@ -15,7 +15,6 @@ function selectBox_modal1() {
 
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
-    console.log(modal_objact);
     if (effectiveness1(modal_objact)) {
         var text = '수정하겠습니까?';
         if (confirm(text)) {

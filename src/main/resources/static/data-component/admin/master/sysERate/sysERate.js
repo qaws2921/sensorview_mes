@@ -173,7 +173,6 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) {            // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            console.log(data);
             update_btn(data);
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});

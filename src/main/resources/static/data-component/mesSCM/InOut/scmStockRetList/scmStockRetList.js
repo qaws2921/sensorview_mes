@@ -27,7 +27,6 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return2(".condition_main");
-    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: '/scmStockRetListGet',
         datatype: "json",
