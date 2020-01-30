@@ -96,7 +96,7 @@ function jqGrid_main() {
     $('#mes_grid2').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        caption: "제품출고 지시 | MES",
+        caption: "자재마감 현황 | MES",
         colNames: ['입고일자','전표번호','구분','품번','품명','업체','입고수량','화폐','단가','금액'],
         colModel: [
             {name: '', index: '' ,formatter: formmatterDate2, sortable: false},
