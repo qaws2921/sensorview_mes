@@ -12,12 +12,12 @@ var array =
         {code: "sysMsg", title: '관리자', sub: '마스터관리', name: '메세지관리'},
         {code: "sysBoard", title: '관리자', sub: '마스터관리', name: '게시판관리'},
         {code: "sysSupp", title: '관리자', sub: '마스터관리', name: '업체코드관리'},
-        {code: "sysProdLine", title: '관리자', sub: '마스터관리', name: '라인정보'},
+        {code: "sysProdLine", title: '관리자', sub: '마스터관리', name: '공정정보'},
         {code: "sysCargo", title: '관리자', sub: '마스터관리', name: '창고관리'},
         {code: "sysERate", title: '관리자', sub: '마스터관리', name: '환율관리'},
         {code: "sysPassword", title: '관리자', sub: '마스터관리', name: '비밀번호변경'},
         {code: "sysFavority", title: '관리자', sub: '마스터관리', name: '사용자화면설정'},
-        {code: "sysBOM", title: '관리자', sub: '마스터관리', name: 'BOM관라'},
+        {code: "sysBOM", title: '관리자', sub: '마스터관리', name: 'BOM관리'},
         {code: "sysBOMList", title: '관리자', sub: '마스터관리', name: 'BOM현황'},
 
         // 자재관리

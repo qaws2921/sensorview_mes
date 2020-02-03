@@ -15,5 +15,9 @@ public class SYSProdLine {
 	private String update_date;
 	private int rownum;     
 	private int rec_count;
-	private String keyword;  
+	private String keyword;
+
+	private String line_char;
+	private String line_type;
+	private String line_type_name;
 }
