@@ -8,27 +8,29 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품유형</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_type_name" id="part_type_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="part_type_code" id="part_type_code" class="form-control modal_value" readonly>
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name">품목군</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_grp_name" id="part_grp_name"  class="form-control modal_value" readonly>
+                <input type="hidden" name="part_grp_code" id="part_grp_code"  class="form-control modal_value" readonly>
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name" id="code_name1_text">코드</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" name="part_grp_code2"  class="form-control modal_value">
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name" id="code_name2_text">제품군</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text"  name="part_grp_name2" class="form-control modal_value">
             </div>
         </div>
     </div>
