@@ -168,27 +168,7 @@ public class StandardService extends ReturnFunction {
         return scmStandardMapper.sysPartPriceOneGet(spp);
     }
 
-    public RESTful sysPartNameGroupGet(HttpServletRequest req, Page p) {
-        p.setSite_code(getSessionData(req).getSite_code());
-        List<SYS_COMMON2_CD> rows = scmStandardMapper.sysPartNameGroupGet(p);
-        return getListData(rows , p);
-    }
 
-    public SYS_COMMON2_CD sysPartNameGroupOneGet(HttpServletRequest req, SYS_COMMON2_CD scc) {
-        scc.setSite_code(getSessionData(req).getSite_code());
-        return scmStandardMapper.sysPartNameGroupOneGet(scc);
-    }
-
-    public Message sysPartNameGroupAdd(HttpServletRequest req, SYS_COMMON2_CD scc) {
-        scc.setSite_code(getSessionData(req).getSite_code());
-        scc.setUser_code(getSessionData(req).getUser_code());
-        return scmStandardMapper.sysPartNameGroupAdd(scc);
-    }
-
-    public Message sysPartNameGroupDel(HttpServletRequest req, SYS_COMMON2_CD scc) {
-        scc.setSite_code(getSessionData(req).getSite_code());
-        return scmStandardMapper.sysPartNameGroupDel(scc);
-    }
 
     public List<SYS_COMMON2_CD> sysCommon2AllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
