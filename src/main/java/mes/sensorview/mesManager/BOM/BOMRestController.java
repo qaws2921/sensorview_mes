@@ -3,7 +3,8 @@ package mes.sensorview.mesManager.BOM;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
-import mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,4 +36,25 @@ public class BOMRestController {
     public Message sysPartNameGroupDel(HttpServletRequest req, SYS_COMMON2_CD scc) {
         return bomService.sysPartNameGroupDel(req, scc);
     }
+
+    @RequestMapping(value = "/sysPartGet", method = RequestMethod.POST)
+    public RESTful sysPartGet(HttpServletRequest req, Page p) {
+        return bomService.sysPartGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartOneGet", method = RequestMethod.POST)
+    public SYS_PART_CD sysPartOneGet(HttpServletRequest req, Page p) {
+        return bomService.sysPartOneGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartAdd", method = RequestMethod.POST)
+    public Message sysPartAdd(HttpServletRequest req, SYS_PART_CD spc) {
+        return bomService.sysPartAdd(req, spc);
+    }
+
+    @RequestMapping(value = "/sysPartDel", method = RequestMethod.POST)
+    public Message sysPartDel(HttpServletRequest req, SYS_PART_CD spc) {
+        return bomService.sysPartDel(req, spc);
+    }
+
 }
