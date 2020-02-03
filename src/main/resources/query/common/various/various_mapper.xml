@@ -79,7 +79,9 @@
     <select id="crmAssyCableAllGet" resultType="mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE">
 		EXEC SP_SYS_ASSY_CABLE_GET #{site_code},0, 0, #{keyword}
 	</select>
-
+    <select id="sysPartGroup2AllGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD">
+        	EXEC SP_SYS_PART_GROUP2_GET #{site_code},0, 0,#{keyword},#{keyword2},''
+    </select>
 </mapper>
 
 

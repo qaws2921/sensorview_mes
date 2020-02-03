@@ -10,6 +10,7 @@ import mes.sensorview.Mapper.Various.VariousMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
 import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
@@ -142,5 +143,10 @@ public class VariousService extends ReturnFunction {
     public List<SYS_ASSY_CABLE> crmAssyCableAllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.crmAssyCableAllGet(p);
+    }
+
+    public List<SYS_PART_GROUP2_CD> sysPartGroup2AllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysPartGroup2AllGet(p);
     }
 }
