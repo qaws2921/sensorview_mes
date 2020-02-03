@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<script type="text/javascript" src="/data-component/mesSCM/Standard/sysPart/sysPart.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/admin/bom/sysPart/sysPart.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
 

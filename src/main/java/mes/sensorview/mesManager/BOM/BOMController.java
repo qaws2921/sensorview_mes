@@ -8,4 +8,10 @@ public class BOMController {
     @RequestMapping(value = "/sysPartNameGroup")
     public String sysPartNameGroup() { return "mesManager/BOM/sysPartNameGroup/sysPartNameGroup"; }
 
+    @RequestMapping(value = "/sysPart")
+    public String sysPart() {
+        return "mesManager/BOM/sysPart/sysPart";
+    }
+
+
 }
