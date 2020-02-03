@@ -214,7 +214,7 @@ function selectBox() {
 
     });
 }
-var colNames =['idx','명칭','자재구분'];
+var colNames =['코드','자재그룹','LOT'];
 
 
 function grid_head_change(value,page) {
@@ -268,7 +268,7 @@ function grid_head_value_change(value) {
 }
 
 var colModel = [
-    {name: 'idx', index: 'idx', hidden:true, key:true, sortable: false, width: 250,fixed: true},
+    {name: 'idx', index: 'idx',  key:true, sortable: false, width: 250,fixed: true},
     {name: 'code_name1', index: 'code_name1', sortable: false, width: 250,fixed: true},
     {name: 'code_name2', index: 'code_name2', sortable: false, width: 250,fixed: true},
 
