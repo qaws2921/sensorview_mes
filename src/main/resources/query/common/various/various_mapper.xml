@@ -60,7 +60,7 @@
     </select>
 
     <select id="sysPartGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP">
-        EXEC SP_SYS_PART_GROUP_GET #{site_code},0,0,#{keyword},#{keyword2},''
+        EXEC SP_SYS_PART_GROUP_GET #{site_code},0,0,#{keyword},''
     </select>
 
     <select id="partGroup1" resultType="mes.sensorview.Common.Various.DTO.VT_PART_GROUP">

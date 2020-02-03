@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,12 @@ public interface BOMMapper {
     Message sysPartAdd(SYS_PART_CD spc);
 
     Message sysPartDel(SYS_PART_CD spc);
+
+    List<SYS_PART_GROUP2_CD> sysPartNameGroup2Get(Page p);
+
+    SYS_PART_GROUP2_CD sysPartNameGroup2OneGet(Page p);
+
+    Message sysPartNameGroup2Add(SYS_PART_GROUP2_CD spgc);
+
+    Message sysPartNameGroup2Del(SYS_PART_GROUP2_CD spgc);
 }

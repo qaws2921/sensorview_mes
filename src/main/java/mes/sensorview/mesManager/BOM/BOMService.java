@@ -7,6 +7,7 @@ import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesManager.BOM.BOMMapper;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,27 @@ public class BOMService extends ReturnFunction {
     public Message sysPartDel(HttpServletRequest req, SYS_PART_CD spc) {
         spc.setSite_code(getSessionData(req).getSite_code());
         return bomMapper.sysPartDel(spc);
+    }
+
+    public RESTful sysPartNameGroup2Get(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_GROUP2_CD> rows = bomMapper.sysPartNameGroup2Get(p);
+        return getListData(rows , p);
+    }
+
+    public SYS_PART_GROUP2_CD sysPartNameGroup2OneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return bomMapper.sysPartNameGroup2OneGet(p);
+    }
+
+    public Message sysPartNameGroup2Add(HttpServletRequest req, SYS_PART_GROUP2_CD spgc) {
+        spgc.setSite_code(getSessionData(req).getSite_code());
+        spgc.setUser_code(getSessionData(req).getUser_code());
+        return bomMapper.sysPartNameGroup2Add(spgc);
+    }
+
+    public Message sysPartNameGroup2Del(HttpServletRequest req, SYS_PART_GROUP2_CD spgc) {
+        spgc.setSite_code(getSessionData(req).getSite_code());
+        return bomMapper.sysPartNameGroup2Del(spgc);
     }
 }

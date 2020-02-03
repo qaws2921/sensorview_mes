@@ -5,6 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +56,25 @@ public class BOMRestController {
     @RequestMapping(value = "/sysPartDel", method = RequestMethod.POST)
     public Message sysPartDel(HttpServletRequest req, SYS_PART_CD spc) {
         return bomService.sysPartDel(req, spc);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroup2Get", method = RequestMethod.POST)
+    public RESTful sysPartNameGroup2Get(HttpServletRequest req, Page p) {
+        return bomService.sysPartNameGroup2Get(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroup2OneGet", method = RequestMethod.POST)
+    public SYS_PART_GROUP2_CD sysPartNameGroup2OneGet(HttpServletRequest req, Page p) {
+        return bomService.sysPartNameGroup2OneGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartNameGroup2Add", method = RequestMethod.POST)
+    public Message sysPartNameGroup2Add(HttpServletRequest req, SYS_PART_GROUP2_CD spgc) {
+        return bomService.sysPartNameGroup2Add(req, spgc);
+    }
+    @RequestMapping(value = "/sysPartNameGroup2Del", method = RequestMethod.POST)
+    public Message sysPartNameGroup2Del(HttpServletRequest req, SYS_PART_GROUP2_CD spgc) {
+        return bomService.sysPartNameGroup2Del(req, spgc);
     }
 
 }
