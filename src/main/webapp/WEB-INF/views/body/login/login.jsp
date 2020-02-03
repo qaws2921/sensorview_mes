@@ -16,6 +16,11 @@
     <script src="/ui-component/assets/js/jquery-ui.min.js"></script>
     <script src="/ui-component/assets/js/bootstrap.min.js"></script>
 </head>
+<script>
+    $(document).ready(function(){
+        $('#user_code').focus();
+    });
+</script>
 <body class="page-body login-page login-form-fall loaded login-form-fall-init">
 <div class="login-container">
     <div class="login-header login-caret">

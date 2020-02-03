@@ -10,7 +10,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+
 import javax.sql.DataSource;
+import java.nio.charset.Charset;
 
 /**
  * <javadoc>
@@ -21,17 +25,15 @@ import javax.sql.DataSource;
  **/
 @SpringBootApplication
 @MapperScan(value = {"mes.sensorview.Mapper"})
-public class SensorviewApplication extends SpringBootServletInitializer {
-
-
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SensorviewApplication.class);
-    }
+public class SensorviewApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(SensorviewApplication.class, args);
+    }
+
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
     @Bean

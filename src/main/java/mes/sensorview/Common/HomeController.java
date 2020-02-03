@@ -4,10 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.Common.Function.ReturnFunction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +32,60 @@ public class HomeController extends ReturnFunction {
     @RequestMapping(value="/")
     public String index(){
         return "index";
+    }
+
+    @RequestMapping(value = "/testFile" , method = RequestMethod.POST)
+    public void testFile(@RequestParam("testFile") MultipartFile upload, HttpServletResponse response){
+        String uploadPath   = "D:/UploadFile/sensorview";
+
+        OutputStream out = null;
+        PrintWriter printWriter = null;
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+
+        try{
+            File dir = new File(uploadPath);
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+                String fileName     = upload.getOriginalFilename();
+                String fullPath     = uploadPath+"/"+fileName;
+
+                byte[] bytes = upload.getBytes();
+
+                out = new FileOutputStream(new File(fullPath));
+                out.write(bytes);
+
+                printWriter = response.getWriter();
+                printWriter.println("<script>alert('디렉토리 생성 후 업로드 성공.');</script>");
+                printWriter.flush();
+            } else {
+                String fileName     = upload.getOriginalFilename();
+                String fullPath     = uploadPath+"/"+fileName;
+
+                byte[] bytes = upload.getBytes();
+
+                out = new FileOutputStream(new File(fullPath));
+                out.write(bytes);
+
+                printWriter = response.getWriter();
+                printWriter.println("<script>alert('기존 디렉토리에 성공.');</script>");
+                printWriter.flush();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (printWriter != null) {
+                    printWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @RequestMapping("/logout")

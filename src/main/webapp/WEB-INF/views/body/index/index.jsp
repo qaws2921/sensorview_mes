@@ -351,6 +351,18 @@
 
             <!-- PAGE CONTENT ENDS -->
         </div><!-- /.col -->
+        <div class="col-xs-12">
+            <form action="/testFile" method="post" enctype="Multipart/form-data">
+                <table>
+                    <td>
+                        <input type="file" name="testFile">
+                    </td>
+                    <td>
+                        <button type="submit" >전송</button>
+                    </td>
+                </table>
+            </form>
+        </div>
     </div><!-- /.row -->
 </div>
 </body>
