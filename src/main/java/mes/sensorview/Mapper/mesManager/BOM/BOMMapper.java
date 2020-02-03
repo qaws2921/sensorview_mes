@@ -2,8 +2,8 @@ package mes.sensorview.Mapper.mesManager.BOM;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
-import mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD;
-import mes.sensorview.mesScm.Standard.DTO.SYS_PART_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

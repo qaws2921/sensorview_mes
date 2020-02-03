@@ -5,8 +5,8 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesManager.BOM.BOMMapper;
-import mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD;
-import mes.sensorview.mesScm.Standard.DTO.SYS_PART_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
