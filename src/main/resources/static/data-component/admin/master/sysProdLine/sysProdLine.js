@@ -48,6 +48,8 @@ function add_btn() {
         main_data.check = 'I'; // 추가인지 체크 'I' 추가 , 'U' 수정, 'D' 삭제
         $('#dept_select').attr('disabled',true);
         $('#dept_select').val("D9000").trigger("change");
+        $('#line_type_select option:eq(0)').prop("selected", true).trigger("change");
+
         $("#addDialog").dialog('open'); // 모달 열기
     } else {
         alert("추가권한이 없습니다,");
@@ -115,13 +117,13 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames : ['부서코드','부서','공정코드','코드','생산공정','공정적용','등록자','등록일'],
+        colNames : ['부서코드','부서','공정코드','생산공정','코드','공정적용','등록자','등록일'],
         colModel : [
             {name:'dept_code',index:'dept_code',hidden:true,sortable: false,width:80},
             {name:'dept_name',index:'dept_name',sortable: false,width:80},
-            {name:'line_code',index:'line_code',key: true,hidden:true ,sortable: false,width:80},
-            {name:'line_char',index:'line_char',sortable: false,width:80},
+            {name:'line_code',index:'line_code',key: true,sortable: false,width:80},
             {name:'line_name',index:'line_name',sortable: false,width:80},
+            {name:'line_char',index:'line_char',sortable: false,width:80},
             {name:'line_type_name',index:'line_type_name',sortable: false,width:80},
             {name:'user_name',index:'user_name',sortable: false,width:80},
             {name:'update_date',index:'update_date',formatter:formmatterDate,sortable: false,width:80},

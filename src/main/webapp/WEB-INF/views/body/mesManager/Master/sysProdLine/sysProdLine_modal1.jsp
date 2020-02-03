@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name"> 코드 </div>
+            <div class="profile-info-name"> 공정코드 </div>
             <div class="profile-info-value">
                 <input type="text" name="line_code" class="form-control modal_value">
             </div>
@@ -24,9 +24,15 @@
             </div>
         </div>
         <div class="profile-info-row">
+            <div class="profile-info-name"> 코드 </div>
+            <div class="profile-info-value">
+                <input type="text" name="line_char" class="form-control modal_value">
+            </div>
+        </div>
+        <div class="profile-info-row">
             <div class="profile-info-name"> 공정적용 </div>
             <div class="profile-info-value">
-                <select name="line_type" class="form-control modal_vale" id="line_type_select" style="width: 100%">
+                <select name="line_type" class="form-control modal_value" id="line_type_select" style="width: 100%">
                     <option value="1">MAIN</option>
                     <option value="2">SUB</option>
                 </select>

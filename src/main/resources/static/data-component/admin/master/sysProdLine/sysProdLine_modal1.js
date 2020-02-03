@@ -94,10 +94,13 @@ function effectiveness1(modal_objact) {
         alert("부서코드를 선택해주세요");
         return false;
     } else if (modal_objact.line_code === '') {
-        alert("고정코드를 입력해주세요");
+        alert("공정코드를 입력해주세요");
         return false;
     } else if (modal_objact.line_name === '') {
-        alert("생산공정명 입력해주세요");
+        alert("생산공정명을 입력해주세요");
+        return false;
+    } else if (modal_objact.line_char === '') {
+        alert("코드를 입력해주세요");
         return false;
     } else {
         return true;
