@@ -9,8 +9,60 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     readonly: ['route_code'],
-    auth:{}
+    auth:{},
+    condition_check:'1'
 };
+
+
+var colModel = [
+    {name: 'route_type', index: 'route_type', hidden:true,  sortable: false, width: 60},
+    {name: 'route_code', index: 'route_code', key: true, sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'lc1', index: 'lc1', sortable: false, width: 60},
+    {name: 'lc2', index: 'lc2', sortable: false, width: 60},
+    {name: 'lc3', index: 'lc3', sortable: false, width: 60},
+    {name: 'lc4', index: 'lc4', sortable: false, width: 60},
+    {name: 'lc5', index: 'lc5', sortable: false, width: 60},
+    {name: 'lc6', index: 'lc6', sortable: false, width: 60},
+    {name: 'lc7', index: 'lc7', sortable: false, width: 60},
+    {name: 'lc8', index: 'lc8', sortable: false, width: 60},
+    {name: 'remark', index: 'remark', sortable: false, width: 60},
+    {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
+];
+
+var colModel1 = [
+    {name: 'route_type', index: 'route_type', hidden:true, sortable: false, width: 60},
+    {name: 'route_code', index: 'route_code', key: true, sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'lc1', index: 'lc1', sortable: false, width: 60},
+    {name: 'lc2', index: 'lc2', sortable: false, width: 60},
+    {name: 'lc3', index: 'lc3', sortable: false, width: 60},
+    {name: 'lc4', index: 'lc4', sortable: false, width: 60},
+    {name: 'lc5', index: 'lc5', sortable: false, width: 60},
+    {name: 'lc6', index: 'lc6', sortable: false, width: 60},
+    {name: 'lc7', index: 'lc7', sortable: false, width: 60},
+    {name: 'lc8', index: 'lc8', sortable: false, width: 60},
+    {name: 'remark', index: 'remark', sortable: false, width: 60},
+    {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
+];
+
+
+var colModel2 = [
+    {name: 'route_type', index: 'route_type', hidden:true, sortable: false, width: 60},
+    {name: 'route_code', index: 'route_code', key: true, sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'lc1', index: 'lc1', sortable: false, width: 60},
+    {name: 'remark', index: 'remark', sortable: false, width: 60},
+    {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
+];
+
+var colNames =['route_type','라우팅코드', '라우팅명', '공정1','공정2','공정3','공정4','공정5','공정6','공정7','공정8','비고','등록자','등록일'];
+var colNames1 =['route_type','라우팅코드', '라우팅명', '공정1','공정2','공정3','공정4','공정5','공정6','공정7','공정8','비고','등록자','등록일'];
+var colNames2 =['route_type','라우팅코드', '라우팅명', '공정1','비고','등록자','등록일'];
+
 
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -19,6 +71,8 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     modal_start1();
+    modal_start2();
+    selectBox();
     authcheck();
     jqgridPagerIcons();
 });
@@ -27,6 +81,29 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 // 조회버튼
 function get_btn(page) {
+    main_data.send_data = value_return(".condition_main"); // 해당 클래스명을 가진 항목의 name에 맞도록 객체 생성
+    main_data.send_data_post = main_data.send_data; // 수정,삭제 시 다시 조회하기 위한 데이터 저장
+
+
+    grid_head_value_change(main_data.condition_check);
+    $.jgrid.gridUnload('#mes_grid');
+
+    jqGrid_main();
+    jqGridResize2('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    jqgridPagerIcons();
+
+
+
+    $("#mes_grid").setGridParam({ // 그리드 조회
+        url: '/popRouteGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+
+function get_btn_post(page) {
     $("#mes_grid").setGridParam({ // 그리드 조회
         url: '/popRouteGet',
         datatype: "json",
@@ -37,9 +114,16 @@ function get_btn(page) {
 
 function add_btn() {
     if(main_data.auth.check_add != "N") {
-        modal_reset(".modal_value", main_data.readonly);
         main_data.check = 'I';
-        $("#addDialog").dialog('open');
+
+
+        if (main_data.condition_check === '1'){
+            modal_reset(".modal_value", main_data.readonly);
+            $("#addDialog").dialog('open');
+        } else {
+            modal_reset(".modal_value2", main_data.readonly);
+            $("#addDialog2").dialog('open');
+        }
     } else {
         alert("추가권한이 없습니다.");
     }
@@ -47,13 +131,21 @@ function add_btn() {
 
 function update_btn(jqgrid_data) {
     if (main_data.auth.check_edit !="N") {
-        modal_reset(".modal_value", main_data.readonly);
         main_data.check = 'U';
         var send_data = {};
         send_data.keyword = jqgrid_data.route_code;
+
         ccn_ajax('/popRouteOneGet', send_data).then(function (data) {
-            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-            $("#addDialog").dialog('open');
+
+            if (jqgrid_data.route_type === '1'){
+                modal_reset(".modal_value", main_data.readonly);
+                modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+                $("#addDialog").dialog('open');
+            } else {
+                modal_reset(".modal_value2", main_data.readonly);
+                modal_edits('.modal_value2', main_data.readonly, data); // response 값 출력
+                $("#addDialog2").dialog('open');
+            }
         });
     } else {
         alert("수정권한이 없습니다.");
@@ -87,7 +179,31 @@ function delete_btn() {
         alert("삭제권한이 없습니다.");
     }
 }
+
+function selectBox_main_change(value) {
+    main_data.condition_check = value;
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
+
+function grid_head_value_change(value) {
+
+    if (value === '1'){
+        colNames = colNames1;
+        colModel = colModel1;
+    } else if(value === '2'){
+        colNames = colNames2;
+        colModel = colModel2;
+    }
+
+}
+
+
+
+function selectBox() {
+    $('#group_select').select2();
+}
+
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "popRoute"}).then(function (data) {
         main_data.auth = data;
@@ -98,19 +214,8 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['라우팅코드', '라우팅명', '공정1','공정2','공정3','공정4','공정5','비고','등록자','등록일'],
-        colModel: [
-            {name: 'route_code', index: 'route_code', key: true, sortable: false, width: 60},
-            {name: 'route_name', index: 'route_name', sortable: false, width: 60},
-            {name: 'lc1', index: 'lc1', sortable: false, width: 60},
-            {name: 'lc2', index: 'lc2', sortable: false, width: 60},
-            {name: 'lc3', index: 'lc3', sortable: false, width: 60},
-            {name: 'lc4', index: 'lc4', sortable: false, width: 60},
-            {name: 'lc5', index: 'lc5', sortable: false, width: 60},
-            {name: 'remark', index: 'remark', sortable: false, width: 60},
-            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', width: 60, sortable: false, formatter: formmatterDate,},
-        ],
+        colNames: colNames,
+        colModel: colModel,
         caption: "공정라우팅 | MES",
         autowidth: true,
         height: 550,

@@ -19,15 +19,15 @@
     </select>
 
     <select id="popRouteGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD">
-        EXEC SP_POP_ROUTE_GET #{site_code},#{page},#{rows},''
+        EXEC SP_POP_ROUTE_GET #{site_code},#{page},#{rows},'',#{keyword}
     </select>
 
     <select id="popRouteOneGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD">
-        EXEC SP_POP_ROUTE_GET #{site_code},1,1,#{keyword}
+        EXEC SP_POP_ROUTE_GET #{site_code},1,1,#{keyword},''
     </select>
 
     <select id="popRouteAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
-        EXEC SP_POP_ROUTE_ADD #{site_code},#{route_code},#{route_name},#{line_code1},#{line_code2},#{line_code3},#{line_code4},#{line_code5},#{remark},#{user_code},#{keyword}
+        EXEC SP_POP_ROUTE_ADD #{site_code},#{route_code},#{route_type},#{route_name},#{line_code1},#{line_code2},#{line_code3},#{line_code4},#{line_code5},#{line_code6},#{line_code7},#{line_code8},#{remark},#{user_code},#{keyword}
     </select>
 
     <select id="popRouteDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
