@@ -37,6 +37,16 @@ function get_btn(page) {
 }
 
 
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({ // 그리드 조회
+        url: '/sysPartNameGroup2Get',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
+
+
 
 function add_btn() {
     if (main_data.auth.check_add !="N") {
@@ -50,6 +60,72 @@ function add_btn() {
         alert("추가권한이 없습니다,");
     }
 }
+
+
+
+function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        var data = {};
+        data.keyword = jqgrid_data.part_type_code;
+        data.keyword2 = jqgrid_data.part_grp_code;
+        data.keyword3 = jqgrid_data.part_grp_code2;
+
+
+        ccn_ajax('/sysPartNameGroup2OneGet', data).then(function (data2) {
+
+                modal_edits('.modal_value', main_data.readonly, data2); // response 값 출력
+                $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
+
+
+
+function delete_btn() {
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var gu4 = String.fromCharCode(4);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                wrapWindowByMask2();
+                main_data.check = 'D';
+                var list = [];
+                var data;
+
+                ids.forEach(function (rowid) {
+                    data = $('#mes_grid').jqGrid('getRowData', rowid);
+                    list.push(data.part_type_code +gu4+ data.part_grp_code+gu4+ data.part_grp_code2 )
+                })
+
+
+                callback(function () {
+                    ccn_ajax("/sysPartNameGroup2Del", {keyword: list.join(gu5)}).then(function (data) {
+                        if (data.result === 'NG') {
+                            alert(data.message);
+                        } else {
+                            get_btn_post($("#mes_grid").getGridParam('page'));
+                        }
+                        closeWindowByMask();
+                    }).catch(function (err) {
+                        closeWindowByMask();
+                        console.error(err); // Error 출력
+                    });
+                });
+
+            }
+        }
+    } else {
+        alert("삭제권한이 없습니다.");
+    }
+}
+
 
 function selectBox_main_change1(value) {
     select_makes3("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:value});
@@ -75,8 +151,10 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','제품군'],
+        colNames: ['part_type_code','part_grp_code','코드','제품군'],
         colModel: [
+            {name: 'part_type_code', index: 'part_type_code', hidden:true, sortable: false, width: 250,fixed: true},
+            {name: 'part_grp_code', index: 'part_grp_code', hidden:true, sortable: false, width: 250,fixed: true},
             {name: 'part_grp_code2', index: 'part_grp_code2', sortable: false, width: 250,fixed: true},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 250,fixed: true},
         ],
