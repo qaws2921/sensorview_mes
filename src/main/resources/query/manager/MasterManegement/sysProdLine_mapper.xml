@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mes.sensorview.Mapper.mesManager.Master.MasterMapper">
     <select id="sysProdLineGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSProdLine">
-    	EXEC SP_SYS_LINE_GET #{site_code},#{page}, #{rows}, '',''
+    	EXEC SP_SYS_LINE_GET #{site_code},#{page}, #{rows}, '','',''
     </select>
     <select id="sysProdLineAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_SYS_LINE_ADD #{site_code},#{dept_code},#{line_code},#{line_name},#{line_char},#{line_type},#{user_code},#{keyword}
@@ -11,7 +11,7 @@
     	EXEC SP_SYS_LINE_DEL #{site_code},#{keyword}
     </select>
     <select id="sysProdLineOneGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSProdLine">
-    	EXEC SP_SYS_LINE_GET #{site_code},1,1, #{keyword},#{keyword2}
+    	EXEC SP_SYS_LINE_GET #{site_code},1,1, #{keyword},#{keyword2},''
     </select>
 
 </mapper>

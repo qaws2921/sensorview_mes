@@ -6,6 +6,22 @@
 
 <div class="main-content-inner">
     <div class="page-content">
+        <div class="col-lg-12 padding0">
+            <table class="table wt-100">
+                <tbody>
+                <tr>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-200">
+                        <select name="keyword" id="group_select" class="form-control keyword condition_main" onchange="selectBox_main_change(this.value)" style="width:100%" >
+                            <option value="1">MAIN</option>
+                            <option value="2">SUB</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
@@ -43,5 +59,6 @@
 
 
 <%@include file="popRoute_modal1.jsp" %>
+<%@include file="popRoute_modal2.jsp" %>
 
 

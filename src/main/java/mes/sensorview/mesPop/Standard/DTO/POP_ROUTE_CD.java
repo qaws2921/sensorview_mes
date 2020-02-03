@@ -6,12 +6,16 @@ import lombok.Data;
 public class POP_ROUTE_CD {
     private String site_code;
     private String route_code;
+    private String route_type;
     private String route_name;
     private String line_code1;
     private String line_code2;
     private String line_code3;
     private String line_code4;
     private String line_code5;
+    private String line_code6;
+    private String line_code7;
+    private String line_code8;
     private String remark;
     private String user_code;
     private String create_date;
@@ -27,6 +31,9 @@ public class POP_ROUTE_CD {
     private String lc3;
     private String lc4;
     private String lc5;
+    private String lc6;
+    private String lc7;
+    private String lc8;
     private String keyword;
 
 
