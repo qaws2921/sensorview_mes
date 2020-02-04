@@ -8,6 +8,7 @@ import mes.sensorview.Mapper.mesManager.BOM.BOMMapper;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,5 +84,11 @@ public class BOMService extends ReturnFunction {
     public Message sysPartNameGroup2Del(HttpServletRequest req, SYS_PART_GROUP2_CD spgc) {
         spgc.setSite_code(getSessionData(req).getSite_code());
         return bomMapper.sysPartNameGroup2Del(spgc);
+    }
+
+    public RESTful sysPartNameGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_PART_NM_CD> rows = bomMapper.sysPartNameGet(p);
+        return getListData(rows, p);
     }
 }

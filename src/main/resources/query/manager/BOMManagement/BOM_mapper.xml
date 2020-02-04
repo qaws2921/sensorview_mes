@@ -51,6 +51,9 @@
     	EXEC SP_SYS_PART_GROUP2_DEL #{site_code},#{keyword}
     </select>
 
+    <select id="sysPartNameGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD">
+        EXEC SP_SYS_APRT_NM_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2},#{keyword3}
+    </select>
 
 
 </mapper>

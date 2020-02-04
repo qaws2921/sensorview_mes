@@ -77,4 +77,9 @@ public class BOMRestController {
         return bomService.sysPartNameGroup2Del(req, spgc);
     }
 
+    @RequestMapping(value = "/sysPartNameGet", method = RequestMethod.POST)
+    public RESTful sysPartNameGet(HttpServletRequest req, Page p) {
+        return bomService.sysPartNameGet(req, p);
+    }
+
 }

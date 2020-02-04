@@ -57,5 +57,11 @@
                 </select>
             </div>
         </div>
+        <div class="profile-info-row">
+            <div class="profile-info-name">비고</div>
+            <div class="profile-info-value">
+                <input type="text" class="form-control modal_value">
+            </div>
+        </div>
     </div>
 </div>
