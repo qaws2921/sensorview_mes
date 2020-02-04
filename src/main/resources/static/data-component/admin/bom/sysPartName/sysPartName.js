@@ -47,6 +47,8 @@ function get_btn_post(page) {
 
 function add_btn() {
     if (main_data.auth.check_add !="N") {
+        main_data.check = 'I'; // 저장인지 체크
+        main_data.send_data = value_return(".condition_main");
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");
@@ -54,40 +56,12 @@ function add_btn() {
 }
 
 function select_change1(value) {
-    // ccn_ajax('sysPartGroupAllGet',{keyword:value}).then(function (value1) {
-    //     $('#part_prod_select').empty();
-    //     var option = null;
-    //     for (var j = 0; j < value1.length; j++) {
-    //         option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-    //         $('#part_group_select').append(option);
-    //     }
-    //     $('#part_group_select').select2();
-    //
-    //     ccn_ajax('sysPartGroup2AllGet', {keyword: $('#part_type_select').val(), keyword2:  $('#part_group_select').val()}).then(function (value2) {
-    //         $('#part_prod_select').empty();
-    //         var option = null;
-    //         for(var j=0;j<value2.length;j++){
-    //             option = $("<option></option>").text(value2[j].part_grp_name2).val(value2[j].part_grp_code2);
-    //             $('#part_prod_select').append(option);
-    //         }
-    //         $('#part_prod_select').select2();
-    //     });
-    // });
     part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:value}).then(function (data2){
         select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data2[0].part_grp_code})
     });
 }
 
 function select_change2(value) {
-    // ccn_ajax('sysPartGroup2AllGet',{keyword:$('#part_type_select').val(), keyword2:value}).then(function (value1) {
-    //     $('#part_prod_select').empty();
-    //     var option = null;
-    //     for(var j=0;j<value1.length;j++){
-    //         option = $("<option></option>").text(value1[j].part_grp_name2).val(value1[j].part_grp_code2);
-    //         $('#part_prod_select').append(option);
-    //     }
-    //     $('#part_prod_select').select2();
-    // });
     select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value})
 }
 
@@ -117,7 +91,7 @@ function jqGrid_main() {
             {name: 'series', index: 'series', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'frequency', index: 'frequency', sortable: false, width: 60},
-            {name: 'route_code', index: 'route_code', sortable: false, width: 60},
+            {name: 'route_name', index: 'route_name', sortable: false, width: 60},
             {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
             {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},

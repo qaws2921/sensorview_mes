@@ -19,6 +19,9 @@ public class SYS_PART_NM_CD {
     private String user_code;
     private String update_date;
     private String create_date;
+    private String route_code;
+    private String route_name;
+    private String remark;
 
     private int rownum;
     private int rownum_page;

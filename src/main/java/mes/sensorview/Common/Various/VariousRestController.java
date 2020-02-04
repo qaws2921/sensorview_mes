@@ -11,6 +11,7 @@ import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -135,4 +136,6 @@ public class VariousRestController {
     @RequestMapping(value = "/sysPartNameGroupAllGet", method = RequestMethod.POST)
     public List<SYS_COMMON2_CD> sysPartNameGroupAllGet(HttpServletRequest req, Page p){ return variousService.sysPartNameGroupAllGet(req,p);}
 
+    @RequestMapping(value ="/popRouteGroupAllGet",method = RequestMethod.POST)
+    public List<POP_ROUTE_CD> popRouteGroupAllGet(HttpServletRequest req, Page p){ return variousService.popRouteGroupAllGet(req, p);}
 }

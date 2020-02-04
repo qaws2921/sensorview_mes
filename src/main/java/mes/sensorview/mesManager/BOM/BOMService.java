@@ -91,4 +91,10 @@ public class BOMService extends ReturnFunction {
         List<SYS_PART_NM_CD> rows = bomMapper.sysPartNameGet(p);
         return getListData(rows, p);
     }
+
+    public Message sysPartNameAdd(HttpServletRequest req, SYS_PART_NM_CD spnc) {
+        spnc.setSite_code(getSessionData(req).getSite_code());
+        spnc.setUser_code(getSessionData(req).getUser_code());
+        return bomMapper.sysPartNameAdd(spnc);
+    }
 }

@@ -37,4 +37,6 @@ public interface BOMMapper {
     Message sysPartNameGroup2Del(SYS_PART_GROUP2_CD spgc);
 
     List<SYS_PART_NM_CD> sysPartNameGet(Page p);
+
+    Message sysPartNameAdd(SYS_PART_NM_CD spnc);
 }
