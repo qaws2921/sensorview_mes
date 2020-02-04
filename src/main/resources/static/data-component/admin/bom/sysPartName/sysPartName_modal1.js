@@ -14,7 +14,6 @@ function addUdate_btn() {
     modal_objact.part_type = main_data.send_data.keyword;
     modal_objact.part_group1 = main_data.send_data.keyword2;
     modal_objact.part_group2 = main_data.send_data.keyword3;
-    modal_objact.part_code =
     console.log(modal_objact);
 
     if (effectiveness1(modal_objact)) {
