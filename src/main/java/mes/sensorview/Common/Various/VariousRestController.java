@@ -9,6 +9,7 @@ import mes.sensorview.mesCrm.Crm.DTO.SYS_ASSY_CABLE;
 import mes.sensorview.mesManager.Authority.DTO.SYSAuthProgram;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
@@ -138,4 +139,7 @@ public class VariousRestController {
 
     @RequestMapping(value ="/popRouteGroupAllGet",method = RequestMethod.POST)
     public List<POP_ROUTE_CD> popRouteGroupAllGet(HttpServletRequest req, Page p){ return variousService.popRouteGroupAllGet(req, p);}
+
+    @RequestMapping(value ="/sysPartNameAllGet",method = RequestMethod.POST)
+    public List<SYS_PART_NM_CD> sysPartNameAllGet(HttpServletRequest req, Page p){ return variousService.sysPartNameAllGet(req, p);}
 }
