@@ -8,11 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class StaticResourceConfig extends WebMvcConfigurerAdapter {
 
-    @Value("${static.resource.location}")
-    private String staticResouceLocation;
+    @Value("${resources.location}")
+    private String resourcesLocation;
+    @Value("${resources.uri_path}")
+    private String resourcesUriPath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/uploads/**").addResourceLocations(staticResouceLocation);
+        registry.addResourceHandler(resourcesUriPath + "/**")
+                .addResourceLocations("file://" + resourcesLocation);
+
     }
 }

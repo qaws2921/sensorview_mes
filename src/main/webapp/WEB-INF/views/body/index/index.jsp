@@ -360,6 +360,9 @@
                     <td>
                         <button type="submit" >전송</button>
                     </td>
+                    <td>
+                        <a class="btn" href="uploads/1.txt" download>다운로드</a>
+                    </td>
                 </table>
             </form>
         </div>
