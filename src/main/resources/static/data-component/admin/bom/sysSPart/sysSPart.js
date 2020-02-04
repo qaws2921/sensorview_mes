@@ -38,24 +38,56 @@ function add_btn() {
 function select_main_change1(value) {
     part_type_select_ajax("#part_group2_select", "/sysPartGroup2AllGet", "part_grp_code2", "part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2) {
         part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2}).then(function (data3) {
-            $("#route_name_main").val(data3[0].route_name);
-            $("#route_code_main").val(data3[0].route_code);
+            if (data3.length !== 0){
+                $("#route_name_main").val(data3[0].route_name);
+                $("#route_code_main").val(data3[0].route_code);
+            } else {
+                $("#route_name_main").val("");
+                $("#route_code_main").val("");
+            }
 
+        }).catch(function (err) {
+            $("#part_name_select").empty();
+            $("#route_name_main").val("");
+            $("#route_code_main").val("");
         });
+    }).catch(function (err) {
+        $("#part_group2_select").empty();
+        $("#part_name_select").empty();
+        $("#route_name_main").val("");
+        $("#route_code_main").val("");
     });
 }
 
 function select_main_change2(value) {
     part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:$("#part_group1_select").val(), keyword3:value}).then(function (data3) {
-        $("#route_name_main").val(data3[0].route_name);
-        $("#route_code_main").val(data3[0].route_code);
+        if (data3.length !== 0){
+            $("#route_name_main").val(data3[0].route_name);
+            $("#route_code_main").val(data3[0].route_code);
+        } else {
+            $("#route_name_main").val("");
+            $("#route_code_main").val("");
+        }
 
+    }).catch(function (err) {
+        $("#part_name_select").empty();
+        $("#route_name_main").val("");
+        $("#route_code_main").val("");
     });
 }
 
 
 function select_main_change3(value) {
-
+    console.log(value);
+    ccn_ajax("/sysPartNameOneGet", {keyword:'', keyword2:'', keyword3:'',keyword4:value}).then(function (data) {
+        if (data !== null){
+            $("#route_name_main").val(data.route_name);
+            $("#route_code_main").val(data.route_code);
+        } else {
+            $("#route_name_main").val("");
+            $("#route_code_main").val("");
+        }
+    });
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
@@ -71,10 +103,24 @@ function selectBox() {
     part_type_select_ajax("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'B'}).then(function (data) {
         part_type_select_ajax("#part_group2_select", "/sysPartGroup2AllGet", "part_grp_code2", "part_grp_name2",{keyword:'B', keyword2:data[0].part_grp_code}).then(function (data2) {
             part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:data[0].part_grp_code, keyword3:data2[0].part_grp_code2}).then(function (data3) {
-                $("#route_name_main").val(data3[0].route_name);
-                $("#route_code_main").val(data3[0].route_code);
+                if (data3.length !== 0){
+                    $("#route_name_main").val(data3[0].route_name);
+                    $("#route_code_main").val(data3[0].route_code);
+                } else {
+                    $("#route_name_main").val("");
+                    $("#route_code_main").val("");
+                }
 
+            }).catch(function (err) {
+                $("#part_name_select").empty();
+                $("#route_name_main").val("");
+                $("#route_code_main").val("");
             });
+        }).catch(function (err) {
+            $("#part_group2_select").empty();
+            $("#part_name_select").empty();
+            $("#route_name_main").val("");
+            $("#route_code_main").val("");
         });
     });
 

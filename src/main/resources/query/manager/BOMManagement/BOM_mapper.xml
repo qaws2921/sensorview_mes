@@ -57,7 +57,7 @@
     </select>
 
     <select id="sysPartNameOneGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD">
-        EXEC SP_SYS_PART_NM_GET #{site_code},0,0,'','','',#{keyword}
+        EXEC SP_SYS_PART_NM_GET #{site_code},1,1,'','','',#{keyword}
     </select>
 
     <select id="sysPartNameAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">

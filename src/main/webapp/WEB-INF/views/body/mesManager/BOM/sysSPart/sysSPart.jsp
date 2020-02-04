@@ -23,7 +23,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품명</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword" name="keyword4" id="part_name_select" style="width:100%">
+                        <select class="form-control keyword" name="keyword4" id="part_name_select" onchange="select_main_change3(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정유형</td>
