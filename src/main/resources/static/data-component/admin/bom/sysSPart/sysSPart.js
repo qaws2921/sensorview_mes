@@ -78,8 +78,7 @@ function select_main_change2(value) {
 
 
 function select_main_change3(value) {
-    console.log(value);
-    ccn_ajax("/sysPartNameOneGet", {keyword:'', keyword2:'', keyword3:'',keyword4:value}).then(function (data) {
+    ccn_ajax("/sysPartNameOneGet", {keyword:value}).then(function (data) {
         if (data !== null){
             $("#route_name_main").val(data.route_name);
             $("#route_code_main").val(data.route_code);
