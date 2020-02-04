@@ -102,4 +102,9 @@ public class BOMService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return bomMapper.sysPartNameOneGet(p);
     }
+
+    public Message sysPartNameDel(HttpServletRequest req, SYS_PART_NM_CD spnc) {
+        spnc.setSite_code(getSessionData(req).getSite_code());
+        return bomMapper.sysPartNameDel(spnc);
+    }
 }
