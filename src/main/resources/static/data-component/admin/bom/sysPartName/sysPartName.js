@@ -37,21 +37,40 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
-    // $("#mes_grid").setGridParam({
-    //     url: '/',
-    //     datatype: "json",
-    //     page: page,
-    //     postData: main_data.send_data_post
-    // }).trigger("reloadGrid");
+    $("#mes_grid").setGridParam({
+        url: '/sysPartNameGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
 }
 
 function add_btn() {
     if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
         main_data.check = 'I'; // 저장인지 체크
         main_data.send_data = value_return(".condition_main");
+        $('#prod_type1_select option:eq(0)').prop("selected", true).trigger("change");
+        $('#prod_jacket_select option:eq(0)').prop("selected", true).trigger("change");
+        $('#route_select option:eq(0)').prop("selected", true).trigger("change");
+
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");
+    }
+}
+
+function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+        main_data.check = 'U'; // 수정인지 체크
+
+        ccn_ajax('/sysPartNameOneGet',{keyword: jqgrid_data.part_code}).then(function (data) {
+           modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+           $("#addDialog").dialog('open');
+        });
+    } else {
+        alert("수정권한이 없습니다.");
     }
 }
 
@@ -60,7 +79,6 @@ function select_change1(value) {
         select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data2[0].part_grp_code})
     });
 }
-
 function select_change2(value) {
     select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value})
 }
@@ -85,18 +103,19 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','시리즈','명칭','규격(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
+        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','주파수(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
         colModel: [
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'series', index: 'series', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'center_wire', index: 'center_wire', sortable: false, width: 60},
             {name: 'frequency', index: 'frequency', sortable: false, width: 60},
             {name: 'route_name', index: 'route_name', sortable: false, width: 60},
             {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
             {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
             {name: 'user_code', index: 'user_code', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
             {name: 'remark', index: 'remark', sortable: false, width: 60}
         ],
         caption: "제품명관리 | MES",
@@ -115,7 +134,6 @@ function jqGrid_main() {
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
             update_btn(data);
-
         }
     }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 }

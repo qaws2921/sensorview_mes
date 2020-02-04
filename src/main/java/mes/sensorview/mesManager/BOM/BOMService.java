@@ -97,4 +97,9 @@ public class BOMService extends ReturnFunction {
         spnc.setUser_code(getSessionData(req).getUser_code());
         return bomMapper.sysPartNameAdd(spnc);
     }
+
+    public SYS_PART_NM_CD sysPartNameOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return bomMapper.sysPartNameOneGet(p);
+    }
 }

@@ -83,6 +83,11 @@ public class BOMRestController {
         return bomService.sysPartNameGet(req, p);
     }
 
+    @RequestMapping(value = "/sysPartNameOneGet", method = RequestMethod.POST)
+    public SYS_PART_NM_CD sysPartNameOneGet(HttpServletRequest req, Page p){
+        return bomService.sysPartNameOneGet(req, p);
+    }
+
     @RequestMapping(value = "/sysPartNameAdd", method = RequestMethod.POST)
     public Message sysPartNameAdd(HttpServletRequest req, SYS_PART_NM_CD spnc) {
         return bomService.sysPartNameAdd(req,spnc);
