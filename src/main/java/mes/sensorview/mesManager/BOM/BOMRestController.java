@@ -97,4 +97,9 @@ public class BOMRestController {
     public Message sysPartNameDel(HttpServletRequest req, SYS_PART_NM_CD spnc) {
         return bomService.sysPartNameDel(req, spnc);
     }
+
+    @RequestMapping(value = "/sysSPartAdd2", method = RequestMethod.POST)
+    public Message sysSPartAdd2(HttpServletRequest req, Page p) {
+        return bomService.sysSPartAdd2(req,p);
+    }
 }

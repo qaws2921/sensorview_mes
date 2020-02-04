@@ -68,4 +68,8 @@
         EXEC SP_SYS_PART_NM_DEL #{site_code},#{keyword}
     </select>
 
+    <select id="sysSPartAdd2" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_HPART_ADD2 #{site_code},#{keyword},#{keyword2},#{keyword3},#{keyword4},#{keyword5},#{user_code}
+    </select>
+
 </mapper>

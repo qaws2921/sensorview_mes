@@ -13,7 +13,7 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword" name="keyword2" id="part_group1_select" onchange="select_main_change1(this.value)" style="width:100%">
+                        <select class="form-control keyword condition_main" name="keyword2" id="part_group1_select" onchange="select_main_change1(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
@@ -23,13 +23,13 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품명</td>
                     <td class="wt-px-200">
-                        <select class="form-control keyword" name="keyword4" id="part_name_select" onchange="select_main_change3(this.value)" style="width:100%">
+                        <select class="form-control keyword condition_main" name="keyword4" id="part_name_select" onchange="select_main_change3(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정유형</td>
                     <td class="wt-px-200">
                         <input type="text" id="route_name_main" class="form-control keyword" readonly>
-                        <input type="hidden" id="route_code_main" class="form-control keyword" readonly>
+                        <input type="hidden" id="route_code_main" name="keyword5" class="form-control keyword condition_main" readonly>
                     </td>
                     <td></td>
                 </tr>

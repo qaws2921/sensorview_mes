@@ -31,11 +31,16 @@ function add_btn() {
 
         main_data.check = 'I';
         $('#mes_modal1_grid1').jqGrid("clearGridData");
+       var data = value_return(".condition_main");
+       data.keyword = "B";
+       console.log(data);
+        ccn_ajax("/sysSPartAdd2", data).then(function (data) {
+            console.log(data);
+            $("#addDialog").dialog('open');
+
+        });
 
 
-
-
-        $("#addDialog").dialog('open');
 
 
         jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
