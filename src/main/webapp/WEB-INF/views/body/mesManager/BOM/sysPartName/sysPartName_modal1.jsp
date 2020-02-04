@@ -12,16 +12,16 @@
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name">Center Wire</div>
+            <div class="profile-info-name">Center Wire(Ø)</div>
             <div class="profile-info-value">
-                <input type="text" name="center_wire" class="form-control modal_value">
+                <input type="text" name="center_wire" class="form-control modal_value" onkeyup="num_keyup_float(this)">
             </div>
         </div>
 
         <div class="profile-info-row">
-            <div class="profile-info-name">주파수</div>
+            <div class="profile-info-name">주파수(GHz)</div>
             <div class="profile-info-value">
-                <input type="text" name="frequency" class="form-control modal_value">
+                <input type="text" name="frequency" class="form-control modal_value" onkeyup="num_keyup_float(this)">
             </div>
         </div>
 
