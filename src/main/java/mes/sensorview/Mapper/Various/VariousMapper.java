@@ -12,6 +12,7 @@ import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
@@ -68,4 +69,6 @@ public interface VariousMapper {
     List<SYS_PART_GROUP2_CD> sysPartGroup2AllGet(Page p);
 
     List<SYS_COMMON2_CD> sysPartNameGroupAllGet(Page p);
+
+    List<POP_ROUTE_CD> popRouteGroupAllGet(Page p);
 }

@@ -52,6 +52,12 @@
     	EXEC SP_SYS_PART_GROUP2_DEL #{site_code},#{keyword}
     </select>
 
+    <select id="sysPartNameGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD">
+        EXEC SP_SYS_PART_NM_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2},#{keyword3}
+    </select>
 
+    <select id="sysPartNameAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_PART_NM_ADD #{site_code},#{part_code},#{part_type},#{part_group1},#{part_group2},#{part_name},#{series},#{center_wire},#{frequency},#{jacket},#{prod_type1},#{center_wire1},#{route_code},#{user_code},#{remark},#{keyword}
+    </select>
 
 </mapper>

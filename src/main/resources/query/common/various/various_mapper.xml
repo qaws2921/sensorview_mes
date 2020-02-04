@@ -80,11 +80,15 @@
 		EXEC SP_SYS_ASSY_CABLE_GET #{site_code},0, 0, #{keyword}
 	</select>
     <select id="sysPartGroup2AllGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD">
-        	EXEC SP_SYS_PART_GROUP2_GET #{site_code},0, 0,#{keyword},#{keyword2},''
+        EXEC SP_SYS_PART_GROUP2_GET #{site_code},0, 0,#{keyword},#{keyword2},''
     </select>
 
     <select id="sysPartNameGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
-        	EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword2}
+        EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword2}
+    </select>
+
+    <select id="popRouteGroupAllGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD">
+        EXEC SP_POP_ROUTE_GET #{site_code},0,0,'',#{keyword}
     </select>
 </mapper>
 

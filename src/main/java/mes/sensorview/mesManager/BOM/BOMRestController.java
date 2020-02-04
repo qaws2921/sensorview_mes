@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
+import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -77,4 +78,13 @@ public class BOMRestController {
         return bomService.sysPartNameGroup2Del(req, spgc);
     }
 
+    @RequestMapping(value = "/sysPartNameGet", method = RequestMethod.POST)
+    public RESTful sysPartNameGet(HttpServletRequest req, Page p) {
+        return bomService.sysPartNameGet(req, p);
+    }
+
+    @RequestMapping(value = "/sysPartNameAdd", method = RequestMethod.POST)
+    public Message sysPartNameAdd(HttpServletRequest req, SYS_PART_NM_CD spnc) {
+        return bomService.sysPartNameAdd(req,spnc);
+    }
 }
