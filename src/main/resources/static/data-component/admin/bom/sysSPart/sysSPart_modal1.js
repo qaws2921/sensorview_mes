@@ -41,7 +41,6 @@ function jqGrid_modal1() {
     $("#mes_modal1_grid1").jqGrid({
         mtype: 'POST',
         datatype: "local",
-        multiselect: true,
         caption: "제품등록 | MES",
         colNames: ['품명', '공정구분','생산구분','제품유형','용도','비고','공정코드'],
         colModel: [
