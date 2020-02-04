@@ -17,7 +17,8 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
 
-    modal_start1();
+   // modal_start1();
+    selectBox();
     authcheck();
     jqgridPagerIcons();
 });
@@ -32,11 +33,51 @@ function add_btn() {
         alert("추가권한이 없습니다,");
     }
 }
+
+
+function select_main_change1(value) {
+    part_type_select_ajax("#part_group2_select", "/sysPartGroup2AllGet", "part_grp_code2", "part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2) {
+        part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2}).then(function (data3) {
+            $("#route_name_main").val(data3[0].route_name);
+            $("#route_code_main").val(data3[0].route_code);
+
+        });
+    });
+}
+
+function select_main_change2(value) {
+    part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:$("#part_group1_select").val(), keyword3:value}).then(function (data3) {
+        $("#route_name_main").val(data3[0].route_name);
+        $("#route_code_main").val(data3[0].route_code);
+
+    });
+}
+
+
+function select_main_change3(value) {
+
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "sysSPart"}).then(function (data) {
         main_data.auth = data;
     });
+}
+
+
+
+function selectBox() {
+    part_type_select_ajax("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'B'}).then(function (data) {
+        part_type_select_ajax("#part_group2_select", "/sysPartGroup2AllGet", "part_grp_code2", "part_grp_name2",{keyword:'B', keyword2:data[0].part_grp_code}).then(function (data2) {
+            part_type_select_ajax("#part_name_select", "/sysPartNameAllGet", "part_code", "part_name",{keyword:'B', keyword2:data[0].part_grp_code, keyword3:data2[0].part_grp_code2}).then(function (data3) {
+                $("#route_name_main").val(data3[0].route_name);
+                $("#route_code_main").val(data3[0].route_code);
+
+            });
+        });
+    });
+
 }
 
 function jqGrid_main() {
