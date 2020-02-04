@@ -1,11 +1,13 @@
 package mes.sensorview.Common.Config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
+@Slf4j
 public class StaticResourceConfig extends WebMvcConfigurerAdapter {
 
     @Value("${resources.location}")
@@ -16,7 +18,6 @@ public class StaticResourceConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(resourcesUriPath + "/**")
-                .addResourceLocations("file://" + resourcesLocation);
-
+                .addResourceLocations(resourcesLocation);
     }
 }
