@@ -14,9 +14,11 @@ public class SYS_PART_CD {
     private String cargo_code;
     private String loc_code;
     private String supp_code;
-    private String spec;
+    private String spec1;
+    private String spec2;
+    private String material;
     private String unit_code;
-    private int lt;
+    private String lt;
     private int pack_qty;
     private int max_qty;
     private int min_qty;
@@ -39,4 +41,10 @@ public class SYS_PART_CD {
     private int rownum_page;
     private int rec_count;
     private String  keyword;
+    private String  maker_name;
+    private String  maker_code;
+    private String  prod_type;
+    private String  prod_type_name;
+    private String  material_type;
+    private String  material_type_name;
 }

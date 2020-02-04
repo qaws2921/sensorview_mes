@@ -11,24 +11,19 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1">품목군</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1(this.value);">
+                        <select id="part_group1_select" name="keyword2" class="form-control keyword condition_main" onchange="select_change1(this.value);" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2">제품군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                        <select id="part_group2_select" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품명</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
+                        <select id="part_name_select" name="keyword4" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
