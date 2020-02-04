@@ -82,6 +82,10 @@
     <select id="sysPartGroup2AllGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD">
         	EXEC SP_SYS_PART_GROUP2_GET #{site_code},0, 0,#{keyword},#{keyword2},''
     </select>
+
+    <select id="sysPartNameGroupAllGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_COMMON2_CD">
+        	EXEC SP_SYS_COMMON2_GET #{site_code},0, 0,#{keyword},#{keyword2}
+    </select>
 </mapper>
 
 
