@@ -8,7 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
-    readonly: [],
+    readonly: ['series','center_wire','frequency'],
     auth:{}
 };
 ////////////////////////////시작 함수//////////////////////////////////
@@ -54,6 +54,11 @@ function add_btn() {
         $('#prod_jacket_select option:eq(0)').prop("selected", true).trigger("change");
         $('#route_select option:eq(0)').prop("selected", true).trigger("change");
 
+        $("#prod_jacket_select").prop("disabled",false).trigger('change');
+        $("#prod_type1_select").prop("disabled",false).trigger('change');
+        $("#prod_center_conductor").prop("disabled",false).trigger('change');
+
+
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");
@@ -62,12 +67,16 @@ function add_btn() {
 
 function update_btn(jqgrid_data) {
     if (main_data.auth.check_edit !="N") {
-        modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+        modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
         main_data.check = 'U'; // 수정인지 체크
 
         ccn_ajax('/sysPartNameOneGet',{keyword: jqgrid_data.part_code}).then(function (data) {
            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-           $("#addDialog").dialog('open');
+            $("#prod_jacket_select").prop("disabled",true).trigger('change');
+            $("#prod_type1_select").prop("disabled",true).trigger('change');
+            $("#prod_center_conductor").prop("disabled",true).trigger('change');
+
+            $("#addDialog").dialog('open');
         });
     } else {
         alert("수정권한이 없습니다.");
@@ -105,7 +114,7 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['코드','시리즈','명칭','Center Wire(Ø)','주파수(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
         colModel: [
-            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
             {name: 'series', index: 'series', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
             {name: 'center_wire', index: 'center_wire', sortable: false, width: 60},

@@ -9,6 +9,7 @@
             <div class="profile-info-name">시리즈</div>
             <div class="profile-info-value">
                 <input type="text" name="series" class="form-control modal_value">
+                <input type="hidden" name="part_code" class="modal_value">
             </div>
         </div>
         <div class="profile-info-row">
