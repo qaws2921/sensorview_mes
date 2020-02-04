@@ -17,7 +17,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
 
-   // modal_start1();
+    modal_start1();
     selectBox();
     authcheck();
     jqgridPagerIcons();
@@ -29,7 +29,8 @@ $(document).ready(function () {
 function add_btn() {
     if (main_data.auth.check_add !="N") {
 
-
+        main_data.check = 'I';
+        $('#mes_modal1_grid1').jqGrid("clearGridData");
 
 
 
@@ -37,6 +38,7 @@ function add_btn() {
         $("#addDialog").dialog('open');
 
 
+        jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
 
 
     } else {

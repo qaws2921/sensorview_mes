@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<%--<%@include file="sysPartNameGroup2_modal1.jsp" %>--%>
+<%@include file="sysSPart_modal1.jsp" %>
 
 
 
