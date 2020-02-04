@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<script type="text/javascript" src="/data-component/admin/bom/sysPartName/sysPartName.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/admin/bom/sysSPart/sysSPart.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
 
@@ -11,20 +11,24 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품유형</td>
-                    <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword" id="part_type_select" onchange="select_change1(this.value)" style="width:100%">
-                        </select>
-                    </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword2" id="part_group_select" style="width:100%">
+                        <select class="form-control keyword" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword3" id="part_prod_select" style="width:100%">
+                        <select class="form-control keyword condition_main" style="width:100%">
                         </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품명</td>
+                    <td class="wt-px-200">
+                        <select class="form-control keyword" style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">공정유형</td>
+                    <td class="wt-px-200">
+                        <input type="text" class="form-control keyword" readonly>
                     </td>
                     <td></td>
                 </tr>
@@ -69,7 +73,7 @@
     </div>
 </div>
 
-<%@include file="sysPartName_modal1.jsp" %>
+<%--<%@include file="sysPartNameGroup2_modal1.jsp" %>--%>
 
 
 

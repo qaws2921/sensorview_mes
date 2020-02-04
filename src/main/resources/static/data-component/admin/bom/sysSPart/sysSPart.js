@@ -16,7 +16,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-    selectBox();
+
     modal_start1();
     authcheck();
     jqgridPagerIcons();
@@ -32,40 +32,18 @@ function add_btn() {
         alert("추가권한이 없습니다,");
     }
 }
-
-function select_change1(value) {
-    ccn_ajax('sysPartGroupAllGet',{keyword:value}).then(function (value1) {
-        $('#part_group_select').empty();
-        var option = null;
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].code_name1).val(value1[j].code_value);
-            $('#part_group_select').append(option);
-        }
-        $('#part_group_select').select2();
-    });
-}
-
 ////////////////////////////호출 함수//////////////////////////////////
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysPartName"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "sysSPart"}).then(function (data) {
         main_data.auth = data;
     });
 }
-
-function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
-            select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
-        });
-    });
-}
-
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','시리즈','명칭','규격(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
+        colNames: ['코드','품명','공정구분','생산구분','용도','제품유형','품목군','제품군','등록자','등록일자','비고'],
         colModel: [
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60},
@@ -79,12 +57,13 @@ function jqGrid_main() {
             {name: '', index: '', sortable: false, width: 60},
             {name: '', index: '', sortable: false, width: 60}
         ],
-        caption: "제품명관리 | MES",
+        caption: "제품 등록 | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
+
         multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),

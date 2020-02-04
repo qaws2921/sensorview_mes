@@ -19,6 +19,9 @@ public class BOMController {
         return "mesManager/BOM/sysPart/sysPart";
     }
 
-
+    @RequestMapping(value = "/sysSPart")
+    public String sysSPart() {
+        return "mesManager/BOM/sysSPart/sysSPart";
+    }
 
 }
