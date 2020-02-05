@@ -6,24 +6,19 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품유형</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="part_type_select_part" class="form-control keyword part_condition" style="width:100%;" onchange="select_change_part(this.value);">
+                        <select class="form-control part_condition" name="keyword" id="part_type_select_modal" onchange="select_change1(this.value)" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1_part"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select1_part" name="keyword2" class="form-control keyword part_condition" style="width:100%">
+                        <select class="form-control part_condition" name="keyword2" id="part_group_select_modal" onchange="select_change2(this.value)" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2_part"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select2_part" name="keyword3" class="form-control keyword part_condition"  style="width:100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3_part"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select3_part" name="keyword4" class="form-control keyword part_condition" style="width:100%">
+                        <select class="form-control part_condition" name="keyword3" id="part_prod_select_modal" style="width:100%">
                         </select>
                     </td>
                     <td></td>
