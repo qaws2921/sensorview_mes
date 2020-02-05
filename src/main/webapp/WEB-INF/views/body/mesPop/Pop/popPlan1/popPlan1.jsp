@@ -13,8 +13,11 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">계획일자</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword" style="width:100%">
-                        </select>
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="start_date" id="datepicker"
+                                   class="form-control h-25 condition_main" readonly>
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                        </div>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
@@ -74,7 +77,7 @@
     </div>
 </div>
 
-<%--<%@include file="sysPartName_modal1.jsp" %>--%>
+<%@include file="popPlan1_modal1.jsp" %>
 
 
 

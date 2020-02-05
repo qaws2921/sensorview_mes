@@ -17,13 +17,27 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     authcheck();
+    modal_start1();
+    datepickerInput();
     jqgridPagerIcons();
 });
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
-
+function add_btn() {
+    if (main_data.auth.check_add !="N") {
+        main_data.check = 'I'; // 저장인지 체크
+        $("#addDialog").dialog('open');
+    } else {
+        alert("추가권한이 없습니다,");
+    }
+}
 ////////////////////////////호출 함수//////////////////////////////////
+function datepickerInput() {
+    datepicker_makes("#datepicker", 0);
+}
+
+
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "popPlan1"}).then(function (data) {
         main_data.auth = data;
@@ -51,7 +65,7 @@ function jqGrid_main() {
             {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60}
         ],
-        caption: "생산계획등록(1단계) | MES",
+        caption: "생산계획(1단계) | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',
