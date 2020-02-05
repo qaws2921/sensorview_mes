@@ -5,10 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesManager.BOM.BOMMapper;
-import mes.sensorview.mesManager.BOM.DTO.SYS_COMMON2_CD;
-import mes.sensorview.mesManager.BOM.DTO.SYS_PART_CD;
-import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
-import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
+import mes.sensorview.mesManager.BOM.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -112,5 +109,22 @@ public class BOMService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         p.setUser_code(getSessionData(req).getUser_code());
         return bomMapper.sysSPartAdd2(p);
+    }
+
+    public RESTful sysSPartGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SYS_HPART_CD> rows = bomMapper.sysSPartGet(p);
+        return getListData(rows , p);
+    }
+
+    public Message sysSPartAdd(HttpServletRequest req, SYS_HPART_CD shc) {
+        shc.setSite_code(getSessionData(req).getSite_code());
+        shc.setUser_code(getSessionData(req).getUser_code());
+        return bomMapper.sysSPartAdd(shc);
+    }
+
+    public Message sysSPartDel(HttpServletRequest req, SYS_HPART_CD shc) {
+        shc.setSite_code(getSessionData(req).getSite_code());
+        return bomMapper.sysSPartDel(shc);
     }
 }

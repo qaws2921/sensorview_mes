@@ -72,4 +72,16 @@
         EXEC SP_SYS_HPART_ADD2 #{site_code},#{keyword},#{keyword2},#{keyword3},#{keyword4},#{keyword5},#{user_code}
     </select>
 
+    <select id="sysSPartGet" resultType="mes.sensorview.mesManager.BOM.DTO.SYS_HPART_CD">
+        EXEC SP_SYS_HPART_GET #{site_code},#{page},#{rows},'','','',#{keyword4}
+    </select>
+
+    <select id="sysSPartAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_HPART_ADD #{site_code},#{keyword},#{user_code}
+    </select>
+
+    <select id="sysSPartDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SYS_HPART_DEL #{site_code},#{keyword}
+    </select>
+
 </mapper>

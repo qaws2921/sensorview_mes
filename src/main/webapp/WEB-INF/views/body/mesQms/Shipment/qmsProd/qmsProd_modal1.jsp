@@ -22,7 +22,7 @@
         height: 18px !important;
         width: 100% !important;
     }
-    t
+
 </style>
 
 <div id="addDialog" title="출하검사등록" style="display:none">
