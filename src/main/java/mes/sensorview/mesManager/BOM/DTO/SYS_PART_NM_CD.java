@@ -29,7 +29,7 @@ public class SYS_PART_NM_CD {
     private String keyword;
 
     private String part_type_name;
-    private String part_grp_name;
+    private String part_grp_name1;
     private String part_grp_name2;
 
 

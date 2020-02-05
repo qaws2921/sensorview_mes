@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/data-component/admin/bom/sysPartName/sysPartName_modal1.js"
         charset="UTF-8"></script>
 
-<div id="addDialog" title="제품명추가" style="display:none">
+<div id="addDialog" title="제품명등록" style="display:none">
     <div class="profile-user-info profile-user-info-striped">
         <div class="profile-info-row">
             <div class="profile-info-name">시리즈</div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="profile-info-row">
-            <div class="profile-info-name">주파수(GHz)</div>
+            <div class="profile-info-name">규격_1(GHz)</div>
             <div class="profile-info-value">
                 <input type="text" name="frequency" class="form-control modal_value" onkeyup="num_keyup_float(this)">
             </div>

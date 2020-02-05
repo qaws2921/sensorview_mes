@@ -21,7 +21,7 @@ var array =
         {code: "sysBOMList", title: '관리자', sub: '마스터관리', name: 'BOM현황'},
         {code: "sysPartNameGroup", title: '관리자', sub: 'BOM관리', name: '유형관리'},
         {code: "sysPartNameGroup2", title: '관리자', sub: 'BOM관리', name: '제품군관리'},
-        {code: "sysPartName", title: '관리자', sub: 'BOM관리', name: '제품명관리'},
+        {code: "sysPartName", title: '관리자', sub: 'BOM관리', name: '제품명등록'},
         {code: "sysPart", title: '관리자', sub: 'BOM관리', name: '자재등록'},
         {code: "sysSPart", title: '관리자', sub: 'BOM관리', name: '제품등록'},
 
@@ -94,6 +94,10 @@ var array =
         {code:"qmsRecvMRB",title:'품질관리',sub:'수입검사',name:'수입검사MRB관리'},
 
         // 생산관리
+        {code:"popPlan1",title:'생산관리',sub:'생산관리',name:'생산계획등록(1단계)'},
+        {code:"popPlan2",title:'생산관리',sub:'생산관리',name:'생산계획등록(2단계)'},
+        {code:"popPlan3",title:'생산관리',sub:'생산관리',name:'생산지시등록(3단계)'},
+        {code:"popPlanSub",title:'생산관리',sub:'생산관리',name:'생산지시등록(Sub)'},
         {code:"popProdRange",title:'생산관리',sub:'생산현황',name:'기간별 생산실적'},
         {code:"popProdList1",title:'생산관리',sub:'생산현황',name:'제품별 생산실적'},
 

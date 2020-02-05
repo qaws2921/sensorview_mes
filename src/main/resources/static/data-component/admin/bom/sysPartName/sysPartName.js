@@ -113,11 +113,16 @@ function delete_btn() {
 
 function select_change1(value) {
     part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:value}).then(function (data2){
-        select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data2[0].part_grp_code})
+        part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data2[0].part_grp_code})
+    }).catch(function (err){
+        $('#part_group_select').empty();
+        $('#part_prod_select').empty();
     });
 }
 function select_change2(value) {
-    select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value})
+    part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value}).catch(function (err){
+        $('#part_prod_select').empty();
+    });
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
@@ -130,8 +135,11 @@ function authcheck() {
 function selectBox() {
     part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
         part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
-            select_makes3('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
+            part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
         });
+    }).catch(function (err){
+        $('#part_group_select').empty();
+        $('#part_prod_select').empty();
     });
 }
 
@@ -140,7 +148,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','주파수(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
+        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','규격_1(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
         colModel: [
             {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
             {name: 'series', index: 'series', sortable: false, width: 60},
@@ -149,13 +157,13 @@ function jqGrid_main() {
             {name: 'frequency', index: 'frequency', sortable: false, width: 60},
             {name: 'route_name', index: 'route_name', sortable: false, width: 60},
             {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
-            {name: 'part_grp_name', index: 'part_grp_name', sortable: false, width: 60},
+            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
             {name: 'user_code', index: 'user_code', sortable: false, width: 60},
             {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
             {name: 'remark', index: 'remark', sortable: false, width: 60}
         ],
-        caption: "제품명관리 | MES",
+        caption: "제품명등록 | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',
