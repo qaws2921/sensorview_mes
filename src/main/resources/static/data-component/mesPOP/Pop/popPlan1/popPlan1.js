@@ -34,7 +34,8 @@ function add_btn() {
 }
 ////////////////////////////호출 함수//////////////////////////////////
 function datepickerInput() {
-    datepicker_makes("#datepicker", 0);
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
 }
 
 

@@ -8,7 +8,8 @@ function modal_start1() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function datepickerInput_modal1() {
-    datepicker_makes("#datepicker2", 0);
+    datepicker_makes("#datepicker3", 0);
+    datepicker_makes("#datepicker4", 1);
 }
 
 

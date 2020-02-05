@@ -44,7 +44,18 @@ function addUdate_btn() {
 }
 ////////////////////////////호출 함수/////////////////////////////////////
 function effectiveness1(modal_objact) { // 유효성 검사
-    return true;
+    if (modal_objact.series === '') {
+        alert("시리즈를 입력해주세요");
+        return false;
+    } else if (modal_objact.center_wire === '') {
+        alert("Center Wire(Ø)를 입력해주세요");
+        return false;
+    }  else if (modal_objact.frequency === '') {
+        alert("규격_1(GH_z)를 입력해주세요");
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function selectBox_modal1() {
