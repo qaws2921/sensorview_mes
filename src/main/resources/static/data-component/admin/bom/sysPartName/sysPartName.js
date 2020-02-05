@@ -151,7 +151,7 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','주파수(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
+        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','규격_1(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
         colModel: [
             {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
             {name: 'series', index: 'series', sortable: false, width: 60},
@@ -166,7 +166,7 @@ function jqGrid_main() {
             {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
             {name: 'remark', index: 'remark', sortable: false, width: 60}
         ],
-        caption: "제품명관리 | MES",
+        caption: "제품명등록 | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',

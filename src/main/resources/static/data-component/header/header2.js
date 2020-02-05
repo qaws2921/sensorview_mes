@@ -21,7 +21,7 @@ var array =
         {code: "sysBOMList", title: '관리자', sub: '마스터관리', name: 'BOM현황'},
         {code: "sysPartNameGroup", title: '관리자', sub: 'BOM관리', name: '유형관리'},
         {code: "sysPartNameGroup2", title: '관리자', sub: 'BOM관리', name: '제품군관리'},
-        {code: "sysPartName", title: '관리자', sub: 'BOM관리', name: '제품명관리'},
+        {code: "sysPartName", title: '관리자', sub: 'BOM관리', name: '제품명등록'},
         {code: "sysPart", title: '관리자', sub: 'BOM관리', name: '자재등록'},
         {code: "sysSPart", title: '관리자', sub: 'BOM관리', name: '제품등록'},
 
