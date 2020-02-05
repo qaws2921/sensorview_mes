@@ -8,7 +8,7 @@
             <div class="profile-info-name">계획일자</div>
             <div class="profile-info-value">
                 <div class="input-icon input-icon-right">
-                    <input type="text" name="start_date" id="datepicker2"
+                    <input type="text" id="datepicker3"
                            class="form-control h-25 condition_main" readonly>
                     <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                 </div>
@@ -54,7 +54,16 @@
                 <select class="form-control h-25 modal_value" style="width:100%">
                 </select>
             </div>
+        </div><div class="profile-info-row">
+        <div class="profile-info-name">마감일자</div>
+        <div class="profile-info-value">
+            <div class="input-icon input-icon-right">
+                <input type="text" id="datepicker4"
+                       class="form-control h-25 condition_main" readonly>
+                <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+            </div>
         </div>
+    </div>
         <div class="profile-info-row">
             <div class="profile-info-name">Remark</div>
             <div class="profile-info-value">
