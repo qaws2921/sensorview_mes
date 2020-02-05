@@ -129,9 +129,6 @@ function select_change2(value) {
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "sysPartName"}).then(function (data) {
         main_data.auth = data;
-    }).catch(function (err){
-        $('#part_group_select').empty();
-        $('#part_prod_select').empty();
     });
 }
 
