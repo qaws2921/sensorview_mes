@@ -43,4 +43,6 @@ public interface BOMMapper {
     SYS_PART_NM_CD sysPartNameOneGet(Page p);
 
     Message sysPartNameDel(SYS_PART_NM_CD spnc);
+
+    Message sysSPartAdd2(Page p);
 }
