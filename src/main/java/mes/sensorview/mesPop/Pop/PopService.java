@@ -23,6 +23,12 @@ public class PopService extends ReturnFunction {
         return getListData(rows, p);
     }
 
+    public Message popPlan1Add(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        pp1c.setSite_code(getSessionData(req).getSite_code());
+        pp1c.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlan1Add(pp1c);
+    }
+
     public Message popPlan2Add2(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         p.setUser_code(getSessionData(req).getUser_code());

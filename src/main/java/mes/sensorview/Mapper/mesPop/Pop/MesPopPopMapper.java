@@ -11,5 +11,7 @@ import java.util.List;
 public interface MesPopPopMapper {
     List<POP_PLAN1_CD> popPlan1Get(Page p);
 
+    Message popPlan1Add(POP_PLAN1_CD pp1c);
+
     Message popPlan2Add2(Page p);
 }
