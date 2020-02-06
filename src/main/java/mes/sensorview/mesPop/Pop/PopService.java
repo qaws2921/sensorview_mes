@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesPop.Pop.MesPopPopMapper;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
+import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,11 @@ public class PopService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         p.setUser_code(getSessionData(req).getUser_code());
         return mesPopPopMapper.popPlan2Add2(p);
+    }
+
+    public RESTful popPlan2Get(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<POP_PLAN2_CD> rows = mesPopPopMapper.popPlan2Get(p);
+        return getListData(rows, p);
     }
 }

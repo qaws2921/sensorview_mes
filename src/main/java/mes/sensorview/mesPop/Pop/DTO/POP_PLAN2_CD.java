@@ -37,5 +37,7 @@ public class POP_PLAN2_CD {
     private int rownum;
     private int rownum_page;
     private int rec_count;
+    private String route_code;
+    private String route_name;
     private String keyword;
 }

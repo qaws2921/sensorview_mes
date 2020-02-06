@@ -28,4 +28,9 @@ public class PopRestController {
     public Message popPlan2Add2(HttpServletRequest req, Page p) {
         return popService.popPlan2Add2(req, p);
     }
+
+    @RequestMapping(value = "/popPlan2Get", method = RequestMethod.POST)
+    public RESTful popPlan2Get(HttpServletRequest req, Page p) {
+        return popService.popPlan2Get(req, p);
+    }
 }
