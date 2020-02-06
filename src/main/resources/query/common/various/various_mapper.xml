@@ -22,7 +22,7 @@
     </select>
 
     <select id="sysCommonAllGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
-        EXEC SP_SYS_COMMON_GET #{site_code},#{page}, #{rows},#{keyword}, '','Y'
+        EXEC SP_SYS_COMMON_GET #{site_code},0,0,#{keyword}, '','Y'
     </select>
     <select id="sysPartTypeGet" resultType="mes.sensorview.Common.Various.DTO.SYSPartType">
         EXEC SP_SYS_PART_TYPE_GET #{site_code},#{keyword},''
