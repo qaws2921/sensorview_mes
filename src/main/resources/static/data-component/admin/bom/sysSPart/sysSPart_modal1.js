@@ -25,14 +25,13 @@ function add_modal1_btn() {
             var list2 = [];
 
             jdata.forEach(function (data, j) {
-                if (data.prod_dept !== '' && data.prod_type !=='' ) {
+                if (data.prod_dept !== '' && data.prod_type !=='' && data.prod_dept !== ' ' ) {
                     list.push(data.part_code + gu4 + data.prod_dept+gu4+data.prod_type+gu4+data.remark);
                 } else {
                     list2.push(data.part_name);
                 }
             });
             callback(function () {
-                console.log(list);
                 if (list2.length > 0) {
                     alert(list2[0] + "를 다시 확인해주세요");
                 } else {
@@ -94,26 +93,16 @@ function modal_make1() {
         ]
     });
 }
-// function setSelectCombo(data) {
-//     console.log(data);
-//     data = jQuery.parseJSON(data);
-//     console.log(data);
-//
-//
-//
-//     var result = '<select>';
-//     result += '<option value="">' + '선택안함' + '</option>';
-//     for(var idx=0; idx < data.length; idx++) {
-//
-//         result += '<option value="' + data[idx].code_value + '">' + data[idx].code_name1 + '</option>';
-//
-//     }
-//
-//     result += '</select>';
-//
-//     return result;
-//
-// }
+function setSelectCombo(data) {
+    data = jQuery.parseJSON(data);
+    var result = '<select name="prod_dept">';
+    result += '<option value="">' + '선택안함' + '</option>';
+    for(var idx=0; idx < data.length; idx++) {
+        result += '<option value="' + data[idx].code_value + '">' + data[idx].code_name1 + '</option>';
+    }
+    result += '</select>';
+    return result;
+}
 
 
 
@@ -123,43 +112,60 @@ function jqGrid_modal1() {
         datatype: "local",
         ajaxSelectOptions: { cache: false, type: 'POST' },
         caption: "제품등록 | MES",
-        colNames: ['part_code','품명', '공정구분','생산구분','제품유형','용도','비고','공정코드'],
+        colNames: ['part_code','품명', '공정구분','생산구분','prod_dept','제품유형','용도','비고','공정코드'],
         colModel: [
             {name: 'part_code', index: 'part_code',hidden:true,key:true, sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
             {name: 'line_name', index: 'line_name', sortable: false},
-            {name: 'prod_dept', index: 'prod_dept', sortable: false,
+            {name: 'prod_dept_name', index: 'prod_dept_name', sortable: false,
                 editable: true,                                       // 수정가능 여부
-                formatter: 'select',                                 // SELECT 포매터
+                                                                        // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
                 editoptions: {
-                    // dataUrl:"sysCommonAllGet",
-                    // postData: function (rowid, value, cmName) {
-                    //     return {
-                    //         keyword: 'PROD_DEPT'
-                    //     }
-                    // },
-                    // buildSelect:setSelectCombo,
-                    // dataInit: function ss(elem){
-                    //     console.log("sss");
-                    //     $(elem).width(100);
-                    //     $(elem)
-                    //         .append("<option value='1'>Apples</option>")
-                    //         .append("<option value='2'>Oranges</option>");
-                    //     },
+                    dataUrl:"sysCommonAllGet",
+                    postData: function (rowid, value, cmName) {
+                        return {
+                            keyword: 'PROD_DEPT'
+                        }
+                    },
+                    buildSelect:setSelectCombo,
+                    dataInit: function ss(elem){
 
-                    value: ":선택안함;" + main_data.prod_dept_string.join(";"),             // EDIT옵션(SELECT, INPUT, CHECKBOX등 옵션 상이함)
+                        $(elem).css('height','18px');
+                        $(elem).css('width','100%');
+
+                        },
+
+                   // value: ":선택안함;" + main_data.prod_dept_string.join(";"),             // EDIT옵션(SELECT, INPUT, CHECKBOX등 옵션 상이함)
                     dataEvents: [{
                         type: 'change',
                         fn: function (e) {                // 값 : this.value || e.target.val()
 
-                            //$("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                            var row = $(e.target).closest('tr.jqgrow');
+                            var rowid = row.attr('id');
+                            var value = e.target.value;
+                            var text = $(e.target).find("option:selected").text();
+                            $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                            $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept', value);
+                            if (value === ''){
+                                $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept', ' ');
+                            }
+                            $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept_name', text);
                         },
                     },
                         {
                             type: 'focusout',
                             fn: function (e) {
-                               // $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                                var row = $(e.target).closest('tr.jqgrow');
+                                var rowid = row.attr('id');
+                                var value = e.target.value;
+                                var text = $(e.target).find("option:selected").text();
+                                $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                                $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept', value);
+                                if (value === ''){
+                                    $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept', ' ');
+                                }
+                                $('#mes_modal1_grid1').jqGrid('setCell', rowid, 'prod_dept_name', text);
 
                             }
                         }
@@ -169,6 +175,7 @@ function jqGrid_modal1() {
                 }
 
             },
+            {name: 'prod_dept', index: 'prod_dept', hidden:true, sortable: false,},
             {name: 'part_type_name', index: 'part_type_name', sortable: false},
             {name: 'prod_type', index: 'prod_type', sortable: false,
                 editable: true,                                       // 수정가능 여부
@@ -232,6 +239,23 @@ function jqGrid_modal1() {
             lastsel = id;
             saverow = IRow;
             savecol = ICol;
+            // if(name=='prod_dept_name') {
+            //     var data2 = [];
+            //     ccn_ajax("/sysCommonAllGet", {keyword: 'PROD_DEPT'}).then(function (data) {
+            //         main_data.prod_dept_string=[];
+            //         data.forEach(function (d) {
+            //             data2.push(d.code_value+":"+d.code_name1);
+            //         })
+            //
+            //         $("#mes_modal1_grid1").setColProp(name, {
+            //                 editoptions: {
+            //                     value: data2.join(";"),
+            //
+            //                 }
+            //             }
+            //         )
+            //     });
+            // }
 
         },
         pager: "#mes_modal1_grid1_pager",
