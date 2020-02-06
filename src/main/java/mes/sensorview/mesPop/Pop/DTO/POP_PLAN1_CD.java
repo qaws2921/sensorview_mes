@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class POP_PLAN1_CD {
-    private String site_co_de;
+    private String site_code;
     private String plan_date;
     private String plan_no1;
     private String part_type;
@@ -38,5 +38,5 @@ public class POP_PLAN1_CD {
 
     private String part_grp_name1;
     private String part_grp_name2;
-
+    private String keyword;
 }

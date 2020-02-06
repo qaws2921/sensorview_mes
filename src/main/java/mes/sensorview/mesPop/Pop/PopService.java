@@ -1,5 +1,6 @@
 package mes.sensorview.mesPop.Pop;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
@@ -20,5 +21,11 @@ public class PopService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         List<POP_PLAN1_CD> rows = mesPopPopMapper.popPlan1Get(p);
         return getListData(rows, p);
+    }
+
+    public Message popPlan1Add(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        pp1c.setSite_code(getSessionData(req).getSite_code());
+        pp1c.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlan1Add(pp1c);
     }
 }

@@ -8,7 +8,7 @@
             <div class="profile-info-name">계획일자</div>
             <div class="profile-info-value">
                 <div class="input-icon input-icon-right">
-                    <input type="text" id="datepicker3" name="plan_date "
+                    <input type="text" id="datepicker3" name="plan_date"
                            class="form-control h-25 modal_value" readonly>
                     <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                 </div>
@@ -31,7 +31,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">제품명</div>
             <div class="profile-info-value">
-                <select class="form-control h-25 modal_value" name="part_name" id="part_name_select_modal1" style="width:100%">
+                <select class="form-control h-25 modal_value" name="part_code" id="part_name_select_modal1" style="width:100%">
                 </select>
             </div>
         </div>

@@ -7,50 +7,60 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1_modal1(value) {
-    $('#part_prod_select_modal1').empty();
-    $('#part_name_select_modal1').empty();
-    part_type_select_ajax('#part_prod_select_modal1', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2){
-        part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2})
-    }).catch(function (err){
+    if(value =='' || value == null){
         $('#part_prod_select_modal1').empty();
         $('#part_name_select_modal1').empty();
-    });
+    }else {
+        part_type_select_ajax('#part_prod_select_modal1', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2){
+           console.log(data2);
+            part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2})
+        }).catch(function (err){
+            $('#part_prod_select_modal1').empty();
+            $('#part_name_select_modal1').empty();
+        });
+    }
+
 }
 function select_change2_modal1(value) {
-    $('#part_name_select_modal1').empty();
-    part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select_modal1').val(), keyword3:value}).catch(function (err){
+    if(value =='' || value == null){
         $('#part_name_select_modal1').empty();
-    });
+    }else {
+        part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select_modal1').val(), keyword3:value}).catch(function (err){
+            $('#part_name_select_modal1').empty();
+        });
+    }
+
 }
 function addUdate_btn() {
     var modal_objact = value_return(".modal_value");
+    modal_objact.plan_date = modal_objact.plan_date.replace(/\-/g, '');
+    modal_objact.end_date = modal_objact.end_date.replace(/\-/g, '');
+    modal_objact.keyword = main_data.check;
     console.log(modal_objact);
-    // if (effectiveness1(modal_objact)) {
-    //     var text = '저장하겠습니까?';
-    //
-    //     if (main_data.check === "U") {
-    //         text = '수정하겠습니까?';
-    //     }else {
-    //         modal_objact.idx = 1;
-    //     }
-    //     if (confirm(text)) {
-    //         modal_objact.keyword = main_data.check;
-    //         ccn_ajax("/sysPartNameGroupAdd", modal_objact).then(function (data) {
-    //             if (data.result === 'NG') {
-    //                 alert(data.message);
-    //             } else {
-    //                 if (main_data.check === "I") {
-    //                     get_btn(1);
-    //                 } else {
-    //                     get_btn_post($("#mes_grid").getGridParam('page'));
-    //                 }
-    //             }
-    //             $("#addDialog").dialog('close');
-    //         }).catch(function (err) {
-    //             alert("저장실패");
-    //         });
-    //     }
-    // }
+    if (effectiveness1(modal_objact)) {
+        var text = '저장하겠습니까?';
+
+        if (main_data.check === "U") {
+            text = '수정하겠습니까?';
+        }
+        if (confirm(text)) {
+            modal_objact.keyword = main_data.check;
+            ccn_ajax("/popPlan1Add", modal_objact).then(function (data) {
+                if (data.result === 'NG') {
+                    alert(data.message);
+                } else {
+                    if (main_data.check === "I") {
+                        get_btn(1);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                }
+                $("#addDialog").dialog('close');
+            }).catch(function (err) {
+                alert("저장실패");
+            });
+        }
+    }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////
