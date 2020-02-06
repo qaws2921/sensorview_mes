@@ -7,6 +7,8 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1_modal1(value) {
+    $('#part_prod_select_modal1').empty();
+    $('#part_name_select_modal1').empty();
     part_type_select_ajax('#part_prod_select_modal1', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2){
         part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2})
     }).catch(function (err){
@@ -15,7 +17,8 @@ function select_change1_modal1(value) {
     });
 }
 function select_change2_modal1(value) {
-    part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2}).catch(function (err){
+    $('#part_name_select_modal1').empty();
+    part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select_modal1').val(), keyword3:value}).catch(function (err){
         $('#part_name_select_modal1').empty();
     });
 }

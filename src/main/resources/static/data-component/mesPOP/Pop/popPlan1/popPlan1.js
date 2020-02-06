@@ -51,6 +51,13 @@ function get_btn_post(page) {
 function add_btn() {
     if (main_data.auth.check_add !="N") {
         main_data.check = 'I'; // 저장인지 체크
+        modal_reset(".modal_value", main_data.readonly);
+        $('#part_group_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
+        $('#part_group_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
+        $('#part_name_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
+        $('#prod_type_select option:eq(0)').prop("selected", true).trigger("change");
+        $('#prod_dept_select option:eq(0)').prop("selected", true).trigger("change");
+
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");
