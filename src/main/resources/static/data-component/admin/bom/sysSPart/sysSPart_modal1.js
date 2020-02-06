@@ -94,11 +94,34 @@ function modal_make1() {
         ]
     });
 }
+// function setSelectCombo(data) {
+//     console.log(data);
+//     data = jQuery.parseJSON(data);
+//     console.log(data);
+//
+//
+//
+//     var result = '<select>';
+//     result += '<option value="">' + '선택안함' + '</option>';
+//     for(var idx=0; idx < data.length; idx++) {
+//
+//         result += '<option value="' + data[idx].code_value + '">' + data[idx].code_name1 + '</option>';
+//
+//     }
+//
+//     result += '</select>';
+//
+//     return result;
+//
+// }
+
+
 
 function jqGrid_modal1() {
     $("#mes_modal1_grid1").jqGrid({
         mtype: 'POST',
         datatype: "local",
+        ajaxSelectOptions: { cache: false, type: 'POST' },
         caption: "제품등록 | MES",
         colNames: ['part_code','품명', '공정구분','생산구분','제품유형','용도','비고','공정코드'],
         colModel: [
@@ -110,18 +133,33 @@ function jqGrid_modal1() {
                 formatter: 'select',                                 // SELECT 포매터
                 edittype: 'select',                                    // EDIT타입 : SELECT
                 editoptions: {
+                    // dataUrl:"sysCommonAllGet",
+                    // postData: function (rowid, value, cmName) {
+                    //     return {
+                    //         keyword: 'PROD_DEPT'
+                    //     }
+                    // },
+                    // buildSelect:setSelectCombo,
+                    // dataInit: function ss(elem){
+                    //     console.log("sss");
+                    //     $(elem).width(100);
+                    //     $(elem)
+                    //         .append("<option value='1'>Apples</option>")
+                    //         .append("<option value='2'>Oranges</option>");
+                    //     },
+
                     value: ":선택안함;" + main_data.prod_dept_string.join(";"),             // EDIT옵션(SELECT, INPUT, CHECKBOX등 옵션 상이함)
                     dataEvents: [{
                         type: 'change',
                         fn: function (e) {                // 값 : this.value || e.target.val()
 
-                            $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                            //$("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
                         },
                     },
                         {
                             type: 'focusout',
                             fn: function (e) {
-                                $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
+                               // $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
 
                             }
                         }

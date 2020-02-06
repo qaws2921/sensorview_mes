@@ -74,4 +74,6 @@ public interface VariousMapper {
     List<POP_ROUTE_CD> popRouteGroupAllGet(Page p);
 
     List<SYS_PART_NM_CD> sysPartNameAllGet(Page p);
+
+    List<SYSProdLine> sysProdLineAllGet(Page p);
 }

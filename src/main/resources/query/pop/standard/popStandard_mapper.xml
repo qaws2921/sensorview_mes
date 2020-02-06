@@ -34,6 +34,15 @@
         EXEC SP_POP_ROUTE_DEL #{site_code},#{keyword}
     </select>
 
+    <select id="popLineUserGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD">
+        EXEC SP_POP_LINE_USER_GET #{site_code},#{page},#{rows},#{keyword}
+    </select>
 
+    <select id="popLineUserAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_LINE_USER_ADD #{site_code},#{line_code},#{keyword},#{user_code}
+    </select>
 
+    <select id="popLineUserDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_LINE_USER_DEL #{site_code},#{line_code},#{keyword}
+    </select>
 </mapper>
