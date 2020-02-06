@@ -11,7 +11,7 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">계획일자</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0">조회기간</td>
                     <td class="wt-px-200">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="start_date" id="datepicker"
@@ -19,19 +19,29 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
+                    <td class="t-align-c" style="width:25px !important;">
+                        ~
+                    </td>
+                    <td class="wt-px-200">
+                        <div class="input-icon input-icon-right">
+                            <input type="text" name="stop_date" id="datepicker2"
+                                   class="form-control h-25 condition_main" readonly>
+                            <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
+                        </div>
+                    </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword2" style="width:100%">
+                        <select class="form-control condition_main" name="keyword" id="part_group_select" onchange="select_change1(this.value)"  style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword3" style="width:100%">
+                        <select class="form-control condition_main" name="keyword2" id="part_prod_select" onchange="select_change2(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품명</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword4" style="width:100%">
+                        <select class="form-control condition_main" name="keyword3" id="part_name_select" style="width:100%">
                         </select>
                     </td>
                     <td></td>

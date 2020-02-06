@@ -1,5 +1,6 @@
 package mes.sensorview.mesPop.Pop;
 
+import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class PopRestController {
     @RequestMapping(value = "/popPlan1Get", method = RequestMethod.POST)
     public RESTful popPlan1Get(HttpServletRequest req, Page p) {
         return popService.popPlan1Get(req, p);
+    }
+
+    @RequestMapping(value ="/popPlan2Add2", method = RequestMethod.POST)
+    public Message popPlan2Add2(HttpServletRequest req, Page p) {
+        return popService.popPlan2Add2(req, p);
     }
 }
