@@ -167,4 +167,9 @@ public class VariousService extends ReturnFunction {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysPartNameAllGet(p);
     }
+
+    public List<SYSProdLine> sysProdLineAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysProdLineAllGet(p);
+    }
 }

@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,9 +57,20 @@ public class PopStandardRestController {
     public Message popRouteDel(HttpServletRequest req, POP_ROUTE_CD pr) {
         return popStandardService.popRouteDel(req, pr);
     }
+    @RequestMapping(value = "/popLineUserGet", method = RequestMethod.POST)
+    public RESTful popLineUserGet(HttpServletRequest req, Page p) {
+        return popStandardService.popLineUserGet(req, p);
+    }
 
+    @RequestMapping(value = "/popLineUserAdd", method = RequestMethod.POST)
+    public Message popLineUserAdd(HttpServletRequest req, POP_LINE_USER_CD pluc) {
+        return popStandardService.popLineUserAdd(req,pluc);
+    }
 
-
+    @RequestMapping(value ="/popLineUserDel", method = RequestMethod.POST)
+    public Message popLineUserDel(HttpServletRequest req, POP_LINE_USER_CD pluc) {
+        return popStandardService.popLineUserDel(req, pluc);
+    }
 
 
 }

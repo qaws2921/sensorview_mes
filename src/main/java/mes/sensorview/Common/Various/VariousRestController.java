@@ -142,4 +142,7 @@ public class VariousRestController {
 
     @RequestMapping(value ="/sysPartNameAllGet",method = RequestMethod.POST)
     public List<SYS_PART_NM_CD> sysPartNameAllGet(HttpServletRequest req, Page p){ return variousService.sysPartNameAllGet(req, p);}
+
+    @RequestMapping(value ="/sysProdLineAllGet",method = RequestMethod.POST)
+    public List<SYSProdLine> sysProdLineAllGet(HttpServletRequest req, Page p){ return variousService.sysProdLineAllGet(req, p);}
 }
