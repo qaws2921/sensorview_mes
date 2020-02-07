@@ -15,6 +15,7 @@ import mes.sensorview.mesManager.BOM.DTO.SYS_PART_GROUP2_CD;
 import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
@@ -171,5 +172,10 @@ public class VariousService extends ReturnFunction {
     public List<SYSProdLine> sysProdLineAllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.sysProdLineAllGet(p);
+    }
+
+    public List<POP_LINE_USER_CD> popLineUserAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.popLineUserAllGet(p);
     }
 }

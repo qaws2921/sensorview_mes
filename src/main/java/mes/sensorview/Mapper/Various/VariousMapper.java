@@ -13,6 +13,7 @@ import mes.sensorview.mesManager.BOM.DTO.SYS_PART_NM_CD;
 import mes.sensorview.mesManager.Master.DTO.SYSCargo;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import mes.sensorview.mesManager.Master.DTO.SYSProdLine;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import mes.sensorview.mesQms.Standard.DTO.SYS_QC_ITEM;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_GROUP;
@@ -76,4 +77,6 @@ public interface VariousMapper {
     List<SYS_PART_NM_CD> sysPartNameAllGet(Page p);
 
     List<SYSProdLine> sysProdLineAllGet(Page p);
+
+    List<POP_LINE_USER_CD> popLineUserAllGet(Page p);
 }

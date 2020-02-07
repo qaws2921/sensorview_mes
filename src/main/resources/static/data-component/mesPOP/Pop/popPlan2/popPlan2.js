@@ -16,13 +16,49 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     authcheck();
-    // modal_start1();
+    modal_start1();
+    selectBox();
     datepickerInput();
     jqgridPagerIcons();
 });
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data_post = main_data.send_data;
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.stop_date = main_data.send_data.stop_date.replace(/\-/g, '');
+
+    $("#mes_grid").setGridParam({
+        url: '/popPlan1Get',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+function get_btn_post(page) {
+    $("#mes_grid").setGridParam({
+        url: '/popPlan1Get',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+}
+
+
+function under_get(rowid) {
+    $("#mes_grid2").setGridParam({
+        url: '/popPlan2Get',
+        datatype: "json",
+        page: 1,
+        postData: {keyword: rowid}
+    }).trigger("reloadGrid");
+}
+
+
 function add_btn() {
     if (main_data.auth.check_add !="N") {
         main_data.check = 'I'; // 저장인지 체크
@@ -31,9 +67,63 @@ function add_btn() {
         alert("추가권한이 없습니다,");
     }
 }
+
+
+function select_change1(value) {
+    part_type_select_ajax_all('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (){
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_name_select').append(option);
+        $('#part_name_select').select2();
+    }).catch(function (err){
+        $('#part_prod_select').empty();
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_prod_select').append(option);
+        $('#part_name_select').append(option2);
+    });
+}
+function select_change2(value) {
+    if(value == null || value == ''){
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_name_select').append(option);
+    }else {
+        part_type_select_ajax_all('#part_name_select', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select').val(), keyword3:value}).catch(function (err){
+            $('#part_name_select').empty();
+            var option = $("<option></option>").text('전체').val('');
+            $('#part_name_select').append(option);
+        });
+
+    }
+}
+
+function update_btn(jqGrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        ccn_ajax("/popPlan2Add2", {keyword: jqGrid_data.plan_no1}).then(function (data) {
+            main_data.check = 'U';
+            $('#mes_modal1_grid1').jqGrid("clearGridData");
+
+            $("#mes_modal1_grid1").setGridParam({
+                url: '/popPlan2Get',
+                datatype: "json",
+                page: 1,
+                postData: {keyword: jqGrid_data.plan_no1}
+            }).trigger("reloadGrid");
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
 function datepickerInput() {
-    datepicker_makes("#datepicker", 0);
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
 }
 
 function authcheck() {
@@ -42,54 +132,62 @@ function authcheck() {
     });
 }
 
+function selectBox() {
+    part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+        $('#part_prod_select').empty();
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_prod_select').append(option);
+        $('#part_name_select').append(option2);
+        $('#part_prod_select').select2();
+        $('#part_name_select').select2();
+    });
+}
+
+
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
+        datatype: "local",
         mtype: 'POST',
-        datatype: 'local',
-        multiselect: true,
-        caption: '생산계획(2단계) | MES',
-        colNames: ['등록번호', '현황', '제품명', '계획량','생산량', '용도', '생산구분', '품목군', '제품군', '등록자', '등록일', '마감일', 'Remark', '비고'],
+        colNames: ['등록번호','현황','제품명','계획량','생산량','작업구분','생산구분','품목군','제품군','등록자','등록일','마감일','Remark','비고'],
         colModel: [
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false}
+            {name: 'plan_no1', index: 'plan_no1',sortable: false,key:true, width: 60},
+            {name: 'status_name', index: 'status_name',sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name',sortable: false, width: 60},
+            {name: 'plan_qty', index: 'plan_qty',sortable: false, width: 60},
+            {name: 'work_qty', index: 'work_qty',sortable: false, width: 60},
+            {name: 'prod_type_name', index: 'prod_type_name',sortable: false, width: 60},
+            {name: 'prod_dept_name', index: 'prod_dept_name',sortable: false, width: 60},
+            {name: 'part_grp_name1', index: 'part_grp_name1',sortable: false, width: 60},
+            {name: 'part_grp_name2', index: 'part_grp_name2',sortable: false, width: 60},
+            {name: 'user_name', index: 'user_name',sortable: false, width: 60},
+            {name: 'create_date', index: 'create_date',sortable: false, width: 60,formatter: formmatterDate},
+            {name: 'end_date', index: 'end_date',sortable: false, width: 60,formatter: formmatterDate2},
+            {name: 'remark', index: 'remark',sortable: false, width: 60},
+            {name: 'remark1', index: 'remark1',sortable: false, width: 60}
         ],
+        caption: "생산계획(2단계) | MES",
         autowidth: true,
-        viewrecords: true,
         height: 250,
+        pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
-        pager: '#mes_grid_pager',
+        multiselect: true,
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
                 cm = $myGrid.jqGrid('getGridParam', 'colModel');
             return (cm[i].name === 'cb');
         },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
+        },
         onCellSelect: function (rowid, icol, cellcontent, e) {
             under_get(rowid);
         },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            if (data.status === '1') {
-                main_data.check2 = 'N';
-            } else {
-                main_data.check2 = 'Y';
-            }
-            update_btn(rowid);
-        }
-    });
+    }).navGrid('#mes_grid_pager', {search: false, add: false, edit: false, del: false});
 
     $('#mes_grid2').jqGrid({
         mtype: 'POST',
@@ -97,20 +195,20 @@ function jqGrid_main() {
         caption: '생산계획(2단계) | MES',
         colNames: ['공정라우팅', '공정명', '품명', '계획량','생산량' ,'계획일','용도','생산구분','품목군','제품군','작업자','마감일','Remark','비고'],
         colModel: [
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false},
-            {name: '', index: '', width: 60, sortable: false}
+            {name: 'route_name', index: 'route_name', width: 60, sortable: false},
+            {name: 'line_name', index: 'line_name', width: 60, sortable: false},
+            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
+            {name: 'plan_qty', index: 'plan_qty', width: 60, sortable: false},
+            {name: 'work_qty', index: 'work_qty', width: 60, sortable: false},
+            {name: 'plan_date', index: 'plan_date', width: 60, sortable: false,formatter: formmatterDate2},
+            {name: 'prod_type_name', index: 'prod_type_name', width: 60, sortable: false},
+            {name: 'prod_dept_name', index: 'prod_dept_name', width: 60, sortable: false},
+            {name: 'part_grp_name1', index: 'part_grp_name1', width: 60, sortable: false},
+            {name: 'part_grp_name2', index: 'part_grp_name2', width: 60, sortable: false},
+            {name: 'work_user_name', index: 'work_user_name', width: 60, sortable: false},
+            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2},
+            {name: 'remark', index: 'remark', width: 60, sortable: false},
+            {name: 'remark1', index: 'remark1', width: 60, sortable: false}
         ],
         autowidth: true,
         viewrecords: true,

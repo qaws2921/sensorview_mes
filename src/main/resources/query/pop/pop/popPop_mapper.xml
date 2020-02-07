@@ -8,4 +8,14 @@
     <select id="popPlan1Add" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_POP_PLAN1_ADD #{site_code},#{plan_date},'','',#{part_grp_code},#{part_grp_code2},#{part_code},'','',#{prod_type},#{prod_dept},#{plan_qty},'',#{end_date},'',#{user_code},#{remark},#{remark1},#{keyword}
     </select>
+    <select id="popPlan2Add2" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PLAN2_ADD2 #{site_code},#{keyword},#{user_code}
+    </select>
+
+    <select id="popPlan2Get" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD">
+        EXEC SP_POP_PLAN2_GET #{site_code},#{page},#{rows},#{keyword}
+    </select>
+
+
+
 </mapper>
