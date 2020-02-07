@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%--<script type="text/javascript" src="/data-component/mesPOP/Pop/popPlan1/popPlan1.js" charset="UTF-8"></script>--%>
+<script type="text/javascript" src="/data-component/mesPOP/Pop/popPlanSub/popPlanSub.js" charset="UTF-8"></script>
 
 <div class="main-content-inner">
     <div class="page-content">
@@ -30,17 +30,17 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword" style="width:100%">
+                        <select class="form-control condition_main" id="part_group_select" name="keyword" onchange="select_change1(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword2" style="width:100%">
+                        <select class="form-control condition_main" id="part_prod_select" name="keyword2" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" name="keyword3" style="width:100%">
+                        <select class="form-control condition_main" id="line_select" name="keyword3" style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -86,7 +86,7 @@
     </div>
 </div>
 
-<%--<%@include file="popPlan1_modal1.jsp" %>--%>
+<%@include file="popPlanSub_modal1.jsp" %>
 
 
 
