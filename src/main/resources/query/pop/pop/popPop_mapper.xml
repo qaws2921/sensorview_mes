@@ -6,8 +6,17 @@
     </select>
 
     <select id="popPlan1Add" resultType="mes.sensorview.Common.DataTransferObject.Message">
-        EXEC SP_POP_PLAN1_ADD #{site_code},#{plan_date},'','',#{part_grp_code},#{part_grp_code2},#{part_code},'','',#{prod_type},#{prod_dept},#{plan_qty},'',#{end_date},'',#{user_code},#{remark},#{remark1},#{keyword}
+        EXEC SP_POP_PLAN1_ADD #{site_code},#{plan_date},#{plan_no1},'',#{part_grp_code},#{part_grp_code2},#{part_code},'',#{status},#{prod_type},#{prod_dept},#{plan_qty},'',#{end_date},'',#{user_code},#{remark},#{remark1},#{keyword}
     </select>
+
+    <select id="popPlan1OneGet" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD">
+        EXEC SP_POP_PLAN1_GET #{site_code},1,1,'','',#{plan_no1},#{part_grp_code},#{part_grp_code2},#{part_code}
+    </select>
+
+    <select id="popPlan1Del" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PLAN1_DEL #{site_code}, #{keyword}
+    </select>
+
     <select id="popPlan2Add2" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_POP_PLAN2_ADD2 #{site_code},#{keyword},#{user_code}
     </select>

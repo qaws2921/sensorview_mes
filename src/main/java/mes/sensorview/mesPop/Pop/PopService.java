@@ -42,6 +42,17 @@ public class PopService extends ReturnFunction {
         return getListData(rows, p);
     }
 
+    public POP_PLAN1_CD popPlan1OneGet(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        pp1c.setSite_code(getSessionData(req).getSite_code());
+        pp1c.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlan1OneGet(pp1c);
+    }
+
+    public Message popPlan1Del(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        pp1c.setSite_code(getSessionData(req).getSite_code());
+        return mesPopPopMapper.popPlan1Del(pp1c);
+    }
+
     public Message popPlan2Add(HttpServletRequest req, POP_PLAN2_CD ppc) {
         ppc.setSite_code(getSessionData(req).getSite_code());
         ppc.setUser_code(getSessionData(req).getUser_code());
