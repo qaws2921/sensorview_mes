@@ -3,7 +3,9 @@ var saverow = 0;
 
 var savecol = 0;
 
-
+var modal1_data = {
+    plan_no1 : ''
+}
 
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
@@ -26,10 +28,14 @@ function add_modal1_btn() {
             var list2 = [];
 
             jdata.forEach(function (data, j) {
-                if (data.prod_dept !== '' && data.prod_type !=='' && data.prod_dept !== ' ' ) {
-                    list.push(data.part_code + gu4 + data.prod_dept+gu4+data.prod_type+gu4+data.remark);
+                if (data.prod_dept !== '' && data.prod_dept !== ' ' &&
+                    data.work_user_code !== '' && data.work_user_code !== ' ' &&
+                    data.plan_qty !== '' && data.plan_qty !== 0 &&
+                    data.plan_date !== ''
+            ) {
+                    list.push(data.plan_no2+gu4+data.plan_qty + gu4 + data.plan_date.replace(/\-/g, '')+gu4+data.prod_dept+gu4+data.work_user_code+gu4+data.remark+gu4+data.remark1);
                 } else {
-                    list2.push(data.part_name);
+                    list2.push(data.line_name);
                 }
             });
             callback(function () {
@@ -40,7 +46,8 @@ function add_modal1_btn() {
                     if (confirm(text)) {
                         wrapWindowByMask2();
                         add_data.keyword = list.join(gu5);
-                        ccn_ajax("/sysSPartAdd", add_data).then(function (data) {
+                        add_data.plan_no1 = modal1_data.plan_no1;
+                        ccn_ajax("/popPlan2Add", add_data).then(function (data) {
                             if (data.result === 'NG') {
                                 alert(data.message);
                             } else {
@@ -81,7 +88,11 @@ function modal_make1() {
                 text: '저장',
                 'class': 'btn btn-primary btn-minier',
                 click: function () {
-                    add_modal1_btn();
+                    if (main_data.check2 == 'Y'){
+                        add_modal1_btn();
+                    } else {
+                        alert("수정 할 수 없습니다.");
+                    }
                 }
             },
             {
@@ -309,7 +320,7 @@ function jqGrid_modal1() {
 
                 }
             },
-            {name: 'work_user_code', index: 'work_user_code', sortable: false},
+            {name: 'work_user_code', index: 'work_user_code',hidden:true, sortable: false},
             {name: 'remark', index: 'remark', sortable: false,
                 editable: true,
                 editoptions: {

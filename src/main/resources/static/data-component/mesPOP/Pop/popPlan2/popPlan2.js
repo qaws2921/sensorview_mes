@@ -8,7 +8,8 @@ var main_data = {
     check: 'I',
     send_data: {},
     readonly: [],
-    auth:{}
+    auth:{},
+    check2:'Y'
 };
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -103,6 +104,12 @@ function select_change2(value) {
 
 function update_btn(jqGrid_data) {
     if (main_data.auth.check_edit !="N") {
+        if (jqGrid_data.status == 0 || jqGrid_data.status == 1 ){
+            main_data.check2 = "Y";
+        } else {
+            main_data.check2 = "N";
+        }
+        modal1_data.plan_no1 = jqGrid_data.plan_no1;
         ccn_ajax("/popPlan2Add2", {keyword: jqGrid_data.plan_no1}).then(function (data) {
             main_data.check = 'U';
             $('#mes_modal1_grid1').jqGrid("clearGridData");
@@ -152,10 +159,11 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['등록번호','현황','제품명','계획량','생산량','작업구분','생산구분','품목군','제품군','등록자','등록일','마감일','Remark','비고'],
+        colNames: ['등록번호','현황','status','제품명','계획량','생산량','작업구분','생산구분','품목군','제품군','등록자','등록일','마감일','Remark','비고'],
         colModel: [
             {name: 'plan_no1', index: 'plan_no1',sortable: false,key:true, width: 60},
             {name: 'status_name', index: 'status_name',sortable: false, width: 60},
+            {name: 'status', index: 'status',sortable: false,hidden:true, width: 60},
             {name: 'part_name', index: 'part_name',sortable: false, width: 60},
             {name: 'plan_qty', index: 'plan_qty',sortable: false, width: 60},
             {name: 'work_qty', index: 'work_qty',sortable: false, width: 60},

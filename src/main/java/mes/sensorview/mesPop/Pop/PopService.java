@@ -41,4 +41,10 @@ public class PopService extends ReturnFunction {
         List<POP_PLAN2_CD> rows = mesPopPopMapper.popPlan2Get(p);
         return getListData(rows, p);
     }
+
+    public Message popPlan2Add(HttpServletRequest req, POP_PLAN2_CD ppc) {
+        ppc.setSite_code(getSessionData(req).getSite_code());
+        ppc.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlan2Add(ppc);
+    }
 }
