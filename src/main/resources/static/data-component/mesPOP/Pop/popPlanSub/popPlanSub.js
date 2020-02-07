@@ -33,9 +33,6 @@ function add_btn() {
     }
 }
 
-function select_change1(value) {
-    part_type_select_ajax_all('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:value});
-}
 
 ////////////////////////////호출 함수//////////////////////////////////
 function datepickerInput() {
@@ -44,14 +41,6 @@ function datepickerInput() {
 }
 
 function selectBox() {
-    part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'D'}).then(function () {
-        $('#part_prod_select').empty();
-        var option = $("<option></option>").text('전체').val('');
-        var option2 = $("<option></option>").text('전체').val('');
-        $('#part_prod_select').append(option);
-        $('#part_prod_select').select2();
-    });
-
     select_makes_sub("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:'2'},'Y');
 }
 

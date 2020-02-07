@@ -1,11 +1,17 @@
 ////////////////////////////시작 함수/////////////////////////////////////
 function modal_start1() {
     modal_make1();
+    selectBox_modal1();
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 
 ////////////////////////////호출 함수/////////////////////////////////////
+function selectBox_modal1() {
+    select_data_makes('#route_select_modal1','/popRouteGroupAllGet','route_code','route_name',{keyword:'2'});
+    select_data_makes('#mat_prod_select','/sysCommon2AllGet','code_name1','code_name2',{keyword:'MAT_PROD',keyword2:'CODE'});
+}
+
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,

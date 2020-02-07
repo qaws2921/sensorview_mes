@@ -7,12 +7,12 @@
         <div class="profile-info-row">
             <div class="profile-info-name">공정라우팅</div>
             <div class="profile-info-value">
-                <select class="form-control h-25 modal_value" style="width:100%">
+                <select class="form-control h-25 modal_value" id="route_select_modal1" style="width:100%">
                 </select>
             </div>
             <div class="profile-info-name">공정명</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value">
+                <input type="text" class="form-control modal_value" id="line_code_modal1" readonly>
             </div>
         </div>
         <div class="profile-info-row">
@@ -26,21 +26,9 @@
             </div>
         </div>
         <div class="profile-info-row">
-            <div class="profile-info-name">품목군</div>
-            <div class="profile-info-value">
-                <select class="form-control h-25 modal_value" style="width:100%">
-                </select>
-            </div>
-            <div class="profile-info-name">제품군</div>
-            <div class="profile-info-value">
-                <select class="form-control h-25 modal_value" style="width:100%">
-                </select>
-            </div>
-        </div>
-        <div class="profile-info-row">
             <div class="profile-info-name">품목</div>
             <div class="profile-info-value">
-                <select class="form-control h-25 modal_value" style="width:100%">
+                <select class="form-control h-25 modal_value" id="mat_prod_select" style="width:100%">
                 </select>
             </div>
             <div class="profile-info-name"></div>

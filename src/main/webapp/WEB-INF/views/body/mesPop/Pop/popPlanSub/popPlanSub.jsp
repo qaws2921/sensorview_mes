@@ -28,16 +28,6 @@
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
-                    <td class="wt-px-200">
-                        <select class="form-control condition_main" id="part_group_select" name="keyword" onchange="select_change1(this.value)" style="width:100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
-                    <td class="wt-px-200">
-                        <select class="form-control condition_main" id="part_prod_select" name="keyword2" style="width:100%">
-                        </select>
-                    </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-200">
                         <select class="form-control condition_main" id="line_select" name="keyword3" style="width:100%">
