@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
+import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,8 @@ public interface MesPopPopMapper {
     Message popPlan2Add(POP_PLAN2_CD ppc);
 
     List<POP_PLAN2_CD> popPlan2Get2(Page p);
+
+    Message popPlan3Add(POP_PLAN3_CD ppc3);
+
+    List<POP_PLAN3_CD> popPlan3Get(Page p);
 }

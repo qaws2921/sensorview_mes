@@ -5,12 +5,14 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
+import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class PopRestController {
@@ -57,4 +59,18 @@ public class PopRestController {
         return popService.popPlan2Get2(req, p);
     }
 
+    @RequestMapping(value ="/popPlan3Add", method = RequestMethod.POST)
+    public Message popPlan3Add(HttpServletRequest req, POP_PLAN3_CD ppc3) {
+        return popService.popPlan3Add(req, ppc3);
+    }
+
+    @RequestMapping(value = "/popPlan3Get", method = RequestMethod.POST)
+    public RESTful popPlan3Get(HttpServletRequest req, Page p) {
+        return popService.popPlan3Get(req, p);
+    }
+
+    @RequestMapping(value = "/popPlan3AllGet", method = RequestMethod.POST)
+    public List<POP_PLAN3_CD> popPlan3AllGet(HttpServletRequest req, Page p) {
+        return popService.popPlan3AllGet(req, p);
+    }
 }
