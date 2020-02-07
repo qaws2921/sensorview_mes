@@ -50,8 +50,8 @@ function get_btn_post(page) {
 
 function add_btn() {
     if (main_data.auth.check_add !="N") {
-        main_data.check = 'I'; // 저장인지 체크
         modal_reset(".modal_value", main_data.readonly);
+        main_data.check = 'I'; // 저장인지 체크
         $('#part_group_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
         $('#part_prod_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
         $('#part_name_select_modal1 option:eq(0)').prop("selected", true).trigger("change");
@@ -69,7 +69,19 @@ function add_btn() {
         alert("추가권한이 없습니다,");
     }
 }
-
+function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        main_data.check = 'U';
+        console.log(jqgrid_data);
+        // ccn_ajax('/sysPartGroupOneGet', jqgrid_data).then(function (data) {
+        //     modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+        //     $("#addDialog").dialog('open');
+        // });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
 function select_change1(value) {
     part_type_select_ajax_all('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (){
         $('#part_name_select').empty();
@@ -131,9 +143,9 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['등록번호','현황','제품명','계획량','생산량','작업구분','생산구분','품목군','제품군','등록자','등록일','마감일','Remark','비고'],
+        colNames: ['등록번호','현황','제품명','계획량','생산량','작업구분','생산구분','품목군','제품군','등록자','등록일','마감일','Remark','비고','계획일'],
         colModel: [
-            {name: 'plan_no1', index: 'plan_no1',sortable: false, width: 60},
+            {name: 'plan_no1', index: 'plan_no1',key:true,sortable: false, width: 60},
             {name: 'status_name', index: 'status_name',sortable: false, width: 60},
             {name: 'part_name', index: 'part_name',sortable: false, width: 60},
             {name: 'plan_qty', index: 'plan_qty',sortable: false, width: 60},
@@ -146,7 +158,8 @@ function jqGrid_main() {
             {name: 'create_date', index: 'create_date',sortable: false, width: 60,formatter: formmatterDate},
             {name: 'end_date', index: 'end_date',sortable: false, width: 60,formatter: formmatterDate2},
             {name: 'remark', index: 'remark',sortable: false, width: 60},
-            {name: 'remark1', index: 'remark1',sortable: false, width: 60}
+            {name: 'remark1', index: 'remark1',sortable: false, width: 60},
+            {name: 'plan_date', index: 'plan_date',sortable: false,hidden:true, width: 60}
         ],
         caption: "생산계획(1단계) | MES",
         autowidth: true,
