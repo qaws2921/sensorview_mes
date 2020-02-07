@@ -7,27 +7,31 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1_modal1(value) {
-    if(value =='' || value == null){
-        $('#part_prod_select_modal1').empty();
-        $('#part_name_select_modal1').empty();
-    }else {
-        part_type_select_ajax('#part_prod_select_modal1', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2){
-           console.log(data2);
-            part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2})
-        }).catch(function (err){
+    if(main_data.check != 'U'){
+        if(value =='' || value == null){
             $('#part_prod_select_modal1').empty();
             $('#part_name_select_modal1').empty();
-        });
+        }else {
+            part_type_select_ajax('#part_prod_select_modal1', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (data2){
+                console.log(data2);
+                part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:value, keyword3:data2[0].part_grp_code2})
+            }).catch(function (err){
+                $('#part_prod_select_modal1').empty();
+                $('#part_name_select_modal1').empty();
+            });
+        }
     }
-
 }
 function select_change2_modal1(value) {
-    if(value =='' || value == null){
-        $('#part_name_select_modal1').empty();
-    }else {
-        part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select_modal1').val(), keyword3:value}).catch(function (err){
+    if(main_data.check != 'U'){
+
+        if(value =='' || value == null){
             $('#part_name_select_modal1').empty();
-        });
+        }else {
+            part_type_select_ajax('#part_name_select_modal1', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select_modal1').val(), keyword3:value}).catch(function (err){
+                $('#part_name_select_modal1').empty();
+            });
+        }
     }
 
 }
@@ -40,7 +44,7 @@ function addUdate_btn() {
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';
 
-        if (main_data.check === "U") {
+        if (main_data.check === "U" && (modal_objact.status === '1' || modal_objact.status === '0')) {
             text = '수정하겠습니까?';
         }
         if (confirm(text)) {

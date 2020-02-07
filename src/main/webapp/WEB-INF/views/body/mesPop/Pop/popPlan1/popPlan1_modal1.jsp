@@ -8,6 +8,8 @@
             <div class="profile-info-name">계획일자</div>
             <div class="profile-info-value">
                 <div class="input-icon input-icon-right">
+                    <input type="hidden" name="plan_no1" class="modal_value">
+                    <input type="hidden" name="status" class="modal_value">
                     <input type="text" id="datepicker3" name="plan_date"
                            class="form-control h-25 modal_value" readonly>
                     <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>

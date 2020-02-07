@@ -24,6 +24,17 @@ public class PopRestController {
     @RequestMapping(value = "/popPlan1Add", method = RequestMethod.POST)
     public Message popPlan1Add(HttpServletRequest req, POP_PLAN1_CD pp1c) { return popService.popPlan1Add(req, pp1c); }
 
+    @RequestMapping(value = "/popPlan1OneGet", method = RequestMethod.POST)
+    public POP_PLAN1_CD popPlan1OneGet(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        return popService.popPlan1OneGet(req, pp1c);
+    }
+
+    @RequestMapping(value = "/popPlan1Del", method = RequestMethod.POST)
+    public Message popPlan1Del(HttpServletRequest req, POP_PLAN1_CD pp1c) {
+        return popService.popPlan1Del(req, pp1c);
+    }
+
+
     @RequestMapping(value ="/popPlan2Add2", method = RequestMethod.POST)
     public Message popPlan2Add2(HttpServletRequest req, Page p) {
         return popService.popPlan2Add2(req, p);
