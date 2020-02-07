@@ -23,4 +23,6 @@ public interface MesPopPopMapper {
     Message popPlan1Del(POP_PLAN1_CD pp1c);
 
     Message popPlan2Add(POP_PLAN2_CD ppc);
+
+    List<POP_PLAN2_CD> popPlan2Get2(Page p);
 }

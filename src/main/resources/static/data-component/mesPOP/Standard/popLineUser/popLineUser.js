@@ -139,7 +139,7 @@ function user_get(page) {
 
 
 function selectBox() {
-    select_makes("#line_select", "/sysProdLineAllGet", "line_code", "line_name");
+    select_data_makes("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''});
 }
 
 function jqGrid_main() {
