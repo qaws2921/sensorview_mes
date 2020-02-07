@@ -225,7 +225,7 @@ function jqGrid_main() {
             {name: 'part_grp_code2', index: 'part_grp_code2',sortable: false,hidden:true, width: 60},
             {name: 'part_code', index: 'part_code',sortable: false,hidden:true, width: 60},
             {name: 'user_name', index: 'user_name',sortable: false, width: 40},
-            {name: 'create_date', index: 'create_date',sortable: false, width: 90,formatter: formmatterDate},
+            {name: 'update_date', index: 'update_date',sortable: false, width: 90,formatter: formmatterDate},
             {name: 'end_date', index: 'end_date',sortable: false, width: 60,formatter: formmatterDate2},
             {name: 'remark', index: 'remark',sortable: false, width: 60},
             {name: 'remark1', index: 'remark1',sortable: false, width: 60},

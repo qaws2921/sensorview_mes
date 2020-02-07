@@ -61,7 +61,7 @@ function effectiveness1(modal_objact) {
     if(modal_objact.part_grp_code2 === ''){
         alert("코드를 입력해주세요,");
         return false;
-    } else if (modal_objact.part_grp_name2){
+    } else if (modal_objact.part_grp_name2 === ''){
         alert("제품군을 입력해주세요,");
         return false;
     } else {
