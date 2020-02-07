@@ -122,8 +122,9 @@ function jqGrid_modal1() {
         datatype: "local",
         ajaxSelectOptions: { cache: false, type: 'POST' },
         caption: "생산계획등록(2단계) | MES",
-        colNames: ['구분','line_code','계획량','계획일','제품유형','생산구분','prod_dept','작업자','work_user_code','Remark','비고'],
+        colNames: ['plan_no2','구분','line_code','계획량','계획일','제품유형','생산구분','prod_dept','작업자','work_user_code','Remark','비고'],
         colModel: [
+            {name: 'plan_no2', index: 'plan_no2',key:true,hidden:true,  sortable: false},
             {name: 'line_name', index: 'line_name', sortable: false},
             {name: 'line_code', index: 'line_code', hidden:true, sortable: false},
             {name: 'plan_qty', index: 'plan_qty', sortable: false,

@@ -15,6 +15,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    jqGridResize('#mes_grid2', $('#mes_grid2').closest('[class*="col-"]'));
     authcheck();
     modal_start1();
     selectBox();
@@ -30,7 +31,7 @@ function get_btn(page) {
     main_data.send_data_post = main_data.send_data;
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.stop_date = main_data.send_data.stop_date.replace(/\-/g, '');
-
+    $('#mes_grid2').jqGrid("clearGridData");
     $("#mes_grid").setGridParam({
         url: '/popPlan1Get',
         datatype: "json",
@@ -40,6 +41,7 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
+    $('#mes_grid2').jqGrid("clearGridData");
     $("#mes_grid").setGridParam({
         url: '/popPlan1Get',
         datatype: "json",
