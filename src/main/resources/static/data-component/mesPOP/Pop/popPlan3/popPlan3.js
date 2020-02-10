@@ -15,9 +15,11 @@ var main_data = {
 
 $(document).ready(function () {
     jqGrid_main();
-    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+
     authcheck();
     modal_start1();
+    jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    jqGridResize('#mes_grid2', $('#mes_grid2').closest('[class*="col-"]'));
     selectBox();
     datepickerInput();
     jqgridPagerIcons();
@@ -247,10 +249,10 @@ function jqGrid_main() {
             {name: 'prod_dept_name', index: 'prod_dept_name', width: 60, sortable: false},
             {name: 'part_grp_name1', index: 'part_grp_name1', width: 60, sortable: false},
             {name: 'part_grp_name2', index: 'part_grp_name2', width: 60, sortable: false},
-            {name: 'user_name', index: 'user_name', width: 60, sortable: false},
-            {name: 'work_user_name', index: 'work_user_name', width: 60, sortable: false},
-            {name: 'update_date', index: 'update_date', width: 60, sortable: false,formatter: formmatterDate},
-            {name: 'end_date', index: 'end_date', width: 60, sortable: false,formatter: formmatterDate2},
+            {name: 'user_name', index: 'user_name', width: 40, sortable: false},
+            {name: 'work_user_name', index: 'work_user_name', width: 40, sortable: false},
+            {name: 'update_date', index: 'update_date', width: 80, sortable: false,formatter: formmatterDate},
+            {name: 'end_date', index: 'end_date', width: 40, sortable: false,formatter: formmatterDate2},
             {name: 'remark', index: 'remark', width: 60, sortable: false},
             {name: 'remark1', index: 'remark1', width: 60, sortable: false}
         ],

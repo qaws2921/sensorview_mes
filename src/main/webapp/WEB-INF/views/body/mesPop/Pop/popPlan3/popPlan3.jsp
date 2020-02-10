@@ -54,6 +54,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="clearfix">
             <div class="pull-left tableTools-container">
                 <div class="dt-buttons btn-overlap btn-group">
@@ -67,6 +68,7 @@
 
                 </div>
             </div>
+        </div>
             <div class="row">
                 <div class="col-xs-12 table-responsive">
                     <table id="mes_grid"></table>
@@ -83,7 +85,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <%@include file="popPlan3_modal1.jsp" %>
