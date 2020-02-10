@@ -56,7 +56,7 @@ function add_btn() {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-    main_data.send_data.keyword = 'D';
+    main_data.send_data.keyword5 = '';
     main_data.send_data_post = main_data.send_data;
 
     $("#mes_grid").setGridParam({
@@ -122,9 +122,14 @@ function delete_btn() {
     }
 }
 
+function select_type_change(value) {
+    part_type_select_ajax("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:value}).then(function (data) {
+        select_makes3('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data[0].part_grp_code});
+    });
+}
 
 function select_change1(value) {
-    select_makes3('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:value});
+    select_makes3('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_select").val(), keyword2:value});
 }
 
 
@@ -137,6 +142,7 @@ function authcheck() {
 
 
 function selectBox() {
+    $("#part_type_select").select2();
     part_type_select_ajax("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'D'}).then(function (data) {
         select_makes3('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:data[0].part_grp_code});
     });

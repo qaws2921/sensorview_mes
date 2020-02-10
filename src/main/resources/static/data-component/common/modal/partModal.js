@@ -14,7 +14,7 @@ function partModal_start() {
 function partModal_get_btn(page) {
     var part_send_data = value_return(".part_condition");
     $("#partSearchGrid").setGridParam({
-        url: '/sysPartNameGet',
+        url: '/sysPartGet',
         datatype: "json",
         page: page,
         postData: part_send_data,
@@ -40,7 +40,7 @@ function partModal_close() {
 
 }
 
-function select_change1(value) {
+function select_part_modal_change1(value) {
     part_type_select_ajax("#part_group_select_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:value}).then(function (data2){
         part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:value, keyword2:data2[0].part_grp_code})
     }).catch(function (err){
@@ -48,7 +48,7 @@ function select_change1(value) {
         $('#part_prod_select').empty();
     });
 }
-function select_change2(value) {
+function select_part_modal_change2(value) {
     part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value}).catch(function (err){
         $('#part_prod_select').empty();
     });
@@ -89,18 +89,18 @@ function partModal_jqGrid() {
         mtype: 'POST',
         // 타이틀
         caption: "품목조회 | MES",
-        colNames: ['','코드','명칭','Center Wire(Ø)','주파수(GHz)','제품유형','품목군','제품군'],
+        colNames: ['','품번','품명','규격1','규격2','재질', '품목군','제품군'],
         colModel: [
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
-            {name: 'part_code', index: 'part_code',key:true, sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'center_wire', index: 'center_wire', sortable: false, width: 60},
-            {name: 'frequency', index: 'frequency', sortable: false, width: 60},
-            {name: 'part_type_name', index: 'part_type_name', sortable: false, width: 60},
+            {name: 'spec1', index: 'spec', sortable: false, width: 60},
+            {name: 'spec2', index: 'spec', sortable: false, width: 60},
+            {name: 'material', index: 'material', sortable: false, width: 60},
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60}
+            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],
         autowidth: true,
         height: 250,

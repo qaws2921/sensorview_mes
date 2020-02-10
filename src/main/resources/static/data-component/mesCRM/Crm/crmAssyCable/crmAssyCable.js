@@ -30,7 +30,8 @@ $(document).ready(function () {
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
-    main_data.send_data.keyword = "A";
+    main_data.send_data.keyword = "B";
+
 
     $('#mes_grid2').jqGrid('clearGridData');
     $('#mes_grid2').jqGrid("resetSelection");
@@ -59,9 +60,9 @@ function add_btn() {
         if (typeof main_data.part_code !== "undefined" && main_data.part_code !=='') {
             $('#mes_modal_grid').jqGrid('clearGridData');
             $('#mes_modal_grid').jqGrid("resetSelection");
-            $("#part_group_select1_2 option:eq(0)").prop("selected", true).trigger("change");
-            $("#part_group_select2_2 option:eq(0)").prop("selected", true).trigger("change");
-            $("#part_group_select3_2 option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_group1_modal_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_group2_modal_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_name_modal_select option:eq(0)").prop("selected", true).trigger("change");
             $("#addDialog").dialog('open');
             jqGridResize2("#mes_modal_grid", $('#mes_modal_grid').closest('[class*="col-"]'));
         }else {
@@ -83,7 +84,7 @@ function delete_btn() {
         } else {
             if (confirm("삭제하겠습니까?")) {
                 wrapWindowByMask2();
-                ccn_ajax("/crmAssyCableDel", {cable_code:main_data.part_code,connector_code: ids.join(gu5)}).then(function (data) {
+                ccn_ajax("/crmAssyCableDel", {cable_code:main_data.part_code,part_code: ids.join(gu5)}).then(function (data) {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {
@@ -101,13 +102,52 @@ function delete_btn() {
     }
 }
 
+function select_change1(value) {
+    part_type_select_ajax_all('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (){
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_name_select').append(option);
+        $('#part_name_select').select2();
+    }).catch(function (err){
+        $('#part_prod_select').empty();
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_prod_select').append(option);
+        $('#part_name_select').append(option2);
+    });
+
+
+}
+function select_change2(value) {
+    if(value == null || value == ''){
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_name_select').append(option);
+    }else {
+        part_type_select_ajax_all('#part_name_select', "/sysPartNameAllGet","part_code" ,"part_name",{keyword:'B', keyword2:$('#part_group_select').val(), keyword3:value}).catch(function (err){
+            $('#part_name_select').empty();
+            var option = $("<option></option>").text('전체').val('');
+            $('#part_name_select').append(option);
+        });
+
+    }
+}
+
+
 ////////////////////////////호출 함수//////////////////////////////////
 function selectBox() {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:'A'}).then(function (value) {
-        for(var i=1; i<=3;i++) {
-            group_cb(value,i);
-        }
-    })
+    part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+        $('#part_prod_select').empty();
+        $('#part_name_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_prod_select').append(option);
+        $('#part_name_select').append(option2);
+        $('#part_prod_select').select2();
+        $('#part_name_select').select2();
+    });
+
 }
 
 function authcheck() {
@@ -136,14 +176,13 @@ function jqGrid_main() {
         datatype: "local",
         mtype: 'POST',
         // mtype: 'POST',
-        colNames: ['픔목','주파수','기준커넥터','품목코드','품목명', '규격'],
+        colNames: ['품번','품명','품목군','제품군'],
         colModel: [
-            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
-            {name: 'part_grp_name3', index: 'part_grp_name3', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
+
         ],
         caption: "조립케이블 구성 | MES",
         autowidth: true,
@@ -165,14 +204,15 @@ function jqGrid_main() {
         datatype: "local",
         mtype: 'POST',
         // mtype: 'POST',
-        colNames: ['픔목','주파수','기준커넥터','품목코드','품목명', '규격'],
+        colNames: ['품번','품명','규격1','규격2','재질', '품목군','제품군'],
         colModel: [
-            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
-            {name: 'part_grp_name3', index: 'part_grp_name3', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'spec1', index: 'spec', sortable: false, width: 60},
+            {name: 'spec2', index: 'spec', sortable: false, width: 60},
+            {name: 'material', index: 'material', sortable: false, width: 60},
+            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],
         caption: "조립케이블 구성 | MES",
         autowidth: true,
