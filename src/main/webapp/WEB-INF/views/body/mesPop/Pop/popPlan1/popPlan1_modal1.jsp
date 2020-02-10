@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script type="text/javascript" src="/data-component/mesPOP/Pop/popPlan1/popPlan_modal1.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/data-component/mesPOP/Pop/popPlan1/popPlan1_modal1.js" charset="UTF-8"></script>
 
 <div id="addDialog" title="생산계획(1단계)등록" style="display:none">
     <div class="profile-user-info profile-user-info-striped">

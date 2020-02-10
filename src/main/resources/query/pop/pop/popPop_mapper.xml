@@ -40,4 +40,15 @@
         EXEC SP_POP_PLAN3_GET #{site_code},#{page},#{rows},#{keyword}
     </select>
 
+    <select id="popPlanSubGet" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD">
+        EXEC SP_POP_PLAN_SUB_GET #{site_code},#{page},#{rows},#{start_date},#{stop_date},#{keyword},'',''
+    </select>
+
+    <select id="popPlanSubAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PLAN_SUB_ADD #{site_code},#{plan_date},#{plan_no3},#{line_code},#{mat_code},#{mat_name},#{prod_type},#{prod_dept},#{plan_qty},#{work_qty},#{end_date},#{route_code},#{user_code},#{remark},#{remark1},#{unit_code},#{work_user_code},#{keyword}
+    </select>
+
+    <select id="popPlanSubOneGet" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD">
+        EXEC SP_POP_PLAN_SUB_GET #{site_code},1,1,'','','',#{plan_no3},''
+    </select>
 </mapper>

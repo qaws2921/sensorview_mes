@@ -30,7 +30,7 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" id="line_select" name="keyword3" style="width:100%">
+                        <select class="form-control condition_main" id="line_select" name="keyword" style="width:100%">
                         </select>
                     </td>
                     <td></td>
