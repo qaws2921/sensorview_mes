@@ -9,8 +9,57 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     readonly: ['series','center_wire','frequency'],
-    auth:{}
+    auth:{},
+    check2: 'N',
+
 };
+
+var colNames = ['코드','명칭','규격','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'];
+
+var colNames1 = ['코드','명칭','규격','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'];
+var colNames2 = ['코드','시리즈','명칭','Center Wire(Ø)','규격_1(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'];
+
+var colModel = [
+    {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
+    {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+    {name: 'frequency', index: 'frequency', sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
+    {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+    {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
+    {name: 'user_code', index: 'user_code', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
+    {name: 'remark', index: 'remark', sortable: false, width: 60}
+];
+
+var colModel1 = [
+    {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
+    {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+    {name: 'frequency', index: 'frequency', sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
+    {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+    {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
+    {name: 'user_code', index: 'user_code', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
+    {name: 'remark', index: 'remark', sortable: false, width: 60}
+];
+
+var colModel2 = [
+    {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
+    {name: 'series', index: 'series', sortable: false, width: 60},
+    {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+    {name: 'center_wire', index: 'center_wire', sortable: false, width: 60},
+    {name: 'frequency', index: 'frequency', sortable: false, width: 60},
+    {name: 'route_name', index: 'route_name', sortable: false, width: 60},
+    {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
+    {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+    {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
+    {name: 'user_code', index: 'user_code', sortable: false, width: 60},
+    {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
+    {name: 'remark', index: 'remark', sortable: false, width: 60}
+];
+
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
@@ -18,6 +67,7 @@ $(document).ready(function () {
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
     modal_start1();
+    modal_start2();
     authcheck();
     jqgridPagerIcons();
 });
@@ -26,14 +76,40 @@ $(document).ready(function () {
 ////////////////////////////클릭 함수//////////////////////////////////
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
+    main_data.send_data.keyword = "B";
     main_data.send_data_post = main_data.send_data;
-    console.log(main_data);
+
+
+    grid_head_change(main_data.send_data_post);
+    $.jgrid.gridUnload('#mes_grid');
+    jqGrid_main();
+    jqGridResize2('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+    jqgridPagerIcons();
+
+
+
     $("#mes_grid").setGridParam({
         url: '/sysPartNameGet',
         datatype: "json",
         page: page,
         postData: main_data.send_data
     }).trigger("reloadGrid");
+}
+
+
+
+function grid_head_change(data){
+
+    if (data.keyword == 'B' && data.keyword2 == '01' && data.keyword3=='01'){
+        colNames = colNames2;
+        colModel = colModel2;
+        main_data.check2 = 'Y';
+    } else {
+        colNames = colNames1;
+        colModel = colModel1;
+        main_data.check2 = 'N';
+    }
+
 }
 
 function get_btn_post(page) {
@@ -50,16 +126,30 @@ function add_btn() {
         modal_reset(".modal_value", main_data.readonly); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
         main_data.check = 'I'; // 저장인지 체크
         main_data.send_data = value_return(".condition_main");
-        $('#prod_type1_select option:eq(0)').prop("selected", true).trigger("change");
-        $('#prod_jacket_select option:eq(0)').prop("selected", true).trigger("change");
-        $('#route_select option:eq(0)').prop("selected", true).trigger("change");
+        main_data.send_data.keyword = 'B';
 
-        $("#prod_jacket_select").prop("disabled",false).trigger('change');
-        $("#prod_type1_select").prop("disabled",false).trigger('change');
-        $("#prod_center_conductor").prop("disabled",false).trigger('change');
+        if (main_data.send_data.keyword == 'B' && main_data.send_data.keyword2 == '01' && main_data.send_data.keyword3=='01'){
+            $('#prod_type1_select option:eq(0)').prop("selected", true).trigger("change");
+            $('#prod_jacket_select option:eq(0)').prop("selected", true).trigger("change");
+            $('#route_select option:eq(0)').prop("selected", true).trigger("change");
+
+            $("#prod_jacket_select").prop("disabled",false).trigger('change');
+            $("#prod_type1_select").prop("disabled",false).trigger('change');
+            $("#prod_center_conductor").prop("disabled",false).trigger('change');
 
 
-        $("#addDialog").dialog('open');
+            $("#addDialog").dialog('open');
+        } else {
+
+
+            $("#addDialog2").dialog('open');
+        }
+
+
+
+
+
+
     } else {
         alert("추가권한이 없습니다,");
     }
@@ -120,7 +210,7 @@ function select_change1(value) {
     });
 }
 function select_change2(value) {
-    part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value}).catch(function (err){
+    part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).catch(function (err){
         $('#part_prod_select').empty();
     });
 }
@@ -133,14 +223,14 @@ function authcheck() {
 }
 
 function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
-            part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
+
+        part_type_select_ajax("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'B'}).then(function (data2){
+            part_type_select_ajax('#part_prod_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:data2[0].part_grp_code})
+        }).catch(function (err){
+
+            $('#part_prod_select').empty();
         });
-    }).catch(function (err){
-        $('#part_group_select').empty();
-        $('#part_prod_select').empty();
-    });
+
 }
 
 
@@ -148,21 +238,8 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['코드','시리즈','명칭','Center Wire(Ø)','규격_1(GHz)','공정유형','제품유형','품목군','제품군','등록자','등록일시','비고'],
-        colModel: [
-            {name: 'part_code', index: 'part_code', key:true,sortable: false, width: 60},
-            {name: 'series', index: 'series', sortable: false, width: 60},
-            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'center_wire', index: 'center_wire', sortable: false, width: 60},
-            {name: 'frequency', index: 'frequency', sortable: false, width: 60},
-            {name: 'route_name', index: 'route_name', sortable: false, width: 60},
-            {name: 'part_type_name', index: 'part_type', sortable: false, width: 60},
-            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
-            {name: 'user_code', index: 'user_code', sortable: false, width: 60},
-            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate},
-            {name: 'remark', index: 'remark', sortable: false, width: 60}
-        ],
+        colNames: colNames,
+        colModel: colModel,
         caption: "제품명등록 | MES",
         autowidth: true,
         height: 570,
