@@ -2,25 +2,25 @@
 
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmAssyCable/crmAssyCable_modal1.js" charset="UTF-8"></script>
 
-<div id="addDialog" title="제품 출고 요청 추가" style="display:none">
+<div id="addDialog" title="조립케이블 구성 추가" style="display:none">
     <div class="col-lg-12">
         <div class="col-lg-12 padding0" id="content1">
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1_2"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" >품목군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select1_2" name="keyword2" class="form-control condition_modal" style="width:100%">
+                        <select id="part_group1_modal_select" name="keyword2" class="form-control keyword condition_modal" onchange="select_change1_modal(this.value);" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2_2"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" >제품군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select2_2" name="keyword3" class="form-control condition_modal"  style="width:100%">
+                        <select id="part_group2_modal_select" name="keyword3" class="form-control keyword condition_modal"  style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3_2"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" >품명</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select3_2" name="keyword4" class="form-control condition_modal" style="width:100%">
+                        <select id="part_name_modal_select" name="keyword4" class="form-control keyword condition_modal" style="width:100%">
                         </select>
                     </td>
                     <td></td>

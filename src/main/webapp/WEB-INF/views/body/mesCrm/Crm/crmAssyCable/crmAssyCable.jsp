@@ -10,19 +10,19 @@
                 <table class="table wt-100">
                     <tbody>
                     <tr>
-                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                         <td class="wt-px-200">
-                            <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                            <select class="form-control condition_main" name="keyword2" id="part_group_select" onchange="select_change1(this.value)"  style="width:100%">
                             </select>
                         </td>
-                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                         <td class="wt-px-200">
-                            <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                            <select class="form-control condition_main" name="keyword3" id="part_prod_select" onchange="select_change2(this.value)" style="width:100%">
                             </select>
                         </td>
-                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0">제품명</td>
                         <td class="wt-px-200">
-                            <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
+                            <select class="form-control condition_main" name="keyword5" id="part_name_select" style="width:100%">
                             </select>
                         </td>
                         <td></td>

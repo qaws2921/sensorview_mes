@@ -54,7 +54,7 @@ function add_btn() {
         modal_reset(".modal_value", main_data.readonly); // 해당 클래스 명을 가진 항목들의 내용을 리셋,비워줌 main_data readonly 에 추가한 name의 항목에 readonly 옵션을 추가
         modalValuePush("#part_type_select","#part_type_code","#part_type_name"); // name1의 값을 name2,name3 에 넣어줌
         modalValuePush("#part_group_select","#part_grp_code","#part_grp_name"); // name1의 값을 name2,name3 에 넣어줌
-
+        main_data.check = 'I';
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");

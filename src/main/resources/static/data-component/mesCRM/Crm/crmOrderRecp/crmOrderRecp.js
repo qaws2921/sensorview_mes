@@ -78,10 +78,10 @@ function add_btn() {
     }
 }
 
-function  partModal_bus(rowid) {
+function  partModal_bus(rowid,name) {
         modal_reset(".part_value", []);
-
     ccn_ajax('/sysPartOneGet', {keyword:rowid}).then(function (data) {
+    console.log(rowid);
         modal_edits('.part_value',[], data);
     });
     connectorSelect(rowid);

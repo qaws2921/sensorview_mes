@@ -8,12 +8,12 @@
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품유형</td>
                     <td class="wt-px-200">
-                        <select class="form-control part_condition" name="keyword" id="part_type_select_modal" onchange="select_change1(this.value)" style="width:100%">
+                        <select class="form-control part_condition" name="keyword" id="part_type_select_modal" onchange="select_part_modal_change1(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control part_condition" name="keyword2" id="part_group_select_modal" onchange="select_change2(this.value)" style="width:100%">
+                        <select class="form-control part_condition" name="keyword2" id="part_group_select_modal" onchange="select_part_modal_change2(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>

@@ -25,7 +25,7 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function modal_get_btn(page) {
     var data = value_return(".condition_modal");
-    data.keyword = "A";
+    data.keyword = "D";
 
     $("#mes_modal_grid").setGridParam({
         url: '/sysPartGet',
@@ -45,12 +45,12 @@ function close_modal1_btn() {
 
 function addupdate_btn() {
     var gu5 = String.fromCharCode(5);
-    var connector_code = $("#mes_modal_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
-    if (connector_code.length !== 0) {
+    var part_code = $("#mes_modal_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+    if (part_code.length !== 0) {
         var text = '저장하겠습니까?';
         if (confirm(text)) {
 
-            ccn_ajax("/crmAssyCableAdd", {cable_code:main_data.part_code,connector_code:connector_code.join(gu5)}).then(function (data) {
+            ccn_ajax("/crmAssyCableAdd", {cable_code:main_data.part_code,part_code:part_code.join(gu5)}).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
                 } else {
@@ -106,14 +106,15 @@ function jqGrid_modal1() {
         datatype: "local",
         mtype: 'POST',
         caption: "조립케이블 구성 | MES",
-        colNames: ['품목','주파수','기준커넥터','품목코드','품목명', '규격'],
+        colNames: ['품번','품명','규격1','규격2','재질', '품목군','제품군'],
         colModel: [
-            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
-            {name: 'part_grp_name3', index: 'part_grp_name3', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'spec1', index: 'spec', sortable: false, width: 60},
+            {name: 'spec2', index: 'spec', sortable: false, width: 60},
+            {name: 'material', index: 'material', sortable: false, width: 60},
+            {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
+            {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],
 
         autowidth: true,
@@ -130,16 +131,37 @@ function jqGrid_modal1() {
 }
 
 
+function select_change1_modal(value) {
+    part_type_select_ajax_all('#part_group2_modal_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:value}).then(function (){
+
+    }).catch(function (err){
+        $('#part_group2_modal_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group2_modal_select').append(option);
+
+    });
 
 
+}
 
 function selectBox_modal() {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:'A'}).then(function (value) {
-        for(var i=1; i<=3;i++) {
-            group_cb_modal(value,i);
-        }
-    })
+    part_type_select_ajax_all("#part_group1_modal_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'D'}).then(function () {
+        $('#part_group2_modal_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group2_modal_select').append(option);
+
+        $('#part_group2_modal_select').select2();
+
+    });
+
+    select_makes_sub('#part_name_modal_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 }
+
+
 
 function group_cb_modal(value,i) {
     $('#part_group'+i+'_2').text(value["part_group"+i]);

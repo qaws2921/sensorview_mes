@@ -84,7 +84,7 @@ function addUdate_btn() {
         }
         if (confirm(text)) {
 
-            modal_objact.part_type = 'D';
+            modal_objact.part_type = main_data.condition_data.keyword;
             modal_objact.part_group1 = main_data.condition_data.keyword2;
             modal_objact.part_group2 = main_data.condition_data.keyword3;
             modal_objact.keyword = main_data.check;
@@ -173,16 +173,13 @@ function effectiveness1(modal_objact) { // 유효성 검사
         alert("구분을 선택해주세요");
         return false;
     }else if (modal_objact.part_group1 === '') {
-        alert("part_group1 을 입력해주세요");
+        alert("part_group1 을 선택해주세요");
         return false;
     }else if (modal_objact.part_group2 === '') {
-        alert("part_group2 을 입력해주세요");
+        alert("part_group2 을 선택해주세요");
         return false;
-    } else if (modal_objact.part_group3 === '') {
-        alert("part_group3 을 입력해주세요");
-        return false;
-    }  else if (modal_objact.part_name === '') {
-        alert("품목명을 입력해주세요");
+    }   else if (modal_objact.part_name === '') {
+        alert("품목명을 선택해주세요");
         return false;
     } else {
         return true;
