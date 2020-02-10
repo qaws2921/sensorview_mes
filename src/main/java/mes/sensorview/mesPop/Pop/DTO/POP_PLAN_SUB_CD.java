@@ -8,7 +8,6 @@ public class POP_PLAN_SUB_CD {
     private String plan_date;
     private String plan_no3;
     private String line_code;
-    private String part_type;
     private String mat_code;
     private String mat_name;
     private String prod_type;
