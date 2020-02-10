@@ -51,7 +51,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name">계획수량</div>
             <div class="profile-info-value">
-                <input type="text" class="form-control modal_value" name="plan_qty">
+                <input type="text" class="form-control modal_value" name="plan_qty" onkeyup="num_keyup(this)">
             </div>
             <div class="profile-info-name">용도</div>
             <div class="profile-info-value">

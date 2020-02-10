@@ -37,4 +37,6 @@ public interface MesPopPopMapper {
     Message popPlanSubAdd(POP_PLAN_SUB_CD ppsc);
 
     POP_PLAN_SUB_CD popPlanSubOneGet(POP_PLAN_SUB_CD ppsc);
+
+    Message popPlanSubDel(POP_PLAN_SUB_CD ppsc);
 }

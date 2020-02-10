@@ -7,11 +7,17 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1_modal1(value) {
-    ccn_ajax('/popRouteOneGet',{keyword:value}).then(function (data){
-        $('#line_name_modal1').val(data.lc1);
-        $('#line_code_modal1').val(data.line_code1);
-        select_data_makes2('#line_user_select_modal1','/popLineUserAllGet','user_code','user_name',{keyword:data.line_code1});
-    });
+    console.log(value);
+
+    if(value != '' && value != null){
+        console.log('sss');
+        console.log(value);
+        ccn_ajax('/popRouteOneGet',{keyword:value}).then(function (data){
+            $('#line_name_modal1').val(data.lc1);
+            $('#line_code_modal1').val(data.line_code1);
+            select_data_makes2('#line_user_select_modal1','/popLineUserAllGet','user_code','user_name',{keyword:data.line_code1});
+        });
+    }
 }
 
 function addUdate_btn() {
@@ -51,7 +57,39 @@ function addUdate_btn() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function effectiveness1(modal_objact) { // 유효성 검사
-    return true;
+    if (modal_objact.route_code === '' || modal_objact.route_code === null) {
+        alert("공정라우팅을 선택해주세요");
+        return false;
+    } else if (modal_objact.line_code === '') {
+        alert("공정명을 입력해주세요");
+        return false;
+    } else if (modal_objact.plan_date === '' || modal_objact.plan_date === null) {
+        alert("계획일자를 선택해주세요");
+        return false;
+    } else if (modal_objact.unit_code === '' || modal_objact.unit_code === null) {
+        alert("단위를 선택해주세요");
+        return false;
+    }  else if (modal_objact.mat_code === '' || modal_objact.mat_code === null) {
+        alert("품목을 선택해주세요");
+        return false;
+    } else if (modal_objact.plan_qty === '') {
+        alert("계획수량을 입력해주세요");
+        return false;
+    } else if (modal_objact.line_code === '') {
+        alert("공정명을 입력해주세요");
+        return false;
+    } else if (modal_objact.prod_type === '' || modal_objact.prod_type === null) {
+        alert("용도를 선택해주세요");
+        return false;
+    } else if (modal_objact.prod_dept === '' || modal_objact.prod_dept === null) {
+        alert("생산구분을 선택해주세요");
+        return false;
+    }else if (modal_objact.work_user_code === '' || modal_objact.work_user_code === null) {
+        alert("작업자를 선택해주세요");
+        return false;
+    }else {
+        return true;
+    }
 }
 
 function datepickerInput_modal1() {
