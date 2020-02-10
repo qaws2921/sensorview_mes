@@ -8,6 +8,7 @@ import mes.sensorview.Mapper.mesPop.Pop.MesPopPopMapper;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
+import mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,5 +82,22 @@ public class PopService extends ReturnFunction {
     public List<POP_PLAN3_CD> popPlan3AllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return mesPopPopMapper.popPlan3Get(p);
+    }
+
+    public RESTful popPlanSubGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<POP_PLAN_SUB_CD> rows = mesPopPopMapper.popPlanSubGet(p);
+        return getListData(rows, p);
+    }
+
+    public Message popPlanSubAdd(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
+        ppsc.setSite_code(getSessionData(req).getSite_code());
+        ppsc.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlanSubAdd(ppsc);
+    }
+
+    public POP_PLAN_SUB_CD popPlanSubOneGet(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
+        ppsc.setSite_code(getSessionData(req).getSite_code());
+        return mesPopPopMapper.popPlanSubOneGet(ppsc);
     }
 }

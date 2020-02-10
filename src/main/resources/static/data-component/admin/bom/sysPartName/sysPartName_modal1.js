@@ -10,7 +10,7 @@ function addUdate_btn() {
     modal_objact.keyword = main_data.check;
     modal_objact.center_wire_code = parseInt(parseFloat(modal_objact.center_wire)*10,10);
     modal_objact.frequency_code = parseInt(modal_objact.frequency,10);
-    modal_objact.part_name = String( modal_objact.center_wire_code)+modal_objact.jacket+String(modal_objact.frequency_code)+modal_objact.center_wire1;
+    modal_objact.part_name = String( modal_objact.center_wire_code)+modal_objact.jacket+String(modal_objact.frequency_code)+modal_objact.prod_type1+modal_objact.center_wire1;
     modal_objact.part_type = main_data.send_data.keyword;
     modal_objact.part_group1 = main_data.send_data.keyword2;
     modal_objact.part_group2 = main_data.send_data.keyword3;

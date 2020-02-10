@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
 import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
+import mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,5 +73,16 @@ public class PopRestController {
     @RequestMapping(value = "/popPlan3AllGet", method = RequestMethod.POST)
     public List<POP_PLAN3_CD> popPlan3AllGet(HttpServletRequest req, Page p) {
         return popService.popPlan3AllGet(req, p);
+    }
+
+    @RequestMapping(value = "/popPlanSubGet", method = RequestMethod.POST)
+    public RESTful popPlanSubGet(HttpServletRequest req, Page p) { return popService.popPlanSubGet(req, p); }
+
+    @RequestMapping(value ="/popPlanSubAdd", method = RequestMethod.POST)
+    public Message popPlanSubAdd(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) { return popService.popPlanSubAdd(req,ppsc); }
+
+    @RequestMapping(value ="/popPlanSubOneGet", method = RequestMethod.POST)
+    public POP_PLAN_SUB_CD popPlanSubOneGet(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
+        return popService.popPlanSubOneGet(req, ppsc);
     }
 }
