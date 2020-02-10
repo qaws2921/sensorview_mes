@@ -100,4 +100,9 @@ public class PopService extends ReturnFunction {
         ppsc.setSite_code(getSessionData(req).getSite_code());
         return mesPopPopMapper.popPlanSubOneGet(ppsc);
     }
+
+    public Message popPlanSubDel(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
+        ppsc.setSite_code(getSessionData(req).getSite_code());
+        return mesPopPopMapper.popPlanSubDel(ppsc);
+    }
 }

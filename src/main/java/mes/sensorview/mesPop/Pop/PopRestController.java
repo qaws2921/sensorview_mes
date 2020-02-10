@@ -85,4 +85,9 @@ public class PopRestController {
     public POP_PLAN_SUB_CD popPlanSubOneGet(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
         return popService.popPlanSubOneGet(req, ppsc);
     }
+
+    @RequestMapping(value = "/popPlanSubDel", method = RequestMethod.POST)
+    public Message popPlanSubDel(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
+        return popService.popPlanSubDel(req, ppsc);
+    }
 }
