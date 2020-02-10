@@ -53,6 +53,9 @@ function add_modal1_btn() {
                     alert("전체 계획량이 다릅니다.");
                 } else {
                     var text = '수정하겠습니까?';
+                    if (main_data.check == 'I'){
+                        text = '저장하겠습니까?';
+                    }
                     if (confirm(text)) {
                         wrapWindowByMask2();
                         add_data.keyword = list.join(gu5);
@@ -114,6 +117,7 @@ function modal1_rowAdd() {
         remark:'',
         remark1:''
     }
+    $('#mes_modal1_grid1').jqGrid("resetSelection");
     $("#mes_modal1_grid1").jqGrid("addRowData", seq, add_data, 'last'); // 마지막 행에 Row 추가
 }
 
@@ -163,7 +167,7 @@ function modal_make1() {
                 text: '줄삭제',
                 'class': 'btn btn-dark btn-minier',
                 click: function () {
-                    if (main_data.check2 == 'Y'){
+                    if ( main_data.check2 == 'Y'){
                         modal1_rowDel();
                     } else {
                         alert("수정 할 수 없습니다.");

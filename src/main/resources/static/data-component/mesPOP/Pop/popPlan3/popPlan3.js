@@ -104,59 +104,46 @@ function select_change2(value) {
 
 
 function update_btn(jqGrid_data) {
-    if (main_data.auth.check_edit !="N") {
-        // if (jqGrid_data.status == 0 || jqGrid_data.status == 1 ){
-        //     main_data.check2 = "Y";
-        // } else {
-        //     main_data.check2 = "N";
-        // }
-        // modal1_data.plan_no1 = jqGrid_data.plan_no1;
-        // ccn_ajax("/popPlan2Add2", {keyword: jqGrid_data.plan_no1}).then(function (data) {
-        //     main_data.check = 'U';
-        //     $('#mes_modal1_grid1').jqGrid("clearGridData");
-        //
-        //     $("#mes_modal1_grid1").setGridParam({
-        //         url: '/popPlan2Get',
-        //         datatype: "json",
-        //         page: 1,
-        //         postData: {keyword: jqGrid_data.plan_no1}
-        //     }).trigger("reloadGrid");
-        //     $("#addDialog").dialog('open');
-        //     jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
-        //
-        // });
-
-
         $('#mes_modal1_grid1').jqGrid('clearGridData');
 
         ccn_ajax("/popPlan3AllGet", {keyword: jqGrid_data.plan_no2}).then(function (data) {
 
+            var num = data.length;
+
+            main_data.check = 'I'
+            if (num > 0 ){
+                main_data.check = 'U'
+            }
+
+            if ( main_data.check == 'U' && main_data.auth.check_edit =="N") {
+                alert("수정권한이 없습니다.");
+            } else if( main_data.check == 'I' && main_data.auth.check_add =="N"){
+                alert("추가권한이 없습니다.");
+            } else {
+                if (data.length !== 0){
+                    $("#mes_modal1_grid1").setGridParam({
+                        datatype: "local",
+                        data: data
+                    }).trigger("reloadGrid");
+                }
+
+                modal1_data = {
+                    plan_no2 : jqGrid_data.plan_no2,
+                    plan_qty:jqGrid_data.plan_qty,
+                    plan_date:jqGrid_data.plan_date.replace(/\-/g, ''),
+                    end_date:jqGrid_data.end_date.replace(/\-/g, ''),
+                    work_user_code:jqGrid_data.work_user_code,
+                    work_user_name:jqGrid_data.work_user_name,
+                    line_code:jqGrid_data.line_code
+                }
 
 
-        if (data.length !== 0){
-            $("#mes_modal1_grid1").setGridParam({
-                datatype: "local",
-                data: data
-            }).trigger("reloadGrid");
-        }
+                $("#addDialog").dialog('open');
+                jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+            }
 
-        modal1_data = {
-            plan_no2 : jqGrid_data.plan_no2,
-            plan_qty:jqGrid_data.plan_qty,
-            plan_date:jqGrid_data.plan_date.replace(/\-/g, ''),
-            end_date:jqGrid_data.end_date.replace(/\-/g, ''),
-            work_user_code:jqGrid_data.work_user_code,
-            work_user_name:jqGrid_data.work_user_name,
-            line_code:jqGrid_data.line_code
-        }
-
-
-        $("#addDialog").dialog('open');
-        jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
         });
-    } else {
-        alert("수정권한이 없습니다.");
-    }
+
 }
 
 
@@ -195,7 +182,7 @@ function jqGrid_main() {
         datatype: 'local',
         multiselect: true,
         caption: '생산계획(3단계) | MES',
-        colNames: ['등록번호', '공정명', 'line_code', '품명', '계획량','생산량','계획일','품목군','제품군','제품명','제품유형','용도','생산구분','등록자','작업자','work_user_code','등록일','마감일','Remark','비고'],
+        colNames: ['등록번호', '공정명', 'line_code', '품명', '계획량','생산량','계획일','품목군','제품군','제품명','제품유형','용도','생산구분','등록자','작업자','work_user_code','등록일','마감일','Remark','비고','status'],
         colModel: [
             {name: 'plan_no2', index: 'plan_no2', width: 70,key:true, sortable: false},
             {name: 'line_name', index: 'line_name', width: 60, sortable: false},
@@ -216,7 +203,8 @@ function jqGrid_main() {
             {name: 'update_date', index: 'update_date', width: 80, sortable: false,formatter: formmatterDate},
             {name: 'end_date', index: 'end_date', width: 50, sortable: false,formatter: formmatterDate2},
             {name: 'remark', index: 'remark', width: 60, sortable: false},
-            {name: 'remark1', index: 'remark1', width: 60, sortable: false}
+            {name: 'remark1', index: 'remark1', width: 60, sortable: false},
+            {name: 'status', index: 'status', hidden:true, width: 60, sortable: false}
         ],
         autowidth: true,
         viewrecords: true,
@@ -235,11 +223,11 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            // if (data.status === '1') {
-            //     main_data.check2 = 'N';
-            // } else {
-            //     main_data.check2 = 'Y';
-            // }
+            if (data.status === '0' || data.status === '1') {
+                main_data.check2 = 'Y';
+            } else {
+                main_data.check2 = 'N';
+            }
             update_btn(data);
         }
     });

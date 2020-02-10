@@ -35,6 +35,7 @@ public class POP_PLAN2_CD {
     private String prod_dept_name;
     private String work_user_name;
     private String prod_type_name;
+    private String status;
     private int rownum;
     private int rownum_page;
     private int rec_count;
