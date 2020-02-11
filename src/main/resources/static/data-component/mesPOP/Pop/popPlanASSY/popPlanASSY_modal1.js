@@ -7,6 +7,7 @@ function modal_start1() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
+
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
