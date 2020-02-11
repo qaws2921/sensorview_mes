@@ -60,7 +60,7 @@ public class CRM_ORD_RECP {
     private String create_date;
     private String update_date;
     private String part_no;
-    private String spec_all;
+    private String spec;
     private String unit_name;
     private String crm_type_name;
     private String user_name;

@@ -142,7 +142,7 @@ function jqGrid_main() {
             {name: 'end_date', index: 'end_date', sortable: false, width: 60,formatter:formmatterDate2},
             {name: 'status3_name', index: 'status3_name', sortable: false, width: 60},
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
-            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'tube_name', index: 'tube_name', sortable: false, width: 60},

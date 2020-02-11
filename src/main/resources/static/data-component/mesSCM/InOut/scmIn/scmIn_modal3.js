@@ -171,7 +171,7 @@ function modal3_jqGrid() {
             {name: 'ord_no', index: 'ord_no', key: true, sortable: false, width: 80},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 40},
             {name: 'ord_qty', index: 'ord_qty', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},

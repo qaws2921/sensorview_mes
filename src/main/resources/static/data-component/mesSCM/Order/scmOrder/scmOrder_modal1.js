@@ -211,7 +211,7 @@ function jqGrid_modal1() {
 
             {name: 'part_code', index: 'part_code',key:true, sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
-            {name: 'spec_all', index: 'spec_all', sortable: false},
+            {name: 'spec', index: 'spec', sortable: false},
             {name: 'unit_name', index: 'unit_name', sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
         ],
@@ -240,7 +240,7 @@ function jqGrid_modal1() {
 
             {name: 'part_code', index: 'part_code', width: 80,key:true, sortable: false},
             {name: 'part_name', index: 'part_name', width: 50, sortable: false},
-            {name: 'spec_all', index: 'spec_all', width: 50, sortable: false},
+            {name: 'spec', index: 'spec', width: 50, sortable: false},
             {name: '', index: '', width: 50, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 50, sortable: false},
             {name: 'qc_level_name', index: 'qc_level_name', width: 50, sortable: false},

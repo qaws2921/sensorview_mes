@@ -21,6 +21,7 @@ public class SCM_HIN {
     private String line_name;
     private String part_name;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private int qty;
 
