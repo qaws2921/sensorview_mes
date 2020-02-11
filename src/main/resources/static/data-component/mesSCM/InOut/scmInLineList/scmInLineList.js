@@ -41,7 +41,7 @@ function authcheck() {
 }
 
 function selectBox() {
-    select_makes("#line_select", "/getLine", "line_code", "line_name");
+    select_makes_sub("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''},'Y');
 }
 
 function datepickerInput() {
@@ -61,7 +61,7 @@ function jqGrid_main() {
             {name: 'line_name', index: 'line_name', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
             {name: 'qty', index: 'qty', sortable: false, width: 60},
             {name: 'user_name', index: 'user_name', sortable: false, width: 60},

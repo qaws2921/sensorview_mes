@@ -362,7 +362,7 @@ function jqGrid_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 1300,
+        width: 1350,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -422,6 +422,12 @@ function select_change1_modal(value) {
             $('#part_group_modal1_select2').append(option);
 
         });
+    } else {
+        $('#part_group_modal1_select2').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_modal1_select2').append(option);
     }
 }
 
@@ -431,7 +437,6 @@ function selectBox_modal1() {
     select_data_makes('select[name=t_payment]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_PAY'});
     select_data_makes('select[name=t_delivery]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_DELIVERY'});
     select_data_makes('select[name=shipping_addr]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_SHIPPING'});
-
 
 
     part_type_select_ajax("#part_type_modal1_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {

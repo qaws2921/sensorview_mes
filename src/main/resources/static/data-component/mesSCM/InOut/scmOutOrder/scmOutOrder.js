@@ -79,7 +79,7 @@ function add_btn() {
         modal_reset(".modal_value2", []);
         $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
         $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#part_type_modal1_select").val('D').trigger("change");
         $("#datepicker3").datepicker('setDate', 'today');
 
         main_data.check = 'I';
@@ -217,7 +217,7 @@ function jqGrid_main() {
            {name: 'ord_no', index: 'ord_no', width: 60, sortable: false},
            {name: 'part_code', index: 'part_code', width: 60, sortable: false},
            {name: 'part_name', index: 'part_name', width: 60, sortable: false},
-           {name: 'spec', index: 'spec', width: 60, sortable: false},
+           {name: 'spec_all', index: 'spec_all', width: 60, sortable: false},
            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
            {name: 'qty', index: 'qty', width: 60, sortable: false},
            {name: 'qty', index: 'qty', width: 60, sortable: false},

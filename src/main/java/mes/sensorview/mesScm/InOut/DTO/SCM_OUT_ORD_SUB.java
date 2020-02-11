@@ -11,6 +11,7 @@ public class SCM_OUT_ORD_SUB {
     private String part_grp_name;
     private String part_name;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private String work_date;
     private String cargo_code_to;

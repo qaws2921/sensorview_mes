@@ -52,7 +52,7 @@ function update_btn(rowid) {
         main_data.check = 'U';
 
         ccn_ajax('/scmInSub2Get', {keyword: rowid}).then(function (data) {
-            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_type_modal1_select").val('D').trigger("change");
 
             $("#supp_name_modal").val(data[0].supp_name);
             $("#supp_code_modal").val(data[0].supp_code);
@@ -201,7 +201,7 @@ function add_modal1_btn() {
     if (main_data.check2 === 'Y'  && main_data.check === 'I') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
-        add_data.supp_code = add_data.keyword5;
+        add_data.supp_code = add_data.keyword6;
 
         // $('#scmInDialogRightGrid').jqGrid('saveRow', lastsel, false, 'clientArray');
         var jdata = $("#scmInDialogRightGrid").getRowData();
@@ -334,6 +334,43 @@ function modal2_modal_open(rowid) {
     $("#scmInAddDialog").dialog('open');
 }
 
+function select_part_type_change_modal(value) {
+    if (value !== '' && value !== null ) {
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
+    }
+}
+
+
+function select_change1_modal(value) {
+    if (value !== '' && value !== null ){
+        part_type_select_ajax_all('#part_group_modal1_select2', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_modal1_select").val(), keyword2:value}).then(function (){
+
+        }).catch(function (err){
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+        });
+    } else {
+        $('#part_group_modal1_select2').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_modal1_select2').append(option);
+    }
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function jqGrid_modal1() {
@@ -347,7 +384,7 @@ function jqGrid_modal1() {
 
             {name: 'part_code', key: true, index: 'part_code', sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
-            {name: 'spec', index: 'spec', sortable: false},
+            {name: 'spec_all', index: 'spec_all', sortable: false},
             {name: 'unit_name', index: 'unit_name'},
             {name: 'qc_level_name', index: 'qc_level_name', sortable: false},
 
@@ -372,7 +409,7 @@ function jqGrid_modal1() {
         colModel: [
             {name: 'part_code', key: true, index: 'part_code', width: 90, sortable: false},
             {name: 'part_name', index: 'part_name', width: 70, sortable: false},
-            {name: 'spec', index: 'spec', width: 80, sortable: false},
+            {name: 'spec_all', index: 'spec_all', width: 80, sortable: false},
             {name: 'unit_name', index: 'unit_name', width: 50},
             {name: 'qc_level_name', index: 'qc_level_name', width: 60, sortable: false},
             {name: 'lot', index: 'lot', width: 50, sortable: false},
@@ -516,7 +553,7 @@ function orderButton(cellvalue, options, rowObject) {
 function modal_make1() {
     $("#scmIn-add-dialog").dialog({
         modal: true,
-        width: 1300,
+        width: 1350,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -546,15 +583,23 @@ function modal_make1() {
 }
 
 function selectBox_modal1() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
+    part_type_select_ajax("#part_type_modal1_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        $("select#part_type_modal1_select option[value='C']").remove();
+        $("select#part_type_modal1_select option[value='B']").remove();
 
-            }
 
-        })
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
     });
+    select_makes_sub('#part_name_modal1_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 }
 
 function datepickerInput_modal1() {

@@ -14,6 +14,7 @@ public class SCM_REIN_SUB {
     private String part_grp_name;
     private String part_name;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private String user_name;
     private String user_code;
