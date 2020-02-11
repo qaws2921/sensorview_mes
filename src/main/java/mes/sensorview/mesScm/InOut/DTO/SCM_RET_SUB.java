@@ -13,6 +13,7 @@ public class SCM_RET_SUB {
     private String supp_name;
     private String part_name;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private String work_date;
     private String update_date;

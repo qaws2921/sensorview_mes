@@ -82,7 +82,7 @@ function  partModal_bus(rowid,name) {
         modal_reset(".part_value", []);
     ccn_ajax('/sysPartOneGet', {keyword:rowid}).then(function (data) {
         modal_edits('.part_value',[], data);
-        $("#spec").val(data.spec_all);
+        $("#spec").val(data.spec);
     });
     connectorSelect(rowid);
 }

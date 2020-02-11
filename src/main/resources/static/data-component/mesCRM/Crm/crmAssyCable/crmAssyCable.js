@@ -208,7 +208,7 @@ function jqGrid_main() {
         colModel: [
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],
