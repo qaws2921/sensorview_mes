@@ -24,6 +24,7 @@ public class PopStatusService extends ReturnFunction {
 
     public List<POP_PLAN_ORD_CD> popPlanOrderOrd(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
+        p.setUser_code(getSessionData(req).getUser_code());
         return mesPopStatusMapper.popPlanOrderOrd(p);
     }
 }

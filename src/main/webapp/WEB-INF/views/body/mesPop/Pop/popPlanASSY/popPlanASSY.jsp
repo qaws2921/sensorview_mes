@@ -31,12 +31,12 @@
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">품목군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" style="width:100%">
+                        <select class="form-control condition_main" name="keyword" id="part_group_select" onchange="select_change1(this.value)" style="width:100%">
                         </select>
                     </td>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">제품군</td>
                     <td class="wt-px-200">
-                        <select class="form-control condition_main" style="width:100%">
+                        <select class="form-control condition_main" name="keyword2" id="part_prod_select" style="width:100%">
                         </select>
                     </td>
                     <td></td>

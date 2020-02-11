@@ -16,6 +16,8 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     authcheck();
+    datepickerInput();
+    selectBox();
     modal_start1();
     jqgridPagerIcons();
 });
@@ -32,7 +34,23 @@ function add_btn() {
     }
 }
 
+function select_change1(value) {
+    part_type_select_ajax_all('#part_prod_select', "/sysPartGroup2AllGet", "part_grp_code2", "part_grp_name2", {keyword: 'B', keyword2: value});
+}
 ////////////////////////////호출 함수//////////////////////////////////
+function datepickerInput() {
+    datepicker_makes("#datepicker", -1);
+    datepicker_makes("#datepicker2", 0);
+}
+
+function selectBox() {
+    part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+        $('#part_prod_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_prod_select').append(option);
+        $('#part_prod_select').select2();
+    });
+}
 
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "popPlanASSY"}).then(function (data) {
@@ -44,9 +62,8 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         datatype: "local",
         mtype: 'POST',
-        colNames: ['등록번호','품명','커넥터1','커넥터2','길이','단위','계획량','생산량','지시일','계획일','용도','생산구분','품목군','제품군','등록자','작업자','등록일','마감일','Remark','비고'],
+        colNames: ['등록번호','품명','커넥터1','커넥터2','길이','단위','계획량','생산량','계획일','용도','생산구분','품목군','제품군','등록자','작업자','등록일','마감일','Remark','비고'],
         colModel: [
-            {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60},
             {name: '', index: '',sortable: false, width: 60},
