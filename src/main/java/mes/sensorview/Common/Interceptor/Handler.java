@@ -25,12 +25,14 @@ import java.util.List;
 /**
  * <javadoc>
  * Handler 세팅
- * @author      김재일
- * @version     1.0
- * @since       2019-11-14
+ *
+ * @author 김재일
+ * @version 1.0
+ * @since 2019-11-14
  **/
 @Slf4j
 @Component
+@SessionAttributes("board_code")
 public class Handler extends HandlerInterceptorAdapter {
 
     @Autowired
@@ -50,18 +52,18 @@ public class Handler extends HandlerInterceptorAdapter {
         request.getSession().setAttribute("userData", lv);
         Session userData = (Session) session.getAttribute("userData");
 
-        response.setHeader("pragma","No-cache");
+        response.setHeader("pragma", "No-cache");
 
-        response.setHeader("Cache-Control","no-cache");
+        response.setHeader("Cache-Control", "no-cache");
 
-        response.addHeader("Cache-Control","No-store");
+        response.addHeader("Cache-Control", "No-store");
 
 
-        response.setDateHeader("Expires",1L);
+        response.setDateHeader("Expires", 1L);
 
         try {
-            if (ObjectUtils.isEmpty(userData) ) {
-                if (!request.getServletPath().equals("/")){
+            if (ObjectUtils.isEmpty(userData)) {
+                if (!request.getServletPath().equals("/")) {
                     response.setContentType("text/html; charset=UTF-8");
                     PrintWriter out = response.getWriter();
                     out.println("<script>alert(' 회원데이터가 존재하지않습니다.\\n 로그인페이지로 이동합니다.'); location.href='/login';</script>");
@@ -76,26 +78,16 @@ public class Handler extends HandlerInterceptorAdapter {
                     out.close();
                     return false;
                 }
-            }else if("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ){
-//                session.setMaxInactiveInterval(60*60);
-//
-//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-//                loginId.setMaxAge(60*60);
-//                response.addCookie(loginId);
+            } else if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 
-            }else if(request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
-            } else if(request.getServletPath().equals("/board")){
-//                session.setMaxInactiveInterval(60*60);
-//
-//                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
-//                loginId.setMaxAge(60*60);
-//                response.addCookie(loginId);
-                String keyword = request.getParameter("keyword");
+            } else if (request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
+            } else if (request.getServletPath().equals("/board")) {
+                String board_code = (String)session.getAttribute("board_code").toString();
 
                 Page p = new Page();
-                p.setKeyword(keyword);
-                SYSAuthProgram sap = authService.menuAuth(request,p);
-                if (sap.getCheck_get().equals("N")){
+                p.setKeyword(board_code);
+                SYSAuthProgram sap = authService.menuAuth(request, p);
+                if (sap.getCheck_get().equals("N")) {
                     response.setContentType("text/html; charset=UTF-8");
                     PrintWriter out = response.getWriter();
                     out.println("<script>alert(' 권한이 존재하지않습니다.\\n 메인페이지로 이동합니다.'); location.href='/';</script>");
@@ -107,24 +99,24 @@ public class Handler extends HandlerInterceptorAdapter {
                 ReturnFunction returnFunction = new ReturnFunction();
 
                 request.setAttribute("allSub_list", authAllSubSelect);
-                Auth av1 = returnFunction.authMenu2(request,authAllSubSelect);
+                Auth av1 = returnFunction.boardMenu(board_code, authAllSubSelect);
                 String under_name = av1.getParent_menu_code();
-                authService.model_menu_setting(request, keyword, under_name.substring(0, under_name.length() - 1), under_name);
+                authService.model_menu_setting(request, board_code, under_name.substring(0, under_name.length() - 1), under_name);
 
             } else {
-                    session.setMaxInactiveInterval(60*60*24);
+                session.setMaxInactiveInterval(60 * 60 * 24);
 //
 //                Cookie loginId = new Cookie("senUserData", userData.getUser_code());
 //                loginId.setMaxAge(60*60);
 //                response.addCookie(loginId);
 
-                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction") ) { // left 메뉴가 없을시
+                if (request.getServletPath().equals("/") || request.getServletPath().equals("/loginAction")) { // left 메뉴가 없을시
                     authService.model_menu_setting(request);
                 } else {
                     Page p = new Page();
                     p.setKeyword(request.getServletPath().substring(1));
-                    SYSAuthProgram sap = authService.menuAuth(request,p);
-                    if (sap.getCheck_get().equals("N")){
+                    SYSAuthProgram sap = authService.menuAuth(request, p);
+                    if (sap.getCheck_get().equals("N")) {
                         response.setContentType("text/html; charset=UTF-8");
                         PrintWriter out = response.getWriter();
                         out.println("<script>alert(' 권한이 존재하지않습니다.\\n 메인페이지로 이동합니다.'); location.href='/';</script>");
@@ -136,7 +128,7 @@ public class Handler extends HandlerInterceptorAdapter {
                     ReturnFunction returnFunction = new ReturnFunction();
 
                     request.setAttribute("allSub_list", authAllSubSelect);
-                    Auth av1 = returnFunction.authMenu(request,authAllSubSelect);
+                    Auth av1 = returnFunction.authMenu(request, authAllSubSelect);
                     String under_name = av1.getParent_menu_code();
                     authService.model_menu_setting(request, request.getServletPath().substring(1), under_name.substring(0, under_name.length() - 1), under_name);
                 }

@@ -90,7 +90,7 @@
                                         <i class="menu-icon fa fa-cogs"></i>
                                     </c:if>
                                     <c:if test="${main_list.menu_name eq '게시판'}">
-                                    <a href='board?keyword=<c:out value="${under_list2.menu_code}"/>'>
+                                    <a onclick="viewBoard('<c:out value="${under_list2.menu_code}"/>');">
                                         <i class="menu-icon fa fa-cogs"></i>
                                     </c:if>
                                     <span class="menu-text2"><c:out value="${main_list.menu_name}"/></span>
@@ -105,5 +105,4 @@
         </c:forEach>
     </ul>
 </div>
-
 <%@include file="/WEB-INF/views/body/common/modal/password_modal.jsp" %>

@@ -26,7 +26,7 @@ var array =
         {code: "sysSPart", title: '관리자', sub: 'BOM관리', name: '제품등록'},
 
         // 자재관리
-        
+
         {code: "sysLoc", title: '자재관리', sub: '기준정보', name: '로케이션관리'},
         {code: "sysBPartPrice", title: '자재관리', sub: '기준정보', name: '자재단가관리'},
         {code: "scmReqOrder", title: '자재관리', sub: '구매관리', name: '구매요청현황'},
@@ -65,7 +65,7 @@ var array =
         {code:"tpmMachineRegComp", title:'설비관리',sub:'예방점검',name:'예방점검관리'},
         {code:"tpmMachineRegAlarm", title:'설비관리',sub:'예방점검',name:'예방점검알람설정'},
         {code:"tpmMachineError", title:'설비관리',sub:'사후보전',name:'사후보전관리'},
-        
+
 
         //품질관리
         {code: "qmsTestItem", title: '품질관리', sub: '기준정보', name: '검사항목관리'},
@@ -128,6 +128,9 @@ var array =
         {code:"outsOutList", title:"외주관리" , sub:"외주관리", name:"외주출고현황"},
         {code:"outsInList", title:"외주관리" , sub:"외주관리", name:"외주입고현황"},
         {code:"outsInReady", title:"외주관리" , sub:"외주관리", name:"미입고관리"},
+
+        //게시
+        {code:"board", title:"게시판" , sub:"게시판", name:"게시판"},
     ];
 var path = window.location.pathname.split("/").slice(1);
 $(function () {
@@ -252,4 +255,23 @@ function wrapWindowByMask2() {
 function closeWindowByMask() {
     $('#mask, #loadingImg').hide();
     $('#mask, #loadingImg').remove();
+}
+
+
+function viewBoard(idx){
+    $.ajax({
+        url: '/validCode?idx='+idx,
+        complete : function (e) {
+            if(e.status == 200){
+                $.ajax({
+                    url: '/board?idx='+idx,
+                    complete : function (e) {
+                        if(e.status == 200){
+                            location.href = '/board';
+                        }
+                    }
+                });
+            } else {alert('시스템 에러. 관리자에게 문의하세요.')}
+        }
+    });
 }
