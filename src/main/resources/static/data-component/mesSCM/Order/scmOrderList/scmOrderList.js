@@ -123,7 +123,7 @@ function jqGrid_main() {
             {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
             {name: 'part_code', index: 'part_code', sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
             {name: 'unit_name', index: 'unit_name', sortable: false, width: 40},
             {name: 'status_name', index: 'status_name', sortable: false, width: 40},
             {name: 'ord_qty', index: 'ord_qty', sortable: false, width: 60},

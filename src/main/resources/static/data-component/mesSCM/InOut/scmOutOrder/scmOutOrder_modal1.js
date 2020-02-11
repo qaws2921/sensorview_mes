@@ -359,20 +359,56 @@ function modal_make1() {
     });
 }
 
+
+function select_part_type_change_modal(value) {
+    part_type_select_ajax_all("#part_group_select1_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+        $('#part_group_select2_modal').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_select2_modal').append(option);
+
+        $('#part_group_select2_modal').select2();
+
+    });
+}
+
+
+function select_change1(value) {
+    part_type_select_ajax_all('#part_group_select2_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (){
+
+    }).catch(function (err){
+        $('#part_group_select2_modal').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_select2_modal').append(option);
+
+    });
+}
+
+
 function selectBox_modal1() {
     select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
     select_makes("#line_select", "/getLine", "line_code", "line_name");
     $("#usage_select").select2();
 
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
+    part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
 
-            }
 
-        })
+
+        part_type_select_ajax_all("#part_group_select1_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+            $('#part_group_select2_modal').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_select2_modal').append(option);
+
+            $('#part_group_select2_modal').select2();
+
+        });
     });
+    select_makes_sub('#part_name_select_modal', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 }
 
 function datepickerInput_modal1() {
