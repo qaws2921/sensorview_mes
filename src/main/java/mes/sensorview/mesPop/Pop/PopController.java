@@ -25,5 +25,7 @@ public class PopController {
     public String popPlan3() { return "mesPop/Pop/popPlan3/popPlan3"; }
     @RequestMapping("popPlanSub")
     public String popPlanSub() { return "mesPop/Pop/popPlanSub/popPlanSub"; }
+    @RequestMapping("popPlanASSY")
+    public String popPlanASSY() { return "mesPop/Pop/popPlanASSY/popPlanASSY"; }
 
 }
