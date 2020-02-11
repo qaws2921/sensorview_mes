@@ -129,10 +129,12 @@
                             <td class="wt-px-100 td-title t-align-c">그룹1</td>
                             <td class="wt-px-200">
                                 <input type="text" name="part_grp_name1" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
+                                <input type="hidden" name="part_group1" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">그룹2</td>
                             <td class="wt-px-200">
                                 <input type="text" name="part_grp_name2" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
+                                <input type="hidden" name="part_group2" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">구분</td>
                             <td class="wt-px-200">

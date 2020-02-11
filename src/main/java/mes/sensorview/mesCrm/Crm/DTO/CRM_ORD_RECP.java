@@ -24,6 +24,8 @@ public class CRM_ORD_RECP {
     private String end_supp_code;
     private String end_supp_name;
     private String part_type;
+    private String part_group1;
+    private String part_group2;
     private String part_grp_code;
     private String part_code;
     private String work_type;
@@ -58,7 +60,7 @@ public class CRM_ORD_RECP {
     private String create_date;
     private String update_date;
     private String part_no;
-    private String spec;
+    private String spec_all;
     private String unit_name;
     private String crm_type_name;
     private String user_name;

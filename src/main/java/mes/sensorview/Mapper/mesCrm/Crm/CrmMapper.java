@@ -36,4 +36,10 @@ public interface CrmMapper {
     Message crmAssyCableDel(SYS_ASSY_CABLE sac);
 
     List<CRM_OUT_SUB> crmOutListGet(Page p);
+
+    Message crmProdOrderAdd(CRM_ORD_RECP cor);
+
+    Message crmProdOrderDel(CRM_ORD_RECP cor);
+
+    Message crmWorkListAdd(CRM_ORD_RECP cor);
 }

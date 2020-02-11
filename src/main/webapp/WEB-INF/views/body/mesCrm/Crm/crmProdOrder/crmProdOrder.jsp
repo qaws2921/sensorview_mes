@@ -39,8 +39,15 @@
                             <span>조회</span>
                             </span>
                     </a>
+<%--                    <a class="dt-button btn btn-white btn-primary btn-mini btn-bold"--%>
+<%--                       tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="delete_btn();">--%>
+<%--                            <span>--%>
+<%--                                <i class="fa fa-trash bigger-110 blue"></i>--%>
+<%--                                <span>삭제</span>--%>
+<%--                            </span>--%>
+<%--                    </a>--%>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
-                       onclick="">
+                       onclick="add_btn();">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
                             <span>지시 생성</span>
                             </span>

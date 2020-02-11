@@ -8,6 +8,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    auth:{}
 
 };
 
@@ -18,7 +19,7 @@ $(document).ready(function () {
     datepickerInput();
     selectBox();
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 
     $(".table-responsive2").attr("style","margin-top: -20px;");
@@ -68,7 +69,42 @@ function supp_btn(what) {
     jqGridResize2("#SuppSearchGrid", $('#SuppSearchGrid').closest('[class*="col-"]'));
 }
 
+function add_btn() {
+    if(main_data.auth.check_edit != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+        if (ids.length === 0) {
+            alert("취소하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("취소하겠습니까?")) {
+                main_data.check = 'I';
+                wrapWindowByMask2();
+                ccn_ajax("/crmWorkListAdd", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+        }
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
+
 ////////////////////////////호출 함수////////////////////////////////
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysUser"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function selectBox() {
     $('#status1_select').select2();
     select_data_makes("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''});
