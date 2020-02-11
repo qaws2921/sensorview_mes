@@ -25,7 +25,7 @@ function modal_start1() {
 ////////////////////////////클릭 함수/////////////////////////////////////
 function modal_get_btn(page) {
     var data = value_return(".condition_modal");
-    data.keyword = "D";
+    data.keyword = "B";
 
     $("#mes_modal_grid").setGridParam({
         url: '/sysPartGet',
@@ -76,7 +76,7 @@ function addupdate_btn() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width:'auto',
+        width:'1000',
         height: 'auto',
         autoOpen:false,
         resizable: false,
@@ -106,13 +106,12 @@ function jqGrid_modal1() {
         datatype: "local",
         mtype: 'POST',
         caption: "조립케이블 구성 | MES",
-        colNames: ['품번','품명','규격1','규격2','재질', '품목군','제품군'],
+        colNames: ['품번','품명','규격', '품목군','제품군'],
         colModel: [
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec1', index: 'spec', sortable: false, width: 60},
-            {name: 'spec2', index: 'spec', sortable: false, width: 60},
-            {name: 'material', index: 'material', sortable: false, width: 60},
+            {name: 'spec_all', index: 'spec_all', sortable: false, width: 60},
+
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],
@@ -132,7 +131,7 @@ function jqGrid_modal1() {
 
 
 function select_change1_modal(value) {
-    part_type_select_ajax_all('#part_group2_modal_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:value}).then(function (){
+    part_type_select_ajax_all('#part_group2_modal_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:value}).then(function (){
 
     }).catch(function (err){
         $('#part_group2_modal_select').empty();
@@ -147,7 +146,7 @@ function select_change1_modal(value) {
 }
 
 function selectBox_modal() {
-    part_type_select_ajax_all("#part_group1_modal_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'D'}).then(function () {
+    part_type_select_ajax_all("#part_group1_modal_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
         $('#part_group2_modal_select').empty();
 
         var option = $("<option></option>").text('전체').val('');
@@ -158,7 +157,6 @@ function selectBox_modal() {
 
     });
 
-    select_makes_sub('#part_name_modal_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 }
 
 

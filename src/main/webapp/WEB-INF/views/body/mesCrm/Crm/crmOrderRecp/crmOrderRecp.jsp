@@ -118,12 +118,11 @@
                             </td>
                             <td class="wt-px-100 td-title t-align-c">규격</td>
                             <td class="wt-px-200">
-                                <input type="text" name="spec" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
+                                <input type="text" name="spec" readonly value="자동표시" id="spec" class="form-control main_value part_value crm_order_value">
                             </td>
-                            <td class="wt-px-100 td-title t-align-c">구분</td>
+                            <td class="wt-px-100 td-title t-align-c"></td>
                             <td class="wt-px-200">
-                                <input type="text" name="part_type_name" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
-                                <input type="hidden" name="part_type" readonly class="form-control main_value part_value">
+
                             </td>
                         </tr>
                         <tr>
@@ -135,9 +134,10 @@
                             <td class="wt-px-200">
                                 <input type="text" name="part_grp_name2" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
                             </td>
-                            <td class="wt-px-100 td-title t-align-c">그룹3</td>
+                            <td class="wt-px-100 td-title t-align-c">구분</td>
                             <td class="wt-px-200">
-                                <input type="text" name="part_grp_name3" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
+                                <input type="text" name="part_type_name" readonly value="자동표시" class="form-control main_value part_value crm_order_value">
+                                <input type="hidden" name="part_type" readonly class="form-control main_value part_value">
                             </td>
                             <td class="wt-px-100 td-title t-align-c">End User</td>
                             <td class="wt-px-200">

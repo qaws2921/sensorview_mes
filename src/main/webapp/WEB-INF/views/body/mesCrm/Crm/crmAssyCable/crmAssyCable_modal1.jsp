@@ -18,11 +18,6 @@
                         <select id="part_group2_modal_select" name="keyword3" class="form-control keyword condition_modal"  style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" >품명</td>
-                    <td class="wt-px-200">
-                        <select id="part_name_modal_select" name="keyword4" class="form-control keyword condition_modal" style="width:100%">
-                        </select>
-                    </td>
                     <td></td>
                 </tr>
                 </tbody>

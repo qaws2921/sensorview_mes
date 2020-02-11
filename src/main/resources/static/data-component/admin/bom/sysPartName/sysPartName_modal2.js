@@ -6,7 +6,7 @@ function modal_start2() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function addUdate_btn2() {
-    var modal_objact = value_return(".modal_value");
+    var modal_objact = value_return(".modal_value2");
     modal_objact.keyword = main_data.check;
     modal_objact.part_type = main_data.send_data.keyword;
     modal_objact.part_group1 = main_data.send_data.keyword2;
@@ -19,8 +19,6 @@ function addUdate_btn2() {
         }
         if (confirm(text)) {
             modal_objact.keyword = main_data.check;
-            console.log(modal_objact);
-
             ccn_ajax("/sysPartNameAdd", modal_objact).then(function (data) {
                 if (data.result === 'NG') {
                     alert(data.message);
@@ -31,7 +29,7 @@ function addUdate_btn2() {
                         get_btn_post($("#mes_grid").getGridParam('page'));
                     }
                 }
-                $("#addDialog").dialog('close');
+                $("#addDialog2").dialog('close');
             }).catch(function (err) {
                 alert("저장실패");
             });

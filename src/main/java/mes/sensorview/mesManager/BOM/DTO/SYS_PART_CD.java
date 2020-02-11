@@ -16,6 +16,7 @@ public class SYS_PART_CD {
     private String supp_code;
     private String spec1;
     private String spec2;
+    private String spec_all;
     private String material;
     private String unit_code;
     private String lt;
