@@ -7,15 +7,22 @@ function modal_start1() {
 
 ////////////////////////////클릭 함수/////////////////////////////////////
 function select_change1_modal1(value) {
-    console.log(value);
-
-    if(value != '' && value != null){
-        console.log('sss');
-        console.log(value);
+    if(value != '' && value != null ){
         ccn_ajax('/popRouteOneGet',{keyword:value}).then(function (data){
-            $('#line_name_modal1').val(data.lc1);
-            $('#line_code_modal1').val(data.line_code1);
-            select_data_makes2('#line_user_select_modal1','/popLineUserAllGet','user_code','user_name',{keyword:data.line_code1});
+
+            console.log(data);
+            if( main_data.check2 != 'Y'){
+                $('#line_name_modal1').val(data.lc1);
+                $('#line_code_modal1').val(data.line_code1);
+                select_data_makes2('#line_user_select_modal1','/popLineUserAllGet','user_code','user_name',{keyword:data.line_code1});
+            } else {
+                part_type_select_ajax('#line_user_select_modal1','/popLineUserAllGet','user_code','user_name',{keyword:data.line_code1}).then(function (value1) {
+                    $('#line_user_select_modal1').val(main_data.work_user_code).trigger("change");
+                    main_data.check2 = 'N';
+
+                });
+            }
+
         });
     }
 }
@@ -26,8 +33,6 @@ function addUdate_btn() {
     modal_objact.end_date = modal_objact.end_date.replace(/\-/g, '');
     modal_objact.keyword = main_data.check;
     modal_objact.mat_name= $("#mat_prod_select_modal1 option:checked").text();
-
-    console.log(modal_objact);
 
     if (effectiveness1(modal_objact)) {
         var text = '저장하겠습니까?';

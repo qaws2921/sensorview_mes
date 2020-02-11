@@ -8,7 +8,9 @@ var main_data = {
     check: 'I',
     send_data: {},
     readonly: [],
-    auth:{}
+    auth:{},
+    check2:'N',
+    work_user_code:'',
 };
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -103,11 +105,15 @@ function update_btn(jqgrid_data) {
         main_data.check = 'U';
         modal_reset(".modal_value", []);
         ccn_ajax('/popPlanSubOneGet', jqgrid_data).then(function (data) {
+            main_data.work_user_code = data.work_user_code;
             data.plan_date = data.plan_date.substring(0,4)+'-'+data.plan_date.substring(4,6)+'-'+data.plan_date.substring(6);
             data.end_date = data.end_date.substring(0,4)+'-'+data.end_date.substring(4,6)+'-'+data.end_date.substring(6);
+            main_data.check2 = 'Y';
+
             modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
-            console.log(data);
+
             $("#addDialog").dialog('open');
+            console.log(data);
         });
     } else {
         alert("수정권한이 없습니다.");
