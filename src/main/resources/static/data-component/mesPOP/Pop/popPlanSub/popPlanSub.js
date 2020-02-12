@@ -10,7 +10,7 @@ var main_data = {
     readonly: [],
     auth:{},
     check2:'N',
-    work_user_code:'',
+    work_user_code:''
 };
 ////////////////////////////시작 함수//////////////////////////////////
 
