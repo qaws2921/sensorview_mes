@@ -8,34 +8,29 @@
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
                 <tbody>
-                <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
-                    <td class="wt-px-150">
-                        <select name="keyword5" id="line_select" class="form-control keyword condition_main" style="width: 100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
-                    <td class="wt-px-150">
-                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1_main(this.value);">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
-                    <td class="wt-px-150">
-                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
-                    <td class="wt-px-150">
-                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
-                        </select>
-                    </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
-                    <td class="wt-px-150">
-                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
+                    <tr>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0">공정</td>
+                        <td class="wt-px-150">
+                            <select name="keyword5" id="line_select" class="form-control keyword condition_main" style="width: 100%">
+                            </select>
+                        </td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_type">제품유형</td>
+                        <td class="wt-px-200">
+                            <select id="part_type_select" name="keyword" class="form-control keyword condition_main" onchange="select_change1(this.value);"  style="width:100%">
+                            </select>
+                        </td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1">품목군</td>
+                        <td class="wt-px-200">
+                            <select id="part_group1_select" name="keyword2" class="form-control keyword condition_main" onchange="select_change2(this.value);" style="width:100%">
+                            </select>
+                        </td>
+                        <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2">제품군</td>
+                        <td class="wt-px-200">
+                            <select id="part_group2_select" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

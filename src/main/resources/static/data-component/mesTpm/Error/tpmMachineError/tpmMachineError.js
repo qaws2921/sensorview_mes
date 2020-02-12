@@ -55,10 +55,10 @@ function add_btn() {
         modal_reset(".modal_value", main_data.readonly);
 
         $("#datepicker3").datepicker('setDate', 'today');
-        if($('#line_select').val() == ''){
-            $("select[name=line_name] option:eq(0)").prop("selected", true).trigger("change");
-        }else {
+        if ($('#line_select').val() !== '' && $('#line_select').val() !== null){
             $('#line_select2').val($('#line_select').val()).prop("selected",true).trigger("change");
+        } else {
+            $("select#line_select2 option:eq(0)").prop("selected", true).trigger("change");
         }
         $("select[name=error_type] option:eq(0)").prop("selected", true).trigger("change");
         $("select[name=error_result] option:eq(0)").prop("selected", true).trigger("change");
@@ -74,7 +74,18 @@ function add_btn() {
 }
 
 function select_change1(value) {
-    select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+    if (value !== '' && value !== null ){
+        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+
+    } else {
+        $('#machine_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#machine_select').append(option);
+
+        $('#machine_select').select2();
+    }
 }
 
 function update_btn(jqgrid_data) {
@@ -158,8 +169,16 @@ function authcheck() {
 }
 
 function selectBox() {
-    select_makes2("#line_select", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:''},"Y");
+    part_type_select_ajax_all("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''}).then(function (data){
+        $('#machine_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#machine_select').append(option);
+
+        $('#machine_select').select2();
+
+
     });
 }
 

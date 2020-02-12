@@ -4,10 +4,7 @@ function modal_start1() {
 }
 
 ////////////////////////////클릭 함수/////////////////////////////////////
-function select_change1(value) {
-        $('#code_select').empty();
-        select_data_makes2('#code_select', "/sysBPartAllGet" , "part_code", "part_name",{keyword2:value,keyword:''});
-}
+
 
 function addUdate_btn() {
     var send_data = value_return(".modal_value");

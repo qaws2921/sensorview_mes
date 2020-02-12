@@ -66,8 +66,9 @@ function addUdate_btn() {
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function selectBox_modal1() {
-    select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
+    select_makes_sub_ajax("#line_select2", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''}).then(function (data){
+
+        //select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
     });
     select_makes3("#qc_select", "/tpmMachineRegItemAllGet","qc_code","qc_name",{keyword:'Y'});
     $('#cycle_select').select2();
