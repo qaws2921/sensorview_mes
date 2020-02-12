@@ -88,7 +88,7 @@ function add_btn() {
         modal3_data.part_code = '';
         modal3_data.sub_data = [];
 
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#part_type_modal1_select").val('D').trigger("change");
         $("#datepicker3").datepicker('setDate', 'today');
 
         main_data.check = 'I';

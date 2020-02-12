@@ -45,6 +45,11 @@ public class OrderRestController {
         return orderService.scmOrderAdd(req, sio);
     }
 
+    @RequestMapping(value = "/scmOrderAdd2", method = RequestMethod.POST)
+    public Message scmOrderAdd2(HttpServletRequest req, SCM_IN_ORD sio) {
+        return orderService.scmOrderAdd2(req, sio);
+    }
+
     @RequestMapping(value = "/scmOrderSub1Get", method = RequestMethod.POST)
     public RESTful scmOrderSub1Get(HttpServletRequest req, Page p){
         return orderService.scmOrderSub1Get(req, p);

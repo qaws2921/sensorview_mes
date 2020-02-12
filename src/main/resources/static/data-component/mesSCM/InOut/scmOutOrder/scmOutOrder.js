@@ -79,7 +79,7 @@ function add_btn() {
         modal_reset(".modal_value2", []);
         $("#scmOutOrderDialogLeftGrid").jqGrid('clearGridData');
         $("#scmOutOrderDialogRightGrid").jqGrid('clearGridData');
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#part_type_modal1_select").val('D').trigger("change");
         $("#datepicker3").datepicker('setDate', 'today');
 
         main_data.check = 'I';

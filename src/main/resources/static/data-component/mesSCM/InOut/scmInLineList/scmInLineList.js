@@ -41,7 +41,7 @@ function authcheck() {
 }
 
 function selectBox() {
-    select_makes("#line_select", "/getLine", "line_code", "line_name");
+    select_makes_sub("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''},'Y');
 }
 
 function datepickerInput() {

@@ -2,10 +2,7 @@ package mes.sensorview.Mapper.mesPop.Pop;
 
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD;
+import mes.sensorview.mesPop.Pop.DTO.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -39,4 +36,12 @@ public interface MesPopPopMapper {
     POP_PLAN_SUB_CD popPlanSubOneGet(POP_PLAN_SUB_CD ppsc);
 
     Message popPlanSubDel(POP_PLAN_SUB_CD ppsc);
+
+    List<POP_PLAN_ASSY_CD> popPlanASSYGet(Page p);
+
+    Message popPlanASSYAdd(POP_PLAN_ASSY_CD ppac);
+
+    POP_PLAN_ASSY_CD popPlanASSYOneGet(POP_PLAN_ASSY_CD ppac);
+
+    Message popPlanASSYDel(POP_PLAN_ASSY_CD ppac);
 }

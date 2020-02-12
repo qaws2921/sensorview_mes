@@ -456,6 +456,8 @@ function filebox(cellvalue, options, rowObject) {
     return "" +
         "<div class='filebox'>"+
         "<label class='file_labal' for='file_"+rowObject.part_code+"'>업로드</label>"+
-        "<input type='file' id='file_"+rowObject.part_code+"' style='font-size: 9px; width:100%' onchange='file_change(this);' />" +
+        "<input type='file' id='file_"+rowObject.part_code+"'  onchange='file_change(this);' />" +
         "</div>";
 }
+
+

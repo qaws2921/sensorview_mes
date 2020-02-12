@@ -7,6 +7,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    auth:{}
 
 };
 
@@ -15,6 +16,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
+    authcheck();
     jqgridPagerIcons();
 });
 ////////////////////////////클릭 함수////////////////////////////////
@@ -34,6 +36,7 @@ function get_btn(page) {
 }
 
 function get_btn_post(page) {
+    modal_reset(".main_value",[]);
     $("#mes_grid").setGridParam({
         url: '/crmProdOrderGet',
         datatype: "json",
@@ -48,7 +51,73 @@ function update_btn(rowid) {
     });
 }
 
+// 삭제 버튼
+function delete_btn() {
+    if(main_data.auth.check_del != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+        if (ids.length === 0) {
+            alert("삭제하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("삭제하겠습니까?")) {
+                main_data.check = 'D';
+                wrapWindowByMask2();
+                ccn_ajax("/crmProdOrderDel", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+        }
+    } else {
+        alert("삭제권한이 없습니다.");
+    }
+}
+
+
+function add_btn() {
+    if(main_data.auth.check_add != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow'); // 체크된 그리드 로우
+        if (ids.length === 0) {
+            alert("지시하는 데이터를 선택해주세요");
+        } else {
+            if (confirm("지시하겠습니까?")) {
+                main_data.check = 'I';
+                wrapWindowByMask2();
+                ccn_ajax("/crmProdOrderAdd", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+        }
+    } else {
+        alert("추가권한이 없습니다.");
+    }
+}
+
+
 ////////////////////////////호출 함수////////////////////////////////
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "sysUser"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -70,7 +139,7 @@ function jqGrid_main() {
             {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
             {name: 'status1_name', index: 'status1_name', sortable: false, width: 60},
             {name: 'status2_name', index: 'status2_name', sortable: false, width: 60},
-            {name: 'end_date', index: 'end_date', sortable: false, width: 60,formatter:formatterDate3},
+            {name: 'end_date', index: 'end_date', sortable: false, width: 60,formatter:formmatterDate2},
             {name: 'status3_name', index: 'status3_name', sortable: false, width: 60},
             {name: 'part_no', index: 'part_no', sortable: false, width: 60},
             {name: 'spec', index: 'spec', sortable: false, width: 60},

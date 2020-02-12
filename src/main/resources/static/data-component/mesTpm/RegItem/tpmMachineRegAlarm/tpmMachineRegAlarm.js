@@ -65,7 +65,18 @@ function add_btn() {
 }
 
 function select_change1(value) {
-    select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+    if (value !== '' && value !== null ){
+        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:value},"Y");
+
+    } else {
+        $('#machine_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#machine_select').append(option);
+
+        $('#machine_select').select2();
+    }
 }
 function update_btn(jqgrid_data) {
     if (main_data.auth.check_edit !="N") {
@@ -168,8 +179,16 @@ function authcheck() {
 }
 
 function selectBox() {
-    select_makes2("#line_select", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select","/tpmMachineAllGet","machine_code","machine_name",{keyword:''},"Y");
+    part_type_select_ajax_all("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''}).then(function (data){
+        $('#machine_select').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#machine_select').append(option);
+
+        $('#machine_select').select2();
+
+
     });
 }
 

@@ -231,7 +231,8 @@ function datepickerInput_modal1() {
 
 }
 function selectBox_modal1() {
-    select_makes("#line_select2", "/getLine", "line_code", "line_name");
+    select_makes_sub("#line_select2", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''},'N');
+
     $('#focus_yn_modal').select2();
 }
 

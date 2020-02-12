@@ -43,7 +43,7 @@ function update_btn(rowid) {
             $("#line_select").val(data[0].cargo_code_to).trigger("change");
             $("#usage_select").val(data[0].usage).trigger("change");
             $("#datepicker3").val(formmatterDate2(data[0].work_date));
-            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_type_modal1_select").val('D').trigger("change");
 
             $("#scmOutOrderDialogRightGrid").setGridParam({
                 datatype: "local",
@@ -359,20 +359,67 @@ function modal_make1() {
     });
 }
 
+
+function select_part_type_change_modal(value) {
+    if (value !== '' && value !== null ) {
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
+    }
+}
+
+
+function select_change1_modal(value) {
+    if (value !== '' && value !== null ){
+        part_type_select_ajax_all('#part_group_modal1_select2', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_modal1_select").val(), keyword2:value}).then(function (){
+
+        }).catch(function (err){
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+        });
+    } else {
+        $('#part_group_modal1_select2').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_modal1_select2').append(option);
+    }
+}
+
+
 function selectBox_modal1() {
     select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
-    select_makes("#line_select", "/getLine", "line_code", "line_name");
+    select_makes3("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''});
     $("#usage_select").select2();
 
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
+    part_type_select_ajax("#part_type_modal1_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        $("select#part_type_modal1_select option[value='C']").remove();
+        $("select#part_type_modal1_select option[value='B']").remove();
 
-            }
 
-        })
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
     });
+    select_makes_sub('#part_name_modal1_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 }
 
 function datepickerInput_modal1() {
@@ -380,27 +427,4 @@ function datepickerInput_modal1() {
 
 }
 
-function select_change1(value) {
-    if (value !== ''){
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
-            }
-        });
-    }
-}
 
-function group_cb(value,i) {
-    $('#part_group'+i).text(value["part_group"+i]);
-    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
-        $('#part_group_select'+i).empty();
-        var option = null;
-        var allSelect = ($("<option></option>").text("전체").val(""));
-        $('#part_group_select'+i).append(allSelect);
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-            $('#part_group_select'+i).append(option);
-        }
-        $('#part_group_select'+i).select2();
-    });
-}

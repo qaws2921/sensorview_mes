@@ -83,4 +83,18 @@ public class CrmRestController {
 
     @RequestMapping(value = "/crmOutListGet", method = RequestMethod.POST)
     public RESTful crmOutListGet(HttpServletRequest req, Page p) { return crmService.crmOutListGet(req, p); }
+
+    @RequestMapping(value = "/crmProdOrderAdd", method = RequestMethod.POST)
+    public Message crmProdOrderAdd(CRM_ORD_RECP cor, HttpServletRequest req){
+        return crmService.crmProdOrderAdd(cor,req);
+    }
+    @RequestMapping(value = "/crmProdOrderDel", method = RequestMethod.POST)
+    public Message crmProdOrderDel(CRM_ORD_RECP cor, HttpServletRequest req){
+        return crmService.crmProdOrderDel(cor,req);
+    }
+
+    @RequestMapping(value = "/crmWorkListAdd", method = RequestMethod.POST)
+    public Message crmWorkListAdd(CRM_ORD_RECP cor, HttpServletRequest req){
+        return crmService.crmWorkListAdd(cor,req);
+    }
 }

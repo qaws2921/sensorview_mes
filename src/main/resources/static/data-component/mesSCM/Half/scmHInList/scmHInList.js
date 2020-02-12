@@ -35,7 +35,7 @@ function get_btn(page) {
 ////////////////////////////호출 함수//////////////////////////////////
 
 function selectBox() {
-    select_makes("#line_select", "/getLine", "line_code", "line_name");
+    select_makes_sub("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:'1'},'Y');
 }
 
 function datepickerInput() {

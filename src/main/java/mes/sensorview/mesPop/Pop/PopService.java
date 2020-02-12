@@ -5,10 +5,7 @@ import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesPop.Pop.MesPopPopMapper;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN1_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN2_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN3_CD;
-import mes.sensorview.mesPop.Pop.DTO.POP_PLAN_SUB_CD;
+import mes.sensorview.mesPop.Pop.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,5 +101,27 @@ public class PopService extends ReturnFunction {
     public Message popPlanSubDel(HttpServletRequest req, POP_PLAN_SUB_CD ppsc) {
         ppsc.setSite_code(getSessionData(req).getSite_code());
         return mesPopPopMapper.popPlanSubDel(ppsc);
+    }
+
+    public RESTful popPlanASSYGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<POP_PLAN_ASSY_CD> rows = mesPopPopMapper.popPlanASSYGet(p);
+        return getListData(rows, p);
+    }
+
+    public Message popPlanASSYAdd(HttpServletRequest req, POP_PLAN_ASSY_CD ppac) {
+        ppac.setSite_code(getSessionData(req).getSite_code());
+        ppac.setUser_code(getSessionData(req).getUser_code());
+        return mesPopPopMapper.popPlanASSYAdd(ppac);
+    }
+
+    public POP_PLAN_ASSY_CD popPlanASSYOneGet(HttpServletRequest req, POP_PLAN_ASSY_CD ppac) {
+        ppac.setSite_code(getSessionData(req).getSite_code());
+        return mesPopPopMapper.popPlanASSYOneGet(ppac);
+    }
+
+    public Message popPlanASSYDel(HttpServletRequest req, POP_PLAN_ASSY_CD ppac) {
+        ppac.setSite_code(getSessionData(req).getSite_code());
+        return mesPopPopMapper.popPlanASSYDel(ppac);
     }
 }

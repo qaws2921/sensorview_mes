@@ -141,4 +141,21 @@ public class CrmService extends ReturnFunction {
         List<CRM_OUT_SUB> rows = crmMapper.crmOutListGet(p);
         return getListData(rows , p);
     }
+
+    public Message crmProdOrderAdd(CRM_ORD_RECP cor, HttpServletRequest req) {
+        cor.setSite_code(getSessionData(req).getSite_code());
+        cor.setUser_code(getSessionData(req).getUser_code());
+        return crmMapper.crmProdOrderAdd(cor);
+    }
+
+    public Message crmProdOrderDel(CRM_ORD_RECP cor, HttpServletRequest req) {
+        cor.setSite_code(getSessionData(req).getSite_code());
+        return crmMapper.crmProdOrderDel(cor);
+    }
+
+    public Message crmWorkListAdd(CRM_ORD_RECP cor, HttpServletRequest req) {
+        cor.setSite_code(getSessionData(req).getSite_code());
+        cor.setUser_code(getSessionData(req).getUser_code());
+        return crmMapper.crmWorkListAdd(cor);
+    }
 }

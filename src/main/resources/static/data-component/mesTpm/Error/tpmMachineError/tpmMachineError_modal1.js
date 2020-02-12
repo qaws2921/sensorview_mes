@@ -60,8 +60,8 @@ function select_change2(value) {
 ////////////////////////////호출 함수/////////////////////////////////////
 
 function selectBox_modal1() {
-    select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
+    select_makes_sub_ajax("#line_select2", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''}).then(function (data){
+
     });
 
     select_makes3("#type_select", "/sysCommonAllGet","code_value","code_name1",{keyword:'MACHINE_ERROR_TYPE'});
@@ -120,19 +120,22 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    // if (modal_objact.part_grp_code === '') {
-    //     alert("품목구분을 선택해주세요");
-    //     return false;
-    // } else if (modal_objact.part_code === '') {
-    //     alert("품목코드를 입력해주세요");
-    //     return false;
-    // } else if (modal_objact.part_name === '') {
-    //     alert("품목명을 입력해주세요");
-    //     return false;
-    // } else {
+
+
+
+    if (modal_objact.work_date === '') {
+        alert("점검일을 선택해주세요");
+        return false;
+    } else if (modal_objact.line_name === '' || modal_objact.line_name ===null )  {
+        alert("라인을 선택해주세요");
+        return false;
+    } else if (modal_objact.machine_code === '' || modal_objact.machine_code ===null) {
+        alert("설비명을 선택해주세요");
+        return false;
+    } else {
 
         return true;
-    // }
+    }
 }
 
 function datepickerInput_modal1() {

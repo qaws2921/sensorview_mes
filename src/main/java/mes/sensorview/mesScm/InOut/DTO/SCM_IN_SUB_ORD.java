@@ -9,6 +9,7 @@ public class SCM_IN_SUB_ORD {
     private int in_qty;
     private String part_name;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private String supp_code;
     private String supp_name;

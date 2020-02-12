@@ -14,7 +14,7 @@ function modal_start1() {
 
 function get_modal1_btn(page) {
     var data = value_return(".modal_value");
-    if (data.keyword5 !== '') {
+    if (data.keyword6 !== '') {
         $("#mes_add_grid").setGridParam({
             url: "/sysPartSuppGet",
             datatype: "json",
@@ -40,7 +40,7 @@ function update_btn(rowid) {
         main_data.check = 'U';
 
         ccn_ajax('/scmOrderSub2Get', {keyword: rowid}).then(function (data) {
-            $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+            $("#part_type_modal1_select").val('D').trigger("change");
             $("select[name=view_amount]").val(data[0].view_amount).trigger("change");
             $("select[name=t_payment]").val(data[0].t_payment).trigger("change");
             $("select[name=t_delivery]").val(data[0].t_delivery).trigger("change");
@@ -75,7 +75,7 @@ function add_modal1_btn() {
     if (main_data.check2 === 'Y') {
         var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
-        add_data.supp_code = add_data.keyword5;
+        add_data.supp_code = add_data.keyword6;
         add_data.attachment = $("input:radio[name=attachment]:checked").val();
         var jdata = $("#mes_add_grid2").getRowData();
         if (jdata.length > 0) {
@@ -362,7 +362,7 @@ function jqGrid_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 1300,
+        width: 1350,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -393,6 +393,44 @@ function datepicker_modal1() {
 
 }
 
+
+function select_part_type_change_modal(value) {
+    if (value !== '' && value !== null ) {
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
+    }
+}
+
+
+function select_change1_modal(value) {
+    if (value !== '' && value !== null ){
+        part_type_select_ajax_all('#part_group_modal1_select2', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_modal1_select").val(), keyword2:value}).then(function (){
+
+        }).catch(function (err){
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+        });
+    } else {
+        $('#part_group_modal1_select2').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_modal1_select2').append(option);
+    }
+}
+
 function selectBox_modal1() {
     select_makes_sub("#grp_select", "/sysBPartGroupSelectGet", "part_grp_code", "part_grp_name", {keyword: ''}, 'Y');
     $("#view_select").select2();
@@ -401,16 +439,23 @@ function selectBox_modal1() {
     select_data_makes('select[name=shipping_addr]','/sysCommonAllGet','code_value','code_name1',{keyword:'MT_ORD_SHIPPING'});
 
 
+    part_type_select_ajax("#part_type_modal1_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        $("select#part_type_modal1_select option[value='C']").remove();
+        $("select#part_type_modal1_select option[value='B']").remove();
 
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
 
-            }
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+            $('#part_group_modal1_select2').empty();
 
-        })
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
     });
+    select_makes_sub('#part_name_modal1_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 
 }
 

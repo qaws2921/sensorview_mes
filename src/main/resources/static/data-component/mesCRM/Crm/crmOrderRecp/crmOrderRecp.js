@@ -13,7 +13,7 @@ $(document).ready(function () {
     selectBox();
     datepickerInput();
     suppModal_start();
-    partModal_start();
+    partModal_start('CRM');
     authcheck();
     jqgridPagerIcons();
 });
@@ -81,8 +81,8 @@ function add_btn() {
 function  partModal_bus(rowid,name) {
         modal_reset(".part_value", []);
     ccn_ajax('/sysPartOneGet', {keyword:rowid}).then(function (data) {
-    console.log(rowid);
         modal_edits('.part_value',[], data);
+        $("#spec").val(data.spec);
     });
     connectorSelect(rowid);
 }

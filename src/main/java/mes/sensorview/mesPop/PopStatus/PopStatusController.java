@@ -14,4 +14,6 @@ public class PopStatusController {
         return "mesPop/PopStatus/popProdList1/popProdList1";
     }
 
+    @RequestMapping("popPlanOrder")
+    public String popPlanOrder() { return "mesPop/PopStatus/popPlanOrder/popPlanOrder"; }
 }

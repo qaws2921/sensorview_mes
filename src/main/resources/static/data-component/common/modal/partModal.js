@@ -1,10 +1,10 @@
 var part_gu = 'N';
 
 ////////////////////////////시작 함수/////////////////////////////////////
-function partModal_start() {
+function partModal_start(what) {
     partModal_make();
     partModal_jqGrid();
-    partSelectBox();
+    partSelectBox(what);
     jqGridResize("#partSearchGrid", $('#partSearchGrid').closest('[class*="col-"]'));
 }
 
@@ -49,7 +49,7 @@ function select_part_modal_change1(value) {
     });
 }
 function select_part_modal_change2(value) {
-    part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value}).catch(function (err){
+    part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select_modal').val(), keyword2:value}).catch(function (err){
         $('#part_prod_select').empty();
     });
 }
@@ -57,15 +57,29 @@ function select_part_modal_change2(value) {
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
-function partSelectBox() {
-    part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        part_type_select_ajax("#part_group_select_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
-            part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
+function partSelectBox(what) {
+    if (what == null){
+        console.log(what);
+        part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+            part_type_select_ajax("#part_group_select_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
+                part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:data[0].part_type_code, keyword2:data2[0].part_grp_code})
+            });
+        }).catch(function (err){
+            $('#part_group_select').empty();
+            $('#part_prod_select').empty();
         });
-    }).catch(function (err){
-        $('#part_group_select').empty();
-        $('#part_prod_select').empty();
-    });
+    } else {
+        part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+            $("select#part_type_select_modal option[value='C']").remove();
+            $("select#part_type_select_modal option[value='D']").remove();
+            part_type_select_ajax("#part_group_select_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'A'}).then(function (data2){
+                part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'A', keyword2:data2[0].part_grp_code})
+            });
+        }).catch(function (err){
+            $('#part_group_select').empty();
+            $('#part_prod_select').empty();
+        });
+    }
 }
 
 
@@ -89,16 +103,14 @@ function partModal_jqGrid() {
         mtype: 'POST',
         // 타이틀
         caption: "품목조회 | MES",
-        colNames: ['','품번','품명','규격1','규격2','재질', '품목군','제품군'],
+        colNames: ['','품번','품명','규격', '품목군','제품군'],
         colModel: [
             {name:'radio',index:'radio',align:"center",width:30 ,sortable: false, formatter: function (cellValue, option) {
                     return '<input type="radio" name="radio_' + option.gid + '" onclick="return false;"/>';
             }},
             {name: 'part_code', index: 'part_code', key: true, sortable: false, width: 60},
             {name: 'part_name', index: 'part_name', sortable: false, width: 60},
-            {name: 'spec1', index: 'spec', sortable: false, width: 60},
-            {name: 'spec2', index: 'spec', sortable: false, width: 60},
-            {name: 'material', index: 'material', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
             {name: 'part_grp_name1', index: 'part_grp_name1', sortable: false, width: 60},
             {name: 'part_grp_name2', index: 'part_grp_name2', sortable: false, width: 60},
         ],

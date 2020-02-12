@@ -16,6 +16,7 @@ public class SCM_IN_SUB {
     private String qc_level_name;
     private String ord_check;
     private String spec;
+    private String spec_all;
     private String unit_name;
     private String work_date;
     private String remark;

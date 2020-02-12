@@ -73,7 +73,7 @@ function add_btn() {
         $("#mes_add_grid2").jqGrid('clearGridData');
 
         $("#datepicker3").datepicker('setDate', 'today');
-        $("#part_type_select option:eq(0)").prop("selected", true).trigger("change");
+        $("#part_type_modal1_select").val('D').trigger("change");
         $("#view_select option:eq(0)").prop("selected", true).trigger("change");
         $("select[name=t_payment] option:eq(0)").prop("selected", true).trigger("change");
         $("select[name=t_delivery] option:eq(0)").prop("selected", true).trigger("change");
@@ -91,13 +91,6 @@ function add_btn() {
     }
 }
 
-function complete_btn() {
-    if (main_data.auth.check_edit !="N") {
-
-    }else {
-        alert("수정권한이 없습니다.");
-    }
-}
 
 function delete_btn() {
     if(main_data.auth.check_del != "N") {
@@ -165,6 +158,39 @@ function suppModal_bus(code, name) {
     }
     $("#SuppSearchGrid").jqGrid('clearGridData');
 
+}
+
+function complete_btn() {
+    if(main_data.auth.check_edit != "N") {
+        var gu5 = String.fromCharCode(5);
+        var ids = $("#mes_grid").getGridParam('selarrrow');
+
+        if (ids.length === 0) {
+            alert("완료처리하는 데이터를 선택해주세요");
+        } else {
+
+
+            if (confirm("완료처리 하겠습니까?")) {;
+                wrapWindowByMask2();
+                ccn_ajax("/scmOrderAdd2", {keyword: ids.join(gu5)}).then(function (data) {
+                    if (data.result === 'NG') {
+                        alert(data.message);
+                    } else {
+                        get_btn_post($("#mes_grid").getGridParam('page'));
+                    }
+                    $('#mes_grid2').jqGrid('clearGridData');
+                    closeWindowByMask();
+                }).catch(function (err) {
+                    closeWindowByMask();
+                    console.error(err); // Error 출력
+                });
+            }
+
+            $('#mes_grid').jqGrid("resetSelection");
+        }
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 ////////////////////////////호출 함수/////////////////////////////////////

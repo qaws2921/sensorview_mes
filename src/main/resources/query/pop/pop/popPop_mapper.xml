@@ -55,4 +55,20 @@
     <select id="popPlanSubDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_POP_PLAN_SUB_DEL #{site_code},#{keyword}
     </select>
+
+    <select id="popPlanASSYGet" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN_ASSY_CD">
+        EXEC SP_POP_PLAN_ASSY_GET #{site_code},#{page},#{rows},#{start_date},#{stop_date},#{keyword},#{keyword2},''
+    </select>
+
+    <select id="popPlanASSYAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PLAN_ASSY_ADD #{site_code},#{plan_date},#{plan_no3},#{part_grp_code},#{part_grp_code2},#{part_code},#{part_name},#{part_code1},#{part_code2},#{part_length},#{unit_type},#{plan_qty},#{work_qty},#{user_code},#{prod_type},#{prod_dept},#{work_user_code},#{end_date},#{remark},#{remark1},#{keyword}
+    </select>
+
+    <select id="popPlanASSYOneGet" resultType="mes.sensorview.mesPop.Pop.DTO.POP_PLAN_ASSY_CD">
+        EXEC SP_POP_PLAN_ASSY_GET #{site_code},1,1,'','','','',#{plan_no3}
+    </select>
+
+    <select id="popPlanASSYDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_PLAN_ASSY_DEL #{site_code},#{keyword}
+    </select>
 </mapper>

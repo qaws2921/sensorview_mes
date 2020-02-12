@@ -141,7 +141,8 @@ function add_btn() {
             $("#addDialog").dialog('open');
         } else {
 
-
+            modal_reset(".modal_value2", main_data.readonly);
+            $('#route_select2 option:eq(0)').prop("selected", true).trigger("change");
             $("#addDialog2").dialog('open');
         }
 
@@ -161,12 +162,20 @@ function update_btn(jqgrid_data) {
         main_data.check = 'U'; // 수정인지 체크
 
         ccn_ajax('/sysPartNameOneGet',{keyword: jqgrid_data.part_code}).then(function (data) {
+          if( main_data.check2 == 'Y') {
            modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
             $("#prod_jacket_select").prop("disabled",true).trigger('change');
             $("#prod_type1_select").prop("disabled",true).trigger('change');
             $("#prod_center_conductor").prop("disabled",true).trigger('change');
 
             $("#addDialog").dialog('open');
+
+          } else {
+              modal_reset(".modal_value2", main_data.readonly);
+              modal_edits('.modal_value2', [], data); // response 값 출력
+              $("#addDialog2").dialog('open');
+          }
+
         });
     } else {
         alert("수정권한이 없습니다.");
@@ -187,7 +196,7 @@ function delete_btn() {
                     if (data.result === 'NG') {
                         alert(data.message);
                     } else {
-                        get_btn($("#mes_grid").getGridParam('page'));
+                        get_btn_post($("#mes_grid").getGridParam('page'));
                     }
                     closeWindowByMask();
                 }).catch(function (err) {

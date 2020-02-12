@@ -109,14 +109,14 @@
                             <span>조회</span>
                             </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                            <span><i class="fa fa-download bigger-110 blue"></i>
-                            <span>저장</span>
-                            </span>
-                    </a>
+<%--                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"--%>
+<%--                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">--%>
+<%--                            <span><i class="fa fa-download bigger-110 blue"></i>--%>
+<%--                            <span>저장</span>--%>
+<%--                            </span>--%>
+<%--                    </a>--%>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
-                       onclick="">
+                       onclick="add_btn();">
                             <span><i class="fa fa-times bigger-110 blue"></i>
                             <span>진행취소</span>
                             </span>

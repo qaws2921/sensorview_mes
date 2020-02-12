@@ -19,6 +19,7 @@ public class SYS_ASSY_CABLE {
     private String user_name;
     private String spec1;
     private String spec2;
+    private String spec;
     private String material;
     private int rownum;
     private int rownum_page;

@@ -98,8 +98,13 @@ var array =
         {code:"popPlan2",title:'생산관리',sub:'생산관리',name:'생산계획등록(2단계)'},
         {code:"popPlan3",title:'생산관리',sub:'생산관리',name:'생산지시등록(3단계)'},
         {code:"popPlanSub",title:'생산관리',sub:'생산관리',name:'생산계획등록(Sub)'},
+        {code:"popPlanASSY",title:'생산관리',sub:'생산관리',name:'생산계획등록(ASSY)'},
+
+
         {code:"popProdRange",title:'생산관리',sub:'생산현황',name:'기간별 생산실적'},
         {code:"popProdList1",title:'생산관리',sub:'생산현황',name:'제품별 생산실적'},
+        {code:"popPlanOrder",title:'생산관리',sub:'생산현황',name:'생산요청현황'},
+        
 
         //출하관리
         {code:"wmsInList", title:'출하관리',sub:'입/출고 관리',name:'입고현황'},
