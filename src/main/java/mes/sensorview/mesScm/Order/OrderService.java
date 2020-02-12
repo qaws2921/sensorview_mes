@@ -65,4 +65,10 @@ public class OrderService extends ReturnFunction {
         sro.setUser_code(getSessionData(req).getUser_code());
         return  orderMapper.scmReqOrderAdd(sro);
     }
+
+    public Message scmOrderAdd2(HttpServletRequest req, SCM_IN_ORD sio) {
+        sio.setSite_code(getSessionData(req).getSite_code());
+        sio.setUser_code(getSessionData(req).getUser_code());
+        return orderMapper.scmOrderAdd2(sio);
+    }
 }
