@@ -1,6 +1,7 @@
 package mes.sensorview.mesBoard.board.DTO;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class SYS_BOARD_CD {
@@ -16,4 +17,9 @@ public class SYS_BOARD_CD {
     private String create_date;
     private String update_date;
     private int status;
+    private MultipartFile file_0;
+    private MultipartFile file_1;
+    private MultipartFile file_2;
+    private MultipartFile file_3;
+    private MultipartFile file_4;
 }

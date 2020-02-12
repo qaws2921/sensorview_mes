@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/ui-component/board/main.css" />
     <link rel="stylesheet" href="/ui-component/board/sub.css" />
     <link rel="stylesheet" href="/ui-component/board/board.css" />
+    <link rel="stylesheet" href="/ui-component/board/form.css" />
 </head>
 <body>
 <div class="page-content">

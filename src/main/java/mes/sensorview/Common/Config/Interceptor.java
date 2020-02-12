@@ -23,7 +23,7 @@ public class Interceptor implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(handler)
                 .addPathPatterns("/*")
-                .excludePathPatterns("/bd_*")
+                .excludePathPatterns("/ImgUpload")
                 .excludePathPatterns("/bcd")
                 .excludePathPatterns("/getNM")
                 .excludePathPatterns("/sendmsg")

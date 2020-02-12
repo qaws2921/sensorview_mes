@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mes.sensorview.Mapper.mesBoard.mesBoard.MesBoardMapper">
     <select id="getBoardName" resultType="String">
-        	SELECT BOARD_KR FROM SYS_BOARD_CD WHERE BOARD_CODE = #{idx}
+        SELECT BOARD_KR FROM SYS_BOARD_CD WHERE BOARD_CODE = #{idx}
+    </select>
+    <select id="getBoardData" resultType="mes.sensorview.mesBoard.board.DTO.SYS_BOARD_CD">
+        EXEC SP_SYS_BOARD_ALL #{site_code} , #{user_code} , #{board_code} , '','','','','','' , 0 , 0 , 0
     </select>
 </mapper>
 
