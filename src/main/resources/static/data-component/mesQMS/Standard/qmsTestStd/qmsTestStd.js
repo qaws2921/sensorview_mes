@@ -27,13 +27,7 @@ $(document).ready(function () {
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
-function select_change1_main(value) {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
-        for(var i=1; i<=3;i++) {
-            group_cb(value,i);
-        }
-    });
-}
+
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
@@ -58,18 +52,10 @@ function get_btn_post(page) {
 function add_btn() {
     if (main_data.auth.check_add !="N") {
         modal_reset(".modal_value", main_data.readonly);
+        $("#part_name_modal").prop("disabled", false);
         main_data.check = 'I';
-        if(main_data.check == 'I'){
-            $('#gubun_select2').prop("disabled",false);
-            $('#code_select').prop("disabled",false);
-        }
         modalValuePush("#line_select","#line_code","#line_name");
 
-        if($('#gubun_select').val() == ''){
-            $("select[name=part_grp_code] option:eq(0)").prop("selected", true).trigger("change");
-        }else {
-            $('#gubun_select2').val($('#gubun_select').val()).prop("selected",true).trigger("change");
-        }
         $("#addDialog").dialog('open');
     } else {
         alert("추가권한이 없습니다,");
@@ -83,7 +69,7 @@ function update_btn(jqgrid_data) {
         var send_data = {};
         send_data.part_code = jqgrid_data.part_code;
         send_data.line_code = jqgrid_data.line_code;
-
+        $("#part_name_modal").prop("disabled", true);
         ccn_ajax('/qmsTestStdOneGet', send_data).then(function (data) {
             modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
             $("#addDialog").dialog('open');
@@ -131,16 +117,63 @@ function delete_btn() {
     }
 }
 
+function select_change1(value) {
+    part_type_select_ajax_all('#part_group1_select', "/sysPartGroupAllGet","part_grp_code" ,"part_grp_name",{keyword:value}).then(function (){
+        $('#part_group2_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_group2_select').append(option);
+        $('#part_group2_select').select2();
+    }).catch(function (err){
+        $('#part_group1_select').empty();
+        $('#part_group2_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_group1_select').append(option);
+        $('#part_group2_select').append(option2);
+    });
+
+
+}
+function select_change2(value) {
+    if(value == null || value == ''){
+        $('#part_group2_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_group2_select').append(option);
+    }else {
+        part_type_select_ajax_all('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$('#part_type_select').val(), keyword2:value}).catch(function (err){
+
+        });
+
+    }
+}
 ////////////////////////////호출 함수//////////////////////////////////
 
+
+
+
+
 function selectBox() {
-    select_makes("#line_select", "/getLine", "line_code", "line_name");
+    select_makes3("#line_select", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''});
     part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
-            }
-        })
+        part_type_select_ajax_all("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:data[0].part_type_code}).then(function (data2){
+
+            $('#part_group2_select').empty();
+
+            var option2 = $("<option></option>").text('전체').val('');
+
+            $('#part_group2_select').append(option2);
+
+            $('#part_group2_select').select2();
+        });
+    }).catch(function (err){
+        $('#part_group1_select').empty();
+        $('#part_group2_select').empty();
+        var option = $("<option></option>").text('전체').val('');
+        var option2 = $("<option></option>").text('전체').val('');
+        $('#part_group1_select').append(option);
+        $('#part_group2_select').append(option2);
+        $('#part_group1_select').select2();
+        $('#part_group2_select').select2();
     });
 }
 
@@ -150,20 +183,6 @@ function authcheck() {
     });
 }
 
-function group_cb(value,i) {
-    $('#part_group'+i).text(value["part_group"+i]);
-    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
-        $('#part_group_select'+i).empty();
-        var option = null;
-        var allSelect = ($("<option></option>").text("전체").val(""));
-        $('#part_group_select'+i).append(allSelect);
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-            $('#part_group_select'+i).append(option);
-        }
-        $('#part_group_select'+i).select2();
-    });
-}
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({

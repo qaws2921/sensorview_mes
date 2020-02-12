@@ -26,6 +26,8 @@ function num_keyup(e) {
 
 function select_change2(value) {
     if (main_data.check === "I") {
+        if (value !== '' && value !== null){
+
         $('#machine_select2').empty();
         select_makes_sub_ajax2("#machine_select2", "/tpmMachineAllGet", "machine_code", "machine_name", {keyword: value}, "Y").then(function (data) {
             if ($("#machine_select").val() !== '') {
@@ -37,6 +39,15 @@ function select_change2(value) {
                 $("#machine_select2 option:eq(0)").prop("selected", true).trigger("change");
             }
         });
+        } else{
+            $('#machine_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#machine_select2').append(option);
+
+            $('#machine_select2').select2();
+        }
     }
 }
 function inputIntChange() {
@@ -164,8 +175,9 @@ function add_modal1_btn() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 function selectBox_modal1() {
-    select_makes2("#line_select2", "/getLine", "line_code", "line_name").then(function (data){
-        select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:''},"Y");
+    select_makes_sub_ajax2("#line_select2", "/sysProdLineAllGet", "line_code", "line_name",{keyword:''},'Y').then(function (data){
+
+        //select_makes_sub("#machine_select2","/tpmMachineAllGet","machine_code","machine_name",{keyword:data},"N");
     });
 
     select_makes_sub("#dept_select", "/sysDeptAllGet", "dept_code", "dept_name",'','Y');
