@@ -5,6 +5,8 @@ import mes.sensorview.Common.Excel.DTO.Excel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,7 +26,7 @@ public class ExcelController {
     @Autowired
     private ExcelService excelService;
 
-    @RequestMapping(value = "/excel_download")
+    @RequestMapping(value = "/excel_download", method = RequestMethod.POST)
     public void excel_download(HttpServletRequest req, HttpServletResponse response, Excel excel) throws IOException {
         excelService.ExcelDownload(req, response, excel);
     }

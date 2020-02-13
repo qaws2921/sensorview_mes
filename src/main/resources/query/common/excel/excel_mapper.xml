@@ -18,7 +18,17 @@
         EXEC SP_SCM_REQ_ORD_GET #{site_code},0,0,#{row0},#{row1}
     </select>
 
+    <select id="wmsInListDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB">
+         EXEC SP_WMS_IN_SUB_GET #{site_code},0,0, #{row0}, #{row1}
+    </select>
 
+    <select id="wmsOutListDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB">
+        EXEC SP_WMS_OUT_SUB_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
+
+    <select id="wmsOutReadyDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB">
+        EXEC SP_WMS_OUT_READY_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
 
     <select id="scmInListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB">
         EXEC SP_SCM_IN_SUB_DATE_GET #{site_code},0,0,#{row0}, #{row1}, #{row2}
@@ -29,7 +39,7 @@
     </select>
 
     <select id="scmStockRetListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB">
-       EXEC SP_SCM_STOCK_RET_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+       EXEC SP_SCM_RET_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
     </select>
 
     <select id="sysBPartSetListData" resultType="mes.sensorview.Common.DataTransferObject.Message">
@@ -56,6 +66,15 @@
     <select id="crmWorkListDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
         EXEC SP_CRM_ORD_RECP_PROFIT_GET #{site_code},0,0,#{row0},#{row1},#{row2},#{row3},#{row4},#{row5},''
     </select>
+
+    <select id="crmProdOrderDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP">
+        EXEC SP_CRM_ORD_RECP_GET #{site_code},0,0,#{row0},#{row1},''
+    </select>
+
+    <select id="crmOutListDbList" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB">
+        EXEC SP_CRM_OUT_SUB_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+    </select>
+
     <select id="qmsRecvDbList" resultType="mes.sensorview.mesQms.Import.DTO.QMS_RECV_SUB">
         EXEC [SP_QMS_RECV_SUB_DATE_GET] #{site_code}, 0, 0,#{row0},#{row1},#{row2},#{row3}
     </select>

@@ -67,6 +67,13 @@ function excel_download() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "qmsProdList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
+
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);

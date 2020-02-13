@@ -40,6 +40,12 @@ public class MachineService   extends UploadFunction {
         int check3 = Integer.parseInt(req.getParameter("check3"));
 
         Message m = machineMapper.tpmMCAdd(tmc);
+
+        File dir = new File("D:/UploadFile/sensorview/tpmMC");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
         if (tmc.getKeyword().equals("I")) {
             if (m.getResult().equals("OK")){
                 if (check1 == 1) {
@@ -72,21 +78,21 @@ public class MachineService   extends UploadFunction {
                 if (check1 == 1) {
                     tmc3.setImage1(tpmMCFileAdd(tmc2.getMachine_code(), req, 1));
                     // 삭제 메소드
-                    file = new File(tmc2.getImage1());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage1());
                     file.delete();
                 }
 
                 if (check2 == 1) {
                     tmc3.setImage2(tpmMCFileAdd(tmc2.getMachine_code(), req, 2));
                     // 삭제 메소드
-                    file = new File(tmc2.getImage2());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage2());
                     file.delete();
                 }
 
                 if (check3 == 1) {
                     tmc3.setImage3(tpmMCFileAdd(tmc2.getMachine_code(), req, 3));
                     // 삭제 메소드
-                    file = new File(tmc2.getImage3());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage3());
                     file.delete();
                 }
                 int delCheck1 = Integer.parseInt(req.getParameter("delCheck1"));
@@ -95,17 +101,17 @@ public class MachineService   extends UploadFunction {
 
                 // 삭제 키워드 메소드
                 if (delCheck1 == 1) {
-                    file = new File(tmc2.getImage1());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage1());
                     file.delete();
                     tmc2.setImage1("");
                 }
                 if (delCheck2 == 1) {
-                    file = new File(tmc2.getImage2());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage2());
                     file.delete();
                     tmc2.setImage2("");
                 }
                 if (delCheck3 == 1) {
-                    file = new File(tmc2.getImage3());
+                    file = new File("D:/UploadFile/sensorview/tpmMC/"+tmc2.getImage3());
                     file.delete();
                     tmc2.setImage3("");
                 }
@@ -147,15 +153,15 @@ public class MachineService   extends UploadFunction {
 
         for (TPM_MACHINE_CD tm :tmcLsit) {
             if (!tm.getImage1().equals("")){
-                file = new File(tm.getImage1());
+                file = new File("D:/UploadFile/sensorview/tpmMC/"+tm.getImage1());
                 file.delete();
             }
             if (!tm.getImage2().equals("")){
-                file = new File(tm.getImage2());
+                file = new File("D:/UploadFile/sensorview/tpmMC/"+tm.getImage2());
                 file.delete();
             }
             if (!tm.getImage3().equals("")){
-                file = new File(tm.getImage3());
+                file = new File("D:/UploadFile/sensorview/tpmMC/"+tm.getImage3());
                 file.delete();
             }
         }

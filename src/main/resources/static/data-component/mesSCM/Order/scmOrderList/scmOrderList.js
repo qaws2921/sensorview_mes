@@ -87,6 +87,7 @@ function excel_download() {
         $preparingFileModal.dialog({modal: true});
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
             data: {
                 "name":"scmOrderList",
                 "row0":$('#datepicker').val().replace(/-/gi,""),
@@ -147,9 +148,6 @@ function jqGrid_main() {
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
 
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            // var data = $('#mes_grid').jqGrid('getRowData', rowid);
         }
     });
 }

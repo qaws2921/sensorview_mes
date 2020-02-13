@@ -249,7 +249,7 @@ function jqGrid_main() {
             {name: 'update_date', index: 'update_date', sortable: false, width: 60, formatter: formmatterDate},
             {name: 'remark', index: 'remark', sortable: false, width: 60}
         ],
-        caption: "제품 등록 | MES",
+        caption: "제품등록 | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',

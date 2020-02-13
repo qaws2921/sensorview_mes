@@ -31,22 +31,22 @@ public class MakeHeader {
     }
 
     public String[] scmInList_Header() {
-        String[] data = {"입고일자","입고번호","업체명","품목그룹","품번","품명","규격","단위","입고수량","검사결과","MBR","상태","등록자","입고일시"};
+        String[] data = {"입고일자","입고번호","업체명","품번","품명","규격","단위","입고수량","검사결과","MBR","상태","등록자","입고일시"};
         return data;
     }
 
     public String[] scmOutList_Header() {
-        String[] data= {"출고일자","출고번호","공정명","품목그룹","품번","품명","규격","단위","출고수량","등록자","출고일시"};
+        String[] data= {"출고일자","출고번호","공정명","품번","품명","규격","단위","출고수량","등록자","출고일시"};
         return data;
     }
 
     public String[] scmStockRetList_Header() {
-        String[] data= {"반출일자","반출번호","업체명","품목그룹","품번","품명","규격","단위","반출수량","등록자","반출일시"};
+        String[] data= {"반출일자","반출번호","업체명","품번","품명","규격","단위","반출수량","등록자","반출일시"};
         return data;
     }
 
     public String[] scmInLineList_Header() {
-        String[] data= {"입고일자","입고번호","공정명","품목그룹","품번","품명","규격","단위","입고수량","등록자","입고일시"};
+        String[] data= {"입고일자","입고번호","공정명","품번","품명","규격","단위","입고수량","등록자","입고일시"};
         return data;
     }
 
@@ -106,4 +106,28 @@ public class MakeHeader {
     }
 
 
+    public String[] wmsInList_Header() {
+        String[] data ={"입고일자", "입고번호", "품번", "품명", "규격", "단위", "입고수량", "등록자", "입고일시"};
+        return data;
+    }
+
+    public String[] wmsOutList_Header() {
+        String[] data ={"출고일자", "출고번호", "업체명","품번", "품명", "규격", "단위", "출고수량","등록자","출고일시"};
+        return data;
+    }
+
+    public String[] wmsOutReady_Header() {
+        String[] data ={"요청일자", "요청번호", "업체명",  "품번", "품명", "규격", "단위", "요청수량", "등록자","요청일시"};
+        return data;
+    }
+
+    public String[] crmProdOrder_Header() {
+        String[] data ={"접수일", "수주번호", "수주처", "End User", "진행상태", "진행여부", "납기일", "지시상태", "Part No","규격","수량","단위","수축튜브","비고"};
+        return data;
+    }
+
+    public String[] crmOutList_Header() {
+        String[] data ={"출고일자", "출고번호", "업체명","품번", "품명", "규격", "단위","단가", "출고수량", "수주등록자"};
+        return data;
+    }
 }

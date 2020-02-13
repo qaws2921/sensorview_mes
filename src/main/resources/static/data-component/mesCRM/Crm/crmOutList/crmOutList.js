@@ -9,6 +9,7 @@ var main_data = {
     supp_check: 'A',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -18,7 +19,7 @@ $(document).ready(function () {
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
     suppModal_start();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -42,8 +43,9 @@ function excel_download() {
         $preparingFileModal.dialog({modal: true});
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
             data: {
-                "name": "outsOutList",
+                "name": "crmOutList",
                 "row0": $('#datepicker').val().replace(/-/gi, ""),
                 "row1": $('#datepicker2').val().replace(/-/gi, ""),
                 "row2": $("#supp_code_main").val()
@@ -96,6 +98,12 @@ function suppModal_close_bus() {
 
 ////////////////////////////호출 함수/////////////////////////////////////
 
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "crmOutList"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
@@ -122,7 +130,7 @@ function jqGrid_main() {
         ],
         caption: "출하실적 | MES",
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,

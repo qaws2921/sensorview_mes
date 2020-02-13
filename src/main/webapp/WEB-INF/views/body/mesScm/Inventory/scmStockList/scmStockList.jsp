@@ -3,35 +3,13 @@
 <%@ page session="false" %>
 <script type="text/javascript" src="/ui-component/assets/js/jquery.fileDownload.js"></script>
 <script type="text/javascript" src="/data-component/mesSCM/Inventory/scmStockList/scmStockList.js" charset="UTF-8"></script>
-<script type="text/javascript">
-    //<![CDATA[
-    $(function() {
-        $("#btn-excel").on("click", function () {
-            if (confirm("엑셀로 저장하시겠습니까?")) {
-                var $preparingFileModal = $("#preparing-file-modal");
-                $preparingFileModal.dialog({ modal: true });
-                $("#progressbar").progressbar({value: false});
-                $.fileDownload ("/excel_download", {
-                    data : {"name":"scmStockList"},
-                    successCallback: function (url) {
-                        $preparingFileModal.dialog('close');
-                    },
-                    failCallback: function (responseHtml, url) {
-                        $preparingFileModal.dialog('close');
-                        $("#error-modal").dialog({ modal: true });
-                    }
-                });
-                return false;
-            }else{
-                alert('다운로드가 취소되었습니다.');
-            }
-
-        });
-
-    });
-    //]]>
-</script>
+<style>
+    .select_hide{
+        display:none !important;
+    }
+</style>
 <div id="progressbar1" data-value="0"></div>
+
 <div class="main-content-inner">
 
     <div class="page-content">
@@ -39,24 +17,27 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_type">제품유형</td>
                     <td class="wt-px-200">
-                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1(this.value);">
+                        <select id="part_type_select" name="keyword" class="form-control keyword condition_main" onchange="select_type_change(this.value);"  style="width:100%">
+                            <option value="A">상품</option>
+                            <option value="C">반제품</option>
+                            <option value="D">자재</option>
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1">품목군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                        <select id="part_group1_select" name="keyword2" class="form-control keyword condition_main" onchange="select_change1(this.value);" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2">제품군</td>
                     <td class="wt-px-200">
-                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                        <select id="part_group2_select" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품명</td>
+                    <td class="wt-px-200" id="part_name">
+                        <select id="part_name_select" name="keyword4" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>
@@ -74,13 +55,13 @@
                                 <span>조회</span>
                             </span>
                     </a>
-                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
-                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
-                            <span>
-                                <i class="fa fa-download bigger-110 blue"></i>
-                                <span>저장</span>
-                            </span>
-                    </a>
+<%--                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"--%>
+<%--                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="excel_download()">--%>
+<%--                            <span>--%>
+<%--                                <i class="fa fa-download bigger-110 blue"></i>--%>
+<%--                                <span>저장</span>--%>
+<%--                            </span>--%>
+<%--                    </a>--%>
                 </div>
             </div>
         </div>
@@ -90,14 +71,13 @@
                 <div id="mes_grid_pager"></div>
             </div>
         </div>
+        <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
+            <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
+        </div>
+        <div title="알림" id="error-modal" style="display: none;">
+            <p>저장 실패. 관리자에게 문의하세요</p>
+        </div>
 
-
-    </div>
-    <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
-        <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
-    </div>
-    <div title="알림" id="error-modal" style="display: none;">
-        <p>저장 실패. 관리자에게 문의하세요</p>
     </div>
 </div>
 

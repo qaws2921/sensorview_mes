@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.Excel;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.Excel.DTO.Excel;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
@@ -21,6 +22,9 @@ import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+import mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -60,4 +64,14 @@ public interface ExcelMapper {
     List<SCM_HIN> scmHInListDbList(Excel excel);
 
     List<SYS_PART_PRICE> sysPartPriceDbList(Excel excel);
+
+    List<WMS_IN_SUB> wmsInListDbList(Excel excel);
+
+    List<WMS_OUT_SUB> wmsOutListDbList(Excel excel);
+
+    List<WMS_OUT_ORD_SUB> wmsOutReadyDbList(Excel excel);
+
+    List<CRM_ORD_RECP> crmProdOrderDbList(Excel excel);
+
+    List<CRM_OUT_SUB> crmOutListDbList(Excel excel);
 }

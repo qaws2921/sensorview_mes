@@ -2,6 +2,7 @@ package mes.sensorview.Common.Excel.Util;
 
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
@@ -20,7 +21,11 @@ import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+import mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +42,12 @@ import java.util.List;
 public class MakeBody {
     // 전역변수 선언
     List<Object> obj = null;
+    public String dateFormat(String str) {
+        return str.substring(0,4)+'-'+str.substring(4,6)+'-'+str.substring(6);
+    }
+    public String dateFormat2(String str) {
+        return str.substring(0,4)+'-'+str.substring(4,6)+'-'+str.substring(6,8)+' '+str.substring(8,10)+':'+str.substring(10,12)+':'+str.substring(12);
+    }
 
     // sysBPart 데이터 생성 함수
     public List<List<Object>> sysBPart_Body(List<sysBPart> list){
@@ -96,7 +107,7 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_IN_ORD_SUB data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getOrd_no());
                     obj.add(data.getSupp_name());
                     obj.add(data.getPart_code());
@@ -108,7 +119,7 @@ public class MakeBody {
                     obj.add(data.getQty());
                     obj.add(data.getNot_qty()); // 미입고 임시로 입고수량 받을 예정
                     obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
+                    obj.add(dateFormat2(data.getUpdate_date()));
                     content.add(obj);
                 }
             }
@@ -153,20 +164,19 @@ public class MakeBody {
             if(list.size()!=0){
                     for(SCM_IN_SUB data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getIn_no());
                     obj.add(data.getSupp_name());
-                    obj.add(data.getPart_grp_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getQty());
-                    obj.add(data.getQty()); // 검사결과 임시로 입고수량 받을 예정
-                    obj.add(data.getQty()); // MBR 임시로 입고수량 받을 예정
+                    obj.add(data.getQc_result_name());
+                    obj.add(data.getMrb());
                     obj.add(data.getStatus_name());
                     obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
+                    obj.add(dateFormat2(data.getUpdate_date()));
                     content.add(obj);
                 }
             }
@@ -182,17 +192,16 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_OUT_SUB data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getOut_no());
                     obj.add(data.getLine_name());
-                    obj.add(data.getPart_grp_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getQty());
                     obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
+                    obj.add(dateFormat2(data.getUpdate_date()));
                     content.add(obj);
                 }
             }
@@ -208,17 +217,16 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_STOCK_RET_SUB data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getRet_no());
                     obj.add(data.getSupp_name());
-                    obj.add(data.getPart_grp_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getQty());
                     obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
+                    obj.add(dateFormat2(data.getUpdate_date()));
                     content.add(obj);
                 }
             }
@@ -234,17 +242,16 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_REIN_SUB data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getIn_no());
                     obj.add(data.getLine_name());
-                    obj.add(data.getPart_grp_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getQty());
                     obj.add(data.getUser_name());
-                    obj.add(data.getUpdate_date());
+                    obj.add(dateFormat2(data.getUpdate_date()));
                     content.add(obj);
                 }
             }
@@ -332,18 +339,18 @@ public class MakeBody {
             if(list.size()!=0){
                 for(CRM_ORD_RECP data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getOrd_no());
                     obj.add(data.getSupp_name());
                     obj.add(data.getEnd_supp_name());
                     obj.add(data.getStatus1_name());
                     obj.add(data.getStatus2_name());
-                    obj.add(data.getEnd_date());
+                    obj.add(dateFormat(data.getEnd_date()));
                     obj.add(data.getStatus3_name());
                     obj.add(data.getPart_no());
                     obj.add(data.getQty());
                     obj.add(data.getUnit_name());
-                    obj.add(data.getTube());
+                    obj.add(data.getTube_name());
                     obj.add(data.getRemark());
                     content.add(obj);
                 }
@@ -557,4 +564,131 @@ public class MakeBody {
     }
 
 
+    public List<List<Object>> wmsInList_Body(List<WMS_IN_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_IN_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getIn_no());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getIn_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> wmsOutList_Body(List<WMS_OUT_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_OUT_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> wmsOutReady_Body(List<WMS_OUT_ORD_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_OUT_ORD_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getReq_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getReq_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> crmProdOrder_Body(List<CRM_ORD_RECP> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(CRM_ORD_RECP data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOrd_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getEnd_supp_name());
+                    obj.add(data.getStatus1_name());
+                    obj.add(data.getStatus2());
+                    obj.add(dateFormat(data.getEnd_date()));
+                    obj.add(data.getStatus3_name());
+                    obj.add(data.getPart_no());
+                    obj.add(data.getSpec());
+                    obj.add(data.getQty());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getTube_name());
+                    obj.add(data.getRemark());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> crmOutList_Body(List<CRM_OUT_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(CRM_OUT_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getUnit_price());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
 }

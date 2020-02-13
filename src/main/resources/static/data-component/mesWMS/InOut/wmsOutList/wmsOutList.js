@@ -5,8 +5,8 @@
 ////////////////////////////데이터/////////////////////////////////////
 
 var main_data = {
-
-    send_data: {}
+    send_data: {},
+    auth: {}
 
 };
 
@@ -16,7 +16,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
-
+    authcheck();
     jqgridPagerIcons();
 });
 
@@ -33,7 +33,31 @@ function get_btn(page) {
     }).trigger("reloadGrid");
 }
 
-
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
+            data : {
+                "name":"wmsOutList",
+                "row0":$('#datepicker').val().replace(/-/gi,""),
+                "row1": $('#datepicker2').val().replace(/-/gi,"")
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
 
 
 ////////////////////////////호출 함수/////////////////////////////////////
@@ -41,6 +65,12 @@ function datepickerInput() {
     datepicker_makes("#datepicker", -1);
     datepicker_makes("#datepicker2", 0);
 
+}
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "wmsOutList"}).then(function (data) {
+        main_data.auth = data;
+    });
 }
 
 function jqGrid_main() {
@@ -62,7 +92,7 @@ function jqGrid_main() {
         ],
         caption: '제품출고 현황 | MES',
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
