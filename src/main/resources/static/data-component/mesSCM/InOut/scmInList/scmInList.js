@@ -72,6 +72,7 @@ function excel_download() {
         $preparingFileModal.dialog({modal: true});
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
             data : {
                 "name":"scmInList",
                 "row0":$('#datepicker').val().replace(/-/gi,""),
