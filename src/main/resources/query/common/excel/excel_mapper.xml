@@ -29,7 +29,7 @@
     </select>
 
     <select id="scmStockRetListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_STOCK_RET_SUB">
-       EXEC SP_SCM_STOCK_RET_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
+       EXEC SP_SCM_RET_SUB_DATE_GET #{site_code},0,0,#{row0},#{row1},#{row2}
     </select>
 
     <select id="sysBPartSetListData" resultType="mes.sensorview.Common.DataTransferObject.Message">

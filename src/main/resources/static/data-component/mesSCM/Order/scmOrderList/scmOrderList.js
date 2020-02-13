@@ -147,9 +147,6 @@ function jqGrid_main() {
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
 
-        },
-        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
-            // var data = $('#mes_grid').jqGrid('getRowData', rowid);
         }
     });
 }

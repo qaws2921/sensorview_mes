@@ -66,6 +66,34 @@ function suppModal_close_bus() {
     $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            data : {
+                "name":"scmStockRetList",
+                "row0":$('#datepicker').val().replace(/-/gi,""),
+                "row1": $('#datepicker2').val().replace(/-/gi,""),
+                "row2":$('#supp_code_main').val()
+            },
+            successCallback: function (url) {
+                console.log($('#supp_code_main').val());
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                console.log($('#supp_code_main').val());
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
+
 ////////////////////////////호출 함수/////////////////////////////////////
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "scmStockRetList"}).then(function (data) {

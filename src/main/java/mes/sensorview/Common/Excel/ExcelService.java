@@ -163,6 +163,7 @@ public class ExcelService extends ExcelFunction {
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
                 List<SCM_IN_ORD_SUB> list = excelMapper.scmOrderListDbList(excel);
+
                 List<List<Object>> rows = makeBody.scmOrderList_Body(list);
                 int index = makeHeader.scmOrderList_Header().length;
                 String[] data = makeHeader.scmOrderList_Header();
@@ -294,7 +295,9 @@ public class ExcelService extends ExcelFunction {
 
                 // DataTransfer [s]
                 excel.setSite_code(getSessionData(req).getSite_code());
+                System.out.println(excel);
                 List<SCM_STOCK_RET_SUB> list = excelMapper.scmStockRetListDbList(excel);
+                System.out.println(list.size());
                 List<List<Object>> rows = makeBody.scmStockRetList_Body(list);
                 int index = makeHeader.scmStockRetList_Header().length;
                 String[] data = makeHeader.scmStockRetList_Header();

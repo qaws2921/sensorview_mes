@@ -303,7 +303,7 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: colNames,
         colModel: colModel,
-        caption: "품명분류관리 | MES",
+        caption: "유형관리 | MES",
         autowidth: true,
         height: 570,
         pager: '#mes_grid_pager',

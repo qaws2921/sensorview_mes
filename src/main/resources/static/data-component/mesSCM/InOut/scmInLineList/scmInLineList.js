@@ -32,7 +32,31 @@ function get_btn(page) {
     $('#mes_grid2').jqGrid('clearGridData');
 }
 
-
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            data : {
+                "name":"scmInLineList",
+                "row0":$('#datepicker').val().replace(/-/gi,""),
+                "row1": $('#datepicker2').val().replace(/-/gi,""),
+                "row2":$('#line_select').val()
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
 ////////////////////////////호출 함수//////////////////////////////////
 function authcheck() {
     ccn_ajax("/menuAuthGet", {keyword: "scmInLineList"}).then(function (data) {

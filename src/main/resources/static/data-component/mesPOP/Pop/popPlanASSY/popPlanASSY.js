@@ -13,6 +13,7 @@ var main_data = {
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
+
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
     authcheck();
@@ -28,7 +29,6 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data.stop_date = main_data.send_data.stop_date.replace(/\-/g, '');
-
     main_data.send_data_post = main_data.send_data;
     $("#mes_grid").setGridParam({
         url: '/popPlanASSYGet',

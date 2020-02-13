@@ -230,9 +230,9 @@ function jqGrid_main() {
             {name: 'unit_price', index: 'unit_price', sortable: false, width: 60, formatter:comma},
 
         ],
-        caption: "자재단가 | MES",
+        caption: "자재단가관리 | MES",
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowList: [100, 200, 300, 500, 1000],
         rowNum: 100,
