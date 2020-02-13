@@ -361,7 +361,7 @@
                         <button type="submit" >전송</button>
                     </td>
                     <td>
-                        <a class="btn" href="file://D:/UploadFile/sensorview/1.txt" download>다운로드</a>
+                        <a href="/sendmsg?kakao_phone=01073126932&kakao_name=최기성&kakao_add1=추가정보1&kakao_add1=추가정보2" class="btn btn-primary">알림톡 전송</a>
                     </td>
                 </table>
             </form>

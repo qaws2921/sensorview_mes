@@ -40,7 +40,7 @@
                                 <c:if test="${mainLeft_list.menu_code == subLeft_list.parent_menu_code }">
                                 <c:if test="${mainLeft_list.menu_code == 'topBoard1'}">
                                     <li class="${subLeft_list.menu_code } ${under_active == subLeft_list.menu_code ? 'active' : ''}" >
-                                        <a href="/board?keyword=${subLeft_list.menu_code }">${subLeft_list.menu_name }</a>
+                                        <a onclick="viewBoard('<c:out value="${subLeft_list.menu_code}"/>');">${subLeft_list.menu_name }</a>
                                         <b class="arrow"></b>
                                     </li>
                                 </c:if>
@@ -50,8 +50,6 @@
                                             <b class="arrow"></b>
                                         </li>
                                     </c:if>
-
-
                                 </c:if>
                             </c:forEach>
                         </ul>
