@@ -7,6 +7,7 @@ import mes.sensorview.mesScm.InOut.DTO.SCM_OUT_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
+import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,9 +27,21 @@ public class OrderRestController {
         return orderService.scmReqOrderGet(req, p);
     }
 
-    @RequestMapping(value = "/scmReqOrderAdd", method = RequestMethod.POST)
-    public Message scmReqOrderAdd(HttpServletRequest req, SCM_REQ_ORD sro) { return orderService.scmReqOrderAdd(req, sro); }
+    @RequestMapping(value = "/scmReqOrderSubGet", method = RequestMethod.POST)
+    public RESTful scmReqOrderSubGet(HttpServletRequest req, Page p){
+        return orderService.scmReqOrderSubGet(req, p);
+    }
 
+    @RequestMapping(value = "/scmReqOrderSubAllGet", method = RequestMethod.POST)
+    public List<SCM_REQ_ORD_SUB> scmReqOrderSubAllGet(HttpServletRequest req, Page p){
+        return orderService.scmReqOrderSubAllGet(req, p);
+    }
+
+    @RequestMapping(value = "/scmReqOrderAdd", method = RequestMethod.POST)
+    public Message scmReqOrderAdd(HttpServletRequest req, SCM_REQ_ORD_SUB sros) { return orderService.scmReqOrderAdd(req, sros); }
+
+    @RequestMapping(value = "/scmReqOrderDel", method = RequestMethod.POST)
+    public Message scmReqOrderDel(HttpServletRequest req, SCM_REQ_ORD sro) { return orderService.scmReqOrderDel(req, sro); }
 
     @RequestMapping(value = "/scmOrderGet", method = RequestMethod.POST)
     public RESTful scmOrderGet(HttpServletRequest req, Page p){

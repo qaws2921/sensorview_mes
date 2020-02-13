@@ -31,13 +31,42 @@ function select_change1(value) {
 
 function get_modal1_btn(page) {
     modal_data.send_data = value_return(".modal_value");
-    modal_data.send_data.keyword =$('#part_type_select').val();
     $("#mes_modal1_grid1").setGridParam({
         url: '/sysPartGet',
         datatype: "json",
         page: page,
         postData: modal_data.send_data
     }).trigger("reloadGrid");
+}
+
+
+function update_btn(rowid) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []);
+        modal_reset(".modal_value2", []);
+        $("#mes_modal1_grid1").jqGrid('clearGridData');
+        $("#mes_modal1_grid2").jqGrid('clearGridData');
+        $("#req_no").val(rowid);
+        main_data.check = 'U';
+
+        ccn_ajax('/scmReqOrderSubAllGet', {keyword: rowid}).then(function (data) {
+
+            $("#datepicker3").val(formmatterDate2(data[0].work_date));
+            $("#datepicker4").val(formmatterDate2(data[0].end_date));
+            $("#part_type_modal1_select").val('A').trigger("change");
+
+            $("#mes_modal1_grid2").setGridParam({
+                datatype: "local",
+                data: data
+            }).trigger("reloadGrid");
+
+            $("#addDialog").dialog('open');
+            jqGridResize2("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+            jqGridResize2("#mes_modal1_grid2", $('#mes_modal1_grid2').closest('[class*="col-"]'));
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
 }
 
 function right_modal1_btn() {
@@ -105,7 +134,7 @@ function add_modal1_btn() {
     var gu4 = String.fromCharCode(4);
     var gu5 = String.fromCharCode(5);
     if (main_data.check2 === 'Y') {
-        var add_data = value_return(".modal_value");
+        var add_data = value_return(".modal_value2");
         add_data.work_date = add_data.work_date.replace(/\-/g, '');
         add_data.end_date = add_data.end_date.replace(/\-/g, '');
 
@@ -124,7 +153,7 @@ function add_modal1_btn() {
 
             callback(function () {
                 if (list2.length > 0) {
-                    alert(list2.join(", ") + "를 다시 확인해주세요");
+                    alert(list2[0] + "를 다시 확인해주세요");
                 } else {
                     var text = '저장하겠습니까?';
                     if (main_data.check === "U") {
@@ -133,23 +162,22 @@ function add_modal1_btn() {
                     if (confirm(text)) {
                         wrapWindowByMask2();
                         add_data.keyword = list.join(gu5);
-                        console.log(add_data);
-                        // ccn_ajax("/scmReqOrderAdd", add_data).then(function (data) {
-                        //     if (data.result === 'NG') {
-                        //         alert(data.message);
-                        //     } else {
-                        //         if (main_data.check === "I") {
-                        //             get_btn(1);
-                        //         } else {
-                        //             get_btn_post($("#mes_grid").getGridParam('page'));
-                        //         }
-                        //     }
+                        ccn_ajax("/scmReqOrderAdd", add_data).then(function (data) {
+                            if (data.result === 'NG') {
+                                alert(data.message);
+                            } else {
+                                if (main_data.check === "I") {
+                                    get_btn(1);
+                                } else {
+                                    get_btn_post($("#mes_grid").getGridParam('page'));
+                                }
+                            }
                             closeWindowByMask();
                             $("#addDialog").dialog('close');
-                        // }).catch(function (err) {
-                        //     closeWindowByMask();
-                        //     alert("저장실패");
-                        // });
+                        }).catch(function (err) {
+                            closeWindowByMask();
+                            alert("저장실패");
+                        });
                     }
                 }
             })
@@ -173,7 +201,7 @@ function datepickerInput_modal1() {
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 1200,
+        width: 1350,
         height: 'auto',
         autoOpen: false,
         resizable: false,
@@ -203,30 +231,61 @@ function modal_make1() {
 }
 
 
-function group_cb(value,i) {
-    $('#part_group'+i).text(value["part_group"+i]);
-    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
-        $('#part_group_select'+i).empty();
-        var option = null;
-        var allSelect = ($("<option></option>").text("전체").val(""));
-        $('#part_group_select'+i).append(allSelect);
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-            $('#part_group_select'+i).append(option);
-        }
-        $('#part_group_select'+i).select2();
-    });
+function select_part_type_change_modal(value) {
+    if (value !== '' && value !== null ) {
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
+    }
 }
 
 
+function select_change1_modal(value) {
+    if (value !== '' && value !== null ){
+        part_type_select_ajax_all('#part_group_modal1_select2', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_modal1_select").val(), keyword2:value}).then(function (){
+
+        }).catch(function (err){
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+        });
+    } else {
+        $('#part_group_modal1_select2').empty();
+
+        var option = $("<option></option>").text('전체').val('');
+
+        $('#part_group_modal1_select2').append(option);
+    }
+}
+
 function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
-            }
-        })
+    part_type_select_ajax("#part_type_modal1_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        $("select#part_type_modal1_select option[value='C']").remove();
+        $("select#part_type_modal1_select option[value='B']").remove();
+
+
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+            $('#part_group_modal1_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_modal1_select2').append(option);
+
+            $('#part_group_modal1_select2').select2();
+
+        });
     });
+    select_makes_sub('#part_name_modal1_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
 
 }
 
@@ -264,7 +323,19 @@ function jqGrid_modal1() {
             {name: 'ord_qty', index: 'ord_qty', width: 50, sortable: false},
             { name: 'qty', index: 'qty', width: 50, sortable: false, editable: true,
                 editoptions: {
+
                     dataEvents: [
+                        {
+                            type: 'focus',
+                            fn: function (e) {
+
+
+                                if (e.target.value === '0'){
+                                    e.target.value = '';
+                                }
+                                $(e.target).attr('autocomplete', 'off');
+                            }
+                        },
                         {
                             type: 'focusout',
                             fn: function (e) {
@@ -276,10 +347,19 @@ function jqGrid_modal1() {
                                     e.target.value = e.target.value.replace(/[^0-9]/g,'');
                                     $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
                                     return false;
+                                } else if(parseInt(value) <= 0) {
+                                    alert("요청수량이 0보다 커야합니다.");
+                                    e.target.value = '';
+                                    $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
+                                    return false;
                                 }
+
                                 $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
+
+
                             }
                         }
+
                     ]
                 }
             }
@@ -306,12 +386,24 @@ function jqGrid_modal1() {
                 alert("숫자만 입력가능합니다.");
                 data.qty = data.qty.replace(/[^0-9]/g, '');
                 $('#mes_modal1_grid2').jqGrid('setCell', rowid, 'qty', data.qty);
-                if (data.qty === '') {
-                    $('#mes_modal1_grid2').jqGrid('setCell', rowid, 'qty', '0');
+
+                if(parseInt(data.qty) <= 0) {
+                    alert("요청수량이 0보다 커야합니다.");
+                    $('#mes_modal1_grid2').jqGrid('setCell', rowid, 'qty', '');
+                    $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
+                    return false;
+                }else {
+                    $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
                 }
                 return false;
+            }else if(parseInt(data.qty) <= 0) {
+                alert("요청수량이 0보다 커야합니다.");
+                $('#mes_modal1_grid2').jqGrid('setCell', rowid, 'qty', '');
+                $("#mes_modal1_grid2").jqGrid("saveCell", saverow, savecol);
+                return false;
             }
-        }
+
+        },
     });
 
 }
