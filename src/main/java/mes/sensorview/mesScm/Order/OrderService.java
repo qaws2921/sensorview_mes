@@ -8,6 +8,7 @@ import mes.sensorview.Mapper.mesSCM.Order.OrderMapper;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD;
 import mes.sensorview.mesScm.Order.DTO.SCM_IN_ORD_SUB;
 import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
+import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD_SUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,15 +61,31 @@ public class OrderService extends ReturnFunction {
         return orderMapper.scmOrderSub1Get(p);
     }
 
-    public Message scmReqOrderAdd(HttpServletRequest req, SCM_REQ_ORD sro) {
-        sro.setSite_code(getSessionData(req).getSite_code());
-        sro.setUser_code(getSessionData(req).getUser_code());
-        return  orderMapper.scmReqOrderAdd(sro);
+    public Message scmReqOrderAdd(HttpServletRequest req, SCM_REQ_ORD_SUB sros) {
+        sros.setSite_code(getSessionData(req).getSite_code());
+        sros.setUser_code(getSessionData(req).getUser_code());
+        return  orderMapper.scmReqOrderAdd(sros);
     }
 
     public Message scmOrderAdd2(HttpServletRequest req, SCM_IN_ORD sio) {
         sio.setSite_code(getSessionData(req).getSite_code());
         sio.setUser_code(getSessionData(req).getUser_code());
         return orderMapper.scmOrderAdd2(sio);
+    }
+
+    public RESTful scmReqOrderSubGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<SCM_REQ_ORD_SUB> rows = orderMapper.scmReqOrderSubGet(p);
+        return getListData(rows, p);
+    }
+
+    public List<SCM_REQ_ORD_SUB> scmReqOrderSubAllGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return orderMapper.scmReqOrderSubGet(p);
+    }
+
+    public Message scmReqOrderDel(HttpServletRequest req, SCM_REQ_ORD sro) {
+        sro.setSite_code(getSessionData(req).getSite_code());
+        return orderMapper.scmReqOrderDel(sro);
     }
 }

@@ -99,6 +99,17 @@
             </div>
         </div>
 
+
+        <hr />
+
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table id="mes_grid2"></table>
+                <div id="mes_grid2_pager"></div>
+            </div>
+        </div>
+    </div>
+
 <%--        <div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">--%>
 <%--            <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>--%>
 <%--        </div>--%>

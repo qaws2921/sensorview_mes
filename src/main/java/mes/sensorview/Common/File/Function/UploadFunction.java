@@ -19,6 +19,7 @@ import java.util.Random;
 
 @Slf4j
 public class UploadFunction extends ReturnFunction {
+
     @Autowired
     FileUploadService fileUploadService;
 
@@ -152,6 +153,7 @@ public class UploadFunction extends ReturnFunction {
         }
         return files;
     }
+
     public Files setQmsRecvErrorManFile2(MultipartHttpServletRequest req) {
         Files files = UploadSetFilePath2(req.getFile("file2"), req);
         try {
@@ -246,6 +248,7 @@ public class UploadFunction extends ReturnFunction {
             return "";
         }
     }
+
     private Files UploadSetFilePathTpmMC(MultipartFile multipartFile, HttpServletRequest req,int index,String code) {
         Files files = new Files();
         String FileName = MakeFileNameNew(getSessionData(req).getSite_code(),index,code) + "." + multipartFile.getOriginalFilename().split("\\.")[1];
@@ -260,6 +263,7 @@ public class UploadFunction extends ReturnFunction {
         files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/img") + '\\' + FileName);
         return files;
     }
+
     public String MakeFileNameNew(String site_code,int index,String code) {
         Date now = new Date();
         Random random = new Random();

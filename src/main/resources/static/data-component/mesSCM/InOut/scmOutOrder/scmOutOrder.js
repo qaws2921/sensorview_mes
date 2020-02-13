@@ -170,12 +170,14 @@ function jqGrid_main() {
         multiselect: true,
         // 타이틀
        caption: "출고요청 | MES",
-       colNames: ['출고일자','전표번호','처리구분','처리코드','등록자','등록일시'],
+       colNames: ['출고일자','전표번호','처리구분','처리코드','공정','용도','등록자','등록일시'],
        colModel: [
            {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
            {name: 'ord_no', index: 'ord_no', key: true, sortable: false},
            {name: 'status_name', index: 'status_name', sortable: false},
            {name: 'status', index: 'status',hidden:true, sortable: false},
+           {name: 'line_name', index: 'line_name', sortable: false},
+           {name: 'usage_name', index: 'usage_name', sortable: false},
            {name: 'user_name', index: 'user_name', sortable: false},
            {name: 'update_date', index: 'update_date',formatter: formmatterDate, sortable: false},
 
@@ -220,7 +222,7 @@ function jqGrid_main() {
            {name: 'spec', index: 'spec', width: 60, sortable: false},
            {name: 'unit_name', index: 'unit_name', width: 60, sortable: false},
            {name: 'qty', index: 'qty', width: 60, sortable: false},
-           {name: 'qty', index: 'qty', width: 60, sortable: false},
+           {name: 'out_qty', index: 'out_qty', width: 60, sortable: false},
 
        ],
         autowidth: true,

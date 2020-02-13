@@ -134,7 +134,7 @@ public class ReturnFunction {
     }
 
 
-    public Auth authMenu2(HttpServletRequest req,ArrayList<List<Auth>> authAllSubSelect)
+    public Auth boardMenu(String board_code,ArrayList<List<Auth>> authAllSubSelect)
     {
         Auth av1 = null;
         boolean check = true;
@@ -145,7 +145,7 @@ public class ReturnFunction {
 
         while (check) { // 반복해서 체크
             while (check2) {
-                if (req.getParameter("keyword").equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
+                if (board_code.equals(authAllSubSelect.get(index).get(index2).getMenu_code())) { // 처음 메뉴값
                     av1 = authAllSubSelect.get(index).get(index2);
                     check2 = false;
                     check = false;
