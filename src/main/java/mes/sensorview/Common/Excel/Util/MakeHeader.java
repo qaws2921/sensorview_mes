@@ -106,4 +106,18 @@ public class MakeHeader {
     }
 
 
+    public String[] wmsInList_Header() {
+        String[] data ={"입고일자", "입고번호", "품번", "품명", "규격", "단위", "입고수량", "등록자", "입고일시"};
+        return data;
+    }
+
+    public String[] wmsOutList_Header() {
+        String[] data ={"출고일자", "출고번호", "업체명","품번", "품명", "규격", "단위", "출고수량","등록자","출고일시"};
+        return data;
+    }
+
+    public String[] wmsOutReady_Header() {
+        String[] data ={"요청일자", "요청번호", "업체명",  "품번", "품명", "규격", "단위", "요청수량", "등록자","요청일시"};
+        return data;
+    }
 }

@@ -18,7 +18,17 @@
         EXEC SP_SCM_REQ_ORD_GET #{site_code},0,0,#{row0},#{row1}
     </select>
 
+    <select id="wmsInListDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB">
+         EXEC SP_WMS_IN_SUB_GET #{site_code},0,0, #{row0}, #{row1}
+    </select>
 
+    <select id="wmsOutListDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB">
+        EXEC SP_WMS_OUT_SUB_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
+
+    <select id="wmsOutReadyDbList" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB">
+        EXEC SP_WMS_OUT_READY_GET #{site_code},0,0,#{row0},#{row1}
+    </select>
 
     <select id="scmInListDbList" resultType="mes.sensorview.mesScm.InOut.DTO.SCM_IN_SUB">
         EXEC SP_SCM_IN_SUB_DATE_GET #{site_code},0,0,#{row0}, #{row1}, #{row2}

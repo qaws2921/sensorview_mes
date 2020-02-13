@@ -20,6 +20,9 @@ import mes.sensorview.mesScm.Order.DTO.SCM_REQ_ORD;
 import mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE;
 import mes.sensorview.mesScm.Standard.DTO.sysBPart;
 import mes.sensorview.mesTpm.Error.DTO.tpmMachineError;
+import mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB;
+import mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -560,4 +563,77 @@ public class MakeBody {
     }
 
 
+    public List<List<Object>> wmsInList_Body(List<WMS_IN_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_IN_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getIn_no());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getIn_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> wmsOutList_Body(List<WMS_OUT_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_OUT_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> wmsOutReady_Body(List<WMS_OUT_ORD_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(WMS_OUT_ORD_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getReq_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getReq_qty());
+                    obj.add(data.getUser_name());
+                    obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
 }
