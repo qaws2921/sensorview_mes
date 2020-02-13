@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="/ui-component/assets/js/jquery.fileDownload.js"></script>
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmProdOrder/crmProdOrder.js" charset="UTF-8"></script>
+
+<div id="progressbar1" data-value="0"></div>
+<div title="데이터 저장중입니다...." id="preparing-file-modal" style="display: none;">
+    <div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div>
+</div>
+<div title="알림" id="error-modal" style="display: none;">
+    <p>저장 실패. 관리자에게 문의하세요</p>
+</div>
 <div class="main-content-inner">
     <div class="page-content">
         <div class="col-lg-12 padding0">
@@ -46,6 +55,13 @@
 <%--                                <span>삭제</span>--%>
 <%--                            </span>--%>
 <%--                    </a>--%>
+
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                       id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="excel_download();">
+                            <span><i class="fa fa-download bigger-110 blue"></i>
+                            <span>저장</span>
+                            </span>
+                    </a>
                     <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold" title=""
                        onclick="add_btn();">
                             <span><i class="fa fa-plus bigger-110 blue"></i>
@@ -143,7 +159,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="margin-top: 50px;">
                     <table class="table multi_table pd-4">
                         <div class="col-lg-12 ">
                             <span class="sp-title">고객정보</span>
@@ -184,5 +200,8 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </div>

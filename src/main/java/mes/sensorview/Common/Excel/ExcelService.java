@@ -8,6 +8,7 @@ import mes.sensorview.Common.Excel.Util.MakeHeader;
 import mes.sensorview.Common.Excel.Util.Upload;
 import mes.sensorview.Mapper.Excel.ExcelMapper;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
@@ -565,6 +566,86 @@ public class ExcelService extends ExcelFunction {
                 List<List<Object>> rows = makeBody.crmWorkList_Body(list);
                 int index = makeHeader.crmWorkList_Header().length;
                 String[] data = makeHeader.crmWorkList_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    if(i==8){
+                        sheet.setColumnWidth((short)i, (short)9500);
+                        cell = row.createCell(i);
+                        cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                        cell.setCellValue(data[i]);
+                    }else {
+                        sheet.setColumnWidth((short)i, (short)7000);
+                        cell = row.createCell(i);
+                        cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                        cell.setCellValue(data[i]);
+                    }
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("crmProdOrder")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("구매생산지시");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("구매생산지시","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<CRM_ORD_RECP> list = excelMapper.crmProdOrderDbList(excel);
+                List<List<Object>> rows = makeBody.crmProdOrder_Body(list);
+                int index = makeHeader.crmProdOrder_Header().length;
+                String[] data = makeHeader.crmProdOrder_Header();
+                // DataTransfer [e]
+
+                // (MakeHeader) 헤더 생성
+                row = sheet.createRow(rowNo++);
+                row.setHeight((short)512);
+                for(i=0; index > i; i++){
+                    if(i==8){
+                        sheet.setColumnWidth((short)i, (short)9500);
+                        cell = row.createCell(i);
+                        cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                        cell.setCellValue(data[i]);
+                    }else {
+                        sheet.setColumnWidth((short) i, (short) 7000);
+                        cell = row.createCell(i);
+                        cell.setCellStyle(setHeadStyle(sxssfWorkbook));
+                        cell.setCellValue(data[i]);
+                    }
+                }
+
+                // (MakeBody) 바디 생성
+                for (i=0; list.size()>i; i++) {
+                    row = sheet.createRow(rowNo++);
+                    for (v=0; rows.get(i).size() > v; v++) {
+                        cell = row.createCell(v);
+                        cell.setCellStyle(setBodyStyle(sxssfWorkbook));
+                        cell.setCellValue(String.valueOf(rows.get(i).get(v)));
+                    }
+                }
+            }else if(excel.getName().equals("crmOutList")){
+                // 시트 생성
+                Sheet sheet = sxssfWorkbook.createSheet("출하실적");
+                // 파일 이름 생성 <한글이 깨지기 때문에 인코딩 필수>
+                excelName = URLEncoder.encode("출하실적","UTF-8");
+
+                // DataTransfer [s]
+                excel.setSite_code(getSessionData(req).getSite_code());
+                List<CRM_OUT_SUB> list = excelMapper.crmOutListDbList(excel);
+                List<List<Object>> rows = makeBody.crmOutList_Body(list);
+                int index = makeHeader.crmOutList_Header().length;
+                String[] data = makeHeader.crmOutList_Header();
                 // DataTransfer [e]
 
                 // (MakeHeader) 헤더 생성

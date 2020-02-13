@@ -120,4 +120,14 @@ public class MakeHeader {
         String[] data ={"요청일자", "요청번호", "업체명",  "품번", "품명", "규격", "단위", "요청수량", "등록자","요청일시"};
         return data;
     }
+
+    public String[] crmProdOrder_Header() {
+        String[] data ={"접수일", "수주번호", "수주처", "End User", "진행상태", "진행여부", "납기일", "지시상태", "Part No","규격","수량","단위","수축튜브","비고"};
+        return data;
+    }
+
+    public String[] crmOutList_Header() {
+        String[] data ={"출고일자", "출고번호", "업체명","품번", "품명", "규격", "단위","단가", "출고수량", "수주등록자"};
+        return data;
+    }
 }

@@ -2,6 +2,7 @@ package mes.sensorview.Common.Excel.Util;
 
 import lombok.extern.slf4j.Slf4j;
 import mes.sensorview.mesCrm.Crm.DTO.CRM_ORD_RECP;
+import mes.sensorview.mesCrm.Crm.DTO.CRM_OUT_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_IN_SUB;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_BCR;
 import mes.sensorview.mesOut.mesOut.DTO.OUTS_OUT_SUB;
@@ -338,18 +339,18 @@ public class MakeBody {
             if(list.size()!=0){
                 for(CRM_ORD_RECP data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getWork_date());
+                    obj.add(dateFormat(data.getWork_date()));
                     obj.add(data.getOrd_no());
                     obj.add(data.getSupp_name());
                     obj.add(data.getEnd_supp_name());
                     obj.add(data.getStatus1_name());
                     obj.add(data.getStatus2_name());
-                    obj.add(data.getEnd_date());
+                    obj.add(dateFormat(data.getEnd_date()));
                     obj.add(data.getStatus3_name());
                     obj.add(data.getPart_no());
                     obj.add(data.getQty());
                     obj.add(data.getUnit_name());
-                    obj.add(data.getTube());
+                    obj.add(data.getTube_name());
                     obj.add(data.getRemark());
                     content.add(obj);
                 }
@@ -628,6 +629,60 @@ public class MakeBody {
                     obj.add(data.getReq_qty());
                     obj.add(data.getUser_name());
                     obj.add(dateFormat2(data.getUpdate_date()));
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> crmProdOrder_Body(List<CRM_ORD_RECP> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(CRM_ORD_RECP data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOrd_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getEnd_supp_name());
+                    obj.add(data.getStatus1_name());
+                    obj.add(data.getStatus2());
+                    obj.add(dateFormat(data.getEnd_date()));
+                    obj.add(data.getStatus3_name());
+                    obj.add(data.getPart_no());
+                    obj.add(data.getSpec());
+                    obj.add(data.getQty());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getTube_name());
+                    obj.add(data.getRemark());
+                    content.add(obj);
+                }
+            }
+        }catch (Exception e){
+            log.info("error code : "+ e);
+        }
+        return content;
+    }
+
+    public List<List<Object>> crmOutList_Body(List<CRM_OUT_SUB> list) {
+        List<List<Object>> content = new ArrayList<>();
+        try{
+            if(list.size()!=0){
+                for(CRM_OUT_SUB data : list){
+                    obj = new ArrayList<>();
+                    obj.add(dateFormat(data.getWork_date()));
+                    obj.add(data.getOut_no());
+                    obj.add(data.getSupp_name());
+                    obj.add(data.getPart_code());
+                    obj.add(data.getPart_name());
+                    obj.add(data.getSpec());
+                    obj.add(data.getUnit_name());
+                    obj.add(data.getUnit_price());
+                    obj.add(data.getQty());
+                    obj.add(data.getUser_name());
                     content.add(obj);
                 }
             }
