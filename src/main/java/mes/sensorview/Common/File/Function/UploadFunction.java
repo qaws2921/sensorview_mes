@@ -23,8 +23,8 @@ public class UploadFunction extends ReturnFunction {
     @Autowired
     FileUploadService fileUploadService;
 
-    public Files setOneFile(Files files, HttpServletRequest req) {
-        Files newFile = UploadSetFilePath(files.getFiles(), req);
+    public Files setQmsRecv(Files files, HttpServletRequest req,int i) {
+        Files newFile = uploadSettQmsRecvPath(files.getFiles(), req,i);
         try {
             newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
             fileUploadService.setOneFile(newFile, req);
@@ -36,10 +36,13 @@ public class UploadFunction extends ReturnFunction {
         return newFile;
     }
 
-    private Files UploadSetFilePath(MultipartFile multipartFile, HttpServletRequest req) {
+
+
+    private Files uploadSettQmsRecvPath(MultipartFile multipartFile, HttpServletRequest req,int i) {
         Files files = new Files();
-        String FileName = MakeFileName() + "." + multipartFile.getOriginalFilename().split("\\.")[1];
-        String Key = MakeFileName();
+        String[] name = multipartFile.getOriginalFilename().split("\\.");
+        String FileName = MakeFileNameQmsRecv(i) + "." + name[name.length -1];
+        String Key = FileName;
 
         files.setKey_value(Key);
         files.setFiles(multipartFile);
@@ -47,8 +50,53 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_volume(multipartFile.getSize() / 1024);
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
-        files.setUrl("uploads/etc/" + FileName);
-        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/etc") + '/' + FileName);
+        files.setUrl(FileName);
+        files.setUpload_path("D:/UploadFile/sensorview/qmsRecv/" + FileName);
+        return files;
+    }
+
+    public String MakeFileNameQmsRecv(int i) {
+        Date now = new Date();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String FileName =   format.format(now) +"_1_"+ (i+1);
+
+        return FileName;
+    }
+
+
+
+
+
+
+
+
+    public Files setOneFile(Files files, HttpServletRequest req,int i) {
+        Files newFile = UploadSetFilePath(files.getFiles(), req,i);
+        try {
+            newFile.getFiles().transferTo(new File(newFile.getUpload_path()));
+            fileUploadService.setOneFile(newFile, req);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newFile;
+    }
+
+    private Files UploadSetFilePath(MultipartFile multipartFile, HttpServletRequest req,int i) {
+        Files files = new Files();
+        String FileName = MakeFileName_new(i) + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String Key = FileName;
+
+        files.setKey_value(Key);
+        files.setFiles(multipartFile);
+        files.setFile_size(multipartFile.getSize());
+        files.setFile_volume(multipartFile.getSize() / 1024);
+        files.setFile_og_name(multipartFile.getOriginalFilename());
+        files.setFile_name(FileName);
+        files.setUrl(FileName);
+        files.setUpload_path("D:/UploadFile/sensorview/qmsRecv/" + FileName);
         return files;
     }
 
@@ -57,6 +105,14 @@ public class UploadFunction extends ReturnFunction {
         Random random = new Random();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String FileName = (char) ((Math.random() * 26) + 65) + format.format(now) + random.nextInt(10);
+        return FileName;
+    }
+
+
+    public String MakeFileName_new(int i) {
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String FileName =  format.format(now) + "_" + i;
         return FileName;
     }
 
@@ -141,8 +197,8 @@ public class UploadFunction extends ReturnFunction {
         return "MSIE";
     }
 
-    public Files setQmsRecvErrorManFile1(MultipartHttpServletRequest req) {
-        Files files = UploadSetFilePath1(req.getFile("file3"), req);
+    public Files setQmsRecvErrorManFile1(MultipartHttpServletRequest req,String ad) {
+        Files files = UploadSetFilePath1(req.getFile("file3"), req,ad);
         try {
             files.getFiles().transferTo(new File(files.getUpload_path()));
             fileUploadService.setQmsRecvErrorManFile(files, req);
@@ -154,8 +210,8 @@ public class UploadFunction extends ReturnFunction {
         return files;
     }
 
-    public Files setQmsRecvErrorManFile2(MultipartHttpServletRequest req) {
-        Files files = UploadSetFilePath2(req.getFile("file2"), req);
+    public Files setQmsRecvErrorManFile2(MultipartHttpServletRequest req,String ad) {
+        Files files = UploadSetFilePath2(req.getFile("file2"), req,ad);
         try {
             files.getFiles().transferTo(new File(files.getUpload_path()));
             fileUploadService.setQmsRecvErrorManFile(files, req);
@@ -167,9 +223,10 @@ public class UploadFunction extends ReturnFunction {
         return files;
     }
 
-    private Files UploadSetFilePath1(MultipartFile multipartFile, HttpServletRequest req) {
+    private Files UploadSetFilePath1(MultipartFile multipartFile, HttpServletRequest req,String ad) {
         Files files = new Files();
-        String FileName = MakeFileName() + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String[] name = multipartFile.getOriginalFilename().split("\\.");
+        String FileName = MakeFileNameNew2(3) + "." + name[name.length-1];
         String Key = MakeFileName();
 
         files.setKey_value(Key);
@@ -178,14 +235,15 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_volume(multipartFile.getSize() / 1024);
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
-        files.setUrl("uploads/improving/" + FileName);
-        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/improving") + '/' + FileName);
+        files.setUrl(FileName);
+        files.setUpload_path(ad+ FileName);
         return files;
     }
 
-    private Files UploadSetFilePath2(MultipartFile multipartFile, HttpServletRequest req) {
+    private Files UploadSetFilePath2(MultipartFile multipartFile, HttpServletRequest req,String ad) {
         Files files = new Files();
-        String FileName = MakeFileName() + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String[] name = multipartFile.getOriginalFilename().split("\\.");
+        String FileName = MakeFileNameNew2(2) + "." + name[name.length - 1];
         String Key = MakeFileName();
 
         files.setKey_value(Key);
@@ -194,13 +252,22 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_volume(multipartFile.getSize() / 1024);
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
-        files.setUrl("uploads/report/" + FileName);
-        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
+        files.setUrl(FileName);
+        files.setUpload_path(ad+ FileName);
         return files;
     }
 
-    public Files AllFile(Files files, MultipartHttpServletRequest req, String Key, int i) {
-        Files NewFiles = UploadSetAllFilePath(req, Key, i);
+
+    public String MakeFileNameNew2(int i) {
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String FileName = format.format(now) +"_"+ i;
+        return FileName;
+    }
+
+
+    public Files AllFile(Files files, MultipartHttpServletRequest req, String Key, int i,String ad) {
+        Files NewFiles = UploadSetAllFilePath(req, Key, i,ad);
         try {
             NewFiles.getFiles().transferTo(new File(NewFiles.getUpload_path()));
             fileUploadService.setAllFile(NewFiles, req);
@@ -215,9 +282,10 @@ public class UploadFunction extends ReturnFunction {
         return NewFiles;
     }
 
-    private Files UploadSetAllFilePath(MultipartHttpServletRequest req, String Key, int i) {
+    private Files UploadSetAllFilePath(MultipartHttpServletRequest req, String Key, int i,String ad) {
         Files files = new Files();
-        String FileName = Key + "." + req.getFile("file"+i).getOriginalFilename().split("\\.")[1];
+        String[] name = req.getFile("file"+i).getOriginalFilename().split("\\.");
+        String FileName = Key + "." + name[name.length-1];
         files.setKey_value(Key);
         files.setFiles(req.getFile("file"+i));
         files.setFile_size(req.getFile("file"+i).getSize());
@@ -226,12 +294,12 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_name(FileName);
         if(i == 2){
             files.setName("FILE2");
-            files.setUrl("uploads/report/" + FileName);
-            files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/report") + '/' + FileName);
+            files.setUrl(FileName);
+            files.setUpload_path(ad+ FileName);
         }else if(i == 3){
             files.setName("FILE3");
-            files.setUrl("uploads/improving/" + FileName);
-            files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/improving") + '/' + FileName);
+            files.setUrl(FileName);
+            files.setUpload_path(ad+FileName);
         }
         return files;
     }
@@ -239,7 +307,7 @@ public class UploadFunction extends ReturnFunction {
         Files files = UploadSetFilePathTpmMC(req.getFile("file"+index), req,index,code);
         try {
             files.getFiles().transferTo(new File(files.getUpload_path()));
-            return files.getUpload_path();
+            return files.getUrl();
         } catch (IllegalStateException e) {
             e.printStackTrace();
             return "";
@@ -249,9 +317,19 @@ public class UploadFunction extends ReturnFunction {
         }
     }
 
+
+
+
+
+
+
+
+
+
     private Files UploadSetFilePathTpmMC(MultipartFile multipartFile, HttpServletRequest req,int index,String code) {
         Files files = new Files();
-        String FileName = MakeFileNameNew(getSessionData(req).getSite_code(),index,code) + "." + multipartFile.getOriginalFilename().split("\\.")[1];
+        String[] name = multipartFile.getOriginalFilename().split("\\.");
+        String FileName = MakeFileNameNew(getSessionData(req).getSite_code(),index,code) + "." + name[name.length -1];
         String Key = MakeFileName();
         files.setKey_value(Key);
         files.setFiles(multipartFile);
@@ -259,14 +337,13 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_volume(multipartFile.getSize() / 1024);
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
-        files.setUrl("uploads/img/" + FileName);
-        files.setUpload_path(req.getSession().getServletContext().getRealPath("uploads/img") + '\\' + FileName);
+        files.setUrl(FileName);
+        files.setUpload_path( "D:/UploadFile/sensorview/tpmMC/" + FileName);
         return files;
     }
 
     public String MakeFileNameNew(String site_code,int index,String code) {
         Date now = new Date();
-        Random random = new Random();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String FileName = site_code+"_"+code+"_"+index+"_"+ format.format(now);
         return FileName;

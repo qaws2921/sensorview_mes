@@ -134,24 +134,24 @@ function update_btn(jqgrid_data) {
             $("input[name=install_date]").val(formmatterDate2(data.install_date));
 
             if (data.image1 !== '' && data.image1 !== null){
-                var image1= data.image1.split("\\");
-                var index1 = image1.length;
+                // var image1= data.image1.split("\\");
+                // var index1 = image1.length;
                 $('#img-text1').remove();
-                $('#img1').attr('src',image1[index1-3]+"\\"+image1[index1-2]+"\\"+image1[index1-1]);
+                $('#img1').attr('src','http://localhost:9003/uploadFile/tpmMC/'+data.image1);
             }
 
 
             if (data.image2 !== '' && data.image2 !== null){
-                var image2= data.image2.split("\\");
-                var index2 = image2.length;
+                //var image2= data.image2.split("\\");
+                //var index2 = image2.length;
                 $('#img-text2').remove();
-                $('#img2').attr('src', image2[index1-3]+"\\"+image2[index1-2]+"\\"+image2[index1-1]);
+                $('#img2').attr('src','http://localhost:9003/uploadFile/tpmMC/'+ data.image2);
             }
             if (data.image3 !== '' && data.image3 !== null){
-                var image3= data.image3.split("\\");
-                var index3 = image3.length;
+                //var image3= data.image3.split("\\");
+                //var index3 = image3.length;
                 $('#img-text3').remove();
-                $('#img3').attr('src', image3[index1-3]+"\\"+image3[index1-2]+"\\"+image3[index1-1]);
+                $('#img3').attr('src','http://localhost:9003/uploadFile/tpmMC/'+ data.image3);
             }
 
 
