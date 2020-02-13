@@ -5,14 +5,8 @@
 <script type="text/javascript" src="/data-component/mesSCM/Order/scmOrderList/scmOrderList.js" charset="UTF-8"></script>
 
 <div id="progressbar1" data-value="0"></div>
-<style>
-    #SuppSearchGridPager #pg_SuppSearchGridPager table{
-        table-layout:auto !important;
-    }
-</style>
 
 <div class="main-content-inner">
-
     <div class="page-content">
         <div class="col-lg-12 padding0">
             <table class="table wt-100">
@@ -59,12 +53,12 @@
                             <span>조회</span>
                         </span>
                     </a>
-                    <%--<a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
+                    <a class="dt-button buttons-csv buttons-html5 btn btn-white btn-primary btn-mini btn-bold"
                        id="btn-excel" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="" onclick="excel_download();">
                         <span><i class="fa fa-download bigger-110 blue"></i>
                             <span>저장</span>
                         </span>
-                    </a>--%>
+                    </a>
                 </div>
             </div>
         </div>
