@@ -97,6 +97,36 @@ function add_btn() {
     }
 }
 
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
+            data : {
+                "name": "crmWorkList",
+                "row0": $('#datepicker').val().replace(/-/gi,""),
+                "row1": $('#datepicker2').val().replace(/-/gi,""),
+                "row2": $('#part_type_select').val(),
+                "row3": $('#user_name').val(),
+                "row4": $('#supp_code_main').val(),
+                "row5": $('#status1_select').val(),
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
+
 ////////////////////////////호출 함수////////////////////////////////
 
 function authcheck() {
@@ -146,24 +176,24 @@ function jqGrid_main() {
         caption: '실적현황 | MES',
         colNames: ['접수일', '수주번호', '수주처', 'End User', '진행상태', '진행여부', '납기일', '지시구분', 'Part No', '수량', '단위', '수축튜브', '비고'],
         colModel: [
-            {name: 'work_date', index: 'work_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'ord_no', index: 'ord_no', key: true, sortable: false, width: 80},
-            {name: 'supp_name', index: 'supp_name', sortable: false, width: 60},
-            {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 60},
-            {name: 'status1_name', index: 'status1_name', sortable: false, width: 40},
-            {name: 'status2_name', index: 'status2_name', sortable: false, width: 40},
-            {name: 'end_date', index: 'end_date', sortable: false, width: 60, formatter: formmatterDate2},
-            {name: 'status3_name', index: 'status3_name', sortable: false, width: 60},
-            {name: 'part_no', index: 'part_no', sortable: false, width: 60},
-            {name: 'qty', index: 'qty', sortable: false, width: 40},
-            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
-            {name: 'tube_name', index: 'tube_name', sortable: false, width: 60},
+            {name: 'work_date', index: 'work_date', sortable: false, width: 40, formatter: formmatterDate2},
+            {name: 'ord_no', index: 'ord_no', key: true, sortable: false, width: 60},
+            {name: 'supp_name', index: 'supp_name', sortable: false, width: 40},
+            {name: 'end_supp_name', index: 'end_supp_name', sortable: false, width: 40},
+            {name: 'status1_name', index: 'status1_name', sortable: false, width: 30},
+            {name: 'status2_name', index: 'status2_name', sortable: false, width: 30},
+            {name: 'end_date', index: 'end_date', sortable: false, width: 40, formatter: formmatterDate2},
+            {name: 'status3_name', index: 'status3_name', sortable: false, width: 30},
+            {name: 'part_no', index: 'part_no', sortable: false, width: 140},
+            {name: 'qty', index: 'qty', sortable: false, width: 30},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 30},
+            {name: 'tube_name', index: 'tube_name', sortable: false, width: 30},
             {name: 'remark', index: 'remark', sortable: false, width: 80},
         ],
         multiselect: true,
         autowidth: true,
         viewrecords: true,
-        height: 500,
+        height: 570,
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid_pager',
