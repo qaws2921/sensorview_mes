@@ -56,6 +56,11 @@ public class VariousService extends ReturnFunction {
         return variousMapper.sysCommonUnitGet(p);
     }
 
+    public List<SYSCommon> sysCommonBoardGet(Page p, HttpServletRequest req) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return variousMapper.sysCommonBoardGet(p);
+    }
+
     public RESTful sysBPartModalGet(Page p, HttpServletRequest req) {
         p.setSite_code(getSessionData(req).getSite_code());
         List<sysBPart> rows = variousMapper.sysBPartModalGet(p);

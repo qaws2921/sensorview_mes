@@ -13,6 +13,7 @@
     <select id="sysCommonUnitGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
 		EXEC [SP_SYS_COMMON_GET]  #{site_code},0,0,'UNIT','','Y'
    </select>
+
     <select id="sysBPartModalGet" resultType="mes.sensorview.mesScm.Standard.DTO.sysBPart">
         EXEC SP_SYS_BPART_GET #{site_code},#{page}, #{rows},'', #{keyword2}, '',#{keyword}
     </select>

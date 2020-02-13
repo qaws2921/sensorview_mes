@@ -81,7 +81,7 @@ public class Handler extends HandlerInterceptorAdapter {
             } else if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 
             } else if (request.getServletPath().equals("/favicon.ico") || request.getServletPath().equals("/error")) {
-            } else if (request.getServletPath().equals("/board") || request.getServletPath().equals("/bd_writeForm")) {
+            } else if (request.getServletPath().equals("/board") || request.getServletPath().equals("/bd_writeForm") || request.getServletPath().equals("/info") || request.getServletPath().equals("/addReply") || request.getServletPath().equals("/delReply")) {
                 String board_code = (String)session.getAttribute("board_code").toString();
 
                 Page p = new Page();

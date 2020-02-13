@@ -2,42 +2,10 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <jsp:useBean id="toDay" class="java.util.Date"/>
-<link rel="stylesheet" href="/ui-component/board/style.css"/>
-<link rel="stylesheet" href="/ui-component/board/common.css"/>
-<link rel="stylesheet" href="/ui-component/board/main.css"/>
-<link rel="stylesheet" href="/ui-component/board/sub.css"/>
-<link rel="stylesheet" href="/ui-component/board/board.css"/>
-<link rel="stylesheet" href="/ui-component/board/form.css"/>
-<script type="text/javascript" src="/ui-component/board/ckeditor/ckeditor.js"></script>
-<!-- ###실제컨텐츠영역 -->
-<script>
-    $(window).load(function () {
-        $('#sub-t-1').text('게시글 작성');
-        $('#sub-t-2').text('홈');
-        $('#sub-t-3').text('게시판');
-        $('#sub-t-4').text('${boardData.board_kr}');
-
-        $("input[name=file]").each(function(i, item){
-            $(this).attr('id','file_'+i).attr('name','file_'+i);
-        });
-    });
-    function sizeChk(idx){
-        var id = $(idx).attr('id');
-        var baseSize = parseInt(${boardData.file_size}) * 1024 * 1024;
-        var fileSize = idx.files[0].size;
-        var maxSize  = baseSize / 1024 / 1024;
-
-        if(baseSize < fileSize){
-            alert('파일 용량은 최대 '+maxSize+'MB를 초과할 수 없습니다.');
-            $('#'+id).val("");
-            return false;
-        }
-    }
-</script>
-
+<%@include file="/WEB-INF/views/body/mesBoard/mesBoard/mesBoard/header.jsp"%>
 <div class="page-content">
     <div class="con1">
-        <form name="formFrm8" action="addData" method="POST" enctype="multipart/form-data">
+        <form action="bdr_write" method="POST" enctype="multipart/form-data" id="bdr_write">
             <table class="form_table">
                 <tbody>
                 <tr>
@@ -49,11 +17,12 @@
                             <option value='aa'>알림</option>
                             <option value='ac'>정보</option>
                         </select>
+
                     </td>
                 </tr>
                 <tr>
                     <th>제목</th>
-                    <td><input name="subject" type='text' class='input'></td>
+                    <td><input name="subject" id="subject" type='text' class='input'></td>
                 </tr>
                 <tr>
                     <th>내용</th>
@@ -112,12 +81,51 @@
 </div>
 </div>
 <script>
-    var i;
-    var file_num = ${boardData.files};
-    var orgn = $('.file-tr').clone();
-    $('.file-tr').remove();
+    function sizeChk(idx){
+        var id = $(idx).attr('id');
+        var baseSize = parseInt(${boardData.file_size}) * 1024 * 1024;
+        var fileSize = idx.files[0].size;
+        var maxSize  = baseSize / 1024 / 1024;
+
+        if(baseSize < fileSize){
+            alert('파일 용량은 최대 '+maxSize+'MB를 초과할 수 없습니다.');
+            $('#'+id).val("");
+            return false;
+        }
+    }
+
+    $('#bdr_write').submit(function() {
+        if($('#subject').val == ''){
+            alert('제목을 입력하세요.');
+            return false;
+        }
+        else if($('#description').val == ''){
+            alert('내용을 입력하세요.');
+            return false;
+        }
+        else{
+            return;
+        }
+    });
+
+    $(window).load(function(){
+        $('#sub-t-1').text('게시글 작성');
+        $('#sub-t-2').text('홈');
+        $('#sub-t-3').text('게시판');
+        $('#sub-t-4').text('${boardData.board_kr}');
+
+        $("input[name=file]").each(function(i, item){
+            $(this).attr('id','file_'+i).attr('name','file_'+i);
+        });
+    });
 
     $(function () {
+
+        var i;
+        var file_num = ${boardData.files};
+        var orgn = $('.file-tr').clone();
+        $('.file-tr').remove();
+
         if (parseInt(file_num) > 0) {
             for (i = 1; i <= file_num; i++) {
                 orgn.attr('class', 'file-tr' + i);
