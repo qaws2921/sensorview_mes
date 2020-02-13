@@ -163,7 +163,11 @@ function jqGrid_main() {
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
             var data = $('#mes_grid').jqGrid('getRowData', rowid);
-            update_btn(rowid);
+            if (data.ord_no === '') {
+                update_btn(rowid);
+            } else {
+                alert("수정 할수 없습니다.");
+            }
         }
     });
 
