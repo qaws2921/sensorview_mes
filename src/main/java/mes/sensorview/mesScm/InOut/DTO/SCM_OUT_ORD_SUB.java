@@ -7,7 +7,8 @@ public class SCM_OUT_ORD_SUB {
     private String site_code;
     private String ord_no;
     private String part_code;
-    private String qty;
+    private int qty;
+    private int out_qty;
     private String part_grp_name;
     private String part_name;
     private String spec;
