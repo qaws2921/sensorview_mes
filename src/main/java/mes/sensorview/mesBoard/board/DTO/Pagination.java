@@ -16,14 +16,15 @@ public class Pagination {
     private boolean next;
     private int displayPageNum;
     private int tempEndPage;
-    private String searchType;
-    private String keyword;
+    private String searchType="";
+    private String keyword="";
     private String key;
     private String site_code;
     private String user_code;
     private String startDate;
     private String endDate;
     private String id;
+    private String board_code;
 
     public Pagination() {
         this.displayPageNum = 5;

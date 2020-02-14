@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -121,5 +122,35 @@ public class FileUploadFunction {
             msg.setMessage("업로드 실패");
         }
         return msg;
+    }
+
+    private void test(MultipartHttpServletRequest req){
+        Iterator<String> fileNames = req.getFileNames();
+        while (fileNames.hasNext()){
+            String fileName = fileNames.next();
+            MultipartFile mFile = req.getFile(fileName);
+            File file = new File("path");
+            if(mFile.getSize()!=0)
+            {
+                if(! file.exists())
+                {
+                    if(file.getParentFile().mkdirs())
+                    {
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                try {
+                    mFile.transferTo(file);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

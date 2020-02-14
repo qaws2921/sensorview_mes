@@ -1,35 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+
 <html>
-<head>
-    <link rel="stylesheet" href="/ui-component/board/style.css" />
-    <link rel="stylesheet" href="/ui-component/board/common.css" />
-    <link rel="stylesheet" href="/ui-component/board/main.css" />
-    <link rel="stylesheet" href="/ui-component/board/sub.css" />
-    <link rel="stylesheet" href="/ui-component/board/board.css" />
-    <link rel="stylesheet" href="/ui-component/board/form.css" />
-</head>
+<%@include file="/WEB-INF/views/body/mesBoard/mesBoard/mesBoard/header.jsp"%>
 <body>
 <div class="page-content">
-    <script>
-        $(window).load(function(){
-            $.ajax({
-                url: 'getNM?idx=${board_code}',
-                type: 'GET',
-                async: true,
-                dataType: "json",
-                error: function (e) {
-                    if(e.status == 200){
-                        $('#sub-t-1').text(e.responseText);
-                        $('#sub-t-4').text(e.responseText);
-                    }
-                }
-            });
-        });
-    </script>
     <div class="bbs_search">
-        <form name="sfrm" action="list${pageMaker.makeSearch(idx)}" method="get">
+        <form name="sfrm" action="board${pageMaker.searchOption(idx)}" method="get">
             <input type="hidden" name="category" class="h_cg" value="">
             <table width="0%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
@@ -40,8 +19,12 @@
                             <option value="all">제목+내용</option>
                         </select>
                     </td>
-                    <td style="padding-right:5px;"><input name="keyword" type="text" class="search_input" placeholder="검색어를 입력하세요" size="35" value="${pageMaker.keyword}"/></td>
-                    <td><input type="submit" value="검색" align="absmiddle" title="검색" class="btn_b_s" /></td>
+                    <td>
+                        <input name="keyword" type="text" class="search_input" placeholder="검색어를 입력하세요" size="35" value="${pageMaker.keyword}"/>
+                    </td>
+                    <td>
+                        <input type="submit" value="검색" title="검색" class="btn_b_s" />
+                    </td>
                 </tr>
             </table>
         </form>
@@ -51,54 +34,77 @@
         <caption class="blind">게시물 목록</caption>
         <thead>
         <tr>
-            <th width="10%" class="m_none">번호</th>
-            <th>제목</th>
+            <th width="5%" class="m_none">번호</th>
+            <th width="10%" class="left">제목</th>
             <th width="10%" class="m_none">작성자</th>
-            <th width="20%" class="m_date">작성일</th>
-            <th width="10%" class="m_none">조회</th>
+            <th width="10%" class="m_date">작성일</th>
+            <th width="5%" class="m_none">첨부파일</th>
+            <th width="5%" class="m_none">조회수</th>
         </tr>
         </thead>
         <tbody>
-        <c:if test="${ListData eq null}">
-            <td colspan="5">조회된 데이터가 존재하지않습니다.</td>
-        </c:if>
         <c:if test="${pageMaker.totalCount eq 0 }">
             <tr align='center'>
-                <td colspan="5">데이터가 존재하지않습니다.</td>
+                <td colspan="6">데이터가 존재하지않습니다.</td>
             </tr>
         </c:if>
 
         <c:forEach items="${ListData}" var="data">
-            <tr class="tr-hover" onclick='location.href="info?idx=${data.ID}&seq=${data.SEQ}&div=${data.CATEGORY}"' style='cursor: pointer;'>
-                <td class="m_none">${data.ID}</td>
-                <td class="left"><span style="color:#1453a1">[${data.SUB_TITLE}]</span> ${data.TITLE}</td>
-                <td class="m_none">${data.WRITER}</td>
-                <td class="m_date">${data.REG_DATE}</td>
-                <td class="m_none">${data.HITS}</td>
+            <fmt:parseDate value="${data.create_date}" var="date" pattern="yyyyMMddhhmmss"/>
+            <tr class="tr-hover" onclick='location.href="info?idx=${data.board_idx}&seq=${data.seq}"' style='cursor: pointer;'>
+                <td class="m_none">${data.seq}</td>
+                <td class="left">${data.subject}&nbsp;&nbsp; <i class="fa fa-commenting" style="color:#888"/><span style="color:#888; ">&nbsp;${data.reply_cnt}</span></td>
+                <td class="m_none">${data.user_name}</td>
+                <td class="m_date"><fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm"/></td>
+                <c:choose>
+                    <c:when test="${data.file_cnt > 0}">
+                        <td class="m_none"><img name=wiz_target_resize style="margin-top: 3px; vertical-align: top; display: inline-block;" src="https://directsend.co.kr/images/common/icon_bigfile.png" /></td>
+                    </c:when>
+                    <c:otherwise>
+                        <td class="m_none"><i class="fa fa-unlink"/> </td>
+                    </c:otherwise>
+                </c:choose>
+                <td class="m_none">${data.read_count}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <!-- 게시물 끝 -->
 
+    <!-- 페이징 -->
     <div class='page_num'>
-        ${pageMaker._pagination("list") }
+        ${pageMaker._pagination("board") }
     </div>
+    <!-- 페이징 -->
+
     <div class="bbs_btn align_right">
         <a class='btn_w' id="write">글쓰기</a>
     </div>
-    <script>
-        $('#write').click(
-            function(){
-                $('#values').submit();
-            }
-        );
-    </script>
+
 </div>
 <form id="values" action="/bd_writeForm" method="POST">
     <input type="hidden" value="${board_code}" name="board_code">
-    <input type="hidden" value="${sessionScope.userData.site_code}" name="site_code">
-    <input type="hidden" value="${sessionScope.userData.user_code}" name="user_code">
 </form>
 </body>
 </html>
+<script>
+    $(window).load(function(){
+        $.ajax({
+            url: 'getNM?idx=${board_code}',
+            type: 'GET',
+            async: true,
+            dataType: "json",
+            error: function (e) {
+                if(e.status == 200){
+                    $('#sub-t-1').text(e.responseText);
+                    $('#sub-t-4').text(e.responseText);
+                }
+            }
+        });
+    });
+    $('#write').click(
+        function(){
+            $('#values').submit();
+        }
+    );
+</script>

@@ -60,6 +60,7 @@ public class VariousRestController {
 
     }
 
+
     @RequestMapping(value = "/sysBPartModalGet", method = RequestMethod.POST)
     public RESTful sysBPartModalGet(Page p, HttpServletRequest req) {
         return variousService.sysBPartModalGet(p, req);

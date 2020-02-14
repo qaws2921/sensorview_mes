@@ -79,4 +79,6 @@ public interface VariousMapper {
     List<SYSProdLine> sysProdLineAllGet(Page p);
 
     List<POP_LINE_USER_CD> popLineUserAllGet(Page p);
+
+    List<SYSCommon> sysCommonBoardGet(Page p);
 }
