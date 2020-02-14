@@ -50,8 +50,8 @@ public class CRM_ORD_RECP {
     private String sample;
     private String currency_type;
     private String currency_type_name;
-    private int unit_price;
-    private int price;
+    private double unit_price;
+    private double price;
     private String supp_ord_no;
     private String payment;
     private String supp_user_name;

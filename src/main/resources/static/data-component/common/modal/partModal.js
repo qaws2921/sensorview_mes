@@ -1,5 +1,4 @@
 var part_gu = 'N';
-
 ////////////////////////////시작 함수/////////////////////////////////////
 function partModal_start(what) {
     partModal_make();

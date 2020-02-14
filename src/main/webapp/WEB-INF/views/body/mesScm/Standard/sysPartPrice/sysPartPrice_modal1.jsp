@@ -68,7 +68,7 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 단가 </div>
             <div class="profile-info-value">
-                <input type="text" name="unit_price" class="form-control modal_value" onkeyup="num_keyup(this)">
+                <input type="text" name="unit_price" class="form-control modal_value" onkeyup="num_keyup_float(this)">
             </div>
         </div>
 
