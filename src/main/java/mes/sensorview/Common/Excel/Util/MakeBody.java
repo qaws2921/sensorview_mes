@@ -293,7 +293,7 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_STOCK_SUM_DAY data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_type_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());

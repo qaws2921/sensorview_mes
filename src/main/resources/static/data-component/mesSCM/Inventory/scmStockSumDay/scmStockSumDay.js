@@ -11,7 +11,6 @@ var main_data = {
     auth:{}
 };
 
-var colNames = [];
 ////////////////////////////시작 함수//////////////////////////////////
 
 $(document).ready(function () {
@@ -68,9 +67,6 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
-
-    grid_head_change();
-
     $("#mes_grid").setGridParam({
         url: '/scmStockSumDayListGet',
         datatype: "json",
@@ -86,6 +82,36 @@ function get_btn_post(page) {
         page: page,
         postData: main_data.send_data_post
     }).trigger("reloadGrid");
+}
+
+
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
+            data: {
+                "name": "scmStockSumDay",
+                "row0": $('#datepicker').val().replace(/-/gi, ""),
+                "row1": $('#part_type_select').val(),
+                "row2": $("#part_group1_select").val(),
+                "row3": $("#part_group2_select").val(),
+                "row4": $("#part_name_select").val()
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
 }
 
 ////////////////////////////호출 함수//////////////////////////////////
@@ -122,20 +148,17 @@ function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        colNames: ['구분','t1','t2','t3','품목코드','품목명','규격', '단위','전일재고','금일입고','금일출고','재고'],
+        colNames: ['품목구분','품목코드','품목명','규격','단위','전일재고','금일입고','금일출고','재고'],
         colModel: [
             {name: 'part_type_name', index: 'part_type_name', width: 60},
-            {name: 'part_grp_name1', index: 'part_grp_name1', width: 60},
-            {name: 'part_grp_name2', index: 'part_grp_name2', width: 60},
-            {name: 'part_grp_name3', index: 'part_grp_name3', width: 60},
             {name: 'part_code', index: 'part_code', width: 60},
-            {name: 'part_name', index: 'part_name', width: 60},
+            {name: 'part_name', index: 'part_grp_name2', width: 60},
             {name: 'spec', index: 'spec', width: 60},
             {name: 'unit_name', index: 'unit_name', width: 60},
-            {name: 'prev_qty', index: 'prev_qty', width: 60},
-            {name: 'in_qty', index: 'in_qty', width: 60},
-            {name: 'out_qty', index: 'out_qty', width: 60},
-            {name: 'qty', index: 'qty', width: 60}
+            {name: 'prev_qty', index: 'prev_qty', width: 60,formatter:comma},
+            {name: 'in_qty', index: 'in_qty', width: 60,formatter:comma},
+            {name: 'out_qty', index: 'out_qty', width: 60,formatter:comma},
+            {name: 'qty', index: 'qty', width: 60,formatter:comma},
         ],
         caption: "자재 일원장 | MES",
         autowidth: true,

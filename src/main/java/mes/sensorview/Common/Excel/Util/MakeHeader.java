@@ -56,7 +56,7 @@ public class MakeHeader {
     }
 
     public String[] scmStockSumDayList_Header() {
-        String[] data= {"품목그룹","품목코드","품목명","규격","단위","전일재고","금일입고","금일출고","재고"};
+        String[] data= {"품목구분","품목코드","품목명","규격","단위","전일재고","금일입고","금일출고","재고"};
         return data;
     }
 
