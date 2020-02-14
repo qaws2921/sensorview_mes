@@ -14,9 +14,26 @@ $(document).ready(function () {
     jqGrid_main();
     jqgridPagerIcons();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
+
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
+
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    $("#mes_grid").setGridParam({
+        url: '/scmHOutListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+}
+
+
+
 
 ////////////////////////////호출 함수//////////////////////////////////
 
@@ -32,16 +49,16 @@ function jqGrid_main() {
         mtype: 'POST',
         colNames: ['출고일자', '출고번호', '공장명', '품번', '품명', '규격', '단위', '출고수량', '등록자', '출고일시'],
         colModel: [
-            {name: '', index: '', sortable: false, width: 60,formatter: formmatterDate2 },
-            {name: '', index: '',key:true, sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60},
-            {name: '', index: '', sortable: false, width: 60,formatter: formmatterDate}
+            {name: 'work_date', index: 'work_date', sortable: false, width: 60,formatter: formmatterDate2 },
+            {name: 'out_no', index: 'out_no',key:true, sortable: false, width: 60},
+            {name: 'line_name', index: 'line_name', sortable: false, width: 60},
+            {name: 'part_code', index: 'part_code', sortable: false, width: 60},
+            {name: 'part_name', index: 'part_name', sortable: false, width: 60},
+            {name: 'spec', index: 'spec', sortable: false, width: 60},
+            {name: 'unit_name', index: 'unit_name', sortable: false, width: 60},
+            {name: 'qty', index: 'qty', sortable: false, width: 60,formatter:comma},
+            {name: 'user_name', index: 'user_name', sortable: false, width: 60},
+            {name: 'update_date', index: 'update_date', sortable: false, width: 60,formatter: formmatterDate}
         ],
         caption: "반제품출고현황 | MES",
         autowidth: true,
