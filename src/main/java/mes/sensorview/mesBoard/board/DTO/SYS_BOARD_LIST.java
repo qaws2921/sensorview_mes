@@ -1,6 +1,8 @@
 package mes.sensorview.mesBoard.board.DTO;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.Null;
 
 @Data
 public class SYS_BOARD_LIST {
@@ -13,9 +15,17 @@ public class SYS_BOARD_LIST {
     private int read_count;
     private String create_date;
     private String update_date;
+    private String type;
+
+    private MultipartFile file_0;
+    private MultipartFile file_1;
+    private MultipartFile file_2;
+    private MultipartFile file_3;
+    private MultipartFile file_4;
 
     private int seq;
     private String user_name;
     private int reply_cnt;
     private int file_cnt;
+    private String file_upload_cnt;
 }

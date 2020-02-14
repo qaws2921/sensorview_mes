@@ -33,8 +33,6 @@ public class MachineService   extends UploadFunction {
 
         tmc.setInstall_date(tmc.getInstall_date().replaceAll("-", ""));
 
-
-
         int check1 = Integer.parseInt(req.getParameter("check1"));
         int check2 = Integer.parseInt(req.getParameter("check2"));
         int check3 = Integer.parseInt(req.getParameter("check3"));
@@ -132,11 +130,6 @@ public class MachineService   extends UploadFunction {
             }
         }
         return machineMapper.tpmMCFileAdd(tmc);
-
-
-
-
-
     }
 
     public TPM_MACHINE_CD tpmMCOneGet(HttpServletRequest req, TPM_MACHINE_CD tmc) {

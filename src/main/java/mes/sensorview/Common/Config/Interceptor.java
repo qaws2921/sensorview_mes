@@ -31,21 +31,21 @@ public class Interceptor implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(resourcesUriPath + "/**")
                 .addResourceLocations("file://" + resourcesLocation);
-
-
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(handler)
                 .addPathPatterns("/*")
+                .excludePathPatterns("/boardFileUploader")
+                .excludePathPatterns("/addBoardList")
                 .excludePathPatterns("/bdr_*")
                 .excludePathPatterns("/ImgUpload")
                 .excludePathPatterns("/bcd")
                 .excludePathPatterns("/getNM")
                 .excludePathPatterns("/sendmsg")
                 .excludePathPatterns("/uploads")
-                .excludePathPatterns("/testFile")
+                .excludePathPatterns("/testFile1")
                 .excludePathPatterns("/loginAction")
                 .excludePathPatterns("/logout")
                 .excludePathPatterns("/excel_*")

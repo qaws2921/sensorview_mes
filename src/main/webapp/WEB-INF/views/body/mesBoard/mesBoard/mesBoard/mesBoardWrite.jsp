@@ -5,19 +5,17 @@
 <%@include file="/WEB-INF/views/body/mesBoard/mesBoard/mesBoard/header.jsp"%>
 <div class="page-content">
     <div class="con1">
-        <form action="bdr_write" method="POST" enctype="multipart/form-data" id="bdr_write">
+        <form enctype="multipart/form-data" id="boardForm">
             <table class="form_table">
                 <tbody>
                 <tr>
                     <th>분류</th>
                     <td>
-                        <select name="category" id="category" class="w-100">
-                            <option value='as'>문의사항</option>
-                            <option value='ad'>건의사항</option>
-                            <option value='aa'>알림</option>
-                            <option value='ac'>정보</option>
+                        <select name="type" id="type" class="w-100">
+                        <c:forEach items="${common}" var="commons">
+                            <option value='${commons.code_value}'>${commons.code_name1}</option>
+                        </c:forEach>
                         </select>
-
                     </td>
                 </tr>
                 <tr>
@@ -49,11 +47,12 @@
                 <tr class="file-tr">
                     <th>첨부파일</th>
                     <td><input name="file" id="file" type='file' class='input' onchange="return sizeChk(this)"></td>
+                    <input type="hidden" id="files" name="files">
+                    <input type="hidden" id="board_code" name="board_code" value="${boardData.board_code}">
+                    <input type="hidden" id="board_idx" name="board_idx" value="${board_idx}">
                 </tr>
                 </tbody>
             </table>
-
-
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td height="5"></td>
@@ -63,7 +62,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input type="submit" border="0" value="확인" class="btn_style">
+                                    <input type="button" border="0" value="확인" class="btn_style" onclick="fileUploader();">
                                     <input type="button" border="0" value="취소" class="btn_style2" onclick="history.go(-1);">
                                 </td>
                             </tr>
@@ -81,6 +80,60 @@
 </div>
 </div>
 <script>
+    function fileUploader(){
+        var int=0;
+        var fileName;
+        var result=0;
+        for(var i=0; i<=2; i++){
+            if($('#file_'+i).val() != ''){
+                int++;
+                fileName = 'file_'+i;
+                $('#files').val(fileName);
+                var form = $('#boardForm')[0];
+                var data = new FormData(form);
+                $.ajax({
+                    type : 'post',
+                    url : '/boardFileUploader',
+                    enctype: 'multipart/form-data',
+                    data : data,
+                    contentType : false,
+                    processData : false,
+                    success : function(req){
+                        result =+ req;
+                    },
+                    error: function(req,status,error){
+                        console.log(req.status);
+                    }
+                });
+            }
+        }
+        if(int == 0){
+            UploadCallback();
+        } else {
+            UploadCallback();
+        }
+    }
+    function UploadCallback(){
+        var form = $('#boardForm')[0];
+        var data = new FormData(form);
+        $.ajax({
+            type : 'post',
+            url : '/addBoardList',
+            data : data,
+            contentType : false,
+            processData : false,
+            success : function(req){
+                if(req == 1){
+                    alert('게시글이 등록되었습니다.');
+                    location.href='/board';
+                }else{
+                    alert('게시글이 등록실패.');
+                    location.href='/board';
+                }
+            }
+        });
+    }
+
     function sizeChk(idx){
         var id = $(idx).attr('id');
         var baseSize = parseInt(${boardData.file_size}) * 1024 * 1024;
@@ -120,7 +173,6 @@
     });
 
     $(function () {
-
         var i;
         var file_num = ${boardData.files};
         var orgn = $('.file-tr').clone();

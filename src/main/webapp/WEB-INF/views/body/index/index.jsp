@@ -353,22 +353,74 @@
         </div><!-- /.col -->
         <div class="col-xs-12">
             <a href="http://localhost:9003/uploadFile/1.txt" download >저장</a>
-
-            <form action="/testFile" method="post" enctype="Multipart/form-data">
+            <form action="/testFile1" method="post" enctype="Multipart/form-data" id="testForm">
                 <table>
                     <td>
-                        <input type="file" name="testFile">
+                        <input type="file" id= "file_0" name="file_0">
                     </td>
                     <td>
-                        <button type="submit" >전송</button>
+                        <input type="file" id= "file_1" name="file_1">
                     </td>
                     <td>
-                        <a href="/sendmsg?kakao_phone=01073126932&kakao_name=최기성&kakao_add1=추가정보1&kakao_add1=추가정보2" class="btn btn-primary">알림톡 전송</a>
+                        <input type="file" id= "file_2" name="file_2">
+                    </td>
+                    <td>
+                        <input type="hidden" id="files" name="files">
+                        <input type="hidden" id="board_idx" name="board_idx" value="B-22090">
+                        <input type="hidden" id="board_code" name="board_code" value="1234">
+                    </td>
+                    <td>
+                        <a onclick="fileUploader()" >전송</a>
+                    </td>
+                    <td>
+                        <a href="/sendmsg?kakao_phone=01034440318&kakao_name=최기성&kakao_add1=추가정보1&kakao_add1=추가정보2" class="btn btn-primary">알림톡 전송</a>
                     </td>
                 </table>
             </form>
         </div>
     </div><!-- /.row -->
+    <script>
+        function fileUploader(){
+            var int=0;
+            var fileName;
+            var result=0;
+            for(var i=0; i<=2; i++){
+                if($('#file_'+i).val() != ''){
+                    int++;
+                    fileName = 'file_'+i;
+                    $('#files').val(fileName);
+                    var form = $('#testForm')[0];
+                    var data = new FormData(form);
+                    $.ajax({
+                        type : 'post',
+                        url : '/testFile1',
+                        enctype: 'multipart/form-data',
+                        data : data,
+                        contentType : false,
+                        processData : false,
+                        success : function(req){
+                            result =+ req;
+                        },
+                        error: function(request,status,error){
+                            if(request.status == 200){
+                                alert('ㅇㅇ')
+                            }
+                        }
+                    });
+                }
+            }
+            if(int == 0){
+                alert('파일을 등록하세요.');
+                return false;
+            } else {
+                callback(UploadCallback());
+            }
+        }
+        function UploadCallback(){
+            alert('업로드 성공');
+        }
+    </script>
+
 </div>
 </body>
 </html>

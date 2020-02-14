@@ -5,10 +5,7 @@ import mes.sensorview.Common.Function.BoardFunction;
 import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_LIST;
 import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_REPLY;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,4 +44,18 @@ public class MESBoardRestController extends BoardFunction {
     public int del(@RequestParam("idx") String idx){
         return mesBoardService.delReply(idx);
     }
+
+    @RequestMapping(value = "/boardFileUploader", method = RequestMethod.POST)
+    public int testFile1(MultipartHttpServletRequest req){
+        String result = mesBoardService.BoardFileUploader(req);
+        return Integer.parseInt(result)-10;
+    }
+
+    @RequestMapping(value = "/addBoardList", method = RequestMethod.POST)
+    public int addBoardList(SYS_BOARD_LIST boardList, HttpServletRequest req){
+        String result = mesBoardService.addBoardList(boardList, req);
+        log.info("!@#!@#!@#!@#!@#"+result);
+        return Integer.parseInt(result);
+    }
+
 }

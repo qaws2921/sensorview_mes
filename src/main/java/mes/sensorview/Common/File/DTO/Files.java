@@ -20,5 +20,6 @@ public class Files {
     private String url;
     private MultipartFile files;
     private String name;
-
+    private String board_code;
+    private String board_idx;
 }

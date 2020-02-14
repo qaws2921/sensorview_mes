@@ -5,20 +5,16 @@ import mes.sensorview.Common.Function.BoardFunction;
 import mes.sensorview.mesBoard.board.DTO.Pagination;
 import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_CD;
 import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_LIST;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_REPLY;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -43,7 +39,6 @@ public class MESBoardController extends BoardFunction {
 
     @RequestMapping("/board")
     public String getBoardList(@ModelAttribute("pageMaker") Pagination pageMaker, Model model, HttpServletRequest req){
-        HttpSession session = req.getSession();
         pageMaker.setTotalCount(mesBoardService.getCount(pageMaker,req));
         List<SYS_BOARD_LIST> ListData = mesBoardService.getBoardList(pageMaker,req);
         model.addAttribute("pageMaker", pageMaker);
@@ -56,7 +51,6 @@ public class MESBoardController extends BoardFunction {
         String idx = req.getParameter("idx");
         int    seq = parseInt(req.getParameter("seq"));
         mav = new ModelAndView();
-        log.info("msg : " + idx + seq);
         mesBoardService.upHits(idx,req,res);
         mav.addObject("replyData",mesBoardService.getReplyData(idx));
         mav.addObject("InfoData",mesBoardService.getInfoData(idx));
