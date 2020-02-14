@@ -12,7 +12,7 @@ var main_data = {
     send_data_post: {},
     readonly:[],
     auth:{},
-    change: 'Y',
+    change: 'Y'
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -21,7 +21,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
-    selectBox()
+    selectBox();
     modal_start1();
     suppModal_start();
     partModal_start();
@@ -148,12 +148,15 @@ function excel_download() {
         $preparingFileModal.dialog({modal: true});
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
             data: {
                 "name":"sysPartPrice",
                 "row0": $('#datepicker').val().replace(/-/gi, ""),
                 "row1": $('#datepicker2').val().replace(/-/gi, ""),
                 "row2": $("#supp_code_main").val(),
-                "row3": $('#part_code').val()
+                "row3": $('#part_type_select').val(),
+                "row4": $('#part_group_select').val(),
+                "row5": $('#part_group_select2').val()
             },
             successCallback: function (url) {
                 $preparingFileModal.dialog('close');

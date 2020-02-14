@@ -86,8 +86,8 @@ public class MakeBody {
                 for(SYS_PART_PRICE data : list){
                     obj = new ArrayList<>();
                     obj.add(data.getSupp_name());
-                    obj.add(data.getStart_date());
-                    obj.add(data.getStop_date());
+                    obj.add(dateFormat(data.getStart_date()));
+                    obj.add(dateFormat(data.getStop_date()));
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getCurrency_name());
