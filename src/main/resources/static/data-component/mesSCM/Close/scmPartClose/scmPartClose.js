@@ -141,7 +141,7 @@ function jqGrid_main() {
             {name: 'this_name', index: 'this_name', sortable: false},
             {name: 'part_code', index: 'part_code', sortable: false},
             {name: 'part_name', index: 'part_name', sortable: false},
-            {name: 'qty', index: 'qty', sortable: false}
+            {name: 'qty', index: 'qty', sortable: false,formatter:comma}
         ],
         caption: "마감처리 | MES",
         autowidth: true,

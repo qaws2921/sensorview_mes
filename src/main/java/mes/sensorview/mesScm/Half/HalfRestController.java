@@ -17,4 +17,7 @@ public class HalfRestController {
 
     @RequestMapping(value = "/scmHInListGet", method = RequestMethod.POST)
     public RESTful scmHInListGet(HttpServletRequest req, Page p){ return halfService.scmHInListGet(req,p);}
+
+    @RequestMapping(value = "/scmHOutListGet", method = RequestMethod.POST)
+    public RESTful scmHOutListGet(HttpServletRequest req, Page p){ return halfService.scmHOutListGet(req,p);}
 }

@@ -126,7 +126,7 @@ function jqGrid_main() {
             {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
             {name: 'close_no', index: 'close_no',key:true, sortable: false},
             {name: 'supp_name', index: 'supp_name', sortable: false},
-            {name: 'amounts', index: 'amounts', sortable: false},
+            {name: 'amounts', index: 'amounts', sortable: false,formatter:comma},
             {name: 'remark', index: 'remark', sortable: false},
         ],
         caption: "자재마감 취소 | MES",
