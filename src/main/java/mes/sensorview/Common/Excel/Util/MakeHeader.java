@@ -51,7 +51,7 @@ public class MakeHeader {
     }
 
     public String[] scmStockList_Header() {
-        String[] data= {"품목구분","품목코드","품목명","규격","단위","공급업체","적정재고(최소)","적정재고(최대)","재고량"};
+        String[] data= {"제품유형","품목군","제품군","품명","품목코드","규격", "단위", "공급업체", "적정재고(최소)", "적정재고(최대)", "재고량"};
         return data;
     }
 

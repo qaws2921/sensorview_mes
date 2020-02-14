@@ -269,7 +269,9 @@ public class MakeBody {
                     obj = new ArrayList<>();
                     obj.add(data.getPart_type_name());
                     obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_grp_name2());
                     obj.add(data.getPart_name());
+                    obj.add(data.getPart_code());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getSupp_name());
