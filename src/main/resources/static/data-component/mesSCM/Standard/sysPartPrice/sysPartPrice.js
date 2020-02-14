@@ -207,7 +207,7 @@ function datepickerInput() {
 
 
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysBPartPrice"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "sysPartPrice"}).then(function (data) {
         main_data.auth = data;
     });
 }

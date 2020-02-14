@@ -22,7 +22,7 @@ public class StandardController {
         return "mesScm/Standard/sysBPart/sysBPart";
     }
 
-    @RequestMapping(value = "/sysBPartPrice")
+    @RequestMapping(value = "/sysPartPrice")
     public String sysBPartPrice() {
         return "mesScm/Standard/sysPartPrice/sysPartPrice";
     }
