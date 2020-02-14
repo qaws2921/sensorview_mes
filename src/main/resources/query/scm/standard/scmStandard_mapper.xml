@@ -26,7 +26,7 @@
 
 
     <select id="sysPartPriceGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE">
-        	EXEC SP_SYS_PART_PRICE_GET #{site_code},#{page}, #{rows},#{start_date},#{stop_date},#{keyword}, #{keyword2}
+        	EXEC SP_SYS_PART_PRICE_GET #{site_code},#{page}, #{rows},#{start_date},#{stop_date},#{keyword}, #{keyword2},#{keyword3},#{keyword4},''
     </select>
     <select id="sysPartPriceOneGet" resultType="mes.sensorview.mesScm.Standard.DTO.SYS_PART_PRICE">
         	EXEC SP_SYS_PART_PRICE_GET #{site_code},1, 1,#{start_date},'',#{supp_code}, #{part_code}

@@ -42,20 +42,24 @@
                     </td>
                     <td class="wt-px-75 td-title t-align-c padding-a-0">제품유형</td>
                     <td class="wt-px-125">
-                        <input type="text" name="keyword2" class="form-control h-25 condition_main">
+                        <select name="keyword2" class="form-control condition_main" id="part_type_select" onchange="select_change1(this.value);" style="width: 100%">
+                        </select>
                     </td>
                     <td class="wt-px-75 td-title t-align-c padding-a-0">품목군</td>
                     <td class="wt-px-125">
-                        <input type="text" name="keyword3" class="form-control h-25 condition_main">
+                        <select name="keyword3" class="form-control condition_main" id="part_group_select" onchange="select_change2(this.value)" style="width:100%">
+                        </select>
                     </td>
                     <td class="wt-px-75 td-title t-align-c padding-a-0">제품군</td>
                     <td class="wt-px-125">
-                        <input type="text" name="keyword4" class="form-control h-25 condition_main">
+                        <select name="keyword4" class="form-control condition_main" id="part_group_select2" style="width:100%">
+                        </select>
                     </td>
-                    <td class="wt-px-75 td-title t-align-c padding-a-0">품명</td>
-                    <td class="wt-px-125">
-                        <input type="text" name="keyword4" class="form-control h-25 condition_main">
-                    </td>
+<%--                    <td class="wt-px-75 td-title t-align-c padding-a-0">품명</td>--%>
+<%--                    <td class="wt-px-125">--%>
+<%--                        <select name="keyword5" class="form-control condition_main" id="part_name_select" style="width:100%;">--%>
+<%--                        </select>--%>
+<%--                    </td>--%>
                     <td></td>
                 </tr>
                 </tbody>

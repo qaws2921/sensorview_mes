@@ -72,7 +72,7 @@ function  partModal_bus(rowid,name) {
 
 function part_btn() {
     $("#partSearchGrid").jqGrid('clearGridData');
-    $("#part_type_select_part  option:eq(0)").prop("selected", true).trigger("change");
+    $("#part_type_select_modal  option:eq(0)").prop("selected", true).trigger("change");
     part_gu = 'Y';
     $("#part-search-dialog").dialog('open');
     jqGridResize2("#partSearchGrid", $('#partSearchGrid').closest('[class*="col-"]'));
