@@ -12,15 +12,41 @@ var main_data = {
 ////////////////////////////시작 함수/////////////////////////////////////
 $(document).ready(function () {
     jqGrid_main();
-    jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
-    jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
+
     datepickerInput();
     /*----모달----*/
     suppModal_start();
+    jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
+    jqGridResize("#mes_grid2", $('#mes_grid2').closest('[class*="col-"]'));
     jqgridPagerIcons();
 });
 
 ////////////////////////////클릭 함수//////////////////////////////////
+
+
+function get_btn(page) {
+    main_data.send_data = value_return(".condition_main");
+    main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
+    main_data.send_data.end_date = main_data.send_data.end_date.replace(/\-/g, '');
+    $("#mes_grid").setGridParam({
+        url: '/scmPartCloseSumListGet',
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data
+    }).trigger("reloadGrid");
+    $('#mes_grid2').jqGrid('clearGridData');
+}
+
+function under_get_btn(rowid) {
+    $("#mes_grid2").setGridParam({
+        url: '/scmPartCloseSumListSubGet',
+        datatype: "json",
+        page: 1,
+        postData: {keyword:rowid}
+    }).trigger("reloadGrid");
+}
+
+
 function supp_btn(what) {
     main_data.supp_check = what;
 
@@ -63,15 +89,16 @@ function jqGrid_main() {
         mtype: 'POST',
         datatype: "local",
         // 다중 select
-        multiselect: true,
+
         // 타이틀
         caption: "자재마감 현황 | MES",
-        colNames: ['마감일자','업체','금액','비고'],
+        colNames: ['마감일자','마감번호','업체','금액','비고'],
         colModel: [
-            {name: '', index: '' ,formatter: formmatterDate2, sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
-            {name: '', index: '', sortable: false},
+            {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
+            {name: 'close_no', index: 'close_no',key:true, sortable: false},
+            {name: 'supp_name', index: 'supp_name', sortable: false},
+            {name: 'amounts', index: 'amounts', sortable: false},
+            {name: 'remark', index: 'remark', sortable: false},
         ],
         autowidth: true,
         viewrecords: true,
@@ -79,13 +106,9 @@ function jqGrid_main() {
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
         pager: '#mes_grid_pager',
-        beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
-            var $myGrid = $(this),
-                i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
-                cm = $myGrid.jqGrid('getGridParam', 'colModel');
-            return (cm[i].name === 'cb');
-        },
+
         onCellSelect: function (rowid, icol, cellcontent, e) {
+            under_get_btn(rowid);
         },
         ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
 
@@ -99,16 +122,16 @@ function jqGrid_main() {
         caption: "자재마감 현황 | MES",
         colNames: ['입고일자','전표번호','구분','품번','품명','업체','입고수량','화폐','단가','금액'],
         colModel: [
-            {name: '', index: '' ,formatter: formmatterDate2, sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
-            {name: '', index: '',sortable: false},
+            {name: 'work_date', index: 'work_date' ,formatter: formmatterDate2, sortable: false},
+            {name: 'in_no', index: 'in_no',sortable: false},
+            {name: 'in_type_name', index: 'in_type_name',sortable: false},
+            {name: 'part_code', index: 'part_code',sortable: false},
+            {name: 'part_name', index: 'part_name',sortable: false},
+            {name: 'supp_name', index: 'supp_name',sortable: false},
+            {name: 'qty', index: 'qty',sortable: false},
+            {name: 'unit_name', index: 'unit_name',sortable: false},
+            {name: 'unit_price', index: 'unit_price',sortable: false},
+            {name: 'amounts', index: 'amounts',sortable: false},
 
         ],
         autowidth: true,
