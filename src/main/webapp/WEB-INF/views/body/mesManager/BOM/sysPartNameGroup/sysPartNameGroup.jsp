@@ -3,7 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="/data-component/admin/bom/sysPartNameGroup/sysPartNameGroup.js" charset="UTF-8"></script>
-
+<style>
+    td input[type=checkbox] {
+        position: relative;
+        top:3px;
+    }
+</style>
 <div class="main-content-inner">
 
     <div class="page-content">

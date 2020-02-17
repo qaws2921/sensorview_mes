@@ -149,7 +149,7 @@ function jqGrid_main() {
         ],
         caption: "사용자관리 | MES",
         autowidth: true,
-        height: 570,
+        height: 562,
         pager: '#mes_grid_pager',
         jsonReader: {cell: ""},
         rowNum: 100,

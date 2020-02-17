@@ -18,12 +18,12 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 t-align-c td-title padding-a-0">조회구분</td>
-                    <td>
-                        <select name="keyword" class="form-control wt-px-125 keyword condition_main" id="dept_select" >
+                    <td class="wt-px-200">
+                        <select name="keyword" class="form-control wt-px-125 keyword condition_main" id="dept_select" style="width:100%">
                             <option value="">전체</option>
                         </select>
                     </td>
-
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

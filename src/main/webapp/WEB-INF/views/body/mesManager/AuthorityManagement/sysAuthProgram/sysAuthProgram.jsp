@@ -2,7 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <script type="text/javascript" src="/data-component/admin/auth/sysAuthProgram/sysAuthProgram.js" charset="UTF-8"></script>
-
+<style>
+    td input[type=checkbox] {
+        position: relative;
+        top:3px;
+    }
+</style>
 
 <div class="main-content-inner">
     <div class="page-content">
@@ -31,7 +36,6 @@
                             <td class="wt-px-100 t-align-c td-title padding-a-0">업무분류</td>
                             <td class="wt-px-200">
                                 <select name="keyword2" class="form-control keyword condition_main" id="code_group" onchange="main_select_change(this);">
-
                                 </select>
                             </td>
                             <td class="t-align-c wt-px-50">

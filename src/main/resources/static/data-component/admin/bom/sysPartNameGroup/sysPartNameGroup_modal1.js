@@ -63,13 +63,22 @@ function modal_make1() {
 }
 
 function effectiveness1(modal_objact) { // 유효성 검사
-    // if (modal_objact. === '') {
-    //     alert(" 입력해주세요");
-    //     return false;
-    // } else if (modal_objact. === '') {
-    //     alert(" 입력해주세요");
-    //     return false;
-    // } else {
+    if (modal_objact.code_type_name === '') {
+        alert("구분을 입력해주세요");
+        return false;
+    } else if (modal_objact.code_value_name === '') {
+        alert("분류항목을 입력해주세요");
+        return false;
+    }else if (modal_objact.code_name1 === '') {
+        alert("코드를 입력해주세요");
+        return false;
+    }else if (modal_objact.code_name2 === '') {
+        alert("자재그룹을 입력해주세요");
+        return false;
+    }else if (modal_objact.code_name3 === '') {
+        alert("LOT를 입력해주세요");
+        return false;
+    } else {
         return true;
-    // }
+    }
 }

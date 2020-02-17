@@ -31,7 +31,7 @@
             <div class="profile-info-name"> 전화번호 </div>
 
             <div class="profile-info-value">
-                <input type="text" name="tel_no" class="form-control modal_value">
+                <input type="text" name="tel_no" class="form-control modal_value" onkeyup="num_keyup(this)">
             </div>
         </div>
         <div class="profile-info-row">
