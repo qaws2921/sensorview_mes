@@ -9,6 +9,7 @@ function modal_start1() {
     modal_make1();
     jqGrid_modal1();
     jqGridResize("#mes_modal1_grid1", $('#mes_modal1_grid1').closest('[class*="col-"]'));
+    $('#mes_modal1_grid1 .ui-widget-content .ui-corner-all').select2();
 }
 
 
@@ -186,7 +187,7 @@ function jqGrid_modal1() {
                     dataEvents: [{
                         type: 'change',
                         fn: function (e) {                // 값 : this.value || e.target.val()
-
+                            $('#mes_modal1_grid1 select').select2();
                             $("#mes_modal1_grid1").jqGrid("saveCell", saverow, savecol);
                         },
                     },

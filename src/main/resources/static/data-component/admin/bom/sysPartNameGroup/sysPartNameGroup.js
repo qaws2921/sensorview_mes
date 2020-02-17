@@ -15,7 +15,6 @@ var code_name4;
 var code_name3;
 
 
-var modal_div=[];
 
 ////////////////////////////시작 함수//////////////////////////////////
 
@@ -184,6 +183,7 @@ function select_change1(value) {
     ccn_ajax('/sysCommon2AllGet',{keyword:value,keyword2:''}).then(function (value1) {
         $('#code_value_select').empty();
         var option = null;
+
         for(var j=0;j<value1.length;j++){
             option = $("<option></option>").text(value1[j].code_name1).val(value1[j].code_value);
             $('#code_value_select').append(option);
@@ -305,7 +305,7 @@ function jqGrid_main() {
         colModel: colModel,
         caption: "유형관리 | MES",
         autowidth: true,
-        height: 570,
+        height: 562,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],

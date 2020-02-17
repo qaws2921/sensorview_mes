@@ -27,11 +27,11 @@
         <div class="profile-info-row">
             <div class="profile-info-name">사업자번호</div>
             <div class="profile-info-value">
-                <input type="text" name="supp_no" class="form-control modal_value" />
+                <input type="text" name="supp_no" class="form-control modal_value" onkeyup="num_keyup(this)"/>
             </div>
             <div class="profile-info-name">전화번호</div>
             <div class="profile-info-value">
-                <input type="text" name="tel_no" class="form-control modal_value"/>
+                <input type="text" name="tel_no" class="form-control modal_value" onkeyup="num_keyup(this)"/>
             </div>
         </div>
         <div class="profile-info-row">
@@ -41,7 +41,7 @@
             </div>
             <div class="profile-info-name">팩스번호</div>
             <div class="profile-info-value">
-                <input type="text" name="fax_no" class="form-control modal_value"/>
+                <input type="text" name="fax_no" class="form-control modal_value" onkeyup="num_keyup(this)"/>
             </div>
         </div>
         <div class="profile-info-row">
@@ -71,7 +71,7 @@
             </div>
             <div class="profile-info-name">담당자(전화)</div>
             <div class="profile-info-value">
-                <input type="text" name="emp_tel" class="form-control modal_value"/>
+                <input type="text" name="emp_tel" class="form-control modal_value" onkeyup="num_keyup(this)"/>
             </div>
         </div>
         <div class="profile-info-row">

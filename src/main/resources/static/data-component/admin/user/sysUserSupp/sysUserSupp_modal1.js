@@ -42,7 +42,7 @@ function effectiveness1(modal_objact) { // 유효성 검사
         alert("사용자코드를 입력해주세요");
         return false;
     } else if (modal_objact.user_name === '') {
-        alert("사용자이름을 입력해주세요");
+        alert("사용자명을 입력해주세요");
         return false;
     } else if (modal_objact.auth_code === '') {
         alert("권한을 선택해주세요");
@@ -57,7 +57,7 @@ function effectiveness1(modal_objact) { // 유효성 검사
 function modal_make1() {
     $("#addDialog").dialog({
         modal: true,
-        width: 'auto',
+        width: 350,
         height: 'auto',
         autoOpen: false,
         resizable: false,
