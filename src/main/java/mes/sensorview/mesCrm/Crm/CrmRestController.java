@@ -62,6 +62,9 @@ public class CrmRestController {
     @RequestMapping(value = "/crmPlanGet", method = RequestMethod.POST)
     public RESTful crmPlanGet(HttpServletRequest req, Page p) { return crmService.crmPlanGet(req, p); }
 
+    @RequestMapping(value = "/crmPlanOneGet", method = RequestMethod.POST)
+    public CRM_PLAN crmPlanOneGet(HttpServletRequest req, Page p) { return crmService.crmPlanOneGet(req, p); }
+
     @RequestMapping(value = "/crmPlanAdd", method = RequestMethod.POST)
     public Message crmPlanAdd(CRM_PLAN cp, HttpServletRequest req){
         return crmService.crmPlanAdd(cp,req);

@@ -24,10 +24,13 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
+import mes.sensorview.mesWms.Stock.DTO.WMS_STOCK_TOTAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -182,5 +185,19 @@ public class VariousService extends ReturnFunction {
     public List<POP_LINE_USER_CD> popLineUserAllGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
         return variousMapper.popLineUserAllGet(p);
+    }
+
+    public WMS_STOCK_TOTAL wmsStockTotalOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar c1 = Calendar.getInstance();
+        String strToday = sdf.format(c1.getTime());
+        p.setKeyword(strToday);
+        WMS_STOCK_TOTAL wst =  variousMapper.wmsStockTotalOneGet(p);
+        if (wst == null){
+            wst = new WMS_STOCK_TOTAL();
+            wst.setQty(0);
+        }
+        return wst;
     }
 }

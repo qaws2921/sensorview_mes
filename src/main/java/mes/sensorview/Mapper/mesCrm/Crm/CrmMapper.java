@@ -42,4 +42,6 @@ public interface CrmMapper {
     Message crmProdOrderDel(CRM_ORD_RECP cor);
 
     Message crmWorkListAdd(CRM_ORD_RECP cor);
+
+    CRM_PLAN crmPlanOneGet(Page p);
 }

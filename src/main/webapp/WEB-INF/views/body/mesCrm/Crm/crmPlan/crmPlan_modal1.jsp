@@ -8,39 +8,34 @@
         <div class="profile-info-row">
             <div class="profile-info-name"> 분기</div>
             <div class="profile-info-value">
-                <input type="text" name="bungi_name" id="bungi_name" class="form-control modal_value" readonly>
-                <input type="hidden" name="quarter" id="bungi_code" class="form-control modal_value" />
+                <input type="text" name="quarter_name" id="quarter_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="quarter" id="quarter" class="form-control modal_value" />
             </div>
         </div>
         <div class="profile-info-row">
             <div class="profile-info-name"> 년도</div>
             <div class="profile-info-value">
-                <input type="text" name="plan_year" id="plan_year" class="form-control modal_value" readonly>
+                <input type="text" name="plan_year_name" id="plan_year_name" class="form-control modal_value" readonly>
+                <input type="hidden" name="plan_year" id="plan_year" class="form-control modal_value" readonly>
             </div>
         </div>
-
-        <div class="profile-info-row">
-            <div class="profile-info-name"> 품목구분</div>
-            <div class="profile-info-value">
-                <select class="form-control condition_main" id="gubun_select" onchange="select_change1(this.value);" style="width: 100%">
-                    <option value="">선택안함</option>
-                </select>
-            </div>
-        </div>
-
         <div class="profile-info-row">
             <div class="profile-info-name"> 제품코드</div>
             <div class="profile-info-value">
-                <select id="partGrp_select" name="part_code" class="form-control keyword condition_main modal_value" style="width: 100%">
-                    <option value="">선택안함</option>
-                </select>
+            <div class="input-icon input-icon-right">
+                <input type="text" name="part_name" class="form-control h-25 modal_value"
+                       id="part_name_modal" onclick="part_btn();" readonly>
+                <input type="hidden" name="part_code" class="form-control h-25 modal_value"
+                       id="part_code_modal">
+                <i class="ace-icon fa fa-search dark" style="top: -2px;" ></i>
+            </div>
             </div>
         </div>
 
         <div class="profile-info-row">
             <div class="profile-info-name"> 수정시점 재고</div>
             <div class="profile-info-value">
-                <input type="text" name="stock_qty" class="form-control modal_value">
+                <input type="text" name="stock_qty" id="stock_qty" class="form-control modal_value" readonly placeholder="자동표시">
             </div>
         </div>
 

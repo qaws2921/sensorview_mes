@@ -106,6 +106,10 @@
         EXEC SP_POP_LINE_USER_GET #{site_code},0,0,#{keyword}
     </select>
 
+    <select id="wmsStockTotalOneGet" resultType="mes.sensorview.mesWms.Stock.DTO.WMS_STOCK_TOTAL">
+        EXEC SP_WMS_STOCK_TOTAL_GET #{site_code},#{keyword},#{keyword2}
+    </select>
+
 </mapper>
 
 

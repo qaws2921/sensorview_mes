@@ -22,6 +22,7 @@ import mes.sensorview.mesScm.Standard.DTO.sysBPartGroup;
 import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
+import mes.sensorview.mesWms.Stock.DTO.WMS_STOCK_TOTAL;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -81,4 +82,6 @@ public interface VariousMapper {
     List<POP_LINE_USER_CD> popLineUserAllGet(Page p);
 
     List<SYSCommon> sysCommonBoardGet(Page p);
+
+    WMS_STOCK_TOTAL wmsStockTotalOneGet(Page p);
 }
