@@ -67,6 +67,18 @@ function partSelectBox(what) {
             $('#part_group_select').empty();
             $('#part_prod_select').empty();
         });
+    } else if (what === 'B'){
+        part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+            $("select#part_type_select_modal option[value='A']").remove();
+            $("select#part_type_select_modal option[value='C']").remove();
+            $("select#part_type_select_modal option[value='D']").remove();
+            part_type_select_ajax("#part_group_select_modal", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name",{keyword:'B'}).then(function (data2){
+                part_type_select_ajax('#part_prod_select_modal', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'B', keyword2:data2[0].part_grp_code})
+            });
+        }).catch(function (err){
+            $('#part_group_select').empty();
+            $('#part_prod_select').empty();
+        });
     } else {
         part_type_select_ajax("#part_type_select_modal", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
             $("select#part_type_select_modal option[value='C']").remove();

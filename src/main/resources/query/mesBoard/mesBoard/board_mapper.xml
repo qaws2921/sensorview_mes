@@ -26,7 +26,7 @@
         EXEC SP_SYS_BOARD_ALL '','',#{board_code},'','','','','','','',#{seq},0,0,12
     </select>
     <select id="upHits">
-        EXEC SP_SYS_BOARD_ALL '','',#{idx},'','','','','','','',0,0,0,10
+        EXEC SP_SYS_BOARD_ALL '','','',#{idx},'','','','','','',0,0,0,10
     </select>
     <select id="addReply" resultType="String">
         EXEC SP_SYS_BOARD_ALL #{site_code},#{user_code},#{board_code},#{board_idx},'','','','','',#{reply_desc},0,0,0,6
@@ -39,6 +39,27 @@
     </delete>
     <select id="sysCommonBoardGet" resultType="mes.sensorview.mesManager.Master.DTO.SYSCommon">
 		EXEC SP_SYS_COMMON_GET  #{site_code},0,0,'BOARD_TYPE','','Y'
+    </select>
+    <select id="addFileCD" resultType="String">
+        EXEC SP_SYS_BOARD_ALL #{site_code},#{user_code},#{file_name},'','','',#{key_value},#{file_og_name},#{upload_path},#{url},#{file_size},#{file_volume},0,14
+    </select>
+    <select id="addBoardFile" resultType="String">
+        EXEC SP_SYS_BOARD_ALL #{site_code},'',#{board_code},#{board_idx},'','',#{key_value},#{file_name},'','',0,0,0,15
+    </select>
+    <select id="getBoardIdx" resultType="String">
+        SELECT DBO.MakeIDX('','','',0)
+    </select>
+    <select id="addBoardList" resultType="String">
+        EXEC SP_SYS_BOARD_ALL #{site_code},#{user_code},#{board_code},#{board_idx},'',#{type},'',#{subject},#{description},'',0,0,0,3
+    </select>
+    <delete id="delBoardList">
+        DELETE FROM SYS_BOARD_LIST WHERE BOARD_IDX = #{idx}
+    </delete>
+    <select id="getFileData" resultType="mes.sensorview.Common.File.DTO.Files">
+        SELECT B.*
+        FROM SYS_BOARD_FILE A
+        LEFT JOIN SYS_FILE_CD B ON A.FILE_IDX = B.KEY_VALUE
+        WHERE BOARD_IDX = #{idx}
     </select>
 </mapper>
 

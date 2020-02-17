@@ -64,13 +64,6 @@ public class UploadFunction extends ReturnFunction {
         return FileName;
     }
 
-
-
-
-
-
-
-
     public Files setOneFile(Files files, HttpServletRequest req,int i) {
         Files newFile = UploadSetFilePath(files.getFiles(), req,i);
         try {

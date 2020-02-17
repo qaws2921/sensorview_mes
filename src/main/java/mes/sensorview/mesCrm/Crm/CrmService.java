@@ -63,54 +63,8 @@ public class CrmService extends ReturnFunction {
 
     public RESTful crmPlanGet(HttpServletRequest req, Page p) {
         p.setSite_code(getSessionData(req).getSite_code());
-        p.setRows(p.getRows()/3);
         List<CRM_PLAN> rows = crmMapper.crmPlanGet(p);
-        ArrayList<CRM_PLAN> rows2 = new ArrayList<>();
-        CRM_PLAN cps = null;
-        int index = 0;
-        for (CRM_PLAN cp: rows) {
-
-            for (int i = 0; i<3;i++){
-                cps = new CRM_PLAN();
-
-                cps.setPlan_year(cp.getPlan_year());
-                cps.setQuarter(cp.getQuarter());
-                cps.setPart_code(cp.getPart_code());
-
-                cps.setPlan_qty(cp.getPlan1_qty());
-                cps.setTotal_qty(cp.getTotal_qty());
-                cps.setDiff_qty(cp.getDiff_qty());
-                cps.setProd_qty(cp.getProd_qty());
-                cps.setProd_qty(cp.getProd_qty());
-                cps.setStock_qty(cp.getStock_qty());
-                cps.setProd_desc(cp.getProd_desc());
-                cps.setRec_count(cp.getRec_count());
-                if (index == 0){
-
-                    cps.setMonth_plan1(cp.getMonth1_plan1());
-                    cps.setMonth_plan2(cp.getMonth2_plan1());
-                    cps.setMonth_plan3(cp.getMonth3_plan1());
-                    cps.setPlan_name("확정");
-                    index = 1;
-                } else if (index == 1){
-                    cps.setMonth_plan1(cp.getMonth1_plan2());
-                    cps.setMonth_plan2(cp.getMonth2_plan2());
-                    cps.setMonth_plan3(cp.getMonth3_plan2());
-                    cps.setPlan_qty(cp.getPlan2_qty());
-                    cps.setPlan_name("협의");
-                    index = 2;
-                } else if (index == 2){
-                    cps.setMonth_plan1(cp.getMonth1_plan3());
-                    cps.setMonth_plan2(cp.getMonth2_plan3());
-                    cps.setMonth_plan3(cp.getMonth3_plan3());
-                    cps.setPlan_qty(cp.getPlan3_qty());
-                    cps.setPlan_name("예상");
-                    index = 0;
-                }
-                rows2.add(cps);
-            }
-        }
-        return getListData(rows2, p);
+        return getListData(rows, p);
     }
 
     public Message crmPlanAdd(CRM_PLAN cp, HttpServletRequest req) {
@@ -157,5 +111,11 @@ public class CrmService extends ReturnFunction {
         cor.setSite_code(getSessionData(req).getSite_code());
         cor.setUser_code(getSessionData(req).getUser_code());
         return crmMapper.crmWorkListAdd(cor);
+    }
+
+    public CRM_PLAN crmPlanOneGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        return crmMapper.crmPlanOneGet(p);
+
     }
 }

@@ -22,6 +22,7 @@ import mes.sensorview.mesScm.Standard.DTO.sysLoc;
 import mes.sensorview.mesTpm.Machine.DTO.TPM_MACHINE_CD;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_MACHINE_REG;
 import mes.sensorview.mesTpm.RegItem.DTO.TPM_REG_ITEM_CD;
+import mes.sensorview.mesWms.Stock.DTO.WMS_STOCK_TOTAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -150,4 +151,9 @@ public class VariousRestController {
 
     @RequestMapping(value ="/popLineUserAllGet",method = RequestMethod.POST)
     public List<POP_LINE_USER_CD> popLineUserAllGet(HttpServletRequest req, Page p){ return variousService.popLineUserAllGet(req, p);}
+
+    @RequestMapping(value ="/wmsStockTotalOneGet",method = RequestMethod.POST)
+    public WMS_STOCK_TOTAL wmsStockTotalOneGet(HttpServletRequest req, Page p){ return variousService.wmsStockTotalOneGet(req, p);}
+
+
 }

@@ -9,62 +9,42 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     readonly:[],
+    auth:{}
 };
 
-// var testdata = [
-//     {id:'1',code:'CSVA1',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
-//     {id:'2',code:'CSVA1',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-//     {id:'3',code:'CSVA1',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-//     {id:'4',code:'CSVA2',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {rowspan:"3"}, sumtotal:{rowspan:"3"},dif:{rowspan:"3"},prod_no:{rowspan:"3"},prod_stock:{rowspan:"3"},prod_date:{rowspan:"3"}}},
-//     {id:'5',code:'CSVA2',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-//     {id:'6',code:'CSVA2',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', attr: {code: {display: "none"}, sumtotal:{display: "none"},dif:{display: "none"},prod_no:{display: "none"},prod_stock:{display: "none"},prod_date:{display: "none"}}},
-// ];
-
-var testdata = [
-    {id:'1',code:'CSVA1',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
-    {id:'2',code:'CSVA1',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
-    {id:'3',code:'CSVA1',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말',},
-    {id:'4',code:'CSVA2',code2:'확정',jan:'1000',feb:'1000',mar:'1000',sum:'3000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
-    {id:'5',code:'CSVA2',code2:'협의',jan:'1000',feb:'0',mar:'0',sum:'1000',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
-    {id:'6',code:'CSVA2',code2:'예상',jan:'0',feb:'0',mar:'500',sum:'500',sumtotal:'4500',dif:'1500',prod_no:'3000',prod_stock:'0',prod_date:'4월말', },
-];
-
-// var arrtSetting = function (rowId, val, rawObject, cm) {
-//     var attr = rawObject.attr[cm.name], result;
-//     if (attr.rowspan) {
-//         result = ' rowspan=' + '"' + attr.rowspan + '"';
-//     } else if (attr.display) {
-//         result = ' style="display:' + attr.display + '"';
-//     }
-//     return result;
-// };
-
 var colNames_sub = {
-    a:['제품코드','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기'],
-    b:['제품코드','분류', '4월', '5월', '6월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기'],
-    c:['제품코드','분류', '7월', '8월', '9월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기'],
-    d:['제품코드','분류', '10월', '11월', '12월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기'],
+    a:['제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    b:['제품코드','제품명','분류', '4월', '5월', '6월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    c:['제품코드','제품명','분류', '7월', '8월', '9월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    d:['제품코드','제품명','분류', '10월', '11월', '12월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
 }
 
-var colNames = ['제품코드','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기']
+var colNames = ['제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기']
 ////////////////////////////시작 함수/////////////////////////////////
 $(document).ready(function () {
+    authcheck();
     jqGrid_main();
     jqGrid_header();
-    // jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
+    jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     selectBox();
     datepickerInput();
     modal_start1();
+    partModal_start('B');
 
 
     jqgridPagerIcons();
+
 });
 ////////////////////////////클릭 함수////////////////////////////////
 
 function get_btn(page) {
+    prevCellVal_reset();
     main_data.send_data = value_return(".condition_main");
     main_data.send_data.keyword = main_data.send_data.keyword.replace("년", '');
     main_data.send_data_post = main_data.send_data;
+
+    bungi_change(main_data.send_data.keyword2);
+    jqGridResize2("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     $("#mes_grid").setGridParam({
         url: "/crmPlanGet",
         datatype: "json",
@@ -74,32 +54,55 @@ function get_btn(page) {
 
 }
 
+
+
+
+function get_btn_post(page) {
+    prevCellVal_reset();
+    bungi_change(main_data.send_data_post.keyword2);
+    jqGridResize2("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
+    $("#mes_grid").setGridParam({
+        url: "/crmPlanGet",
+        datatype: "json",
+        page: page,
+        postData: main_data.send_data_post
+    }).trigger("reloadGrid");
+
+}
+
+
 function add_btn() {
-    modal_reset(".modal_value", main_data.readonly);
-    modalValuePush("#bungi_select","#bungi_code","#bungi_name");
-    $("#plan_year").val($("#datepicker").val());
-    main_data.check = 'I';
+    if (main_data.auth.check_add !="N") {
+        modal_reset(".modal_value", main_data.readonly);
+        modalValuePush("#bungi_select","#quarter","#quarter_name");
+        $("#plan_year_name").val($("#datepicker").val());
+        $("#plan_year").val($("#datepicker").val().replace("년", ""));
+        $("#part_name_modal").prop("disabled",false).trigger('change');
+        main_data.check = 'I';
 
-    var value =  $('#bungi_select').val();
-    if (value === "1"){
-        $("#month1").text("1월");
-        $("#month2").text("2월");
-        $("#month3").text("3월");
-    } else if(value ==="2"){
-        $("#month1").text("4월");
-        $("#month2").text("5월");
-        $("#month3").text("6월");
-    } else if(value ==="3"){
-        $("#month1").text("7월");
-        $("#month2").text("8월");
-        $("#month3").text("9월");
+        var value =  $('#bungi_select').val();
+        if (value === "1"){
+            $("#month1").text("1월");
+            $("#month2").text("2월");
+            $("#month3").text("3월");
+        } else if(value ==="2"){
+            $("#month1").text("4월");
+            $("#month2").text("5월");
+            $("#month3").text("6월");
+        } else if(value ==="3"){
+            $("#month1").text("7월");
+            $("#month2").text("8월");
+            $("#month3").text("9월");
+        } else {
+            $("#month1").text("10월");
+            $("#month2").text("11월");
+            $("#month3").text("12월");
+        }
+
+        $("#addDialog").dialog('open');
     } else {
-        $("#month1").text("10월");
-        $("#month2").text("11월");
-        $("#month3").text("12월");
+        alert("추가권한이 없습니다,");
     }
-
-    $("#addDialog").dialog('open');
 }
 
 function bungi_change(value) {
@@ -112,8 +115,6 @@ function bungi_change(value) {
     } else if(value === '4'){
         colNames = colNames_sub.d;
     }
-
-    //$("#mes_grid").jqGrid("setLabel", colNames, '');
 
     $('#mes_grid').jqGrid('destroyGroupHeader');
     $.jgrid.gridUnload('#mes_grid');
@@ -128,7 +129,53 @@ function bungi_change(value) {
 
 }
 
+function update_btn(jqgrid_data) {
+    if (main_data.auth.check_edit !="N") {
+        modal_reset(".modal_value", []); // 해당 클래스 내용을 리셋 시켜줌 ,데이터에 readonly 사용할거
+
+        main_data.check = 'U'; // 수정인지 체크
+
+
+        var send_data = {
+            keyword :jqgrid_data.plan_year,
+            keyword2   :jqgrid_data.quarter,
+            keyword3   :jqgrid_data.part_code
+        }
+
+        ccn_ajax('/crmPlanOneGet', send_data).then(function (data) { // user의 하나 출력
+            ccn_ajax("/wmsStockTotalOneGet", {keyword2:send_data.keyword3}).then(function (data2) {
+                modal_edits('.modal_value', main_data.readonly, data); // response 값 출력
+                $("#stock_qty").val(data2.qty);
+
+                $("#quarter_name").val(data.quarter+'분기');
+                $("#plan_year_name").val(data.plan_year+'년');
+                $("#part_name_modal").prop("disabled",true).trigger('change');
+
+                $("#addDialog").dialog('open');
+            });
+        });
+    } else {
+        alert("수정권한이 없습니다.");
+    }
+}
+
 ////////////////////////////호출 함수////////////////////////////////
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "crmPlan"}).then(function (data) {
+        main_data.auth = data;
+    });
+}
+
+function prevCellVal_reset() {
+    prevCellVal = { cellId: undefined, value: undefined,rowid:undefined};
+    prevCellVal2 = { cellId: undefined, value: undefined,rowid:undefined};
+    prevCellVal3 = { cellId: undefined, value: undefined,rowid:undefined};
+    prevCellVal4 = { cellId: undefined, value: undefined,rowid:undefined};
+    prevCellVal5 = { cellId: undefined, value: undefined,rowid:undefined};
+    prevCellVal6 = { cellId: undefined, value: undefined,rowid:undefined};
+}
+
 function datepickerInput() {
     var date = new Date();
     date.setDate(date.getDate());
@@ -161,17 +208,20 @@ function jqGrid_main() {
         caption: '계획관리 | MES',
         colNames: colNames,
         colModel: [
-            {name: 'part_code', index: 'part_code',key:true, sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form},
-            {name: 'plan_name', index: 'plan_name', sortable: false, width: 60},
-            {name: 'month_plan1', index: 'month_plan1', sortable: false, width: 60},
-            {name: 'month_plan2', index: 'month_plan2', sortable: false, width: 60},
-            {name: 'month_plan3', index: 'month_plan3', sortable: false, width: 60},
-            {name: 'plan_qty', index: 'plan_qty', sortable: false, width: 60},
-            {name: 'total_qty', index: 'total_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form2},
-            {name: 'diff_qty', index: 'diff_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form3 },
-            {name: 'prod_qty', index: 'prod_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form4 },
-            {name: 'stock_qty', index: 'stock_qty', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form5 },
-            {name: 'prod_desc', index: 'prod_desc', sortable: false, width: 60, sorttype:"text", fixed:true, cellattr:form6 },
+            {name: 'part_code', index: 'part_code',key:true,hidden:true, sortable: false, width: 120, sorttype:"text", },
+            {name: 'part_name', index: 'part_name', sortable: false, width: 120, sorttype:"text",  cellattr:form},
+            {name: 'plan_name', index: 'plan_name', sortable: false, width: 50},
+            {name: 'month_plan1', index: 'month_plan1', sortable: false, width: 50},
+            {name: 'month_plan2', index: 'month_plan2', sortable: false, width: 50},
+            {name: 'month_plan3', index: 'month_plan3', sortable: false, width: 50},
+            {name: 'plan_qty', index: 'plan_qty', sortable: false, width: 50},
+            {name: 'total_qty', index: 'total_qty', sortable: false, width: 80, sorttype:"text",  cellattr:form2},
+            {name: 'diff_qty', index: 'diff_qty', sortable: false, width: 80, sorttype:"text",  cellattr:form3 },
+            {name: 'prod_qty', index: 'prod_qty', sortable: false, width: 80, sorttype:"text",  cellattr:form4 },
+            {name: 'stock_qty', index: 'stock_qty', sortable: false, width: 80, sorttype:"text",  cellattr:form5 },
+            {name: 'prod_desc', index: 'prod_desc', sortable: false, width: 80, sorttype:"text",  cellattr:form6 },
+            {name: 'plan_year', index: 'plan_year', sortable: false, hidden:true, width: 80, sorttype:"text"},
+            {name: 'quarter', index: 'quarter', sortable: false, hidden:true, width: 80, sorttype:"text"},
         ],
         loadonce: true,
         autowidth: true,
@@ -201,17 +251,16 @@ function jqGrid_main() {
 
                 }
             });
+        },
+        ondblClickRow: function (rowid, iRow, iCol, e) { // 더블 클릭시 수정 모달창
+            var data = $('#mes_grid').jqGrid('getRowData', rowid);
+            update_btn(data);
         }
 
     });
+
     jqgridPagerIcons();
 
-    // var newWidth = $("#mes_grid_code").width() + $("#mes_grid_code2").outerWidth(true);
-    // jQuery("#mes_grid").jqGrid("setLabel", "code", "제품코드", "", {
-    //     style: "width: " + newWidth + "px;",
-    //     colspan: "2"
-    // });
-    // jQuery("#mes_grid").jqGrid("setLabel", "code2", "", "", {style: "display: none"});
 }
 
 var prevCellVal = { cellId: undefined, value: undefined,rowid:undefined };

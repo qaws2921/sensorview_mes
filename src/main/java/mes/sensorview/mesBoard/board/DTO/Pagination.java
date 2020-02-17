@@ -16,7 +16,7 @@ public class Pagination {
     private boolean next;
     private int displayPageNum;
     private int tempEndPage;
-    private String searchType="";
+    private String type="";
     private String keyword="";
     private String key;
     private String site_code;
@@ -69,7 +69,7 @@ public class Pagination {
     }
 
     public String searchOption(final int page) {
-        final UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", new Object[]{page}).queryParam("perPageNum", new Object[]{this.perPageNum}).queryParam("searchType", new Object[]{this.searchType}).queryParam("keyword", new Object[]{this.keyword}).queryParam("key", new Object[]{this.key}).build();
+        final UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", new Object[]{page}).queryParam("perPageNum", new Object[]{this.perPageNum}).queryParam("type", new Object[]{this.type}).queryParam("keyword", new Object[]{this.keyword}).queryParam("key", new Object[]{this.key}).build();
         return uriComponents.toUriString();
     }
 
@@ -85,7 +85,7 @@ public class Pagination {
                 ", next=" + this.next +
                 ", displayPageNum=" + this.displayPageNum +
                 ", tempEndPage=" + this.tempEndPage +
-                ", searchType=" + this.searchType +
+                ", searchType=" + this.type +
                 ", keyword=" + this.keyword +
                 "]";
     }

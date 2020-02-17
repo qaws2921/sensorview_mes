@@ -2,10 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="/data-component/mesCRM/Crm/crmPlan/crmPlan.js" charset="UTF-8"></script>
 <style>
-    .ui-jqgrid .ui-jqgrid-htable th div{
+    #gbox_mes_grid  .ui-jqgrid-htable th div{
         padding-top: 0px;
         overflow: visible;
-        font-size: 12px;
+        font-size: 5px;
+    }
+
+    #gview_mes_grid > .ui-jqgrid-hdiv {
+        line-height: 1 !important;
+        max-height: 50px!important;
+
     }
 </style>
 <div class="main-content-inner">
@@ -25,7 +31,7 @@
 
                     <td class="wt-px-100 td-title t-align-c padding-a-0">분기</td>
                     <td class="wt-px-200">
-                       <select id="bungi_select" name="keyword2" class="form-control condition_main" onchange="bungi_change(this.value)">
+                       <select id="bungi_select" name="keyword2" class="form-control condition_main">
                            <option value="1">1분기</option>
                            <option value="2">2분기</option>
                            <option value="3">3분기</option>
@@ -78,3 +84,4 @@
 </div>
 
 <%@include file="crmPlan_modal1.jsp"%>
+<%@include file="/WEB-INF/views/body/common/modal/part_modal.jsp" %>

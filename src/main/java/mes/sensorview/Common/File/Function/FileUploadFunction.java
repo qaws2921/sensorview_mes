@@ -51,7 +51,7 @@ public class FileUploadFunction {
     /**
      * 파일 이름 설정
      * */
-    private String MakeFileName(String idx){
+    public String MakeFileName(String idx){
         Date now = new Date();
         Random random = new Random();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");

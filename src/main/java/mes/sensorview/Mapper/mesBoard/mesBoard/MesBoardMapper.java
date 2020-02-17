@@ -1,9 +1,7 @@
 package mes.sensorview.Mapper.mesBoard.mesBoard;
 
-import mes.sensorview.mesBoard.board.DTO.Pagination;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_CD;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_LIST;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_REPLY;
+import mes.sensorview.Common.File.DTO.Files;
+import mes.sensorview.mesBoard.board.DTO.*;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import org.springframework.stereotype.Repository;
 
@@ -34,4 +32,16 @@ public interface MesBoardMapper {
     int delReply(String idx);
 
     List<SYSCommon> sysCommonBoardGet(SYS_BOARD_CD sysBoard);
+
+    String addBoardFile(Files files);
+
+    String addFileCD(Files files);
+
+    String addBoardList(SYS_BOARD_LIST boardList);
+
+    String getBoardIdx();
+
+    int delBoardList(String idx);
+
+    List<SYS_BOARD_FILE> getFileData(String idx);
 }
