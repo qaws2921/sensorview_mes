@@ -8,6 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -16,7 +17,7 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-
+    authcheck();
     datepickerInput();
     selectBox();
     jqgridPagerIcons();
@@ -24,11 +25,45 @@ $(document).ready(function () {
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
+            data: {
+                "name": "wmsStockIOSumMonth",
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
+
 function select_change1(value) {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
-        for(var i=1; i<=3;i++) {
-            group_cb(value,i);
-        }
+    if(value === ''){
+        $('#part_group2_select').empty();
+        var option = null;
+        option = $("<option></option>").text('전체').val('');
+        $('#part_group2_select').append(option);
+        $('#part_group2_select').select2();
+    }else{
+        part_type_select_ajax_all('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_select").val(), keyword2:value});
+    }
+}
+
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "wmsStockIOSumMonth"}).then(function (data) {
+        main_data.auth = data;
     });
 }
 
@@ -36,6 +71,9 @@ function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
     main_data.send_data.start_date = main_data.send_data.start_date.replace(/\-/g, '');
     main_data.send_data_post = main_data.send_data;
+
+    console.log(main_data);
+
     $("#mes_grid").setGridParam({
         url: '/wmsStockSumMonthListGet',
         datatype: "json",
@@ -62,36 +100,27 @@ function datepickerInput() {
     datepicker_makes("#datepicker", 0);
 }
 
-function group_cb(value,i) {
-    $('#part_group'+i).text(value["part_group"+i]);
-    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
-        $('#part_group_select'+i).empty();
-        var option = null;
-        var allSelect = ($("<option></option>").text("전체").val(""));
-        $('#part_group_select'+i).append(allSelect);
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-            $('#part_group_select'+i).append(option);
+function selectBox() {
+    $("#part_type_select").select2();
+    part_type_select_ajax_all("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function (data) {
+        if($('#part_group1_select').val() === ''){
+            $('#part_group2_select').empty();
+            var option = null;
+            option = $("<option></option>").text('전체').val('');
+            $('#part_group2_select').append(option);
+            $('#part_group2_select').select2();
+        }else{
+            part_type_select_ajax_all('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:data[0].part_grp_code});
         }
-        $('#part_group_select'+i).select2();
     });
 }
 
-function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name", {keyword: ''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet', {keyword: '', keyword2: data[0].part_type_code}).then(function (value) {
-            for (var i = 1; i <= 3; i++) {
-                group_cb(value, i);
-            }
-        })
-    });
-}
 
 function jqGrid_main() {
     $('#mes_grid').jqGrid({
         mtype: 'POST',
         datatype: "local",
-        colNames: ['품목그룹', '품목코드', '품목명', '규격', '단위', '전월재고', '금월입고', '금월출고', '재고'],
+        colNames: ['제품유형', '품목코드', '품목명', '규격', '단위', '전월재고', '금월입고', '금월출고', '재고'],
         colModel: [
             {name: 'part_grp_name', index: 'part_grp_name', width: 60},
             {name: 'part_code', index: 'part_code', width: 60},

@@ -61,7 +61,7 @@ public class MakeHeader {
     }
 
     public String[] scmStockSumMonthList_Header() {
-        String[] data= {"품목그룹","품목코드","품목명","규격","단위","전월재고","금월입고","금월출고","재고"};
+        String[] data= {"품목구분","품목코드","품목명","규격","단위","전월재고","금월입고","금월출고","재고"};
         return data;
     }
 

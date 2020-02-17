@@ -8,6 +8,7 @@ var main_data = {
     check: 'I',
     send_data: {},
     send_data_post: {},
+    auth:{}
 };
 
 ////////////////////////////시작 함수//////////////////////////////////
@@ -15,21 +16,13 @@ var main_data = {
 $(document).ready(function () {
     jqGrid_main();
     jqGridResize('#mes_grid', $('#mes_grid').closest('[class*="col-"]'));
-
+    authcheck();
     selectBox();
     jqgridPagerIcons();
 });
 
 
 ////////////////////////////클릭 함수//////////////////////////////////
-function select_change1(value) {
-    ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:value}).then(function (value) {
-        for(var i=1; i<=3;i++) {
-            group_cb(value,i);
-        }
-        grid_head_value_change(value);
-    });
-}
 
 function get_btn(page) {
     main_data.send_data = value_return(".condition_main");
@@ -51,30 +44,62 @@ function get_btn_post(page) {
     }).trigger("reloadGrid");
 }
 
+function select_change1(value) {
+    if(value === ''){
+        $('#part_group2_select').empty();
+        var option = null;
+        option = $("<option></option>").text('전체').val('');
+        $('#part_group2_select').append(option);
+        $('#part_group2_select').select2();
+    }else{
+        part_type_select_ajax_all('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_select").val(), keyword2:value});
+    }
+}
+
+function excel_download() {
+    if (confirm("엑셀로 저장하시겠습니까?")) {
+        var $preparingFileModal = $("#preparing-file-modal");
+        $preparingFileModal.dialog({modal: true});
+        $("#progressbar").progressbar({value: false});
+        $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
+            data : {
+                "name":"wmsStock"
+            },
+            successCallback: function (url) {
+                $preparingFileModal.dialog('close');
+            },
+            failCallback: function (responseHtml, url) {
+                $preparingFileModal.dialog('close');
+                $("#error-modal").dialog({modal: true});
+            }
+        });
+        return false;
+    } else {
+        alert('다운로드가 취소되었습니다.');
+    }
+}
+
 ////////////////////////////호출 함수//////////////////////////////////
 
-function group_cb(value,i) {
-    $('#part_group'+i).text(value["part_group"+i]);
-    ccn_ajax('/sysPartGroupAllGet',{keyword:value.part_type_code,keyword2:i}).then(function (value1) {
-        $('#part_group_select'+i).empty();
-        var option = null;
-        var allSelect = ($("<option></option>").text("전체").val(""));
-        $('#part_group_select'+i).append(allSelect);
-        for(var j=0;j<value1.length;j++){
-            option = $("<option></option>").text(value1[j].part_grp_name).val(value1[j].part_grp_code);
-            $('#part_group_select'+i).append(option);
-        }
-        $('#part_group_select'+i).select2();
+function authcheck() {
+    ccn_ajax("/menuAuthGet", {keyword: "wmsStock"}).then(function (data) {
+        main_data.auth = data;
     });
 }
 
 function selectBox() {
-    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
-        ccn_ajax('/sysPartTypeOneGet',{keyword:'',keyword2:data[0].part_type_code}).then(function (value) {
-            for(var i=1; i<=3;i++) {
-                group_cb(value,i);
-            }
-        })
+    $("#part_type_select").select2();
+    part_type_select_ajax_all("#part_group1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function (data) {
+        if($('#part_group1_select').val() === ''){
+            $('#part_group2_select').empty();
+            var option = null;
+            option = $("<option></option>").text('전체').val('');
+            $('#part_group2_select').append(option);
+            $('#part_group2_select').select2();
+        }else{
+            part_type_select_ajax_all('#part_group2_select', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:'D', keyword2:data[0].part_grp_code});
+        }
     });
 }
 
@@ -93,7 +118,7 @@ function jqGrid_main() {
         ],
         caption: "재고현황 | MES",
         autowidth: true,
-        height: 550,
+        height: 570,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
