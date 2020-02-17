@@ -5,4 +5,9 @@
     <select id="scmHInListGet" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HIN">
         EXEC SP_SCM_HIN_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
     </select>
+
+    <select id="scmHOutListGet" resultType="mes.sensorview.mesScm.Half.DTO.SCM_HOUT_SUB">
+        EXEC SP_SCM_HOUT_SUB_DATE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date}
+    </select>
+
 </mapper>

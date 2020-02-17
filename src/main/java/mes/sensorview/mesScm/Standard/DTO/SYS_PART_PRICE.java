@@ -10,7 +10,7 @@ public class SYS_PART_PRICE {
     private String start_date;
     private String stop_date;
     private String currency_code;
-    private int unit_price;
+    private double unit_price;
     private String user_code;
     private String create_date;
     private String update_date;

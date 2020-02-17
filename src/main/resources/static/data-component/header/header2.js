@@ -28,7 +28,7 @@ var array =
         // 자재관리
 
         {code: "sysLoc", title: '자재관리', sub: '기준정보', name: '로케이션관리'},
-        {code: "sysBPartPrice", title: '자재관리', sub: '기준정보', name: '자재단가관리'},
+        {code: "sysPartPrice", title: '자재관리', sub: '기준정보', name: '자재단가관리'},
         {code: "scmReqOrder", title: '자재관리', sub: '구매관리', name: '구매요청현황'},
         {code: "scmOrder", title: '자재관리', sub: '구매관리', name: '발주등록'},
         {code: "scmOrderList", title: '자재관리', sub: '구매관리', name: '발주현황'},

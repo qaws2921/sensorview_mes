@@ -444,20 +444,35 @@ var findArrayIndex = function (array, predicateFunction) {
 
 function comma(num){
 	var len, point, str;
+	num = num.toString();
+	if(num.indexOf('.') != -1){
+		var numSplit = num.toString().split('.');
+		var numInt = numSplit[0]+"";
+		point = numInt.length % 3 ;
+		len = numInt.length;
 
-	num = num + "";
-	point = num.length % 3 ;
-	len = num.length;
+		str = numInt.substring(0, point);
+		while (point < len) {
+			if (str != "") str += ",";
+			str += numInt.substring(point, point + 3);
+			point += 3;
+		}
+		str = str+"."+numSplit[1];
+		return str;
+	}else {
+		num = num + "";
+		point = num.length % 3 ;
+		len = num.length;
 
-	str = num.substring(0, point);
-	while (point < len) {
-		if (str != "") str += ",";
-		str += num.substring(point, point + 3);
-		point += 3;
+		str = num.substring(0, point);
+		while (point < len) {
+			if (str != "") str += ",";
+			str += num.substring(point, point + 3);
+			point += 3;
+		}
+
+		return str;
 	}
-
-	return str;
-
 }
 
 function num_keyup(e) {

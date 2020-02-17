@@ -12,8 +12,8 @@
             <table class="table wt-100">
                 <tbody>
                 <tr>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-75 td-title t-align-c padding-a-0">조회기간</td>
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="start_date" id="datepicker"
                                    class="form-control h-25 condition_main" readonly>
@@ -23,15 +23,15 @@
                     <td class="t-align-c" style="width:25px !important;">
                         ~
                     </td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="stop_date" id="datepicker2"
                                    class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">업체</td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-75 td-title t-align-c padding-a-0">업체</td>
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="supp_name" class="form-control h-25 condition_main"
                                    id="supp_name_main" onclick="supp_btn('A');" readonly>
@@ -40,10 +40,26 @@
                             <i class="ace-icon fa fa-search dark" style="top: -2px;" id="SuppSearch"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">품목코드</td>
-                    <td class="wt-px-200">
-                        <input type="text" name="keyword2" id="part_code" class="form-control h-25 condition_main">
+                    <td class="wt-px-75 td-title t-align-c padding-a-0">제품유형</td>
+                    <td class="wt-px-125">
+                        <select name="keyword2" class="form-control condition_main" id="part_type_select" onchange="select_change1(this.value);" style="width: 100%">
+                        </select>
                     </td>
+                    <td class="wt-px-75 td-title t-align-c padding-a-0">품목군</td>
+                    <td class="wt-px-125">
+                        <select name="keyword3" class="form-control condition_main" id="part_group_select" onchange="select_change2(this.value)" style="width:100%">
+                        </select>
+                    </td>
+                    <td class="wt-px-75 td-title t-align-c padding-a-0">제품군</td>
+                    <td class="wt-px-125">
+                        <select name="keyword4" class="form-control condition_main" id="part_group_select2" style="width:100%">
+                        </select>
+                    </td>
+<%--                    <td class="wt-px-75 td-title t-align-c padding-a-0">품명</td>--%>
+<%--                    <td class="wt-px-125">--%>
+<%--                        <select name="keyword5" class="form-control condition_main" id="part_name_select" style="width:100%;">--%>
+<%--                        </select>--%>
+<%--                    </td>--%>
                     <td></td>
                 </tr>
                 </tbody>

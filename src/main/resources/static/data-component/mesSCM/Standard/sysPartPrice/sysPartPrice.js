@@ -11,7 +11,8 @@ var main_data = {
     send_data: {},
     send_data_post: {},
     readonly:[],
-    auth:{}
+    auth:{},
+    change: 'Y'
 };
 
 ////////////////////////////시작 함수/////////////////////////////////////
@@ -20,6 +21,7 @@ $(document).ready(function () {
     jqGrid_main();
     jqGridResize("#mes_grid", $('#mes_grid').closest('[class*="col-"]'));
     datepickerInput();
+    selectBox();
     modal_start1();
     suppModal_start();
     partModal_start();
@@ -36,6 +38,7 @@ function get_btn(page) {
 
     main_data.send_data_post = main_data.send_data;
 
+    console.log(main_data.send_data);
     $("#mes_grid").setGridParam({
         url: "/sysPartPriceGet",
         datatype: "json",
@@ -145,12 +148,15 @@ function excel_download() {
         $preparingFileModal.dialog({modal: true});
         $("#progressbar").progressbar({value: false});
         $.fileDownload("/excel_download", {
+            httpMethod: 'POST',
             data: {
                 "name":"sysPartPrice",
                 "row0": $('#datepicker').val().replace(/-/gi, ""),
                 "row1": $('#datepicker2').val().replace(/-/gi, ""),
                 "row2": $("#supp_code_main").val(),
-                "row3": $('#part_code').val()
+                "row3": $('#part_type_select').val(),
+                "row4": $('#part_group_select').val(),
+                "row5": $('#part_group_select2').val()
             },
             successCallback: function (url) {
                 $preparingFileModal.dialog('close');
@@ -197,8 +203,52 @@ function suppModal_close_bus() {
     $("#SuppSearchGrid").jqGrid('clearGridData');
 }
 
+function select_change1(value){
+    if (main_data.change === 'N' && value !== '' && value !== null ) {
+        part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: value}).then(function () {
+            $('#part_group_select2').empty();
+            var option = $("<option></option>").text('전체').val('');
+            $('#part_group_select2').append(option);
+            $('#part_group_select2').select2();
+        });
+    }
+}
 
+function select_change2(value) {
+    if (value !== '' && value !== null ){
+        part_type_select_ajax_all('#part_group_select2', "/sysPartGroup2AllGet","part_grp_code2" ,"part_grp_name2",{keyword:$("#part_type_select").val(), keyword2:value}).then(function (){
+
+        }).catch(function (err){
+            $('#part_group_select2').empty();
+            var option = $("<option></option>").text('전체').val('');
+            $('#part_group_select2').append(option);
+        });
+    } else {
+        $('#part_group_select2').empty();
+        var option = $("<option></option>").text('전체').val('');
+        $('#part_group_select2').append(option);
+    }
+}
 ////////////////////////////호출 함수/////////////////////////////////////
+function selectBox() {
+    part_type_select_ajax("#part_type_select", "/sysPartTypeGet", "part_type_code", "part_type_name",{keyword:''}).then(function (data) {
+        $("select#part_type_select option[value='B']").remove();
+        $("#part_type_select").val('D').trigger("change");
+        main_data.change='N';
+        part_type_select_ajax_all("#part_group_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'D'}).then(function () {
+            $('#part_group_select2').empty();
+
+            var option = $("<option></option>").text('전체').val('');
+
+            $('#part_group_select2').append(option);
+
+            $('#part_group_select2').select2();
+
+        });
+    });
+    // select_makes_sub('#part_name_select', "/sysPartNameGroupAllGet","code_name2" ,"code_name2",{keyword:'MAT_PROD', keyword2:'CODE'},'Y');
+}
+
 
 function datepickerInput() {
     datepicker_makes("#datepicker", -1);
@@ -207,7 +257,7 @@ function datepickerInput() {
 
 
 function authcheck() {
-    ccn_ajax("/menuAuthGet", {keyword: "sysBPartPrice"}).then(function (data) {
+    ccn_ajax("/menuAuthGet", {keyword: "sysPartPrice"}).then(function (data) {
         main_data.auth = data;
     });
 }

@@ -86,8 +86,8 @@ public class MakeBody {
                 for(SYS_PART_PRICE data : list){
                     obj = new ArrayList<>();
                     obj.add(data.getSupp_name());
-                    obj.add(data.getStart_date());
-                    obj.add(data.getStop_date());
+                    obj.add(dateFormat(data.getStart_date()));
+                    obj.add(dateFormat(data.getStop_date()));
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getCurrency_name());
@@ -269,7 +269,9 @@ public class MakeBody {
                     obj = new ArrayList<>();
                     obj.add(data.getPart_type_name());
                     obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_grp_name2());
                     obj.add(data.getPart_name());
+                    obj.add(data.getPart_code());
                     obj.add(data.getSpec());
                     obj.add(data.getUnit_name());
                     obj.add(data.getSupp_name());
@@ -291,7 +293,7 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_STOCK_SUM_DAY data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_type_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());
@@ -315,7 +317,7 @@ public class MakeBody {
             if(list.size()!=0){
                 for(SCM_STOCK_SUM_MONTH data : list){
                     obj = new ArrayList<>();
-                    obj.add(data.getPart_grp_name());
+                    obj.add(data.getPart_type_name());
                     obj.add(data.getPart_code());
                     obj.add(data.getPart_name());
                     obj.add(data.getSpec());

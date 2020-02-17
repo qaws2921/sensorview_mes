@@ -588,7 +588,7 @@ function selectBox_modal1() {
         $("select#part_type_modal1_select option[value='B']").remove();
 
 
-        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'B'}).then(function () {
+        part_type_select_ajax_all("#part_group_modal1_select", "/sysPartGroupAllGet", "part_grp_code", "part_grp_name", {keyword: 'D'}).then(function () {
             $('#part_group_modal1_select2').empty();
 
             var option = $("<option></option>").text('전체').val('');

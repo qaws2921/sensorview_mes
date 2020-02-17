@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.sensorview.Mapper.mesSCM.Close.CloseMapper">
+    <select id="scmPartCloseGet" resultType="mes.sensorview.mesScm.Close.DTO.SCM_CLOSE_READY">
+        EXEC SP_SCM_CLOSE_READY_GET #{site_code},#{page},#{rows},#{keyword},#{keyword2}
+    </select>
+
+    <select id="scmPartCloseAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_CLOSE_ADD #{site_code},#{keyword},#{keyword2},#{keyword3}, #{user_code}
+    </select>
+
+    <select id="scmPartCloseSumListGet" resultType="mes.sensorview.mesScm.Close.DTO.SCM_CLOSE">
+        EXEC SP_SCM_CLOSE_GET #{site_code},#{page},#{rows},#{start_date},#{end_date},#{keyword}
+    </select>
+
+    <select id="scmPartCloseSumListSubGet" resultType="mes.sensorview.mesScm.Close.DTO.SCM_CLOSE_SUB">
+        EXEC SP_SCM_CLOSE_SUB_GET #{site_code},#{page},#{rows},#{keyword}
+    </select>
+
+    <select id="scmPartCloseCancelDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_SCM_CLOSE_CANCEL #{site_code},#{close_no}
+    </select>
+</mapper>
