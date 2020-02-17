@@ -80,10 +80,10 @@
     </select>
 
 	<select id="crmPlanGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN">
-		EXEC SP_CRM_PLAN_GET #{site_code}, #{page}, #{rows},#{keyword},#{keyword2},#{keyword3},'G'
+		EXEC SP_CRM_PLAN_GET #{site_code}, #{page}, #{rows},#{keyword},#{keyword2},#{keyword3},'','G'
 	</select>
 	<select id="crmPlanOneGet" resultType="mes.sensorview.mesCrm.Crm.DTO.CRM_PLAN">
-		EXEC SP_CRM_PLAN_GET #{site_code}, 1, 1,#{keyword},#{keyword2},#{keyword3},'O'
+		EXEC SP_CRM_PLAN_GET #{site_code}, 1, 1,#{keyword},#{keyword2},'',#{keyword3},'O'
 	</select>
 	<select id="crmPlanAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
     	EXEC SP_CRM_PLAN_ADD #{site_code}, #{plan_year},#{quarter},#{part_code},#{stock_qty},#{month1_plan1},#{month1_plan2},#{month1_plan3},#{month2_plan1},#{month2_plan2},#{month2_plan3},#{month3_plan1},#{month3_plan2},#{month3_plan3},#{user_code},#{keyword}

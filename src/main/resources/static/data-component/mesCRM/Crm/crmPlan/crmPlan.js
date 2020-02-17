@@ -231,6 +231,20 @@ function jqGrid_main() {
         rowNum: 300,
         rowList: [300, 600],
         pager: '#mes_grid_pager',
+    //      loadComplete : function() {
+    //     var ids = $("#mes_grid").getDataIDs() ;
+    //     $.each( ids, function(idx, rowId) {
+    //            // if (idx % 3 === 0){
+    //                 $("#mes_grid").setRowData(rowId, false, {background:"#ff0000"}) ;
+    //            // }
+    //
+    //
+    //
+    //         }
+    //     ) ;
+    // },
+
+
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
             var $myGrid = $(this),
                 i = $.jgrid.getCellIndex($(e.target).closest('td')[0]),
@@ -268,6 +282,7 @@ var form = function(rowId, val, rawObject, cm, rdata) {
 
     var result;
 
+
     if (prevCellVal.value == val) {
 
         result = ' style="display: none" rowspanid="' + prevCellVal.cellId + '"';
@@ -279,6 +294,7 @@ var form = function(rowId, val, rawObject, cm, rdata) {
         result = ' rowspan="1" id="' + cellId + '"';
 
         prevCellVal = { cellId: cellId, value: val };
+        //$(this).css('background',"#ff0000");
 
     }
 

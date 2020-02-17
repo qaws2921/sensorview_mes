@@ -38,7 +38,7 @@
                            <option value="4">4분기</option>
                        </select>
                     </td>
-                    <td class="wt-px-100 td-title t-align-c padding-a-0">제품코드</td>
+                    <td class="wt-px-100 td-title t-align-c padding-a-0">제품명</td>
                     <td class="wt-px-200">
                        <input type="text" name="keyword3" class="form-control condition_main"/>
                     </td>
