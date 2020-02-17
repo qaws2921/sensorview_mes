@@ -52,6 +52,15 @@
     <select id="addBoardList" resultType="String">
         EXEC SP_SYS_BOARD_ALL #{site_code},#{user_code},#{board_code},#{board_idx},'',#{type},'',#{subject},#{description},'',0,0,0,3
     </select>
+    <delete id="delBoardList">
+        DELETE FROM SYS_BOARD_LIST WHERE BOARD_IDX = #{idx}
+    </delete>
+    <select id="getFileData" resultType="mes.sensorview.Common.File.DTO.Files">
+        SELECT B.*
+        FROM SYS_BOARD_FILE A
+        LEFT JOIN SYS_FILE_CD B ON A.FILE_IDX = B.KEY_VALUE
+        WHERE BOARD_IDX = #{idx}
+    </select>
 </mapper>
 
 

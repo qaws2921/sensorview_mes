@@ -6,10 +6,7 @@ import mes.sensorview.Common.File.Function.FileUploadFunction;
 import mes.sensorview.Common.File.Function.UploadFunction;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesBoard.mesBoard.MesBoardMapper;
-import mes.sensorview.mesBoard.board.DTO.Pagination;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_CD;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_LIST;
-import mes.sensorview.mesBoard.board.DTO.SYS_BOARD_REPLY;
+import mes.sensorview.mesBoard.board.DTO.*;
 import mes.sensorview.mesManager.Master.DTO.SYSCommon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +74,7 @@ public class MESBoardService extends ReturnFunction {
     public void upHits(String idx, HttpServletRequest req, HttpServletResponse res) {
         mesBoardMapper.upHits(idx);
     }
+
     public SYS_BOARD_LIST getInfoData(String idx) {
         return mesBoardMapper.getInfoData(idx);
     }
@@ -180,5 +178,13 @@ public class MESBoardService extends ReturnFunction {
         boardList.setSite_code(getSessionData(req).getSite_code());
         boardList.setUser_code(getSessionData(req).getUser_code());
         return mesBoardMapper.addBoardList(boardList);
+    }
+
+    public int delBoardList(String idx) {
+        return mesBoardMapper.delBoardList(idx);
+    }
+
+    public List<SYS_BOARD_FILE> getFileData(String idx) {
+        return mesBoardMapper.getFileData(idx);
     }
 }

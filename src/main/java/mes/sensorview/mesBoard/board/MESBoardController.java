@@ -56,6 +56,7 @@ public class MESBoardController extends BoardFunction {
         mav.addObject("InfoData",mesBoardService.getInfoData(idx));
         mav.addObject("prev",mesBoardService.getPrev(idx,seq,req));
         mav.addObject("next",mesBoardService.getNext(idx,seq,req));
+        mav.addObject("fileData", mesBoardService.getFileData(idx));
         mav.setViewName("mesBoard/mesBoard/mesBoard/mesBoardInfo");
         return mav;
     }

@@ -41,8 +41,13 @@ public class MESBoardRestController extends BoardFunction {
         return result;
     }
     @RequestMapping("delReply")
-    public int del(@RequestParam("idx") String idx){
+    public int delReply(@RequestParam("idx") String idx){
         return mesBoardService.delReply(idx);
+    }
+
+    @RequestMapping("delBoardList")
+    public int delBoardList(@RequestParam("idx") String idx){
+        return mesBoardService.delBoardList(idx);
     }
 
     @RequestMapping(value = "/boardFileUploader", method = RequestMethod.POST)
@@ -54,7 +59,6 @@ public class MESBoardRestController extends BoardFunction {
     @RequestMapping(value = "/addBoardList", method = RequestMethod.POST)
     public int addBoardList(SYS_BOARD_LIST boardList, HttpServletRequest req){
         String result = mesBoardService.addBoardList(boardList, req);
-        log.info("!@#!@#!@#!@#!@#"+result);
         return Integer.parseInt(result);
     }
 

@@ -30,24 +30,24 @@
                 </span>
             </td>
         </tr>
+        <c:if test="${InfoData.file_cnt eq 0}">
         <tr>
-            <th width="23%"><img name=wiz_target_resize
-                                 style="margin-top: 3px; vertical-align: top; display: inline-block;"
-                                 src="https://directsend.co.kr/images/common/icon_bigfile.png"/> 첨부파일
+            <th width="23%"><img name=wiz_target_resize style="margin-top: 3px; vertical-align: top; display: inline-block;" src="https://directsend.co.kr/images/common/icon_bigfile.png"/> 첨부파일
             </th>
-            <c:if test="${InfoData.file_cnt eq 0}">
                 <td>첨부된 파일이 없습니다.</td>
-            </c:if>
-            <c:if test="${InfoData.file_cnt ne 0}">
-                <c:forEach begin="1" end="${InfoData.file_cnt}" step="1">
-                    <td>
-                        <a target="_blank" rel="noreferrer noopener" href="${InfoData.subject}"
-                           download>${InfoData.subject}</a>
-                        <span style="color: #e6716b; margin-left: 3px;">${InfoData.subject}KB</span>
-                    </td>
-                </c:forEach>
-            </c:if>
         </tr>
+        </c:if>
+        <c:if test="${InfoData.file_cnt ne 0}">
+            <c:forEach items="${fileData}" var="data">
+                <tr>
+                    <th width="23%"><img name=wiz_target_resize style="margin-top: 3px; vertical-align: top; display: inline-block;" src="https://directsend.co.kr/images/common/icon_bigfile.png"/> 첨부파일
+                        <td>
+                            <a target="_blank" rel="noreferrer noopener" href="${data.file_name}" download>${data.file_og_name}</a>
+                            <span style="color: #e6716b; margin-left: 3px;">${data.file_size}KB</span>
+                        </td>
+                </tr>
+            </c:forEach>
+        </c:if>
         <tr>
             <td class="view_content" colspan="2">
                 <div style='width:100%;height:0px;' id='wiz_get_table_width'>
@@ -130,8 +130,8 @@
     <br>
     <div class="bbs_btn align_right">
         <c:if test="${sessionScope.userData.user_code eq InfoData.user_code}">
-            <a href='/mod?idx=${InfoData.subject}' class='btn_w'>수정</a>
-            <a href='#' class='btn_w' onclick="return del('${InfoData.subject}');">삭제</a>
+            <a href='/modBoardList?idx=${InfoData.board_idx}' class='btn_w'>수정</a>
+            <a href='#' class='btn_w' onclick="return delBoardList('${InfoData.board_idx}');">삭제</a>
         </c:if>
         <a href='#' class='btn_w' onclick="window.history.go(-1); return false;">돌아가기</a>
     </div>
@@ -159,6 +159,20 @@
                 if (result == 1) {
                     alert("삭제되었습니다.");
                     location.reload();
+                } else {
+                    alert("알 수 없는 오류가 발생하였습니다.");
+                    location.reload();
+                }
+            });
+        }
+    }
+
+    function delBoardList(idx) {
+        if (confirm("게시을 삭제하시겠습니까?") == true) {
+            $.post("/delBoardList?idx=" + idx,function (result) {
+                if (result == 1) {
+                    alert("삭제되었습니다.");
+                    location.href='/board';
                 } else {
                     alert("알 수 없는 오류가 발생하였습니다.");
                     location.reload();
