@@ -13,13 +13,13 @@ var main_data = {
 };
 
 var colNames_sub = {
-    a:['제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
-    b:['제품코드','제품명','분류', '4월', '5월', '6월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
-    c:['제품코드','제품명','분류', '7월', '8월', '9월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
-    d:['제품코드','제품명','분류', '10월', '11월', '12월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    a:['s','제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    b:['s','제품코드','제품명','분류', '4월', '5월', '6월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    c:['s','제품코드','제품명','분류', '7월', '8월', '9월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
+    d:['s','제품코드','제품명','분류', '10월', '11월', '12월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기'],
 }
 
-var colNames = ['제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기']
+var colNames = ['s','제품코드','제품명','분류', '1월', '2월', '3월', '소계', '전체계', '차이', '생산량','시점재고', '생산시기','년도','분기']
 ////////////////////////////시작 함수/////////////////////////////////
 $(document).ready(function () {
     authcheck();
@@ -208,7 +208,8 @@ function jqGrid_main() {
         caption: '계획관리 | MES',
         colNames: colNames,
         colModel: [
-            {name: 'part_code', index: 'part_code',key:true,hidden:true, sortable: false, width: 120, sorttype:"text", },
+            {name: 'rownum', index: 'rownum',key:true,hidden:true, sortable: false, width: 120, sorttype:"text", },
+            {name: 'part_code', index: 'part_code',hidden:true, sortable: false, width: 120, sorttype:"text", },
             {name: 'part_name', index: 'part_name', sortable: false, width: 120, sorttype:"text",  cellattr:form},
             {name: 'plan_name', index: 'plan_name', sortable: false, width: 50},
             {name: 'month_plan1', index: 'month_plan1', sortable: false, width: 50},
@@ -231,18 +232,33 @@ function jqGrid_main() {
         rowNum: 300,
         rowList: [300, 600],
         pager: '#mes_grid_pager',
-    //      loadComplete : function() {
-    //     var ids = $("#mes_grid").getDataIDs() ;
-    //     $.each( ids, function(idx, rowId) {
-    //            // if (idx % 3 === 0){
-    //                 $("#mes_grid").setRowData(rowId, false, {background:"#ff0000"}) ;
-    //            // }
-    //
-    //
-    //
-    //         }
-    //     ) ;
-    // },
+         loadComplete : function() {
+        var ids = $("#mes_grid").getDataIDs() ;
+        var count = 0;
+        var check = true;
+        $.each( ids, function(idx, rowId) {
+            count++;
+            if (check === false){
+
+                    $("#mes_grid").setRowData(rowId, false, {background:"rgb(155, 185, 239)"}) ;
+                    if (count === 3){
+                        count = 0;
+                        check = true;
+                    }
+
+            } else {
+
+                if (count === 3){
+                    count = 0;
+                    check = false;
+                }
+            }
+
+
+
+            }
+        ) ;
+    },
 
 
         beforeSelectRow: function (rowid, e) {          // 클릭시 체크 방지
@@ -279,7 +295,7 @@ function jqGrid_main() {
 
 var prevCellVal = { cellId: undefined, value: undefined,rowid:undefined };
 var form = function(rowId, val, rawObject, cm, rdata) {
-
+console.log(val);
     var result;
 
 
