@@ -39,7 +39,7 @@ function addUdate_btn2() {
 ////////////////////////////호출 함수/////////////////////////////////////
 function effectiveness2(modal_objact) { // 유효성 검사
     if (modal_objact.part_name === '') {
-        alert("명칭을 입력해주세요");
+        alert("제품명을 입력해주세요");
         return false;
     }  else if (modal_objact.frequency === '') {
         alert("규격을 입력해주세요");

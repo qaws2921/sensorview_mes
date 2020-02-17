@@ -251,7 +251,7 @@ function jqGrid_main() {
         ],
         caption: "제품등록 | MES",
         autowidth: true,
-        height: 570,
+        height: 562,
         pager: '#mes_grid_pager',
         rowNum: 100,
         rowList: [100, 200, 300, 500, 1000],
