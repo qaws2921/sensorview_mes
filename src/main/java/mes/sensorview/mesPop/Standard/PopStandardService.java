@@ -6,6 +6,7 @@ import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.Common.Function.ReturnFunction;
 import mes.sensorview.Mapper.mesPop.Standard.MesPopMapper;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_ERROR_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +81,22 @@ public class PopStandardService extends ReturnFunction {
     public Message popLineUserDel(HttpServletRequest req, POP_LINE_USER_CD pluc) {
         pluc.setSite_code(getSessionData(req).getSite_code());
         return mesPopMapper.popLineUserDel(pluc);
+    }
+
+    public Message popErrorTypeAdd(HttpServletRequest req, POP_LINE_ERROR_CD plec) {
+        plec.setSite_code(getSessionData(req).getSite_code());
+        plec.setUser_code(getSessionData(req).getUser_code());
+        return mesPopMapper.popErrorTypeAdd(plec);
+    }
+
+    public RESTful popErrorTypeGet(HttpServletRequest req, Page p) {
+        p.setSite_code(getSessionData(req).getSite_code());
+        List<POP_LINE_ERROR_CD> rows = mesPopMapper.popErrorTypeGet(p);
+        return getListData(rows,p);
+    }
+
+    public Message popErrorTypeDel(HttpServletRequest req, POP_LINE_ERROR_CD plec) {
+        plec.setSite_code(getSessionData(req).getSite_code());
+        return mesPopMapper.popErrorTypeDel(plec);
     }
 }

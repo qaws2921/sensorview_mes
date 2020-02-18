@@ -3,6 +3,7 @@ package mes.sensorview.Mapper.mesPop.Standard;
 import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_ERROR_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,10 @@ public interface MesPopMapper {
     Message popLineUserAdd(POP_LINE_USER_CD pluc);
 
     Message popLineUserDel(POP_LINE_USER_CD pluc);
+
+    Message popErrorTypeAdd(POP_LINE_ERROR_CD plec);
+
+    List<POP_LINE_ERROR_CD> popErrorTypeGet(Page p);
+
+    Message popErrorTypeDel(POP_LINE_ERROR_CD plec);
 }

@@ -121,6 +121,7 @@ var array =
         {code:"popBcrForm", title:"생산관리",sub:"기준정보",name:"바코드양식"},
         {code:"popRoute", title:"생산관리",sub:"기준정보",name:"공정라우팅설정"},
         {code:"popLineUser",title:"생산관리",sub:"기준정보",name:"공정별작업자관리"},
+        {code:"popErrorType",title:"생산관리",sub:"기준정보",name:"공정별불량유형관리"},
 
         {code:"popProdPlan",title:"생산관리",sub:"생산관리",name:"작업지시관리"},
         {code:"popProdPlanManual",title:"생산관리",sub:"생산관리",name:"작업지시관리(수동)"},

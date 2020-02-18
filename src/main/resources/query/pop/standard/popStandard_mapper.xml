@@ -45,4 +45,16 @@
     <select id="popLineUserDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
         EXEC SP_POP_LINE_USER_DEL #{site_code},#{line_code},#{keyword}
     </select>
+
+    <select id="popErrorTypeAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_LINE_ERROR_ADD #{site_code},#{line_code},#{keyword},#{user_code}
+    </select>
+
+    <select id="popErrorTypeGet" resultType="mes.sensorview.mesPop.Standard.DTO.POP_LINE_ERROR_CD">
+        EXEC SP_POP_LINE_ERROR_GET #{site_code},#{page},#{rows},#{keyword}
+    </select>
+
+    <select id="popErrorTypeDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_POP_LINE_ERROR_DEL #{site_code},#{line_code},#{keyword}
+    </select>
 </mapper>

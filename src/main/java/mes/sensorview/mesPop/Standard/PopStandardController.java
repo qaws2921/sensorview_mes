@@ -18,4 +18,9 @@ public class PopStandardController {
     public String popBcrForm() { return "mesPop/Standard/popBcrForm/popBcrForm"; }
     @RequestMapping(value = "/popRoute")
     public String popRoute() { return "mesPop/Standard/popRoute/popRoute"; }
+
+    @RequestMapping("/popErrorType")
+    public String popErrorType(){
+        return "mesPop/Standard/popErrorType/popErrorType";
+    }
 }

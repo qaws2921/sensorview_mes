@@ -4,6 +4,7 @@ import mes.sensorview.Common.DataTransferObject.Message;
 import mes.sensorview.Common.DataTransferObject.Page;
 import mes.sensorview.Common.DataTransferObject.RESTful;
 import mes.sensorview.mesPop.Standard.DTO.POP_BCR_FORM;
+import mes.sensorview.mesPop.Standard.DTO.POP_LINE_ERROR_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_LINE_USER_CD;
 import mes.sensorview.mesPop.Standard.DTO.POP_ROUTE_CD;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,20 @@ public class PopStandardRestController {
         return popStandardService.popLineUserDel(req, pluc);
     }
 
+
+    @RequestMapping(value = "/popErrorTypeAdd", method = RequestMethod.POST)
+    public Message popErrorTypeAdd(HttpServletRequest req, POP_LINE_ERROR_CD plec) {
+        return popStandardService.popErrorTypeAdd(req,plec);
+    }
+
+    @RequestMapping(value = "/popErrorTypeGet", method = RequestMethod.POST)
+    public RESTful popErrorTypeGet(HttpServletRequest req, Page p) {
+        return popStandardService.popErrorTypeGet(req, p);
+    }
+
+    @RequestMapping(value ="/popErrorTypeDel", method = RequestMethod.POST)
+    public Message popErrorTypeDel(HttpServletRequest req, POP_LINE_ERROR_CD plec) {
+        return popStandardService.popErrorTypeDel(req, plec);
+    }
 
 }
