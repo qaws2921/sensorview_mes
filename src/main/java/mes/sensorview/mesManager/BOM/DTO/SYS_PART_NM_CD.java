@@ -32,5 +32,5 @@ public class SYS_PART_NM_CD {
     private String part_grp_name1;
     private String part_grp_name2;
 
-
+    private String user_name;
 }

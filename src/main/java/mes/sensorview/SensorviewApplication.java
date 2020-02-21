@@ -25,7 +25,14 @@ import java.nio.charset.Charset;
  **/
 @SpringBootApplication
 @MapperScan(value = {"mes.sensorview.Mapper"})
-public class SensorviewApplication{
+public class SensorviewApplication  extends SpringBootServletInitializer{
+
+    public SensorviewApplication() {
+    }
+
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(new Class[]{SensorviewApplication.class});
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SensorviewApplication.class, args);

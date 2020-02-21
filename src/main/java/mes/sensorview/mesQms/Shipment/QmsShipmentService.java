@@ -92,7 +92,7 @@ public class QmsShipmentService extends UploadFunction {
     public void qmsProdErrorManAdd_File2(Files files, MultipartHttpServletRequest req) {
         files.setSite_code(getSessionData(req).getSite_code());
         files.setUser_code(getSessionData(req).getUser_code());
-        Files newFiles = setQmsRecvErrorManFile2(req,"D:/UploadFile/sensorview/qmsProdErrorMan/");
+        Files newFiles = setQmsRecvErrorManFile2(req,"C:/UploadFile/sensorview/qmsProdErrorMan/");
         files.setKey_value(newFiles.getKey_value());
         qmsShipmentMapper.qmsProdErrorManAdd_File2(files);
     }
@@ -100,7 +100,7 @@ public class QmsShipmentService extends UploadFunction {
     public void qmsProdErrorManAdd_File3(Files files, MultipartHttpServletRequest req) {
         files.setSite_code(getSessionData(req).getSite_code());
         files.setUser_code(getSessionData(req).getUser_code());
-        Files newFiles = setQmsRecvErrorManFile1(req,"D:/UploadFile/sensorview/qmsProdErrorMan/");
+        Files newFiles = setQmsRecvErrorManFile1(req,"C:/UploadFile/sensorview/qmsProdErrorMan/");
         files.setKey_value(newFiles.getKey_value());
         qmsShipmentMapper.qmsProdErrorManAdd_File3(files);
     }
@@ -108,7 +108,7 @@ public class QmsShipmentService extends UploadFunction {
     public void qmsProdErrorManAdd_AllFile(Files files, MultipartHttpServletRequest req) {
         for(int i=2; 4>i; i++){
             String Key = MakeFileName_new(i);
-            Files newFiles = AllFile(files, req,Key,i,"D:/UploadFile/sensorview/qmsProdErrorMan/");
+            Files newFiles = AllFile(files, req,Key,i,"C:/UploadFile/sensorview/qmsProdErrorMan/");
             qmsShipmentMapper.qmsProdErrorManAdd_AllFile(newFiles);
         }
     }

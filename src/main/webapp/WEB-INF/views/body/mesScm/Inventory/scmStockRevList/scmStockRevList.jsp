@@ -12,37 +12,40 @@
                 <tbody>
                 <tr>
                     <td class="wt-px-100 td-title t-align-c padding-a-0">조회기간</td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
                             <input type="text" name="start_date" id="datepicker" class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
                     <td class="t-align-c" style="width:25px !important;">~</td>
-                    <td class="wt-px-200">
+                    <td class="wt-px-125">
                         <div class="input-icon input-icon-right">
-                            <input type="text" name="end_date" id="datepicker2" class="form-control h-25 condition_main" readonly>
+                            <input type="text" name="stop_date" id="datepicker2" class="form-control h-25 condition_main" readonly>
                             <i class="ace-icon fa fa-calendar dark" style="top: -2px;"></i>
                         </div>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0">구분</td>
-                    <td class="wt-px-200">
-                        <select name="keyword" id="part_type_select" class="form-control keyword condition_main" style="width:100%;" onchange="select_change1(this.value);">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_type">제품유형</td>
+                    <td class="wt-px-125">
+                        <select id="part_type_select" name="keyword" class="form-control keyword condition_main" onchange="select_type_change(this.value);"  style="width:100%">
+                            <option value="A">상품</option>
+                            <option value="C">반제품</option>
+                            <option value="D">자재</option>
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select1" name="keyword2" class="form-control keyword condition_main" style="width:100%">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group1">품목군</td>
+                    <td class="wt-px-125">
+                        <select id="part_group1_select" name="keyword2" class="form-control keyword condition_main" onchange="select_change1(this.value);" style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select2" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group2">제품군</td>
+                    <td class="wt-px-125">
+                        <select id="part_group2_select" name="keyword3" class="form-control keyword condition_main"  style="width:100%">
                         </select>
                     </td>
-                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3"></td>
-                    <td class="wt-px-200">
-                        <select id="part_group_select3" name="keyword4" class="form-control keyword condition_main" style="width:100%">
+                    <td class="wt-px-100 t-align-c td-title padding-a-0" id="part_group3">품명</td>
+                    <td class="wt-px-125" id="part_name">
+                        <select id="part_name_select" name="keyword4" class="form-control keyword condition_main" style="width:100%">
                         </select>
                     </td>
                     <td></td>

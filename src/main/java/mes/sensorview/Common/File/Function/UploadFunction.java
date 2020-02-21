@@ -51,7 +51,7 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
         files.setUrl(FileName);
-        files.setUpload_path("D:/UploadFile/sensorview/qmsRecv/" + FileName);
+        files.setUpload_path("C:/UploadFile/sensorview/qmsRecv/" + FileName);
         return files;
     }
 
@@ -89,7 +89,7 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
         files.setUrl(FileName);
-        files.setUpload_path("D:/UploadFile/sensorview/qmsRecv/" + FileName);
+        files.setUpload_path("C:/UploadFile/sensorview/qmsRecv/" + FileName);
         return files;
     }
 
@@ -331,7 +331,7 @@ public class UploadFunction extends ReturnFunction {
         files.setFile_og_name(multipartFile.getOriginalFilename());
         files.setFile_name(FileName);
         files.setUrl(FileName);
-        files.setUpload_path( "D:/UploadFile/sensorview/tpmMC/" + FileName);
+        files.setUpload_path( "C:/UploadFile/sensorview/tpmMC/" + FileName);
         return files;
     }
 

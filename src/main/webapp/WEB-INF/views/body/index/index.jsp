@@ -351,7 +351,7 @@
 
             <!-- PAGE CONTENT ENDS -->
         </div><!-- /.col -->
-        <div class="col-xs-12">
+<%--        <div class="col-xs-12">
             <a href="http://localhost:9003/uploadFile/1.txt" download >저장</a>
             <form action="/testFile1" method="post" enctype="Multipart/form-data" id="testForm">
                 <table>
@@ -421,6 +421,6 @@
         }
     </script>
 
-</div>
+</div>--%>
 </body>
 </html>

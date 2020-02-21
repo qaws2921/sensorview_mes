@@ -102,7 +102,7 @@
                     <span class="sp-title">수주품목</span>
                 </div>
                 <div class="col-xs-8">
-                    <table class="table multi_table">
+                    <table class="table multi_table e wt-100">
                         <tbody>
                         <tr>
                             <td class="wt-px-100 td-title t-align-c">품목코드</td>

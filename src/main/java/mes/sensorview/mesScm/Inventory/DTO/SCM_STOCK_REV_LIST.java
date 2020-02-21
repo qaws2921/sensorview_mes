@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SCM_STOCK_REV_LIST {
         private String part_type_name;
-        private String part_grp_name1;
+        private String part_grp_name;
         private String part_grp_name2;
         private String part_grp_name3;
         private String part_code;
@@ -15,9 +15,14 @@ public class SCM_STOCK_REV_LIST {
         private String bcr;
         private int stock_qty_prev;
         private int stock_qty;
+        private int increase_qty;
         private int aaaa;
         private String rev_code;
         private String user_name;
         private String update_date;
         private int rec_count;
+
+        private String work_date;
+        private String rev_no;
+        private String rev_name;
 }
