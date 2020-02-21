@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.sensorview.Mapper.mesWms.InOut.WmsInOutMapper">
+    <select id="wmsInListGet" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_IN_SUB">
+        EXEC [SP_WMS_IN_SUB_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date}
+    </select>
+    <select id="wmsOutListGet" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_SUB">
+        EXEC [SP_WMS_OUT_SUB_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date}
+    </select>
+    <select id="wmsOutReadyGet" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB">
+        EXEC [SP_WMS_OUT_READY_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date}
+    </select>
+    <select id="wmsOutOrderGet" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD">
+        EXEC [SP_WMS_OUT_ORD_GET] #{site_code}, #{page}, #{rows}, #{start_date}, #{end_date},'',#{keyword}
+    </select>
+    <select id="wmsOutOrderSubGet" resultType="mes.sensorview.mesWms.InOut.DTO.WMS_OUT_ORD_SUB">
+        EXEC [SP_WMS_OUT_ORD_SUB_GET] #{site_code}, #{page}, #{rows},#{keyword},#{keyword2}
+    </select>
+    <select id="wmsOutOrderAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_WMS_OUT_ORD_ADD #{site_code},#{req_no},#{work_date}, #{ord_no},#{supp_code}, #{part_code},#{ord_qty}, #{comp_qty}, #{ready_qty}, #{req_qty}, #{user_code}
+    </select>
+    <select id="wmsOutOrderDel" resultType="mes.sensorview.Common.DataTransferObject.Message">
+        EXEC SP_WMS_OUT_ORD_DEL #{site_code},#{keyword}
+    </select>
+
+
+</mapper>
