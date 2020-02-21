@@ -17,10 +17,10 @@ $(document).ready(function () {
 
 
 
+    alert("2");
 
 
 
-    
     jqGrid_main(); // main 그리드 생성
     jqGridResize("#mes_grid" , $('#mes_grid').closest('[class*="col-"]')); //그리드 리 사이즈
 
