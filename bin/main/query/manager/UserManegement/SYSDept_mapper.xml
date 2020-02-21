@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mes.sensorview.Mapper.mesManager.User.UserMapper">
+    <select id="sysDeptGet" resultType="mes.sensorview.mesManager.User.DTO.SYSDept">
+        	EXEC SP_SYS_DEPT_GET #{site_code}, #{page}, #{rows}, '',''
+    </select>
+
+    <select id="sysDeptAdd" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_DEPT_ADD #{site_code},#{dept_code},#{dept_name},#{use_yn},#{user_code},#{keyword}
+    </select>
+    <select id="sysDeptDelete" resultType="mes.sensorview.Common.DataTransferObject.Message">
+    	EXEC SP_SYS_DEPT_DEL #{site_code},#{keyword}
+    </select>
+
+    <select id="sysDeptAllGet" resultType="mes.sensorview.mesManager.User.DTO.SYSDept">
+    		EXEC SP_SYS_DEPT_GET #{site_code}, #{page}, #{rows}, '','Y'
+    </select>
+
+    <select id="sysDeptOneGet" resultType="mes.sensorview.mesManager.User.DTO.SYSDept">
+        	EXEC SP_SYS_DEPT_GET #{site_code}, 1, 1, #{keyword},''
+    </select>
+</mapper>
+
+
